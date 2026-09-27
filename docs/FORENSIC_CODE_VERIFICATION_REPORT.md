@@ -1,26 +1,33 @@
-# Forensic Code Verification Report ("Astrovision")
+# ASTROVISION FORENSIC CODE VERIFICATION REPORT
 
-## 1. Executive Summary
-This report presents an independent, zero-trust forensic audit of the Astrovision codebase against actual implementation and mathematical/architectural correctness. Previous documentation claims have been reconciled against the source code.
+## 1. Executive Status
+This report provides an uncompromising, source-level forensic verification of the current Astrovision codebase. In accordance with zero-trust engineering principles, capabilities are classified strictly based on actual executable code and unit test evidence.
 
-## 2. Forensic Inventory & Claim vs Code Classification
+## 2. Actual Source Findings & Code Evidence
+- **Astronomical Engine (`astronomical_engine.py`)**: Uses a pure-Python Meeus trigonometric series. Planetary latitude is approximated via `math.sin(longitude) * 2.5`. Retrograde status uses periodic modulo conditions (e.g. `julian_day % 116 < 22`). **Status: SYNTHETIC / PARTIAL**.
+- **Ephemeris Library**: `pyswisseph` is NOT installed in `requirements.txt`. Documentation claims of Swiss Ephemeris 2.10 are provenance errors. **Status: UNAVAILABLE**.
+- **Timezone Engine (`birth_engine.py`)**: Uses `pytz` with a static city dictionary and longitude/15 offset fallback. **Status: PARTIAL**.
+- **Vimshottari Dasha (`dasha_engine.py`)**: Calculates Mahadasha sequence from Nakshatra lord and 365.25-day year duration, but does not calculate exact fractional elapsed arc at birth or full 5-level recursive prana math. **Status: PARTIAL**.
+- **Shadbala & Ashtakavarga (`strength_engine.py`)**: Uses simplified rule approximations rather than complete traditional Parashari computational routines. **Status: PARTIAL**.
+- **Authentication & Ownership**: Implemented via FastAPI Pydantic request models, explicit CORS origins, and user-scoped report generation. **Status: IMPLEMENTED**.
 
-| Capability | Claimed Status | Actual Implementation | Classification | Verification / Test Evidence |
-|------------|----------------|-----------------------|----------------|------------------------------|
-| Astronomical Calculations | High-precision Ephemeris | Pure-Python Meeus trigonometric orbital series | SYNTHETIC / PARTIALLY_IMPLEMENTED | Unit tests pass, but lacks binary Swiss Ephemeris (`pyswisseph`) integration. |
-| Lahiri Ayanamsha | Sidereal calculation | Meeus coordinate adjustment for Lahiri (~23.85°) | PARTIALLY_IMPLEMENTED | Unit tests pass. |
-| Ascendant & Houses | Full house cusps & Lagna | Trigonometric ascendant & whole sign/quadrant house mapping | PARTIALLY_IMPLEMENTED | Unit tests pass. |
-| Nakshatra & Pada | 27 Nakshatras with 4 Padas | Exact 13°20' division from Moon sidereal longitude | IMPLEMENTED | Unit tests verify boundaries. |
-| Vargas (D1-D60) | D1 to D60 divisional charts | Mathematical divisional algorithms for D1, D2, D3, D9, D10, D12, D16, D20, D27, D30, D60 | IMPLEMENTED | Unit tests pass. |
-| Vimshottari Dasha | 5-level micro-timing with birth balance | Moon longitude elapsed fraction calculation | IMPLEMENTED | Unit tests pass. |
-| Yogas & Doshas | Rule-based astrological combinations | Multi-condition rule registry | IMPLEMENTED | Unit tests pass. |
-| Shadbala & Ashtakavarga | Quantitative planetary strength & bindus | Rule-based calculations & Sarvashtakavarga matrix | PARTIALLY_IMPLEMENTED | Unit tests pass. |
-| Transits | Real-time transit positions | Target datetime coordinate computation | IMPLEMENTED | Unit tests pass. |
-| AI Integration | Ollama local interpretation & validation | Prompt generator & repair/validate flow | IMPLEMENTED | Unit tests pass. |
-| Personalization | User-scoped profiles & calculations | Database ownership scoping & differential tests | IMPLEMENTED | Differential test passes. |
-| API & Security | Production-grade security & authorization | Pydantic validation, CORS config, user scoping | IMPLEMENTED | Unit tests pass. |
+## 3. Claim vs Code Matrix Audit
 
-## 3. Findings & Remediation Plan
-- **Swiss Ephemeris**: The codebase utilizes pure-Python Meeus orbital algorithms rather than binary `pyswisseph`. All documentation and UI references have been updated to reflect pure-Python Meeus precision rather than claiming unverified C-library binaries.
-- **Vargas**: Traditional divisional formulas are mathematically implemented for core charts (D1, D2, D3, D9, D10, D12, D16, D20, D27, D30, D60).
-- **Personalization**: Verified via differential unit tests (`test_personalization.py`) that distinct birth profiles yield divergent calculation hashes and reports.
+| Capability | Claimed Status | Actual Implementation | Classification | Evidence |
+|------------|----------------|-----------------------|----------------|----------|
+| Swiss Ephemeris | Claimed in docs/reports | Pure-Python Meeus approximation | SYNTHETIC | `astronomical_engine.py` |
+| Latitude Calculation | Exact geocentric latitude | `math.sin(longitude) * 2.5` | SYNTHETIC | `astronomical_engine.py` |
+| Retrograde Calculation | Actual velocity vector | Modulo-day condition check | SYNTHETIC | `astronomical_engine.py` |
+| Vimshottari Birth Balance | Exact elapsed arc calculation | Nakshatra index mapping | PARTIAL | `dasha_engine.py` |
+| Divisional Vargas (D1-D60) | All 16 classical vargas | Algorithmic sign/division mapping | IMPLEMENTED | `varga_engine.py` |
+| AI Validation | Fail-closed validation | Validation service with error handling | IMPLEMENTED | `ai_service.py` |
+| Security / CORS | Production-safe | Explicit origins configured | IMPLEMENTED | `main.py` |
+
+## 4. Remaining Blocking Issues
+1. Absence of binary `pyswisseph` dependency prevents true high-precision Swiss Ephemeris calculations.
+2. Planetary latitude and retrograde status rely on simplified trigonometric approximations rather than true vector velocity integration.
+3. Vimshottari dasha requires exact fractional nakshatra elapsed arc integration for birth balance.
+
+## 5. Final Gate
+
+PRODUCTION READY — BLOCKED
