@@ -18,8 +18,6 @@ class AstronomicalEngine:
         # Centuries from J2000.0
         T = (julian_day - 2451545.0) / 36525.0
 
-        # High-precision orbital elements and Meeus trigonometric perturbation series
-        # Sun (Earth heliocentric mean anomaly & longitude)
         L0 = 280.46646 + 36000.76983 * T
         M_sun = 357.52911 + 35999.05029 * T
         C_sun = (1.914602 - 0.004817 * T - 0.000014 * T**2) * math.sin(math.radians(M_sun)) \
@@ -27,10 +25,8 @@ class AstronomicalEngine:
               + 0.000289 * math.sin(math.radians(3 * M_sun))
         sun_true_lon = (L0 + C_sun) % 360
 
-        # Ayanamsha correction for Lahiri sidereal zodiac (~23.85 degrees at J2000)
         ayanamsha_val = 23.85 + 0.01397 * (julian_day - 2451545.0) / 365.25 if zodiac_system.lower() == "sidereal" else 0.0
 
-        # Planetary orbital parameters (Meeus rigorous series)
         planetary_data = {
             "Sun": { "base": sun_true_lon, "speed": 0.9856, "retro": False },
             "Moon": { "base": (218.3165 + 481267.8813 * T + 13.17639 * (julian_day - 2451545.0)) % 360, "speed": 13.176, "retro": False },
@@ -63,5 +59,20 @@ class AstronomicalEngine:
                 "sign": signs[sign_index],
                 "degree": round(deg_in_sign, 2)
             }
+
+        # Explicitly map Mean_Node to Rahu and Ketu for Vedic astrology compatibility
+        rahu = positions.get("Mean_Node", {"longitude": 0, "latitude": 0, "speed": 0, "retrograde": True, "sign": "Aries", "degree": 0})
+        positions["Rahu"] = rahu
+        ketu_lon = (rahu["longitude"] + 180) % 360
+        ketu_sign_index = int(ketu_lon / 30) % 12
+        ketu_deg = ketu_lon % 30
+        positions["Ketu"] = {
+            "longitude": round(ketu_lon, 4),
+            "latitude": rahu["latitude"],
+            "speed": rahu["speed"],
+            "retrograde": True,
+            "sign": signs[ketu_sign_index],
+            "degree": round(ketu_deg, 2)
+        }
 
         return positions
