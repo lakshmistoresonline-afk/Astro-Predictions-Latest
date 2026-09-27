@@ -44,12 +44,11 @@ def test_personalization_differential():
     # Calculation hashes must be different for different birth profiles
     assert hash_a != hash_b
 
-    # Ascendants / Planetary positions must differ
+    # Sun or Moon signs must differ
     sun_a = report_a["chapter_3_planetary_positions"]["data"]["Sun"]["sign"]
     sun_b = report_b["chapter_3_planetary_positions"]["data"]["Sun"]["sign"]
 
     moon_a = report_a["chapter_3_planetary_positions"]["data"]["Moon"]["sign"]
     moon_b = report_b["chapter_3_planetary_positions"]["data"]["Moon"]["sign"]
 
-    # At least one major astrological factor must differ
     assert (sun_a != sun_b) or (moon_a != moon_b) or (hash_a != hash_b)
