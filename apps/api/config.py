@@ -1,0 +1,22 @@
+import os
+from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    app_name: str = "Astro Predictions API"
+    environment: str = "development"
+
+    # AI Configuration
+    ollama_base_url: str = "http://localhost:11434"
+    ai_model_generation: str = "gemma4"
+    ai_model_validation: str = "qwen3.5"
+
+    # Free Tier Governance Limits
+    free_daily_charts: int = 10
+    free_daily_ai_reports: int = 3
+    free_daily_ai_messages: int = 20
+
+    class Config:
+        env_file = ".env"
+        extra = "ignore"
+
+settings = Settings()

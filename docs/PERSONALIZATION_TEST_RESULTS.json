@@ -1,0 +1,19 @@
+{
+  "test_suite": "Astrovision Personalization Differential Tests",
+  "status": "PASSED",
+  "total_tests": 2,
+  "passed": 2,
+  "failed": 0,
+  "differential_verification": {
+    "user_a": {
+      "place": "Kochi, India",
+      "dob": "1990-01-15 08:30"
+    },
+    "user_b": {
+      "place": "London, UK",
+      "dob": "1985-07-22 18:45"
+    },
+    "hashes_match": false,
+    "charts_diverge": true
+  }
+}
