@@ -9,7 +9,7 @@ from apps.api.engines.doshas.evaluator import DoshaEvaluator
 from apps.api.engines.vedic_engine import VedicEngine
 from apps.api.engines.western_engine import WesternEngine
 from apps.api.engines.prediction_engine import PredictionEngine
-from apps.api.engines.strength_engine import StrengthEngine
+from apps.api.engines.strength import AshtakavargaEngine, ShadbalaEngine
 from apps.api.engines.masterwork_engine import MasterworkEngine
 
 
@@ -130,8 +130,10 @@ class ReportGeneratorEngine:
 
         # Generate downstream predictions
         predictions = PredictionEngine.generate_all_predictions(vedic_analysis, yogas, dasha_info)
-        shadbala = StrengthEngine.calculate_shadbala(planetary_positions)
-        ashtakavarga = StrengthEngine.calculate_ashtakavarga(planetary_positions)
+        shadbala_suite = ShadbalaEngine.calculate_shadbala_suite(canonical_chart, varga_suite)
+        shadbala = {p: {"total_rupis": v.total_rupas, "sthanabala": v.sthana_bala.value_rupas, "digbala": v.dig_bala.value_rupas, "kalabala": v.kala_bala.value_rupas, "chestabala": v.cheshta_bala.value_rupas, "naisargikabala": v.naisargika_bala.value_rupas, "drikbala": v.drik_bala.value_rupas, "strength_status": "Moderate"} for p, v in shadbala_suite.planets.items()}
+        ashtakavarga_suite = AshtakavargaEngine.calculate_ashtakavarga(canonical_chart)
+        ashtakavarga = {"sarvashtakavarga_bindus": {f"House {i+1}": b for i, b in enumerate(ashtakavarga_suite.sav.bindus)}, "interpretation": f"Total SAV bindus: {ashtakavarga_suite.sav.total}"}
 
         moon_nakshatra = dasha_suite.nakshatra_info.nakshatra_name
         nakshatra_pada = dasha_suite.nakshatra_info.pada
@@ -218,3 +220,4 @@ class ReportGeneratorEngine:
         }
 
         return report
+
