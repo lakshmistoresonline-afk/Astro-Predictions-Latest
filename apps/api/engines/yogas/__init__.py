@@ -11,7 +11,7 @@ from apps.api.engines.yogas.models import (
     YogaResult,
     YogaSuiteResult
 )
-from apps.api.engines.yogas.aspects import planet_aspects_house, get_house_distance
+from apps.api.engines.yogas.aspects import casts_aspect, planet_has_relationship, is_conjunct, get_house_distance
 from apps.api.engines.yogas.evaluator import YogaEvaluator
 
 __all__ = [
@@ -21,7 +21,9 @@ __all__ = [
     "RuleConditionEvidence",
     "YogaResult",
     "YogaSuiteResult",
-    "planet_aspects_house",
+    "casts_aspect",
+    "planet_has_relationship",
+    "is_conjunct",
     "get_house_distance",
     "YogaEvaluator"
 ]

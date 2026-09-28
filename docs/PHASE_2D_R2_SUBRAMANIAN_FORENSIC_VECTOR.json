@@ -1,0 +1,1185 @@
+{
+  "input": {
+    "name": "Subramanian T S",
+    "year": 1986,
+    "month": 9,
+    "day": 28,
+    "hour": 16,
+    "minute": 30,
+    "second": 0,
+    "timezone_str": "Asia/Kolkata",
+    "latitude": 10.7867,
+    "longitude": 76.6548,
+    "elevation_m": 0.0
+  },
+  "time_normalization": {
+    "local_datetime_iso": "1986-09-28T16:30:00+05:30",
+    "timezone_identifier": "Asia/Kolkata",
+    "utc_datetime_iso": "1986-09-28T11:00:00+00:00",
+    "utc_offset_hours": 5.5,
+    "julian_day_tt": 2446701.958333,
+    "time_scale": "UTC / TT"
+  },
+  "astronomy_metadata": {
+    "provider": "Skyfield",
+    "provider_version": "1.55",
+    "ephemeris_kernel": "de421.bsp",
+    "kernel_checksum": "6110d8d2b63560680ff80b27e30065b2",
+    "ayanamsha_mode": "Lahiri",
+    "house_system": "Whole Sign",
+    "node_model": "Mean Node"
+  },
+  "ascendant": {
+    "absolute_longitude": 311.197956,
+    "sign": "Aquarius",
+    "sign_index": 11,
+    "degree": 11,
+    "minute": 11,
+    "second": 52.6416
+  },
+  "mc": {
+    "absolute_longitude": 226.539619,
+    "sign": "Scorpio",
+    "sign_index": 8,
+    "degree": 16,
+    "minute": 32,
+    "second": 22.6284
+  },
+  "placements": {
+    "Sun": {
+      "body_name": "Sun",
+      "geocentric_tropical_lon": 185.211401,
+      "geocentric_latitude": -8.1e-05,
+      "distance_au": 1.001986,
+      "velocity_deg_day": 0.981788,
+      "retrograde": false,
+      "sidereal_longitude": 161.543565,
+      "rashi": {
+        "absolute_longitude": 161.543565,
+        "sign": "Virgo",
+        "sign_index": 6,
+        "degree": 11,
+        "minute": 32,
+        "second": 36.834
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Hasta",
+        "nakshatra_index": 13,
+        "absolute_start_deg": 160.0,
+        "absolute_end_deg": 173.333333,
+        "degree_within_nakshatra": 1.543565,
+        "pada": 1
+      }
+    },
+    "Moon": {
+      "body_name": "Moon",
+      "geocentric_tropical_lon": 120.873003,
+      "geocentric_latitude": 5.18651,
+      "distance_au": 0.002664,
+      "velocity_deg_day": 12.25419,
+      "retrograde": false,
+      "sidereal_longitude": 97.205167,
+      "rashi": {
+        "absolute_longitude": 97.205167,
+        "sign": "Cancer",
+        "sign_index": 4,
+        "degree": 7,
+        "minute": 12,
+        "second": 18.6012
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Pushya",
+        "nakshatra_index": 8,
+        "absolute_start_deg": 93.333333,
+        "absolute_end_deg": 106.666667,
+        "degree_within_nakshatra": 3.871834,
+        "pada": 2
+      }
+    },
+    "Mercury": {
+      "body_name": "Mercury",
+      "geocentric_tropical_lon": 201.955112,
+      "geocentric_latitude": -0.525875,
+      "distance_au": 1.319661,
+      "velocity_deg_day": 1.523505,
+      "retrograde": false,
+      "sidereal_longitude": 178.287276,
+      "rashi": {
+        "absolute_longitude": 178.287276,
+        "sign": "Virgo",
+        "sign_index": 6,
+        "degree": 28,
+        "minute": 17,
+        "second": 14.1936
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Chitra",
+        "nakshatra_index": 14,
+        "absolute_start_deg": 173.333333,
+        "absolute_end_deg": 186.666667,
+        "degree_within_nakshatra": 4.953943,
+        "pada": 2
+      }
+    },
+    "Venus": {
+      "body_name": "Venus",
+      "geocentric_tropical_lon": 225.48736,
+      "geocentric_latitude": -5.628248,
+      "distance_au": 0.438066,
+      "velocity_deg_day": 0.54048,
+      "retrograde": false,
+      "sidereal_longitude": 201.819524,
+      "rashi": {
+        "absolute_longitude": 201.819524,
+        "sign": "Libra",
+        "sign_index": 7,
+        "degree": 21,
+        "minute": 49,
+        "second": 10.2864
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Vishakha",
+        "nakshatra_index": 16,
+        "absolute_start_deg": 200.0,
+        "absolute_end_deg": 213.333333,
+        "degree_within_nakshatra": 1.819524,
+        "pada": 1
+      }
+    },
+    "Mars": {
+      "body_name": "Mars",
+      "geocentric_tropical_lon": 294.701521,
+      "geocentric_latitude": -3.603296,
+      "distance_au": 0.674204,
+      "velocity_deg_day": 0.487999,
+      "retrograde": false,
+      "sidereal_longitude": 271.033685,
+      "rashi": {
+        "absolute_longitude": 271.033685,
+        "sign": "Capricorn",
+        "sign_index": 10,
+        "degree": 1,
+        "minute": 2,
+        "second": 1.266
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Uttara Ashadha",
+        "nakshatra_index": 21,
+        "absolute_start_deg": 266.666667,
+        "absolute_end_deg": 280.0,
+        "degree_within_nakshatra": 4.367018,
+        "pada": 2
+      }
+    },
+    "Jupiter": {
+      "body_name": "Jupiter",
+      "geocentric_tropical_lon": 345.805747,
+      "geocentric_latitude": -1.509598,
+      "distance_au": 4.019659,
+      "velocity_deg_day": -0.117613,
+      "retrograde": true,
+      "sidereal_longitude": 322.137911,
+      "rashi": {
+        "absolute_longitude": 322.137911,
+        "sign": "Aquarius",
+        "sign_index": 11,
+        "degree": 22,
+        "minute": 8,
+        "second": 16.4796
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Purva Bhadrapada",
+        "nakshatra_index": 25,
+        "absolute_start_deg": 320.0,
+        "absolute_end_deg": 333.333333,
+        "degree_within_nakshatra": 2.137911,
+        "pada": 1
+      }
+    },
+    "Saturn": {
+      "body_name": "Saturn",
+      "geocentric_tropical_lon": 245.367186,
+      "geocentric_latitude": 1.631332,
+      "distance_au": 10.466397,
+      "velocity_deg_day": 0.077045,
+      "retrograde": false,
+      "sidereal_longitude": 221.69935,
+      "rashi": {
+        "absolute_longitude": 221.69935,
+        "sign": "Scorpio",
+        "sign_index": 8,
+        "degree": 11,
+        "minute": 41,
+        "second": 57.66
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Anuradha",
+        "nakshatra_index": 17,
+        "absolute_start_deg": 213.333333,
+        "absolute_end_deg": 226.666667,
+        "degree_within_nakshatra": 8.366017,
+        "pada": 3
+      }
+    },
+    "Uranus": {
+      "body_name": "Uranus",
+      "geocentric_tropical_lon": 258.968547,
+      "geocentric_latitude": -0.103627,
+      "distance_au": 19.422918,
+      "velocity_deg_day": 0.026494,
+      "retrograde": false,
+      "sidereal_longitude": 235.300711,
+      "rashi": {
+        "absolute_longitude": 235.300711,
+        "sign": "Scorpio",
+        "sign_index": 8,
+        "degree": 25,
+        "minute": 18,
+        "second": 2.5596
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Jyeshtha",
+        "nakshatra_index": 18,
+        "absolute_start_deg": 226.666667,
+        "absolute_end_deg": 240.0,
+        "degree_within_nakshatra": 8.634044,
+        "pada": 3
+      }
+    },
+    "Neptune": {
+      "body_name": "Neptune",
+      "geocentric_tropical_lon": 273.276953,
+      "geocentric_latitude": 1.055228,
+      "distance_au": 30.259244,
+      "velocity_deg_day": 0.007454,
+      "retrograde": false,
+      "sidereal_longitude": 249.609117,
+      "rashi": {
+        "absolute_longitude": 249.609117,
+        "sign": "Sagittarius",
+        "sign_index": 9,
+        "degree": 9,
+        "minute": 36,
+        "second": 32.8212
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Mula",
+        "nakshatra_index": 19,
+        "absolute_start_deg": 240.0,
+        "absolute_end_deg": 253.333333,
+        "degree_within_nakshatra": 9.609117,
+        "pada": 3
+      }
+    },
+    "Pluto": {
+      "body_name": "Pluto",
+      "geocentric_tropical_lon": 216.212657,
+      "geocentric_latitude": 15.984507,
+      "distance_au": 30.52853,
+      "velocity_deg_day": 0.035817,
+      "retrograde": false,
+      "sidereal_longitude": 192.544821,
+      "rashi": {
+        "absolute_longitude": 192.544821,
+        "sign": "Libra",
+        "sign_index": 7,
+        "degree": 12,
+        "minute": 32,
+        "second": 41.3556
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Swati",
+        "nakshatra_index": 15,
+        "absolute_start_deg": 186.666667,
+        "absolute_end_deg": 200.0,
+        "degree_within_nakshatra": 5.878154,
+        "pada": 2
+      }
+    },
+    "Rahu": {
+      "body_name": "Rahu",
+      "geocentric_tropical_lon": 21.501776,
+      "geocentric_latitude": 0.0,
+      "distance_au": 0.0,
+      "velocity_deg_day": -0.05295,
+      "retrograde": true,
+      "sidereal_longitude": 357.83394,
+      "rashi": {
+        "absolute_longitude": 357.83394,
+        "sign": "Pisces",
+        "sign_index": 12,
+        "degree": 27,
+        "minute": 50,
+        "second": 2.1831
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Revati",
+        "nakshatra_index": 27,
+        "absolute_start_deg": 346.666667,
+        "absolute_end_deg": 360.0,
+        "degree_within_nakshatra": 11.167273,
+        "pada": 4
+      }
+    },
+    "Ketu": {
+      "body_name": "Ketu",
+      "geocentric_tropical_lon": 201.501776,
+      "geocentric_latitude": 0.0,
+      "distance_au": 0.0,
+      "velocity_deg_day": -0.05295,
+      "retrograde": true,
+      "sidereal_longitude": 177.83394,
+      "rashi": {
+        "absolute_longitude": 177.83394,
+        "sign": "Virgo",
+        "sign_index": 6,
+        "degree": 27,
+        "minute": 50,
+        "second": 2.1831
+      },
+      "nakshatra_pada": {
+        "nakshatra": "Chitra",
+        "nakshatra_index": 14,
+        "absolute_start_deg": 173.333333,
+        "absolute_end_deg": 186.666667,
+        "degree_within_nakshatra": 4.500606,
+        "pada": 2
+      }
+    }
+  },
+  "whole_sign_houses": [
+    {
+      "house_number": 1,
+      "sign": "Aquarius",
+      "sign_index": 11,
+      "start_longitude": 300.0,
+      "end_longitude": 330.0
+    },
+    {
+      "house_number": 2,
+      "sign": "Pisces",
+      "sign_index": 12,
+      "start_longitude": 330.0,
+      "end_longitude": 360.0
+    },
+    {
+      "house_number": 3,
+      "sign": "Aries",
+      "sign_index": 1,
+      "start_longitude": 0.0,
+      "end_longitude": 30.0
+    },
+    {
+      "house_number": 4,
+      "sign": "Taurus",
+      "sign_index": 2,
+      "start_longitude": 30.0,
+      "end_longitude": 60.0
+    },
+    {
+      "house_number": 5,
+      "sign": "Gemini",
+      "sign_index": 3,
+      "start_longitude": 60.0,
+      "end_longitude": 90.0
+    },
+    {
+      "house_number": 6,
+      "sign": "Cancer",
+      "sign_index": 4,
+      "start_longitude": 90.0,
+      "end_longitude": 120.0
+    },
+    {
+      "house_number": 7,
+      "sign": "Leo",
+      "sign_index": 5,
+      "start_longitude": 120.0,
+      "end_longitude": 150.0
+    },
+    {
+      "house_number": 8,
+      "sign": "Virgo",
+      "sign_index": 6,
+      "start_longitude": 150.0,
+      "end_longitude": 180.0
+    },
+    {
+      "house_number": 9,
+      "sign": "Libra",
+      "sign_index": 7,
+      "start_longitude": 180.0,
+      "end_longitude": 210.0
+    },
+    {
+      "house_number": 10,
+      "sign": "Scorpio",
+      "sign_index": 8,
+      "start_longitude": 210.0,
+      "end_longitude": 240.0
+    },
+    {
+      "house_number": 11,
+      "sign": "Sagittarius",
+      "sign_index": 9,
+      "start_longitude": 240.0,
+      "end_longitude": 270.0
+    },
+    {
+      "house_number": 12,
+      "sign": "Capricorn",
+      "sign_index": 10,
+      "start_longitude": 270.0,
+      "end_longitude": 300.0
+    }
+  ],
+  "yoga_results": [
+    {
+      "rule_id": "YOGA_RUCHAKA",
+      "name": "Ruchaka Yoga",
+      "sanskrit_name": "Ruchaka Mahapurusha Yoga",
+      "category": "Mahapurusha",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "kendra_placement",
+          "condition_description": "Mars placed in Kendra house (1, 4, 7, 10) from Ascendant",
+          "status": false,
+          "evidence_details": {
+            "planet": "Mars",
+            "house": 12
+          }
+        },
+        {
+          "condition_id": "sign_dignity",
+          "condition_description": "Mars placed in Own or Exaltation sign",
+          "status": true,
+          "evidence_details": {
+            "planet": "Mars",
+            "sign": "Capricorn",
+            "sign_index": 10
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Mars"
+      ],
+      "participating_houses": [
+        12
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_BHADRA",
+      "name": "Bhadra Yoga",
+      "sanskrit_name": "Bhadra Mahapurusha Yoga",
+      "category": "Mahapurusha",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "kendra_placement",
+          "condition_description": "Mercury placed in Kendra house (1, 4, 7, 10) from Ascendant",
+          "status": false,
+          "evidence_details": {
+            "planet": "Mercury",
+            "house": 8
+          }
+        },
+        {
+          "condition_id": "sign_dignity",
+          "condition_description": "Mercury placed in Own or Exaltation sign",
+          "status": true,
+          "evidence_details": {
+            "planet": "Mercury",
+            "sign": "Virgo",
+            "sign_index": 6
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Mercury"
+      ],
+      "participating_houses": [
+        8
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_HAMSA",
+      "name": "Hamsa Yoga",
+      "sanskrit_name": "Hamsa Mahapurusha Yoga",
+      "category": "Mahapurusha",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "kendra_placement",
+          "condition_description": "Jupiter placed in Kendra house (1, 4, 7, 10) from Ascendant",
+          "status": true,
+          "evidence_details": {
+            "planet": "Jupiter",
+            "house": 1
+          }
+        },
+        {
+          "condition_id": "sign_dignity",
+          "condition_description": "Jupiter placed in Own or Exaltation sign",
+          "status": false,
+          "evidence_details": {
+            "planet": "Jupiter",
+            "sign": "Aquarius",
+            "sign_index": 11
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Jupiter"
+      ],
+      "participating_houses": [
+        1
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_MALAVYA",
+      "name": "Malavya Yoga",
+      "sanskrit_name": "Malavya Mahapurusha Yoga",
+      "category": "Mahapurusha",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "kendra_placement",
+          "condition_description": "Venus placed in Kendra house (1, 4, 7, 10) from Ascendant",
+          "status": false,
+          "evidence_details": {
+            "planet": "Venus",
+            "house": 9
+          }
+        },
+        {
+          "condition_id": "sign_dignity",
+          "condition_description": "Venus placed in Own or Exaltation sign",
+          "status": true,
+          "evidence_details": {
+            "planet": "Venus",
+            "sign": "Libra",
+            "sign_index": 7
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Venus"
+      ],
+      "participating_houses": [
+        9
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_SHASHA",
+      "name": "Shasha Yoga",
+      "sanskrit_name": "Shasha Mahapurusha Yoga",
+      "category": "Mahapurusha",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "kendra_placement",
+          "condition_description": "Saturn placed in Kendra house (1, 4, 7, 10) from Ascendant",
+          "status": true,
+          "evidence_details": {
+            "planet": "Saturn",
+            "house": 10
+          }
+        },
+        {
+          "condition_id": "sign_dignity",
+          "condition_description": "Saturn placed in Own or Exaltation sign",
+          "status": false,
+          "evidence_details": {
+            "planet": "Saturn",
+            "sign": "Scorpio",
+            "sign_index": 8
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Saturn"
+      ],
+      "participating_houses": [
+        10
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_GAJA_KESARI",
+      "name": "Gaja Kesari Yoga",
+      "sanskrit_name": "Gaja Kesari Yoga",
+      "category": "Auspicious",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "jupiter_kendra_from_moon",
+          "condition_description": "Jupiter in Kendra house (1, 4, 7, 10) from Moon",
+          "status": false,
+          "evidence_details": {
+            "jupiter_house": 1,
+            "moon_house": 6,
+            "kendra_offset": 8
+          }
+        },
+        {
+          "condition_id": "jupiter_not_debilitated",
+          "condition_description": "Jupiter is not in debilitation sign (Capricorn)",
+          "status": true,
+          "evidence_details": {
+            "jupiter_sign": "Aquarius"
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Jupiter",
+        "Moon"
+      ],
+      "participating_houses": [
+        1,
+        6
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_BUDHA_ADITYA",
+      "name": "Budha Aditya Yoga",
+      "sanskrit_name": "Budha Aditya Yoga",
+      "category": "Auspicious",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "sun_mercury_conjunction",
+          "condition_description": "Sun and Mercury conjunct in same sign within 12.0\u00b0 orb",
+          "status": false,
+          "evidence_details": {
+            "sun_sign": "Virgo",
+            "mercury_sign": "Virgo",
+            "orb_deg": 16.7437,
+            "max_orb_threshold_deg": 12.0
+          }
+        }
+      ],
+      "exceptions_checked": [
+        {
+          "condition_id": "mercury_combustion_immunity",
+          "condition_description": "Classical Parashari rule: Mercury is immune to combustion cancellation for Budha Aditya Yoga",
+          "status": true,
+          "evidence_details": {
+            "orb_deg": 16.7437
+          }
+        }
+      ],
+      "participating_planets": [
+        "Sun",
+        "Mercury"
+      ],
+      "participating_houses": [
+        8,
+        8
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_DHARMA_KARMA",
+      "name": "Dharma-Karma Adhipati Yoga",
+      "sanskrit_name": "Dharma-Karma Adhipati Yoga",
+      "category": "Raja",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "dharma_karma_connection",
+          "condition_description": "Relationship between 9th Lord and 10th Lord (Conjunction, Mutual Aspect, or Parivartana)",
+          "status": false,
+          "evidence_details": {
+            "lord_9": "Venus",
+            "house_9_lord": 9,
+            "lord_10": "Mars",
+            "house_10_lord": 12,
+            "is_conjunct": false,
+            "is_mutual_aspect": false,
+            "is_parivartana": false
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Venus",
+        "Mars"
+      ],
+      "participating_houses": [
+        9,
+        12
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_PARIVARTANA_10_12",
+      "name": "Dainya Parivartana Yoga",
+      "sanskrit_name": "Dainya Parivartana Yoga",
+      "category": "Parivartana",
+      "status": "DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "mutual_sign_exchange",
+          "condition_description": "Mutual sign exchange between 10st/th Lord (Mars) in House 12 and 12nd/th Lord (Saturn) in House 10",
+          "status": true,
+          "evidence_details": {
+            "house_A": 10,
+            "lord_A": "Mars",
+            "house_B": 12,
+            "lord_B": "Saturn"
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Mars",
+        "Saturn"
+      ],
+      "participating_houses": [
+        10,
+        12
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_HARSHA_VIPARITA",
+      "name": "Harsha Viparita Raja Yoga",
+      "sanskrit_name": "Harsha Viparita Raja Yoga",
+      "category": "Viparita",
+      "status": "DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "dusthana_lord_in_dusthana",
+          "condition_description": "6th Lord placed in 6th, 8th, or 12th house",
+          "status": true,
+          "evidence_details": {
+            "house_lord": 6,
+            "lord_planet": "Moon",
+            "placed_house": 6
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Moon"
+      ],
+      "participating_houses": [
+        6
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_SARALA_VIPARITA",
+      "name": "Sarala Viparita Raja Yoga",
+      "sanskrit_name": "Sarala Viparita Raja Yoga",
+      "category": "Viparita",
+      "status": "DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "dusthana_lord_in_dusthana",
+          "condition_description": "8th Lord placed in 6th, 8th, or 12th house",
+          "status": true,
+          "evidence_details": {
+            "house_lord": 8,
+            "lord_planet": "Mercury",
+            "placed_house": 8
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Mercury"
+      ],
+      "participating_houses": [
+        8
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_VIMALA_VIPARITA",
+      "name": "Vimala Viparita Raja Yoga",
+      "sanskrit_name": "Vimala Viparita Raja Yoga",
+      "category": "Viparita",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "dusthana_lord_in_dusthana",
+          "condition_description": "12th Lord placed in 6th, 8th, or 12th house",
+          "status": false,
+          "evidence_details": {
+            "house_lord": 12,
+            "lord_planet": "Saturn",
+            "placed_house": 10
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Saturn"
+      ],
+      "participating_houses": [
+        10
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_SUNAPHA",
+      "name": "Sunapha Yoga",
+      "sanskrit_name": "Sunapha Yoga",
+      "category": "Chandra",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "yoga_sunapha",
+          "condition_description": "Non-luminary planet in 2nd house from Moon",
+          "status": false,
+          "evidence_details": {
+            "occupying_planets": []
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Moon"
+      ],
+      "participating_houses": [
+        6,
+        7,
+        5
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_ANAPHA",
+      "name": "Anapha Yoga",
+      "sanskrit_name": "Anapha Yoga",
+      "category": "Chandra",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "yoga_anapha",
+          "condition_description": "Non-luminary planet in 12th house from Moon",
+          "status": false,
+          "evidence_details": {
+            "occupying_planets": []
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Moon"
+      ],
+      "participating_houses": [
+        6,
+        7,
+        5
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_DURUDHARA",
+      "name": "Durudhara Yoga",
+      "sanskrit_name": "Durudhara Yoga",
+      "category": "Chandra",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "yoga_durudhara",
+          "condition_description": "Non-luminary planets in both 2nd and 12th houses from Moon",
+          "status": false,
+          "evidence_details": {
+            "occupying_planets": []
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Moon"
+      ],
+      "participating_houses": [
+        6,
+        7,
+        5
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_VESHI",
+      "name": "Veshi Yoga",
+      "sanskrit_name": "Veshi Yoga",
+      "category": "Surya",
+      "status": "DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "yoga_veshi",
+          "condition_description": "Non-luminary planet in 2nd house from Sun",
+          "status": true,
+          "evidence_details": {
+            "occupying_planets": [
+              "Venus",
+              "Pluto"
+            ]
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Sun",
+        "Venus",
+        "Pluto"
+      ],
+      "participating_houses": [
+        8,
+        9,
+        7
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_VASHI",
+      "name": "Vashi Yoga",
+      "sanskrit_name": "Vashi Yoga",
+      "category": "Surya",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "yoga_vashi",
+          "condition_description": "Non-luminary planet in 12th house from Sun",
+          "status": false,
+          "evidence_details": {
+            "occupying_planets": []
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Sun"
+      ],
+      "participating_houses": [
+        8,
+        9,
+        7
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "YOGA_OBHAYACHARI",
+      "name": "Obhayachari Yoga",
+      "sanskrit_name": "Obhayachari Yoga",
+      "category": "Surya",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "yoga_obhayachari",
+          "condition_description": "Non-luminary planets in both 2nd and 12th houses from Sun",
+          "status": false,
+          "evidence_details": {
+            "occupying_planets": [
+              "Venus",
+              "Pluto"
+            ]
+          }
+        }
+      ],
+      "exceptions_checked": [],
+      "participating_planets": [
+        "Sun",
+        "Venus",
+        "Pluto"
+      ],
+      "participating_houses": [
+        8,
+        9,
+        7
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    }
+  ],
+  "dosha_results": [
+    {
+      "rule_id": "DOSHA_MANGLIK",
+      "name": "Manglik / Kuja Dosha",
+      "sanskrit_name": "Kuja Dosha",
+      "status": "CANCELLED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "mars_in_manglik_house",
+          "condition_description": "Mars placed in 1st, 2nd, 4th, 7th, 8th, or 12th house from Ascendant or Moon",
+          "status": true,
+          "evidence_details": {
+            "mars_house_from_ascendant": 12,
+            "mars_house_from_moon": 7,
+            "qualifying_houses": [
+              1,
+              2,
+              4,
+              7,
+              8,
+              12
+            ]
+          }
+        }
+      ],
+      "cancellation_exceptions": [
+        {
+          "condition_id": "cancellation_dignity_or_aspect",
+          "condition_description": "Mars in Own/Exaltation/Debilitation sign or aspected by Jupiter",
+          "status": true,
+          "evidence_details": {
+            "in_own_or_exalt": true,
+            "in_cancer": false,
+            "aspected_by_jupiter": false
+          }
+        }
+      ],
+      "participating_planets": [
+        "Mars"
+      ],
+      "participating_houses": [
+        12,
+        7
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "DOSHA_KEMADRUMA",
+      "name": "Kemadruma Dosha",
+      "sanskrit_name": "Kemadruma Dosha",
+      "status": "CANCELLED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "moon_isolated_2_12",
+          "condition_description": "No planets (excl. Sun/Rahu/Ketu) in 2nd or 12th house from Moon",
+          "status": true,
+          "evidence_details": {
+            "planets_in_2nd_or_12th": []
+          }
+        }
+      ],
+      "cancellation_exceptions": [
+        {
+          "condition_id": "kendra_planets_cancellation",
+          "condition_description": "Planets present in Kendra from Moon or Ascendant",
+          "status": true,
+          "evidence_details": {
+            "kendra_planets": [
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn",
+              "Uranus",
+              "Pluto"
+            ]
+          }
+        }
+      ],
+      "participating_planets": [
+        "Moon",
+        "Venus",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Pluto"
+      ],
+      "participating_houses": [
+        6,
+        7,
+        5
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    },
+    {
+      "rule_id": "DOSHA_KALA_SARPA",
+      "name": "Kala Sarpa Condition",
+      "sanskrit_name": "Kala Sarpa Yoga / Dosha",
+      "status": "NOT_DETECTED",
+      "chart": "D1",
+      "conditions": [
+        {
+          "condition_id": "all_planets_hemisphere_containment",
+          "condition_description": "All 7 classical planets contained within one 180\u00b0 hemisphere bounded by Rahu-Ketu axis",
+          "status": false,
+          "evidence_details": {
+            "rahu_lon": 357.83394,
+            "ketu_lon": 177.83394,
+            "all_one_side": false
+          }
+        }
+      ],
+      "cancellation_exceptions": [],
+      "participating_planets": [
+        "Rahu",
+        "Ketu",
+        "Sun",
+        "Moon",
+        "Mercury",
+        "Venus",
+        "Mars",
+        "Jupiter",
+        "Saturn"
+      ],
+      "participating_houses": [
+        12,
+        6
+      ],
+      "convention": "Parashari Canonical Convention",
+      "provenance": "Brihat Parasara Hora Sastra"
+    }
+  ],
+  "calculation_hash": "d5667aaf10081111926b0471f5bb383103128ea9d58add41711c46e5ab794d87",
+  "yoga_hash": "d5667aaf10081111926b0471f5bb383103128ea9d58add41711c46e5ab794d87",
+  "dosha_hash": "d5667aaf10081111926b0471f5bb383103128ea9d58add41711c46e5ab794d87"
+}

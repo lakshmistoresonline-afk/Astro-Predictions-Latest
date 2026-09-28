@@ -1,5 +1,5 @@
 """
-Comprehensive Unit & Forensic Verification Suite for Authoritative Yoga Evaluator Engine (Phase 2D).
+Comprehensive Unit & Forensic Verification Suite for Authoritative Yoga Evaluator Engine (Phase 2D-R2).
 """
 import pytest
 from apps.api.engines.vedic import BirthInput, build_canonical_vedic_chart
@@ -52,7 +52,7 @@ def test_canonical_subramanian_t_s_yogas():
     assert len(yoga_suite.summary_counts) > 0
 
     # Verify Budha Aditya Yoga in Subramanian T S chart
-    # Note: In Phase 2A canonical chart, Sun is ~161.37 deg, Mercury is ~178.11 deg
+    # Note: In Phase 2A canonical chart, Sun is ~161.54 deg, Mercury is ~178.28 deg
     # Their orb is ~16.74 degrees. Since 16.74 > 12.0, Budha Aditya is NOT_DETECTED in this specific chart.
     budha_aditya = next((y for y in yoga_suite.all_evaluated_yogas if y.rule_id == "YOGA_BUDHA_ADITYA"), None)
     assert budha_aditya is not None
@@ -98,3 +98,29 @@ def test_20_independent_birth_charts_yoga_suite():
 
         assert len(yoga_suite.all_evaluated_yogas) >= 15
         assert yoga_suite.summary_counts["total_evaluated"] >= 15
+
+
+def test_partial_chart_indeterminate_status():
+    """Verify that a partial chart missing required planets resolves to INDETERMINATE."""
+    inp = BirthInput(
+        name="Test Missing Moon",
+        year=1986, month=9, day=28,
+        hour=16, minute=30, second=0,
+        timezone_str="Asia/Kolkata",
+        latitude=10.7867, longitude=76.6548
+    )
+    canonical_chart = build_canonical_vedic_chart(inp)
+
+    # Intentionally remove the Moon to simulate partial evidence
+    del canonical_chart.placements["Moon"]
+
+    yoga_suite = YogaEvaluator.evaluate_all_yogas(canonical_chart)
+
+    # Gaja Kesari requires Moon. Should be INDETERMINATE.
+    gaja_kesari = next(y for y in yoga_suite.all_evaluated_yogas if y.rule_id == "YOGA_GAJA_KESARI")
+    assert gaja_kesari.status == "INDETERMINATE"
+
+    # Chandra Yogas (Sunapha, Anapha, Durudhara) require Moon. Should be INDETERMINATE.
+    chandra_yogas = [y for y in yoga_suite.all_evaluated_yogas if y.category == "Chandra"]
+    for y in chandra_yogas:
+        assert y.status == "INDETERMINATE"
