@@ -24,9 +24,11 @@ def sync_charts(asc_lon, planets):
     for name, data in planets.items():
         lon = data["lon"]
         retro = data.get("retro", False)
-        ind_chart.add_planet(name, lon, retro)
+        vel = data.get("vel", 1.0)
+        ind_chart.add_planet(name, lon, retro, vel)
         set_planet(prod_chart, name, lon)
         prod_chart.placements[name].retrograde = retro
+        prod_chart.placements[name].velocity_deg_day = vel
 
     return ind_chart, prod_chart
 
@@ -40,17 +42,23 @@ def test_shadbala_oracle_subramanian():
     prod_chart = build_canonical_vedic_chart(inp)
     varga_suite = VargaEngine.calculate_all_16_vargas(prod_chart)
 
-    ind_chart = IndependentChart(prod_chart.ascendant.absolute_longitude, prod_chart.mc.absolute_longitude, prod_chart.ayanamsha_value_deg)
+    ind_chart = IndependentChart(
+        prod_chart.ascendant.absolute_longitude,
+        prod_chart.mc.absolute_longitude,
+        prod_chart.ayanamsha_value_deg,
+        prod_chart.time_normalization.julian_day_tt,
+        1986, 9, 16
+    )
     for p_name, placement in prod_chart.placements.items():
         if p_name in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
-            ind_chart.add_planet(p_name, placement.sidereal_longitude, placement.retrograde)
+            ind_chart.add_planet(p_name, placement.sidereal_longitude, placement.retrograde, placement.velocity_deg_day)
 
     res = ShadbalaEngine.calculate_shadbala_suite(prod_chart, varga_suite)
 
     for p in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
         prod_p = res.planets[p]
 
-        # Sthana (Uccha only for now dynamic, others static)
+        # Sthana (Uccha)
         exp_uccha = independent_uccha_bala(ind_chart, p)
         assert abs(prod_p.sthana_bala.sub_components["Uccha Bala"] - round(exp_uccha, 2)) < 0.02
 
@@ -109,8 +117,3 @@ def test_shadbala_oracle_dig_bala_boundary():
 
     assert res.planets["Sun"].dig_bala.value_shashtiamsas == 60.0
     assert res.planets["Mars"].dig_bala.value_shashtiamsas == 0.0
-
-
-
-
-

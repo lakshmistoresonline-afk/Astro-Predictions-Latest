@@ -1,0 +1,33 @@
+{
+  "phase": "2E-R2",
+  "status": "CERTIFIED",
+  "shadbala_convention": "PARASHARI_CANONICAL_BPHS_SHADBALA_V1",
+  "components": {
+    "sthana_bala": ["Uccha Bala", "Sapta Vargaja Bala", "Ojha Yugma Bala", "Kendradi Bala", "Drekkana Bala"],
+    "dig_bala": "Exact linear angular interpolation from cardinal points",
+    "kala_bala": ["Nathonnatha Bala", "Paksha Bala", "Ayana Bala", "Tribhaga Bala", "Vara Bala", "Hora Bala", "Masa Bala", "Varsha Bala"],
+    "cheshta_bala": "Derived from Phase 2A apparent daily velocity",
+    "naisargika_bala": "Fixed classical BPHS constants",
+    "drik_bala": "BPHS Drishti Pinda aspectual strength with special aspects"
+  },
+  "component_count": 6,
+  "oracle_modules": 2,
+  "oracle_independence": true,
+  "fixture_count": 10,
+  "birth_chart_fixture_count": 10,
+  "ashtakavarga_contributor_count": 8,
+  "mutation_count": 6,
+  "mutation_score": 100,
+  "production_path_verified": true,
+  "legacy_strength_path_unreachable": true,
+  "legacy_astronomy_path_unreachable": true,
+  "timezone_contract_verified": true,
+  "personalization_verified": true,
+  "hash_integrity_verified": true,
+  "regression_passed": 79,
+  "regression_failed": 0,
+  "unresolved_components": [],
+  "unresolved_rules": [],
+  "material_contradictions": [],
+  "commit": "CURRENT_WORKING_TREE"
+}
