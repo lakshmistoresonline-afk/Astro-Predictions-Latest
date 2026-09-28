@@ -1,5 +1,6 @@
 """
-Comprehensive Unit & Forensic Verification Suite for Astrovision Astronomy Provider.
+Comprehensive Unit & Forensic Verification Suite for Astrovision Astronomy Provider (Phase 1D-R).
+Includes date boundary testing and fail-closed verification.
 """
 import pytest
 import os
@@ -14,14 +15,14 @@ from apps.api.engines.astronomy.providers.skyfield_jpl import SkyfieldJPLProvide
 def test_provider_initialization_and_kernel_identity():
     """Verify provider initialization and exact kernel identity."""
     provider = SkyfieldJPLProvider()
-    assert provider.kernel_filename in ["de421.bsp", "de440s.bsp"]
+    assert provider.kernel_filename in ["de440s.bsp", "de421.bsp"]
     assert len(provider.kernel_checksum) == 32 # MD5 length
 
 
 def test_fail_closed_behavior_on_missing_kernel():
-    """Verify fail-closed behavior when non-existent kernel path is supplied."""
+    """Verify strict fail-closed behavior when non-existent kernel path is supplied. No silent fallback."""
     with pytest.raises(KernelNotFoundError):
-        SkyfieldJPLProvider(kernel_path="non_existent_kernel_12345.bsp")
+        SkyfieldJPLProvider(kernel_path="non_existent_kernel_9999.bsp")
 
 
 def test_canonical_subramanian_t_s_case():
@@ -35,7 +36,7 @@ def test_canonical_subramanian_t_s_case():
 
     # 1. Metadata completeness
     assert res.metadata.provider == "Skyfield"
-    assert res.metadata.ephemeris_kernel in ["de421.bsp", "de440s.bsp"]
+    assert res.metadata.ephemeris_kernel in ["de440s.bsp", "de421.bsp"]
     assert len(res.metadata.calculation_hash) == 64 # SHA-256 length
 
     # 2. Raw Ephemeris Data
@@ -53,7 +54,7 @@ def test_canonical_subramanian_t_s_case():
     # 4. Sidereal State (Lahiri)
     sid = res.sidereal_state
     assert sid.ayanamsha_mode == "Lahiri"
-    assert 23.5 < sid.ayanamsha_value_deg < 24.5 # ~23.67 degrees for 1986
+    assert 23.5 < sid.ayanamsha_value_deg < 24.5
     assert "Sun" in sid.sidereal_longitudes
 
 
@@ -76,7 +77,6 @@ def test_time_sensitivity():
     res_t1 = provider.calculate_astronomical_state(1986, 9, 28, 11, 0, 0, 10.7867, 76.6548)
     res_t2 = provider.calculate_astronomical_state(1986, 9, 28, 12, 0, 0, 10.7867, 76.6548)
 
-    # Moon moves ~0.55 degrees in 1 hour
     assert res_t1.raw_ephemeris.bodies["Moon"].geocentric_longitude != res_t2.raw_ephemeris.bodies["Moon"].geocentric_longitude
     assert res_t1.derived_astronomy.ascendant_tropical_deg != res_t2.derived_astronomy.ascendant_tropical_deg
     assert res_t1.metadata.calculation_hash != res_t2.metadata.calculation_hash
@@ -89,33 +89,24 @@ def test_observer_coordinate_sensitivity():
     res_loc1 = provider.calculate_astronomical_state(1986, 9, 28, 11, 0, 0, 10.7867, 76.6548) # Palakkad
     res_loc2 = provider.calculate_astronomical_state(1986, 9, 28, 11, 0, 0, 51.5074, -0.1278) # London
 
-    # Ascendant and LST change with location
     assert res_loc1.derived_astronomy.ascendant_tropical_deg != res_loc2.derived_astronomy.ascendant_tropical_deg
     assert res_loc1.metadata.calculation_hash != res_loc2.metadata.calculation_hash
 
 
-test_personalization_user_a_vs_user_b = None # pytest test case follows
-
 def test_personalization_user_a_kochi_vs_user_b_london():
     """
-    Verify Part 15 Personalization:
+    Verify Personalization:
     User A: 1990-01-15, Kochi (03:00 UTC, 9.9312 N, 76.2673 E)
     User B: 1985-07-22, London (17:45 UTC, 51.5074 N, -0.1278 E)
-    Must verify positions differ, Ascendant differs, hash differs.
     """
     provider = SkyfieldJPLProvider()
 
     user_a = provider.calculate_astronomical_state(1990, 1, 15, 3, 0, 0, 9.9312, 76.2673)
     user_b = provider.calculate_astronomical_state(1985, 7, 22, 17, 45, 0, 51.5074, -0.1278)
 
-    # 1. Planetary positions differ
     assert user_a.sidereal_state.sidereal_longitudes["Sun"] != user_b.sidereal_state.sidereal_longitudes["Sun"]
     assert user_a.sidereal_state.sidereal_longitudes["Moon"] != user_b.sidereal_state.sidereal_longitudes["Moon"]
-
-    # 2. Ascendants differ
     assert user_a.sidereal_state.ascendant_sidereal_deg != user_b.sidereal_state.ascendant_sidereal_deg
-
-    # 3. Calculation hashes differ
     assert user_a.metadata.calculation_hash != user_b.metadata.calculation_hash
 
 
@@ -130,3 +121,20 @@ def test_retrograde_state_velocity_derivation():
             assert pos.retrograde is True
         else:
             assert pos.retrograde is False
+
+
+def test_boundary_dates_and_out_of_range_fail_closed():
+    """
+    Verify boundary date handling:
+    1. Dates within loaded kernel boundary calculate correctly.
+    2. Dates outside loaded kernel boundary raise CalculationError (fail closed).
+    """
+    provider = SkyfieldJPLProvider()
+
+    # Valid date within kernel coverage
+    res_valid = provider.calculate_astronomical_state(2026, 9, 27, 12, 0, 0, 40.7128, -74.0060)
+    assert res_valid.raw_ephemeris.bodies["Sun"].geocentric_longitude > 0
+
+    # Date far outside DE421/DE440s range (e.g. Year 1500)
+    with pytest.raises(CalculationError):
+        provider.calculate_astronomical_state(1500, 1, 1, 12, 0, 0, 10.7867, 76.6548)

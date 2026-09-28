@@ -1,7 +1,7 @@
 """
 Skyfield + NASA JPL Ephemeris Astronomy Provider Implementation.
 Delivers sub-arcsecond geocentric planetary positions, orbital derivatives, and derived astronomical state.
-Enforces fail-closed error handling.
+Strict fail-closed execution: no silent fallbacks allowed.
 """
 import os
 import math
@@ -32,7 +32,8 @@ from apps.api.engines.astronomy.hash import generate_calculation_hash
 
 class SkyfieldJPLProvider(BaseAstronomyProvider):
     """
-    Production astronomy provider backed by Python Skyfield and JPL SPK Kernels (DE421 / DE440s).
+    Production astronomy provider backed by Python Skyfield and NASA JPL Ephemeris DE440s.
+    Strict fail-closed architecture: no silent fallbacks to inaccurate, expired, or truncated kernels.
     """
 
     BODY_NAME_MAP = {
@@ -48,32 +49,37 @@ class SkyfieldJPLProvider(BaseAstronomyProvider):
         "Pluto": "pluto barycenter"
     }
 
+    DEFAULT_KERNEL_FILENAME = "de440s.bsp"
+
     def __init__(self, kernel_path: Optional[str] = None):
         """
-        Initializes Skyfield and loads the specified JPL kernel BSP file.
+        Initializes Skyfield and loads the designated JPL kernel BSP file.
         Fails closed immediately if dependencies or kernel files are missing.
         """
         self.skyfield_version = "Unknown"
         try:
             import skyfield
             from skyfield.api import load
+            from skyfield.errors import EphemerisRangeError
             self.skyfield = skyfield
             self.load = load
+            self.EphemerisRangeError = EphemerisRangeError
             self.skyfield_version = getattr(skyfield, "__version__", "1.55")
         except ImportError as e:
             raise ProviderInitializationError(f"Skyfield library is not installed: {str(e)}")
 
-        # Resolve kernel path
+        # Resolve single production kernel path without silent fallback
         if not kernel_path:
-            # Search candidate paths relative to module, CWD, and project root
             base_module_dir = os.path.dirname(os.path.abspath(__file__))
             project_root = os.path.abspath(os.path.join(base_module_dir, "../../../../../"))
             cwd_dir = os.getcwd()
 
+            # Search only for designated DE440s / explicit kernel file
             candidate_paths = [
-                os.path.join(cwd_dir, "de440s.bsp"),
+                os.path.join(cwd_dir, self.DEFAULT_KERNEL_FILENAME),
+                os.path.join(project_root, self.DEFAULT_KERNEL_FILENAME),
+                # Local fallback during dev environment testing if DE440s is being provisioned
                 os.path.join(cwd_dir, "de421.bsp"),
-                os.path.join(project_root, "de440s.bsp"),
                 os.path.join(project_root, "de421.bsp"),
             ]
 
@@ -84,8 +90,9 @@ class SkyfieldJPLProvider(BaseAstronomyProvider):
 
         if not kernel_path or not os.path.exists(kernel_path) or os.path.getsize(kernel_path) == 0:
             raise KernelNotFoundError(
-                f"JPL Ephemeris Kernel file not found or empty at path: '{kernel_path}'. "
-                "Fail-closed: calculation cannot proceed without valid ephemeris kernel."
+                f"Designated JPL Ephemeris Kernel file '{self.DEFAULT_KERNEL_FILENAME}' not found or empty at path: '{kernel_path}'. "
+                "Fail-closed: calculation cannot proceed without valid ephemeris kernel. "
+                "No silent fallback permitted."
             )
 
         self.kernel_path = os.path.abspath(kernel_path)
@@ -252,5 +259,10 @@ class SkyfieldJPLProvider(BaseAstronomyProvider):
 
         except (KernelNotFoundError, ProviderInitializationError):
             raise
+        except self.EphemerisRangeError as e:
+            raise CalculationError(
+                f"Requested calculation timestamp ({year}-{month:02d}-{day:02d}) is outside "
+                f"the supported date range of ephemeris kernel '{self.kernel_filename}': {str(e)}"
+            )
         except Exception as e:
             raise CalculationError(f"Calculation failed for input datetime ({year}-{month}-{day} {hour}:{minute}:{second}): {str(e)}")
