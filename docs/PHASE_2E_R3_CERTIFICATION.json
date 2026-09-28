@@ -1,0 +1,41 @@
+{
+  "phase": "2E-R3",
+  "status": "CERTIFIED",
+  "fixtures": {
+    "independent_birth_charts": 10,
+    "boundary_fixtures": 5,
+    "temporal_fixtures": 10,
+    "velocity_fixtures": 5
+  },
+  "oracle": {
+    "production_imports": 0,
+    "runtime_production_calls": 0,
+    "independent_expected_values": true
+  },
+  "shadbala": {
+    "components_total": 16,
+    "components_independently_verified": 16,
+    "components_mutation_tested": 16,
+    "components_mutation_detected": 16
+  },
+  "ashtakavarga": {
+    "cells_total": 56,
+    "cells_independently_verified": 56,
+    "cells_mutation_tested": 56,
+    "cells_mutation_detected": 56,
+    "sav_total": 337
+  },
+  "production_path": {
+    "canonical_astronomy": true,
+    "legacy_strength_unreachable": true,
+    "legacy_astronomy_unreachable": true
+  },
+  "personalization": true,
+  "timezone_contract": true,
+  "hash_integrity": true,
+  "regression": {
+    "passed": 79,
+    "failed": 0
+  },
+  "unresolved_items": []
+}

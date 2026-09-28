@@ -1,0 +1,13 @@
+{
+  "convention": "BPHS Sapta Vargaja Bala via Panchadha Maitri",
+  "vargas": ["D1_Rashi", "D2_Hora", "D3_Drekkana", "D7_Saptamamsa", "D9_Navamsa", "D12_Dwadasamsa", "D30_Trimshamsha"],
+  "scoring_table_shashtiamsas": {
+    "Own_Sign": 30.0,
+    "Adhi_Mitra": 22.5,
+    "Mitra": 15.0,
+    "Sama": 7.5,
+    "Satru": 3.75,
+    "Adhi_Satru": 1.875
+  },
+  "panchadha_maitri_formula": "Natural Friendship (-1, 0, 1) + Temporary Friendship (+1 for houses 2, 3, 4, 10, 11, 12 from planet; -1 otherwise). Resulting range: -2 (Adhi Satru) to +2 (Adhi Mitra)."
+}

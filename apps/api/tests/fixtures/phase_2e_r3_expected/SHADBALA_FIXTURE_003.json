@@ -1,0 +1,280 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_003",
+  "name": "User B London",
+  "birth_datetime_utc": "1985-07-22T17:45:00+00:00",
+  "latitude": 51.5074,
+  "longitude": -0.1278,
+  "ascendant_sidereal_longitude": 240.587622,
+  "mc_sidereal_longitude": 184.914919,
+  "ayanamsha": 23.651287,
+  "planets": {
+    "Sun": {
+      "longitude": 96.399982,
+      "velocity_deg_day": 0.954989,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 156.895286,
+      "velocity_deg_day": 14.040345,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 94.981644,
+      "velocity_deg_day": 0.647381,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 120.732205,
+      "velocity_deg_day": 0.417212,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 290.209852,
+      "velocity_deg_day": -0.122506,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 54.533192,
+      "velocity_deg_day": 1.117679,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 208.028785,
+      "velocity_deg_day": -0.005014,
+      "retrograde": true
+    }
+  },
+  "expected": {
+    "shadbala": {
+      "Sun": {
+        "sthana": 76.2,
+        "uccha": 31.2,
+        "sapta_vargaja": 0.0,
+        "ojha_yugma": 0.0,
+        "kendradi": 30.0,
+        "drekkana": 15.0,
+        "dig": 30.5,
+        "kala": 125.69,
+        "cheshta": 55.36,
+        "naisargika": 60.0,
+        "drik": 3.19,
+        "total_shashtiamsas": 350.93,
+        "total_rupas": 5.85,
+        "strength_percentage": 116.98
+      },
+      "Moon": {
+        "sthana": 93.7,
+        "uccha": 18.7,
+        "sapta_vargaja": 0.0,
+        "ojha_yugma": 15.0,
+        "kendradi": 60.0,
+        "drekkana": 0.0,
+        "dig": 9.34,
+        "kala": 154.95,
+        "cheshta": 20.17,
+        "naisargika": 51.43,
+        "drik": 8.45,
+        "total_shashtiamsas": 338.03,
+        "total_rupas": 5.63,
+        "strength_percentage": 93.9
+      },
+      "Mars": {
+        "sthana": 52.67,
+        "uccha": 7.67,
+        "sapta_vargaja": 0.0,
+        "ojha_yugma": 0.0,
+        "kendradi": 30.0,
+        "drekkana": 15.0,
+        "dig": 30.02,
+        "kala": 125.06,
+        "cheshta": 45.0,
+        "naisargika": 17.14,
+        "drik": 2.3,
+        "total_shashtiamsas": 272.19,
+        "total_rupas": 4.54,
+        "strength_percentage": 90.73
+      },
+      "Mercury": {
+        "sthana": 75.24,
+        "uccha": 45.24,
+        "sapta_vargaja": 0.0,
+        "ojha_yugma": 15.0,
+        "kendradi": 15.0,
+        "drekkana": 0.0,
+        "dig": 20.05,
+        "kala": 127.23,
+        "cheshta": 15.0,
+        "naisargika": 25.7,
+        "drik": 4.32,
+        "total_shashtiamsas": 267.54,
+        "total_rupas": 4.46,
+        "strength_percentage": 63.7
+      },
+      "Jupiter": {
+        "sthana": 35.07,
+        "uccha": 5.07,
+        "sapta_vargaja": 0.0,
+        "ojha_yugma": 0.0,
+        "kendradi": 30.0,
+        "drekkana": 0.0,
+        "dig": 43.46,
+        "kala": 119.53,
+        "cheshta": 60.0,
+        "naisargika": 34.28,
+        "drik": -23.59,
+        "total_shashtiamsas": 268.75,
+        "total_rupas": 4.48,
+        "strength_percentage": 68.91
+      },
+      "Venus": {
+        "sthana": 85.82,
+        "uccha": 40.82,
+        "sapta_vargaja": 0.0,
+        "ojha_yugma": 15.0,
+        "kendradi": 15.0,
+        "drekkana": 15.0,
+        "dig": 43.46,
+        "kala": 169.34,
+        "cheshta": 30.0,
+        "naisargika": 42.85,
+        "drik": 1.88,
+        "total_shashtiamsas": 373.36,
+        "total_rupas": 6.22,
+        "strength_percentage": 113.14
+      },
+      "Saturn": {
+        "sthana": 102.32,
+        "uccha": 57.32,
+        "sapta_vargaja": 0.0,
+        "ojha_yugma": 15.0,
+        "kendradi": 30.0,
+        "drekkana": 0.0,
+        "dig": 10.85,
+        "kala": 197.33,
+        "cheshta": 60.0,
+        "naisargika": 8.57,
+        "drik": 8.24,
+        "total_shashtiamsas": 387.31,
+        "total_rupas": 6.46,
+        "strength_percentage": 129.1
+      }
+    },
+    "ashtakavarga": {
+      "bav": {
+        "Sun": [
+          5,
+          6,
+          4,
+          5,
+          3,
+          2,
+          6,
+          5,
+          1,
+          4,
+          4,
+          3
+        ],
+        "Moon": [
+          3,
+          4,
+          2,
+          3,
+          5,
+          5,
+          3,
+          5,
+          5,
+          3,
+          6,
+          5
+        ],
+        "Mars": [
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          6,
+          3,
+          5,
+          3,
+          3,
+          1
+        ],
+        "Mercury": [
+          4,
+          6,
+          6,
+          6,
+          5,
+          2,
+          5,
+          3,
+          6,
+          5,
+          2,
+          4
+        ],
+        "Jupiter": [
+          5,
+          5,
+          2,
+          4,
+          5,
+          5,
+          6,
+          3,
+          3,
+          7,
+          5,
+          6
+        ],
+        "Venus": [
+          3,
+          6,
+          5,
+          4,
+          5,
+          4,
+          4,
+          3,
+          6,
+          5,
+          4,
+          3
+        ],
+        "Saturn": [
+          4,
+          5,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          4,
+          2,
+          4,
+          4
+        ]
+      },
+      "sav": [
+        28,
+        36,
+        25,
+        28,
+        27,
+        22,
+        33,
+        25,
+        30,
+        29,
+        28,
+        26
+      ],
+      "sav_total": 337
+    }
+  }
+}
