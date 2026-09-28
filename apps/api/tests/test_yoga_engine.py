@@ -3,32 +3,36 @@ Comprehensive Unit & Forensic Verification Suite for Authoritative Yoga Evaluato
 """
 import pytest
 from apps.api.engines.vedic import BirthInput, build_canonical_vedic_chart
-from apps.api.engines.yogas import YogaEvaluator, planet_aspects_house
+from apps.api.engines.yogas import YogaEvaluator, casts_aspect
 
 
 def test_aspect_engine_rules():
-    """Verify Parashari house aspect calculations."""
+    """Verify Parashari house aspect calculations (Conjunctions are NOT aspects)."""
     # 7th house aspect (180° = 6 houses away in 0-based distance)
-    assert planet_aspects_house("Sun", 1, 7) is True
-    assert planet_aspects_house("Sun", 1, 2) is False
+    assert casts_aspect("Sun", 1, 7) is True
+    assert casts_aspect("Sun", 1, 2) is False
+    assert casts_aspect("Sun", 1, 1) is False # Conjunction is not an aspect
 
     # Mars special aspects: 4th, 7th, 8th
-    assert planet_aspects_house("Mars", 1, 4) is True
-    assert planet_aspects_house("Mars", 1, 7) is True
-    assert planet_aspects_house("Mars", 1, 8) is True
-    assert planet_aspects_house("Mars", 1, 5) is False
+    assert casts_aspect("Mars", 1, 4) is True
+    assert casts_aspect("Mars", 1, 7) is True
+    assert casts_aspect("Mars", 1, 8) is True
+    assert casts_aspect("Mars", 1, 5) is False
+    assert casts_aspect("Mars", 1, 1) is False
 
     # Jupiter special aspects: 5th, 7th, 9th
-    assert planet_aspects_house("Jupiter", 1, 5) is True
-    assert planet_aspects_house("Jupiter", 1, 7) is True
-    assert planet_aspects_house("Jupiter", 1, 9) is True
-    assert planet_aspects_house("Jupiter", 1, 4) is False
+    assert casts_aspect("Jupiter", 1, 5) is True
+    assert casts_aspect("Jupiter", 1, 7) is True
+    assert casts_aspect("Jupiter", 1, 9) is True
+    assert casts_aspect("Jupiter", 1, 4) is False
+    assert casts_aspect("Jupiter", 1, 1) is False
 
     # Saturn special aspects: 3rd, 7th, 10th
-    assert planet_aspects_house("Saturn", 1, 3) is True
-    assert planet_aspects_house("Saturn", 1, 7) is True
-    assert planet_aspects_house("Saturn", 1, 10) is True
-    assert planet_aspects_house("Saturn", 1, 4) is False
+    assert casts_aspect("Saturn", 1, 3) is True
+    assert casts_aspect("Saturn", 1, 7) is True
+    assert casts_aspect("Saturn", 1, 10) is True
+    assert casts_aspect("Saturn", 1, 4) is False
+    assert casts_aspect("Saturn", 1, 1) is False
 
 
 def test_canonical_subramanian_t_s_yogas():
@@ -47,10 +51,13 @@ def test_canonical_subramanian_t_s_yogas():
     assert yoga_suite.rule_set_version == "yoga_rules_v1"
     assert len(yoga_suite.summary_counts) > 0
 
-    # Verify Budha Aditya Yoga in Subramanian T S chart (Sun and Mercury conjunct in Virgo)
+    # Verify Budha Aditya Yoga in Subramanian T S chart
+    # Note: In Phase 2A canonical chart, Sun is ~161.37 deg, Mercury is ~178.11 deg
+    # Their orb is ~16.74 degrees. Since 16.74 > 12.0, Budha Aditya is NOT_DETECTED in this specific chart.
     budha_aditya = next((y for y in yoga_suite.all_evaluated_yogas if y.rule_id == "YOGA_BUDHA_ADITYA"), None)
     assert budha_aditya is not None
-    assert budha_aditya.status in ["DETECTED", "NOT_DETECTED"]
+    assert budha_aditya.status == "NOT_DETECTED"
+    assert budha_aditya.conditions[0].evidence_details["orb_deg"] > 12.0
 
 
 def test_20_independent_birth_charts_yoga_suite():

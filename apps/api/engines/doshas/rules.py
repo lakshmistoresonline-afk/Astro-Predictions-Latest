@@ -1,23 +1,39 @@
 """
 Authoritative Rule Evaluations for Vedic Doshas.
 Operates on Phase 2A Canonical Vedic Chart State.
+Fail-closed: Returns INDETERMINATE when required planetary evidence is absent.
 """
 import math
 from typing import Dict, List, Tuple, Any
 
 from apps.api.engines.vedic.models import CanonicalVedicChart
 from apps.api.engines.doshas.models import DoshaResult, DoshaConditionEvidence
-from apps.api.engines.yogas.aspects import planet_aspects_house
+from apps.api.engines.yogas.aspects import casts_aspect, planet_has_relationship
 from apps.api.engines.yogas.rules import DEBILITATION_SIGNS, EXALTATION_SIGNS, OWN_SIGNS
 
 # 1. Manglik / Kuja Dosha
 def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
-    asc_sign_idx = canonical_chart.ascendant.sign_index
-    moon_sign_idx = canonical_chart.placements["Moon"].rashi.sign_index if "Moon" in canonical_chart.placements else asc_sign_idx
-
     mars_p = canonical_chart.placements.get("Mars")
+    moon_p = canonical_chart.placements.get("Moon")
+
     if not mars_p:
-        return DoshaResult(rule_id="DOSHA_MANGLIK", name="Manglik / Kuja Dosha", status="INDETERMINATE", conditions=[], participating_planets=[], participating_houses=[])
+        return DoshaResult(
+            rule_id="DOSHA_MANGLIK",
+            name="Manglik / Kuja Dosha",
+            sanskrit_name="Kuja Dosha",
+            status="INDETERMINATE",
+            conditions=[DoshaConditionEvidence(
+                condition_id="mars_presence",
+                condition_description="Required planet (Mars) present in chart",
+                status=False,
+                evidence_details={"has_mars": False}
+            )],
+            participating_planets=[],
+            participating_houses=[]
+        )
+
+    asc_sign_idx = canonical_chart.ascendant.sign_index
+    moon_sign_idx = moon_p.rashi.sign_index if moon_p else asc_sign_idx
 
     mars_sign_idx = mars_p.rashi.sign_index
     mars_house_asc = (mars_sign_idx - asc_sign_idx) % 12 + 1
@@ -25,7 +41,7 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
 
     manglik_houses = [1, 2, 4, 7, 8, 12]
     is_manglik_asc = mars_house_asc in manglik_houses
-    is_manglik_moon = mars_house_moon in manglik_houses
+    is_manglik_moon = mars_house_moon in manglik_houses if moon_p else False
     is_base_manglik = is_manglik_asc or is_manglik_moon
 
     conds = [
@@ -35,7 +51,7 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
             status=is_base_manglik,
             evidence_details={
                 "mars_house_from_ascendant": mars_house_asc,
-                "mars_house_from_moon": mars_house_moon,
+                "mars_house_from_moon": mars_house_moon if moon_p else "N/A",
                 "qualifying_houses": manglik_houses
             }
         )
@@ -48,7 +64,7 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
     jup_p = canonical_chart.placements.get("Jupiter")
     jup_sign_idx = jup_p.rashi.sign_index if jup_p else 0
     jup_house_asc = (jup_sign_idx - asc_sign_idx) % 12 + 1 if jup_p else 0
-    excep_jupiter_aspect = planet_aspects_house("Jupiter", jup_house_asc, mars_house_asc) if jup_p else False
+    excep_jupiter_aspect = casts_aspect("Jupiter", jup_house_asc, mars_house_asc) if jup_p else False
 
     is_cancelled = is_base_manglik and (excep_own_exalt or excep_cancer or excep_jupiter_aspect)
 
@@ -85,18 +101,30 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
 
 # 2. Kemadruma Dosha
 def evaluate_kemadruma_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
-    asc_sign_idx = canonical_chart.ascendant.sign_index
     moon_p = canonical_chart.placements.get("Moon")
     if not moon_p:
-        return DoshaResult(rule_id="DOSHA_KEMADRUMA", name="Kemadruma Dosha", status="INDETERMINATE", conditions=[], participating_planets=[], participating_houses=[])
+        return DoshaResult(
+            rule_id="DOSHA_KEMADRUMA",
+            name="Kemadruma Dosha",
+            sanskrit_name="Kemadruma Dosha",
+            status="INDETERMINATE",
+            conditions=[DoshaConditionEvidence(
+                condition_id="moon_presence",
+                condition_description="Required planet (Moon) present in chart",
+                status=False,
+                evidence_details={"has_moon": False}
+            )],
+            participating_planets=[],
+            participating_houses=[]
+        )
 
+    asc_sign_idx = canonical_chart.ascendant.sign_index
     moon_sign_idx = moon_p.rashi.sign_index
     moon_house_asc = (moon_sign_idx - asc_sign_idx) % 12 + 1
 
     h2_from_moon = (moon_house_asc % 12) + 1
     h12_from_moon = ((moon_house_asc - 2) % 12) + 1
 
-    # Check 2nd and 12th from Moon for planets (excl. Sun, Rahu, Ketu)
     planets_in_2_12 = []
     kendra_planets = []
 
@@ -157,7 +185,20 @@ def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResu
     ketu_p = canonical_chart.placements.get("Ketu")
 
     if not rahu_p or not ketu_p:
-        return DoshaResult(rule_id="DOSHA_KALA_SARPA", name="Kala Sarpa Condition", status="INDETERMINATE", conditions=[], participating_planets=[], participating_houses=[])
+        return DoshaResult(
+            rule_id="DOSHA_KALA_SARPA",
+            name="Kala Sarpa Condition",
+            sanskrit_name="Kala Sarpa Yoga / Dosha",
+            status="INDETERMINATE",
+            conditions=[DoshaConditionEvidence(
+                condition_id="nodes_presence",
+                condition_description="Required node placements (Rahu and Ketu) present in chart",
+                status=False,
+                evidence_details={"has_rahu": rahu_p is not None, "has_ketu": ketu_p is not None}
+            )],
+            participating_planets=[],
+            participating_houses=[]
+        )
 
     rahu_lon = rahu_p.sidereal_longitude
     ketu_lon = ketu_p.sidereal_longitude
@@ -165,11 +206,24 @@ def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResu
     classical_7 = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"]
     planets_hemisphere = []
 
-    # Bounding arc from Rahu to Ketu counter-clockwise
     for p_name in classical_7:
         p = canonical_chart.placements.get(p_name)
         if not p:
-            continue
+            return DoshaResult(
+                rule_id="DOSHA_KALA_SARPA",
+                name="Kala Sarpa Condition",
+                sanskrit_name="Kala Sarpa Yoga / Dosha",
+                status="INDETERMINATE",
+                conditions=[DoshaConditionEvidence(
+                    condition_id="classical_planets_presence",
+                    condition_description=f"Required classical planet {p_name} present in chart",
+                    status=False,
+                    evidence_details={"missing_planet": p_name}
+                )],
+                participating_planets=[],
+                participating_houses=[]
+            )
+
         p_lon = p.sidereal_longitude
         rel_lon = (p_lon - rahu_lon) % 360.0
         planets_hemisphere.append(rel_lon < 180.0)

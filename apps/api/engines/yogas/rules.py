@@ -1,13 +1,18 @@
 """
 Authoritative Rule Evaluations for Vedic Yogas.
 Operates on Phase 2A Canonical Vedic Chart State.
+Fail-closed: Returns INDETERMINATE when required planetary evidence is absent.
 """
 import math
 from typing import Dict, List, Tuple, Any
 
 from apps.api.engines.vedic.models import CanonicalVedicChart
 from apps.api.engines.yogas.models import YogaResult, RuleConditionEvidence
-from apps.api.engines.yogas.aspects import planet_aspects_house, get_house_distance
+from apps.api.engines.yogas.aspects import (
+    is_conjunct,
+    casts_aspect,
+    planet_has_relationship
+)
 
 # Sign Rulers Mapping (0-indexed sign index 0=Aries, 11=Pisces)
 SIGN_RULERS = {
@@ -52,7 +57,6 @@ def _get_planet_house_map(canonical_chart: CanonicalVedicChart) -> Dict[str, int
     house_map: Dict[str, int] = {}
     for name, p in canonical_chart.placements.items():
         p_sign_idx = p.rashi.sign_index
-        # Whole sign house from Ascendant
         h_num = (p_sign_idx - asc_sign_idx) % 12 + 1
         house_map[name] = h_num
     return house_map
@@ -71,29 +75,44 @@ def evaluate_pancha_mahapurusha(canonical_chart: CanonicalVedicChart) -> List[Yo
     house_map = _get_planet_house_map(canonical_chart)
 
     for name, planet_name, rule_id, desc in MAHAPURUSHA_SPECS:
-        conds = []
-        p_house = house_map.get(planet_name, 0)
         p_placement = canonical_chart.placements.get(planet_name)
-
         if not p_placement:
+            # Required planet missing -> INDETERMINATE
+            results.append(YogaResult(
+                rule_id=rule_id,
+                name=f"{name} Yoga",
+                sanskrit_name=f"{name} Mahapurusha Yoga",
+                category="Mahapurusha",
+                status="INDETERMINATE",
+                conditions=[RuleConditionEvidence(
+                    condition_id="planet_presence",
+                    condition_description=f"Required planet {planet_name} present in chart",
+                    status=False,
+                    evidence_details={"missing_planet": planet_name}
+                )],
+                participating_planets=[],
+                participating_houses=[]
+            ))
             continue
 
+        p_house = house_map[planet_name]
         p_sign_idx = p_placement.rashi.sign_index
+
         is_kendra = p_house in [1, 4, 7, 10]
-        conds.append(RuleConditionEvidence(
+        cond1 = RuleConditionEvidence(
             condition_id="kendra_placement",
-            condition_description=f"{planet_name} placed in Kendra house (1, 4, 7, 10)",
+            condition_description=f"{planet_name} placed in Kendra house (1, 4, 7, 10) from Ascendant",
             status=is_kendra,
             evidence_details={"planet": planet_name, "house": p_house}
-        ))
+        )
 
         is_own_or_exalt = (p_sign_idx in OWN_SIGNS[planet_name]) or (p_sign_idx == EXALTATION_SIGNS[planet_name])
-        conds.append(RuleConditionEvidence(
+        cond2 = RuleConditionEvidence(
             condition_id="sign_dignity",
             condition_description=f"{planet_name} placed in Own or Exaltation sign",
             status=is_own_or_exalt,
             evidence_details={"planet": planet_name, "sign": p_placement.rashi.sign, "sign_index": p_sign_idx}
-        ))
+        )
 
         detected = is_kendra and is_own_or_exalt
         results.append(YogaResult(
@@ -102,7 +121,7 @@ def evaluate_pancha_mahapurusha(canonical_chart: CanonicalVedicChart) -> List[Yo
             sanskrit_name=f"{name} Mahapurusha Yoga",
             category="Mahapurusha",
             status="DETECTED" if detected else "NOT_DETECTED",
-            conditions=conds,
+            conditions=[cond1, cond2],
             participating_planets=[planet_name],
             participating_houses=[p_house]
         ))
@@ -111,33 +130,49 @@ def evaluate_pancha_mahapurusha(canonical_chart: CanonicalVedicChart) -> List[Yo
 
 # 2. Gaja Kesari Yoga
 def evaluate_gaja_kesari(canonical_chart: CanonicalVedicChart) -> YogaResult:
-    house_map = _get_planet_house_map(canonical_chart)
-    moon_house = house_map.get("Moon", 0)
-    jup_house = house_map.get("Jupiter", 0)
+    jup_p = canonical_chart.placements.get("Jupiter")
+    moon_p = canonical_chart.placements.get("Moon")
 
-    # Kendra from Moon (1, 4, 7, 10 houses away)
+    if not jup_p or not moon_p:
+        return YogaResult(
+            rule_id="YOGA_GAJA_KESARI",
+            name="Gaja Kesari Yoga",
+            sanskrit_name="Gaja Kesari Yoga",
+            category="Auspicious",
+            status="INDETERMINATE",
+            conditions=[RuleConditionEvidence(
+                condition_id="planets_presence",
+                condition_description="Required planets (Jupiter and Moon) present in chart",
+                status=False,
+                evidence_details={"has_jupiter": jup_p is not None, "has_moon": moon_p is not None}
+            )],
+            participating_planets=[],
+            participating_houses=[]
+        )
+
+    house_map = _get_planet_house_map(canonical_chart)
+    jup_house = house_map["Jupiter"]
+    moon_house = house_map["Moon"]
+
     dist_from_moon = (jup_house - moon_house) % 12
     if dist_from_moon < 0:
         dist_from_moon += 12
     kendra_from_moon = (dist_from_moon + 1) in [1, 4, 7, 10]
 
-    conds = [
-        RuleConditionEvidence(
-            condition_id="jupiter_kendra_from_moon",
-            condition_description="Jupiter in Kendra house (1, 4, 7, 10) from Moon",
-            status=kendra_from_moon,
-            evidence_details={"jupiter_house": jup_house, "moon_house": moon_house, "kendra_offset": dist_from_moon + 1}
-        )
-    ]
+    cond1 = RuleConditionEvidence(
+        condition_id="jupiter_kendra_from_moon",
+        condition_description="Jupiter in Kendra house (1, 4, 7, 10) from Moon",
+        status=kendra_from_moon,
+        evidence_details={"jupiter_house": jup_house, "moon_house": moon_house, "kendra_offset": dist_from_moon + 1}
+    )
 
-    jup_p = canonical_chart.placements.get("Jupiter")
-    not_debilitated = jup_p.rashi.sign_index != DEBILITATION_SIGNS["Jupiter"] if jup_p else False
-    conds.append(RuleConditionEvidence(
+    not_debilitated = jup_p.rashi.sign_index != DEBILITATION_SIGNS["Jupiter"]
+    cond2 = RuleConditionEvidence(
         condition_id="jupiter_not_debilitated",
-        condition_description="Jupiter is not debilitated",
+        condition_description="Jupiter is not in debilitation sign (Capricorn)",
         status=not_debilitated,
-        evidence_details={"jupiter_sign": jup_p.rashi.sign if jup_p else "Unknown"}
-    ))
+        evidence_details={"jupiter_sign": jup_p.rashi.sign}
+    )
 
     detected = kendra_from_moon and not_debilitated
     return YogaResult(
@@ -146,7 +181,7 @@ def evaluate_gaja_kesari(canonical_chart: CanonicalVedicChart) -> YogaResult:
         sanskrit_name="Gaja Kesari Yoga",
         category="Auspicious",
         status="DETECTED" if detected else "NOT_DETECTED",
-        conditions=conds,
+        conditions=[cond1, cond2],
         participating_planets=["Jupiter", "Moon"],
         participating_houses=[jup_house, moon_house]
     )
@@ -157,42 +192,52 @@ def evaluate_budha_aditya(canonical_chart: CanonicalVedicChart) -> YogaResult:
     merc_p = canonical_chart.placements.get("Mercury")
 
     if not sun_p or not merc_p:
-        return YogaResult(rule_id="YOGA_BUDHA_ADITYA", name="Budha Aditya Yoga", category="Auspicious", status="INDETERMINATE", conditions=[], participating_planets=[], participating_houses=[])
+        return YogaResult(
+            rule_id="YOGA_BUDHA_ADITYA",
+            name="Budha Aditya Yoga",
+            sanskrit_name="Budha Aditya Yoga",
+            category="Auspicious",
+            status="INDETERMINATE",
+            conditions=[RuleConditionEvidence(
+                condition_id="planets_presence",
+                condition_description="Required planets (Sun and Mercury) present in chart",
+                status=False,
+                evidence_details={"has_sun": sun_p is not None, "has_mercury": merc_p is not None}
+            )],
+            participating_planets=[],
+            participating_houses=[]
+        )
 
     same_sign = (sun_p.rashi.sign_index == merc_p.rashi.sign_index)
     orb_deg = abs((sun_p.sidereal_longitude - merc_p.sidereal_longitude + 180.0) % 360.0 - 180.0)
     within_orb = same_sign and (orb_deg <= 12.0)
-    not_combust = orb_deg >= 3.0
 
-    conds = [
-        RuleConditionEvidence(
-            condition_id="sun_mercury_conjunction",
-            condition_description="Sun and Mercury conjunct in same sign within 12° orb",
-            status=within_orb,
-            evidence_details={"sun_sign": sun_p.rashi.sign, "mercury_sign": merc_p.rashi.sign, "orb_deg": round(orb_deg, 4)}
-        )
-    ]
+    cond1 = RuleConditionEvidence(
+        condition_id="sun_mercury_conjunction",
+        condition_description="Sun and Mercury conjunct in same sign within 12.0° orb",
+        status=within_orb,
+        evidence_details={
+            "sun_sign": sun_p.rashi.sign,
+            "mercury_sign": merc_p.rashi.sign,
+            "orb_deg": round(orb_deg, 4),
+            "max_orb_threshold_deg": 12.0
+        }
+    )
 
-    excep = [
-        RuleConditionEvidence(
-            condition_id="mercury_combustion_check",
-            condition_description="Mercury not in tight combustion (< 3°)",
-            status=not_combust,
-            evidence_details={"orb_deg": round(orb_deg, 4)}
-        )
-    ]
-
-    detected = within_orb and not_combust
     house_map = _get_planet_house_map(canonical_chart)
-
     return YogaResult(
         rule_id="YOGA_BUDHA_ADITYA",
         name="Budha Aditya Yoga",
         sanskrit_name="Budha Aditya Yoga",
         category="Auspicious",
-        status="DETECTED" if detected else "NOT_DETECTED",
-        conditions=conds,
-        exceptions_checked=excep,
+        status="DETECTED" if within_orb else "NOT_DETECTED",
+        conditions=[cond1],
+        exceptions_checked=[RuleConditionEvidence(
+            condition_id="mercury_combustion_immunity",
+            condition_description="Classical Parashari rule: Mercury is immune to combustion cancellation for Budha Aditya Yoga",
+            status=True,
+            evidence_details={"orb_deg": round(orb_deg, 4)}
+        )],
         participating_planets=["Sun", "Mercury"],
         participating_houses=[house_map.get("Sun", 0), house_map.get("Mercury", 0)]
     )
@@ -205,24 +250,39 @@ def evaluate_dharma_karma(canonical_chart: CanonicalVedicChart) -> YogaResult:
     l9 = house_lords[9]
     l10 = house_lords[10]
 
+    p9_p = canonical_chart.placements.get(l9)
+    p10_p = canonical_chart.placements.get(l10)
+
+    if not p9_p or not p10_p:
+        return YogaResult(
+            rule_id="YOGA_DHARMA_KARMA",
+            name="Dharma-Karma Adhipati Yoga",
+            sanskrit_name="Dharma-Karma Adhipati Yoga",
+            category="Raja",
+            status="INDETERMINATE",
+            conditions=[],
+            participating_planets=[],
+            participating_houses=[]
+        )
+
     h9 = house_map[l9]
     h10 = house_map[l10]
 
-    is_conjunct = (h9 == h10)
-    is_aspecting = planet_aspects_house(l9, h9, h10) and planet_aspects_house(l10, h10, h9)
-    is_parivartana = (h9 == 10) and (h10 == 9)
+    is_conj = is_conjunct(h9, h10)
+    is_asp = casts_aspect(l9, h9, h10) and casts_aspect(l10, h10, h9)
+    is_pariv = (h9 == 10) and (h10 == 9)
 
-    connected = is_conjunct or is_aspecting or is_parivartana
+    connected = is_conj or is_asp or is_pariv
 
     conds = [
         RuleConditionEvidence(
             condition_id="dharma_karma_connection",
-            condition_description="Relationship between 9th Lord and 10th Lord (Conjunction, Aspect, or Parivartana)",
+            condition_description="Relationship between 9th Lord and 10th Lord (Conjunction, Mutual Aspect, or Parivartana)",
             status=connected,
             evidence_details={
                 "lord_9": l9, "house_9_lord": h9,
                 "lord_10": l10, "house_10_lord": h10,
-                "is_conjunct": is_conjunct, "is_aspecting": is_aspecting, "is_parivartana": is_parivartana
+                "is_conjunct": is_conj, "is_mutual_aspect": is_asp, "is_parivartana": is_pariv
             }
         )
     ]
@@ -244,7 +304,6 @@ def evaluate_parivartana_yogas(canonical_chart: CanonicalVedicChart) -> List[Yog
     house_lords = _get_house_lords(canonical_chart)
     house_map = _get_planet_house_map(canonical_chart)
 
-    # Check all pairs of houses (1..12)
     exchanges = []
     for h1 in range(1, 13):
         for h2 in range(h1 + 1, 13):
@@ -253,7 +312,11 @@ def evaluate_parivartana_yogas(canonical_chart: CanonicalVedicChart) -> List[Yog
             if l1 == l2:
                 continue
 
-            # Lord 1 occupies House 2 AND Lord 2 occupies House 1
+            p1_p = canonical_chart.placements.get(l1)
+            p2_p = canonical_chart.placements.get(l2)
+            if not p1_p or not p2_p:
+                continue
+
             if house_map[l1] == h2 and house_map[l2] == h1:
                 exchanges.append((h1, l1, h2, l2))
 
@@ -303,6 +366,13 @@ def evaluate_viparita_raja_yogas(canonical_chart: CanonicalVedicChart) -> List[Y
 
     for d_house, name, rule_id, desc in viparita_specs:
         lord = house_lords[d_house]
+        lord_p = canonical_chart.placements.get(lord)
+        if not lord_p:
+            results.append(YogaResult(
+                rule_id=rule_id, name=f"{name} Viparita Raja Yoga", category="Viparita", status="INDETERMINATE", conditions=[], participating_planets=[], participating_houses=[]
+            ))
+            continue
+
         p_house = house_map[lord]
         in_dusthana = p_house in dusthanas
 
@@ -332,8 +402,7 @@ def evaluate_viparita_raja_yogas(canonical_chart: CanonicalVedicChart) -> List[Y
 def evaluate_neecha_bhanga(canonical_chart: CanonicalVedicChart) -> List[YogaResult]:
     results = []
     house_map = _get_planet_house_map(canonical_chart)
-    asc_sign_idx = canonical_chart.ascendant.sign_index
-    moon_sign_idx = canonical_chart.placements["Moon"].rashi.sign_index if "Moon" in canonical_chart.placements else asc_sign_idx
+    moon_p = canonical_chart.placements.get("Moon")
 
     for planet_name, deb_sign in DEBILITATION_SIGNS.items():
         if planet_name in ["Rahu", "Ketu"]:
@@ -343,18 +412,18 @@ def evaluate_neecha_bhanga(canonical_chart: CanonicalVedicChart) -> List[YogaRes
         if not p or p.rashi.sign_index != deb_sign:
             continue
 
-        # Planet is debilitated in D1. Check cancellation conditions:
-        # Dispositor of debilitated sign
         dispositor = SIGN_RULERS[deb_sign]
-        disp_house = house_map.get(dispositor, 0)
+        disp_p = canonical_chart.placements.get(dispositor)
+        disp_house = house_map.get(dispositor, 0) if disp_p else 0
 
-        # Exaltation lord
         exalt_sign = EXALTATION_SIGNS[planet_name]
         exalt_lord = SIGN_RULERS[exalt_sign]
-        exalt_lord_house = house_map.get(exalt_lord, 0)
+        exalt_p = canonical_chart.placements.get(exalt_lord)
+        exalt_lord_house = house_map.get(exalt_lord, 0) if exalt_p else 0
 
         disp_in_kendra_asc = disp_house in [1, 4, 7, 10]
-        disp_in_kendra_moon = ((disp_house - house_map.get("Moon", 1)) % 12 + 1) in [1, 4, 7, 10]
+        moon_h = house_map.get("Moon", 0) if moon_p else 0
+        disp_in_kendra_moon = ((disp_house - moon_h) % 12 + 1) in [1, 4, 7, 10] if moon_h > 0 else False
 
         exalt_lord_kendra_asc = exalt_lord_house in [1, 4, 7, 10]
 
@@ -394,11 +463,14 @@ def evaluate_neecha_bhanga(canonical_chart: CanonicalVedicChart) -> List[YogaRes
 # 8. Chandra Yogas (Sunapha, Anapha, Durudhara)
 def evaluate_chandra_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaResult]:
     results = []
-    house_map = _get_planet_house_map(canonical_chart)
-    moon_h = house_map.get("Moon", 0)
-
-    if not moon_h:
+    moon_p = canonical_chart.placements.get("Moon")
+    if not moon_p:
+        for name, rule_id in [("Sunapha", "YOGA_SUNAPHA"), ("Anapha", "YOGA_ANAPHA"), ("Durudhara", "YOGA_DURUDHARA")]:
+            results.append(YogaResult(rule_id=rule_id, name=f"{name} Yoga", category="Chandra", status="INDETERMINATE", conditions=[], participating_planets=[], participating_houses=[]))
         return results
+
+    house_map = _get_planet_house_map(canonical_chart)
+    moon_h = house_map["Moon"]
 
     h2_from_moon = (moon_h % 12) + 1
     h12_from_moon = ((moon_h - 2) % 12) + 1
@@ -442,11 +514,14 @@ def evaluate_chandra_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaRes
 # 9. Surya Yogas (Veshi, Vashi, Obhayachari)
 def evaluate_surya_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaResult]:
     results = []
-    house_map = _get_planet_house_map(canonical_chart)
-    sun_h = house_map.get("Sun", 0)
-
-    if not sun_h:
+    sun_p = canonical_chart.placements.get("Sun")
+    if not sun_p:
+        for name, rule_id in [("Veshi", "YOGA_VESHI"), ("Vashi", "YOGA_VASHI"), ("Obhayachari", "YOGA_OBHAYACHARI")]:
+            results.append(YogaResult(rule_id=rule_id, name=f"{name} Yoga", category="Surya", status="INDETERMINATE", conditions=[], participating_planets=[], participating_houses=[]))
         return results
+
+    house_map = _get_planet_house_map(canonical_chart)
+    sun_h = house_map["Sun"]
 
     h2_from_sun = (sun_h % 12) + 1
     h12_from_sun = ((sun_h - 2) % 12) + 1
