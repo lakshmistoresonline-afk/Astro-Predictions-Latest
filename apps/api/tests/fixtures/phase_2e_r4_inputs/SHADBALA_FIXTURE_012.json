@@ -1,0 +1,47 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_012",
+  "name": "Sun Debilitation Boundary",
+  "birth_datetime_utc": "2000-01-01T12:00:00Z",
+  "latitude": 0.0,
+  "longitude": 0.0,
+  "ascendant_sidereal_longitude": 0.0,
+  "mc_sidereal_longitude": 270.0,
+  "ayanamsha": 23.85,
+  "planets": {
+    "Sun": {
+      "longitude": 190.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    }
+  }
+}

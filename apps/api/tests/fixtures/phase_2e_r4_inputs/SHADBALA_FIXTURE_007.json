@@ -1,0 +1,53 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_007",
+  "name": "Paris Native",
+  "local_year": 1975,
+  "local_month": 3,
+  "local_day": 21,
+  "local_hour": 6,
+  "local_minute": 0,
+  "timezone_str": "Europe/Paris",
+  "birth_datetime_utc": "1975-03-21T05:00:00+00:00",
+  "latitude": 48.8566,
+  "longitude": 2.3522,
+  "ascendant_sidereal_longitude": 306.356176,
+  "mc_sidereal_longitude": 233.100373,
+  "ayanamsha": 23.506855,
+  "planets": {
+    "Sun": {
+      "longitude": 336.795846,
+      "velocity_deg_day": 0.993228,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 71.460511,
+      "velocity_deg_day": 13.622591,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 290.415301,
+      "velocity_deg_day": 0.758051,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 313.481293,
+      "velocity_deg_day": 1.467575,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 337.442862,
+      "velocity_deg_day": 0.242209,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 8.416947,
+      "velocity_deg_day": 1.212259,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 78.822473,
+      "velocity_deg_day": 0.012872,
+      "retrograde": false
+    }
+  }
+}

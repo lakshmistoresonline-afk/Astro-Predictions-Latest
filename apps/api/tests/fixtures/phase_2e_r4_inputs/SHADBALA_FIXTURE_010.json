@@ -1,0 +1,53 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_010",
+  "name": "Los Angeles Retrograde",
+  "local_year": 2020,
+  "local_month": 10,
+  "local_day": 15,
+  "local_hour": 20,
+  "local_minute": 0,
+  "timezone_str": "America/Los_Angeles",
+  "birth_datetime_utc": "2020-10-16T03:00:00+00:00",
+  "latitude": 34.0522,
+  "longitude": -118.2437,
+  "ascendant_sidereal_longitude": 33.994266,
+  "mc_sidereal_longitude": 285.267355,
+  "ayanamsha": 24.14347,
+  "planets": {
+    "Sun": {
+      "longitude": 178.779441,
+      "velocity_deg_day": 0.992119,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 168.929299,
+      "velocity_deg_day": 15.27624,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 355.969524,
+      "velocity_deg_day": -0.312983,
+      "retrograde": true
+    },
+    "Mercury": {
+      "longitude": 196.960456,
+      "velocity_deg_day": -0.277437,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 264.692073,
+      "velocity_deg_day": 0.10062,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 141.212379,
+      "velocity_deg_day": 1.192654,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 271.144946,
+      "velocity_deg_day": 0.027948,
+      "retrograde": false
+    }
+  }
+}

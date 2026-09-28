@@ -1,0 +1,53 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_004",
+  "name": "New York Native",
+  "local_year": 2000,
+  "local_month": 1,
+  "local_day": 1,
+  "local_hour": 12,
+  "local_minute": 0,
+  "timezone_str": "America/New_York",
+  "birth_datetime_utc": "2000-01-01T17:00:00+00:00",
+  "latitude": 40.7128,
+  "longitude": -74.006,
+  "ascendant_sidereal_longitude": 356.111096,
+  "mc_sidereal_longitude": 256.866102,
+  "ayanamsha": 23.853064,
+  "planets": {
+    "Sun": {
+      "longitude": 256.732102,
+      "velocity_deg_day": 1.019413,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 201.975915,
+      "velocity_deg_day": 11.988939,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 304.2757,
+      "velocity_deg_day": 0.775638,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 248.364414,
+      "velocity_deg_day": 1.557428,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 1.412447,
+      "velocity_deg_day": 0.041493,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 217.968497,
+      "velocity_deg_day": 1.20926,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 16.542343,
+      "velocity_deg_day": -0.019568,
+      "retrograde": true
+    }
+  }
+}

@@ -84,7 +84,7 @@ def independent_dig_bala(chart: IndependentChart, planet: str) -> float:
     return (dist / 180.0) * 60.0
 
 def independent_sapta_vargaja(chart: IndependentChart, planet: str, varga_suite) -> float:
-    vargas_to_check = ["D1_Rashi", "D2_Hora", "D3_Drekkana", "D7_Saptamamsa", "D9_Navamsa", "D12_Dwadasamsa", "D30_Trimshamsha"]
+    vargas_to_check = ["D1", "D2", "D3", "D7", "D9", "D12", "D30"]
     score = 0.0
     p_lon = chart.planets[planet].longitude
 
@@ -122,8 +122,8 @@ def independent_ojha_yugma(chart: IndependentChart, planet: str, varga_suite) ->
     else:
         if d1_sign % 2 != 0: score += 15.0
 
-    if "D9_Navamsa" in varga_suite.vargas and planet in varga_suite.vargas["D9_Navamsa"].placements:
-        d9_sign = varga_suite.vargas["D9_Navamsa"].placements[planet].varga_sign_index
+    if "D9" in varga_suite.vargas and planet in varga_suite.vargas["D9"].placements:
+        d9_sign = varga_suite.vargas["D9"].placements[planet].varga_sign_index
         if planet in ["Venus", "Moon"]:
             if d9_sign % 2 == 0: score += 15.0
         else:
@@ -288,3 +288,4 @@ def independent_total_shadbala(chart: IndependentChart, planet: str, varga_suite
     drik = independent_drik_bala(chart, planet)
 
     return sthana + dig + kala + cheshta + naisargika + drik
+

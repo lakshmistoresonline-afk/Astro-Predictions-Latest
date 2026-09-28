@@ -1,0 +1,53 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_005",
+  "name": "Tokyo Native",
+  "local_year": 1995,
+  "local_month": 5,
+  "local_day": 5,
+  "local_hour": 9,
+  "local_minute": 0,
+  "timezone_str": "Asia/Tokyo",
+  "birth_datetime_utc": "1995-05-05T00:00:00+00:00",
+  "latitude": 35.6762,
+  "longitude": 139.6503,
+  "ascendant_sidereal_longitude": 83.883578,
+  "mc_sidereal_longitude": 338.444998,
+  "ayanamsha": 23.787944,
+  "planets": {
+    "Sun": {
+      "longitude": 20.325842,
+      "velocity_deg_day": 0.969187,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 77.777566,
+      "velocity_deg_day": 11.917522,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 117.839574,
+      "velocity_deg_day": 0.358813,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 39.932312,
+      "velocity_deg_day": 1.469924,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 229.982449,
+      "velocity_deg_day": -0.095081,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 351.77802,
+      "velocity_deg_day": 1.209743,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 327.995263,
+      "velocity_deg_day": 0.090391,
+      "retrograde": false
+    }
+  }
+}

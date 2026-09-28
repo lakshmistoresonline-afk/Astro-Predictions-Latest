@@ -13,7 +13,7 @@ class IndependentPlanet:
         self.velocity = velocity
 
 class IndependentChart:
-    def __init__(self, ascendant_longitude: float, mc_longitude: float = 0.0, ayanamsha: float = 23.85, julian_day: float = 2451545.0, year: int = 2000, month: int = 1, hour: int = 12):
+    def __init__(self, ascendant_longitude: float, mc_longitude: float = 0.0, ayanamsha: float = 23.85, julian_day: float = 2451545.0, year: int = 2000, month: int = 1, day: int = 1, hour: int = 12):
         self.ascendant_longitude = ascendant_longitude % 360.0
         self.ascendant_sign_index = int(self.ascendant_longitude / 30.0) % 12 + 1
         self.mc_longitude = mc_longitude % 360.0
@@ -21,6 +21,7 @@ class IndependentChart:
         self.julian_day = julian_day
         self.year = year
         self.month = month
+        self.day = day
         self.hour = hour
         self.planets: Dict[str, IndependentPlanet] = {}
 

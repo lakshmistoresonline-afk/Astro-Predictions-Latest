@@ -94,7 +94,7 @@ class ShadbalaEngine:
 
     @staticmethod
     def calc_sapta_vargaja(planet: str, varga_suite: Full16VargaSuite, canonical_chart: CanonicalVedicChart) -> float:
-        vargas_to_check = ["D1_Rashi", "D2_Hora", "D3_Drekkana", "D7_Saptamamsa", "D9_Navamsa", "D12_Dwadasamsa", "D30_Trimshamsha"]
+        vargas_to_check = ["D1", "D2", "D3", "D7", "D9", "D12", "D30"]
         score = 0.0
         p_lon = canonical_chart.placements[planet].sidereal_longitude
 
@@ -130,8 +130,8 @@ class ShadbalaEngine:
         else:
             if d1_sign % 2 != 0: score += 15.0
 
-        if "D9_Navamsa" in varga_suite.vargas and planet in varga_suite.vargas["D9_Navamsa"].placements:
-            d9_sign = varga_suite.vargas["D9_Navamsa"].placements[planet].varga_sign_index
+        if "D9" in varga_suite.vargas and planet in varga_suite.vargas["D9"].placements:
+            d9_sign = varga_suite.vargas["D9"].placements[planet].varga_sign_index
             if planet in ["Venus", "Moon"]:
                 if d9_sign % 2 == 0: score += 15.0
             else:
@@ -428,3 +428,4 @@ class ShadbalaEngine:
             planets=results,
             calculation_hash=calc_hash
         )
+

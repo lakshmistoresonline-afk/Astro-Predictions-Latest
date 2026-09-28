@@ -1,0 +1,357 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_011",
+  "name": "Sun Exaltation Boundary",
+  "birth_datetime_utc": "2000-01-01T12:00:00Z",
+  "latitude": 0.0,
+  "longitude": 0.0,
+  "ascendant_sidereal_longitude": 0.0,
+  "mc_sidereal_longitude": 270.0,
+  "ayanamsha": 23.85,
+  "planets": {
+    "Sun": {
+      "longitude": 10.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    }
+  },
+  "expected": {
+    "shadbala": {
+      "Sun": {
+        "sthana": 251.25,
+        "uccha": 60.0,
+        "sapta_vargaja": 116.25,
+        "ojha_yugma": 15.0,
+        "kendradi": 60.0,
+        "drekkana": 0.0,
+        "dig": 26.67,
+        "kala": 144.65,
+        "kala_sub": {
+          "Nathonnatha Bala": 26.67,
+          "Paksha Bala": 56.67,
+          "Ayana Bala": 46.32,
+          "Tribhaga Bala": 0.0,
+          "Vara Bala": 0.0,
+          "Hora Bala": 0.0,
+          "Masa Bala": 0.0,
+          "Varsha Bala": 15.0,
+          "total_shashtiamsas": 144.65
+        },
+        "cheshta": 46.32,
+        "naisargika": 60.0,
+        "drik": 0.0,
+        "total_shashtiamsas": 528.89,
+        "total_rupas": 8.81,
+        "strength_percentage": 176.3
+      },
+      "Moon": {
+        "sthana": 139.0,
+        "uccha": 49.0,
+        "sapta_vargaja": 30.0,
+        "ojha_yugma": 0.0,
+        "kendradi": 60.0,
+        "drekkana": 0.0,
+        "dig": 30.0,
+        "kala": 144.82,
+        "kala_sub": {
+          "Nathonnatha Bala": 33.33,
+          "Paksha Bala": 3.33,
+          "Ayana Bala": 18.15,
+          "Tribhaga Bala": 0.0,
+          "Vara Bala": 0.0,
+          "Hora Bala": 60.0,
+          "Masa Bala": 30.0,
+          "Varsha Bala": 0.0,
+          "total_shashtiamsas": 144.82
+        },
+        "cheshta": 3.33,
+        "naisargika": 51.43,
+        "drik": 0.0,
+        "total_shashtiamsas": 368.58,
+        "total_rupas": 6.14,
+        "strength_percentage": 102.38
+      },
+      "Mars": {
+        "sthana": 331.83,
+        "uccha": 39.33,
+        "sapta_vargaja": 187.5,
+        "ojha_yugma": 30.0,
+        "kendradi": 60.0,
+        "drekkana": 15.0,
+        "dig": 30.0,
+        "kala": 131.85,
+        "kala_sub": {
+          "Nathonnatha Bala": 33.33,
+          "Paksha Bala": 56.67,
+          "Ayana Bala": 41.85,
+          "Tribhaga Bala": 0.0,
+          "Vara Bala": 0.0,
+          "Hora Bala": 0.0,
+          "Masa Bala": 0.0,
+          "Varsha Bala": 0.0,
+          "total_shashtiamsas": 131.85
+        },
+        "cheshta": 45.0,
+        "naisargika": 17.14,
+        "drik": 0.0,
+        "total_shashtiamsas": 555.82,
+        "total_rupas": 9.26,
+        "strength_percentage": 185.27
+      },
+      "Mercury": {
+        "sthana": 125.0,
+        "uccha": 5.0,
+        "sapta_vargaja": 30.0,
+        "ojha_yugma": 30.0,
+        "kendradi": 60.0,
+        "drekkana": 0.0,
+        "dig": 60.0,
+        "kala": 105.18,
+        "kala_sub": {
+          "Nathonnatha Bala": 60.0,
+          "Paksha Bala": 3.33,
+          "Ayana Bala": 41.85,
+          "Tribhaga Bala": 0.0,
+          "Vara Bala": 0.0,
+          "Hora Bala": 0.0,
+          "Masa Bala": 0.0,
+          "Varsha Bala": 0.0,
+          "total_shashtiamsas": 105.18
+        },
+        "cheshta": 15.0,
+        "naisargika": 25.7,
+        "drik": 0.0,
+        "total_shashtiamsas": 330.88,
+        "total_rupas": 5.51,
+        "strength_percentage": 78.78
+      },
+      "Jupiter": {
+        "sthana": 185.83,
+        "uccha": 28.33,
+        "sapta_vargaja": 52.5,
+        "ojha_yugma": 30.0,
+        "kendradi": 60.0,
+        "drekkana": 15.0,
+        "dig": 60.0,
+        "kala": 131.85,
+        "kala_sub": {
+          "Nathonnatha Bala": 26.67,
+          "Paksha Bala": 3.33,
+          "Ayana Bala": 41.85,
+          "Tribhaga Bala": 60.0,
+          "Vara Bala": 0.0,
+          "Hora Bala": 0.0,
+          "Masa Bala": 0.0,
+          "Varsha Bala": 0.0,
+          "total_shashtiamsas": 131.85
+        },
+        "cheshta": 45.0,
+        "naisargika": 34.28,
+        "drik": 0.0,
+        "total_shashtiamsas": 456.96,
+        "total_rupas": 7.62,
+        "strength_percentage": 117.17
+      },
+      "Venus": {
+        "sthana": 143.38,
+        "uccha": 59.0,
+        "sapta_vargaja": 24.38,
+        "ojha_yugma": 0.0,
+        "kendradi": 60.0,
+        "drekkana": 0.0,
+        "dig": 30.0,
+        "kala": 131.85,
+        "kala_sub": {
+          "Nathonnatha Bala": 26.67,
+          "Paksha Bala": 3.33,
+          "Ayana Bala": 41.85,
+          "Tribhaga Bala": 60.0,
+          "Vara Bala": 0.0,
+          "Hora Bala": 0.0,
+          "Masa Bala": 0.0,
+          "Varsha Bala": 0.0,
+          "total_shashtiamsas": 131.85
+        },
+        "cheshta": 15.0,
+        "naisargika": 42.85,
+        "drik": 0.0,
+        "total_shashtiamsas": 363.08,
+        "total_rupas": 6.05,
+        "strength_percentage": 110.02
+      },
+      "Saturn": {
+        "sthana": 109.79,
+        "uccha": 6.67,
+        "sapta_vargaja": 13.12,
+        "ojha_yugma": 30.0,
+        "kendradi": 60.0,
+        "drekkana": 0.0,
+        "dig": 0.0,
+        "kala": 153.15,
+        "kala_sub": {
+          "Nathonnatha Bala": 33.33,
+          "Paksha Bala": 56.67,
+          "Ayana Bala": 18.15,
+          "Tribhaga Bala": 0.0,
+          "Vara Bala": 45.0,
+          "Hora Bala": 0.0,
+          "Masa Bala": 0.0,
+          "Varsha Bala": 0.0,
+          "total_shashtiamsas": 153.15
+        },
+        "cheshta": 45.0,
+        "naisargika": 8.57,
+        "drik": 0.0,
+        "total_shashtiamsas": 316.51,
+        "total_rupas": 5.28,
+        "strength_percentage": 105.5
+      }
+    },
+    "ashtakavarga": {
+      "bav": {
+        "Sun": [
+          3,
+          3,
+          3,
+          4,
+          2,
+          5,
+          4,
+          3,
+          5,
+          6,
+          7,
+          3
+        ],
+        "Moon": [
+          3,
+          1,
+          7,
+          3,
+          4,
+          5,
+          5,
+          3,
+          2,
+          7,
+          8,
+          1
+        ],
+        "Mars": [
+          3,
+          1,
+          4,
+          2,
+          2,
+          6,
+          2,
+          3,
+          1,
+          5,
+          8,
+          2
+        ],
+        "Mercury": [
+          5,
+          5,
+          2,
+          5,
+          3,
+          5,
+          2,
+          6,
+          5,
+          5,
+          8,
+          3
+        ],
+        "Jupiter": [
+          5,
+          7,
+          3,
+          5,
+          5,
+          4,
+          4,
+          3,
+          5,
+          6,
+          7,
+          2
+        ],
+        "Venus": [
+          3,
+          3,
+          6,
+          4,
+          7,
+          2,
+          0,
+          6,
+          7,
+          3,
+          8,
+          3
+        ],
+        "Saturn": [
+          2,
+          1,
+          4,
+          2,
+          3,
+          7,
+          1,
+          2,
+          1,
+          4,
+          8,
+          4
+        ]
+      },
+      "sav": [
+        24,
+        21,
+        29,
+        25,
+        26,
+        34,
+        18,
+        26,
+        26,
+        36,
+        54,
+        18
+      ],
+      "sav_total": 337
+    }
+  }
+}

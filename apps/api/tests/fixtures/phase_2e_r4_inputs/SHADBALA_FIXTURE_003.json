@@ -1,0 +1,53 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_003",
+  "name": "User B London",
+  "local_year": 1985,
+  "local_month": 7,
+  "local_day": 22,
+  "local_hour": 18,
+  "local_minute": 45,
+  "timezone_str": "Europe/London",
+  "birth_datetime_utc": "1985-07-22T17:45:00+00:00",
+  "latitude": 51.5074,
+  "longitude": -0.1278,
+  "ascendant_sidereal_longitude": 240.587622,
+  "mc_sidereal_longitude": 184.914919,
+  "ayanamsha": 23.651287,
+  "planets": {
+    "Sun": {
+      "longitude": 96.399982,
+      "velocity_deg_day": 0.954989,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 156.895286,
+      "velocity_deg_day": 14.040345,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 94.981644,
+      "velocity_deg_day": 0.647381,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 120.732205,
+      "velocity_deg_day": 0.417212,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 290.209852,
+      "velocity_deg_day": -0.122506,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 54.533192,
+      "velocity_deg_day": 1.117679,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 208.028785,
+      "velocity_deg_day": -0.005014,
+      "retrograde": true
+    }
+  }
+}

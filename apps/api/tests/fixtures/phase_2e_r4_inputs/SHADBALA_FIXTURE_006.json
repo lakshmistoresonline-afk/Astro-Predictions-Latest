@@ -1,0 +1,53 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_006",
+  "name": "Sydney Native",
+  "local_year": 1998,
+  "local_month": 11,
+  "local_day": 12,
+  "local_hour": 15,
+  "local_minute": 30,
+  "timezone_str": "Australia/Sydney",
+  "birth_datetime_utc": "1998-11-12T04:30:00+00:00",
+  "latitude": -33.8688,
+  "longitude": 151.2093,
+  "ascendant_sidereal_longitude": 336.006283,
+  "mc_sidereal_longitude": 245.992707,
+  "ayanamsha": 23.837172,
+  "planets": {
+    "Sun": {
+      "longitude": 205.759179,
+      "velocity_deg_day": 1.005794,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 129.218192,
+      "velocity_deg_day": 12.340857,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 147.480699,
+      "velocity_deg_day": 0.580214,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 228.533477,
+      "velocity_deg_day": 0.959945,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 324.346083,
+      "velocity_deg_day": -0.004614,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 209.036577,
+      "velocity_deg_day": 1.255026,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 4.84417,
+      "velocity_deg_day": -0.071697,
+      "retrograde": true
+    }
+  }
+}

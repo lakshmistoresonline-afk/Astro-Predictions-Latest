@@ -27,8 +27,8 @@ def sync_charts(asc_lon, planets):
         vel = data.get("vel", 1.0)
         ind_chart.add_planet(name, lon, retro, vel)
         set_planet(prod_chart, name, lon)
-        prod_chart.placements[name].retrograde = retro
         prod_chart.placements[name].velocity_deg_day = vel
+        prod_chart.placements[name].retrograde = retro
 
     return ind_chart, prod_chart
 
@@ -47,7 +47,7 @@ def test_shadbala_oracle_subramanian():
         prod_chart.mc.absolute_longitude,
         prod_chart.ayanamsha_value_deg,
         prod_chart.time_normalization.julian_day_tt,
-        1986, 9, 16
+        1986, 9, 28, 16
     )
     for p_name, placement in prod_chart.placements.items():
         if p_name in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
@@ -117,3 +117,5 @@ def test_shadbala_oracle_dig_bala_boundary():
 
     assert res.planets["Sun"].dig_bala.value_shashtiamsas == 60.0
     assert res.planets["Mars"].dig_bala.value_shashtiamsas == 0.0
+
+
