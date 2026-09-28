@@ -1,0 +1,23 @@
+{
+  "phase": "2D-R4.1",
+  "status": "CERTIFIED",
+  "rules_total": 22,
+  "rules_independently_verified": 22,
+  "positive_cases": 8,
+  "negative_cases": 5,
+  "boundary_cases": 3,
+  "cancellation_cases": 4,
+  "indeterminate_cases": 1,
+  "oracle_import_isolation": true,
+  "oracle_runtime_independence": true,
+  "fixture_self_consistency": true,
+  "production_path_verified": true,
+  "default_profile_path_verified_absent": true,
+  "legacy_astronomy_unreachable": true,
+  "mutation_detection": 100,
+  "full_regression": "72 passed",
+  "warnings": 2,
+  "unresolved_rules": [],
+  "material_contradictions": [],
+  "commit": "CURRENT_WORKING_TREE"
+}
