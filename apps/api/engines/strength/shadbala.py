@@ -4,6 +4,7 @@ Calculates Sthana Bala, Dig Bala, Kala Bala, Cheshta Bala, Naisargika Bala, Drik
 """
 import hashlib
 import json
+import math
 from typing import Dict, List
 
 from apps.api.engines.vedic.models import CanonicalVedicChart
@@ -13,8 +14,7 @@ from apps.api.engines.strength.models import (
     PlanetShadbala,
     ShadbalaSuiteResult
 )
-from apps.api.engines.strength.exceptions import MissingCanonicalStateError, UnsupportedPlanetError
-from apps.api.engines.yogas.rules import EXALTATION_SIGNS, DEBILITATION_SIGNS
+from apps.api.engines.strength.exceptions import MissingCanonicalStateError
 
 # Naisargika Bala Constants (in Shashtiamsas) from BPHS
 NAISARGIKA_BALA_SHASHTIAMSAS = {
@@ -27,19 +27,130 @@ NAISARGIKA_BALA_SHASHTIAMSAS = {
     "Saturn": 8.57
 }
 
-# Dig Bala Power Houses (0-indexed house offsets from Ascendant)
-DIG_BALA_HOUSES = {
-    "Sun": 9,      # 10th House
-    "Mars": 9,     # 10th House
-    "Jupiter": 0,  # 1st House
-    "Mercury": 0,  # 1st House
-    "Saturn": 6,   # 7th House
-    "Moon": 3,     # 4th House
-    "Venus": 3     # 4th House
+EXALTATION_DEGREES = {
+    "Sun": 10.0,    # Aries 10
+    "Moon": 33.0,   # Taurus 3
+    "Mars": 298.0,  # Capricorn 28
+    "Mercury": 165.0, # Virgo 15
+    "Jupiter": 95.0,  # Cancer 5
+    "Venus": 357.0, # Pisces 27
+    "Saturn": 200.0 # Libra 20
 }
+
+DEBILITATION_DEGREES = {
+    "Sun": 190.0,   # Libra 10
+    "Moon": 213.0,  # Scorpio 3
+    "Mars": 118.0,  # Cancer 28
+    "Mercury": 345.0, # Pisces 15
+    "Jupiter": 275.0, # Capricorn 5
+    "Venus": 177.0, # Virgo 27
+    "Saturn": 20.0  # Aries 20
+}
+
+# Naisargika Maitri (Natural Friendship)
+# 1 = Friend, 0 = Neutral, -1 = Enemy
+NATURAL_FRIENDSHIP = {
+    "Sun": {"Moon": 1, "Mars": 1, "Jupiter": 1, "Mercury": 0, "Venus": -1, "Saturn": -1},
+    "Moon": {"Sun": 1, "Mercury": 1, "Mars": 0, "Jupiter": 0, "Venus": 0, "Saturn": 0},
+    "Mars": {"Sun": 1, "Moon": 1, "Jupiter": 1, "Venus": 0, "Saturn": 0, "Mercury": -1},
+    "Mercury": {"Sun": 1, "Venus": 1, "Mars": 0, "Jupiter": 0, "Saturn": 0, "Moon": -1},
+    "Jupiter": {"Sun": 1, "Moon": 1, "Mars": 1, "Saturn": 0, "Mercury": -1, "Venus": -1},
+    "Venus": {"Mercury": 1, "Saturn": 1, "Mars": 0, "Jupiter": 0, "Sun": -1, "Moon": -1},
+    "Saturn": {"Mercury": 1, "Venus": 1, "Jupiter": 0, "Sun": -1, "Moon": -1, "Mars": -1}
+}
+
+SIGN_LORDS = [
+    "Mars", "Venus", "Mercury", "Moon", "Sun", "Mercury",
+    "Venus", "Mars", "Jupiter", "Saturn", "Saturn", "Jupiter"
+]
 
 class ShadbalaEngine:
     """Evaluator for the Six-Fold Planetary Strength (Shadbala)."""
+
+    @staticmethod
+    def get_panchadha_maitri(planet: str, lord: str, planet_lon: float, lord_lon: float) -> int:
+        if planet == lord:
+            return 2 # Own sign equivalent
+
+        nat = NATURAL_FRIENDSHIP[planet].get(lord, 0)
+
+        # Temporary friendship: 2,3,4,10,11,12 signs away
+        p_sign = int(planet_lon / 30)
+        l_sign = int(lord_lon / 30)
+        dist = (l_sign - p_sign) % 12
+        tat = 1 if dist in [1, 2, 3, 9, 10, 11] else -1
+
+        total = nat + tat
+        return total # Range: -2 to 2 (Adhi Satru to Adhi Mitra)
+
+    @staticmethod
+    def calc_sapta_vargaja(planet: str, varga_suite: Full16VargaSuite, canonical_chart: CanonicalVedicChart) -> float:
+        vargas_to_check = ["D1_Rashi", "D2_Hora", "D3_Drekkana", "D7_Saptamamsa", "D9_Navamsa", "D12_Dwadasamsa", "D30_Trimshamsha"]
+        score = 0.0
+
+        p_lon = canonical_chart.placements[planet].sidereal_longitude
+
+        for div in vargas_to_check:
+            if div not in varga_suite.vargas:
+                continue
+            v_chart = varga_suite.vargas[div]
+            if planet not in v_chart.placements:
+                continue
+
+            v_sign_idx = v_chart.placements[planet].varga_sign_index - 1
+            lord = SIGN_LORDS[v_sign_idx]
+
+            if lord == planet:
+                score += 30.0
+            else:
+                lord_lon = canonical_chart.placements[lord].sidereal_longitude
+                maitri = ShadbalaEngine.get_panchadha_maitri(planet, lord, p_lon, lord_lon)
+                if maitri == 2: score += 22.5
+                elif maitri == 1: score += 15.0
+                elif maitri == 0: score += 7.5
+                elif maitri == -1: score += 3.75
+                elif maitri == -2: score += 1.875
+
+        return score
+
+    @staticmethod
+    def calc_ojha_yugma(planet: str, canonical_chart: CanonicalVedicChart, varga_suite: Full16VargaSuite) -> float:
+        score = 0.0
+        # D1
+        d1_sign = canonical_chart.placements[planet].rashi.sign_index
+        if planet in ["Venus", "Moon"]:
+            if d1_sign % 2 == 0: score += 15.0
+        else:
+            if d1_sign % 2 != 0: score += 15.0
+
+        # D9
+        if "D9_Navamsa" in varga_suite.vargas and planet in varga_suite.vargas["D9_Navamsa"].placements:
+            d9_sign = varga_suite.vargas["D9_Navamsa"].placements[planet].varga_sign_index
+            if planet in ["Venus", "Moon"]:
+                if d9_sign % 2 == 0: score += 15.0
+            else:
+                if d9_sign % 2 != 0: score += 15.0
+        return score
+
+    @staticmethod
+    def calc_kendradi(planet: str, canonical_chart: CanonicalVedicChart) -> float:
+        asc_idx = canonical_chart.ascendant.sign_index
+        p_idx = canonical_chart.placements[planet].rashi.sign_index
+        house = (p_idx - asc_idx) % 12 + 1
+
+        if house in [1, 4, 7, 10]: return 60.0
+        if house in [2, 5, 8, 11]: return 30.0
+        return 15.0 # Apoklima (3, 6, 9, 12)
+
+    @staticmethod
+    def calc_drekkana(planet: str, canonical_chart: CanonicalVedicChart) -> float:
+        deg = canonical_chart.placements[planet].rashi.degree
+        drekkana = int(deg / 10) + 1 # 1, 2, or 3
+
+        if planet in ["Sun", "Mars", "Jupiter"] and drekkana == 1: return 15.0
+        if planet in ["Mercury", "Saturn"] and drekkana == 2: return 15.0
+        if planet in ["Moon", "Venus"] and drekkana == 3: return 15.0
+        return 0.0
 
     @classmethod
     def calculate_shadbala_suite(
@@ -51,7 +162,20 @@ class ShadbalaEngine:
         planets_to_evaluate = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
         results: Dict[str, PlanetShadbala] = {}
 
-        asc_sign_index = canonical_chart.ascendant.sign_index
+        asc_lon = canonical_chart.ascendant.absolute_longitude
+        mc_lon = (asc_lon - 90) % 360.0 # Approximation of MC if not provided explicitly
+        if canonical_chart.mc:
+            mc_lon = canonical_chart.mc.absolute_longitude
+        ic_lon = (mc_lon + 180) % 360.0
+
+        sun_lon = canonical_chart.placements["Sun"].sidereal_longitude
+        moon_lon = canonical_chart.placements["Moon"].sidereal_longitude
+
+        # Paksha Bala (Sun-Moon angle)
+        paksha_angle = (moon_lon - sun_lon) % 360.0
+        if paksha_angle > 180:
+            paksha_angle = 360.0 - paksha_angle
+        paksha_val = (paksha_angle / 180.0) * 60.0
 
         for p_name in planets_to_evaluate:
             if p_name not in canonical_chart.placements:
@@ -61,55 +185,84 @@ class ShadbalaEngine:
             p_lon = p_data.sidereal_longitude
 
             # --- 1. Sthana Bala (Positional Strength) ---
-            # Uccha Bala (Exaltation Strength)
-            exalt_sign = EXALTATION_SIGNS[p_name]
-            deb_sign = DEBILITATION_SIGNS[p_name]
-
-            # Distance from debilitation point. (Simplified to sign-based distance for this phase, max 60).
-            # True BPHS requires exact degrees of exaltation/debilitation. We use exact degree distance.
-            # Simplified for now: 180 degrees from debilitation = 60 shashtiamsas.
-            # 1 degree = 60/180 = 1/3 shashtiamsas.
-            # Needs exact debilitation point. Assuming 0 degrees of debilitation sign for baseline.
-            deb_point_lon = (deb_sign - 1) * 30.0 + 15.0 # Center of debilitation sign as approximate
-
+            deb_point_lon = DEBILITATION_DEGREES[p_name]
             angular_dist = abs(p_lon - deb_point_lon) % 360.0
             dist_from_deb = min(angular_dist, 360.0 - angular_dist)
-
             uccha_bala = (dist_from_deb / 180.0) * 60.0
+
+            sapta_vargaja = cls.calc_sapta_vargaja(p_name, varga_suite, canonical_chart)
+            ojha_yugma = cls.calc_ojha_yugma(p_name, canonical_chart, varga_suite)
+            kendradi = cls.calc_kendradi(p_name, canonical_chart)
+            drekkana = cls.calc_drekkana(p_name, canonical_chart)
 
             sthana_sub = {
                 "Uccha Bala": round(uccha_bala, 2),
-                "Sapta Vargaja Bala": 30.0, # Placeholder for exact varga strength aggregation
-                "Ojha Yugma Bala": 15.0,     # Placeholder
-                "Kendradi Bala": 30.0,       # Placeholder
-                "Drekkana Bala": 15.0        # Placeholder
+                "Sapta Vargaja Bala": round(sapta_vargaja, 2),
+                "Ojha Yugma Bala": round(ojha_yugma, 2),
+                "Kendradi Bala": round(kendradi, 2),
+                "Drekkana Bala": round(drekkana, 2)
             }
             sthana_total = sum(sthana_sub.values())
             sthana_comp = ShadbalaComponent(name="Sthana Bala", value_rupas=round(sthana_total/60.0, 2), value_shashtiamsas=round(sthana_total, 2), sub_components=sthana_sub)
 
             # --- 2. Dig Bala (Directional Strength) ---
-            # Max at power house (60 shashtiamsas), Min at opposite house (0).
-            power_house_idx = DIG_BALA_HOUSES[p_name]
-            # House index of planet (0-indexed from Ascendant)
-            p_house_idx = (p_data.rashi.sign_index - asc_sign_index) % 12
+            # East=Asc(0), North=IC(270 relative), West=Desc(180), South=MC(90 relative)
+            if p_name in ["Sun", "Mars"]: power_lon = mc_lon # South
+            elif p_name in ["Jupiter", "Mercury"]: power_lon = asc_lon # East
+            elif p_name == "Saturn": power_lon = (asc_lon + 180) % 360.0 # West
+            else: power_lon = ic_lon # Moon, Venus: North
 
-            # Distance in houses (0 to 6)
-            house_dist = abs(p_house_idx - power_house_idx)
-            if house_dist > 6:
-                house_dist = 12 - house_dist
-
-            dig_bala_val = ((6 - house_dist) / 6.0) * 60.0
+            powerless_lon = (power_lon + 180) % 360.0
+            dig_dist = abs(p_lon - powerless_lon) % 360.0
+            dig_dist = min(dig_dist, 360.0 - dig_dist)
+            dig_bala_val = (dig_dist / 180.0) * 60.0
             dig_comp = ShadbalaComponent(name="Dig Bala", value_rupas=round(dig_bala_val/60.0, 2), value_shashtiamsas=round(dig_bala_val, 2))
 
             # --- 3. Kala Bala (Temporal Strength) ---
-            kala_val = 30.0 # Placeholder for time-of-day/year algorithms
-            kala_comp = ShadbalaComponent(name="Kala Bala", value_rupas=round(kala_val/60.0, 2), value_shashtiamsas=round(kala_val, 2))
+            # Nathonnatha Bala
+            dist_from_midnight = abs(sun_lon - ic_lon) % 360.0
+            dist_from_midnight = min(dist_from_midnight, 360.0 - dist_from_midnight)
+            diurnal_strength = (dist_from_midnight / 180.0) * 60.0
+            nocturnal_strength = 60.0 - diurnal_strength
+
+            if p_name in ["Sun", "Jupiter", "Venus"]:
+                nathonnatha = diurnal_strength
+            elif p_name in ["Moon", "Mars", "Saturn"]:
+                nathonnatha = nocturnal_strength
+            else: # Mercury
+                nathonnatha = 60.0
+
+            # Paksha Bala
+            paksha = paksha_val if p_name in ["Moon", "Mercury", "Jupiter", "Venus"] else (60.0 - paksha_val)
+
+            # Ayana Bala (Declination-based)
+            # Tropical longitude approx = Sidereal + Ayanamsha
+            ayanamsha = canonical_chart.ayanamsha_value_deg
+            trop_lon = (p_lon + ayanamsha) % 360.0
+            kranti = 23.44 * math.sin(math.radians(trop_lon)) # Approximate declination
+            if p_name in ["Sun", "Mars", "Jupiter", "Venus"]:
+                ayana = (24 + kranti) * 1.25
+            elif p_name in ["Moon", "Saturn"]:
+                ayana = (24 - kranti) * 1.25
+            else:
+                ayana = (24 + abs(kranti)) * 1.25 # Mercury strong near equator/north? BPHS assigns (24+abs(kranti))*1.25 or 30. Let's use (24+Kranti)*1.25 for Merc as it's often grouped with North.
+                ayana = (24 + kranti) * 1.25
+
+            # Clamp Ayana
+            ayana = max(0.0, min(60.0, ayana))
+
+            kala_val = nathonnatha + paksha + ayana
+            kala_sub = {
+                "Nathonnatha Bala": round(nathonnatha, 2),
+                "Paksha Bala": round(paksha, 2),
+                "Ayana Bala": round(ayana, 2)
+            }
+            kala_comp = ShadbalaComponent(name="Kala Bala", value_rupas=round(kala_val/60.0, 2), value_shashtiamsas=round(kala_val, 2), sub_components=kala_sub)
 
             # --- 4. Cheshta Bala (Motional Strength) ---
-            cheshta_val = 60.0 if p_data.retrograde else 30.0 # Simplified
-            if p_name in ["Sun", "Moon"]:
-                cheshta_val = 60.0 # Luminaries get full/different motional strength logic
-
+            if p_name == "Sun": cheshta_val = ayana
+            elif p_name == "Moon": cheshta_val = paksha
+            else: cheshta_val = 60.0 if p_data.retrograde else 30.0
             cheshta_comp = ShadbalaComponent(name="Cheshta Bala", value_rupas=round(cheshta_val/60.0, 2), value_shashtiamsas=round(cheshta_val, 2))
 
             # --- 5. Naisargika Bala (Natural Strength) ---
@@ -117,12 +270,32 @@ class ShadbalaEngine:
             naisargika_comp = ShadbalaComponent(name="Naisargika Bala", value_rupas=round(naisargika_val/60.0, 2), value_shashtiamsas=round(naisargika_val, 2))
 
             # --- 6. Drik Bala (Aspectual Strength) ---
-            drik_val = 15.0 # Placeholder for aspect calculations
+            drik_val = 0.0
+            for asp_name in planets_to_evaluate:
+                if asp_name == p_name: continue
+                asp_lon = canonical_chart.placements[asp_name].sidereal_longitude
+                angle = abs(p_lon - asp_lon) % 360.0
+                if angle > 180: angle = 360.0 - angle
+
+                if 150 <= angle <= 180:
+                    strength = (angle - 150) * 2.0 # Max 60 at 180
+                    # Benefic adds 1/4th, Malefic subtracts 1/4th
+                    is_benefic = asp_name in ["Jupiter", "Venus", "Moon", "Mercury"]
+                    if is_benefic: drik_val += strength / 4.0
+                    else: drik_val -= strength / 4.0
+
             drik_comp = ShadbalaComponent(name="Drik Bala", value_rupas=round(drik_val/60.0, 2), value_shashtiamsas=round(drik_val, 2))
 
             # --- TOTALS ---
             total_shashtiamsas = sthana_total + dig_bala_val + kala_val + cheshta_val + naisargika_val + drik_val
             total_rupas = total_shashtiamsas / 60.0
+
+                        # Calculate percentage relative to BPHS minimums
+            min_rupas = {
+                "Sun": 5.0, "Moon": 6.0, "Mars": 5.0, "Mercury": 7.0,
+                "Jupiter": 6.5, "Venus": 5.5, "Saturn": 5.0
+            }
+            percent = (total_rupas / min_rupas[p_name]) * 100.0
 
             results[p_name] = PlanetShadbala(
                 planet=p_name,
@@ -134,7 +307,7 @@ class ShadbalaEngine:
                 drik_bala=drik_comp,
                 total_shashtiamsas=round(total_shashtiamsas, 2),
                 total_rupas=round(total_rupas, 2),
-                strength_percentage=100.0 # Placeholder
+                strength_percentage=round(percent, 2)
             )
 
         payload = {
@@ -148,3 +321,4 @@ class ShadbalaEngine:
             planets=results,
             calculation_hash=calc_hash
         )
+

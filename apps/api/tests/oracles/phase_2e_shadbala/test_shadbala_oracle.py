@@ -16,9 +16,10 @@ from apps.api.tests.oracles.phase_2e_shadbala.rules import (
 )
 
 def sync_charts(asc_lon, planets):
-    ind_chart = IndependentChart(asc_lon)
+    ind_chart = IndependentChart(asc_lon, (asc_lon - 90) % 360.0, 23.85)
     prod_chart = get_base_chart()
     set_ascendant(prod_chart, asc_lon)
+    prod_chart.mc.absolute_longitude = (asc_lon - 90) % 360.0
 
     for name, data in planets.items():
         lon = data["lon"]
@@ -39,7 +40,7 @@ def test_shadbala_oracle_subramanian():
     prod_chart = build_canonical_vedic_chart(inp)
     varga_suite = VargaEngine.calculate_all_16_vargas(prod_chart)
 
-    ind_chart = IndependentChart(prod_chart.ascendant.absolute_longitude)
+    ind_chart = IndependentChart(prod_chart.ascendant.absolute_longitude, prod_chart.mc.absolute_longitude, prod_chart.ayanamsha_value_deg)
     for p_name, placement in prod_chart.placements.items():
         if p_name in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
             ind_chart.add_planet(p_name, placement.sidereal_longitude, placement.retrograde)
@@ -70,13 +71,13 @@ def test_shadbala_oracle_subramanian():
         assert abs(prod_p.naisargika_bala.value_shashtiamsas - round(exp_naisargika, 2)) < 0.02
 
         # Total
-        exp_total = independent_total_shadbala(ind_chart, p)
+        exp_total = independent_total_shadbala(ind_chart, p, varga_suite)
         assert abs(prod_p.total_shashtiamsas - round(exp_total, 2)) < 0.02
 
 def test_shadbala_oracle_exaltation_boundary():
     """Verify Uccha Bala strictly at exact debilitation point."""
     ind, prod = sync_charts(0.0, {
-        "Sun": {"lon": 195.0}, # Libra 15 = exact debilitation
+        "Sun": {"lon": 190.0}, # Libra 10 = exact debilitation
         "Moon": {"lon": 0.0},
         "Mars": {"lon": 0.0},
         "Mercury": {"lon": 0.0},
@@ -108,3 +109,8 @@ def test_shadbala_oracle_dig_bala_boundary():
 
     assert res.planets["Sun"].dig_bala.value_shashtiamsas == 60.0
     assert res.planets["Mars"].dig_bala.value_shashtiamsas == 0.0
+
+
+
+
+

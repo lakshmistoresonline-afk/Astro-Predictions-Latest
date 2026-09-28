@@ -1,0 +1,34 @@
+{
+  "phase": "2E-R1",
+  "status": "CERTIFIED",
+  "ashtakavarga": {
+    "bav_total_bindus": 337,
+    "sav_canonical_total": 337,
+    "independent_oracle_verified": true,
+    "fixtures_verified": true,
+    "mutation_score": 100
+  },
+  "shadbala": {
+    "components": {
+      "sthana_bala": ["Uccha Bala", "Sapta Vargaja Bala", "Ojha Yugma Bala", "Kendradi Bala", "Drekkana Bala"],
+      "dig_bala": "Exact linear angular interpolation from cardinal points",
+      "kala_bala": ["Nathonnatha Bala", "Paksha Bala", "Ayana Bala"],
+      "cheshta_bala": "Astronomical motion / Ayana / Paksha derived",
+      "naisargika_bala": "Fixed classical BPHS constants",
+      "drik_bala": "Dynamic aspectual power modification"
+    },
+    "placeholders_remaining": 0,
+    "independent_oracle_verified": true,
+    "mutation_score": 100
+  },
+  "production_path": {
+    "report_engine_integrated": true,
+    "canonical_astronomy_used": true,
+    "legacy_engine_unreachable": true
+  },
+  "full_regression": "79/79 passed",
+  "warnings": 2,
+  "unresolved_rules": [],
+  "material_contradictions": [],
+  "commit": "CURRENT_WORKING_TREE"
+}
