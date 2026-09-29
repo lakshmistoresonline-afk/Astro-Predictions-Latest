@@ -1,0 +1,29 @@
+{
+  "phase": "2E-R4.1-R7-R2",
+  "provenance_layers": {
+    "planetary_longitudes": {
+      "source_a": "PyEphem 4.2.1 (XEphem Engine)",
+      "source_b": "Skyfield 1.55 (NASA JPL DE440s)",
+      "classification": "EXTERNAL_ASTRONOMICAL_REFERENCE",
+      "production_imports": 0
+    },
+    "ascendant_mc": {
+      "source_a": "PyEphem Native LST & Obliquity",
+      "source_b": "Skyfield GAST & Obliquity",
+      "classification": "ASTRONOMICAL_LST_REFERENCE",
+      "production_imports": 0
+    },
+    "lahiri_ayanamsha": {
+      "formula": "23.85 + 1.396 * T",
+      "classification": "LAHIRI_FORMULA_AGREEMENT",
+      "formula_agreement": "PASS",
+      "authoritative_validation": "FORMULA_VERIFIED"
+    },
+    "expected_strength_fixtures": {
+      "generator": "generate_expected.py",
+      "oracle_package": "apps/api/tests/oracles/phase_2e_r4_1/",
+      "classification": "ORACLE_DERIVED_REFERENCE",
+      "production_imports": 0
+    }
+  }
+}

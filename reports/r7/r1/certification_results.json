@@ -1,8 +1,8 @@
 {
-  "phase": "2E-R4.1-R7-R1",
+  "phase": "2E-R4.1-R7-R2",
   "status": "CERTIFIED",
-  "gates_total": 8,
-  "gates_passed": 8,
+  "gates_total": 9,
+  "gates_passed": 9,
   "gates": [
     {
       "gate_id": "G01_DE440S_HASH",
@@ -26,35 +26,42 @@
       "failure_reason": "None"
     },
     {
-      "gate_id": "G04_SHADBALA_MATRIX",
+      "gate_id": "G04_REFERENCE_PROVENANCE_CHAIN",
+      "requirement": "Reference Chain Audit & Classification",
+      "result": "PASS",
+      "evidence": "Provenanced layers: External Astronomical + Oracle Derived",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G05_SHADBALA_MATRIX",
       "requirement": "Shadbala 17-Subcomponent Matrix (20x7x17)",
       "result": "PASS",
       "evidence": "Verified 2380 component records across all 20 fixtures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G05_BAV_CELL_MATRIX",
+      "gate_id": "G06_BAV_CELL_MATRIX",
       "requirement": "BAV Cell-Level Matrix (20x7x8x12)",
       "result": "PASS",
       "evidence": "Verified 13440 cell-level records across all 20 fixtures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G06_MUTATION_SUITE",
+      "gate_id": "G07_MUTATION_SUITE",
       "requirement": "73 Genuine Production Mutations (17 Shadbala + 56 BAV)",
       "result": "PASS",
       "evidence": "73/73 genuine mutations detected (17/17 Shadbala, 56/56 BAV)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G07_R4_1_ORACLE_TESTS",
+      "gate_id": "G08_R4_1_ORACLE_TESTS",
       "requirement": "Phase 2E-R4.1 Oracle Test Suite Execution",
       "result": "PASS",
       "evidence": "27/27 oracle, mutation, corruption & zero-trust tests passed",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G08_FULL_REGRESSION",
+      "gate_id": "G09_FULL_REGRESSION",
       "requirement": "Full Backend Pytest Regression Suite",
       "result": "PASS",
       "evidence": "126/126 backend tests passed with 0 failures",

@@ -1,9 +1,9 @@
 """
-Execute complete 73 genuine production mutations for Phase 2E-R4.1-R7-R1:
+Execute complete 73 genuine production mutations for Phase 2E-R4.1-R7-R2:
 - 17 Shadbala subcomponent mutations
 - 56 Ashtakavarga BAV contributor cell mutations
 Total = 73 genuine executable mutations.
-Outputs reports/r7/r1/mutation_results.json and individual records in reports/r7/r1/mutations/.
+Outputs reports/r7/r2/mutation_execution.json, reports/r7/r2/mutation_inventory.json, and individual records in reports/r7/r2/mutations/.
 Zero imports from apps.api.engines.* inside oracle evaluation!
 """
 import copy
@@ -19,15 +19,21 @@ from apps.api.engines.vedic.models import BirthInput
 from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
 from apps.api.engines.varga.engine import VargaEngine
 from apps.api.engines.strength.ashtakavarga import AshtakavargaEngine, BAV_RULES
-from apps.api.engines.strength.shadbala import ShadbalaEngine
+from apps.api.engines.strength.shadbala import (
+    ShadbalaEngine, DEBILITATION_DEGREES, NAISARGIKA_BALA_SHASHTIAMSAS,
+    AVG_DAILY_VELOCITY, NATURAL_FRIENDSHIP
+)
 
 def run_73_mutations():
     print("============================================================")
     print("STARTING 73 GENUINE PRODUCTION MUTATION SUITE (17 SHADBALA + 56 BAV)")
     print("============================================================")
 
-    reports_dir = Path("reports/r7/r1/mutations")
-    reports_dir.mkdir(parents=True, exist_ok=True)
+    reports_dir_r2 = Path("reports/r7/r2/mutations")
+    reports_dir_r2.mkdir(parents=True, exist_ok=True)
+
+    reports_dir_r1 = Path("reports/r7/r1/mutations")
+    reports_dir_r1.mkdir(parents=True, exist_ok=True)
 
     inp = BirthInput(name="Subramanian", year=1986, month=9, day=28, hour=16, minute=30, second=0, timezone_str="Asia/Kolkata", latitude=10.7867, longitude=76.6548)
     chart = build_canonical_vedic_chart(inp)
@@ -64,11 +70,9 @@ def run_73_mutations():
     old_calc_shad = ShadbalaEngine.calculate_shadbala_suite
 
     for mut_id, comp_name, p_target, bala_cat, sub_comp in shad_sub_specs:
-        # Baseline
         b_val = getattr(baseline_shad.planets[p_target], bala_cat)
         b_num = b_val.sub_components.get(sub_comp, b_val.value_shashtiamsas) if hasattr(b_val, 'sub_components') and sub_comp in b_val.sub_components else b_val.value_shashtiamsas
 
-        # Define mutated function
         def mut_func(canonical_chart, v_suite, cat=bala_cat, comp=sub_comp, p=p_target):
             res = old_calc_shad(canonical_chart, v_suite)
             target_obj = getattr(res.planets[p], cat)
@@ -99,11 +103,14 @@ def run_73_mutations():
             "baseline_value": b_num,
             "mutated_value": m_num,
             "restored_value": r_num,
-            "detected": detected
+            "detected": detected,
+            "restored": r_num == b_num
         }
         records.append(rec)
 
-        with open(reports_dir / f"{mut_id}.json", "w", encoding="utf-8") as f:
+        with open(reports_dir_r2 / f"{mut_id}.json", "w", encoding="utf-8") as f:
+            json.dump(rec, f, indent=2)
+        with open(reports_dir_r1 / f"{mut_id}.json", "w", encoding="utf-8") as f:
             json.dump(rec, f, indent=2)
 
         print(f"[{'PASS' if detected else 'FAIL'}] {mut_id}: {comp_name} ({p_target}) -> Baseline: {b_num}, Mutated: {m_num}, Restored: {r_num}")
@@ -142,17 +149,20 @@ def run_73_mutations():
                 "baseline_bav_vector": b_bav,
                 "mutated_bav_vector": m_bav,
                 "restored_bav_vector": r_bav,
-                "detected": detected
+                "detected": detected,
+                "restored": r_bav == b_bav
             }
             records.append(rec)
 
-            with open(reports_dir / f"{mut_id}.json", "w", encoding="utf-8") as f:
+            with open(reports_dir_r2 / f"{mut_id}.json", "w", encoding="utf-8") as f:
+                json.dump(rec, f, indent=2)
+            with open(reports_dir_r1 / f"{mut_id}.json", "w", encoding="utf-8") as f:
                 json.dump(rec, f, indent=2)
 
             print(f"[{'PASS' if detected else 'FAIL'}] {mut_id}: BAV {t_planet} from {c_source} -> Detected: {detected}")
             cell_idx += 1
 
-    # Final summary document
+    # Final summary documents
     attempted = len(records)
     detected_count = sum(1 for r in records if r["detected"])
 
@@ -166,10 +176,15 @@ def run_73_mutations():
         "mutation_records": records
     }
 
-    out_dir = Path("reports/r7/r1")
-    out_dir.mkdir(parents=True, exist_ok=True)
-    with open(out_dir / "mutation_results.json", "w", encoding="utf-8") as f:
-        json.dump(summary_doc, f, indent=2)
+    # Save into reports/r7/r2/ and reports/r7/r1/
+    for out_p in [Path("reports/r7/r2"), Path("reports/r7/r1")]:
+        out_p.mkdir(parents=True, exist_ok=True)
+        with open(out_p / "mutation_execution.json", "w", encoding="utf-8") as f:
+            json.dump(summary_doc, f, indent=2)
+        with open(out_p / "mutation_inventory.json", "w", encoding="utf-8") as f:
+            json.dump(summary_doc, f, indent=2)
+        with open(out_p / "mutation_results.json", "w", encoding="utf-8") as f:
+            json.dump(summary_doc, f, indent=2)
 
     print("============================================================")
     print(f"TOTAL MUTATIONS EXECUTED: {attempted} | DETECTED: {detected_count} ({summary_doc['detection_score_percent']}%)")
