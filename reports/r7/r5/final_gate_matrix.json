@@ -1,0 +1,278 @@
+{
+  "phase": "2E-R4.1-R7-R5",
+  "status": "CERTIFIED",
+  "gates_total": 27,
+  "gates_passed": 27,
+  "gates": [
+    {
+      "gate_id": "G01_DE440S_INTEGRITY",
+      "requirement": "DE440s Kernel SHA-256 and 1849-2150 Coverage Verification",
+      "status": "PASS",
+      "evidence": "SHA-256: c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2 (32,726,016 bytes)",
+      "artifact": "apps/api/engines/astronomy/de440s.bsp",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G02_RAW_REFERENCE_INTEGRITY",
+      "requirement": "Raw Reference SHA-256 Manifest Verification",
+      "status": "PASS",
+      "evidence": "Manifest verified with 20 hashed entries",
+      "artifact": "PHASE_2E_R4_1_REFERENCE_MANIFEST.json",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G03_TROPICAL_EPHEMERIS",
+      "requirement": "PyEphem vs Skyfield Dual-Ephemeris Tropical Longitude Validation",
+      "status": "PASS",
+      "evidence": "180 points checked; Mean delta = 1.83\", Max delta = 19.81\"",
+      "artifact": "docs/PHASE_2E_R4_1_R6_RAW_EPHEMERIS_MATRIX.csv",
+      "command": "python reference_source/cross_check_dual_ephemeris.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G04_LATITUDE",
+      "requirement": "PyEphem vs Skyfield Dual-Ephemeris Ecliptic Latitude Validation",
+      "status": "PASS",
+      "evidence": "Mean latitude delta = 0.30\", Max delta = 1.64\" (0.0 zero placeholders)",
+      "artifact": "docs/PHASE_2E_R4_1_R6_LATITUDE_AUDIT.md",
+      "command": "python generate_dual_ephemeris_matrix.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G05_SIDEREAL_CONVERSION",
+      "requirement": "Lahiri Sidereal Conversion Verification",
+      "status": "PASS",
+      "evidence": "Lahiri Ayanamsha applied consistently across all 20 fixtures",
+      "artifact": "docs/PHASE_2E_R4_1_R7_R2_REFERENCE_CHAIN_FORENSIC.md",
+      "command": "python reference_source/pyephem_reference/standalone_pyephem.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G06_LAHIRI_CLASSIFICATION",
+      "requirement": "Lahiri Ayanamsha Formula Agreement Classification",
+      "status": "PASS",
+      "evidence": "Formula Agreement = VERIFIED, Authoritative Validation = FORMULA_VERIFIED",
+      "artifact": "docs/PHASE_2E_R4_1_R5_LAHIRI_AUDIT.md",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G07_ASCENDANT_CLASSIFICATION",
+      "requirement": "Ascendant Formula Agreement Classification",
+      "status": "PASS",
+      "evidence": "Formula Agreement = VERIFIED, Authoritative Validation = FORMULA_VERIFIED (Max delta < 22.68\")",
+      "artifact": "docs/PHASE_2E_R4_1_R5_ASC_MC_AUDIT.md",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G08_MC_CLASSIFICATION",
+      "requirement": "Midheaven (MC) Formula Agreement Classification",
+      "status": "PASS",
+      "evidence": "Formula Agreement = VERIFIED, Authoritative Validation = FORMULA_VERIFIED (Max delta < 10.80\")",
+      "artifact": "docs/PHASE_2E_R4_1_R5_ASC_MC_AUDIT.md",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G09_REFERENCE_CHAIN_ISOLATION",
+      "requirement": "Reference Chain Provenance & Zero-Trust Import Isolation",
+      "status": "PASS",
+      "evidence": "Zero imports from apps.api.engines.* during reference extraction",
+      "artifact": "reports/r7/r2/reference_chain.json",
+      "command": "python -m pytest apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_independence.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G10_ORACLE_INDEPENDENCE",
+      "requirement": "Oracle Zero-Trust Isolation Mode",
+      "status": "PASS",
+      "evidence": "Production modules blocked at sys.modules level during oracle execution",
+      "artifact": "docs/PHASE_2E_R4_1_R7_R4_ORACLE_INDEPENDENCE.md",
+      "command": "python -m pytest apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_production_unavailable.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G11_FROZEN_REFERENCE_INTEGRITY",
+      "requirement": "Frozen Expected Reference Integrity Verification",
+      "status": "PASS",
+      "evidence": "Corrupting expected value triggers hard failure (PASS -> FAIL -> PASS)",
+      "artifact": "scripts/test_r7_r3_frozen_reference_integrity.py",
+      "command": "python scripts/test_r7_r3_frozen_reference_integrity.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G12_SHADBALA_2380_MATRIX",
+      "requirement": "Shadbala 17-Subcomponent Matrix Accounting (20x7x17)",
+      "status": "PASS",
+      "evidence": "Verified 2,380 component records across all 20 fixtures",
+      "artifact": "reports/r7/r2/shadbala_reference_matrix.json",
+      "command": "python generate_r7_r2_matrices.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G13_BAV_13440_MATRIX",
+      "requirement": "BAV Cell-Level Matrix Accounting (20x7x8x12)",
+      "status": "PASS",
+      "evidence": "Verified 13,440 cell-level records across all 20 fixtures",
+      "artifact": "reports/r7/r2/bav_reference_matrix.json",
+      "command": "python generate_r7_r2_matrices.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G14_SHADBALA_PROVENANCE",
+      "requirement": "Shadbala 17-Subcomponent Traditional Rule Provenance",
+      "status": "PASS",
+      "evidence": "Mapped to BPHS Ch. 27 verses",
+      "artifact": "docs/PHASE_2E_R4_1_R7_R4_RULE_PROVENANCE.md",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G15_BAV_PROVENANCE",
+      "requirement": "Ashtakavarga BAV Contributor Rule Provenance",
+      "status": "PASS",
+      "evidence": "Mapped to BPHS Ch. 66 verses",
+      "artifact": "docs/PHASE_2E_R4_1_R7_R4_RULE_PROVENANCE.md",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G16_SHADBALA_SOURCE_MUTATIONS",
+      "requirement": "17 Physical File Source Mutations for Shadbala Subcomponents",
+      "status": "PASS",
+      "evidence": "17/17 physical source file mutations executed in fresh subprocesses and detected",
+      "artifact": "reports/r7/r5/source_mutation_results.json",
+      "command": "python scripts/execute_r7_r4_mutation_suite.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G17_BAV_RULE_MUTATIONS",
+      "requirement": "56 Physical File Source Mutations for BAV Contributor Cells",
+      "status": "PASS",
+      "evidence": "56/56 physical source file mutations executed in fresh subprocesses and detected",
+      "artifact": "reports/r7/r5/source_mutation_results.json",
+      "command": "python scripts/execute_r7_r4_mutation_suite.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G18_SHADBALA_VALIDATOR_FAILURE",
+      "requirement": "Independent Oracle Validator Failure Proof for Shadbala Mutations",
+      "status": "PASS",
+      "evidence": "17/17 Shadbala mutations produced exit_code != 0 (FAIL) in fresh subprocess validator",
+      "artifact": "reports/r7/r5/mutations/",
+      "command": "python scripts/execute_r7_r4_mutation_suite.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G19_BAV_VALIDATOR_FAILURE",
+      "requirement": "Independent Oracle Validator Failure Proof for BAV Mutations",
+      "status": "PASS",
+      "evidence": "56/56 BAV mutations produced exit_code != 0 (FAIL) in fresh subprocess validator",
+      "artifact": "reports/r7/r5/mutations/",
+      "command": "python scripts/execute_r7_r4_mutation_suite.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G20_MUTATION_RESTORATION",
+      "requirement": "Physical Source File SHA-256 Byte Restoration Proof",
+      "status": "PASS",
+      "evidence": "73/73 files restored with original_sha256 == restored_sha256",
+      "artifact": "reports/r7/r5/source_mutation_results.json",
+      "command": "python scripts/execute_r7_r4_mutation_suite.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G21_MUTATION_ID_INTEGRITY",
+      "requirement": "Mutation ID Integrity & Uniqueness Audit",
+      "status": "PASS",
+      "evidence": "Exactly 73 unique mutation IDs (17 SHAD + 56 BAV)",
+      "artifact": "scripts/audit_r7_r3_contradictions.py",
+      "command": "python scripts/audit_r7_r3_contradictions.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G22_MUTATION_SOURCE_INTEGRITY",
+      "requirement": "Static AST Auditor for Mutation Implementation",
+      "status": "PASS",
+      "evidence": "Zero result object tampering or monkeypatching patterns found",
+      "artifact": "scripts/audit_r7_r4_mutation_implementation.py",
+      "command": "python scripts/audit_r7_r4_mutation_implementation.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G23_SAV_DERIVATION",
+      "requirement": "Sarvashtakavarga (SAV) Derivation from BAV Matrices",
+      "status": "PASS",
+      "evidence": "SAV vector derived as pure mathematical sum of 7 BAV tables",
+      "artifact": "docs/PHASE_2E_R4_1_R6_SAV_FORENSIC_AUDIT.md",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G24_CORRUPTION_TESTS",
+      "requirement": "Reference & Fixture Corruption Sensitivity Test Suite",
+      "status": "PASS",
+      "evidence": "Corrupting expected matrix values triggers test failure",
+      "artifact": "scripts/test_r7_r3_frozen_reference_integrity.py",
+      "command": "python scripts/test_r7_r3_frozen_reference_integrity.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G25_RUNNER_FAIL_CLOSED",
+      "requirement": "Fail-Closed Dynamic Certification Runner Execution",
+      "status": "PASS",
+      "evidence": "Runner evaluates dynamic JSONs and exits 0 ONLY when all gates pass",
+      "artifact": "scripts/run_phase_2e_r4_1_r7_certification.py",
+      "command": "python scripts/run_phase_2e_r4_1_r7_certification.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G26_HISTORICAL_CONSISTENCY",
+      "requirement": "Automated Contradiction Auditor Execution",
+      "status": "PASS",
+      "evidence": "Contradiction Auditor found 0 contradictions across reports and manifests",
+      "artifact": "reports/r7/r3/contradiction_audit.json",
+      "command": "python scripts/audit_r7_r3_contradictions.py",
+      "exit_code": 0,
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G27_FULL_REGRESSION",
+      "requirement": "Full Backend Pytest Regression Suite",
+      "status": "PASS",
+      "evidence": "126/126 backend tests passed with 0 failures",
+      "artifact": "docs/PHASE_2E_R4_1_R7_R4_CERTIFICATION_REPORT.md",
+      "command": "python -m pytest apps/api/tests/ -v",
+      "exit_code": 0,
+      "failure_reason": "None"
+    }
+  ]
+}

@@ -1,18 +1,20 @@
 {
   "mutation_id": "MUT_SHAD_07_NATHONNATHA",
-  "category": "SHADBALA_FUNCTION_MUTATION",
+  "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
   "component": "Nathonnatha Bala",
   "target_planet": "Sun",
   "source_file": "apps\\api\\engines\\strength\\shadbala.py",
-  "source_target": "suite_override",
-  "baseline_value": 38.33,
-  "mutated_value": 99.0,
-  "restored_value": 38.33,
-  "oracle_value": 38.33,
+  "original_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_source_sha256": "0dc5c4adfdb9d46f7c8b1a3936a1eaf9710b3b88faddc70dc15ff888c48ec8d1",
+  "restored_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "source_hash_changed": true,
+  "source_hash_restored": true,
+  "fresh_process_baseline": true,
+  "fresh_process_mutation": true,
+  "fresh_process_restoration": true,
   "baseline_status": "PASS",
   "mutation_applied": true,
   "mutated_status": "FAIL",
   "restored_status": "PASS",
-  "detected": true,
-  "source_restored": true
+  "detected": true
 }

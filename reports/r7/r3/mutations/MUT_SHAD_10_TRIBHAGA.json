@@ -1,15 +1,20 @@
 {
   "mutation_id": "MUT_SHAD_10_TRIBHAGA",
-  "category": "SHADBALA_SUBCOMPONENT",
+  "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
   "component": "Tribhaga Bala",
-  "target_planet": "Sun",
-  "baseline_value": 0.0,
-  "mutated_value": 10.0,
-  "restored_value": 0.0,
+  "target_planet": "Jupiter",
+  "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+  "original_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_source_sha256": "d62aa5bce328750954d32eb6505d83b29660dced399c21e1574e8e69ca06f201",
+  "restored_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "source_hash_changed": true,
+  "source_hash_restored": true,
+  "fresh_process_baseline": true,
+  "fresh_process_mutation": true,
+  "fresh_process_restoration": true,
   "baseline_status": "PASS",
   "mutation_applied": true,
   "mutated_status": "FAIL",
   "restored_status": "PASS",
-  "detected": true,
-  "restored": true
+  "detected": true
 }

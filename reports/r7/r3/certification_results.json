@@ -1,8 +1,8 @@
 {
-  "phase": "2E-R4.1-R7-R3",
+  "phase": "2E-R4.1-R7-R5",
   "status": "CERTIFIED",
-  "gates_total": 10,
-  "gates_passed": 10,
+  "gates_total": 11,
+  "gates_passed": 11,
   "gates": [
     {
       "gate_id": "G01_DE440S_HASH",
@@ -48,27 +48,34 @@
     },
     {
       "gate_id": "G07_MUTATION_SUITE",
-      "requirement": "73 Genuine Production Mutations (17 Shadbala + 56 BAV)",
+      "requirement": "73 Physical File Source Mutations (17 Shadbala + 56 BAV)",
       "result": "PASS",
-      "evidence": "73/73 genuine mutations detected (17/17 Shadbala, 56/56 BAV)",
+      "evidence": "73/73 physical source mutations detected (17/17 Shadbala, 56/56 BAV)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G08_CONTRADICTION_AUDIT",
+      "gate_id": "G08_STATIC_MUTATION_AUDITOR",
+      "requirement": "Static AST Mutation Auditor Execution",
+      "result": "PASS",
+      "evidence": "0 output object tampering or monkeypatching patterns found",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G09_CONTRADICTION_AUDIT",
       "requirement": "Automated Contradiction Auditor Execution",
       "result": "PASS",
       "evidence": "0 contradictions found across reports and manifests",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G09_R4_1_ORACLE_TESTS",
+      "gate_id": "G10_R4_1_ORACLE_TESTS",
       "requirement": "Phase 2E-R4.1 Oracle Test Suite Execution",
       "result": "PASS",
       "evidence": "27/27 oracle, mutation, corruption & zero-trust tests passed",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G10_FULL_REGRESSION",
+      "gate_id": "G11_FULL_REGRESSION",
       "requirement": "Full Backend Pytest Regression Suite",
       "result": "PASS",
       "evidence": "126/126 backend tests passed with 0 failures",

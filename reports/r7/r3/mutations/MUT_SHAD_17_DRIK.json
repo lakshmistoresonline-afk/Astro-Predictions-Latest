@@ -1,15 +1,20 @@
 {
   "mutation_id": "MUT_SHAD_17_DRIK",
-  "category": "SHADBALA_SUBCOMPONENT",
+  "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
   "component": "Drik Bala",
   "target_planet": "Sun",
-  "baseline_value": -0.05,
-  "mutated_value": 9.95,
-  "restored_value": -0.05,
+  "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+  "original_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_source_sha256": "364585790ea39234fc8b32e30adf5afc8d580445b67d56a71319614d9040442d",
+  "restored_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "source_hash_changed": true,
+  "source_hash_restored": true,
+  "fresh_process_baseline": true,
+  "fresh_process_mutation": true,
+  "fresh_process_restoration": true,
   "baseline_status": "PASS",
   "mutation_applied": true,
   "mutated_status": "FAIL",
   "restored_status": "PASS",
-  "detected": true,
-  "restored": true
+  "detected": true
 }

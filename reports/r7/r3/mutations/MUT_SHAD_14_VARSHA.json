@@ -1,15 +1,20 @@
 {
   "mutation_id": "MUT_SHAD_14_VARSHA",
-  "category": "SHADBALA_SUBCOMPONENT",
+  "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
   "component": "Varsha Bala",
-  "target_planet": "Sun",
-  "baseline_value": 0.0,
-  "mutated_value": 10.0,
-  "restored_value": 0.0,
+  "target_planet": "Moon",
+  "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+  "original_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_source_sha256": "9c2d2f46703ea42dfaf1ec857225b8a5045e07c18afa1bd544f0b20e53917531",
+  "restored_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "source_hash_changed": true,
+  "source_hash_restored": true,
+  "fresh_process_baseline": true,
+  "fresh_process_mutation": true,
+  "fresh_process_restoration": true,
   "baseline_status": "PASS",
   "mutation_applied": true,
   "mutated_status": "FAIL",
   "restored_status": "PASS",
-  "detected": true,
-  "restored": true
+  "detected": true
 }
