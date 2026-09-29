@@ -1,0 +1,227 @@
+{
+  "real_fixture_count": 15,
+  "synthetic_fixture_count": 5,
+  "total_fixture_count": 20,
+  "fixtures": [
+    {
+      "fixture_id": "REF_001",
+      "fixture_type": "REAL",
+      "name": "Subramanian T S",
+      "birth_datetime_local": "1986-09-28 16:30",
+      "birth_datetime_utc": "1986-09-28T11:00:00Z",
+      "timezone": "Asia/Kolkata",
+      "latitude": 10.7867,
+      "longitude": 76.6548,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_002",
+      "fixture_type": "REAL",
+      "name": "User A Kochi",
+      "birth_datetime_local": "1990-01-15 08:30",
+      "birth_datetime_utc": "1990-01-15T03:00:00Z",
+      "timezone": "Asia/Kolkata",
+      "latitude": 9.9312,
+      "longitude": 76.2673,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_003",
+      "fixture_type": "REAL",
+      "name": "User B London",
+      "birth_datetime_local": "1985-07-22 18:45",
+      "birth_datetime_utc": "1985-07-22T17:45:00Z",
+      "timezone": "Europe/London",
+      "latitude": 51.5074,
+      "longitude": -0.1278,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_004",
+      "fixture_type": "REAL",
+      "name": "New York Native",
+      "birth_datetime_local": "2000-01-01 12:00",
+      "birth_datetime_utc": "2000-01-01T17:00:00Z",
+      "timezone": "America/New_York",
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_005",
+      "fixture_type": "REAL",
+      "name": "Tokyo Native",
+      "birth_datetime_local": "1995-05-05 09:00",
+      "birth_datetime_utc": "1995-05-05T00:00:00Z",
+      "timezone": "Asia/Tokyo",
+      "latitude": 35.6762,
+      "longitude": 139.6503,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_006",
+      "fixture_type": "REAL",
+      "name": "Sydney Native",
+      "birth_datetime_local": "1998-11-12 15:30",
+      "birth_datetime_utc": "1998-11-12T04:30:00Z",
+      "timezone": "Australia/Sydney",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_007",
+      "fixture_type": "REAL",
+      "name": "Paris Native",
+      "birth_datetime_local": "1975-03-21 06:00",
+      "birth_datetime_utc": "1975-03-21T05:00:00Z",
+      "timezone": "Europe/Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_008",
+      "fixture_type": "REAL",
+      "name": "Reykjavik Native",
+      "birth_datetime_local": "1992-06-21 23:45",
+      "birth_datetime_utc": "1992-06-21T23:45:00Z",
+      "timezone": "Atlantic/Reykjavik",
+      "latitude": 64.1466,
+      "longitude": -21.9426,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_011",
+      "fixture_type": "REAL",
+      "name": "Berlin Native",
+      "birth_datetime_local": "1988-12-12 10:15",
+      "birth_datetime_utc": "1988-12-12T09:15:00Z",
+      "timezone": "Europe/Berlin",
+      "latitude": 52.52,
+      "longitude": 13.405,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_012",
+      "fixture_type": "REAL",
+      "name": "Cairo Native",
+      "birth_datetime_local": "1991-04-10 14:00",
+      "birth_datetime_utc": "1991-04-10T12:00:00Z",
+      "timezone": "Africa/Cairo",
+      "latitude": 30.0444,
+      "longitude": 31.2357,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_013",
+      "fixture_type": "REAL",
+      "name": "Buenos Aires Native",
+      "birth_datetime_local": "1982-02-28 08:00",
+      "birth_datetime_utc": "1982-02-28T11:00:00Z",
+      "timezone": "America/Argentina/Buenos_Aires",
+      "latitude": -34.6037,
+      "longitude": -58.3816,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_014",
+      "fixture_type": "REAL",
+      "name": "Mumbai Native",
+      "birth_datetime_local": "1994-08-15 22:30",
+      "birth_datetime_utc": "1994-08-15T17:00:00Z",
+      "timezone": "Asia/Kolkata",
+      "latitude": 19.076,
+      "longitude": 72.8777,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_015",
+      "fixture_type": "REAL",
+      "name": "Honolulu Native",
+      "birth_datetime_local": "2005-07-04 05:30",
+      "birth_datetime_utc": "2005-07-04T15:30:00Z",
+      "timezone": "Pacific/Honolulu",
+      "latitude": 21.3069,
+      "longitude": -157.8583,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "REF_016",
+      "fixture_type": "SYNTHETIC",
+      "name": "Sun Exaltation Boundary",
+      "birth_datetime_local": "2000-01-01 12:00",
+      "birth_datetime_utc": "2000-01-01T12:00:00Z",
+      "timezone": "UTC",
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "purpose": "Mathematical Boundary Testing"
+    },
+    {
+      "fixture_id": "REF_017",
+      "fixture_type": "SYNTHETIC",
+      "name": "Sun Debilitation Boundary",
+      "birth_datetime_local": "2000-01-01 12:00",
+      "birth_datetime_utc": "2000-01-01T12:00:00Z",
+      "timezone": "UTC",
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "purpose": "Mathematical Boundary Testing"
+    },
+    {
+      "fixture_id": "REF_018",
+      "fixture_type": "SYNTHETIC",
+      "name": "Cardinal Dig Bala Power",
+      "birth_datetime_local": "2000-01-01 12:00",
+      "birth_datetime_utc": "2000-01-01T12:00:00Z",
+      "timezone": "UTC",
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "purpose": "Mathematical Boundary Testing"
+    },
+    {
+      "fixture_id": "REF_019",
+      "fixture_type": "SYNTHETIC",
+      "name": "Cardinal Dig Bala Zero",
+      "birth_datetime_local": "2000-01-01 12:00",
+      "birth_datetime_utc": "2000-01-01T12:00:00Z",
+      "timezone": "UTC",
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "purpose": "Mathematical Boundary Testing"
+    },
+    {
+      "fixture_id": "REF_020",
+      "fixture_type": "SYNTHETIC",
+      "name": "High Speed Velocity",
+      "birth_datetime_local": "2000-01-01 12:00",
+      "birth_datetime_utc": "2000-01-01T12:00:00Z",
+      "timezone": "UTC",
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "purpose": "Mathematical Boundary Testing"
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "fixture_type": "REAL",
+      "name": "Singapore Native",
+      "birth_datetime_local": "2010-08-09 18:00",
+      "birth_datetime_utc": "2010-08-09T10:00:00Z",
+      "timezone": "Asia/Singapore",
+      "latitude": 1.3521,
+      "longitude": 103.8198,
+      "purpose": "Real Birth Profile Reference"
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "fixture_type": "REAL",
+      "name": "Los Angeles Retrograde",
+      "birth_datetime_local": "2020-10-15 20:00",
+      "birth_datetime_utc": "2020-10-16T03:00:00Z",
+      "timezone": "America/Los_Angeles",
+      "latitude": 34.0522,
+      "longitude": -118.2437,
+      "purpose": "Real Birth Profile Reference"
+    }
+  ]
+}

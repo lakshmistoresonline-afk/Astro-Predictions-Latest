@@ -1,6 +1,7 @@
 """
-Independent Shadbala Calculation Engine for R4 Oracle.
+Independent Shadbala Calculation Engine for R4.1 Oracle.
 Computes Sthana, Dig, Kala, Cheshta, Naisargika, Drik Balas from IndependentChart without production calls.
+Explicitly provides all 17 granular BPHS subcomponents.
 """
 import math
 from typing import Dict, Any
@@ -222,6 +223,23 @@ def r4_calculate_shadbala_for_planet(chart: IndependentChart, planet: str) -> Di
     percent = (total_rupas / min_rupas[planet]) * 100.0
 
     return {
+        "Uccha Bala": round(uccha, 2),
+        "Sapta Vargaja Bala": round(sapta, 2),
+        "Ojha Yugma Bala": round(ojha, 2),
+        "Kendradi Bala": round(kendradi, 2),
+        "Drekkana Bala": round(drekkana, 2),
+        "Dig Bala": round(dig, 2),
+        "Nathonnatha Bala": kala_dict["Nathonnatha Bala"],
+        "Paksha Bala": kala_dict["Paksha Bala"],
+        "Ayana Bala": kala_dict["Ayana Bala"],
+        "Tribhaga Bala": kala_dict["Tribhaga Bala"],
+        "Vara Bala": kala_dict["Vara Bala"],
+        "Hora Bala": kala_dict["Hora Bala"],
+        "Masa Bala": kala_dict["Masa Bala"],
+        "Varsha Bala": kala_dict["Varsha Bala"],
+        "Cheshta Bala": round(cheshta, 2),
+        "Naisargika Bala": round(naisargika, 2),
+        "Drik Bala": round(drik, 2),
         "sthana": round(sthana_total, 2),
         "uccha": round(uccha, 2),
         "sapta_vargaja": round(sapta, 2),
