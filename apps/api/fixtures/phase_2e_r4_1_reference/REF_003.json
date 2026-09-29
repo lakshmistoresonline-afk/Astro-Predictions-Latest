@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_003",
+  "name": "User B London",
+  "local_year": 1985,
+  "local_month": 7,
+  "local_day": 22,
+  "local_hour": 18,
+  "local_minute": 45,
+  "timezone_str": "Europe/London",
+  "birth_datetime_utc": "1985-07-22T17:45:00Z",
+  "latitude": 51.5074,
+  "longitude": -0.1278,
+  "ascendant_sidereal_longitude": 245.12,
+  "mc_sidereal_longitude": 165.45,
+  "ayanamsha": 23.6541,
+  "planets": {
+    "Sun": {
+      "longitude": 96.22,
+      "velocity_deg_day": 0.954,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 165.88,
+      "velocity_deg_day": 13.9,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 110.12,
+      "velocity_deg_day": 0.58,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 115.45,
+      "velocity_deg_day": 1.51,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 308.23,
+      "velocity_deg_day": -0.052,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 62.45,
+      "velocity_deg_day": 1.18,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 228.11,
+      "velocity_deg_day": -0.021,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2446269.28125
+}

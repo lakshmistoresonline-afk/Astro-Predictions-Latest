@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_002",
+  "name": "User A Kochi",
+  "local_year": 1990,
+  "local_month": 1,
+  "local_day": 15,
+  "local_hour": 8,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1990-01-15T03:00:00Z",
+  "latitude": 9.9312,
+  "longitude": 76.2673,
+  "ascendant_sidereal_longitude": 288.5421,
+  "mc_sidereal_longitude": 198.2104,
+  "ayanamsha": 23.7214,
+  "planets": {
+    "Sun": {
+      "longitude": 271.1204,
+      "velocity_deg_day": 1.012,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 142.3312,
+      "velocity_deg_day": 12.85,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 230.4501,
+      "velocity_deg_day": 0.61,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 255.89,
+      "velocity_deg_day": 1.45,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 88.12,
+      "velocity_deg_day": -0.091,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 290.45,
+      "velocity_deg_day": 1.22,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 260.11,
+      "velocity_deg_day": 0.11,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2447906.854167
+}

@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_015",
+  "name": "Honolulu Native",
+  "local_year": 2005,
+  "local_month": 7,
+  "local_day": 4,
+  "local_hour": 5,
+  "local_minute": 30,
+  "timezone_str": "Pacific/Honolulu",
+  "birth_datetime_utc": "2005-07-04T15:30:00Z",
+  "latitude": 21.3069,
+  "longitude": -157.8583,
+  "ascendant_sidereal_longitude": 72.12,
+  "mc_sidereal_longitude": 342.45,
+  "ayanamsha": 23.918,
+  "planets": {
+    "Sun": {
+      "longitude": 78.88,
+      "velocity_deg_day": 0.952,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 62.12,
+      "velocity_deg_day": 13.85,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 352.45,
+      "velocity_deg_day": 0.61,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 98.9,
+      "velocity_deg_day": 0.75,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 172.12,
+      "velocity_deg_day": 0.082,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 105.45,
+      "velocity_deg_day": 1.18,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 92.88,
+      "velocity_deg_day": 0.125,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2453555.729167
+}

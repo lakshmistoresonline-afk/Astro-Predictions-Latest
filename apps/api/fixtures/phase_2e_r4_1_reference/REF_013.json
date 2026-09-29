@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_013",
+  "name": "Buenos Aires Native",
+  "local_year": 1982,
+  "local_month": 2,
+  "local_day": 28,
+  "local_hour": 8,
+  "local_minute": 0,
+  "timezone_str": "America/Argentina/Buenos_Aires",
+  "birth_datetime_utc": "1982-02-28T11:00:00Z",
+  "latitude": -34.6037,
+  "longitude": -58.3816,
+  "ascendant_sidereal_longitude": 338.9,
+  "mc_sidereal_longitude": 242.12,
+  "ayanamsha": 23.612,
+  "planets": {
+    "Sun": {
+      "longitude": 315.45,
+      "velocity_deg_day": 1.005,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 22.12,
+      "velocity_deg_day": 13.12,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 188.9,
+      "velocity_deg_day": -0.21,
+      "retrograde": true
+    },
+    "Mercury": {
+      "longitude": 298.12,
+      "velocity_deg_day": 1.55,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 205.45,
+      "velocity_deg_day": -0.042,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 278.88,
+      "velocity_deg_day": 1.21,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 182.12,
+      "velocity_deg_day": -0.035,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2445028.833333
+}

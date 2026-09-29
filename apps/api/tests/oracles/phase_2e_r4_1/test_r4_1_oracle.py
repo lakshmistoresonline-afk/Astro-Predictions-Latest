@@ -15,9 +15,9 @@ from apps.api.engines.strength.ashtakavarga import AshtakavargaEngine
 from apps.api.engines.strength.shadbala import ShadbalaEngine
 
 from apps.api.tests.fixtures.phase_2d_r3.synthetic import get_base_chart, set_planet, set_ascendant
-from apps.api.tests.oracles.phase_2e_r4.independent_chart import IndependentChart
-from apps.api.tests.oracles.phase_2e_r4.independent_shadbala import r4_calculate_shadbala_for_planet
-from apps.api.tests.oracles.phase_2e_r4.independent_ashtakavarga import r4_independent_bav, r4_independent_sav
+from apps.api.tests.oracles.phase_2e_r4_1.independent_chart import IndependentChart
+from apps.api.tests.oracles.phase_2e_r4_1.independent_shadbala import r4_calculate_shadbala_for_planet
+from apps.api.tests.oracles.phase_2e_r4_1.independent_ashtakavarga import r4_independent_bav, r4_independent_sav
 
 def get_r4_1_fixture_files():
     fixture_dir = Path(__file__).parent.parent.parent / "fixtures" / "phase_2e_r4_1_expected"

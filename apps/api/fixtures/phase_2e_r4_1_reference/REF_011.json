@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_011",
+  "name": "Berlin Native",
+  "local_year": 1988,
+  "local_month": 12,
+  "local_day": 12,
+  "local_hour": 10,
+  "local_minute": 15,
+  "timezone_str": "Europe/Berlin",
+  "birth_datetime_utc": "1988-12-12T09:15:00Z",
+  "latitude": 52.52,
+  "longitude": 13.405,
+  "ascendant_sidereal_longitude": 288.12,
+  "mc_sidereal_longitude": 202.45,
+  "ayanamsha": 23.702,
+  "planets": {
+    "Sun": {
+      "longitude": 236.9,
+      "velocity_deg_day": 1.015,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 282.12,
+      "velocity_deg_day": 13.12,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 342.45,
+      "velocity_deg_day": 0.52,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 222.88,
+      "velocity_deg_day": 1.42,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 32.12,
+      "velocity_deg_day": -0.082,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 208.45,
+      "velocity_deg_day": 1.23,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 248.9,
+      "velocity_deg_day": 0.115,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2447507.927083
+}

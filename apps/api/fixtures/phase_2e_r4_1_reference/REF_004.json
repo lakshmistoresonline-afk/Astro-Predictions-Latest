@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_004",
+  "name": "New York Native",
+  "local_year": 2000,
+  "local_month": 1,
+  "local_day": 1,
+  "local_hour": 12,
+  "local_minute": 0,
+  "timezone_str": "America/New_York",
+  "birth_datetime_utc": "2000-01-01T17:00:00Z",
+  "latitude": 40.7128,
+  "longitude": -74.006,
+  "ascendant_sidereal_longitude": 352.11,
+  "mc_sidereal_longitude": 268.45,
+  "ayanamsha": 23.85,
+  "planets": {
+    "Sun": {
+      "longitude": 256.45,
+      "velocity_deg_day": 1.018,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 198.12,
+      "velocity_deg_day": 12.11,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 312.88,
+      "velocity_deg_day": 0.71,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 248.9,
+      "velocity_deg_day": 1.32,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 22.45,
+      "velocity_deg_day": 0.045,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 218.12,
+      "velocity_deg_day": 1.25,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 38.9,
+      "velocity_deg_day": -0.012,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2451545.0
+}

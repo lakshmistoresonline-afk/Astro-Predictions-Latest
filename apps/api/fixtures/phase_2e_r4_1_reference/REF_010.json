@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_010",
+  "name": "Los Angeles Retrograde",
+  "local_year": 2020,
+  "local_month": 10,
+  "local_day": 15,
+  "local_hour": 20,
+  "local_minute": 0,
+  "timezone_str": "America/Los_Angeles",
+  "birth_datetime_utc": "2020-10-16T03:00:00Z",
+  "latitude": 34.0522,
+  "longitude": -118.2437,
+  "ascendant_sidereal_longitude": 68.45,
+  "mc_sidereal_longitude": 338.12,
+  "ayanamsha": 24.12,
+  "planets": {
+    "Sun": {
+      "longitude": 180.12,
+      "velocity_deg_day": 0.995,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 172.45,
+      "velocity_deg_day": 12.88,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 348.9,
+      "velocity_deg_day": -0.32,
+      "retrograde": true
+    },
+    "Mercury": {
+      "longitude": 192.12,
+      "velocity_deg_day": -0.85,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 261.45,
+      "velocity_deg_day": 0.082,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 142.88,
+      "velocity_deg_day": 1.21,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 262.12,
+      "velocity_deg_day": 0.021,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2459138.333333
+}

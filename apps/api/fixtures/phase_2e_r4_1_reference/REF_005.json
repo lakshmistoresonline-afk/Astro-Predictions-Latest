@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_005",
+  "name": "Tokyo Native",
+  "local_year": 1995,
+  "local_month": 5,
+  "local_day": 5,
+  "local_hour": 9,
+  "local_minute": 0,
+  "timezone_str": "Asia/Tokyo",
+  "birth_datetime_utc": "1995-05-05T00:00:00Z",
+  "latitude": 35.6762,
+  "longitude": 139.6503,
+  "ascendant_sidereal_longitude": 78.45,
+  "mc_sidereal_longitude": 348.12,
+  "ayanamsha": 23.792,
+  "planets": {
+    "Sun": {
+      "longitude": 20.12,
+      "velocity_deg_day": 0.972,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 92.45,
+      "velocity_deg_day": 13.45,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 122.11,
+      "velocity_deg_day": 0.45,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 355.88,
+      "velocity_deg_day": -0.32,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 228.9,
+      "velocity_deg_day": -0.082,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 350.12,
+      "velocity_deg_day": 1.21,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 328.45,
+      "velocity_deg_day": 0.089,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2449842.875
+}

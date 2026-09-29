@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_019",
+  "name": "Cardinal Dig Bala Zero",
+  "local_year": 2000,
+  "local_month": 1,
+  "local_day": 1,
+  "local_hour": 12,
+  "local_minute": 0,
+  "timezone_str": "UTC",
+  "birth_datetime_utc": "2000-01-01T12:00:00Z",
+  "julian_day": 2451545.0,
+  "latitude": 0.0,
+  "longitude": 0.0,
+  "ascendant_sidereal_longitude": 0.0,
+  "mc_sidereal_longitude": 270.0,
+  "ayanamsha": 23.85,
+  "planets": {
+    "Sun": {
+      "longitude": 90.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 270.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 90.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 180.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 180.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 270.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 0.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    }
+  },
+  "type": "SYNTHETIC_BOUNDARY",
+  "provenance": "Synthetic Angular/Velocity Boundary Reference Dataset"
+}

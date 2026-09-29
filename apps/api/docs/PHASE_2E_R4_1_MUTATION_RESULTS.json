@@ -1,0 +1,29 @@
+{
+  "attempted": 3,
+  "detected": 3,
+  "undetected": 0,
+  "mutation_score_percent": 100.0,
+  "mutation_records": [
+    {
+      "mutation_id": "MUT_001_UCCHA_BALA",
+      "component": "Sthana Bala - Uccha Bala",
+      "original_behavior": "Sun debilitation at 190.0\u00b0",
+      "mutated_behavior": "Sun debilitation at 195.0\u00b0",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_002_BAV_JUPITER_LAGNA",
+      "component": "Ashtakavarga BAV - Jupiter Lagna vector",
+      "original_behavior": "Lagna gives 9 bindus to Jupiter BAV",
+      "mutated_behavior": "Lagna gives 8 bindus to Jupiter BAV",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_003_DIG_BALA_CARDINAL",
+      "component": "Dig Bala",
+      "original_behavior": "Sun Dig Bala = 38.33 shashtiamsas",
+      "mutated_behavior": "Sun Dig Bala forced to 0.0 shashtiamsas",
+      "detected": true
+    }
+  ]
+}

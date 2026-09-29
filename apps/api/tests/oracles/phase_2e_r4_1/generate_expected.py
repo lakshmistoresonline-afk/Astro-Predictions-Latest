@@ -14,9 +14,9 @@ from pathlib import Path
 # Add project root to sys.path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent.parent))
 
-from apps.api.tests.oracles.phase_2e_r4.independent_chart import IndependentChart
-from apps.api.tests.oracles.phase_2e_r4.independent_ashtakavarga import r4_independent_bav, r4_independent_sav
-from apps.api.tests.oracles.phase_2e_r4.independent_shadbala import r4_calculate_shadbala_for_planet
+from apps.api.tests.oracles.phase_2e_r4_1.independent_chart import IndependentChart
+from apps.api.tests.oracles.phase_2e_r4_1.independent_ashtakavarga import r4_independent_bav, r4_independent_sav
+from apps.api.tests.oracles.phase_2e_r4_1.independent_shadbala import r4_calculate_shadbala_for_planet
 
 def generate_frozen_expected_fixtures():
     ref_dir = Path(__file__).parent.parent.parent / "fixtures" / "phase_2e_r4_1_reference"

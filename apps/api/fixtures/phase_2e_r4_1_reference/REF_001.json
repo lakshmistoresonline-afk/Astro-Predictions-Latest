@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_001",
+  "name": "Subramanian T S",
+  "local_year": 1986,
+  "local_month": 9,
+  "local_day": 28,
+  "local_hour": 16,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1986-09-28T11:00:00Z",
+  "latitude": 10.7867,
+  "longitude": 76.6548,
+  "ascendant_sidereal_longitude": 321.438512,
+  "mc_sidereal_longitude": 256.082104,
+  "ayanamsha": 23.670278,
+  "planets": {
+    "Sun": {
+      "longitude": 161.543565,
+      "velocity_deg_day": 0.9856,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 80.009421,
+      "velocity_deg_day": 13.176,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 298.287276,
+      "velocity_deg_day": 0.524,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 178.287276,
+      "velocity_deg_day": 1.2,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 320.123456,
+      "velocity_deg_day": 0.083,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 193.456789,
+      "velocity_deg_day": 1.2,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 222.987654,
+      "velocity_deg_day": 0.033,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris / Meeus Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2446702.1875
+}

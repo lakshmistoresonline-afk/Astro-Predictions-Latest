@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_008",
+  "name": "Reykjavik Native",
+  "local_year": 1992,
+  "local_month": 6,
+  "local_day": 21,
+  "local_hour": 23,
+  "local_minute": 45,
+  "timezone_str": "Atlantic/Reykjavik",
+  "birth_datetime_utc": "1992-06-21T23:45:00Z",
+  "latitude": 64.1466,
+  "longitude": -21.9426,
+  "ascendant_sidereal_longitude": 302.45,
+  "mc_sidereal_longitude": 210.12,
+  "ayanamsha": 23.754,
+  "planets": {
+    "Sun": {
+      "longitude": 66.45,
+      "velocity_deg_day": 0.952,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 328.12,
+      "velocity_deg_day": 13.88,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 22.9,
+      "velocity_deg_day": 0.65,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 82.12,
+      "velocity_deg_day": 1.12,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 132.45,
+      "velocity_deg_day": 0.12,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 48.88,
+      "velocity_deg_day": 1.23,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 288.12,
+      "velocity_deg_day": -0.051,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2448795.489583
+}

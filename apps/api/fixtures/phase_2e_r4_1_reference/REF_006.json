@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_006",
+  "name": "Sydney Native",
+  "local_year": 1998,
+  "local_month": 11,
+  "local_day": 12,
+  "local_hour": 15,
+  "local_minute": 30,
+  "timezone_str": "Australia/Sydney",
+  "birth_datetime_utc": "1998-11-12T04:30:00Z",
+  "latitude": -33.8688,
+  "longitude": 151.2093,
+  "ascendant_sidereal_longitude": 342.88,
+  "mc_sidereal_longitude": 251.12,
+  "ayanamsha": 23.834,
+  "planets": {
+    "Sun": {
+      "longitude": 205.9,
+      "velocity_deg_day": 1.008,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 138.12,
+      "velocity_deg_day": 12.45,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 152.45,
+      "velocity_deg_day": 0.62,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 222.11,
+      "velocity_deg_day": 1.41,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 322.88,
+      "velocity_deg_day": -0.021,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 198.45,
+      "velocity_deg_day": 1.24,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 358.12,
+      "velocity_deg_day": -0.081,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2451130.145833
+}

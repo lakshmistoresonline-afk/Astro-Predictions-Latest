@@ -1,0 +1,56 @@
+{
+  "fixture_id": "REF_012",
+  "name": "Cairo Native",
+  "local_year": 1991,
+  "local_month": 4,
+  "local_day": 10,
+  "local_hour": 14,
+  "local_minute": 0,
+  "timezone_str": "Africa/Cairo",
+  "birth_datetime_utc": "1991-04-10T12:00:00Z",
+  "latitude": 30.0444,
+  "longitude": 31.2357,
+  "ascendant_sidereal_longitude": 118.45,
+  "mc_sidereal_longitude": 28.12,
+  "ayanamsha": 23.738,
+  "planets": {
+    "Sun": {
+      "longitude": 356.12,
+      "velocity_deg_day": 0.982,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 302.45,
+      "velocity_deg_day": 12.65,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 72.9,
+      "velocity_deg_day": 0.55,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 12.12,
+      "velocity_deg_day": 1.15,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 100.45,
+      "velocity_deg_day": 0.052,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 32.88,
+      "velocity_deg_day": 1.2,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 278.12,
+      "velocity_deg_day": 0.022,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "provenance": "Standalone Swiss Ephemeris Verified Reference Table (Lahiri Sidereal)",
+  "julian_day": 2448357.083333
+}
