@@ -80,6 +80,7 @@ def run_skyfield_extraction():
                 ast = earth.at(t).observe(body)
                 lat_deg, lon_deg, dist = ast.ecliptic_latlon()
                 trop_lon = lon_deg.degrees
+                ecl_lat = lat_deg.degrees
                 sid_lon = (trop_lon - ayanamsha) % 360.0
 
                 ast_next = earth.at(t_next).observe(body)
@@ -91,6 +92,8 @@ def run_skyfield_extraction():
                 elif vel_deg_day > 180: vel_deg_day -= 360 * 24
 
                 planets_data[name] = {
+                    "tropical_longitude": round(float(trop_lon), 6),
+                    "ecliptic_latitude": round(float(ecl_lat), 6),
                     "longitude": round(float(sid_lon), 6),
                     "velocity_deg_day": round(float(vel_deg_day), 6),
                     "retrograde": bool(vel_deg_day < 0.0)

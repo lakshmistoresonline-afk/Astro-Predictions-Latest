@@ -4,7 +4,6 @@ Reads input specifications from reference_source/inputs/ and calculates raw PyEp
 Zero imports from apps.api.engines.*!
 """
 import datetime
-import hashlib
 import json
 import math
 import os
@@ -38,6 +37,7 @@ EPHEM_PLANETS = {
 }
 
 def extract_pyephem_positions(utc_datetime_iso: str, lat: float, lon: float, ayanamsha: float) -> dict:
+    """Extracts raw tropical/sidereal longitudes, ecliptic latitudes, and daily velocities using PyEphem (XEphem Engine)."""
     observer = ephem.Observer()
     observer.lat = str(lat)
     observer.lon = str(lon)
@@ -49,6 +49,7 @@ def extract_pyephem_positions(utc_datetime_iso: str, lat: float, lon: float, aya
         body.compute(observer)
         ecl = ephem.Ecliptic(body)
         trop_lon_deg = math.degrees(ecl.lon)
+        ecl_lat_deg = math.degrees(ecl.lat)
         sid_lon_deg = (trop_lon_deg - ayanamsha) % 360.0
 
         observer_next = ephem.Observer()
@@ -67,6 +68,8 @@ def extract_pyephem_positions(utc_datetime_iso: str, lat: float, lon: float, aya
         is_retro = vel_deg_day < 0.0
 
         planets_out[name] = {
+            "tropical_longitude": round(trop_lon_deg, 6),
+            "ecliptic_latitude": round(ecl_lat_deg, 6),
             "longitude": round(sid_lon_deg, 6),
             "velocity_deg_day": round(vel_deg_day, 6),
             "retrograde": is_retro
@@ -111,8 +114,8 @@ def run_pyephem_extraction():
     out_dir = Path(__file__).parent
 
     in_files = sorted(list(in_dir.glob("*.json")))
-
     results = {}
+
     for in_file in in_files:
         with open(in_file, "r", encoding="utf-8") as f:
             data = json.load(f)

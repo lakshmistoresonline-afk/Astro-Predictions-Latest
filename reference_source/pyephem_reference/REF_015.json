@@ -8,36 +8,50 @@
   "mc_sidereal_longitude": 333.219715,
   "planets": {
     "Sun": {
+      "tropical_longitude": 102.673714,
+      "ecliptic_latitude": -0.000556,
       "longitude": 78.746847,
       "velocity_deg_day": 0.95367,
       "retrograde": false
     },
     "Moon": {
+      "tropical_longitude": 82.018738,
+      "ecliptic_latitude": 4.45801,
       "longitude": 58.091871,
       "velocity_deg_day": 12.181931,
       "retrograde": false
     },
     "Mars": {
+      "tropical_longitude": 15.223085,
+      "ecliptic_latitude": -2.574043,
       "longitude": 351.296219,
       "velocity_deg_day": 0.65688,
       "retrograde": false
     },
     "Mercury": {
+      "tropical_longitude": 128.432763,
+      "ecliptic_latitude": 0.543804,
       "longitude": 104.505897,
       "velocity_deg_day": 1.170235,
       "retrograde": false
     },
     "Jupiter": {
+      "tropical_longitude": 190.105278,
+      "ecliptic_latitude": 1.294353,
       "longitude": 166.178411,
       "velocity_deg_day": 0.082848,
       "retrograde": false
     },
     "Venus": {
+      "tropical_longitude": 127.698368,
+      "ecliptic_latitude": 1.628865,
       "longitude": 103.771501,
       "velocity_deg_day": 1.212595,
       "retrograde": false
     },
     "Saturn": {
+      "tropical_longitude": 118.413407,
+      "ecliptic_latitude": 0.255426,
       "longitude": 94.48654,
       "velocity_deg_day": 0.126145,
       "retrograde": false

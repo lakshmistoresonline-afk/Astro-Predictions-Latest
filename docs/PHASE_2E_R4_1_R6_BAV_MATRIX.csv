@@ -1,0 +1,1121 @@
+fixture_id,target_planet,contributor,rule_houses,oracle_bav_vector,frozen_bav_vector,difference,mutation_id,mutation_detected,status
+REF_001,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_001,Sun,Moon,"Houses [3, 6, 10, 11]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_001,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_001,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_001,Sun,Jupiter,"Houses [5, 6, 9, 11]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_001,Sun,Venus,"Houses [6, 7, 12]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_001,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_001,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]","[5, 5, 4, 6, 3, 5, 3, 4, 5, 3, 3, 2]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_001,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_001,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_001,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_001,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_001,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_001,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_001,Moon,Saturn,"Houses [3, 5, 6, 11]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_001,Moon,Ascendant,"Houses [3, 6, 10, 11]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]","[6, 3, 4, 5, 2, 5, 1, 5, 5, 5, 4, 4]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_001,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_001,Mars,Moon,"Houses [3, 6, 11]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_001,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_001,Mars,Mercury,"Houses [3, 5, 6, 11]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_001,Mars,Jupiter,"Houses [6, 10, 11, 12]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_001,Mars,Venus,"Houses [6, 8, 11, 12]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_001,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_001,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]","[2, 3, 2, 6, 3, 3, 1, 6, 3, 4, 5, 1]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_001,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_001,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_001,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_001,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_001,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_001,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_001,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_001,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]","[2, 6, 3, 6, 6, 5, 3, 5, 5, 5, 7, 1]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_001,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_001,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_001,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_001,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_001,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_001,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_001,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_001,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]","[4, 5, 4, 5, 4, 3, 5, 6, 4, 5, 5, 6]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_001,Venus,Sun,"Houses [8, 11, 12]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_001,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_001,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_001,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_001,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_001,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_001,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_001,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]","[2, 5, 6, 5, 4, 5, 4, 5, 4, 3, 5, 4]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_001,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_001,Saturn,Moon,"Houses [3, 6, 11]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_001,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_001,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_001,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_001,Saturn,Venus,"Houses [6, 11, 12]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_001,Saturn,Saturn,"Houses [3, 5, 6, 11]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_001,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]","[4, 4, 4, 4, 2, 4, 2, 2, 5, 2, 2, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_002,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_002,Sun,Moon,"Houses [3, 6, 10, 11]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_002,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_002,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_002,Sun,Jupiter,"Houses [5, 6, 9, 11]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_002,Sun,Venus,"Houses [6, 7, 12]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_002,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_002,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]","[4, 3, 5, 4, 4, 4, 6, 5, 4, 3, 4, 2]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_002,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_002,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_002,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_002,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_002,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_002,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_002,Moon,Saturn,"Houses [3, 5, 6, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_002,Moon,Ascendant,"Houses [3, 6, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]","[5, 4, 5, 4, 3, 4, 6, 3, 3, 3, 3, 6]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_002,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_002,Mars,Moon,"Houses [3, 6, 11]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_002,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_002,Mars,Mercury,"Houses [3, 5, 6, 11]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_002,Mars,Jupiter,"Houses [6, 10, 11, 12]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_002,Mars,Venus,"Houses [6, 8, 11, 12]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_002,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_002,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]","[2, 4, 6, 1, 3, 2, 5, 5, 3, 2, 2, 4]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_002,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_002,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_002,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_002,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_002,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_002,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_002,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_002,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]","[4, 6, 5, 2, 5, 6, 3, 7, 4, 5, 4, 3]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_002,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_002,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_002,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_002,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_002,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_002,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_002,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_002,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]","[6, 5, 5, 2, 4, 7, 4, 5, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_002,Venus,Sun,"Houses [8, 11, 12]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_002,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_002,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_002,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_002,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_002,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_002,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_002,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]","[7, 3, 1, 3, 6, 5, 6, 4, 2, 4, 5, 6]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_002,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_002,Saturn,Moon,"Houses [3, 6, 11]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_002,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_002,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_002,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_002,Saturn,Venus,"Houses [6, 11, 12]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_002,Saturn,Saturn,"Houses [3, 5, 6, 11]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_002,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]","[5, 3, 3, 2, 3, 2, 7, 5, 1, 4, 2, 2]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_003,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_003,Sun,Moon,"Houses [3, 6, 10, 11]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_003,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_003,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_003,Sun,Jupiter,"Houses [5, 6, 9, 11]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_003,Sun,Venus,"Houses [6, 7, 12]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_003,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_003,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]","[5, 6, 4, 5, 3, 2, 6, 5, 1, 4, 4, 3]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_003,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_003,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_003,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_003,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_003,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_003,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_003,Moon,Saturn,"Houses [3, 5, 6, 11]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_003,Moon,Ascendant,"Houses [3, 6, 10, 11]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]","[3, 4, 2, 3, 5, 5, 3, 5, 5, 3, 6, 5]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_003,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_003,Mars,Moon,"Houses [3, 6, 11]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_003,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_003,Mars,Mercury,"Houses [3, 5, 6, 11]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_003,Mars,Jupiter,"Houses [6, 10, 11, 12]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_003,Mars,Venus,"Houses [6, 8, 11, 12]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_003,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_003,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]","[4, 4, 3, 3, 2, 2, 6, 3, 5, 3, 3, 1]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_003,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_003,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_003,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_003,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_003,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_003,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_003,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_003,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]","[4, 6, 6, 6, 5, 2, 5, 3, 6, 5, 2, 4]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_003,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_003,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_003,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_003,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_003,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_003,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_003,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_003,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]","[5, 5, 2, 4, 5, 5, 6, 3, 3, 7, 5, 6]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_003,Venus,Sun,"Houses [8, 11, 12]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_003,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_003,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_003,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_003,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_003,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_003,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_003,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]","[3, 6, 5, 4, 5, 4, 4, 3, 6, 5, 4, 3]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_003,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_003,Saturn,Moon,"Houses [3, 6, 11]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_003,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_003,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_003,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_003,Saturn,Venus,"Houses [6, 11, 12]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_003,Saturn,Saturn,"Houses [3, 5, 6, 11]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_003,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]","[4, 5, 3, 3, 2, 2, 3, 3, 4, 2, 4, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_004,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_004,Sun,Moon,"Houses [3, 6, 10, 11]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_004,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_004,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_004,Sun,Jupiter,"Houses [5, 6, 9, 11]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_004,Sun,Venus,"Houses [6, 7, 12]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_004,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_004,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]","[3, 5, 2, 3, 6, 4, 5, 3, 6, 3, 5, 3]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_004,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_004,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_004,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_004,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_004,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_004,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_004,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_004,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]","[4, 3, 4, 6, 4, 4, 5, 2, 4, 3, 5, 5]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_004,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_004,Mars,Moon,"Houses [3, 6, 11]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_004,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_004,Mars,Mercury,"Houses [3, 5, 6, 11]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_004,Mars,Jupiter,"Houses [6, 10, 11, 12]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_004,Mars,Venus,"Houses [6, 8, 11, 12]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_004,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_004,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]","[4, 4, 1, 1, 3, 4, 4, 2, 4, 3, 5, 4]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_004,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_004,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_004,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_004,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_004,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_004,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_004,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_004,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]","[4, 5, 2, 3, 5, 4, 5, 7, 5, 4, 5, 5]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_004,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_004,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_004,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_004,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_004,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_004,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_004,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_004,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]","[5, 3, 5, 4, 7, 5, 3, 4, 5, 4, 5, 6]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_004,Venus,Sun,"Houses [8, 11, 12]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_004,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_004,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_004,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_004,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_004,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_004,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_004,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]","[3, 3, 5, 5, 5, 2, 5, 6, 5, 6, 5, 2]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_004,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_004,Saturn,Moon,"Houses [3, 6, 11]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_004,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_004,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_004,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_004,Saturn,Venus,"Houses [6, 11, 12]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_004,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_004,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]","[2, 2, 4, 3, 5, 5, 3, 2, 4, 3, 2, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_005,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_005,Sun,Moon,"Houses [3, 6, 10, 11]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_005,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_005,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_005,Sun,Jupiter,"Houses [5, 6, 9, 11]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_005,Sun,Venus,"Houses [6, 7, 12]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_005,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_005,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]","[6, 4, 0, 4, 5, 5, 4, 4, 2, 3, 5, 6]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_005,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_005,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_005,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_005,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_005,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_005,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_005,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_005,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]","[4, 4, 5, 3, 5, 5, 2, 7, 5, 2, 3, 4]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_005,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_005,Mars,Moon,"Houses [3, 6, 11]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_005,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_005,Mars,Mercury,"Houses [3, 5, 6, 11]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_005,Mars,Jupiter,"Houses [6, 10, 11, 12]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_005,Mars,Venus,"Houses [6, 8, 11, 12]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_005,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_005,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]","[4, 2, 2, 2, 7, 4, 5, 3, 1, 3, 4, 2]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_005,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_005,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_005,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_005,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_005,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_005,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_005,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_005,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]","[6, 4, 3, 5, 3, 6, 5, 4, 2, 5, 4, 7]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_005,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_005,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_005,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_005,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_005,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_005,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_005,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_005,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]","[6, 5, 5, 6, 4, 3, 5, 4, 4, 6, 6, 2]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_005,Venus,Sun,"Houses [8, 11, 12]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_005,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_005,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_005,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_005,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_005,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_005,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_005,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]","[4, 4, 6, 5, 3, 6, 5, 4, 3, 4, 3, 5]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_005,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_005,Saturn,Moon,"Houses [3, 6, 11]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_005,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_005,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_005,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_005,Saturn,Venus,"Houses [6, 11, 12]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_005,Saturn,Saturn,"Houses [3, 5, 6, 11]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_005,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]","[7, 2, 3, 2, 3, 3, 3, 4, 3, 3, 3, 3]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_006,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_006,Sun,Moon,"Houses [3, 6, 10, 11]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_006,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_006,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_006,Sun,Jupiter,"Houses [5, 6, 9, 11]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_006,Sun,Venus,"Houses [6, 7, 12]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_006,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_006,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]","[5, 5, 5, 4, 4, 3, 5, 3, 3, 5, 3, 3]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_006,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_006,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_006,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_006,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_006,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_006,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_006,Moon,Saturn,"Houses [3, 5, 6, 11]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_006,Moon,Ascendant,"Houses [3, 6, 10, 11]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]","[3, 6, 5, 2, 7, 4, 2, 2, 5, 6, 5, 2]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_006,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_006,Mars,Moon,"Houses [3, 6, 11]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_006,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_006,Mars,Mercury,"Houses [3, 5, 6, 11]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_006,Mars,Jupiter,"Houses [6, 10, 11, 12]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_006,Mars,Venus,"Houses [6, 8, 11, 12]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_006,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_006,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]","[2, 3, 2, 3, 4, 3, 2, 3, 4, 5, 3, 5]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_006,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_006,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_006,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_006,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_006,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_006,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_006,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_006,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]","[4, 4, 5, 3, 5, 5, 4, 5, 4, 6, 4, 5]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_006,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_006,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_006,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_006,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_006,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_006,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_006,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_006,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]","[5, 3, 6, 4, 7, 5, 1, 6, 5, 2, 6, 6]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_006,Venus,Sun,"Houses [8, 11, 12]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_006,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_006,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_006,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_006,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_006,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_006,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_006,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]","[4, 3, 6, 6, 4, 4, 5, 5, 5, 5, 2, 3]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_006,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_006,Saturn,Moon,"Houses [3, 6, 11]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_006,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_006,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_006,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_006,Saturn,Venus,"Houses [6, 11, 12]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_006,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_006,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]","[2, 3, 6, 4, 5, 3, 4, 1, 3, 5, 1, 2]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_007,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_007,Sun,Moon,"Houses [3, 6, 10, 11]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_007,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_007,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_007,Sun,Jupiter,"Houses [5, 6, 9, 11]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_007,Sun,Venus,"Houses [6, 7, 12]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_007,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_007,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]","[6, 1, 3, 5, 3, 4, 4, 6, 4, 6, 2, 4]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_007,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_007,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_007,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_007,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_007,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_007,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_007,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_007,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]","[4, 3, 5, 2, 5, 4, 5, 5, 6, 3, 4, 3]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_007,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_007,Mars,Moon,"Houses [3, 6, 11]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_007,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_007,Mars,Mercury,"Houses [3, 5, 6, 11]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_007,Mars,Jupiter,"Houses [6, 10, 11, 12]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_007,Mars,Venus,"Houses [6, 8, 11, 12]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_007,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_007,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]","[5, 1, 2, 4, 4, 2, 1, 4, 5, 4, 5, 2]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_007,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_007,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_007,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_007,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_007,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_007,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_007,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_007,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]","[5, 2, 3, 7, 4, 4, 3, 6, 4, 6, 7, 3]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_007,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_007,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_007,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_007,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_007,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_007,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_007,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_007,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]","[4, 6, 4, 4, 3, 3, 7, 5, 6, 5, 5, 4]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_007,Venus,Sun,"Houses [8, 11, 12]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_007,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_007,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_007,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_007,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_007,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_007,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_007,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]","[5, 4, 5, 4, 3, 4, 6, 3, 5, 5, 5, 3]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_007,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_007,Saturn,Moon,"Houses [3, 6, 11]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_007,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_007,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_007,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_007,Saturn,Venus,"Houses [6, 11, 12]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_007,Saturn,Saturn,"Houses [3, 5, 6, 11]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_007,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]","[4, 2, 2, 3, 3, 3, 4, 5, 4, 3, 3, 3]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_008,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_008,Sun,Moon,"Houses [3, 6, 10, 11]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_008,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_008,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_008,Sun,Jupiter,"Houses [5, 6, 9, 11]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_008,Sun,Venus,"Houses [6, 7, 12]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_008,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_008,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]","[6, 4, 2, 4, 2, 3, 4, 6, 5, 4, 5, 3]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_008,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_008,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_008,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_008,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_008,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_008,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_008,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_008,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]","[4, 4, 4, 2, 6, 4, 3, 4, 5, 3, 5, 5]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_008,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_008,Mars,Moon,"Houses [3, 6, 11]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_008,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_008,Mars,Mercury,"Houses [3, 5, 6, 11]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_008,Mars,Jupiter,"Houses [6, 10, 11, 12]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_008,Mars,Venus,"Houses [6, 8, 11, 12]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_008,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_008,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]","[6, 4, 1, 4, 3, 2, 5, 5, 2, 4, 2, 1]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_008,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_008,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_008,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_008,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_008,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_008,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_008,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_008,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]","[5, 5, 3, 6, 3, 4, 6, 5, 3, 5, 5, 4]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_008,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_008,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_008,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_008,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_008,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_008,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_008,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_008,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]","[5, 4, 5, 4, 4, 4, 6, 5, 4, 3, 5, 7]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_008,Venus,Sun,"Houses [8, 11, 12]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_008,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_008,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_008,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_008,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_008,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_008,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_008,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]","[7, 4, 4, 2, 5, 4, 5, 2, 4, 4, 5, 6]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_008,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_008,Saturn,Moon,"Houses [3, 6, 11]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_008,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_008,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_008,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_008,Saturn,Venus,"Houses [6, 11, 12]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_008,Saturn,Saturn,"Houses [3, 5, 6, 11]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_008,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]","[4, 4, 4, 3, 1, 3, 1, 3, 4, 4, 3, 5]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_011,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_011,Sun,Moon,"Houses [3, 6, 10, 11]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_011,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_011,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_011,Sun,Jupiter,"Houses [5, 6, 9, 11]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_011,Sun,Venus,"Houses [6, 7, 12]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_011,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_011,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]","[3, 3, 4, 2, 3, 7, 6, 5, 3, 3, 3, 6]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_011,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_011,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_011,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_011,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_011,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_011,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_011,Moon,Saturn,"Houses [3, 5, 6, 11]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_011,Moon,Ascendant,"Houses [3, 6, 10, 11]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]","[6, 5, 4, 4, 4, 3, 4, 3, 4, 4, 5, 3]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_011,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_011,Mars,Moon,"Houses [3, 6, 11]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_011,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_011,Mars,Mercury,"Houses [3, 5, 6, 11]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_011,Mars,Jupiter,"Houses [6, 10, 11, 12]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_011,Mars,Venus,"Houses [6, 8, 11, 12]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_011,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_011,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]","[4, 3, 3, 1, 3, 5, 5, 1, 3, 2, 3, 6]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_011,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_011,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_011,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_011,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_011,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_011,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_011,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_011,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]","[5, 3, 4, 3, 4, 5, 8, 4, 6, 4, 3, 5]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_011,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_011,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_011,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_011,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_011,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_011,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_011,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_011,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]","[4, 6, 4, 4, 5, 5, 3, 6, 5, 4, 5, 5]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_011,Venus,Sun,"Houses [8, 11, 12]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_011,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_011,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_011,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_011,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_011,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_011,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_011,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]","[4, 4, 2, 4, 6, 4, 5, 3, 4, 5, 7, 4]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_011,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_011,Saturn,Moon,"Houses [3, 6, 11]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_011,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_011,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_011,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_011,Saturn,Venus,"Houses [6, 11, 12]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_011,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_011,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]","[2, 5, 2, 2, 4, 5, 4, 3, 3, 1, 4, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_012,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_012,Sun,Moon,"Houses [3, 6, 10, 11]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_012,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_012,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_012,Sun,Jupiter,"Houses [5, 6, 9, 11]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_012,Sun,Venus,"Houses [6, 7, 12]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_012,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_012,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]","[5, 2, 4, 4, 2, 4, 4, 6, 5, 5, 3, 4]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_012,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_012,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_012,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_012,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_012,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_012,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_012,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_012,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]","[4, 4, 4, 5, 5, 2, 5, 5, 2, 5, 5, 3]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_012,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_012,Mars,Moon,"Houses [3, 6, 11]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_012,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_012,Mars,Mercury,"Houses [3, 5, 6, 11]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_012,Mars,Jupiter,"Houses [6, 10, 11, 12]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_012,Mars,Venus,"Houses [6, 8, 11, 12]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_012,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_012,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]","[5, 3, 4, 4, 4, 3, 3, 1, 5, 4, 1, 2]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_012,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_012,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_012,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_012,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_012,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_012,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_012,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_012,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]","[3, 4, 5, 5, 5, 6, 1, 4, 5, 6, 5, 5]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_012,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_012,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_012,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_012,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_012,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_012,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_012,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_012,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]","[5, 5, 6, 4, 4, 6, 4, 2, 6, 6, 3, 5]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_012,Venus,Sun,"Houses [8, 11, 12]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_012,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_012,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_012,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_012,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_012,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_012,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_012,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]","[5, 5, 4, 1, 5, 5, 5, 4, 4, 3, 6, 5]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_012,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_012,Saturn,Moon,"Houses [3, 6, 11]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_012,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_012,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_012,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_012,Saturn,Venus,"Houses [6, 11, 12]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_012,Saturn,Saturn,"Houses [3, 5, 6, 11]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_012,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]","[4, 4, 4, 1, 2, 2, 4, 5, 4, 3, 1, 5]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_013,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_013,Sun,Moon,"Houses [3, 6, 10, 11]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_013,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_013,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_013,Sun,Jupiter,"Houses [5, 6, 9, 11]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_013,Sun,Venus,"Houses [6, 7, 12]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_013,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_013,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]","[2, 5, 7, 3, 3, 5, 4, 2, 6, 2, 4, 5]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_013,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_013,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_013,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_013,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_013,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_013,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_013,Moon,Saturn,"Houses [3, 5, 6, 11]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_013,Moon,Ascendant,"Houses [3, 6, 10, 11]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]","[5, 5, 2, 6, 4, 4, 5, 5, 2, 6, 3, 2]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_013,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_013,Mars,Moon,"Houses [3, 6, 11]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_013,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_013,Mars,Mercury,"Houses [3, 5, 6, 11]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_013,Mars,Jupiter,"Houses [6, 10, 11, 12]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_013,Mars,Venus,"Houses [6, 8, 11, 12]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_013,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_013,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]","[3, 3, 6, 4, 3, 4, 1, 3, 5, 1, 1, 5]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_013,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_013,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_013,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_013,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_013,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_013,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_013,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_013,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]","[4, 6, 5, 4, 3, 6, 5, 3, 5, 5, 2, 6]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_013,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_013,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_013,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_013,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_013,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_013,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_013,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_013,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]","[5, 5, 4, 3, 5, 4, 6, 6, 5, 4, 6, 3]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_013,Venus,Sun,"Houses [8, 11, 12]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_013,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_013,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_013,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_013,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_013,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_013,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_013,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]","[4, 7, 5, 5, 4, 3, 2, 6, 3, 5, 4, 4]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_013,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_013,Saturn,Moon,"Houses [3, 6, 11]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_013,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_013,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_013,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_013,Saturn,Venus,"Houses [6, 11, 12]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_013,Saturn,Saturn,"Houses [3, 5, 6, 11]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_013,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]","[0, 2, 5, 2, 5, 4, 1, 5, 4, 3, 5, 3]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_014,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_014,Sun,Moon,"Houses [3, 6, 10, 11]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_014,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_014,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_014,Sun,Jupiter,"Houses [5, 6, 9, 11]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_014,Sun,Venus,"Houses [6, 7, 12]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_014,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_014,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]","[4, 3, 4, 4, 5, 4, 3, 1, 3, 5, 6, 6]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_014,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_014,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_014,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_014,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_014,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_014,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_014,Moon,Saturn,"Houses [3, 5, 6, 11]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_014,Moon,Ascendant,"Houses [3, 6, 10, 11]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]","[5, 5, 4, 4, 4, 4, 3, 4, 4, 5, 4, 3]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_014,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_014,Mars,Moon,"Houses [3, 6, 11]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_014,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_014,Mars,Mercury,"Houses [3, 5, 6, 11]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_014,Mars,Jupiter,"Houses [6, 10, 11, 12]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_014,Mars,Venus,"Houses [6, 8, 11, 12]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_014,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_014,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]","[5, 2, 3, 3, 3, 6, 2, 2, 4, 4, 3, 2]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_014,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_014,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_014,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_014,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_014,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_014,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_014,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_014,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]","[5, 6, 4, 4, 4, 6, 3, 4, 6, 4, 4, 4]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_014,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_014,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_014,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_014,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_014,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_014,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_014,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_014,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]","[6, 6, 4, 7, 4, 5, 3, 2, 5, 7, 3, 4]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_014,Venus,Sun,"Houses [8, 11, 12]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_014,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_014,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_014,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_014,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_014,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_014,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_014,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]","[5, 6, 7, 4, 3, 3, 5, 5, 5, 3, 5, 1]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_014,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_014,Saturn,Moon,"Houses [3, 6, 11]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_014,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_014,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_014,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_014,Saturn,Venus,"Houses [6, 11, 12]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_014,Saturn,Saturn,"Houses [3, 5, 6, 11]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_014,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]","[6, 3, 3, 5, 4, 3, 2, 1, 1, 4, 4, 3]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_015,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_015,Sun,Moon,"Houses [3, 6, 10, 11]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_015,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_015,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_015,Sun,Jupiter,"Houses [5, 6, 9, 11]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_015,Sun,Venus,"Houses [6, 7, 12]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_015,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_015,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]","[5, 4, 4, 4, 2, 4, 3, 3, 4, 5, 4, 6]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_015,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_015,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_015,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_015,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_015,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_015,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_015,Moon,Saturn,"Houses [3, 5, 6, 11]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_015,Moon,Ascendant,"Houses [3, 6, 10, 11]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]","[6, 5, 1, 4, 4, 4, 3, 7, 4, 4, 2, 5]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_015,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_015,Mars,Moon,"Houses [3, 6, 11]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_015,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_015,Mars,Mercury,"Houses [3, 5, 6, 11]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_015,Mars,Jupiter,"Houses [6, 10, 11, 12]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_015,Mars,Venus,"Houses [6, 8, 11, 12]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_015,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_015,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]","[4, 3, 4, 3, 3, 2, 4, 3, 3, 2, 3, 5]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_015,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_015,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_015,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_015,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_015,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_015,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_015,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_015,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]","[6, 4, 4, 5, 4, 4, 5, 5, 3, 3, 5, 6]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_015,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_015,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_015,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_015,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_015,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_015,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_015,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_015,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]","[6, 3, 6, 4, 3, 6, 4, 6, 6, 3, 2, 7]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_015,Venus,Sun,"Houses [8, 11, 12]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_015,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_015,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_015,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_015,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_015,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_015,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_015,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]","[6, 7, 3, 5, 4, 5, 3, 4, 2, 5, 4, 4]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_015,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_015,Saturn,Moon,"Houses [3, 6, 11]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_015,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_015,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_015,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_015,Saturn,Venus,"Houses [6, 11, 12]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_015,Saturn,Saturn,"Houses [3, 5, 6, 11]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_015,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]","[3, 4, 4, 4, 3, 3, 1, 2, 5, 3, 3, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_016,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_016,Sun,Moon,"Houses [3, 6, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_016,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_016,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_016,Sun,Jupiter,"Houses [5, 6, 9, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_016,Sun,Venus,"Houses [6, 7, 12]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_016,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_016,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_016,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_016,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_016,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_016,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_016,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_016,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_016,Moon,Saturn,"Houses [3, 5, 6, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_016,Moon,Ascendant,"Houses [3, 6, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_016,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_016,Mars,Moon,"Houses [3, 6, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_016,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_016,Mars,Mercury,"Houses [3, 5, 6, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_016,Mars,Jupiter,"Houses [6, 10, 11, 12]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_016,Mars,Venus,"Houses [6, 8, 11, 12]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_016,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_016,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_016,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_016,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_016,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_016,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_016,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_016,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_016,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_016,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_016,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_016,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_016,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_016,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_016,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_016,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_016,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_016,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_016,Venus,Sun,"Houses [8, 11, 12]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_016,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_016,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_016,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_016,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_016,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_016,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_016,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_016,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_016,Saturn,Moon,"Houses [3, 6, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_016,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_016,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_016,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_016,Saturn,Venus,"Houses [6, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_016,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_016,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_017,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_017,Sun,Moon,"Houses [3, 6, 10, 11]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_017,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_017,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_017,Sun,Jupiter,"Houses [5, 6, 9, 11]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_017,Sun,Venus,"Houses [6, 7, 12]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_017,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_017,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]","[3, 3, 4, 4, 3, 5, 4, 3, 4, 6, 6, 3]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_017,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_017,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_017,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_017,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_017,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_017,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_017,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_017,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]","[4, 2, 6, 4, 5, 4, 4, 2, 3, 6, 7, 2]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_017,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_017,Mars,Moon,"Houses [3, 6, 11]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_017,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_017,Mars,Mercury,"Houses [3, 5, 6, 11]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_017,Mars,Jupiter,"Houses [6, 10, 11, 12]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_017,Mars,Venus,"Houses [6, 8, 11, 12]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_017,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_017,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]","[3, 1, 3, 3, 2, 5, 2, 3, 2, 4, 8, 3]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_017,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_017,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_017,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_017,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_017,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_017,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_017,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_017,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]","[5, 5, 3, 5, 3, 5, 2, 6, 4, 5, 8, 3]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_017,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_017,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_017,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_017,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_017,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_017,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_017,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_017,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]","[5, 7, 3, 5, 6, 4, 4, 3, 5, 6, 6, 2]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_017,Venus,Sun,"Houses [8, 11, 12]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_017,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_017,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_017,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_017,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_017,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_017,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_017,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]","[3, 4, 6, 4, 8, 3, 0, 5, 7, 3, 7, 2]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_017,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_017,Saturn,Moon,"Houses [3, 6, 11]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_017,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_017,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_017,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_017,Saturn,Venus,"Houses [6, 11, 12]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_017,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_017,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]","[2, 1, 4, 2, 4, 7, 1, 2, 1, 4, 7, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_018,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_018,Sun,Moon,"Houses [3, 6, 10, 11]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_018,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_018,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_018,Sun,Jupiter,"Houses [5, 6, 9, 11]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_018,Sun,Venus,"Houses [6, 7, 12]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_018,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_018,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]","[4, 1, 3, 5, 6, 6, 3, 3, 3, 5, 5, 4]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_018,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_018,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_018,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_018,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_018,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_018,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_018,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_018,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]","[4, 1, 5, 5, 5, 2, 5, 4, 3, 4, 6, 5]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_018,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_018,Mars,Moon,"Houses [3, 6, 11]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_018,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_018,Mars,Mercury,"Houses [3, 5, 6, 11]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_018,Mars,Jupiter,"Houses [6, 10, 11, 12]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_018,Mars,Venus,"Houses [6, 8, 11, 12]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_018,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_018,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]","[3, 3, 4, 2, 5, 4, 3, 2, 1, 4, 4, 4]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_018,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_018,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_018,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_018,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_018,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_018,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_018,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_018,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]","[4, 5, 4, 4, 5, 5, 3, 7, 3, 6, 5, 3]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_018,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_018,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_018,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_018,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_018,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_018,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_018,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_018,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]","[6, 3, 3, 6, 6, 4, 3, 5, 3, 5, 8, 4]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_018,Venus,Sun,"Houses [8, 11, 12]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_018,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_018,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_018,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_018,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_018,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_018,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_018,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]","[1, 5, 6, 3, 7, 3, 2, 6, 8, 4, 6, 1]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_018,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_018,Saturn,Moon,"Houses [3, 6, 11]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_018,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_018,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_018,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_018,Saturn,Venus,"Houses [6, 11, 12]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_018,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_018,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]","[2, 1, 2, 2, 5, 4, 2, 3, 4, 3, 5, 6]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_019,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_019,Sun,Moon,"Houses [3, 6, 10, 11]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_019,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_019,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_019,Sun,Jupiter,"Houses [5, 6, 9, 11]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_019,Sun,Venus,"Houses [6, 7, 12]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_019,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_019,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]","[3, 3, 5, 6, 4, 2, 4, 2, 3, 4, 6, 6]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_019,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_019,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_019,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_019,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_019,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_019,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_019,Moon,Saturn,"Houses [3, 5, 6, 11]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_019,Moon,Ascendant,"Houses [3, 6, 10, 11]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]","[5, 5, 3, 4, 4, 6, 4, 3, 3, 5, 4, 3]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_019,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_019,Mars,Moon,"Houses [3, 6, 11]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_019,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_019,Mars,Mercury,"Houses [3, 5, 6, 11]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_019,Mars,Jupiter,"Houses [6, 10, 11, 12]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_019,Mars,Venus,"Houses [6, 8, 11, 12]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_019,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_019,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]","[4, 2, 3, 3, 4, 3, 2, 4, 4, 3, 4, 3]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_019,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_019,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_019,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_019,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_019,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_019,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_019,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_019,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]","[5, 6, 3, 4, 5, 4, 4, 5, 3, 4, 6, 5]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_019,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_019,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_019,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_019,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_019,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_019,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_019,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_019,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]","[4, 6, 3, 6, 6, 5, 5, 4, 2, 5, 6, 4]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_019,Venus,Sun,"Houses [8, 11, 12]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_019,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_019,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_019,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_019,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_019,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_019,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_019,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]","[3, 6, 6, 3, 6, 3, 1, 5, 5, 3, 7, 4]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_019,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_019,Saturn,Moon,"Houses [3, 6, 11]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_019,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_019,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_019,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_019,Saturn,Venus,"Houses [6, 11, 12]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_019,Saturn,Saturn,"Houses [3, 5, 6, 11]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_019,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]","[3, 3, 6, 3, 4, 5, 1, 3, 2, 2, 4, 3]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+REF_020,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Sun,YES,PASS
+REF_020,Sun,Moon,"Houses [3, 6, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Moon,YES,PASS
+REF_020,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Mars,YES,PASS
+REF_020,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Mercury,YES,PASS
+REF_020,Sun,Jupiter,"Houses [5, 6, 9, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+REF_020,Sun,Venus,"Houses [6, 7, 12]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Venus,YES,PASS
+REF_020,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Saturn,YES,PASS
+REF_020,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]","[3, 3, 3, 4, 2, 5, 4, 3, 5, 6, 7, 3]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+REF_020,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Sun,YES,PASS
+REF_020,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Moon,YES,PASS
+REF_020,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Mars,YES,PASS
+REF_020,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Mercury,YES,PASS
+REF_020,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+REF_020,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Venus,YES,PASS
+REF_020,Moon,Saturn,"Houses [3, 5, 6, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Saturn,YES,PASS
+REF_020,Moon,Ascendant,"Houses [3, 6, 10, 11]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]","[3, 1, 7, 3, 4, 5, 5, 3, 2, 7, 8, 1]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+REF_020,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Sun,YES,PASS
+REF_020,Mars,Moon,"Houses [3, 6, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Moon,YES,PASS
+REF_020,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Mars,YES,PASS
+REF_020,Mars,Mercury,"Houses [3, 5, 6, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Mercury,YES,PASS
+REF_020,Mars,Jupiter,"Houses [6, 10, 11, 12]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+REF_020,Mars,Venus,"Houses [6, 8, 11, 12]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Venus,YES,PASS
+REF_020,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Saturn,YES,PASS
+REF_020,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]","[3, 1, 4, 2, 2, 6, 2, 3, 1, 5, 8, 2]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+REF_020,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Sun,YES,PASS
+REF_020,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Moon,YES,PASS
+REF_020,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Mars,YES,PASS
+REF_020,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+REF_020,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+REF_020,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Venus,YES,PASS
+REF_020,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+REF_020,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]","[5, 5, 2, 5, 3, 5, 2, 6, 5, 5, 8, 3]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+REF_020,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+REF_020,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+REF_020,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+REF_020,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+REF_020,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+REF_020,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+REF_020,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+REF_020,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]","[5, 7, 3, 5, 5, 4, 4, 3, 5, 6, 7, 2]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+REF_020,Venus,Sun,"Houses [8, 11, 12]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Sun,YES,PASS
+REF_020,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Moon,YES,PASS
+REF_020,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Mars,YES,PASS
+REF_020,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Mercury,YES,PASS
+REF_020,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+REF_020,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Venus,YES,PASS
+REF_020,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Saturn,YES,PASS
+REF_020,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]","[3, 3, 6, 4, 7, 2, 0, 6, 7, 3, 8, 3]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+REF_020,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+REF_020,Saturn,Moon,"Houses [3, 6, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+REF_020,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+REF_020,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+REF_020,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+REF_020,Saturn,Venus,"Houses [6, 11, 12]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+REF_020,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+REF_020,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]","[2, 1, 4, 2, 3, 7, 1, 2, 1, 4, 8, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Sun,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Moon,"Houses [3, 6, 10, 11]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Moon,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Mars,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Mercury,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Jupiter,"Houses [5, 6, 9, 11]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Venus,"Houses [6, 7, 12]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Venus,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Saturn,YES,PASS
+SHADBALA_FIXTURE_009,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]","[6, 5, 4, 5, 3, 3, 5, 2, 5, 3, 2, 5]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Sun,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Moon,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Mars,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Mercury,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Venus,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Saturn,"Houses [3, 5, 6, 11]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Saturn,YES,PASS
+SHADBALA_FIXTURE_009,Moon,Ascendant,"Houses [3, 6, 10, 11]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]","[2, 5, 5, 4, 1, 3, 4, 5, 5, 6, 5, 4]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Sun,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Moon,"Houses [3, 6, 11]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Moon,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Mars,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Mercury,"Houses [3, 5, 6, 11]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Mercury,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Jupiter,"Houses [6, 10, 11, 12]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Venus,"Houses [6, 8, 11, 12]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Venus,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Saturn,YES,PASS
+SHADBALA_FIXTURE_009,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]","[4, 3, 4, 3, 2, 4, 3, 2, 6, 3, 2, 3]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Sun,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Moon,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Mars,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Venus,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+SHADBALA_FIXTURE_009,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]","[6, 6, 5, 4, 4, 3, 7, 3, 6, 4, 3, 3]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+SHADBALA_FIXTURE_009,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]","[5, 6, 5, 3, 4, 5, 5, 4, 4, 7, 4, 4]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Sun,"Houses [8, 11, 12]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Sun,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Moon,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Mars,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Mercury,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Venus,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Saturn,YES,PASS
+SHADBALA_FIXTURE_009,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]","[4, 6, 5, 5, 3, 3, 4, 6, 4, 6, 4, 2]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Sun,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Moon,"Houses [3, 6, 11]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Moon,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Mars,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Venus,"Houses [6, 11, 12]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Venus,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Saturn,"Houses [3, 5, 6, 11]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+SHADBALA_FIXTURE_009,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]","[3, 3, 3, 6, 4, 1, 2, 3, 1, 6, 5, 2]",0,MUT_BAV_Saturn_Ascendant,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Sun,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Sun,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Moon,"Houses [3, 6, 10, 11]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Moon,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Mars,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Mercury,"Houses [3, 5, 6, 9, 10, 11, 12]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Mercury,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Jupiter,"Houses [5, 6, 9, 11]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Jupiter,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Venus,"Houses [6, 7, 12]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Venus,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Saturn,YES,PASS
+SHADBALA_FIXTURE_010,Sun,Ascendant,"Houses [3, 4, 6, 10, 11, 12]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]","[5, 2, 4, 6, 4, 4, 5, 3, 3, 3, 5, 4]",0,MUT_BAV_Sun_Ascendant,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Sun,"Houses [3, 6, 7, 8, 10, 11]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Sun,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Moon,"Houses [1, 3, 6, 7, 10, 11]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Moon,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Mars,"Houses [2, 3, 5, 6, 9, 10, 11]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Mars,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Mercury,"Houses [1, 3, 4, 5, 7, 8, 10, 11]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Mercury,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Jupiter,"Houses [1, 4, 7, 8, 10, 11, 12]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Jupiter,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Venus,"Houses [3, 4, 5, 7, 9, 10, 11]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Venus,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Saturn,"Houses [3, 5, 6, 11]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Saturn,YES,PASS
+SHADBALA_FIXTURE_010,Moon,Ascendant,"Houses [3, 6, 10, 11]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]","[4, 4, 5, 6, 2, 2, 4, 6, 4, 2, 5, 5]",0,MUT_BAV_Moon_Ascendant,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Sun,"Houses [3, 5, 6, 10, 11]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Sun,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Moon,"Houses [3, 6, 11]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Moon,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Mars,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Mercury,"Houses [3, 5, 6, 11]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Mercury,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Jupiter,"Houses [6, 10, 11, 12]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Jupiter,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Venus,"Houses [6, 8, 11, 12]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Venus,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Saturn,"Houses [1, 4, 7, 8, 9, 10, 11]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Saturn,YES,PASS
+SHADBALA_FIXTURE_010,Mars,Ascendant,"Houses [1, 3, 6, 10, 11]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]","[2, 2, 3, 5, 2, 3, 4, 4, 2, 4, 4, 4]",0,MUT_BAV_Mars_Ascendant,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Sun,"Houses [5, 6, 9, 11, 12]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Sun,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Moon,"Houses [2, 4, 6, 8, 10, 11]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Moon,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Mars,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Mars,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Mercury,"Houses [1, 3, 5, 6, 9, 10, 11, 12]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Mercury,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Jupiter,"Houses [6, 8, 11, 12]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Jupiter,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Venus,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Saturn,"Houses [1, 2, 4, 7, 8, 9, 10, 11]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Saturn,YES,PASS
+SHADBALA_FIXTURE_010,Mercury,Ascendant,"Houses [1, 2, 4, 6, 8, 10, 11]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]","[4, 3, 5, 5, 5, 4, 7, 4, 5, 3, 5, 4]",0,MUT_BAV_Mercury_Ascendant,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Sun,"Houses [1, 2, 3, 4, 7, 8, 9, 10, 11]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Sun,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Moon,"Houses [2, 5, 7, 9, 11]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Moon,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Mars,"Houses [1, 2, 4, 7, 8, 10, 11]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Mars,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Mercury,"Houses [1, 2, 4, 5, 6, 9, 10, 11]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Mercury,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Jupiter,"Houses [1, 2, 3, 4, 7, 8, 10, 11]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Jupiter,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Venus,"Houses [2, 5, 6, 9, 10, 11]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Venus,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Saturn,"Houses [3, 5, 6, 12]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Saturn,YES,PASS
+SHADBALA_FIXTURE_010,Jupiter,Ascendant,"Houses [1, 2, 4, 5, 6, 9, 10, 11, 12]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]","[4, 5, 7, 4, 2, 5, 6, 2, 5, 6, 3, 7]",0,MUT_BAV_Jupiter_Ascendant,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Sun,"Houses [8, 11, 12]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Sun,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Moon,"Houses [1, 2, 3, 4, 5, 8, 9, 11, 12]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Moon,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Mars,"Houses [3, 5, 6, 9, 11, 12]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Mars,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Mercury,"Houses [3, 5, 6, 9, 11]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Mercury,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Jupiter,"Houses [5, 8, 9, 10, 11]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Jupiter,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Venus,"Houses [1, 2, 3, 4, 5, 8, 9, 10, 11]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Venus,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Saturn,"Houses [3, 4, 5, 8, 9, 10, 11]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Saturn,YES,PASS
+SHADBALA_FIXTURE_010,Venus,Ascendant,"Houses [1, 2, 3, 4, 5, 8, 9, 11]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]","[5, 5, 3, 5, 8, 5, 4, 4, 4, 3, 2, 4]",0,MUT_BAV_Venus_Ascendant,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Sun,"Houses [1, 2, 4, 7, 8, 10, 11]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Sun,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Moon,"Houses [3, 6, 11]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Moon,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Mars,"Houses [3, 5, 6, 10, 11, 12]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Mars,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Mercury,"Houses [6, 8, 9, 10, 11, 12]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Mercury,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Jupiter,"Houses [5, 6, 11, 12]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Jupiter,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Venus,"Houses [6, 11, 12]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Venus,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Saturn,"Houses [3, 5, 6, 11]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Saturn,YES,PASS
+SHADBALA_FIXTURE_010,Saturn,Ascendant,"Houses [1, 3, 4, 6, 10, 11]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]","[2, 5, 4, 6, 3, 2, 3, 3, 2, 2, 3, 4]",0,MUT_BAV_Saturn_Ascendant,YES,PASS

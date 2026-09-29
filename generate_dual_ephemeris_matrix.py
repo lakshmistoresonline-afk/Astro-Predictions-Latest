@@ -1,6 +1,6 @@
 """
-Generate complete numerical CSV and MD matrix for Phase 2E-R4.1-R5.
-Performs tropical-first comparison (PyEphem vs Skyfield DE440s), Lahiri ayanamsha audit, and sidereal comparison across all 20 fixtures.
+Generate complete raw numerical CSV and MD matrix for Phase 2E-R4.1-R6.
+Performs raw tropical-first comparison, raw ecliptic latitude comparison, and sidereal comparison between Reference A (PyEphem 4.2.1) and Reference B (Skyfield 1.55 DE440s).
 Zero imports from apps.api.engines.*!
 """
 import csv
@@ -45,19 +45,25 @@ def generate_matrix():
         ay_py = py_data["ayanamsha"]
         ay_sky = sky_data["ayanamsha"]
 
-        # Bodies to compare
         bodies = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Ascendant", "MC"]
 
         for b in bodies:
             if b in ["Ascendant", "MC"]:
                 sid_a = py_data["ascendant_sidereal_longitude"] if b == "Ascendant" else py_data["mc_sidereal_longitude"]
                 sid_b = sky_data["ascendant_sidereal_longitude"] if b == "Ascendant" else sky_data["mc_sidereal_longitude"]
+                trop_a = (sid_a + ay_py) % 360.0
+                trop_b = (sid_b + ay_sky) % 360.0
+                lat_a = 0.0
+                lat_b = 0.0
             else:
-                sid_a = py_data["planets"][b]["longitude"]
-                sid_b = sky_data["planets"][b]["longitude"]
-
-            trop_a = (sid_a + ay_py) % 360.0
-            trop_b = (sid_b + ay_sky) % 360.0
+                p_py = py_data["planets"][b]
+                p_sky = sky_data["planets"][b]
+                sid_a = p_py["longitude"]
+                sid_b = p_sky["longitude"]
+                trop_a = p_py.get("tropical_longitude", (sid_a + ay_py) % 360.0)
+                trop_b = p_sky.get("tropical_longitude", (sid_b + ay_sky) % 360.0)
+                lat_a = p_py.get("ecliptic_latitude", 0.0)
+                lat_b = p_sky.get("ecliptic_latitude", 0.0)
 
             trop_delta = abs(trop_a - trop_b) % 360.0
             if trop_delta > 180.0: trop_delta = 360.0 - trop_delta
@@ -67,12 +73,10 @@ def generate_matrix():
             if sid_delta > 180.0: sid_delta = 360.0 - sid_delta
             sid_delta_arcsec = sid_delta * 3600.0
 
-            lat_a = 0.0 # Ecliptic latitude placeholder
-            lat_b = 0.0
-            lat_delta_arcsec = 0.0
+            lat_delta_arcsec = abs(lat_a - lat_b) * 3600.0
 
-            tol_arcsec = 120.0 # 2 arcminutes
-            status = "PASS" if sid_delta_arcsec <= tol_arcsec else "FAIL"
+            tol_arcsec = 120.0 # 2 arcminutes limit
+            status = "PASS" if sid_delta_arcsec <= tol_arcsec and lat_delta_arcsec <= tol_arcsec else "FAIL"
 
             rows.append({
                 "fixture_id": fid,
@@ -87,8 +91,8 @@ def generate_matrix():
                 "pyephem_tropical_longitude": round(trop_a, 6),
                 "skyfield_tropical_longitude": round(trop_b, 6),
                 "tropical_delta_arcsec": round(trop_delta_arcsec, 2),
-                "pyephem_latitude": round(lat_a, 6),
-                "skyfield_latitude": round(lat_b, 6),
+                "pyephem_ecliptic_latitude": round(lat_a, 6),
+                "skyfield_ecliptic_latitude": round(lat_b, 6),
                 "latitude_delta_arcsec": round(lat_delta_arcsec, 2),
                 "lahiri_pyephem": round(ay_py, 6),
                 "lahiri_skyfield": round(ay_sky, 6),
@@ -96,11 +100,11 @@ def generate_matrix():
                 "skyfield_sidereal_longitude": round(sid_b, 6),
                 "sidereal_delta_arcsec": round(sid_delta_arcsec, 2),
                 "tolerance_arcsec": tol_arcsec,
-                "pass": status
+                "status": status
             })
 
     # Write CSV
-    csv_path = Path("docs/PHASE_2E_R4_1_R5_DUAL_EPHEMERIS_MATRIX.csv")
+    csv_path = Path("docs/PHASE_2E_R4_1_R6_RAW_EPHEMERIS_MATRIX.csv")
     csv_path.parent.mkdir(parents=True, exist_ok=True)
 
     fieldnames = list(rows[0].keys())
@@ -110,26 +114,26 @@ def generate_matrix():
         writer.writerows(rows)
 
     # Write Markdown
-    md_path = Path("docs/PHASE_2E_R4_1_R5_DUAL_EPHEMERIS_MATRIX.md")
+    md_path = Path("docs/PHASE_2E_R4_1_R6_RAW_EPHEMERIS_MATRIX.md")
     md_lines = [
-        "# Phase 2E-R4.1-R5 Dual-Ephemeris Ecliptic Matrix",
+        "# Phase 2E-R4.1-R6 Raw Ephemeris Matrix",
         "",
         "## 1. Overview",
-        "Full tropical-first and sidereal comparison matrix between **Reference A: PyEphem 4.2.1 (XEphem Engine)** and **Reference B: Skyfield 1.55 (NASA JPL DE440s Kernel)** across all 20 test fixtures (180 comparison points).",
+        "Full raw tropical longitude, raw ecliptic latitude, and sidereal longitude comparison matrix between **Reference A: PyEphem 4.2.1 (XEphem Engine)** and **Reference B: Skyfield 1.55 (NASA JPL DE440s Kernel)** across all 20 test fixtures (180 comparison points).",
         "",
-        "## 2. Ephemeris Comparison Table",
+        "## 2. Raw Ephemeris Comparison Table",
         "",
-        "| Fixture ID | Type | Body | PyEphem Trop (Deg) | Skyfield Trop (Deg) | Trop Delta (\") | PyEphem Sid (Deg) | Skyfield Sid (Deg) | Sid Delta (\") | Tolerance (\") | Status |",
-        "|---|---|---|---|---|---|---|---|---|---|---|"
+        "| Fixture ID | Type | Body | PyEphem Trop (Deg) | Skyfield Trop (Deg) | Trop Delta (\") | PyEphem Lat (Deg) | Skyfield Lat (Deg) | Lat Delta (\") | PyEphem Sid (Deg) | Skyfield Sid (Deg) | Sid Delta (\") | Tolerance (\") | Status |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"
     ]
 
     for r in rows:
-        md_lines.append(f"| **{r['fixture_id']}** | {r['fixture_type']} | {r['body']} | {r['pyephem_tropical_longitude']:.4f}° | {r['skyfield_tropical_longitude']:.4f}° | {r['tropical_delta_arcsec']:.2f}\" | {r['pyephem_sidereal_longitude']:.4f}° | {r['skyfield_sidereal_longitude']:.4f}° | {r['sidereal_delta_arcsec']:.2f}\" | < {r['tolerance_arcsec']:.1f}\" | **{r['pass']}** |")
+        md_lines.append(f"| **{r['fixture_id']}** | {r['fixture_type']} | {r['body']} | {r['pyephem_tropical_longitude']:.4f}° | {r['skyfield_tropical_longitude']:.4f}° | {r['tropical_delta_arcsec']:.2f}\" | {r['pyephem_ecliptic_latitude']:+.4f}° | {r['skyfield_ecliptic_latitude']:+.4f}° | {r['latitude_delta_arcsec']:.2f}\" | {r['pyephem_sidereal_longitude']:.4f}° | {r['skyfield_sidereal_longitude']:.4f}° | {r['sidereal_delta_arcsec']:.2f}\" | < {r['tolerance_arcsec']:.1f}\" | **{r['status']}** |")
 
     with open(md_path, "w", encoding="utf-8") as f:
         f.write("\n".join(md_lines))
 
-    print(f"Successfully generated dual ephemeris CSV and MD matrix across {len(rows)} points!")
+    print(f"Successfully generated docs/PHASE_2E_R4_1_R6_RAW_EPHEMERIS_MATRIX.csv and .md across {len(rows)} points!")
 
 if __name__ == "__main__":
     generate_matrix()

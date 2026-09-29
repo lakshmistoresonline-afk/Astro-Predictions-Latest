@@ -1,0 +1,414 @@
+{
+  "attempted_mutations": 58,
+  "detected_mutations": 58,
+  "undetected_mutations": 0,
+  "detection_rate_percent": 100.0,
+  "mutation_records": [
+    {
+      "mutation_id": "MUT_SHAD_001_UCCHA",
+      "component": "Uccha Bala",
+      "original_value": 9.49,
+      "mutated_value": 11.15,
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_SHAD_016_NAISARGIKA",
+      "component": "Naisargika Bala",
+      "original_value": 60.0,
+      "mutated_value": 50.0,
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_01_Sun_Sun",
+      "component": "BAV Sun from Sun",
+      "original_value": "[1, 2, 4, 7, 8, 9, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_02_Sun_Moon",
+      "component": "BAV Sun from Moon",
+      "original_value": "[3, 6, 10, 11]",
+      "mutated_value": "[3, 6, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_03_Sun_Mars",
+      "component": "BAV Sun from Mars",
+      "original_value": "[1, 2, 4, 7, 8, 9, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_04_Sun_Mercury",
+      "component": "BAV Sun from Mercury",
+      "original_value": "[3, 5, 6, 9, 10, 11, 12]",
+      "mutated_value": "[3, 5, 6, 9, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_05_Sun_Jupiter",
+      "component": "BAV Sun from Jupiter",
+      "original_value": "[5, 6, 9, 11]",
+      "mutated_value": "[5, 6, 9]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_06_Sun_Venus",
+      "component": "BAV Sun from Venus",
+      "original_value": "[6, 7, 12]",
+      "mutated_value": "[6, 7]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_07_Sun_Saturn",
+      "component": "BAV Sun from Saturn",
+      "original_value": "[1, 2, 4, 7, 8, 9, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_08_Sun_Ascendant",
+      "component": "BAV Sun from Ascendant",
+      "original_value": "[3, 4, 6, 10, 11, 12]",
+      "mutated_value": "[3, 4, 6, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_09_Moon_Sun",
+      "component": "BAV Moon from Sun",
+      "original_value": "[3, 6, 7, 8, 10, 11]",
+      "mutated_value": "[3, 6, 7, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_10_Moon_Moon",
+      "component": "BAV Moon from Moon",
+      "original_value": "[1, 3, 6, 7, 10, 11]",
+      "mutated_value": "[1, 3, 6, 7, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_11_Moon_Mars",
+      "component": "BAV Moon from Mars",
+      "original_value": "[2, 3, 5, 6, 9, 10, 11]",
+      "mutated_value": "[2, 3, 5, 6, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_12_Moon_Mercury",
+      "component": "BAV Moon from Mercury",
+      "original_value": "[1, 3, 4, 5, 7, 8, 10, 11]",
+      "mutated_value": "[1, 3, 4, 5, 7, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_13_Moon_Jupiter",
+      "component": "BAV Moon from Jupiter",
+      "original_value": "[1, 4, 7, 8, 10, 11, 12]",
+      "mutated_value": "[1, 4, 7, 8, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_14_Moon_Venus",
+      "component": "BAV Moon from Venus",
+      "original_value": "[3, 4, 5, 7, 9, 10, 11]",
+      "mutated_value": "[3, 4, 5, 7, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_15_Moon_Saturn",
+      "component": "BAV Moon from Saturn",
+      "original_value": "[3, 5, 6, 11]",
+      "mutated_value": "[3, 5, 6]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_16_Moon_Ascendant",
+      "component": "BAV Moon from Ascendant",
+      "original_value": "[3, 6, 10, 11]",
+      "mutated_value": "[3, 6, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_17_Mars_Sun",
+      "component": "BAV Mars from Sun",
+      "original_value": "[3, 5, 6, 10, 11]",
+      "mutated_value": "[3, 5, 6, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_18_Mars_Moon",
+      "component": "BAV Mars from Moon",
+      "original_value": "[3, 6, 11]",
+      "mutated_value": "[3, 6]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_19_Mars_Mars",
+      "component": "BAV Mars from Mars",
+      "original_value": "[1, 2, 4, 7, 8, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_20_Mars_Mercury",
+      "component": "BAV Mars from Mercury",
+      "original_value": "[3, 5, 6, 11]",
+      "mutated_value": "[3, 5, 6]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_21_Mars_Jupiter",
+      "component": "BAV Mars from Jupiter",
+      "original_value": "[6, 10, 11, 12]",
+      "mutated_value": "[6, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_22_Mars_Venus",
+      "component": "BAV Mars from Venus",
+      "original_value": "[6, 8, 11, 12]",
+      "mutated_value": "[6, 8, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_23_Mars_Saturn",
+      "component": "BAV Mars from Saturn",
+      "original_value": "[1, 4, 7, 8, 9, 10, 11]",
+      "mutated_value": "[1, 4, 7, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_24_Mars_Ascendant",
+      "component": "BAV Mars from Ascendant",
+      "original_value": "[1, 3, 6, 10, 11]",
+      "mutated_value": "[1, 3, 6, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_25_Mercury_Sun",
+      "component": "BAV Mercury from Sun",
+      "original_value": "[5, 6, 9, 11, 12]",
+      "mutated_value": "[5, 6, 9, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_26_Mercury_Moon",
+      "component": "BAV Mercury from Moon",
+      "original_value": "[2, 4, 6, 8, 10, 11]",
+      "mutated_value": "[2, 4, 6, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_27_Mercury_Mars",
+      "component": "BAV Mercury from Mars",
+      "original_value": "[1, 2, 4, 7, 8, 9, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_28_Mercury_Mercury",
+      "component": "BAV Mercury from Mercury",
+      "original_value": "[1, 3, 5, 6, 9, 10, 11, 12]",
+      "mutated_value": "[1, 3, 5, 6, 9, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_29_Mercury_Jupiter",
+      "component": "BAV Mercury from Jupiter",
+      "original_value": "[6, 8, 11, 12]",
+      "mutated_value": "[6, 8, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_30_Mercury_Venus",
+      "component": "BAV Mercury from Venus",
+      "original_value": "[1, 2, 3, 4, 5, 8, 9, 11]",
+      "mutated_value": "[1, 2, 3, 4, 5, 8, 9]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_31_Mercury_Saturn",
+      "component": "BAV Mercury from Saturn",
+      "original_value": "[1, 2, 4, 7, 8, 9, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_32_Mercury_Ascendant",
+      "component": "BAV Mercury from Ascendant",
+      "original_value": "[1, 2, 4, 6, 8, 10, 11]",
+      "mutated_value": "[1, 2, 4, 6, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_33_Jupiter_Sun",
+      "component": "BAV Jupiter from Sun",
+      "original_value": "[1, 2, 3, 4, 7, 8, 9, 10, 11]",
+      "mutated_value": "[1, 2, 3, 4, 7, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_34_Jupiter_Moon",
+      "component": "BAV Jupiter from Moon",
+      "original_value": "[2, 5, 7, 9, 11]",
+      "mutated_value": "[2, 5, 7, 9]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_35_Jupiter_Mars",
+      "component": "BAV Jupiter from Mars",
+      "original_value": "[1, 2, 4, 7, 8, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_36_Jupiter_Mercury",
+      "component": "BAV Jupiter from Mercury",
+      "original_value": "[1, 2, 4, 5, 6, 9, 10, 11]",
+      "mutated_value": "[1, 2, 4, 5, 6, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_37_Jupiter_Jupiter",
+      "component": "BAV Jupiter from Jupiter",
+      "original_value": "[1, 2, 3, 4, 7, 8, 10, 11]",
+      "mutated_value": "[1, 2, 3, 4, 7, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_38_Jupiter_Venus",
+      "component": "BAV Jupiter from Venus",
+      "original_value": "[2, 5, 6, 9, 10, 11]",
+      "mutated_value": "[2, 5, 6, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_39_Jupiter_Saturn",
+      "component": "BAV Jupiter from Saturn",
+      "original_value": "[3, 5, 6, 12]",
+      "mutated_value": "[3, 5, 6]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_40_Jupiter_Ascendant",
+      "component": "BAV Jupiter from Ascendant",
+      "original_value": "[1, 2, 4, 5, 6, 9, 10, 11, 12]",
+      "mutated_value": "[1, 2, 4, 5, 6, 9, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_41_Venus_Sun",
+      "component": "BAV Venus from Sun",
+      "original_value": "[8, 11, 12]",
+      "mutated_value": "[8, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_42_Venus_Moon",
+      "component": "BAV Venus from Moon",
+      "original_value": "[1, 2, 3, 4, 5, 8, 9, 11, 12]",
+      "mutated_value": "[1, 2, 3, 4, 5, 8, 9, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_43_Venus_Mars",
+      "component": "BAV Venus from Mars",
+      "original_value": "[3, 5, 6, 9, 11, 12]",
+      "mutated_value": "[3, 5, 6, 9, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_44_Venus_Mercury",
+      "component": "BAV Venus from Mercury",
+      "original_value": "[3, 5, 6, 9, 11]",
+      "mutated_value": "[3, 5, 6, 9]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_45_Venus_Jupiter",
+      "component": "BAV Venus from Jupiter",
+      "original_value": "[5, 8, 9, 10, 11]",
+      "mutated_value": "[5, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_46_Venus_Venus",
+      "component": "BAV Venus from Venus",
+      "original_value": "[1, 2, 3, 4, 5, 8, 9, 10, 11]",
+      "mutated_value": "[1, 2, 3, 4, 5, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_47_Venus_Saturn",
+      "component": "BAV Venus from Saturn",
+      "original_value": "[3, 4, 5, 8, 9, 10, 11]",
+      "mutated_value": "[3, 4, 5, 8, 9, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_48_Venus_Ascendant",
+      "component": "BAV Venus from Ascendant",
+      "original_value": "[1, 2, 3, 4, 5, 8, 9, 11]",
+      "mutated_value": "[1, 2, 3, 4, 5, 8, 9]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_49_Saturn_Sun",
+      "component": "BAV Saturn from Sun",
+      "original_value": "[1, 2, 4, 7, 8, 10, 11]",
+      "mutated_value": "[1, 2, 4, 7, 8, 10]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_50_Saturn_Moon",
+      "component": "BAV Saturn from Moon",
+      "original_value": "[3, 6, 11]",
+      "mutated_value": "[3, 6]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_51_Saturn_Mars",
+      "component": "BAV Saturn from Mars",
+      "original_value": "[3, 5, 6, 10, 11, 12]",
+      "mutated_value": "[3, 5, 6, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_52_Saturn_Mercury",
+      "component": "BAV Saturn from Mercury",
+      "original_value": "[6, 8, 9, 10, 11, 12]",
+      "mutated_value": "[6, 8, 9, 10, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_53_Saturn_Jupiter",
+      "component": "BAV Saturn from Jupiter",
+      "original_value": "[5, 6, 11, 12]",
+      "mutated_value": "[5, 6, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_54_Saturn_Venus",
+      "component": "BAV Saturn from Venus",
+      "original_value": "[6, 11, 12]",
+      "mutated_value": "[6, 11]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_55_Saturn_Saturn",
+      "component": "BAV Saturn from Saturn",
+      "original_value": "[3, 5, 6, 11]",
+      "mutated_value": "[3, 5, 6]",
+      "detected": true
+    },
+    {
+      "mutation_id": "MUT_BAV_56_Saturn_Ascendant",
+      "component": "BAV Saturn from Ascendant",
+      "original_value": "[1, 3, 4, 6, 10, 11]",
+      "mutated_value": "[1, 3, 4, 6, 10]",
+      "detected": true
+    }
+  ]
+}
