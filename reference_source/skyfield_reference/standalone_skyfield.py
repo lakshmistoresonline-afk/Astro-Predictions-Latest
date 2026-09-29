@@ -1,6 +1,6 @@
 """
-Standalone Skyfield DE421 Reference Extractor (Phase 2E-R4.1-R4).
-Reads input specifications from reference_source/inputs/ and calculates raw Skyfield 1.55 (NASA JPL DE421 Kernel) geocentric positions.
+Standalone Skyfield DE440s Reference Extractor (Phase 2E-R4.1-R4).
+Reads input specifications from reference_source/inputs/ and calculates raw Skyfield 1.55 (NASA JPL DE440s Kernel) positions.
 Zero imports from apps.api.engines.*!
 """
 import datetime
@@ -30,9 +30,9 @@ def run_skyfield_extraction():
     out_dir = Path(__file__).parent
 
     project_root = Path(__file__).parent.parent.parent
-    kernel_path = project_root / "de421.bsp"
+    kernel_path = project_root / "apps" / "api" / "engines" / "astronomy" / "de440s.bsp"
     if not kernel_path.exists():
-        kernel_path = Path("de421.bsp")
+        kernel_path = Path("apps/api/engines/astronomy/de440s.bsp")
 
     eph = load_file(str(kernel_path.absolute()))
     ts = load.timescale()
@@ -40,10 +40,10 @@ def run_skyfield_extraction():
     planets_sky = {
         "Sun": eph["sun"],
         "Moon": eph["moon"],
-        "Mars": eph["mars"],
-        "Mercury": eph["mercury"],
+        "Mars": eph["mars barycenter"],
+        "Mercury": eph["mercury barycenter"],
         "Jupiter": eph["jupiter barycenter"],
-        "Venus": eph["venus"],
+        "Venus": eph["venus barycenter"],
         "Saturn": eph["saturn barycenter"]
     }
     earth = eph["earth"]
@@ -119,9 +119,9 @@ def run_skyfield_extraction():
 
         res_doc = {
             "fixture_id": fid,
-            "source_engine": "Skyfield 1.55 (NASA JPL DE421 Kernel)",
+            "source_engine": "Skyfield 1.55 (NASA JPL DE440s Kernel)",
             "version": "1.55",
-            "kernel": "de421.bsp",
+            "kernel": "de440s.bsp",
             "julian_day": round(jd, 6),
             "ayanamsha": round(ayanamsha, 6),
             "ascendant_sidereal_longitude": sid_asc,
@@ -134,7 +134,7 @@ def run_skyfield_extraction():
         with open(out_dir / f"{fid}.json", "w", encoding="utf-8") as f:
             json.dump(res_doc, f, indent=2)
 
-    print(f"Extracted {len(results)} Skyfield DE421 reference fixtures in reference_source/skyfield_reference/!")
+    print(f"Extracted {len(results)} Skyfield DE440s reference fixtures in reference_source/skyfield_reference/!")
 
 if __name__ == "__main__":
     run_skyfield_extraction()

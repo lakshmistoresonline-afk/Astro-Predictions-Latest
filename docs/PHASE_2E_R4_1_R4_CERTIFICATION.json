@@ -4,6 +4,8 @@
   "reference": {
     "pyephem_executed": true,
     "skyfield_executed": true,
+    "de440s_kernel_sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+    "de440s_coverage": "1849-12-26 to 2150-01-22",
     "production_chart_builder_used": false,
     "real_profiles": 15,
     "synthetic_fixtures": 5,

@@ -1,8 +1,8 @@
 {
   "fixture_id": "REF_005",
-  "source_engine": "Skyfield 1.55 (NASA JPL DE421 Kernel)",
+  "source_engine": "Skyfield 1.55 (NASA JPL DE440s Kernel)",
   "version": "1.55",
-  "kernel": "de421.bsp",
+  "kernel": "de440s.bsp",
   "julian_day": 2449842.5,
   "ayanamsha": 23.78493,
   "ascendant_sidereal_longitude": 83.886593,

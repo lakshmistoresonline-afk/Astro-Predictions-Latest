@@ -33,15 +33,15 @@
       "fixture_id": "REF_001",
       "body": "Mercury",
       "pyephem_deg": 178.295669,
-      "skyfield_deg": 178.295678,
-      "delta_arcseconds": 0.03,
+      "skyfield_deg": 178.295679,
+      "delta_arcseconds": 0.04,
       "status": "PASS"
     },
     {
       "fixture_id": "REF_001",
       "body": "Jupiter",
       "pyephem_deg": 322.135561,
-      "skyfield_deg": 322.135522,
+      "skyfield_deg": 322.135523,
       "delta_arcseconds": 0.14,
       "status": "PASS"
     },
@@ -153,7 +153,7 @@
       "fixture_id": "REF_003",
       "body": "Jupiter",
       "pyephem_deg": 290.207377,
-      "skyfield_deg": 290.207334,
+      "skyfield_deg": 290.207335,
       "delta_arcseconds": 0.15,
       "status": "PASS"
     },
@@ -353,7 +353,7 @@
       "fixture_id": "REF_007",
       "body": "Moon",
       "pyephem_deg": 71.463294,
-      "skyfield_deg": 71.462793,
+      "skyfield_deg": 71.462794,
       "delta_arcseconds": 1.8,
       "status": "PASS"
     },
@@ -433,7 +433,7 @@
       "fixture_id": "REF_008",
       "body": "Jupiter",
       "pyephem_deg": 134.794361,
-      "skyfield_deg": 134.794325,
+      "skyfield_deg": 134.794326,
       "delta_arcseconds": 0.13,
       "status": "PASS"
     },
@@ -465,8 +465,8 @@
       "fixture_id": "REF_011",
       "body": "Moon",
       "pyephem_deg": 276.936711,
-      "skyfield_deg": 276.941137,
-      "delta_arcseconds": 15.93,
+      "skyfield_deg": 276.941138,
+      "delta_arcseconds": 15.94,
       "status": "PASS"
     },
     {
@@ -489,8 +489,8 @@
       "fixture_id": "REF_011",
       "body": "Jupiter",
       "pyephem_deg": 35.000407,
-      "skyfield_deg": 35.000372,
-      "delta_arcseconds": 0.13,
+      "skyfield_deg": 35.000373,
+      "delta_arcseconds": 0.12,
       "status": "PASS"
     },
     {
@@ -601,7 +601,7 @@
       "fixture_id": "REF_013",
       "body": "Jupiter",
       "pyephem_deg": 196.951342,
-      "skyfield_deg": 196.951302,
+      "skyfield_deg": 196.951303,
       "delta_arcseconds": 0.14,
       "status": "PASS"
     },
@@ -713,7 +713,7 @@
       "fixture_id": "REF_015",
       "body": "Jupiter",
       "pyephem_deg": 166.178411,
-      "skyfield_deg": 166.178366,
+      "skyfield_deg": 166.178367,
       "delta_arcseconds": 0.16,
       "status": "PASS"
     },
@@ -1081,15 +1081,15 @@
       "fixture_id": "SHADBALA_FIXTURE_010",
       "body": "Moon",
       "pyephem_deg": 168.932719,
-      "skyfield_deg": 168.938167,
-      "delta_arcseconds": 19.61,
+      "skyfield_deg": 168.938168,
+      "delta_arcseconds": 19.62,
       "status": "PASS"
     },
     {
       "fixture_id": "SHADBALA_FIXTURE_010",
       "body": "Mars",
       "pyephem_deg": 355.966955,
-      "skyfield_deg": 355.967055,
+      "skyfield_deg": 355.967056,
       "delta_arcseconds": 0.36,
       "status": "PASS"
     },
@@ -1097,16 +1097,16 @@
       "fixture_id": "SHADBALA_FIXTURE_010",
       "body": "Mercury",
       "pyephem_deg": 196.969158,
-      "skyfield_deg": 196.969159,
-      "delta_arcseconds": 0.0,
+      "skyfield_deg": 196.96916,
+      "delta_arcseconds": 0.01,
       "status": "PASS"
     },
     {
       "fixture_id": "SHADBALA_FIXTURE_010",
       "body": "Jupiter",
       "pyephem_deg": 264.695863,
-      "skyfield_deg": 264.695814,
-      "delta_arcseconds": 0.18,
+      "skyfield_deg": 264.695815,
+      "delta_arcseconds": 0.17,
       "status": "PASS"
     },
     {

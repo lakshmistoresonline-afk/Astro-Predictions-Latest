@@ -1,8 +1,8 @@
 {
   "fixture_id": "REF_001",
-  "source_engine": "Skyfield 1.55 (NASA JPL DE421 Kernel)",
+  "source_engine": "Skyfield 1.55 (NASA JPL DE440s Kernel)",
   "version": "1.55",
-  "kernel": "de421.bsp",
+  "kernel": "de440s.bsp",
   "julian_day": 2446701.958333,
   "ayanamsha": 23.664897,
   "ascendant_sidereal_longitude": 311.200895,
@@ -24,12 +24,12 @@
       "retrograde": false
     },
     "Mercury": {
-      "longitude": 178.295678,
+      "longitude": 178.295679,
       "velocity_deg_day": 1.523493,
       "retrograde": false
     },
     "Jupiter": {
-      "longitude": 322.135522,
+      "longitude": 322.135523,
       "velocity_deg_day": -0.117577,
       "retrograde": true
     },
