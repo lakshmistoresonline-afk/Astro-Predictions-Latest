@@ -7,266 +7,318 @@
   "detection_score_percent": 100.0,
   "mutation_records": [
     {
-      "mutation_id": "MUT_SHAD_01_UCCHA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "mutation_id": "MUT_SHAD_01_UCHHA",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Uccha Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "const",
       "baseline_value": 9.49,
-      "mutated_value": 19.490000000000002,
+      "mutated_value": 11.15,
       "restored_value": 9.49,
+      "oracle_value": 9.49,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_02_SAPTA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Sapta Vargaja Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "calc_sapta_vargaja",
       "baseline_value": 60.0,
-      "mutated_value": 70.0,
+      "mutated_value": 99.0,
       "restored_value": 60.0,
+      "oracle_value": 60.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_03_OJHA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Ojha Yugma Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "calc_ojha_yugma",
       "baseline_value": 15.0,
-      "mutated_value": 25.0,
+      "mutated_value": 99.0,
       "restored_value": 15.0,
+      "oracle_value": 15.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_04_KENDRADI",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Kendradi Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "calc_kendradi",
       "baseline_value": 30.0,
-      "mutated_value": 40.0,
+      "mutated_value": 99.0,
       "restored_value": 30.0,
+      "oracle_value": 30.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_05_DREKKANA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Drekkana Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "calc_drekkana",
       "baseline_value": 0.0,
-      "mutated_value": 10.0,
+      "mutated_value": 99.0,
       "restored_value": 0.0,
+      "oracle_value": 0.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_06_DIG",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Dig Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "suite_override",
       "baseline_value": 38.33,
-      "mutated_value": 48.33,
+      "mutated_value": 99.0,
       "restored_value": 38.33,
+      "oracle_value": 38.33,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_07_NATHONNATHA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Nathonnatha Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "suite_override",
       "baseline_value": 38.33,
-      "mutated_value": 48.33,
+      "mutated_value": 99.0,
       "restored_value": 38.33,
+      "oracle_value": 38.33,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_08_PAKSHA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Paksha Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "suite_override",
       "baseline_value": 38.55,
-      "mutated_value": 48.55,
+      "mutated_value": 99.0,
       "restored_value": 38.55,
+      "oracle_value": 38.55,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_09_AYANA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Ayana Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "suite_override",
       "baseline_value": 27.34,
-      "mutated_value": 37.34,
+      "mutated_value": 99.0,
       "restored_value": 27.34,
+      "oracle_value": 27.34,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_10_TRIBHAGA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Tribhaga Bala",
-      "target_planet": "Sun",
-      "baseline_value": 0.0,
-      "mutated_value": 10.0,
-      "restored_value": 0.0,
+      "target_planet": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "calc_tribhaga",
+      "baseline_value": 60.0,
+      "mutated_value": 99.0,
+      "restored_value": 60.0,
+      "oracle_value": 60.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_11_VARA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Vara Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "const",
       "baseline_value": 45.0,
-      "mutated_value": 55.0,
+      "mutated_value": 0.0,
       "restored_value": 45.0,
+      "oracle_value": 45.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_12_HORA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Hora Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "suite_override",
       "baseline_value": 0.0,
-      "mutated_value": 10.0,
+      "mutated_value": 99.0,
       "restored_value": 0.0,
+      "oracle_value": 0.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_13_MASA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Masa Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "suite_override",
       "baseline_value": 0.0,
-      "mutated_value": 10.0,
+      "mutated_value": 99.0,
       "restored_value": 0.0,
+      "oracle_value": 0.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_14_VARSHA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Varsha Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "suite_override",
       "baseline_value": 0.0,
-      "mutated_value": 10.0,
+      "mutated_value": 99.0,
       "restored_value": 0.0,
+      "oracle_value": 0.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_15_CHESHTA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Cheshta Bala",
-      "target_planet": "Sun",
-      "baseline_value": 27.34,
-      "mutated_value": 37.34,
-      "restored_value": 27.34,
+      "target_planet": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "const",
+      "baseline_value": 30.0,
+      "mutated_value": 15.0,
+      "restored_value": 30.0,
+      "oracle_value": 30.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_16_NAISARGIKA",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Naisargika Bala",
       "target_planet": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "const",
       "baseline_value": 60.0,
-      "mutated_value": 70.0,
+      "mutated_value": 50.0,
       "restored_value": 60.0,
+      "oracle_value": 60.0,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_SHAD_17_DRIK",
-      "category": "SHADBALA_SUBCOMPONENT",
+      "category": "SHADBALA_FUNCTION_MUTATION",
       "component": "Drik Bala",
       "target_planet": "Sun",
-      "baseline_value": -0.05,
-      "mutated_value": 9.95,
-      "restored_value": -0.05,
+      "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+      "source_target": "calc_drik_bala",
+      "baseline_value": -3.53,
+      "mutated_value": 99.0,
+      "restored_value": -3.53,
+      "oracle_value": -0.05,
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_01_Sun_Sun",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Sun",
       "target_planet": "Sun",
       "contributor_source": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -309,19 +361,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_02_Sun_Moon",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Moon",
       "target_planet": "Sun",
       "contributor_source": "Moon",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -364,19 +431,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_03_Sun_Mars",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Mars",
       "target_planet": "Sun",
       "contributor_source": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -419,19 +501,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_04_Sun_Mercury",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Mercury",
       "target_planet": "Sun",
       "contributor_source": "Mercury",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -474,19 +571,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_05_Sun_Jupiter",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Jupiter",
       "target_planet": "Sun",
       "contributor_source": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -529,19 +641,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_06_Sun_Venus",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Venus",
       "target_planet": "Sun",
       "contributor_source": "Venus",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -584,19 +711,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_07_Sun_Saturn",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Saturn",
       "target_planet": "Sun",
       "contributor_source": "Saturn",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -639,19 +781,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_08_Sun_Ascendant",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Sun from Ascendant",
       "target_planet": "Sun",
       "contributor_source": "Ascendant",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         5,
         5,
@@ -694,19 +851,34 @@
         3,
         2
       ],
+      "oracle_bav_vector": [
+        5,
+        5,
+        4,
+        6,
+        3,
+        5,
+        3,
+        4,
+        5,
+        3,
+        3,
+        2
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_09_Moon_Sun",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Sun",
       "target_planet": "Moon",
       "contributor_source": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -749,19 +921,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_10_Moon_Moon",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Moon",
       "target_planet": "Moon",
       "contributor_source": "Moon",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -804,19 +991,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_11_Moon_Mars",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Mars",
       "target_planet": "Moon",
       "contributor_source": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -859,19 +1061,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_12_Moon_Mercury",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Mercury",
       "target_planet": "Moon",
       "contributor_source": "Mercury",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -914,19 +1131,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_13_Moon_Jupiter",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Jupiter",
       "target_planet": "Moon",
       "contributor_source": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -969,19 +1201,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_14_Moon_Venus",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Venus",
       "target_planet": "Moon",
       "contributor_source": "Venus",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -1024,19 +1271,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_15_Moon_Saturn",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Saturn",
       "target_planet": "Moon",
       "contributor_source": "Saturn",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -1079,19 +1341,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_16_Moon_Ascendant",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Moon from Ascendant",
       "target_planet": "Moon",
       "contributor_source": "Ascendant",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         6,
         3,
@@ -1134,19 +1411,34 @@
         4,
         4
       ],
+      "oracle_bav_vector": [
+        6,
+        3,
+        4,
+        5,
+        2,
+        5,
+        1,
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_17_Mars_Sun",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Sun",
       "target_planet": "Mars",
       "contributor_source": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1189,19 +1481,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_18_Mars_Moon",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Moon",
       "target_planet": "Mars",
       "contributor_source": "Moon",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1244,19 +1551,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_19_Mars_Mars",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Mars",
       "target_planet": "Mars",
       "contributor_source": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1299,19 +1621,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_20_Mars_Mercury",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Mercury",
       "target_planet": "Mars",
       "contributor_source": "Mercury",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1354,19 +1691,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_21_Mars_Jupiter",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Jupiter",
       "target_planet": "Mars",
       "contributor_source": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1409,19 +1761,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_22_Mars_Venus",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Venus",
       "target_planet": "Mars",
       "contributor_source": "Venus",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1464,19 +1831,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_23_Mars_Saturn",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Saturn",
       "target_planet": "Mars",
       "contributor_source": "Saturn",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1519,19 +1901,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_24_Mars_Ascendant",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mars from Ascendant",
       "target_planet": "Mars",
       "contributor_source": "Ascendant",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         3,
@@ -1574,19 +1971,34 @@
         5,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        3,
+        2,
+        6,
+        3,
+        3,
+        1,
+        6,
+        3,
+        4,
+        5,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_25_Mercury_Sun",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Sun",
       "target_planet": "Mercury",
       "contributor_source": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -1629,19 +2041,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_26_Mercury_Moon",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Moon",
       "target_planet": "Mercury",
       "contributor_source": "Moon",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -1684,19 +2111,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_27_Mercury_Mars",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Mars",
       "target_planet": "Mercury",
       "contributor_source": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -1739,19 +2181,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_28_Mercury_Mercury",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Mercury",
       "target_planet": "Mercury",
       "contributor_source": "Mercury",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -1794,19 +2251,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_29_Mercury_Jupiter",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Jupiter",
       "target_planet": "Mercury",
       "contributor_source": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -1849,19 +2321,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_30_Mercury_Venus",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Venus",
       "target_planet": "Mercury",
       "contributor_source": "Venus",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -1904,19 +2391,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_31_Mercury_Saturn",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Saturn",
       "target_planet": "Mercury",
       "contributor_source": "Saturn",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -1959,19 +2461,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_32_Mercury_Ascendant",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Mercury from Ascendant",
       "target_planet": "Mercury",
       "contributor_source": "Ascendant",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         6,
@@ -2014,19 +2531,34 @@
         7,
         1
       ],
+      "oracle_bav_vector": [
+        2,
+        6,
+        3,
+        6,
+        6,
+        5,
+        3,
+        5,
+        5,
+        5,
+        7,
+        1
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_33_Jupiter_Sun",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Sun",
       "target_planet": "Jupiter",
       "contributor_source": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2069,19 +2601,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_34_Jupiter_Moon",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Moon",
       "target_planet": "Jupiter",
       "contributor_source": "Moon",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2124,19 +2671,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_35_Jupiter_Mars",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Mars",
       "target_planet": "Jupiter",
       "contributor_source": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2179,19 +2741,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_36_Jupiter_Mercury",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Mercury",
       "target_planet": "Jupiter",
       "contributor_source": "Mercury",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2234,19 +2811,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_37_Jupiter_Jupiter",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Jupiter",
       "target_planet": "Jupiter",
       "contributor_source": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2289,19 +2881,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_38_Jupiter_Venus",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Venus",
       "target_planet": "Jupiter",
       "contributor_source": "Venus",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2344,19 +2951,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_39_Jupiter_Saturn",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Saturn",
       "target_planet": "Jupiter",
       "contributor_source": "Saturn",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2399,19 +3021,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_40_Jupiter_Ascendant",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Jupiter from Ascendant",
       "target_planet": "Jupiter",
       "contributor_source": "Ascendant",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         5,
@@ -2454,19 +3091,34 @@
         5,
         6
       ],
+      "oracle_bav_vector": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        6,
+        4,
+        5,
+        5,
+        6
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_41_Venus_Sun",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Sun",
       "target_planet": "Venus",
       "contributor_source": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2509,19 +3161,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_42_Venus_Moon",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Moon",
       "target_planet": "Venus",
       "contributor_source": "Moon",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2564,19 +3231,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_43_Venus_Mars",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Mars",
       "target_planet": "Venus",
       "contributor_source": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2619,19 +3301,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_44_Venus_Mercury",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Mercury",
       "target_planet": "Venus",
       "contributor_source": "Mercury",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2674,19 +3371,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_45_Venus_Jupiter",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Jupiter",
       "target_planet": "Venus",
       "contributor_source": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2729,19 +3441,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_46_Venus_Venus",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Venus",
       "target_planet": "Venus",
       "contributor_source": "Venus",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2784,19 +3511,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_47_Venus_Saturn",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Saturn",
       "target_planet": "Venus",
       "contributor_source": "Saturn",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2839,19 +3581,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_48_Venus_Ascendant",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Venus from Ascendant",
       "target_planet": "Venus",
       "contributor_source": "Ascendant",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         2,
         5,
@@ -2894,19 +3651,34 @@
         5,
         4
       ],
+      "oracle_bav_vector": [
+        2,
+        5,
+        6,
+        5,
+        4,
+        5,
+        4,
+        5,
+        4,
+        3,
+        5,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_49_Saturn_Sun",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Sun",
       "target_planet": "Saturn",
       "contributor_source": "Sun",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -2949,19 +3721,34 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_50_Saturn_Moon",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Moon",
       "target_planet": "Saturn",
       "contributor_source": "Moon",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -3004,19 +3791,34 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_51_Saturn_Mars",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Mars",
       "target_planet": "Saturn",
       "contributor_source": "Mars",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -3059,19 +3861,34 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_52_Saturn_Mercury",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Mercury",
       "target_planet": "Saturn",
       "contributor_source": "Mercury",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -3114,19 +3931,34 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_53_Saturn_Jupiter",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Jupiter",
       "target_planet": "Saturn",
       "contributor_source": "Jupiter",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -3169,19 +4001,34 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_54_Saturn_Venus",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Venus",
       "target_planet": "Saturn",
       "contributor_source": "Venus",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -3224,19 +4071,34 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_55_Saturn_Saturn",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Saturn",
       "target_planet": "Saturn",
       "contributor_source": "Saturn",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -3279,19 +4141,34 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     },
     {
       "mutation_id": "MUT_BAV_56_Saturn_Ascendant",
-      "category": "BAV_CONTRIBUTOR_RULE",
+      "category": "BAV_RULE_MUTATION",
       "component": "BAV Saturn from Ascendant",
       "target_planet": "Saturn",
       "contributor_source": "Ascendant",
+      "source_file": "apps\\api\\engines\\strength\\ashtakavarga.py",
       "baseline_bav_vector": [
         4,
         4,
@@ -3334,12 +4211,26 @@
         2,
         4
       ],
+      "oracle_bav_vector": [
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        5,
+        2,
+        2,
+        4
+      ],
       "baseline_status": "PASS",
       "mutation_applied": true,
       "mutated_status": "FAIL",
       "restored_status": "PASS",
       "detected": true,
-      "restored": true
+      "source_restored": true
     }
   ]
 }

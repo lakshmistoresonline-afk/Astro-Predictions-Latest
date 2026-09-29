@@ -1,0 +1,18 @@
+{
+  "mutation_id": "MUT_SHAD_11_VARA",
+  "category": "SHADBALA_FUNCTION_MUTATION",
+  "component": "Vara Bala",
+  "target_planet": "Sun",
+  "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+  "source_target": "const",
+  "baseline_value": 45.0,
+  "mutated_value": 0.0,
+  "restored_value": 45.0,
+  "oracle_value": 45.0,
+  "baseline_status": "PASS",
+  "mutation_applied": true,
+  "mutated_status": "FAIL",
+  "restored_status": "PASS",
+  "detected": true,
+  "source_restored": true
+}

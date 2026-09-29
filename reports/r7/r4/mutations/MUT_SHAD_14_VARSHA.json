@@ -1,0 +1,18 @@
+{
+  "mutation_id": "MUT_SHAD_14_VARSHA",
+  "category": "SHADBALA_FUNCTION_MUTATION",
+  "component": "Varsha Bala",
+  "target_planet": "Sun",
+  "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+  "source_target": "suite_override",
+  "baseline_value": 0.0,
+  "mutated_value": 99.0,
+  "restored_value": 0.0,
+  "oracle_value": 0.0,
+  "baseline_status": "PASS",
+  "mutation_applied": true,
+  "mutated_status": "FAIL",
+  "restored_status": "PASS",
+  "detected": true,
+  "source_restored": true
+}

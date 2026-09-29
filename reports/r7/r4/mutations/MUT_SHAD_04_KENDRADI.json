@@ -1,0 +1,18 @@
+{
+  "mutation_id": "MUT_SHAD_04_KENDRADI",
+  "category": "SHADBALA_FUNCTION_MUTATION",
+  "component": "Kendradi Bala",
+  "target_planet": "Sun",
+  "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+  "source_target": "calc_kendradi",
+  "baseline_value": 30.0,
+  "mutated_value": 99.0,
+  "restored_value": 30.0,
+  "oracle_value": 30.0,
+  "baseline_status": "PASS",
+  "mutation_applied": true,
+  "mutated_status": "FAIL",
+  "restored_status": "PASS",
+  "detected": true,
+  "source_restored": true
+}

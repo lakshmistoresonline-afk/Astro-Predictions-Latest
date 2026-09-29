@@ -1,0 +1,18 @@
+{
+  "mutation_id": "MUT_SHAD_17_DRIK",
+  "category": "SHADBALA_FUNCTION_MUTATION",
+  "component": "Drik Bala",
+  "target_planet": "Sun",
+  "source_file": "apps\\api\\engines\\strength\\shadbala.py",
+  "source_target": "calc_drik_bala",
+  "baseline_value": -3.53,
+  "mutated_value": 99.0,
+  "restored_value": -3.53,
+  "oracle_value": -0.05,
+  "baseline_status": "PASS",
+  "mutation_applied": true,
+  "mutated_status": "FAIL",
+  "restored_status": "PASS",
+  "detected": true,
+  "source_restored": true
+}
