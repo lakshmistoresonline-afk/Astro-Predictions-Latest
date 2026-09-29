@@ -1,0 +1,58 @@
+{
+  "fixture_id": "REF_013",
+  "name": "Buenos Aires Native",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 1982,
+  "local_month": 2,
+  "local_day": 28,
+  "local_hour": 8,
+  "local_minute": 0,
+  "timezone_str": "America/Argentina/Buenos_Aires",
+  "birth_datetime_utc": "1982-02-28T11:00:00Z",
+  "julian_day": 2445028.958333,
+  "latitude": -34.6037,
+  "longitude": -58.3816,
+  "ascendant_sidereal_longitude": 344.415736,
+  "mc_sidereal_longitude": 255.182609,
+  "ayanamsha": 23.600954,
+  "planets": {
+    "Sun": {
+      "longitude": 316.188804,
+      "velocity_deg_day": 1.004257,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 13.913244,
+      "velocity_deg_day": 13.998365,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 175.457421,
+      "velocity_deg_day": -0.097926,
+      "retrograde": true
+    },
+    "Mercury": {
+      "longitude": 289.402231,
+      "velocity_deg_day": 1.089387,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 196.951342,
+      "velocity_deg_day": -0.013505,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 275.471368,
+      "velocity_deg_day": 0.56549,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 178.211686,
+      "velocity_deg_day": -0.046891,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "cac796993fd8ec69cbc6ab26607e7a30b36b012edb7570eb906423e53024a893"
+}

@@ -1,0 +1,58 @@
+{
+  "fixture_id": "REF_002",
+  "name": "User A Kochi",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 1990,
+  "local_month": 1,
+  "local_day": 15,
+  "local_hour": 8,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1990-01-15T03:00:00Z",
+  "julian_day": 2447906.625,
+  "latitude": 9.9312,
+  "longitude": 76.2673,
+  "ascendant_sidereal_longitude": 79.899001,
+  "mc_sidereal_longitude": 347.788974,
+  "ayanamsha": 23.71094,
+  "planets": {
+    "Sun": {
+      "longitude": 271.126883,
+      "velocity_deg_day": 1.018239,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 139.220514,
+      "velocity_deg_day": 12.598991,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 236.071603,
+      "velocity_deg_day": 0.711694,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 258.055913,
+      "velocity_deg_day": -0.776482,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 69.829515,
+      "velocity_deg_day": -0.117891,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 277.337955,
+      "velocity_deg_day": -0.589058,
+      "retrograde": true
+    },
+    "Saturn": {
+      "longitude": 263.70078,
+      "velocity_deg_day": 0.11783,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "4eaf362e1c484335f3a4658159234c0d4605e061140476f8646db1e1d0ad59e0"
+}

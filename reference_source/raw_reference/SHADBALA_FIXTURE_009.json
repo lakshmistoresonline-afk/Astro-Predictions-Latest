@@ -1,0 +1,58 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_009",
+  "name": "Singapore Native",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 2010,
+  "local_month": 8,
+  "local_day": 9,
+  "local_hour": 18,
+  "local_minute": 0,
+  "timezone_str": "Asia/Singapore",
+  "birth_datetime_utc": "2010-08-09T10:00:00Z",
+  "julian_day": 2455417.916667,
+  "latitude": 1.3521,
+  "longitude": 103.8198,
+  "ascendant_sidereal_longitude": 305.207236,
+  "mc_sidereal_longitude": 219.62664,
+  "ayanamsha": 23.998024,
+  "planets": {
+    "Sun": {
+      "longitude": 112.579748,
+      "velocity_deg_day": 0.959203,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 102.473474,
+      "velocity_deg_day": 15.037391,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 162.275182,
+      "velocity_deg_day": 0.623004,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 139.740288,
+      "velocity_deg_day": 0.827586,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 338.780475,
+      "velocity_deg_day": -0.054938,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 158.174791,
+      "velocity_deg_day": 1.022535,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 157.534498,
+      "velocity_deg_day": 0.099118,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "c702a31579c73bc09432f07914400b0e2b53c0c5422405bc9a91d7c4b3d3ebcc"
+}

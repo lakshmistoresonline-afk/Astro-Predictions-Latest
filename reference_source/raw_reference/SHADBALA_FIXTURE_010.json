@@ -1,0 +1,58 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_010",
+  "name": "Los Angeles Retrograde",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 2020,
+  "local_month": 10,
+  "local_day": 15,
+  "local_hour": 20,
+  "local_minute": 0,
+  "timezone_str": "America/Los_Angeles",
+  "birth_datetime_utc": "2020-10-16T03:00:00Z",
+  "julian_day": 2459138.625,
+  "latitude": 34.0522,
+  "longitude": -118.2437,
+  "ascendant_sidereal_longitude": 153.207476,
+  "mc_sidereal_longitude": 62.972317,
+  "ayanamsha": 24.140231,
+  "planets": {
+    "Sun": {
+      "longitude": 178.788399,
+      "velocity_deg_day": 0.992117,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 168.932719,
+      "velocity_deg_day": 15.276229,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 355.966955,
+      "velocity_deg_day": -0.31297,
+      "retrograde": true
+    },
+    "Mercury": {
+      "longitude": 196.969158,
+      "velocity_deg_day": -0.27741,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 264.695863,
+      "velocity_deg_day": 0.100709,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 141.220133,
+      "velocity_deg_day": 1.192663,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 271.148097,
+      "velocity_deg_day": 0.028045,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "1e66b11e157a81ff49c397fcbbb9eac069bb9b53936aaedb41dfb422100470ee"
+}

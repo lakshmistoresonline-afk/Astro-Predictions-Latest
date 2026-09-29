@@ -1,0 +1,58 @@
+{
+  "fixture_id": "REF_015",
+  "name": "Honolulu Native",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 2005,
+  "local_month": 7,
+  "local_day": 4,
+  "local_hour": 5,
+  "local_minute": 30,
+  "timezone_str": "Pacific/Honolulu",
+  "birth_datetime_utc": "2005-07-04T15:30:00Z",
+  "julian_day": 2453556.145833,
+  "latitude": 21.3069,
+  "longitude": -157.8583,
+  "ascendant_sidereal_longitude": 19.819214,
+  "mc_sidereal_longitude": 278.677787,
+  "ayanamsha": 23.926867,
+  "planets": {
+    "Sun": {
+      "longitude": 78.746847,
+      "velocity_deg_day": 0.95367,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 58.091871,
+      "velocity_deg_day": 12.181931,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 351.296219,
+      "velocity_deg_day": 0.65688,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 104.505897,
+      "velocity_deg_day": 1.170235,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 166.178411,
+      "velocity_deg_day": 0.082848,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 103.771501,
+      "velocity_deg_day": 1.212595,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 94.48654,
+      "velocity_deg_day": 0.126145,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "19584a50d634293ff9904fdb66328f088310cd457779a6be706ddf7f341c4953"
+}

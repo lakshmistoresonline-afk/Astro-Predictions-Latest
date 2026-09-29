@@ -1,0 +1,58 @@
+{
+  "fixture_id": "REF_012",
+  "name": "Cairo Native",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 1991,
+  "local_month": 4,
+  "local_day": 10,
+  "local_hour": 14,
+  "local_minute": 0,
+  "timezone_str": "Africa/Cairo",
+  "birth_datetime_utc": "1991-04-10T12:00:00Z",
+  "julian_day": 2448357.0,
+  "latitude": 30.0444,
+  "longitude": 31.2357,
+  "ascendant_sidereal_longitude": 121.237883,
+  "mc_sidereal_longitude": 28.143022,
+  "ayanamsha": 23.728153,
+  "planets": {
+    "Sun": {
+      "longitude": 356.513883,
+      "velocity_deg_day": 0.98207,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 302.533216,
+      "velocity_deg_day": 12.643194,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 70.382896,
+      "velocity_deg_day": 0.540277,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 3.700818,
+      "velocity_deg_day": -0.55585,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 100.126029,
+      "velocity_deg_day": 0.034366,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 33.437713,
+      "velocity_deg_day": 1.181002,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 282.155416,
+      "velocity_deg_day": 0.057286,
+      "retrograde": false
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "bd3c52cd0b6ecf6c20db31c70c09eb41ef344584eb835920d86decb1fe4b9cc2"
+}

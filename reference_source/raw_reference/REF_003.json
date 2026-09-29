@@ -1,0 +1,58 @@
+{
+  "fixture_id": "REF_003",
+  "name": "User B London",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 1985,
+  "local_month": 7,
+  "local_day": 22,
+  "local_hour": 18,
+  "local_minute": 45,
+  "timezone_str": "Europe/London",
+  "birth_datetime_utc": "1985-07-22T17:45:00Z",
+  "julian_day": 2446269.239583,
+  "latitude": 51.5074,
+  "longitude": -0.1278,
+  "ascendant_sidereal_longitude": 177.672008,
+  "mc_sidereal_longitude": 94.542295,
+  "ayanamsha": 23.648358,
+  "planets": {
+    "Sun": {
+      "longitude": 96.408495,
+      "velocity_deg_day": 0.95499,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 156.898168,
+      "velocity_deg_day": 14.040335,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 94.990207,
+      "velocity_deg_day": 0.647377,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 120.740223,
+      "velocity_deg_day": 0.41724,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 290.207377,
+      "velocity_deg_day": -0.122531,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 54.54029,
+      "velocity_deg_day": 1.117689,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 208.029733,
+      "velocity_deg_day": -0.004925,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "d4752e436774583773066812ba87b8f9b83d7c466b36696fbc73ac57c3b060bf"
+}

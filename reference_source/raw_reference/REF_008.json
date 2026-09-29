@@ -1,0 +1,58 @@
+{
+  "fixture_id": "REF_008",
+  "name": "Reykjavik Native",
+  "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "license": "MIT License",
+  "local_year": 1992,
+  "local_month": 6,
+  "local_day": 21,
+  "local_hour": 23,
+  "local_minute": 45,
+  "timezone_str": "Atlantic/Reykjavik",
+  "birth_datetime_utc": "1992-06-21T23:45:00Z",
+  "julian_day": 2448795.489583,
+  "latitude": 64.1466,
+  "longitude": -21.9426,
+  "ascendant_sidereal_longitude": 143.892743,
+  "mc_sidereal_longitude": 46.357251,
+  "ayanamsha": 23.744913,
+  "planets": {
+    "Sun": {
+      "longitude": 67.176463,
+      "velocity_deg_day": 0.95393,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 322.110717,
+      "velocity_deg_day": 11.982462,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 11.736626,
+      "velocity_deg_day": 0.730167,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 88.646894,
+      "velocity_deg_day": 1.582318,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 134.794361,
+      "velocity_deg_day": 0.135389,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 69.45178,
+      "velocity_deg_day": 1.228611,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 294.365538,
+      "velocity_deg_day": -0.038104,
+      "retrograde": true
+    }
+  },
+  "type": "REAL_REFERENCE",
+  "sha256_manifest_hash": "6d66d412739f71cd4b245d2ecee03dea15f2cfba29ae7f210168b297877d82fc"
+}
