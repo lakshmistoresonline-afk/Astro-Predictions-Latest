@@ -1,0 +1,55 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_009",
+  "name": "Singapore Native",
+  "local_year": 2010,
+  "local_month": 8,
+  "local_day": 9,
+  "local_hour": 18,
+  "local_minute": 0,
+  "timezone_str": "Asia/Singapore",
+  "birth_datetime_utc": "2010-08-09T10:00:00+00:00",
+  "julian_day": 2455417.916667,
+  "latitude": 1.3521,
+  "longitude": 103.8198,
+  "ascendant_sidereal_longitude": 274.974382,
+  "mc_sidereal_longitude": 189.857344,
+  "ayanamsha": 24.001173,
+  "planets": {
+    "Sun": {
+      "longitude": 112.570996,
+      "velocity_deg_day": 0.959205,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 102.470307,
+      "velocity_deg_day": 15.037393,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 162.268406,
+      "velocity_deg_day": 0.622978,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 139.732138,
+      "velocity_deg_day": 0.827576,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 338.781199,
+      "velocity_deg_day": -0.054865,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 158.167723,
+      "velocity_deg_day": 1.022539,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 157.527262,
+      "velocity_deg_day": 0.099057,
+      "retrograde": false
+    }
+  },
+  "provenance": "NASA JPL DE440s Ephemeris via Skyfield 1.55 Reference Dataset"
+}

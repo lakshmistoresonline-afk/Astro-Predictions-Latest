@@ -1,0 +1,55 @@
+{
+  "fixture_id": "REF_015",
+  "name": "Honolulu Native",
+  "local_year": 2005,
+  "local_month": 7,
+  "local_day": 4,
+  "local_hour": 5,
+  "local_minute": 30,
+  "timezone_str": "Pacific/Honolulu",
+  "birth_datetime_utc": "2005-07-04T15:30:00+00:00",
+  "julian_day": 2453556.145833,
+  "latitude": 21.3069,
+  "longitude": -157.8583,
+  "ascendant_sidereal_longitude": 72.534197,
+  "mc_sidereal_longitude": 333.213821,
+  "ayanamsha": 23.929971,
+  "planets": {
+    "Sun": {
+      "longitude": 78.738142,
+      "velocity_deg_day": 0.95367,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 58.088671,
+      "velocity_deg_day": 12.181932,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 351.292711,
+      "velocity_deg_day": 0.656914,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 104.497771,
+      "velocity_deg_day": 1.170247,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 166.175011,
+      "velocity_deg_day": 0.082761,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 103.763318,
+      "velocity_deg_day": 1.212605,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 94.477993,
+      "velocity_deg_day": 0.126123,
+      "retrograde": false
+    }
+  },
+  "provenance": "NASA JPL DE440s Ephemeris via Skyfield 1.55 Reference Dataset"
+}

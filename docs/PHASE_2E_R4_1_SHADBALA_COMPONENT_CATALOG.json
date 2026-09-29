@@ -1,0 +1,32 @@
+{
+  "convention": "PARASHARI_CANONICAL_BPHS_SHADBALA_V1",
+  "major_balas": [
+    "Sthana_Bala",
+    "Dig_Bala",
+    "Kala_Bala",
+    "Cheshta_Bala",
+    "Naisargika_Bala",
+    "Drik_Bala"
+  ],
+  "granular_components": [
+    "Uccha_Bala",
+    "Sapta_Vargaja_Bala",
+    "Ojha_Yugma_Bala",
+    "Kendradi_Bala",
+    "Drekkana_Bala",
+    "Dig_Bala",
+    "Nathonnatha_Bala",
+    "Paksha_Bala",
+    "Ayana_Bala",
+    "Tribhaga_Bala",
+    "Vara_Bala",
+    "Hora_Bala",
+    "Masa_Bala",
+    "Varsha_Bala",
+    "Cheshta_Bala",
+    "Naisargika_Bala",
+    "Drik_Bala"
+  ],
+  "unit": "Shashtiamsas (1 Rupa = 60 Shashtiamsas)",
+  "planet_count": 7
+}

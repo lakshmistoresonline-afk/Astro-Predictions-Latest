@@ -1,0 +1,55 @@
+{
+  "fixture_id": "REF_014",
+  "name": "Mumbai Native",
+  "local_year": 1994,
+  "local_month": 8,
+  "local_day": 15,
+  "local_hour": 22,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1994-08-15T17:00:00+00:00",
+  "julian_day": 2449580.208333,
+  "latitude": 19.076,
+  "longitude": 72.8777,
+  "ascendant_sidereal_longitude": 3.635079,
+  "mc_sidereal_longitude": 266.329583,
+  "ayanamsha": 23.777913,
+  "planets": {
+    "Sun": {
+      "longitude": 118.928656,
+      "velocity_deg_day": 0.96077,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 228.072244,
+      "velocity_deg_day": 14.023123,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 65.576225,
+      "velocity_deg_day": 0.656285,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 121.735072,
+      "velocity_deg_day": 1.986238,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 193.872277,
+      "velocity_deg_day": 0.119861,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 164.684109,
+      "velocity_deg_day": 1.016402,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 316.566307,
+      "velocity_deg_day": -0.070605,
+      "retrograde": true
+    }
+  },
+  "provenance": "NASA JPL DE440s Ephemeris via Skyfield 1.55 Reference Dataset"
+}

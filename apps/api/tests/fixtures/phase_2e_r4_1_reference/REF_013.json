@@ -1,0 +1,55 @@
+{
+  "fixture_id": "REF_013",
+  "name": "Buenos Aires Native",
+  "local_year": 1982,
+  "local_month": 2,
+  "local_day": 28,
+  "local_hour": 8,
+  "local_minute": 0,
+  "timezone_str": "America/Argentina/Buenos_Aires",
+  "birth_datetime_utc": "1982-02-28T11:00:00+00:00",
+  "julian_day": 2445028.958333,
+  "latitude": -34.6037,
+  "longitude": -58.3816,
+  "ascendant_sidereal_longitude": 331.828908,
+  "mc_sidereal_longitude": 241.398471,
+  "ayanamsha": 23.603853,
+  "planets": {
+    "Sun": {
+      "longitude": 316.180151,
+      "velocity_deg_day": 1.00426,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 13.910299,
+      "velocity_deg_day": 13.998361,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 175.458917,
+      "velocity_deg_day": -0.097856,
+      "retrograde": true
+    },
+    "Mercury": {
+      "longitude": 289.394143,
+      "velocity_deg_day": 1.089391,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 196.95114,
+      "velocity_deg_day": -0.013417,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 275.463985,
+      "velocity_deg_day": 0.565525,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 178.212946,
+      "velocity_deg_day": -0.046821,
+      "retrograde": true
+    }
+  },
+  "provenance": "NASA JPL DE440s Ephemeris via Skyfield 1.55 Reference Dataset"
+}

@@ -1,0 +1,15 @@
+{
+  "convention": "Parashari BPHS Ch. 66 Canonical Ashtakavarga",
+  "total_cells": 56,
+  "contributors": ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Ascendant"],
+  "bav_totals": {
+    "Sun": 48,
+    "Moon": 49,
+    "Mars": 39,
+    "Mercury": 54,
+    "Jupiter": 56,
+    "Venus": 52,
+    "Saturn": 39
+  },
+  "sav_total": 337
+}

@@ -1,0 +1,55 @@
+{
+  "fixture_id": "REF_012",
+  "name": "Cairo Native",
+  "local_year": 1991,
+  "local_month": 4,
+  "local_day": 10,
+  "local_hour": 14,
+  "local_minute": 0,
+  "timezone_str": "Africa/Cairo",
+  "birth_datetime_utc": "1991-04-10T12:00:00+00:00",
+  "julian_day": 2448357.0,
+  "latitude": 30.0444,
+  "longitude": 31.2357,
+  "ascendant_sidereal_longitude": 121.239574,
+  "mc_sidereal_longitude": 28.145434,
+  "ayanamsha": 23.731132,
+  "planets": {
+    "Sun": {
+      "longitude": 356.50526,
+      "velocity_deg_day": 0.98207,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 302.530313,
+      "velocity_deg_day": 12.643196,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 70.378392,
+      "velocity_deg_day": 0.540236,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 3.692188,
+      "velocity_deg_day": -0.555869,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 100.124445,
+      "velocity_deg_day": 0.034275,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 33.430276,
+      "velocity_deg_day": 1.181015,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 282.150778,
+      "velocity_deg_day": 0.057375,
+      "retrograde": false
+    }
+  },
+  "provenance": "NASA JPL DE440s Ephemeris via Skyfield 1.55 Reference Dataset"
+}

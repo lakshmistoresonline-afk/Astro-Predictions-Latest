@@ -1,0 +1,55 @@
+{
+  "fixture_id": "REF_011",
+  "name": "Berlin Native",
+  "local_year": 1988,
+  "local_month": 12,
+  "local_day": 12,
+  "local_hour": 10,
+  "local_minute": 15,
+  "timezone_str": "Europe/Berlin",
+  "birth_datetime_utc": "1988-12-12T09:15:00+00:00",
+  "julian_day": 2447507.885417,
+  "latitude": 52.52,
+  "longitude": 13.405,
+  "ascendant_sidereal_longitude": 266.421946,
+  "mc_sidereal_longitude": 212.075917,
+  "ayanamsha": 23.698658,
+  "planets": {
+    "Sun": {
+      "longitude": 237.031549,
+      "velocity_deg_day": 1.017095,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 276.933713,
+      "velocity_deg_day": 13.919282,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 347.411532,
+      "velocity_deg_day": 0.426702,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 243.130756,
+      "velocity_deg_day": 1.573805,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 35.00276,
+      "velocity_deg_day": -0.116818,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 209.776897,
+      "velocity_deg_day": 1.244426,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 249.736373,
+      "velocity_deg_day": 0.116367,
+      "retrograde": false
+    }
+  },
+  "provenance": "NASA JPL DE440s Ephemeris via Skyfield 1.55 Reference Dataset"
+}

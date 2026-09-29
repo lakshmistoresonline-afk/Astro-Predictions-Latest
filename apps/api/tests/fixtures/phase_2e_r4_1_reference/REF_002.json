@@ -1,0 +1,55 @@
+{
+  "fixture_id": "REF_002",
+  "name": "User A Kochi",
+  "local_year": 1990,
+  "local_month": 1,
+  "local_day": 15,
+  "local_hour": 8,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1990-01-15T03:00:00+00:00",
+  "julian_day": 2447906.625,
+  "latitude": 9.9312,
+  "longitude": 76.2673,
+  "ascendant_sidereal_longitude": 296.844161,
+  "mc_sidereal_longitude": 214.127204,
+  "ayanamsha": 23.713908,
+  "planets": {
+    "Sun": {
+      "longitude": 271.118149,
+      "velocity_deg_day": 1.018239,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 139.217592,
+      "velocity_deg_day": 12.598991,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 236.063892,
+      "velocity_deg_day": 0.711712,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 258.047326,
+      "velocity_deg_day": -0.776447,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 69.831904,
+      "velocity_deg_day": -0.117932,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 277.329201,
+      "velocity_deg_day": -0.589085,
+      "retrograde": true
+    },
+    "Saturn": {
+      "longitude": 263.692022,
+      "velocity_deg_day": 0.117843,
+      "retrograde": false
+    }
+  },
+  "provenance": "NASA JPL DE440s Ephemeris via Skyfield 1.55 Reference Dataset"
+}
