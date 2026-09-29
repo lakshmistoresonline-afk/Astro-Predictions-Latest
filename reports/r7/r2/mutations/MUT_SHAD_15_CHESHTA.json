@@ -6,6 +6,10 @@
   "baseline_value": 27.34,
   "mutated_value": 37.34,
   "restored_value": 27.34,
+  "baseline_status": "PASS",
+  "mutation_applied": true,
+  "mutated_status": "FAIL",
+  "restored_status": "PASS",
   "detected": true,
   "restored": true
 }

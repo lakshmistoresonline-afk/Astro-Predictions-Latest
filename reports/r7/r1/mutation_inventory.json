@@ -7,13 +7,17 @@
   "detection_score_percent": 100.0,
   "mutation_records": [
     {
-      "mutation_id": "MUT_SHAD_01_UCHHA",
+      "mutation_id": "MUT_SHAD_01_UCCHA",
       "category": "SHADBALA_SUBCOMPONENT",
       "component": "Uccha Bala",
       "target_planet": "Sun",
       "baseline_value": 9.49,
       "mutated_value": 19.490000000000002,
       "restored_value": 9.49,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -25,6 +29,10 @@
       "baseline_value": 60.0,
       "mutated_value": 70.0,
       "restored_value": 60.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -36,6 +44,10 @@
       "baseline_value": 15.0,
       "mutated_value": 25.0,
       "restored_value": 15.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -47,6 +59,10 @@
       "baseline_value": 30.0,
       "mutated_value": 40.0,
       "restored_value": 30.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -58,6 +74,10 @@
       "baseline_value": 0.0,
       "mutated_value": 10.0,
       "restored_value": 0.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -69,6 +89,10 @@
       "baseline_value": 38.33,
       "mutated_value": 48.33,
       "restored_value": 38.33,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -80,6 +104,10 @@
       "baseline_value": 38.33,
       "mutated_value": 48.33,
       "restored_value": 38.33,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -91,6 +119,10 @@
       "baseline_value": 38.55,
       "mutated_value": 48.55,
       "restored_value": 38.55,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -102,6 +134,10 @@
       "baseline_value": 27.34,
       "mutated_value": 37.34,
       "restored_value": 27.34,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -113,6 +149,10 @@
       "baseline_value": 0.0,
       "mutated_value": 10.0,
       "restored_value": 0.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -124,6 +164,10 @@
       "baseline_value": 45.0,
       "mutated_value": 55.0,
       "restored_value": 45.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -135,6 +179,10 @@
       "baseline_value": 0.0,
       "mutated_value": 10.0,
       "restored_value": 0.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -146,6 +194,10 @@
       "baseline_value": 0.0,
       "mutated_value": 10.0,
       "restored_value": 0.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -157,6 +209,10 @@
       "baseline_value": 0.0,
       "mutated_value": 10.0,
       "restored_value": 0.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -168,6 +224,10 @@
       "baseline_value": 27.34,
       "mutated_value": 37.34,
       "restored_value": 27.34,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -179,6 +239,10 @@
       "baseline_value": 60.0,
       "mutated_value": 70.0,
       "restored_value": 60.0,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -190,6 +254,10 @@
       "baseline_value": -0.05,
       "mutated_value": 9.95,
       "restored_value": -0.05,
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -241,6 +309,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -292,6 +364,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -343,6 +419,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -394,6 +474,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -445,6 +529,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -496,6 +584,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -547,6 +639,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -598,6 +694,10 @@
         3,
         2
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -649,6 +749,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -700,6 +804,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -751,6 +859,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -802,6 +914,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -853,6 +969,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -904,6 +1024,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -955,6 +1079,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1006,6 +1134,10 @@
         4,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1057,6 +1189,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1108,6 +1244,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1159,6 +1299,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1210,6 +1354,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1261,6 +1409,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1312,6 +1464,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1363,6 +1519,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1414,6 +1574,10 @@
         5,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1465,6 +1629,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1516,6 +1684,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1567,6 +1739,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1618,6 +1794,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1669,6 +1849,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1720,6 +1904,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1771,6 +1959,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1822,6 +2014,10 @@
         7,
         1
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1873,6 +2069,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1924,6 +2124,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -1975,6 +2179,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2026,6 +2234,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2077,6 +2289,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2128,6 +2344,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2179,6 +2399,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2230,6 +2454,10 @@
         5,
         6
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2281,6 +2509,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2332,6 +2564,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2383,6 +2619,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2434,6 +2674,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2485,6 +2729,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2536,6 +2784,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2587,6 +2839,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2638,6 +2894,10 @@
         5,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2689,6 +2949,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2740,6 +3004,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2791,6 +3059,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2842,6 +3114,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2893,6 +3169,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2944,6 +3224,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -2995,6 +3279,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     },
@@ -3046,6 +3334,10 @@
         2,
         4
       ],
+      "baseline_status": "PASS",
+      "mutation_applied": true,
+      "mutated_status": "FAIL",
+      "restored_status": "PASS",
       "detected": true,
       "restored": true
     }

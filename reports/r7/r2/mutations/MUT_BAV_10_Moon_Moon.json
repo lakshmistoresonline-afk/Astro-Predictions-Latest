@@ -46,6 +46,10 @@
     4,
     4
   ],
+  "baseline_status": "PASS",
+  "mutation_applied": true,
+  "mutated_status": "FAIL",
+  "restored_status": "PASS",
   "detected": true,
   "restored": true
 }

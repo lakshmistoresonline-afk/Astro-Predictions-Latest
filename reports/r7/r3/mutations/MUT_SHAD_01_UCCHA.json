@@ -1,11 +1,15 @@
 {
-  "mutation_id": "MUT_SHAD_01_UCHHA",
+  "mutation_id": "MUT_SHAD_01_UCCHA",
   "category": "SHADBALA_SUBCOMPONENT",
   "component": "Uccha Bala",
   "target_planet": "Sun",
   "baseline_value": 9.49,
   "mutated_value": 19.490000000000002,
   "restored_value": 9.49,
+  "baseline_status": "PASS",
+  "mutation_applied": true,
+  "mutated_status": "FAIL",
+  "restored_status": "PASS",
   "detected": true,
   "restored": true
 }

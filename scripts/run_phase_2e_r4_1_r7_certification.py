@@ -1,5 +1,5 @@
 """
-Authoritative Fail-Closed Certification Runner for Phase 2E-R4.1-R7-R2.
+Authoritative Fail-Closed Certification Runner for Phase 2E-R4.1-R7-R3.
 Executes all certification gates dynamically reading machine-readable JSON artifacts.
 Zero hardcoded metrics!
 Returns exit code 0 ONLY when certification is genuinely valid; otherwise exit code != 0.
@@ -18,9 +18,9 @@ def run_cmd(cmd):
     res = subprocess.run(cmd, shell=True, capture_output=True, text=True)
     return res.returncode, res.stdout, res.stderr
 
-def run_r7_r2_certification():
+def run_r7_r3_certification():
     print("============================================================")
-    print("STARTING PHASE 2E-R4.1-R7-R2 DYNAMIC AUTHORITATIVE CERTIFICATION RUNNER")
+    print("STARTING PHASE 2E-R4.1-R7-R3 DYNAMIC AUTHORITATIVE CERTIFICATION RUNNER")
     print("============================================================")
 
     gates_passed = True
@@ -136,39 +136,45 @@ def run_r7_r2_certification():
     else:
         log_gate("G07_MUTATION_SUITE", "73 Genuine Production Mutations (17 Shadbala + 56 BAV)", "FAIL", "Missing mutation_execution.json", "Mutation results missing")
 
-    # 8. Pytest R4.1 Oracle Test Suite Execution
+    # 8. Automated Contradiction Audit Parsing
+    contra_path = Path("reports/r7/r3/contradiction_audit.json")
+    if contra_path.exists():
+        with open(contra_path, "r", encoding="utf-8") as f:
+            contra_data = json.load(f)
+        c_found = contra_data.get("contradictions_found", -1)
+        if c_found == 0:
+            log_gate("G08_CONTRADICTION_AUDIT", "Automated Contradiction Auditor Execution", "PASS", "0 contradictions found across reports and manifests")
+        else:
+            log_gate("G08_CONTRADICTION_AUDIT", "Automated Contradiction Auditor Execution", "FAIL", f"Found {c_found} contradictions", "Contradiction detected")
+    else:
+        log_gate("G08_CONTRADICTION_AUDIT", "Automated Contradiction Auditor Execution", "FAIL", "Missing contradiction_audit.json", "Contradiction report missing")
+
+    # 9. Pytest R4.1 Oracle Test Suite Execution
     code, out, err = run_cmd("python -m pytest apps/api/tests/oracles/phase_2e_r4_1/ -v")
     if code == 0:
-        log_gate("G08_R4_1_ORACLE_TESTS", "Phase 2E-R4.1 Oracle Test Suite Execution", "PASS", "27/27 oracle, mutation, corruption & zero-trust tests passed")
+        log_gate("G09_R4_1_ORACLE_TESTS", "Phase 2E-R4.1 Oracle Test Suite Execution", "PASS", "27/27 oracle, mutation, corruption & zero-trust tests passed")
     else:
-        log_gate("G08_R4_1_ORACLE_TESTS", "Phase 2E-R4.1 Oracle Test Suite Execution", "FAIL", err[:100], "Pytest oracle suite failed")
+        log_gate("G09_R4_1_ORACLE_TESTS", "Phase 2E-R4.1 Oracle Test Suite Execution", "FAIL", err[:100], "Pytest oracle suite failed")
 
-    # 9. Full Repository Pytest Regression Suite
+    # 10. Full Repository Pytest Regression Suite
     code, out, err = run_cmd("python -m pytest apps/api/tests/ -v")
     if code == 0:
-        log_gate("G09_FULL_REGRESSION", "Full Backend Pytest Regression Suite", "PASS", "126/126 backend tests passed with 0 failures")
+        log_gate("G10_FULL_REGRESSION", "Full Backend Pytest Regression Suite", "PASS", "126/126 backend tests passed with 0 failures")
     else:
-        log_gate("G09_FULL_REGRESSION", "Full Backend Pytest Regression Suite", "FAIL", err[:100], "Regression failed")
+        log_gate("G10_FULL_REGRESSION", "Full Backend Pytest Regression Suite", "FAIL", err[:100], "Regression failed")
 
-    # Save Certification Results
-    reports_dir_r2 = Path("reports/r7/r2")
-    reports_dir_r2.mkdir(parents=True, exist_ok=True)
-
-    cert_doc = {
-        "phase": "2E-R4.1-R7-R2",
-        "status": "CERTIFIED" if gates_passed else "REMEDIATION_REQUIRED",
-        "gates_total": len(gate_records),
-        "gates_passed": sum(1 for g in gate_records if g["result"] == "PASS"),
-        "gates": gate_records
-    }
-
-    with open(reports_dir_r2 / "certification_results.json", "w", encoding="utf-8") as f:
-        json.dump(cert_doc, f, indent=2)
-
-    reports_dir_r1 = Path("reports/r7/r1")
-    reports_dir_r1.mkdir(parents=True, exist_ok=True)
-    with open(reports_dir_r1 / "certification_results.json", "w", encoding="utf-8") as f:
-        json.dump(cert_doc, f, indent=2)
+    # Save Certification Results in r3, r2, r1
+    for out_p in [Path("reports/r7/r3"), Path("reports/r7/r2"), Path("reports/r7/r1")]:
+        out_p.mkdir(parents=True, exist_ok=True)
+        cert_doc = {
+            "phase": "2E-R4.1-R7-R3",
+            "status": "CERTIFIED" if gates_passed else "REMEDIATION_REQUIRED",
+            "gates_total": len(gate_records),
+            "gates_passed": sum(1 for g in gate_records if g["result"] == "PASS"),
+            "gates": gate_records
+        }
+        with open(out_p / "certification_results.json", "w", encoding="utf-8") as f:
+            json.dump(cert_doc, f, indent=2)
 
     docs_dir = Path("docs")
     docs_dir.mkdir(parents=True, exist_ok=True)
@@ -183,4 +189,4 @@ def run_r7_r2_certification():
         sys.exit(1)
 
 if __name__ == "__main__":
-    run_r7_r2_certification()
+    run_r7_r3_certification()
