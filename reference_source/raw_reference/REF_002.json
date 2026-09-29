@@ -2,6 +2,7 @@
   "fixture_id": "REF_002",
   "name": "User A Kochi",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1990,
   "local_month": 1,
@@ -13,8 +14,8 @@
   "julian_day": 2447906.625,
   "latitude": 9.9312,
   "longitude": 76.2673,
-  "ascendant_sidereal_longitude": 79.899001,
-  "mc_sidereal_longitude": 347.788974,
+  "ascendant_sidereal_longitude": 296.845735,
+  "mc_sidereal_longitude": 214.128932,
   "ayanamsha": 23.71094,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "4eaf362e1c484335f3a4658159234c0d4605e061140476f8646db1e1d0ad59e0"
+  "sha256_manifest_hash": "58ddba7208d5be1654da8d55fc0b4584be4edada983f68013ee2dfebf82d6d17"
 }

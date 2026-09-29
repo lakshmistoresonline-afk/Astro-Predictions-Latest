@@ -2,6 +2,7 @@
   "fixture_id": "SHADBALA_FIXTURE_010",
   "name": "Los Angeles Retrograde",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 2020,
   "local_month": 10,
@@ -13,8 +14,8 @@
   "julian_day": 2459138.625,
   "latitude": 34.0522,
   "longitude": -118.2437,
-  "ascendant_sidereal_longitude": 153.207476,
-  "mc_sidereal_longitude": 62.972317,
+  "ascendant_sidereal_longitude": 33.99835,
+  "mc_sidereal_longitude": 285.271311,
   "ayanamsha": 24.140231,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "1e66b11e157a81ff49c397fcbbb9eac069bb9b53936aaedb41dfb422100470ee"
+  "sha256_manifest_hash": "127d701e0dfee714ccd519c08c274d29bbc6ca583774a163bd0ea13602adad82"
 }

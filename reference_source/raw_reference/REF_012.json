@@ -2,6 +2,7 @@
   "fixture_id": "REF_012",
   "name": "Cairo Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1991,
   "local_month": 4,
@@ -13,8 +14,8 @@
   "julian_day": 2448357.0,
   "latitude": 30.0444,
   "longitude": 31.2357,
-  "ascendant_sidereal_longitude": 121.237883,
-  "mc_sidereal_longitude": 28.143022,
+  "ascendant_sidereal_longitude": 121.241144,
+  "mc_sidereal_longitude": 28.146786,
   "ayanamsha": 23.728153,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "bd3c52cd0b6ecf6c20db31c70c09eb41ef344584eb835920d86decb1fe4b9cc2"
+  "sha256_manifest_hash": "79602ff6d682a29af565cef4514e4f06d754c8ad3eb036b918806d7a21c34799"
 }

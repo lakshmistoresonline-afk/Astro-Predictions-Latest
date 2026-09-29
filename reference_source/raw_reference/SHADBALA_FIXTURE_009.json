@@ -2,6 +2,7 @@
   "fixture_id": "SHADBALA_FIXTURE_009",
   "name": "Singapore Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 2010,
   "local_month": 8,
@@ -13,8 +14,8 @@
   "julian_day": 2455417.916667,
   "latitude": 1.3521,
   "longitude": 103.8198,
-  "ascendant_sidereal_longitude": 305.207236,
-  "mc_sidereal_longitude": 219.62664,
+  "ascendant_sidereal_longitude": 274.977725,
+  "mc_sidereal_longitude": 189.860702,
   "ayanamsha": 23.998024,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "c702a31579c73bc09432f07914400b0e2b53c0c5422405bc9a91d7c4b3d3ebcc"
+  "sha256_manifest_hash": "f8b5f9a511cde5a9c7f8e045c21af0b2ade667e0392b7e24a2da7791c881f0d8"
 }

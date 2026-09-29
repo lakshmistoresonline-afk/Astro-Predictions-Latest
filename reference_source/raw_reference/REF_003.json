@@ -2,6 +2,7 @@
   "fixture_id": "REF_003",
   "name": "User B London",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1985,
   "local_month": 7,
@@ -13,8 +14,8 @@
   "julian_day": 2446269.239583,
   "latitude": 51.5074,
   "longitude": -0.1278,
-  "ascendant_sidereal_longitude": 177.672008,
-  "mc_sidereal_longitude": 94.542295,
+  "ascendant_sidereal_longitude": 240.588612,
+  "mc_sidereal_longitude": 184.915476,
   "ayanamsha": 23.648358,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "d4752e436774583773066812ba87b8f9b83d7c466b36696fbc73ac57c3b060bf"
+  "sha256_manifest_hash": "578c8b3bd57f049d0459800b8a709d67707fcaf646e36df7681a6ab2336c50e9"
 }

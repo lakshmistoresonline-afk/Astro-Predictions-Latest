@@ -2,6 +2,7 @@
   "fixture_id": "REF_007",
   "name": "Paris Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1975,
   "local_month": 3,
@@ -13,8 +14,8 @@
   "julian_day": 2442492.708333,
   "latitude": 48.8566,
   "longitude": 2.3522,
-  "ascendant_sidereal_longitude": 91.316002,
-  "mc_sidereal_longitude": 336.981454,
+  "ascendant_sidereal_longitude": 306.355131,
+  "mc_sidereal_longitude": 233.101322,
   "ayanamsha": 23.504018,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "68b36f50260740fcc399bf50d54f8f1c488fcc0a05fe915ef45da9e0d8fc2d53"
+  "sha256_manifest_hash": "293c7ee63b3716c4b8a9b0af8174fa537f4fe8c80ce01d1218b10d839ab3ad39"
 }

@@ -2,6 +2,7 @@
   "fixture_id": "REF_006",
   "name": "Sydney Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1998,
   "local_month": 11,
@@ -13,8 +14,8 @@
   "julian_day": 2451129.6875,
   "latitude": -33.8688,
   "longitude": 151.2093,
-  "ascendant_sidereal_longitude": 71.196415,
-  "mc_sidereal_longitude": 0.270706,
+  "ascendant_sidereal_longitude": 336.010111,
+  "mc_sidereal_longitude": 245.996603,
   "ayanamsha": 23.834127,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "158aba6287d7a51be9142cc622c88e02a7f6c2648797225d28b97ffdeaa0d83b"
+  "sha256_manifest_hash": "a482cacb9873b6683c64e74d5a4d41aeb88f7a85930da647c8936529c9c67a36"
 }

@@ -1,0 +1,743 @@
+{
+  "mean_delta_arcsec": 18.01,
+  "max_delta_arcsec": 32.25,
+  "max_delta_body": "SHADBALA_FIXTURE_010 Sun",
+  "results_count": 135,
+  "details": [
+    {
+      "fixture_id": "REF_001",
+      "body": "Sun",
+      "pyephem_deg": 161.552177,
+      "skyfield_deg": 161.543565,
+      "delta_arcseconds": 31.0
+    },
+    {
+      "fixture_id": "REF_001",
+      "body": "Moon",
+      "pyephem_deg": 97.208097,
+      "skyfield_deg": 97.205167,
+      "delta_arcseconds": 10.55
+    },
+    {
+      "fixture_id": "REF_001",
+      "body": "Mars",
+      "pyephem_deg": 271.034826,
+      "skyfield_deg": 271.033685,
+      "delta_arcseconds": 4.11
+    },
+    {
+      "fixture_id": "REF_001",
+      "body": "Mercury",
+      "pyephem_deg": 178.295669,
+      "skyfield_deg": 178.287276,
+      "delta_arcseconds": 30.21
+    },
+    {
+      "fixture_id": "REF_001",
+      "body": "Jupiter",
+      "pyephem_deg": 322.135561,
+      "skyfield_deg": 322.137911,
+      "delta_arcseconds": 8.46
+    },
+    {
+      "fixture_id": "REF_001",
+      "body": "Venus",
+      "pyephem_deg": 201.826837,
+      "skyfield_deg": 201.819524,
+      "delta_arcseconds": 26.33
+    },
+    {
+      "fixture_id": "REF_001",
+      "body": "Saturn",
+      "pyephem_deg": 221.705249,
+      "skyfield_deg": 221.69935,
+      "delta_arcseconds": 21.24
+    },
+    {
+      "fixture_id": "REF_002",
+      "body": "Sun",
+      "pyephem_deg": 271.126883,
+      "skyfield_deg": 271.118149,
+      "delta_arcseconds": 31.44
+    },
+    {
+      "fixture_id": "REF_002",
+      "body": "Moon",
+      "pyephem_deg": 139.220514,
+      "skyfield_deg": 139.217592,
+      "delta_arcseconds": 10.52
+    },
+    {
+      "fixture_id": "REF_002",
+      "body": "Mars",
+      "pyephem_deg": 236.071603,
+      "skyfield_deg": 236.063892,
+      "delta_arcseconds": 27.76
+    },
+    {
+      "fixture_id": "REF_002",
+      "body": "Mercury",
+      "pyephem_deg": 258.055913,
+      "skyfield_deg": 258.047326,
+      "delta_arcseconds": 30.91
+    },
+    {
+      "fixture_id": "REF_002",
+      "body": "Jupiter",
+      "pyephem_deg": 69.829515,
+      "skyfield_deg": 69.831904,
+      "delta_arcseconds": 8.6
+    },
+    {
+      "fixture_id": "REF_002",
+      "body": "Venus",
+      "pyephem_deg": 277.337955,
+      "skyfield_deg": 277.329201,
+      "delta_arcseconds": 31.51
+    },
+    {
+      "fixture_id": "REF_002",
+      "body": "Saturn",
+      "pyephem_deg": 263.70078,
+      "skyfield_deg": 263.692022,
+      "delta_arcseconds": 31.53
+    },
+    {
+      "fixture_id": "REF_003",
+      "body": "Sun",
+      "pyephem_deg": 96.408495,
+      "skyfield_deg": 96.399982,
+      "delta_arcseconds": 30.65
+    },
+    {
+      "fixture_id": "REF_003",
+      "body": "Moon",
+      "pyephem_deg": 156.898168,
+      "skyfield_deg": 156.895286,
+      "delta_arcseconds": 10.38
+    },
+    {
+      "fixture_id": "REF_003",
+      "body": "Mars",
+      "pyephem_deg": 94.990207,
+      "skyfield_deg": 94.981644,
+      "delta_arcseconds": 30.83
+    },
+    {
+      "fixture_id": "REF_003",
+      "body": "Mercury",
+      "pyephem_deg": 120.740223,
+      "skyfield_deg": 120.732205,
+      "delta_arcseconds": 28.86
+    },
+    {
+      "fixture_id": "REF_003",
+      "body": "Jupiter",
+      "pyephem_deg": 290.207377,
+      "skyfield_deg": 290.209852,
+      "delta_arcseconds": 8.91
+    },
+    {
+      "fixture_id": "REF_003",
+      "body": "Venus",
+      "pyephem_deg": 54.54029,
+      "skyfield_deg": 54.533192,
+      "delta_arcseconds": 25.55
+    },
+    {
+      "fixture_id": "REF_003",
+      "body": "Saturn",
+      "pyephem_deg": 208.029733,
+      "skyfield_deg": 208.028785,
+      "delta_arcseconds": 3.41
+    },
+    {
+      "fixture_id": "REF_004",
+      "body": "Sun",
+      "pyephem_deg": 256.74096,
+      "skyfield_deg": 256.732102,
+      "delta_arcseconds": 31.89
+    },
+    {
+      "fixture_id": "REF_004",
+      "body": "Moon",
+      "pyephem_deg": 201.978937,
+      "skyfield_deg": 201.975915,
+      "delta_arcseconds": 10.88
+    },
+    {
+      "fixture_id": "REF_004",
+      "body": "Mars",
+      "pyephem_deg": 304.282733,
+      "skyfield_deg": 304.2757,
+      "delta_arcseconds": 25.32
+    },
+    {
+      "fixture_id": "REF_004",
+      "body": "Mercury",
+      "pyephem_deg": 248.373227,
+      "skyfield_deg": 248.364414,
+      "delta_arcseconds": 31.73
+    },
+    {
+      "fixture_id": "REF_004",
+      "body": "Jupiter",
+      "pyephem_deg": 1.414075,
+      "skyfield_deg": 1.412447,
+      "delta_arcseconds": 5.86
+    },
+    {
+      "fixture_id": "REF_004",
+      "body": "Venus",
+      "pyephem_deg": 217.976107,
+      "skyfield_deg": 217.968497,
+      "delta_arcseconds": 27.4
+    },
+    {
+      "fixture_id": "REF_004",
+      "body": "Saturn",
+      "pyephem_deg": 16.542556,
+      "skyfield_deg": 16.542343,
+      "delta_arcseconds": 0.77
+    },
+    {
+      "fixture_id": "REF_005",
+      "body": "Sun",
+      "pyephem_deg": 20.33448,
+      "skyfield_deg": 20.325842,
+      "delta_arcseconds": 31.1
+    },
+    {
+      "fixture_id": "REF_005",
+      "body": "Moon",
+      "pyephem_deg": 77.780589,
+      "skyfield_deg": 77.777566,
+      "delta_arcseconds": 10.88
+    },
+    {
+      "fixture_id": "REF_005",
+      "body": "Mars",
+      "pyephem_deg": 117.841765,
+      "skyfield_deg": 117.839574,
+      "delta_arcseconds": 7.89
+    },
+    {
+      "fixture_id": "REF_005",
+      "body": "Mercury",
+      "pyephem_deg": 39.940587,
+      "skyfield_deg": 39.932312,
+      "delta_arcseconds": 29.79
+    },
+    {
+      "fixture_id": "REF_005",
+      "body": "Jupiter",
+      "pyephem_deg": 229.980649,
+      "skyfield_deg": 229.982449,
+      "delta_arcseconds": 6.48
+    },
+    {
+      "fixture_id": "REF_005",
+      "body": "Venus",
+      "pyephem_deg": 351.785992,
+      "skyfield_deg": 351.77802,
+      "delta_arcseconds": 28.7
+    },
+    {
+      "fixture_id": "REF_005",
+      "body": "Saturn",
+      "pyephem_deg": 328.001814,
+      "skyfield_deg": 327.995263,
+      "delta_arcseconds": 23.58
+    },
+    {
+      "fixture_id": "REF_006",
+      "body": "Sun",
+      "pyephem_deg": 205.767969,
+      "skyfield_deg": 205.759179,
+      "delta_arcseconds": 31.64
+    },
+    {
+      "fixture_id": "REF_006",
+      "body": "Moon",
+      "pyephem_deg": 129.221246,
+      "skyfield_deg": 129.218192,
+      "delta_arcseconds": 10.99
+    },
+    {
+      "fixture_id": "REF_006",
+      "body": "Mars",
+      "pyephem_deg": 147.486654,
+      "skyfield_deg": 147.480699,
+      "delta_arcseconds": 21.44
+    },
+    {
+      "fixture_id": "REF_006",
+      "body": "Mercury",
+      "pyephem_deg": 228.54185,
+      "skyfield_deg": 228.533477,
+      "delta_arcseconds": 30.14
+    },
+    {
+      "fixture_id": "REF_006",
+      "body": "Jupiter",
+      "pyephem_deg": 324.346484,
+      "skyfield_deg": 324.346083,
+      "delta_arcseconds": 1.44
+    },
+    {
+      "fixture_id": "REF_006",
+      "body": "Venus",
+      "pyephem_deg": 209.045339,
+      "skyfield_deg": 209.036577,
+      "delta_arcseconds": 31.54
+    },
+    {
+      "fixture_id": "REF_006",
+      "body": "Saturn",
+      "pyephem_deg": 4.8419,
+      "skyfield_deg": 4.84417,
+      "delta_arcseconds": 8.17
+    },
+    {
+      "fixture_id": "REF_007",
+      "body": "Sun",
+      "pyephem_deg": 336.804387,
+      "skyfield_deg": 336.795846,
+      "delta_arcseconds": 30.75
+    },
+    {
+      "fixture_id": "REF_007",
+      "body": "Moon",
+      "pyephem_deg": 71.463294,
+      "skyfield_deg": 71.460511,
+      "delta_arcseconds": 10.02
+    },
+    {
+      "fixture_id": "REF_007",
+      "body": "Mars",
+      "pyephem_deg": 290.422113,
+      "skyfield_deg": 290.415301,
+      "delta_arcseconds": 24.52
+    },
+    {
+      "fixture_id": "REF_007",
+      "body": "Mercury",
+      "pyephem_deg": 313.489362,
+      "skyfield_deg": 313.481293,
+      "delta_arcseconds": 29.05
+    },
+    {
+      "fixture_id": "REF_007",
+      "body": "Jupiter",
+      "pyephem_deg": 337.451382,
+      "skyfield_deg": 337.442862,
+      "delta_arcseconds": 30.67
+    },
+    {
+      "fixture_id": "REF_007",
+      "body": "Venus",
+      "pyephem_deg": 8.424593,
+      "skyfield_deg": 8.416947,
+      "delta_arcseconds": 27.53
+    },
+    {
+      "fixture_id": "REF_007",
+      "body": "Saturn",
+      "pyephem_deg": 78.824039,
+      "skyfield_deg": 78.822473,
+      "delta_arcseconds": 5.64
+    },
+    {
+      "fixture_id": "REF_008",
+      "body": "Sun",
+      "pyephem_deg": 67.176463,
+      "skyfield_deg": 67.167869,
+      "delta_arcseconds": 30.94
+    },
+    {
+      "fixture_id": "REF_008",
+      "body": "Moon",
+      "pyephem_deg": 322.110717,
+      "skyfield_deg": 322.107671,
+      "delta_arcseconds": 10.97
+    },
+    {
+      "fixture_id": "REF_008",
+      "body": "Mars",
+      "pyephem_deg": 11.736626,
+      "skyfield_deg": 11.730446,
+      "delta_arcseconds": 22.25
+    },
+    {
+      "fixture_id": "REF_008",
+      "body": "Mercury",
+      "pyephem_deg": 88.646894,
+      "skyfield_deg": 88.638649,
+      "delta_arcseconds": 29.68
+    },
+    {
+      "fixture_id": "REF_008",
+      "body": "Jupiter",
+      "pyephem_deg": 134.794361,
+      "skyfield_deg": 134.789223,
+      "delta_arcseconds": 18.5
+    },
+    {
+      "fixture_id": "REF_008",
+      "body": "Venus",
+      "pyephem_deg": 69.45178,
+      "skyfield_deg": 69.443207,
+      "delta_arcseconds": 30.86
+    },
+    {
+      "fixture_id": "REF_008",
+      "body": "Saturn",
+      "pyephem_deg": 294.365538,
+      "skyfield_deg": 294.366306,
+      "delta_arcseconds": 2.76
+    },
+    {
+      "fixture_id": "REF_011",
+      "body": "Sun",
+      "pyephem_deg": 237.040283,
+      "skyfield_deg": 237.031549,
+      "delta_arcseconds": 31.44
+    },
+    {
+      "fixture_id": "REF_011",
+      "body": "Moon",
+      "pyephem_deg": 276.936711,
+      "skyfield_deg": 276.933713,
+      "delta_arcseconds": 10.79
+    },
+    {
+      "fixture_id": "REF_011",
+      "body": "Mars",
+      "pyephem_deg": 347.412627,
+      "skyfield_deg": 347.411532,
+      "delta_arcseconds": 3.94
+    },
+    {
+      "fixture_id": "REF_011",
+      "body": "Mercury",
+      "pyephem_deg": 243.139449,
+      "skyfield_deg": 243.130756,
+      "delta_arcseconds": 31.29
+    },
+    {
+      "fixture_id": "REF_011",
+      "body": "Jupiter",
+      "pyephem_deg": 35.000407,
+      "skyfield_deg": 35.00276,
+      "delta_arcseconds": 8.47
+    },
+    {
+      "fixture_id": "REF_011",
+      "body": "Venus",
+      "pyephem_deg": 209.784976,
+      "skyfield_deg": 209.776897,
+      "delta_arcseconds": 29.08
+    },
+    {
+      "fixture_id": "REF_011",
+      "body": "Saturn",
+      "pyephem_deg": 249.745013,
+      "skyfield_deg": 249.736373,
+      "delta_arcseconds": 31.1
+    },
+    {
+      "fixture_id": "REF_012",
+      "body": "Sun",
+      "pyephem_deg": 356.513883,
+      "skyfield_deg": 356.50526,
+      "delta_arcseconds": 31.04
+    },
+    {
+      "fixture_id": "REF_012",
+      "body": "Moon",
+      "pyephem_deg": 302.533216,
+      "skyfield_deg": 302.530313,
+      "delta_arcseconds": 10.45
+    },
+    {
+      "fixture_id": "REF_012",
+      "body": "Mars",
+      "pyephem_deg": 70.382896,
+      "skyfield_deg": 70.378392,
+      "delta_arcseconds": 16.21
+    },
+    {
+      "fixture_id": "REF_012",
+      "body": "Mercury",
+      "pyephem_deg": 3.700818,
+      "skyfield_deg": 3.692188,
+      "delta_arcseconds": 31.07
+    },
+    {
+      "fixture_id": "REF_012",
+      "body": "Jupiter",
+      "pyephem_deg": 100.126029,
+      "skyfield_deg": 100.124445,
+      "delta_arcseconds": 5.7
+    },
+    {
+      "fixture_id": "REF_012",
+      "body": "Venus",
+      "pyephem_deg": 33.437713,
+      "skyfield_deg": 33.430276,
+      "delta_arcseconds": 26.77
+    },
+    {
+      "fixture_id": "REF_012",
+      "body": "Saturn",
+      "pyephem_deg": 282.155416,
+      "skyfield_deg": 282.150778,
+      "delta_arcseconds": 16.7
+    },
+    {
+      "fixture_id": "REF_013",
+      "body": "Sun",
+      "pyephem_deg": 316.188804,
+      "skyfield_deg": 316.180151,
+      "delta_arcseconds": 31.15
+    },
+    {
+      "fixture_id": "REF_013",
+      "body": "Moon",
+      "pyephem_deg": 13.913244,
+      "skyfield_deg": 13.910299,
+      "delta_arcseconds": 10.6
+    },
+    {
+      "fixture_id": "REF_013",
+      "body": "Mars",
+      "pyephem_deg": 175.457421,
+      "skyfield_deg": 175.458917,
+      "delta_arcseconds": 5.39
+    },
+    {
+      "fixture_id": "REF_013",
+      "body": "Mercury",
+      "pyephem_deg": 289.402231,
+      "skyfield_deg": 289.394143,
+      "delta_arcseconds": 29.12
+    },
+    {
+      "fixture_id": "REF_013",
+      "body": "Jupiter",
+      "pyephem_deg": 196.951342,
+      "skyfield_deg": 196.95114,
+      "delta_arcseconds": 0.73
+    },
+    {
+      "fixture_id": "REF_013",
+      "body": "Venus",
+      "pyephem_deg": 275.471368,
+      "skyfield_deg": 275.463985,
+      "delta_arcseconds": 26.58
+    },
+    {
+      "fixture_id": "REF_013",
+      "body": "Saturn",
+      "pyephem_deg": 178.211686,
+      "skyfield_deg": 178.212946,
+      "delta_arcseconds": 4.54
+    },
+    {
+      "fixture_id": "REF_014",
+      "body": "Sun",
+      "pyephem_deg": 118.937265,
+      "skyfield_deg": 118.928656,
+      "delta_arcseconds": 30.99
+    },
+    {
+      "fixture_id": "REF_014",
+      "body": "Moon",
+      "pyephem_deg": 228.075137,
+      "skyfield_deg": 228.072244,
+      "delta_arcseconds": 10.41
+    },
+    {
+      "fixture_id": "REF_014",
+      "body": "Mars",
+      "pyephem_deg": 65.582535,
+      "skyfield_deg": 65.576225,
+      "delta_arcseconds": 22.72
+    },
+    {
+      "fixture_id": "REF_014",
+      "body": "Mercury",
+      "pyephem_deg": 121.743677,
+      "skyfield_deg": 121.735072,
+      "delta_arcseconds": 30.98
+    },
+    {
+      "fixture_id": "REF_014",
+      "body": "Jupiter",
+      "pyephem_deg": 193.87685,
+      "skyfield_deg": 193.872277,
+      "delta_arcseconds": 16.46
+    },
+    {
+      "fixture_id": "REF_014",
+      "body": "Venus",
+      "pyephem_deg": 164.691085,
+      "skyfield_deg": 164.684109,
+      "delta_arcseconds": 25.11
+    },
+    {
+      "fixture_id": "REF_014",
+      "body": "Saturn",
+      "pyephem_deg": 316.563971,
+      "skyfield_deg": 316.566307,
+      "delta_arcseconds": 8.41
+    },
+    {
+      "fixture_id": "REF_015",
+      "body": "Sun",
+      "pyephem_deg": 78.746847,
+      "skyfield_deg": 78.738142,
+      "delta_arcseconds": 31.34
+    },
+    {
+      "fixture_id": "REF_015",
+      "body": "Moon",
+      "pyephem_deg": 58.091871,
+      "skyfield_deg": 58.088671,
+      "delta_arcseconds": 11.52
+    },
+    {
+      "fixture_id": "REF_015",
+      "body": "Mars",
+      "pyephem_deg": 351.296219,
+      "skyfield_deg": 351.292711,
+      "delta_arcseconds": 12.63
+    },
+    {
+      "fixture_id": "REF_015",
+      "body": "Mercury",
+      "pyephem_deg": 104.505897,
+      "skyfield_deg": 104.497771,
+      "delta_arcseconds": 29.25
+    },
+    {
+      "fixture_id": "REF_015",
+      "body": "Jupiter",
+      "pyephem_deg": 166.178411,
+      "skyfield_deg": 166.175011,
+      "delta_arcseconds": 12.24
+    },
+    {
+      "fixture_id": "REF_015",
+      "body": "Venus",
+      "pyephem_deg": 103.771501,
+      "skyfield_deg": 103.763318,
+      "delta_arcseconds": 29.46
+    },
+    {
+      "fixture_id": "REF_015",
+      "body": "Saturn",
+      "pyephem_deg": 94.48654,
+      "skyfield_deg": 94.477993,
+      "delta_arcseconds": 30.77
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "body": "Sun",
+      "pyephem_deg": 112.579748,
+      "skyfield_deg": 112.570996,
+      "delta_arcseconds": 31.51
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "body": "Moon",
+      "pyephem_deg": 102.473474,
+      "skyfield_deg": 102.470307,
+      "delta_arcseconds": 11.4
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "body": "Mars",
+      "pyephem_deg": 162.275182,
+      "skyfield_deg": 162.268406,
+      "delta_arcseconds": 24.39
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "body": "Mercury",
+      "pyephem_deg": 139.740288,
+      "skyfield_deg": 139.732138,
+      "delta_arcseconds": 29.34
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "body": "Jupiter",
+      "pyephem_deg": 338.780475,
+      "skyfield_deg": 338.781199,
+      "delta_arcseconds": 2.61
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "body": "Venus",
+      "pyephem_deg": 158.174791,
+      "skyfield_deg": 158.167723,
+      "delta_arcseconds": 25.44
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_009",
+      "body": "Saturn",
+      "pyephem_deg": 157.534498,
+      "skyfield_deg": 157.527262,
+      "delta_arcseconds": 26.05
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "body": "Sun",
+      "pyephem_deg": 178.788399,
+      "skyfield_deg": 178.779441,
+      "delta_arcseconds": 32.25
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "body": "Moon",
+      "pyephem_deg": 168.932719,
+      "skyfield_deg": 168.929299,
+      "delta_arcseconds": 12.31
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "body": "Mars",
+      "pyephem_deg": 355.966955,
+      "skyfield_deg": 355.969524,
+      "delta_arcseconds": 9.25
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "body": "Mercury",
+      "pyephem_deg": 196.969158,
+      "skyfield_deg": 196.960456,
+      "delta_arcseconds": 31.33
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "body": "Jupiter",
+      "pyephem_deg": 264.695863,
+      "skyfield_deg": 264.692073,
+      "delta_arcseconds": 13.64
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "body": "Venus",
+      "pyephem_deg": 141.220133,
+      "skyfield_deg": 141.212379,
+      "delta_arcseconds": 27.91
+    },
+    {
+      "fixture_id": "SHADBALA_FIXTURE_010",
+      "body": "Saturn",
+      "pyephem_deg": 271.148097,
+      "skyfield_deg": 271.144946,
+      "delta_arcseconds": 11.34
+    }
+  ]
+}

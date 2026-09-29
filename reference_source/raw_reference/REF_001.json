@@ -2,6 +2,7 @@
   "fixture_id": "REF_001",
   "name": "Subramanian T S",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1986,
   "local_month": 9,
@@ -13,8 +14,8 @@
   "julian_day": 2446701.958333,
   "latitude": 10.7867,
   "longitude": 76.6548,
-  "ascendant_sidereal_longitude": 328.721219,
-  "mc_sidereal_longitude": 240.444875,
+  "ascendant_sidereal_longitude": 311.20089,
+  "mc_sidereal_longitude": 226.542554,
   "ayanamsha": 23.664897,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "80d9391a89c74dae461725502a57bbece80cd172ed28de348f966406dbcb32bc"
+  "sha256_manifest_hash": "cf0a50697ad0f8fa2664240e66e01dbe45ead3ab35522d005c4fca1899b283bf"
 }

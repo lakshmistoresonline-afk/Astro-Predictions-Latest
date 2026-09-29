@@ -2,6 +2,7 @@
   "fixture_id": "REF_015",
   "name": "Honolulu Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 2005,
   "local_month": 7,
@@ -13,8 +14,8 @@
   "julian_day": 2453556.145833,
   "latitude": 21.3069,
   "longitude": -157.8583,
-  "ascendant_sidereal_longitude": 19.819214,
-  "mc_sidereal_longitude": 278.677787,
+  "ascendant_sidereal_longitude": 72.539608,
+  "mc_sidereal_longitude": 333.219715,
   "ayanamsha": 23.926867,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "19584a50d634293ff9904fdb66328f088310cd457779a6be706ddf7f341c4953"
+  "sha256_manifest_hash": "5c6a837f0b791fc88a69eadf96d2624dea837d211f896aec93ecf347adf5a2ec"
 }

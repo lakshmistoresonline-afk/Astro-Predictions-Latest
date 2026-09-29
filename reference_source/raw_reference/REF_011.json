@@ -2,6 +2,7 @@
   "fixture_id": "REF_011",
   "name": "Berlin Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1988,
   "local_month": 12,
@@ -13,8 +14,8 @@
   "julian_day": 2447507.885417,
   "latitude": 52.52,
   "longitude": 13.405,
-  "ascendant_sidereal_longitude": 347.992455,
-  "mc_sidereal_longitude": 250.612683,
+  "ascendant_sidereal_longitude": 266.42536,
+  "mc_sidereal_longitude": 212.079231,
   "ayanamsha": 23.6957,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "29df0094bc22cd3a00bf0a5a8fa44f94b62ae53a1ef0583b22ad913bfd50f063"
+  "sha256_manifest_hash": "e19576b605efb25d2038f69586898ecce4022ce30335d74f3ca2a7cd2cd242a8"
 }

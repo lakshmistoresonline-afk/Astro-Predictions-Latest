@@ -2,6 +2,7 @@
   "fixture_id": "REF_004",
   "name": "New York Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 2000,
   "local_month": 1,
@@ -13,8 +14,8 @@
   "julian_day": 2451545.208333,
   "latitude": 40.7128,
   "longitude": -74.006,
-  "ascendant_sidereal_longitude": 250.588674,
-  "mc_sidereal_longitude": 184.838728,
+  "ascendant_sidereal_longitude": 356.111682,
+  "mc_sidereal_longitude": 256.867786,
   "ayanamsha": 23.850008,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "f3599349f757dd0d47eb9b712dc0d840ee0fc33c29e3f711abc6b6ac607c9093"
+  "sha256_manifest_hash": "e871fea1385d120e77b96e529c68688d01d06662ad5d17c2e1509ba9cae5cef8"
 }

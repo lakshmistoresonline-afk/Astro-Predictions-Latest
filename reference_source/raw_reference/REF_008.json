@@ -2,6 +2,7 @@
   "fixture_id": "REF_008",
   "name": "Reykjavik Native",
   "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+  "source_version": "4.2.1",
   "license": "MIT License",
   "local_year": 1992,
   "local_month": 6,
@@ -13,8 +14,8 @@
   "julian_day": 2448795.489583,
   "latitude": 64.1466,
   "longitude": -21.9426,
-  "ascendant_sidereal_longitude": 143.892743,
-  "mc_sidereal_longitude": 46.357251,
+  "ascendant_sidereal_longitude": 247.425335,
+  "mc_sidereal_longitude": 222.832613,
   "ayanamsha": 23.744913,
   "planets": {
     "Sun": {
@@ -54,5 +55,5 @@
     }
   },
   "type": "REAL_REFERENCE",
-  "sha256_manifest_hash": "6d66d412739f71cd4b245d2ecee03dea15f2cfba29ae7f210168b297877d82fc"
+  "sha256_manifest_hash": "1c012b41d894ad626a17bf7609e6860702790302bfb1a6ec332cdd2cf06e7725"
 }

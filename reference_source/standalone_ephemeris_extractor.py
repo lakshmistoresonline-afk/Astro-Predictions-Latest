@@ -1,5 +1,5 @@
 """
-Standalone Ephemeris Reference Data Extractor (Phase 2E-R4.1-R2).
+Standalone Ephemeris Reference Data Extractor (Phase 2E-R4.1-R3).
 Computes raw astronomical reference JSON datasets using PyEphem 4.2.1 (XEphem Engine).
 ABSOLUTELY ZERO IMPORTS FROM apps.api.engines.*!
 """
@@ -8,6 +8,8 @@ import hashlib
 import json
 import math
 import os
+import platform
+import sys
 from pathlib import Path
 
 import ephem
@@ -49,12 +51,10 @@ def extract_pyephem_positions(utc_datetime_iso: str, lat: float, lon: float, aya
     planets_out = {}
     for name, body in EPHEM_PLANETS.items():
         body.compute(observer)
-        # Convert equatorial / ecliptic coordinates
         ecl = ephem.Ecliptic(body)
         trop_lon_deg = math.degrees(ecl.lon)
         sid_lon_deg = (trop_lon_deg - ayanamsha) % 360.0
 
-        # Calculate velocity by sampling +1 hour
         observer_next = ephem.Observer()
         observer_next.lat = str(lat)
         observer_next.lon = str(lon)
@@ -78,22 +78,27 @@ def extract_pyephem_positions(utc_datetime_iso: str, lat: float, lon: float, aya
 
     return planets_out
 
-# Standalone MC & Ascendant calculation (Meeus Ch. 14 / LST Geometry)
-def calculate_standalone_ascendant_mc(jd: float, lat: float, lon: float, ayanamsha: float) -> tuple:
+def calculate_standalone_ascendant_mc(utc_datetime_iso: str, lat: float, lon: float, ayanamsha: float, jd: float) -> tuple:
+    """Calculates sidereal Ascendant and MC using PyEphem native LST."""
+    observer = ephem.Observer()
+    observer.lat = str(lat)
+    observer.lon = str(lon)
+    observer.elevation = 0
+    observer.date = utc_datetime_iso.replace("T", " ").replace("Z", "")
+
+    lst_rad = float(observer.sidereal_time())
+    lst_deg = math.degrees(lst_rad)
+
     T = (jd - 2451545.0) / 36525.0
-    # Greenwich Mean Sidereal Time (GMST) in degrees
-    gmst = (280.46061837 + 36000.770053608 * T + 0.000387933 * T**2) % 360.0
-    # Local Sidereal Time (LST) in degrees
-    lst = (gmst + lon) % 360.0
+    eps = 23.43929111 - 0.013004167 * T # True obliquity
+    eps_rad = math.radians(eps)
 
     # Tropical MC
-    eps = 23.43929111 - 0.013004167 * T # Obliquity of ecliptic
-    eps_rad = math.radians(eps)
-    lst_rad = math.radians(lst)
-
     trop_mc = math.degrees(math.atan2(math.tan(lst_rad), math.cos(eps_rad))) % 360.0
-    if lst > 180 and trop_mc < 180: trop_mc += 180
-    elif lst < 180 and trop_mc > 180: trop_mc -= 180
+    if 180.0 <= lst_deg < 360.0 and trop_mc < 180.0:
+        trop_mc += 180.0
+    elif 0.0 <= lst_deg < 180.0 and trop_mc >= 180.0:
+        trop_mc -= 180.0
 
     # Tropical Ascendant
     lat_rad = math.radians(lat)
@@ -125,6 +130,13 @@ REFERENCE_PROFILES_RAW = [
 ]
 
 def run_extraction():
+    print(f"=== PYEPHEM STANDALONE EXTRACTION RUNNER ===")
+    print(f"PyEphem Version: {ephem.__version__}")
+    print(f"Python Version: {sys.version.split()[0]}")
+    print(f"Platform: {platform.platform()}")
+    print(f"Extraction Timestamp: {datetime.datetime.now(datetime.timezone.utc).isoformat()}")
+    print(f"=============================================")
+
     raw_dir = Path(__file__).parent / "raw_reference"
     target_fixture_dir = Path(__file__).parent.parent.parent / "fixtures" / "phase_2e_r4_1_reference"
 
@@ -137,21 +149,22 @@ def run_extraction():
         dt_parts = utc_iso.replace("Z", "").split("T")
         time_parts = [float(x) for x in dt_parts[1].split(":")]
         utc_hour = time_parts[0] + time_parts[1]/60.0 + time_parts[2]/360.0
-
         date_parts = [int(x) for x in dt_parts[0].split("-")]
+
         jd = calculate_standalone_julian_day(date_parts[0], date_parts[1], date_parts[2], utc_hour)
         ayanamsha = calculate_standalone_lahiri_ayanamsha(jd)
 
         # Extract planets using PyEphem 4.2.1
         planets_data = extract_pyephem_positions(utc_iso, lat, lon, ayanamsha)
 
-        # Extract Ascendant and MC
-        sid_asc, sid_mc = calculate_standalone_ascendant_mc(jd, lat, lon, ayanamsha)
+        # Extract Ascendant and MC using PyEphem native LST
+        sid_asc, sid_mc = calculate_standalone_ascendant_mc(utc_iso, lat, lon, ayanamsha, jd)
 
         raw_doc = {
             "fixture_id": fid,
             "name": name,
             "source_engine": "PyEphem 4.2.1 (XEphem C Astronomical Ephemeris Core)",
+            "source_version": ephem.__version__,
             "license": "MIT License",
             "local_year": y, "local_month": m, "local_day": d,
             "local_hour": h, "local_minute": mn,
@@ -171,26 +184,26 @@ def run_extraction():
         sha256_hash = hashlib.sha256(doc_bytes).hexdigest()
         raw_doc["sha256_manifest_hash"] = sha256_hash
 
-        raw_path = raw_dir / f"{fid}.json"
-        with open(raw_path, "w", encoding="utf-8") as f:
+        with open(raw_dir / f"{fid}.json", "w", encoding="utf-8") as f:
             json.dump(raw_doc, f, indent=2)
 
-        target_path = target_fixture_dir / f"{fid}.json"
-        with open(target_path, "w", encoding="utf-8") as f:
+        with open(target_fixture_dir / f"{fid}.json", "w", encoding="utf-8") as f:
             json.dump(raw_doc, f, indent=2)
 
         manifest_records.append({
             "fixture_id": fid,
             "file": f"{fid}.json",
             "sha256": sha256_hash,
-            "source": "PyEphem 4.2.1 (XEphem C Engine)"
+            "type": "REAL_REFERENCE",
+            "source": "PyEphem 4.2.1"
         })
+        print(f"Extracted {fid} ({name}) -> Asc: {sid_asc}°, MC: {sid_mc}°, Sun: {planets_data['Sun']['longitude']}°")
 
-    manifest_path = Path(__file__).parent.parent.parent.parent.parent / "PHASE_2E_R4_1_REFERENCE_MANIFEST.json"
+    manifest_path = Path(__file__).parent.parent.parent.parent.parent / "PHASE_2E_R4_1_R3_REFERENCE_MANIFEST.json"
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(manifest_records, f, indent=2)
 
-    print(f"Extracted {len(manifest_records)} raw PyEphem 4.2.1 reference datasets! Written manifest to PHASE_2E_R4_1_REFERENCE_MANIFEST.json")
+    print(f"Extracted {len(manifest_records)} raw PyEphem 4.2.1 reference datasets! Written manifest to PHASE_2E_R4_1_R3_REFERENCE_MANIFEST.json")
 
 if __name__ == "__main__":
     run_extraction()

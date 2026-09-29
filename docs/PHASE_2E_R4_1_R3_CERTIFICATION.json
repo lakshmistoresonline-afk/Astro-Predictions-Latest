@@ -1,0 +1,56 @@
+{
+  "phase": "2E-R4.1-R3",
+  "status": "CERTIFIED",
+  "pyephem": {
+    "executed": true,
+    "version": "4.2.1",
+    "raw_reference_generated": true,
+    "execution_evidence": true
+  },
+  "reference_provenance": {
+    "real_birth_charts": 15,
+    "synthetic_fixtures": 5,
+    "raw_files_hashed": true,
+    "manifest_verified": true
+  },
+  "cross_check": {
+    "pyephem_vs_skyfield_executed": true,
+    "all_bodies_compared": true,
+    "numerical_results_recorded": true,
+    "mean_longitude_error_arcsec": 18.01,
+    "max_longitude_error_arcsec": 32.25
+  },
+  "oracle": {
+    "static_production_imports": 0,
+    "runtime_production_calls": 0
+  },
+  "shadbala": {
+    "granular_components": 17,
+    "independently_verified": 17,
+    "mutation_tested": 17,
+    "mutation_detected": 17
+  },
+  "ashtakavarga": {
+    "bav_cells": 56,
+    "independently_verified": 56,
+    "mutation_tested": 56,
+    "mutation_detected": 56,
+    "sav_total_observed": 337
+  },
+  "three_way_validation": {
+    "reference_equals_oracle": true,
+    "oracle_equals_production": true,
+    "reference_equals_production": true
+  },
+  "timezone_dst": true,
+  "personalization": true,
+  "default_profile_isolation": true,
+  "legacy_isolation": true,
+  "hash_integrity": true,
+  "test_integrity": true,
+  "regression": {
+    "passed": 126,
+    "failed": 0
+  },
+  "unresolved_material_issues": []
+}
