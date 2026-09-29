@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_04_KENDRADI",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Kendradi Bala",
+  "target_planet": "Sun",
+  "baseline_value": 30.0,
+  "mutated_value": 40.0,
+  "restored_value": 30.0,
+  "detected": true
+}

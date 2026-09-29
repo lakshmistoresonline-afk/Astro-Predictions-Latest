@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_38_Jupiter_Venus",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Jupiter from Venus",
+  "target_planet": "Jupiter",
+  "contributor_source": "Venus",
+  "baseline_bav_vector": [
+    4,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5,
+    6,
+    4,
+    5,
+    5,
+    6
+  ],
+  "mutated_bav_vector": [
+    4,
+    5,
+    4,
+    5,
+    3,
+    3,
+    5,
+    6,
+    4,
+    5,
+    5,
+    6
+  ],
+  "restored_bav_vector": [
+    4,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5,
+    6,
+    4,
+    5,
+    5,
+    6
+  ],
+  "detected": true
+}

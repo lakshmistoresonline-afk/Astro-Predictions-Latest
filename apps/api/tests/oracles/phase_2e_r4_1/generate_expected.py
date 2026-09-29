@@ -3,6 +3,7 @@ Phase 2E-R4.1 Expected Value Generator.
 Reads reference input JSON files from apps/api/tests/fixtures/phase_2e_r4_1_reference/
 and evaluates the expected BAV, SAV, and Shadbala outputs using ONLY the pure R4.1 independent oracle.
 Zero imports from apps.api.engines.*!
+Explicitly preserves all 17 granular BPHS Shadbala subcomponents as top-level keys.
 """
 import glob
 import hashlib
@@ -50,7 +51,7 @@ def generate_frozen_expected_fixtures():
         bav_expected = {p: r4_independent_bav(ind_chart, p) for p in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]}
         sav_expected = r4_independent_sav(ind_chart)
 
-        # Compute pure independent Shadbala
+        # Compute pure independent Shadbala (all 17 subcomponents top-level)
         shadbala_expected = {p: r4_calculate_shadbala_for_planet(ind_chart, p) for p in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]}
 
         # Build expected fixture document

@@ -1,0 +1,122 @@
+[
+  {
+    "fixture_id": "REF_001",
+    "file": "REF_001.json",
+    "sha256": "0be7ae1d9b1030e2267e9321b21ddc5600b8dbd6e1669b34e0b581520ed24ac3",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_002",
+    "file": "REF_002.json",
+    "sha256": "54836d42245e7947b78dec188be76f9b61c4ae4843d8f19fb8e2032881306f79",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_003",
+    "file": "REF_003.json",
+    "sha256": "29db67806ef08c439618998dee81768f13161be75a9eaab34ee419f6e44cacf7",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_004",
+    "file": "REF_004.json",
+    "sha256": "2044f9ef0a8ba63e07aa2ac9119c7c3f55f194b5c7973fb4d49a4a6e22b4fe0b",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_005",
+    "file": "REF_005.json",
+    "sha256": "75006c7bfe5d32f16f2a3831a1922e2c1504211aabddc4c6db6b6e371b773a44",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_006",
+    "file": "REF_006.json",
+    "sha256": "3c15d1206284a910f2d5a2478e1a5eb980f408fb4e2e2820c260a4560e4c312d",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_007",
+    "file": "REF_007.json",
+    "sha256": "2e0e9fdcb9ad29bbb7484504d91c20a3326058366b383aa87a13c558e873a71f",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_008",
+    "file": "REF_008.json",
+    "sha256": "ce5aa00f3c00a84b6c3cbbad5694aee64adee39cbe2e0de5e932fd0238497a6a",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_011",
+    "file": "REF_011.json",
+    "sha256": "e41ece69ebb3a2d9072e339fe235db3d50c2e0848c43b992d764da5cf32312f6",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_012",
+    "file": "REF_012.json",
+    "sha256": "1d5b5ef0e6d2c48ef76ec404addb82f24299d1988768ed72ff7b0d1ebee604b7",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_013",
+    "file": "REF_013.json",
+    "sha256": "dc9171fa40d34f2571d2b35410066656eece9ee98f08e2d5923ba49dbe7d897d",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_014",
+    "file": "REF_014.json",
+    "sha256": "c131d8e133afba432031e4d25e37be3c125b1d189ec8e7f20cede96db146f775",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_015",
+    "file": "REF_015.json",
+    "sha256": "e7dea84dcb410daab8dce6ce86fd0272fc8855be335213e14fe1f788d672f243",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_016",
+    "file": "REF_016.json",
+    "sha256": "bebbb715a265301361c29e6b6f6e2a93770c837d940dd37e2d5b2cd393ee97b6",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_017",
+    "file": "REF_017.json",
+    "sha256": "3b2f33671022108d17d4b690691f68824c0303a302b347d2ce2efb94f9225803",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_018",
+    "file": "REF_018.json",
+    "sha256": "91fb1aef9a497c16bfdbe4e613cdd1895780f7d276d14ac4d33cb5b71321f9a1",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_019",
+    "file": "REF_019.json",
+    "sha256": "cbcc18884859dfec31c6c1aa615172fe489464bcdb62a0520028c61fac471b3e",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "REF_020",
+    "file": "REF_020.json",
+    "sha256": "85f50246e22ac8ec78ac9da51ab273d5c1cc961e493c2366f2398daa47bfa175",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "SHADBALA_FIXTURE_009",
+    "file": "SHADBALA_FIXTURE_009.json",
+    "sha256": "5da12c6cf9f89f9bb67042977ffe90e992186e0677d3a12ad874a7a949fb64c4",
+    "source": "PyEphem 4.2.1"
+  },
+  {
+    "fixture_id": "SHADBALA_FIXTURE_010",
+    "file": "SHADBALA_FIXTURE_010.json",
+    "sha256": "3042a79215a252621f7573b13b35e61ffe82e5093fb4809dcd0683fa3325f41d",
+    "source": "PyEphem 4.2.1"
+  }
+]

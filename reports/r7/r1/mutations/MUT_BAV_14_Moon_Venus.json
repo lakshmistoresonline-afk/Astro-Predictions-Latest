@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_14_Moon_Venus",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Moon from Venus",
+  "target_planet": "Moon",
+  "contributor_source": "Venus",
+  "baseline_bav_vector": [
+    6,
+    3,
+    4,
+    5,
+    2,
+    5,
+    1,
+    5,
+    5,
+    5,
+    4,
+    4
+  ],
+  "mutated_bav_vector": [
+    6,
+    3,
+    4,
+    5,
+    1,
+    5,
+    1,
+    5,
+    5,
+    5,
+    4,
+    4
+  ],
+  "restored_bav_vector": [
+    6,
+    3,
+    4,
+    5,
+    2,
+    5,
+    1,
+    5,
+    5,
+    5,
+    4,
+    4
+  ],
+  "detected": true
+}

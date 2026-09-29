@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_48_Venus_Ascendant",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Venus from Ascendant",
+  "target_planet": "Venus",
+  "contributor_source": "Ascendant",
+  "baseline_bav_vector": [
+    2,
+    5,
+    6,
+    5,
+    4,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5,
+    4
+  ],
+  "mutated_bav_vector": [
+    2,
+    5,
+    6,
+    5,
+    4,
+    5,
+    4,
+    5,
+    3,
+    3,
+    5,
+    4
+  ],
+  "restored_bav_vector": [
+    2,
+    5,
+    6,
+    5,
+    4,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5,
+    4
+  ],
+  "detected": true
+}

@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_17_DRIK",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Drik Bala",
+  "target_planet": "Sun",
+  "baseline_value": -0.05,
+  "mutated_value": 9.95,
+  "restored_value": -0.05,
+  "detected": true
+}

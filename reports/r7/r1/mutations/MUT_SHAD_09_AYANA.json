@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_09_AYANA",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Ayana Bala",
+  "target_planet": "Sun",
+  "baseline_value": 27.34,
+  "mutated_value": 37.34,
+  "restored_value": 27.34,
+  "detected": true
+}

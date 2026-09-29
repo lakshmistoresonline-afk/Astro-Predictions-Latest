@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_19_Mars_Mars",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Mars from Mars",
+  "target_planet": "Mars",
+  "contributor_source": "Mars",
+  "baseline_bav_vector": [
+    2,
+    3,
+    2,
+    6,
+    3,
+    3,
+    1,
+    6,
+    3,
+    4,
+    5,
+    1
+  ],
+  "mutated_bav_vector": [
+    2,
+    3,
+    2,
+    6,
+    3,
+    3,
+    1,
+    5,
+    3,
+    4,
+    5,
+    1
+  ],
+  "restored_bav_vector": [
+    2,
+    3,
+    2,
+    6,
+    3,
+    3,
+    1,
+    6,
+    3,
+    4,
+    5,
+    1
+  ],
+  "detected": true
+}

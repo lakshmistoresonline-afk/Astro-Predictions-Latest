@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_03_OJHA",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Ojha Yugma Bala",
+  "target_planet": "Sun",
+  "baseline_value": 15.0,
+  "mutated_value": 25.0,
+  "restored_value": 15.0,
+  "detected": true
+}

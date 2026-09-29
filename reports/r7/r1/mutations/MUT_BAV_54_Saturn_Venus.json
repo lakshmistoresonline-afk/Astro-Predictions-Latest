@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_54_Saturn_Venus",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Saturn from Venus",
+  "target_planet": "Saturn",
+  "contributor_source": "Venus",
+  "baseline_bav_vector": [
+    4,
+    4,
+    4,
+    4,
+    2,
+    4,
+    2,
+    2,
+    5,
+    2,
+    2,
+    4
+  ],
+  "mutated_bav_vector": [
+    4,
+    4,
+    4,
+    4,
+    2,
+    3,
+    2,
+    2,
+    5,
+    2,
+    2,
+    4
+  ],
+  "restored_bav_vector": [
+    4,
+    4,
+    4,
+    4,
+    2,
+    4,
+    2,
+    2,
+    5,
+    2,
+    2,
+    4
+  ],
+  "detected": true
+}

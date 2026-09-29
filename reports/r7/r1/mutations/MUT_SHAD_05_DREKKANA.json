@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_05_DREKKANA",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Drekkana Bala",
+  "target_planet": "Sun",
+  "baseline_value": 0.0,
+  "mutated_value": 10.0,
+  "restored_value": 0.0,
+  "detected": true
+}

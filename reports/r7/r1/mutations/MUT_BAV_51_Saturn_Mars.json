@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_51_Saturn_Mars",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Saturn from Mars",
+  "target_planet": "Saturn",
+  "contributor_source": "Mars",
+  "baseline_bav_vector": [
+    4,
+    4,
+    4,
+    4,
+    2,
+    4,
+    2,
+    2,
+    5,
+    2,
+    2,
+    4
+  ],
+  "mutated_bav_vector": [
+    4,
+    4,
+    4,
+    4,
+    2,
+    4,
+    2,
+    2,
+    4,
+    2,
+    2,
+    4
+  ],
+  "restored_bav_vector": [
+    4,
+    4,
+    4,
+    4,
+    2,
+    4,
+    2,
+    2,
+    5,
+    2,
+    2,
+    4
+  ],
+  "detected": true
+}

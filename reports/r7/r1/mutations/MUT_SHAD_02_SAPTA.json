@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_02_SAPTA",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Sapta Vargaja Bala",
+  "target_planet": "Sun",
+  "baseline_value": 60.0,
+  "mutated_value": 70.0,
+  "restored_value": 60.0,
+  "detected": true
+}

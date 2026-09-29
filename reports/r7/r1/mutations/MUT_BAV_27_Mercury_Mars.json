@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_27_Mercury_Mars",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Mercury from Mars",
+  "target_planet": "Mercury",
+  "contributor_source": "Mars",
+  "baseline_bav_vector": [
+    2,
+    6,
+    3,
+    6,
+    6,
+    5,
+    3,
+    5,
+    5,
+    5,
+    7,
+    1
+  ],
+  "mutated_bav_vector": [
+    2,
+    6,
+    3,
+    6,
+    6,
+    5,
+    3,
+    4,
+    5,
+    5,
+    7,
+    1
+  ],
+  "restored_bav_vector": [
+    2,
+    6,
+    3,
+    6,
+    6,
+    5,
+    3,
+    5,
+    5,
+    5,
+    7,
+    1
+  ],
+  "detected": true
+}

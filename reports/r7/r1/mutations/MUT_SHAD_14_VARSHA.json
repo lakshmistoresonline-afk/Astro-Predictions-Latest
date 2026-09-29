@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_14_VARSHA",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Varsha Bala",
+  "target_planet": "Sun",
+  "baseline_value": 0.0,
+  "mutated_value": 10.0,
+  "restored_value": 0.0,
+  "detected": true
+}

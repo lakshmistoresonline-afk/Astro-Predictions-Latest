@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_17_Mars_Sun",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Mars from Sun",
+  "target_planet": "Mars",
+  "contributor_source": "Sun",
+  "baseline_bav_vector": [
+    2,
+    3,
+    2,
+    6,
+    3,
+    3,
+    1,
+    6,
+    3,
+    4,
+    5,
+    1
+  ],
+  "mutated_bav_vector": [
+    2,
+    3,
+    2,
+    5,
+    3,
+    3,
+    1,
+    6,
+    3,
+    4,
+    5,
+    1
+  ],
+  "restored_bav_vector": [
+    2,
+    3,
+    2,
+    6,
+    3,
+    3,
+    1,
+    6,
+    3,
+    4,
+    5,
+    1
+  ],
+  "detected": true
+}

@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_10_TRIBHAGA",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Tribhaga Bala",
+  "target_planet": "Sun",
+  "baseline_value": 0.0,
+  "mutated_value": 10.0,
+  "restored_value": 0.0,
+  "detected": true
+}

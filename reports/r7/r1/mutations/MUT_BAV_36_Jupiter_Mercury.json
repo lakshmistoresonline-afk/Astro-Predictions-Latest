@@ -1,0 +1,50 @@
+{
+  "mutation_id": "MUT_BAV_36_Jupiter_Mercury",
+  "category": "BAV_CONTRIBUTOR_RULE",
+  "component": "BAV Jupiter from Mercury",
+  "target_planet": "Jupiter",
+  "contributor_source": "Mercury",
+  "baseline_bav_vector": [
+    4,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5,
+    6,
+    4,
+    5,
+    5,
+    6
+  ],
+  "mutated_bav_vector": [
+    4,
+    5,
+    4,
+    4,
+    4,
+    3,
+    5,
+    6,
+    4,
+    5,
+    5,
+    6
+  ],
+  "restored_bav_vector": [
+    4,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5,
+    6,
+    4,
+    5,
+    5,
+    6
+  ],
+  "detected": true
+}

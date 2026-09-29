@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_06_DIG",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Dig Bala",
+  "target_planet": "Sun",
+  "baseline_value": 38.33,
+  "mutated_value": 48.33,
+  "restored_value": 38.33,
+  "detected": true
+}

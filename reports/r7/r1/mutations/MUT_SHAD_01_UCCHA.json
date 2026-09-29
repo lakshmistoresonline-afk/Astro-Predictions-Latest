@@ -1,0 +1,10 @@
+{
+  "mutation_id": "MUT_SHAD_01_UCCHA",
+  "category": "SHADBALA_SUBCOMPONENT",
+  "component": "Uccha Bala",
+  "target_planet": "Sun",
+  "baseline_value": 9.49,
+  "mutated_value": 11.15,
+  "restored_value": 9.49,
+  "detected": true
+}
