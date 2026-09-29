@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_015",
+  "name": "Honolulu Native",
+  "local_year": 2005,
+  "local_month": 7,
+  "local_day": 4,
+  "local_hour": 5,
+  "local_minute": 30,
+  "timezone_str": "Pacific/Honolulu",
+  "birth_datetime_utc": "2005-07-04T15:30:00Z",
+  "latitude": 21.3069,
+  "longitude": -157.8583,
+  "type": "REAL_BIRTH_PROFILE"
+}

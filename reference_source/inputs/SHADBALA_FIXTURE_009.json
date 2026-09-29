@@ -1,0 +1,14 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_009",
+  "name": "Singapore Native",
+  "local_year": 2010,
+  "local_month": 8,
+  "local_day": 9,
+  "local_hour": 18,
+  "local_minute": 0,
+  "timezone_str": "Asia/Singapore",
+  "birth_datetime_utc": "2010-08-09T10:00:00Z",
+  "latitude": 1.3521,
+  "longitude": 103.8198,
+  "type": "REAL_BIRTH_PROFILE"
+}

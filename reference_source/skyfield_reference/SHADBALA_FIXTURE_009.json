@@ -1,0 +1,47 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_009",
+  "source_engine": "Skyfield 1.55 (NASA JPL DE421 Kernel)",
+  "version": "1.55",
+  "kernel": "de421.bsp",
+  "julian_day": 2455417.916667,
+  "ayanamsha": 23.998024,
+  "ascendant_sidereal_longitude": 274.977531,
+  "mc_sidereal_longitude": 189.860493,
+  "planets": {
+    "Sun": {
+      "longitude": 112.57976,
+      "velocity_deg_day": 0.959206,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 102.478978,
+      "velocity_deg_day": 15.037646,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 162.275224,
+      "velocity_deg_day": 0.623005,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 139.740308,
+      "velocity_deg_day": 0.827584,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 338.780424,
+      "velocity_deg_day": -0.054939,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 158.174837,
+      "velocity_deg_day": 1.022537,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 157.534421,
+      "velocity_deg_day": 0.099118,
+      "retrograde": false
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_006",
+  "name": "Sydney Native",
+  "local_year": 1998,
+  "local_month": 11,
+  "local_day": 12,
+  "local_hour": 15,
+  "local_minute": 30,
+  "timezone_str": "Australia/Sydney",
+  "birth_datetime_utc": "1998-11-12T04:30:00Z",
+  "latitude": -33.8688,
+  "longitude": 151.2093,
+  "type": "REAL_BIRTH_PROFILE"
+}

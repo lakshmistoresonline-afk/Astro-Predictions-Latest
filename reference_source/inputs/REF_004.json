@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_004",
+  "name": "New York Native",
+  "local_year": 2000,
+  "local_month": 1,
+  "local_day": 1,
+  "local_hour": 12,
+  "local_minute": 0,
+  "timezone_str": "America/New_York",
+  "birth_datetime_utc": "2000-01-01T17:00:00Z",
+  "latitude": 40.7128,
+  "longitude": -74.006,
+  "type": "REAL_BIRTH_PROFILE"
+}

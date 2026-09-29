@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_002",
+  "name": "User A Kochi",
+  "local_year": 1990,
+  "local_month": 1,
+  "local_day": 15,
+  "local_hour": 8,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1990-01-15T03:00:00Z",
+  "latitude": 9.9312,
+  "longitude": 76.2673,
+  "type": "REAL_BIRTH_PROFILE"
+}

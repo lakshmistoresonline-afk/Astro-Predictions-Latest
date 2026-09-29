@@ -1,0 +1,51 @@
+{
+  "fixture_id": "REF_019",
+  "name": "Cardinal Dig Bala Zero",
+  "local_year": 2000,
+  "local_month": 1,
+  "local_day": 1,
+  "local_hour": 12,
+  "local_minute": 0,
+  "timezone_str": "UTC",
+  "birth_datetime_utc": "2000-01-01T12:00:00Z",
+  "latitude": 0.0,
+  "longitude": 0.0,
+  "type": "SYNTHETIC_BOUNDARY",
+  "synthetic_planets": {
+    "Sun": {
+      "longitude": 90.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 90.0,
+      "velocity_deg_day": 0.5,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 270.0,
+      "velocity_deg_day": 13.0,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 180.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 180.0,
+      "velocity_deg_day": 0.1,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 270.0,
+      "velocity_deg_day": 1.0,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 0.0,
+      "velocity_deg_day": 0.05,
+      "retrograde": false
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "phase": "2E-R4.1-R4",
+  "status": "CERTIFIED",
+  "reference": {
+    "pyephem_executed": true,
+    "skyfield_executed": true,
+    "production_chart_builder_used": false,
+    "real_profiles": 15,
+    "synthetic_fixtures": 5,
+    "comparison_points": 180,
+    "mean_delta_arcsec": 1.83,
+    "max_delta_arcsec": 19.81,
+    "max_delta_fixture": "SHADBALA_FIXTURE_009",
+    "max_delta_quantity": "Moon",
+    "tolerance_policy_passed": true
+  },
+  "ascendant_mc": {
+    "independent": true,
+    "ascendant_passed": true,
+    "mc_passed": true
+  },
+  "ayanamsha": {
+    "independent": true,
+    "passed": true
+  },
+  "shadbala": {
+    "components_discovered": 17,
+    "components_verified": 17,
+    "mutations_attempted": 17,
+    "mutations_detected": 17
+  },
+  "ashtakavarga": {
+    "bav_cells": 56,
+    "cells_verified": 56,
+    "mutations_attempted": 56,
+    "mutations_detected": 56,
+    "sav_total": 337
+  },
+  "independence": {
+    "reference_production_imports": 0,
+    "oracle_production_imports": 0,
+    "runtime_contamination": false
+  },
+  "personalization": true,
+  "timezone_dst": true,
+  "default_profile_isolation": true,
+  "legacy_isolation": true,
+  "test_integrity": true,
+  "full_regression": {
+    "passed": 126,
+    "failed": 0
+  },
+  "unresolved_material_issues": []
+}

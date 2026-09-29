@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_013",
+  "name": "Buenos Aires Native",
+  "local_year": 1982,
+  "local_month": 2,
+  "local_day": 28,
+  "local_hour": 8,
+  "local_minute": 0,
+  "timezone_str": "America/Argentina/Buenos_Aires",
+  "birth_datetime_utc": "1982-02-28T11:00:00Z",
+  "latitude": -34.6037,
+  "longitude": -58.3816,
+  "type": "REAL_BIRTH_PROFILE"
+}

@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_011",
+  "name": "Berlin Native",
+  "local_year": 1988,
+  "local_month": 12,
+  "local_day": 12,
+  "local_hour": 10,
+  "local_minute": 15,
+  "timezone_str": "Europe/Berlin",
+  "birth_datetime_utc": "1988-12-12T09:15:00Z",
+  "latitude": 52.52,
+  "longitude": 13.405,
+  "type": "REAL_BIRTH_PROFILE"
+}

@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_012",
+  "name": "Cairo Native",
+  "local_year": 1991,
+  "local_month": 4,
+  "local_day": 10,
+  "local_hour": 14,
+  "local_minute": 0,
+  "timezone_str": "Africa/Cairo",
+  "birth_datetime_utc": "1991-04-10T12:00:00Z",
+  "latitude": 30.0444,
+  "longitude": 31.2357,
+  "type": "REAL_BIRTH_PROFILE"
+}

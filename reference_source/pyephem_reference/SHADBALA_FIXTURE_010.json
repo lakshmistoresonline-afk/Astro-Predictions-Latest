@@ -1,0 +1,46 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_010",
+  "source_engine": "PyEphem 4.2.1 (XEphem Engine)",
+  "version": "4.2.1",
+  "julian_day": 2459138.625,
+  "ayanamsha": 24.140231,
+  "ascendant_sidereal_longitude": 33.99835,
+  "mc_sidereal_longitude": 285.271311,
+  "planets": {
+    "Sun": {
+      "longitude": 178.788399,
+      "velocity_deg_day": 0.992117,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 168.932719,
+      "velocity_deg_day": 15.276229,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 355.966955,
+      "velocity_deg_day": -0.31297,
+      "retrograde": true
+    },
+    "Mercury": {
+      "longitude": 196.969158,
+      "velocity_deg_day": -0.27741,
+      "retrograde": true
+    },
+    "Jupiter": {
+      "longitude": 264.695863,
+      "velocity_deg_day": 0.100709,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 141.220133,
+      "velocity_deg_day": 1.192663,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 271.148097,
+      "velocity_deg_day": 0.028045,
+      "retrograde": false
+    }
+  }
+}

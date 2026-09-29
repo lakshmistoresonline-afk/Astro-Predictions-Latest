@@ -1,0 +1,47 @@
+{
+  "fixture_id": "REF_006",
+  "source_engine": "Skyfield 1.55 (NASA JPL DE421 Kernel)",
+  "version": "1.55",
+  "kernel": "de421.bsp",
+  "julian_day": 2451129.6875,
+  "ayanamsha": 23.834127,
+  "ascendant_sidereal_longitude": 336.009329,
+  "mc_sidereal_longitude": 245.995753,
+  "planets": {
+    "Sun": {
+      "longitude": 205.767972,
+      "velocity_deg_day": 1.005796,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 129.2225,
+      "velocity_deg_day": 12.341967,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 147.486704,
+      "velocity_deg_day": 0.580179,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 228.541857,
+      "velocity_deg_day": 0.959948,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 324.346444,
+      "velocity_deg_day": -0.004526,
+      "retrograde": true
+    },
+    "Venus": {
+      "longitude": 209.045349,
+      "velocity_deg_day": 1.255028,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 4.841867,
+      "velocity_deg_day": -0.071659,
+      "retrograde": true
+    }
+  }
+}

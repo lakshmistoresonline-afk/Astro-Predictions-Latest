@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_001",
+  "name": "Subramanian T S",
+  "local_year": 1986,
+  "local_month": 9,
+  "local_day": 28,
+  "local_hour": 16,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1986-09-28T11:00:00Z",
+  "latitude": 10.7867,
+  "longitude": 76.6548,
+  "type": "REAL_BIRTH_PROFILE"
+}

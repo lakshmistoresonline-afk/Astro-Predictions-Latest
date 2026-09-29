@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_014",
+  "name": "Mumbai Native",
+  "local_year": 1994,
+  "local_month": 8,
+  "local_day": 15,
+  "local_hour": 22,
+  "local_minute": 30,
+  "timezone_str": "Asia/Kolkata",
+  "birth_datetime_utc": "1994-08-15T17:00:00Z",
+  "latitude": 19.076,
+  "longitude": 72.8777,
+  "type": "REAL_BIRTH_PROFILE"
+}

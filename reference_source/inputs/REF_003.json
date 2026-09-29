@@ -1,0 +1,14 @@
+{
+  "fixture_id": "REF_003",
+  "name": "User B London",
+  "local_year": 1985,
+  "local_month": 7,
+  "local_day": 22,
+  "local_hour": 18,
+  "local_minute": 45,
+  "timezone_str": "Europe/London",
+  "birth_datetime_utc": "1985-07-22T17:45:00Z",
+  "latitude": 51.5074,
+  "longitude": -0.1278,
+  "type": "REAL_BIRTH_PROFILE"
+}

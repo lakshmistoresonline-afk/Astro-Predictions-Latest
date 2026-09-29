@@ -1,0 +1,46 @@
+{
+  "fixture_id": "REF_004",
+  "source_engine": "PyEphem 4.2.1 (XEphem Engine)",
+  "version": "4.2.1",
+  "julian_day": 2451545.208333,
+  "ayanamsha": 23.850008,
+  "ascendant_sidereal_longitude": 356.111682,
+  "mc_sidereal_longitude": 256.867786,
+  "planets": {
+    "Sun": {
+      "longitude": 256.74096,
+      "velocity_deg_day": 1.019456,
+      "retrograde": false
+    },
+    "Moon": {
+      "longitude": 201.978937,
+      "velocity_deg_day": 11.988977,
+      "retrograde": false
+    },
+    "Mars": {
+      "longitude": 304.282733,
+      "velocity_deg_day": 0.775695,
+      "retrograde": false
+    },
+    "Mercury": {
+      "longitude": 248.373227,
+      "velocity_deg_day": 1.55748,
+      "retrograde": false
+    },
+    "Jupiter": {
+      "longitude": 1.414075,
+      "velocity_deg_day": 0.041585,
+      "retrograde": false
+    },
+    "Venus": {
+      "longitude": 217.976107,
+      "velocity_deg_day": 1.209313,
+      "retrograde": false
+    },
+    "Saturn": {
+      "longitude": 16.542556,
+      "velocity_deg_day": -0.01948,
+      "retrograde": true
+    }
+  }
+}

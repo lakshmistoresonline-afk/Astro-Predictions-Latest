@@ -1,0 +1,14 @@
+{
+  "fixture_id": "SHADBALA_FIXTURE_010",
+  "name": "Los Angeles Retrograde",
+  "local_year": 2020,
+  "local_month": 10,
+  "local_day": 15,
+  "local_hour": 20,
+  "local_minute": 0,
+  "timezone_str": "America/Los_Angeles",
+  "birth_datetime_utc": "2020-10-16T03:00:00Z",
+  "latitude": 34.0522,
+  "longitude": -118.2437,
+  "type": "REAL_BIRTH_PROFILE"
+}
