@@ -1,8 +1,8 @@
 {
   "phase": "2E-R4.1-R7-R7",
-  "status": "CERTIFIED",
+  "status": "REMEDIATION_REQUIRED",
   "gates_total": 27,
-  "gates_passed": 27,
+  "gates_passed": 20,
   "gates": [
     {
       "gate_id": "G01_DE440S_HASH",
@@ -105,51 +105,51 @@
     {
       "gate_id": "G15_FRESH_BASELINES",
       "requirement": "73 Fresh Subprocess Baseline Executions",
-      "result": "PASS",
-      "evidence": "73/73 baseline cases executed in fresh subprocesses and passed",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "Found 0 baseline passes (expected 73)",
+      "failure_reason": "Baseline execution failure"
     },
     {
       "gate_id": "G16_FRESH_MUTATIONS",
       "requirement": "73 Fresh Subprocess Mutated Executions",
-      "result": "PASS",
-      "evidence": "73/73 mutated cases executed in fresh subprocesses and produced ORACLE_MISMATCH (exit code 1)",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "Found 0 mutated ORACLE_MISMATCH cases (expected 73)",
+      "failure_reason": "Mutated execution failure"
     },
     {
       "gate_id": "G17_FRESH_RESTORATIONS",
       "requirement": "73 Fresh Subprocess Restored Executions",
-      "result": "PASS",
-      "evidence": "73/73 restored cases executed in fresh subprocesses and produced ORACLE_PASS (exit code 0)",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "Found 0 restored passes (expected 73)",
+      "failure_reason": "Restored execution failure"
     },
     {
       "gate_id": "G18_BASELINE_ORACLE_PASS",
       "requirement": "73 Baseline Independent Oracle PASS",
-      "result": "PASS",
-      "evidence": "73/73 baseline oracle comparisons passed",
+      "result": "FAIL",
+      "evidence": "0/73 baseline oracle comparisons passed",
       "failure_reason": "None"
     },
     {
       "gate_id": "G19_MUTATED_ORACLE_MISMATCH",
       "requirement": "73 Mutated Independent Oracle MISMATCH",
-      "result": "PASS",
-      "evidence": "73/73 mutated oracle comparisons produced ORACLE_MISMATCH",
+      "result": "FAIL",
+      "evidence": "0/73 mutated oracle comparisons produced ORACLE_MISMATCH",
       "failure_reason": "None"
     },
     {
       "gate_id": "G20_RESTORED_ORACLE_PASS",
       "requirement": "73 Restored Independent Oracle PASS",
-      "result": "PASS",
-      "evidence": "73/73 restored oracle comparisons passed",
+      "result": "FAIL",
+      "evidence": "0/73 restored oracle comparisons passed",
       "failure_reason": "None"
     },
     {
       "gate_id": "G21_ADVERSARIAL_TESTS",
       "requirement": "15 Adversarial Certification Tests Execution",
-      "result": "PASS",
-      "evidence": "15/15 adversarial certification attack tests passed",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "Traceback (most recent call last):\n  File \"D:\\Astro-Predictions-Latest\\scripts\\test_r7_r6_adversaria",
+      "failure_reason": "Adversarial tests failed"
     },
     {
       "gate_id": "G22_FAIL_CLOSED",

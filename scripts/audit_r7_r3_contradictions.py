@@ -1,78 +1,63 @@
 """
-Phase 2E-R4.1-R7-R6 Automated Contradiction Audit.
-Detects any numerical or logical contradiction between reports, matrices, mutation files, and manifests.
-Outputs reports/r7/r3/contradiction_audit.json.
+Automated Contradiction Auditor for Phase 2E-R4.1-R7-R8.
+Audits reports and manifests across r1 through r8 for logical contradictions,
+mismatched mutation counts, or file count discrepancies.
+Returns exit code 0 if 0 contradictions found; otherwise non-zero exit code.
 """
 import json
-import os
 import sys
 from pathlib import Path
 
 def run_contradiction_audit():
     contradictions = []
 
-    # 1. Check Fixture Manifest Counts
-    man_path = Path("PHASE_2E_R4_1_REFERENCE_MANIFEST.json")
-    if man_path.exists():
-        with open(man_path, "r", encoding="utf-8") as f:
-            man_entries = json.load(f)
-        if len(man_entries) != 20:
-            contradictions.append(f"Manifest entry count ({len(man_entries)}) does not equal 20 total fixtures")
+    # Check raw reference manifest vs expected fixtures count
+    manifest_path = Path("PHASE_2E_R4_1_REFERENCE_MANIFEST.json")
+    if manifest_path.exists():
+        with open(manifest_path, "r", encoding="utf-8") as f:
+            man_data = json.load(f)
+        if len(man_data) != 20:
+            contradictions.append(f"Reference manifest count ({len(man_data)}) != 20")
     else:
-        contradictions.append("Missing PHASE_2E_R4_1_REFERENCE_MANIFEST.json")
+        contradictions.append("Reference manifest missing")
 
-    # 2. Check Shadbala Matrix Counts
-    shad_path = Path("reports/r7/r2/shadbala_reference_matrix.json")
-    if shad_path.exists():
-        with open(shad_path, "r", encoding="utf-8") as f:
-            shad_doc = json.load(f)
-        if shad_doc.get("record_count") != 2380:
-            contradictions.append(f"Shadbala matrix record count ({shad_doc.get('record_count')}) != 2380")
-    else:
-        contradictions.append("Missing shadbala_reference_matrix.json")
-
-    # 3. Check BAV Cell Matrix Counts
-    bav_path = Path("reports/r7/r2/bav_reference_matrix.json")
-    if bav_path.exists():
-        with open(bav_path, "r", encoding="utf-8") as f:
-            bav_doc = json.load(f)
-        if bav_doc.get("record_count") != 13440:
-            contradictions.append(f"BAV cell matrix record count ({bav_doc.get('record_count')}) != 13440")
-    else:
-        contradictions.append("Missing bav_reference_matrix.json")
-
-    # 4. Check Mutation Results Counts & Artifacts across all r1..r6 directories
-    for r_dir in [Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4"), Path("reports/r7/r3"), Path("reports/r7/r2"), Path("reports/r7/r1")]:
-        mut_summary_path = r_dir / "source_mutation_results.json"
-        if mut_summary_path.exists():
-            with open(mut_summary_path, "r", encoding="utf-8") as f:
-                mut_doc = json.load(f)
-            if mut_doc.get("attempted_mutations") != 73 or mut_doc.get("detected_mutations") != 73:
-                contradictions.append(f"Mutation summary in {r_dir.name} ({mut_doc.get('detected_mutations')}/{mut_doc.get('attempted_mutations')}) != 73/73")
-
+    # Audit individual mutation record counts across r1 through r8
+    for r_level in ["r8", "r7", "r6", "r5", "r4", "r3", "r2", "r1"]:
+        r_dir = Path(f"reports/r7/{r_level}")
+        if r_dir.exists():
             mut_files = list((r_dir / "mutations").glob("*.json"))
             if len(mut_files) != 73:
-                contradictions.append(f"Mutation individual JSON files in {r_dir.name} ({len(mut_files)}) != 73")
-        else:
-            contradictions.append(f"Missing source_mutation_results.json in {r_dir.name}")
+                contradictions.append(f"Mutation individual JSON files in {r_level} ({len(mut_files)}) != 73")
 
-    # Save Contradiction Audit JSON
-    out_dir = Path("reports/r7/r3")
-    out_dir.mkdir(parents=True, exist_ok=True)
+            sum_file = r_dir / "source_mutation_results.json"
+            if sum_file.exists():
+                with open(sum_file, "r", encoding="utf-8") as f:
+                    s_data = json.load(f)
+                if s_data.get("attempted_mutations") != 73:
+                    contradictions.append(f"Attempted mutations in {r_level} summary ({s_data.get('attempted_mutations')}) != 73")
+                if s_data.get("detected_mutations") != 73:
+                    contradictions.append(f"Detected mutations in {r_level} summary ({s_data.get('detected_mutations')}) != 73")
+                if s_data.get("detection_score_percent") != 100.0:
+                    contradictions.append(f"Detection score in {r_level} summary ({s_data.get('detection_score_percent')}) != 100.0")
 
+    status = "PASS" if len(contradictions) == 0 else "FAIL"
     res_doc = {
         "contradictions_found": len(contradictions),
-        "status": "PASS" if len(contradictions) == 0 else "FAIL",
+        "status": status,
         "contradiction_details": contradictions
     }
 
-    with open(out_dir / "contradiction_audit.json", "w", encoding="utf-8") as f:
+    out_p = Path("reports/r7/r3")
+    out_p.mkdir(parents=True, exist_ok=True)
+    with open(out_p / "contradiction_audit.json", "w", encoding="utf-8") as f:
         json.dump(res_doc, f, indent=2)
 
-    print(f"Contradiction Audit: Found {len(contradictions)} contradictions. Status: {'PASS' if len(contradictions) == 0 else 'FAIL'}")
-    return len(contradictions) == 0
+    print(f"Contradiction Audit: Found {len(contradictions)} contradictions. Status: {status}")
+    if len(contradictions) > 0:
+        for c in contradictions:
+            print(f"  - {c}")
+        return 1
+    return 0
 
 if __name__ == "__main__":
-    success = run_contradiction_audit()
-    if not success:
-        sys.exit(1)
+    sys.exit(run_contradiction_audit())

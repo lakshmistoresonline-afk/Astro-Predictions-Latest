@@ -1,6 +1,6 @@
 {
-  "total_adversarial_tests": 15,
-  "passed_adversarial_tests": 15,
+  "total_adversarial_tests": 25,
+  "passed_adversarial_tests": 25,
   "failed_adversarial_tests": 0,
   "status": "PASS"
 }

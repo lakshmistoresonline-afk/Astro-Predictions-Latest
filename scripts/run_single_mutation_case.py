@@ -1,7 +1,6 @@
 """
-Single Mutation Case Validator Subprocess for Phase 2E-R4.1-R7-R7.
+Single Mutation Case Validator Subprocess for Phase 2E-R4.1-R7-R8.
 Executed in a fresh, isolated Python process for each mutation on a specific fixture.
-Ultra-fast execution (under 0.01s per process launch - mock astronomy_provider to avoid Skyfield BSP disk load).
 CLI Usage:
   python run_single_mutation_case.py <mode> <fixture_id> <planet> <cat_or_contrib> <subcomp> [module_override]
 
@@ -18,13 +17,13 @@ import traceback
 from pathlib import Path
 from unittest.mock import MagicMock
 
-# Disable Python bytecode caching to prevent stale .pyc import cache collisions in subprocesses
+# Disable Python bytecode caching to prevent stale .pyc import cache collisions
 sys.dont_write_bytecode = True
 
 # Add project root to sys.path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Block Skyfield JPL DE440s BSP kernel disk load to achieve < 0.01s process startup time
+# Block Skyfield JPL DE440s BSP kernel disk load to achieve ultra-fast process startup time
 sys.modules["skyfield"] = MagicMock()
 sys.modules["skyfield.api"] = MagicMock()
 sys.modules["apps.api.engines.astronomy.provider"] = MagicMock()
