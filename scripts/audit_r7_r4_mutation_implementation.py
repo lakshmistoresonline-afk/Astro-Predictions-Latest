@@ -1,7 +1,7 @@
 """
-Static AST Auditor for Mutation Implementation (Phase 2E-R4.1-R7-R4).
-Inspects mutation scripts to ensure NO output object tampering occurs.
-Fails if forbidden result object mutation patterns are found.
+Static AST Auditor for Mutation Implementation (Phase 2E-R4.1-R7-R6).
+Inspects mutation scripts to ensure NO output object tampering or in-memory monkeypatching occurs.
+Fails if forbidden result object mutation or in-memory patch patterns are found.
 """
 import ast
 import sys
@@ -17,7 +17,11 @@ def audit_mutation_script():
         "target_obj.sub_components",
         "target_obj.value_shashtiamsas",
         "res.planets[p]",
-        "res.planets[target_obj]"
+        "res.planets[target_obj]",
+        "setattr(",
+        "monkeypatch",
+        "mock.patch",
+        "patch.object"
     ]
 
     with open(script_path, "r", encoding="utf-8") as f:
@@ -26,7 +30,7 @@ def audit_mutation_script():
     violations = []
     for pattern in forbidden_patterns:
         if pattern in content:
-            violations.append(f"Forbidden result object modification pattern found: '{pattern}'")
+            violations.append(f"Forbidden result object modification or monkeypatch pattern found: '{pattern}'")
 
     if violations:
         print("MUTATION AUDIT FAIL:")
@@ -34,7 +38,7 @@ def audit_mutation_script():
             print(f"  - {v}")
         return False
 
-    print("MUTATION AUDIT PASS: Zero output object tampering patterns found in mutation script.")
+    print("MUTATION AUDIT PASS: Zero output object tampering or monkeypatching patterns found in mutation script.")
     return True
 
 if __name__ == "__main__":

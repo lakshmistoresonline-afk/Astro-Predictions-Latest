@@ -9879,10 +9879,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -9903,10 +9903,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -9927,10 +9927,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -9951,10 +9951,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -9975,10 +9975,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -9999,10 +9999,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -10016,17 +10016,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -10047,10 +10047,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -10071,10 +10071,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -10095,10 +10095,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -10119,10 +10119,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -10136,17 +10136,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -22209,11 +22209,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -22489,11 +22489,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -22733,11 +22733,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -22999,11 +22999,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -23275,11 +23275,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -23547,11 +23547,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -23795,11 +23795,11 @@
         12
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -24003,10 +24003,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -24027,17 +24027,17 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_002",
@@ -24051,10 +24051,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -24075,10 +24075,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -24099,10 +24099,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -24123,10 +24123,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -24140,17 +24140,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -24171,10 +24171,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -24195,10 +24195,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -24219,10 +24219,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -24243,10 +24243,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -24260,17 +24260,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -38127,10 +38127,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -38151,10 +38151,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -38175,10 +38175,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -38199,10 +38199,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -38223,10 +38223,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -38247,10 +38247,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -38264,17 +38264,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -38295,10 +38295,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -38319,10 +38319,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -38343,10 +38343,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -38367,10 +38367,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -38384,17 +38384,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -52251,10 +52251,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -52275,10 +52275,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -52299,10 +52299,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -52323,10 +52323,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -52347,10 +52347,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -52371,10 +52371,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -52388,17 +52388,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -52419,10 +52419,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -52443,10 +52443,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -52467,10 +52467,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -52491,10 +52491,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -52508,17 +52508,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -66375,10 +66375,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -66399,10 +66399,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -66423,10 +66423,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -66447,10 +66447,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -66471,10 +66471,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -66495,10 +66495,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -66512,17 +66512,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -66543,10 +66543,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -66567,10 +66567,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -66591,10 +66591,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -66615,10 +66615,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -66632,17 +66632,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -80499,10 +80499,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -80523,10 +80523,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -80547,10 +80547,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -80571,10 +80571,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -80595,10 +80595,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -80619,10 +80619,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -80636,17 +80636,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -80667,10 +80667,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -80691,10 +80691,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -80715,10 +80715,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -80739,10 +80739,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -80756,17 +80756,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -94623,10 +94623,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -94647,10 +94647,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -94671,10 +94671,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -94695,10 +94695,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -94719,10 +94719,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -94743,10 +94743,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -94760,17 +94760,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -94791,10 +94791,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -94815,10 +94815,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -94839,10 +94839,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -94863,10 +94863,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -94880,17 +94880,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -108747,10 +108747,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -108771,10 +108771,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -108795,10 +108795,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -108819,10 +108819,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -108843,10 +108843,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -108867,10 +108867,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -108884,17 +108884,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -108915,10 +108915,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -108939,10 +108939,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -108963,10 +108963,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -108987,10 +108987,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -109004,17 +109004,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -122871,10 +122871,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -122895,10 +122895,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -122919,10 +122919,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -122943,10 +122943,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -122967,10 +122967,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -122991,10 +122991,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -123008,17 +123008,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -123039,10 +123039,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -123063,10 +123063,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -123087,10 +123087,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -123111,10 +123111,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -123128,17 +123128,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -136995,10 +136995,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -137019,10 +137019,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -137043,10 +137043,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -137067,10 +137067,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -137091,10 +137091,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -137115,10 +137115,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -137132,17 +137132,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -137163,10 +137163,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -137187,10 +137187,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -137211,10 +137211,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -137235,10 +137235,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -137252,17 +137252,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151119,10 +151119,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151143,10 +151143,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151167,10 +151167,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -151191,10 +151191,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -151215,10 +151215,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -151239,10 +151239,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -151256,17 +151256,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151287,10 +151287,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151311,10 +151311,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151335,10 +151335,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151359,10 +151359,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -151376,17 +151376,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -165243,10 +165243,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -165267,10 +165267,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -165291,10 +165291,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -165315,10 +165315,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -165339,10 +165339,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -165363,10 +165363,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -165380,17 +165380,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -165411,10 +165411,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -165435,10 +165435,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -165459,10 +165459,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -165483,10 +165483,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -165500,17 +165500,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -179367,10 +179367,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -179391,10 +179391,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -179415,10 +179415,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -179439,10 +179439,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -179463,10 +179463,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -179487,10 +179487,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -179504,17 +179504,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -179535,10 +179535,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -179559,10 +179559,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -179583,10 +179583,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -179607,10 +179607,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -179624,17 +179624,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -191673,11 +191673,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -191697,11 +191697,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -191957,11 +191957,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -191977,11 +191977,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -192199,11 +192199,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -192221,11 +192221,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -192464,11 +192464,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -192487,11 +192487,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -192740,11 +192740,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -192763,11 +192763,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -193014,11 +193014,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -193035,11 +193035,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -193264,11 +193264,11 @@
         12
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -193283,11 +193283,11 @@
         12
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -193491,17 +193491,17 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -193515,17 +193515,17 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_016",
@@ -193539,10 +193539,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -193563,10 +193563,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -193587,10 +193587,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -193611,10 +193611,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -193628,17 +193628,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -193659,10 +193659,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -193683,10 +193683,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -193707,10 +193707,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -193731,10 +193731,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -193748,17 +193748,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -205797,11 +205797,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -205821,11 +205821,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206081,11 +206081,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206101,11 +206101,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206323,11 +206323,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206345,11 +206345,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206588,11 +206588,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206611,11 +206611,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206864,11 +206864,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -206887,11 +206887,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -207138,11 +207138,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -207159,11 +207159,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -207388,11 +207388,11 @@
         12
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -207407,11 +207407,11 @@
         12
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -207615,17 +207615,17 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -207639,17 +207639,17 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_017",
@@ -207663,10 +207663,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -207687,10 +207687,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -207711,10 +207711,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -207735,10 +207735,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -207752,17 +207752,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -207783,10 +207783,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -207807,10 +207807,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -207831,10 +207831,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -207855,10 +207855,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -207872,17 +207872,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -221739,10 +221739,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -221763,10 +221763,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -221787,10 +221787,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -221811,10 +221811,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -221835,10 +221835,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -221859,10 +221859,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -221876,17 +221876,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -221907,10 +221907,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -221931,10 +221931,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -221955,10 +221955,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -221979,10 +221979,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -221996,17 +221996,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -235863,10 +235863,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -235887,10 +235887,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -235911,10 +235911,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -235935,10 +235935,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -235959,10 +235959,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -235983,10 +235983,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -236000,17 +236000,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -236031,10 +236031,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -236055,10 +236055,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -236079,10 +236079,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -236103,10 +236103,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -236120,17 +236120,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -248169,11 +248169,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -248193,11 +248193,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -248453,11 +248453,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -248473,11 +248473,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -248695,11 +248695,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -248717,11 +248717,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -248960,11 +248960,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -248983,11 +248983,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -249236,11 +249236,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -249259,11 +249259,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -249510,11 +249510,11 @@
         11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -249531,11 +249531,11 @@
         11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -249760,11 +249760,11 @@
         12
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -249779,11 +249779,11 @@
         12
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -249987,17 +249987,17 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
-      "oracle_contribution": 0,
+      "oracle_contribution": 1,
       "production_contribution": 0,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -250011,17 +250011,17 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
-      "oracle_contribution": 1,
+      "oracle_contribution": 0,
       "production_contribution": 1,
-      "difference": 0,
+      "difference": 1,
       "tolerance": 0,
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "fixture_id": "REF_020",
@@ -250035,10 +250035,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -250059,10 +250059,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -250083,10 +250083,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -250107,10 +250107,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -250124,17 +250124,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -250155,10 +250155,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -250179,10 +250179,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -250203,10 +250203,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -250227,10 +250227,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -250244,17 +250244,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -264111,10 +264111,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -264135,10 +264135,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -264159,10 +264159,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -264183,10 +264183,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -264207,10 +264207,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -264231,10 +264231,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -264248,17 +264248,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -264279,10 +264279,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -264303,10 +264303,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -264327,10 +264327,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -264351,10 +264351,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -264368,17 +264368,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -278235,10 +278235,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -278259,10 +278259,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -278283,10 +278283,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -278307,10 +278307,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -278331,10 +278331,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -278355,10 +278355,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -278372,17 +278372,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 7,
-      "applicable": false,
+      "applicable": true,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 1,
       "oracle_contribution": 1,
@@ -278403,10 +278403,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -278427,10 +278427,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -278451,10 +278451,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -278475,10 +278475,10 @@
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,
@@ -278492,17 +278492,17 @@
       "target_planet": "Jupiter",
       "contributor": "Ascendant",
       "house": 12,
-      "applicable": true,
+      "applicable": false,
       "rule_houses": [
         1,
         2,
         4,
         5,
         6,
+        7,
         9,
         10,
-        11,
-        12
+        11
       ],
       "expected_contribution": 0,
       "oracle_contribution": 0,

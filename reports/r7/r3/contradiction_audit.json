@@ -1,5 +1,7 @@
 {
-  "contradictions_found": 0,
-  "status": "PASS",
-  "contradiction_details": []
+  "contradictions_found": 1,
+  "status": "FAIL",
+  "contradiction_details": [
+    "Mutation individual JSON files in r6 (74) != 73"
+  ]
 }
