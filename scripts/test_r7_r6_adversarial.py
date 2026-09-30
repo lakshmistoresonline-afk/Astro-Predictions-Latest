@@ -24,6 +24,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Add project root to sys.path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from scripts.audit_r7_r3_contradictions import run_contradiction_audit
+
 def run_cmd(cmd):
     res = subprocess.run(cmd, shell=True, capture_output=True, text=True)
     return res.returncode, res.stdout, res.stderr
@@ -371,6 +376,9 @@ def run_adversarial_tests():
     finally:
         shutil.copy(bav_matrix_bak, bav_matrix_path)
         bav_matrix_bak.unlink()
+
+    # Re-run contradiction auditor to leave clean PASS state
+    run_contradiction_audit()
 
     # Final summary output
     res_doc = {
