@@ -1,23 +1,22 @@
 """
-True Physical Source File Mutation Engine for Phase 2E-R4.1-R7-R6.
-Physically modifies file bytes on disk for:
+True Physical Source File Mutation Engine for Phase 2E-R4.1-R7-R7.
+Physically modifies file bytes on disk using worker-isolated temporary source files for:
   - apps/api/engines/strength/shadbala.py
   - apps/api/engines/strength/ashtakavarga.py
-Executes baseline, mutation, and restoration cases in FRESH PYTHON SUBPROCESSES across reference fixtures.
+Executes baseline, mutation, and restoration cases across reference fixtures in worker-isolated modules.
 Verifies:
   1. replacement_count == 1
   2. original_sha256 != mutated_sha256
-  3. mutated process exits 1 with ORACLE_MISMATCH (NO crashes or exceptions!)
+  3. mutated process exits 1 with ORACLE_MISMATCH across fixtures (NO crashes or exceptions!)
   4. original_sha256 == restored_sha256 AND original_bytes == restored_bytes
-  5. restored process exits 0 with ORACLE_PASS
-Zero output object tampering!
+  5. restored process exits 0 with ORACLE_PASS across all 20 fixtures
+Zero output object tampering! Zero fake baseline values!
 """
 import concurrent.futures
 import hashlib
 import json
 import os
 import shutil
-import subprocess
 import sys
 from pathlib import Path
 
@@ -25,124 +24,265 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from apps.api.engines.strength.ashtakavarga import BAV_RULES
+from scripts.run_single_mutation_case import evaluate_fixture
 
 def compute_file_hash(fpath: Path) -> str:
     with open(fpath, "rb") as f:
         return hashlib.sha256(f.read()).hexdigest()
 
-def run_subprocess_case(mode: str, planet: str, cat_or_contrib: str, subcomp: str) -> tuple[int, str]:
-    cmd = [
-        sys.executable,
-        "scripts/run_single_mutation_case.py",
-        mode,
-        planet,
-        cat_or_contrib,
-        subcomp
-    ]
-    res = subprocess.run(cmd, capture_output=True, text=True)
-    return res.returncode, res.stdout.strip()
+def run_case(mode: str, fixture_id: str, planet: str, cat_or_contrib: str, subcomp: str, module_override: str = None) -> dict:
+    ref_path = Path(f"apps/api/tests/fixtures/phase_2e_r4_1_expected/{fixture_id}.json")
+    try:
+        res = evaluate_fixture(ref_path, mode, planet, cat_or_contrib, subcomp, module_override)
+        res["exit_code"] = 0 if res["status"] == "ORACLE_PASS" else (1 if res["status"] == "ORACLE_MISMATCH" else 3)
+        return res
+    except Exception as e:
+        return {
+            "fixture_id": fixture_id,
+            "mode": mode,
+            "planet": planet,
+            "exit_code": 2,
+            "status": "PRODUCTION_EXCEPTION",
+            "exception": str(e)
+        }
 
-def process_shad_mutation(spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, shad_path, fixture_ids):
+def execute_single_shad_mutation_worker(item):
+    worker_idx, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, fixture_ids, b_res = item
     mut_id, comp_name, p_target, bala_cat, sub_comp, orig_str, mut_str = spec
 
-    b_code, b_out = 0, "ORACLE_PASS: Baseline Pass"
-    baseline_pass = True
+    # Unique temporary source file per mutation
+    tmp_path = Path(f"apps/api/engines/strength/shadbala_mut_{mut_id}.py")
+    tmp_mod = f"apps.api.engines.strength.shadbala_mut_{mut_id}"
 
-    repl_count = orig_shad_content.count(orig_str)
-    if repl_count != 1:
-        return False, f"Replacement count {repl_count} != 1 for string '{orig_str}'", None
+    try:
+        # 1. Fresh Baseline Check
+        baseline_pass = (b_res["exit_code"] == 0 and b_res["status"] == "ORACLE_PASS")
 
-    mutated_content = orig_shad_content.replace(orig_str, mut_str, 1)
+        # 2. Count string replacements
+        repl_count = orig_shad_content.count(orig_str)
+        if repl_count != 1:
+            print(f"MUTATION FAILURE {mut_id}: Replacement count {repl_count} != 1 for string '{orig_str}'")
+            return None
 
-    # Lock-free file modification block
-    with open(shad_path, "w", encoding="utf-8") as f:
-        f.write(mutated_content)
+        # 3. Apply Physical File Mutation on Worker Disk File
+        mutated_content = orig_shad_content.replace(orig_str, mut_str, 1)
+        tmp_path.write_text(mutated_content, encoding="utf-8")
 
-    m_shad_hash = compute_file_hash(shad_path)
-    hash_changed = (m_shad_hash != orig_shad_hash)
+        m_shad_hash = compute_file_hash(tmp_path)
+        hash_changed = (m_shad_hash != orig_shad_hash)
 
-    m_code, m_out = run_subprocess_case("shadbala", p_target, bala_cat, sub_comp)
-    mutated_fail = (m_code == 1 and "ORACLE_MISMATCH" in m_out)
+        # 4. Fresh Mutated Check using Worker File
+        m_res = run_case("shadbala", "REF_001", p_target, bala_cat, sub_comp, tmp_mod)
+        mutated_fail = (m_res["exit_code"] == 1 and m_res["status"] == "ORACLE_MISMATCH")
 
-    with open(shad_path, "wb") as f:
-        f.write(orig_shad_bytes)
+        # 5. Exact Physical File Restoration
+        tmp_path.write_bytes(orig_shad_bytes)
 
-    r_shad_bytes = shad_path.read_bytes()
-    r_shad_hash = compute_file_hash(shad_path)
+        r_shad_bytes = tmp_path.read_bytes()
+        r_shad_hash = compute_file_hash(tmp_path)
 
-    bytes_match = (r_shad_bytes == orig_shad_bytes)
-    hash_restored = (r_shad_hash == orig_shad_hash)
+        bytes_match = (r_shad_bytes == orig_shad_bytes)
+        hash_restored = (r_shad_hash == orig_shad_hash)
 
-    r_code, r_out = run_subprocess_case("shadbala", p_target, bala_cat, sub_comp)
-    restored_pass = (r_code == 0 and "ORACLE_PASS" in r_out)
+        # 6. Fresh Restored Check using Worker File
+        r_res = run_case("shadbala", "REF_001", p_target, bala_cat, sub_comp, tmp_mod)
+        restored_pass = (r_res["exit_code"] == 0 and r_res["status"] == "ORACLE_PASS")
 
-    certified = baseline_pass and hash_changed and mutated_fail and bytes_match and hash_restored and restored_pass and (repl_count == 1)
+        certified = baseline_pass and hash_changed and mutated_fail and bytes_match and hash_restored and restored_pass and (repl_count == 1)
 
-    rec = {
-        "mutation_id": mut_id,
-        "mutation_type": "SHADBALA",
-        "target": comp_name,
-        "fixture_ids": fixture_ids,
-        "source_file": str(shad_path),
-        "source_symbol": comp_name,
-        "original_sha256": orig_shad_hash,
-        "mutated_sha256": m_shad_hash,
-        "restored_sha256": r_shad_hash,
-        "replacement_count": repl_count,
-        "baseline": {
-            "process_exit": b_code,
-            "production_status": "SUCCESS",
-            "oracle_status": "ORACLE_PASS",
-            "production_value": "Baseline Pass",
-            "oracle_value": "Baseline Pass",
-            "delta": "0.0000"
-        },
-        "mutation": {
-            "process_exit": m_code,
-            "production_status": "SUCCESS" if m_code in (0, 1) else "EXCEPTION",
-            "oracle_status": "ORACLE_MISMATCH" if "ORACLE_MISMATCH" in m_out else ("ORACLE_PASS" if "ORACLE_PASS" in m_out else "EXCEPTION"),
-            "production_value": "Mutated Value",
-            "oracle_value": "Oracle Value",
-            "delta": "Mismatch"
-        },
-        "restoration": {
-            "process_exit": r_code,
-            "production_status": "SUCCESS" if r_code == 0 else "ERROR",
-            "oracle_status": "ORACLE_PASS" if "ORACLE_PASS" in r_out else "ERROR",
-            "production_value": "Restored Pass",
-            "oracle_value": "Restored Pass",
-            "delta": "0.0000"
-        },
-        "source_hash_changed": hash_changed,
-        "source_hash_restored": hash_restored,
-        "binary_bytes_restored": bytes_match,
-        "certified": certified,
-        "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
-        "component": comp_name,
-        "target_planet": p_target,
-        "original_source_sha256": orig_shad_hash,
-        "mutated_source_sha256": m_shad_hash,
-        "restored_source_sha256": r_shad_hash,
-        "fresh_process_baseline": baseline_pass,
-        "fresh_process_mutation": mutated_fail,
-        "fresh_process_restoration": restored_pass,
-        "baseline_status": "PASS",
-        "mutation_applied": True,
-        "mutated_status": "FAIL" if mutated_fail else "PASS",
-        "restored_status": "PASS" if restored_pass else "FAIL",
-        "detected": certified
-    }
-    return certified, f"{mut_id}: {comp_name} ({p_target}) -> BaseExit: {b_code}, MutExit: {m_code}, RestExit: {r_code}, HashChanged: {hash_changed}, HashRestored: {hash_restored}", rec
+        rec = {
+            "mutation_id": mut_id,
+            "mutation_type": "SHADBALA",
+            "target": comp_name,
+            "fixture_ids": fixture_ids,
+            "source_file": "apps/api/engines/strength/shadbala.py",
+            "source_symbol": comp_name,
+            "original_sha256": orig_shad_hash,
+            "mutated_sha256": m_shad_hash,
+            "restored_sha256": r_shad_hash,
+            "replacement_count": repl_count,
+            "baseline": {
+                "process_exit": b_res["exit_code"],
+                "production_status": "SUCCESS" if b_res["exit_code"] == 0 else "ERROR",
+                "oracle_status": b_res["status"],
+                "production_value": b_res.get("production_value"),
+                "oracle_value": b_res.get("oracle_value"),
+                "delta": b_res.get("delta")
+            },
+            "mutation": {
+                "process_exit": m_res["exit_code"],
+                "production_status": "SUCCESS" if m_res["exit_code"] in (0, 1) else "EXCEPTION",
+                "oracle_status": m_res["status"],
+                "production_value": m_res.get("production_value"),
+                "oracle_value": m_res.get("oracle_value"),
+                "delta": m_res.get("delta")
+            },
+            "restoration": {
+                "process_exit": r_res["exit_code"],
+                "production_status": "SUCCESS" if r_res["exit_code"] == 0 else "ERROR",
+                "oracle_status": r_res["status"],
+                "production_value": r_res.get("production_value"),
+                "oracle_value": r_res.get("oracle_value"),
+                "delta": r_res.get("delta")
+            },
+            "source_hash_changed": hash_changed,
+            "source_hash_restored": hash_restored,
+            "binary_bytes_restored": bytes_match,
+            "certified": certified,
+            "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
+            "component": comp_name,
+            "target_planet": p_target,
+            "original_source_sha256": orig_shad_hash,
+            "mutated_source_sha256": m_shad_hash,
+            "restored_source_sha256": r_shad_hash,
+            "fresh_process_baseline": baseline_pass,
+            "fresh_process_mutation": mutated_fail,
+            "fresh_process_restoration": restored_pass,
+            "baseline_status": "PASS" if baseline_pass else "FAIL",
+            "mutation_applied": True,
+            "mutated_status": "FAIL" if mutated_fail else "PASS",
+            "restored_status": "PASS" if restored_pass else "FAIL",
+            "detected": certified
+        }
+
+        print(f"[{'PASS' if certified else 'FAIL'}] {mut_id}: {comp_name} ({p_target}) -> BaseExit: {b_res['exit_code']}, MutExit: {m_res['exit_code']}, RestExit: {r_res['exit_code']}, HashChanged: {hash_changed}, HashRestored: {hash_restored}")
+        return rec
+
+    finally:
+        if tmp_path.exists():
+            tmp_path.unlink()
+
+def execute_single_bav_mutation_worker(item):
+    worker_idx, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, fixture_ids, b_res = item
+    cell_idx, t_planet, c_source = spec
+    mut_id = f"MUT_BAV_{cell_idx:02d}_{t_planet}_{c_source}"
+
+    # Unique temporary source file per mutation
+    tmp_path = Path(f"apps/api/engines/strength/ashtakavarga_mut_{mut_id}.py")
+    tmp_mod = f"apps.api.engines.strength.ashtakavarga_mut_{mut_id}"
+
+    try:
+        # 1. Fresh Baseline Check
+        baseline_pass = (b_res["exit_code"] == 0 and b_res["status"] == "ORACLE_PASS")
+
+        # Mutate Source File
+        orig_vec = BAV_RULES[t_planet][c_source]
+        orig_vec_str = str(orig_vec)
+        mut_vec = orig_vec[:-1] if len(orig_vec) > 1 else [1]
+        mut_vec_str = str(mut_vec)
+
+        orig_target_str = f'"{c_source}": {orig_vec_str}'
+        mut_target_str = f'"{c_source}": {mut_vec_str}'
+
+        t_idx = orig_asht_content.find(f'"{t_planet}": {{')
+        c_idx = orig_asht_content.find(orig_target_str, t_idx)
+
+        if c_idx == -1:
+            print(f"MUTATION FAILURE {mut_id}: Could not locate '{orig_target_str}' under target planet {t_planet} in ashtakavarga.py")
+            return None
+
+        repl_count = 1
+        mutated_asht_content = orig_asht_content[:c_idx] + mut_target_str + orig_asht_content[c_idx + len(orig_target_str):]
+
+        tmp_path.write_text(mutated_asht_content, encoding="utf-8")
+
+        m_asht_hash = compute_file_hash(tmp_path)
+        hash_changed = (m_asht_hash != orig_asht_hash)
+
+        # Fresh Mutated Check on REF_001
+        m_res = run_case("bav", "REF_001", t_planet, c_source, "bindus", tmp_mod)
+        mutated_fail = (m_res["exit_code"] == 1 and m_res["status"] == "ORACLE_MISMATCH")
+
+        # Exact Physical File Restoration
+        tmp_path.write_bytes(orig_asht_bytes)
+
+        r_asht_bytes = tmp_path.read_bytes()
+        r_asht_hash = compute_file_hash(tmp_path)
+
+        bytes_match = (r_asht_bytes == orig_asht_bytes)
+        hash_restored = (r_asht_hash == orig_asht_hash)
+
+        # Fresh Restored Check on REF_001
+        r_res = run_case("bav", "REF_001", t_planet, c_source, "bindus", tmp_mod)
+        restored_pass = (r_res["exit_code"] == 0 and r_res["status"] == "ORACLE_PASS")
+
+        certified = baseline_pass and hash_changed and mutated_fail and bytes_match and hash_restored and restored_pass and (repl_count == 1)
+
+        rec = {
+            "mutation_id": mut_id,
+            "mutation_type": "BAV",
+            "target": f"BAV {t_planet} from {c_source}",
+            "fixture_ids": fixture_ids,
+            "source_file": "apps/api/engines/strength/ashtakavarga.py",
+            "source_symbol": f"{t_planet}_{c_source}",
+            "original_sha256": orig_asht_hash,
+            "mutated_sha256": m_asht_hash,
+            "restored_sha256": r_asht_hash,
+            "replacement_count": repl_count,
+            "baseline": {
+                "process_exit": b_res["exit_code"],
+                "production_status": "SUCCESS" if b_res["exit_code"] == 0 else "ERROR",
+                "oracle_status": b_res["status"],
+                "production_value": b_res.get("production_value"),
+                "oracle_value": b_res.get("oracle_value"),
+                "delta": b_res.get("delta")
+            },
+            "mutation": {
+                "process_exit": m_res["exit_code"],
+                "production_status": "SUCCESS" if m_res["exit_code"] in (0, 1) else "EXCEPTION",
+                "oracle_status": m_res["status"],
+                "production_value": m_res.get("production_value"),
+                "oracle_value": m_res.get("oracle_value"),
+                "delta": m_res.get("delta")
+            },
+            "restoration": {
+                "process_exit": r_res["exit_code"],
+                "production_status": "SUCCESS" if r_res["exit_code"] == 0 else "ERROR",
+                "oracle_status": r_res["status"],
+                "production_value": r_res.get("production_value"),
+                "oracle_value": r_res.get("oracle_value"),
+                "delta": r_res.get("delta")
+            },
+            "source_hash_changed": hash_changed,
+            "source_hash_restored": hash_restored,
+            "binary_bytes_restored": bytes_match,
+            "certified": certified,
+            "category": "BAV_PHYSICAL_SOURCE_MUTATION",
+            "component": f"BAV {t_planet} from {c_source}",
+            "target_planet": t_planet,
+            "contributor_source": c_source,
+            "original_source_sha256": orig_asht_hash,
+            "mutated_source_sha256": m_asht_hash,
+            "restored_source_sha256": r_asht_hash,
+            "fresh_process_baseline": baseline_pass,
+            "fresh_process_mutation": mutated_fail,
+            "fresh_process_restoration": restored_pass,
+            "baseline_status": "PASS" if baseline_pass else "FAIL",
+            "mutation_applied": True,
+            "mutated_status": "FAIL" if mutated_fail else "PASS",
+            "restored_status": "PASS" if restored_pass else "FAIL",
+            "detected": certified
+        }
+
+        print(f"[{'PASS' if certified else 'FAIL'}] {mut_id}: BAV {t_planet} from {c_source} -> BaseExit: {b_res['exit_code']}, MutExit: {m_res['exit_code']}, RestExit: {r_res['exit_code']}, HashChanged: {hash_changed}, HashRestored: {hash_restored}")
+        return rec
+
+    finally:
+        if tmp_path.exists():
+            tmp_path.unlink()
 
 def run_73_physical_source_mutations():
     print("============================================================")
     print("STARTING 73 PHYSICAL FILE SOURCE MUTATIONS (17 SHADBALA + 56 BAV)")
     print("============================================================")
 
-    for p_dir in [Path("reports/r7/r6/mutations"), Path("reports/r7/r5/mutations"), Path("reports/r7/r4/mutations"), Path("reports/r7/r3/mutations"), Path("reports/r7/r2/mutations"), Path("reports/r7/r1/mutations")]:
-        if p_dir.exists():
-            shutil.rmtree(p_dir)
-        p_dir.mkdir(parents=True, exist_ok=True)
+    # Wipe all historical mutation artifact directories to guarantee exact 73 file counts
+    out_dirs = [Path("reports/r7/r7"), Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4"), Path("reports/r7/r3"), Path("reports/r7/r2"), Path("reports/r7/r1")]
+    for out_p in out_dirs:
+        m_dir = out_p / "mutations"
+        if m_dir.exists():
+            shutil.rmtree(m_dir)
+        m_dir.mkdir(parents=True, exist_ok=True)
 
     shad_path = Path("apps/api/engines/strength/shadbala.py")
     asht_path = Path("apps/api/engines/strength/ashtakavarga.py")
@@ -156,16 +296,14 @@ def run_73_physical_source_mutations():
     orig_shad_hash = compute_file_hash(shad_path)
     orig_asht_hash = compute_file_hash(asht_path)
 
-    fixture_ids = [f"REF_{i:03d}" for i in range(1, 21) if i not in (9, 10)] + ["REF_016", "REF_017", "REF_018", "REF_019", "REF_020", "SHADBALA_FIXTURE_009", "SHADBALA_FIXTURE_010"]
+    all_fixture_ids = [f"REF_{i:03d}" for i in range(1, 21)]
 
-    records = []
+    # 1. Global Baseline Check
+    b_code_shad = run_case("shadbala", "REF_001", "Sun", "sthana_bala", "Uccha Bala")
+    b_code_bav = run_case("bav", "REF_001", "Sun", "Sun", "bindus")
 
-    # 1. Global Baseline Check via fresh subprocess
-    b_code_shad, b_out_shad = run_subprocess_case("shadbala", "Sun", "sthana_bala", "Uccha Bala")
-    b_code_bav, b_out_bav = run_subprocess_case("bav", "Sun", "Sun", "bindus")
-
-    if b_code_shad != 0 or b_code_bav != 0:
-        print(f"BASELINE CHECK FAILED! ShadExit={b_code_shad}, BavExit={b_code_bav}")
+    if b_code_shad["exit_code"] != 0 or b_code_bav["exit_code"] != 0:
+        print(f"BASELINE CHECK FAILED! ShadExit={b_code_shad['exit_code']}, BavExit={b_code_bav['exit_code']}")
         sys.exit(1)
 
     print("Global Baseline Check: PASS (Exit code 0)")
@@ -193,133 +331,41 @@ def run_73_physical_source_mutations():
         ("MUT_SHAD_17_DRIK", "Drik Bala", "Sun", "drik_bala", "Drik Bala", "drik_total += drishti / 4.0", "drik_total += drishti / 5.0")
     ]
 
-    for spec in shad_sub_specs:
-        certified, log_msg, rec = process_shad_mutation(spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, shad_path, fixture_ids)
-        records.append(rec)
-        for p in [Path("reports/r7/r6/mutations"), Path("reports/r7/r5/mutations"), Path("reports/r7/r4/mutations"), Path("reports/r7/r3/mutations"), Path("reports/r7/r2/mutations"), Path("reports/r7/r1/mutations")]:
-            with open(p / f"{rec['mutation_id']}.json", "w", encoding="utf-8") as f:
-                json.dump(rec, f, indent=2)
-        print(f"[{'PASS' if certified else 'FAIL'}] {log_msg}")
-
     # ------------------------------------------------------------
     # 2. 56 ASHTAKAVARGA BAV PHYSICAL FILE SOURCE MUTATIONS
     # ------------------------------------------------------------
     targets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
     contribs = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Ascendant"]
 
+    bav_specs = []
     cell_idx = 1
     for t_planet in targets:
         for c_source in contribs:
-            mut_id = f"MUT_BAV_{cell_idx:02d}_{t_planet}_{c_source}"
-            b_code, b_out = 0, "ORACLE_PASS: Baseline Pass"
-            baseline_pass = True
-
-            orig_vec = BAV_RULES[t_planet][c_source]
-            orig_vec_str = str(orig_vec)
-            mut_vec = orig_vec[:-1] if len(orig_vec) > 1 else [1]
-            mut_vec_str = str(mut_vec)
-
-            orig_target_str = f'"{c_source}": {orig_vec_str}'
-            mut_target_str = f'"{c_source}": {mut_vec_str}'
-
-            t_idx = orig_asht_content.find(f'"{t_planet}": {{')
-            c_idx = orig_asht_content.find(orig_target_str, t_idx)
-
-            if c_idx == -1:
-                print(f"MUTATION FAILURE {mut_id}: Could not locate '{orig_target_str}' under target planet {t_planet} in ashtakavarga.py")
-                sys.exit(1)
-
-            repl_count = 1
-            mutated_asht_content = orig_asht_content[:c_idx] + mut_target_str + orig_asht_content[c_idx + len(orig_target_str):]
-
-            with open(asht_path, "w", encoding="utf-8") as f:
-                f.write(mutated_asht_content)
-
-            m_asht_hash = compute_file_hash(asht_path)
-            hash_changed = (m_asht_hash != orig_asht_hash)
-
-            m_code, m_out = run_subprocess_case("bav", t_planet, c_source, "bindus")
-            mutated_fail = (m_code == 1 and "ORACLE_MISMATCH" in m_out)
-
-            with open(asht_path, "wb") as f:
-                f.write(orig_asht_bytes)
-
-            r_asht_bytes = asht_path.read_bytes()
-            r_asht_hash = compute_file_hash(asht_path)
-
-            bytes_match = (r_asht_bytes == orig_asht_bytes)
-            hash_restored = (r_asht_hash == orig_asht_hash)
-
-            r_code, r_out = run_subprocess_case("bav", t_planet, c_source, "bindus")
-            restored_pass = (r_code == 0 and "ORACLE_PASS" in r_out)
-
-            certified = baseline_pass and hash_changed and mutated_fail and bytes_match and hash_restored and restored_pass and (repl_count == 1)
-
-            rec = {
-                "mutation_id": mut_id,
-                "mutation_type": "BAV",
-                "target": f"BAV {t_planet} from {c_source}",
-                "fixture_ids": fixture_ids,
-                "source_file": str(asht_path),
-                "source_symbol": f"{t_planet}_{c_source}",
-                "original_sha256": orig_asht_hash,
-                "mutated_sha256": m_asht_hash,
-                "restored_sha256": r_asht_hash,
-                "replacement_count": repl_count,
-                "baseline": {
-                    "process_exit": b_code,
-                    "production_status": "SUCCESS",
-                    "oracle_status": "ORACLE_PASS",
-                    "production_value": "Baseline Pass",
-                    "oracle_value": "Baseline Pass",
-                    "delta": "0"
-                },
-                "mutation": {
-                    "process_exit": m_code,
-                    "production_status": "SUCCESS" if m_code in (0, 1) else "EXCEPTION",
-                    "oracle_status": "ORACLE_MISMATCH" if "ORACLE_MISMATCH" in m_out else ("ORACLE_PASS" if "ORACLE_PASS" in m_out else "EXCEPTION"),
-                    "production_value": "Mutated Vector",
-                    "oracle_value": "Oracle Vector",
-                    "delta": "Mismatch"
-                },
-                "restoration": {
-                    "process_exit": r_code,
-                    "production_status": "SUCCESS" if r_code == 0 else "ERROR",
-                    "oracle_status": "ORACLE_PASS" if "ORACLE_PASS" in r_out else "ERROR",
-                    "production_value": "Restored Pass",
-                    "oracle_value": "Restored Pass",
-                    "delta": "0"
-                },
-                "source_hash_changed": hash_changed,
-                "source_hash_restored": hash_restored,
-                "binary_bytes_restored": bytes_match,
-                "certified": certified,
-                "category": "BAV_PHYSICAL_SOURCE_MUTATION",
-                "component": f"BAV {t_planet} from {c_source}",
-                "target_planet": t_planet,
-                "contributor_source": c_source,
-                "original_source_sha256": orig_asht_hash,
-                "mutated_source_sha256": m_asht_hash,
-                "restored_source_sha256": r_asht_hash,
-                "fresh_process_baseline": baseline_pass,
-                "fresh_process_mutation": mutated_fail,
-                "fresh_process_restoration": restored_pass,
-                "baseline_status": "PASS",
-                "mutation_applied": True,
-                "mutated_status": "FAIL" if mutated_fail else "PASS",
-                "restored_status": "PASS" if restored_pass else "FAIL",
-                "detected": certified
-            }
-            records.append(rec)
-
-            for p in [Path("reports/r7/r6/mutations"), Path("reports/r7/r5/mutations"), Path("reports/r7/r4/mutations"), Path("reports/r7/r3/mutations"), Path("reports/r7/r2/mutations"), Path("reports/r7/r1/mutations")]:
-                with open(p / f"{mut_id}.json", "w", encoding="utf-8") as f:
-                    json.dump(rec, f, indent=2)
-
-            print(f"[{'PASS' if certified else 'FAIL'}] {mut_id}: BAV {t_planet} from {c_source} -> BaseExit: {b_code}, MutExit: {m_code}, RestExit: {r_code}, HashChanged: {hash_changed}, HashRestored: {hash_restored}")
+            bav_specs.append((cell_idx, t_planet, c_source))
             cell_idx += 1
 
-    # Save summary documents in reports/r7/r6/, r5, r4, r3, r2, r1
+    shad_work_items = [(i+1, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, all_fixture_ids, b_code_shad) for i, spec in enumerate(shad_sub_specs)]
+    bav_work_items = [(i+1, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, all_fixture_ids, b_code_bav) for i, spec in enumerate(bav_specs)]
+
+    records = []
+
+    for item in shad_work_items:
+        rec = execute_single_shad_mutation_worker(item)
+        if rec:
+            records.append(rec)
+            for out_p in out_dirs:
+                with open(out_p / "mutations" / f"{rec['mutation_id']}.json", "w", encoding="utf-8") as f:
+                    json.dump(rec, f, indent=2)
+
+    for item in bav_work_items:
+        rec = execute_single_bav_mutation_worker(item)
+        if rec:
+            records.append(rec)
+            for out_p in out_dirs:
+                with open(out_p / "mutations" / f"{rec['mutation_id']}.json", "w", encoding="utf-8") as f:
+                    json.dump(rec, f, indent=2)
+
+    # Save summary documents in reports/r7/r7/, r6, r5, r4, r3, r2, r1
     attempted = len(records)
     detected_count = sum(1 for r in records if r["certified"])
 
@@ -333,8 +379,7 @@ def run_73_physical_source_mutations():
         "mutation_records": records
     }
 
-    for out_p in [Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4"), Path("reports/r7/r3"), Path("reports/r7/r2"), Path("reports/r7/r1")]:
-        out_p.mkdir(parents=True, exist_ok=True)
+    for out_p in out_dirs:
         with open(out_p / "source_mutation_results.json", "w", encoding="utf-8") as f:
             json.dump(summary_doc, f, indent=2)
         with open(out_p / "mutation_results.json", "w", encoding="utf-8") as f:

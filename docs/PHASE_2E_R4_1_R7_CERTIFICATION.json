@@ -1,8 +1,8 @@
 {
   "phase": "2E-R4.1-R7-R6",
-  "status": "CERTIFIED",
+  "status": "REMEDIATION_REQUIRED",
   "gates_total": 12,
-  "gates_passed": 12,
+  "gates_passed": 11,
   "gates": [
     {
       "gate_id": "G01_DE440S_HASH",
@@ -70,9 +70,9 @@
     {
       "gate_id": "G10_ADVERSARIAL_TESTS",
       "requirement": "15 Adversarial Certification Tests Execution",
-      "result": "PASS",
-      "evidence": "15/15 adversarial certification attack tests passed",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "Traceback (most recent call last):\n  File \"D:\\Astro-Predictions-Latest\\scripts\\test_r7_r6_adversaria",
+      "failure_reason": "Adversarial tests failed"
     },
     {
       "gate_id": "G11_R4_1_ORACLE_TESTS",

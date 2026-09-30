@@ -196,7 +196,7 @@ def run_adversarial_tests():
     shad_bytes = shad_path.read_bytes()
     try:
         shad_path.write_text(shad_bytes.decode("utf-8") + "\nSYNTAX_ERROR_BROKEN_PYTHON_CODE = = =\n")
-        code, out, err = run_cmd("python scripts/run_single_mutation_case.py shadbala Sun sthana_bala 'Uccha Bala'")
+        code, out, err = run_cmd("python scripts/run_single_mutation_case.py shadbala REF_001 Sun sthana_bala 'Uccha Bala'")
         if code == 2: # PRODUCTION_EXCEPTION exit code
             print("[PASS] Attack 06 Rejected: Syntax error correctly returned exit code 2 (PRODUCTION_EXCEPTION)")
             passed_tests += 1
@@ -388,7 +388,7 @@ def run_adversarial_tests():
         "status": "PASS" if passed_tests == total_tests else "FAIL"
     }
 
-    for p in [Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4")]:
+    for p in [Path("reports/r7/r7"), Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4")]:
         p.mkdir(parents=True, exist_ok=True)
         with open(p / "adversarial_tests.json", "w", encoding="utf-8") as f:
             json.dump(res_doc, f, indent=2)
