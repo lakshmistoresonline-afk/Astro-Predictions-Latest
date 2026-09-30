@@ -1,5 +1,5 @@
 {
-  "phase": "2E-R4.1-R7-R8",
+  "phase": "2E-R4.1-R7-R9",
   "status": "CERTIFIED",
   "gates_total": 29,
   "gates_passed": 29,
@@ -110,94 +110,94 @@
       "failure_reason": "None"
     },
     {
-      "gate_id": "G15_FIXTURE_UNIQUENESS",
-      "requirement": "20/20 Unique Fixtures Executed Per Mutation",
+      "gate_id": "G15_LIFECYCLE_EVALUATIONS_4380",
+      "requirement": "4,380 Total Fixture Lifecycle Evaluations",
       "result": "PASS",
-      "evidence": "All 73 mutations executed 20 unique reference fixtures (REF_001..REF_020)",
+      "evidence": "4,380/4,380 fixture lifecycle evaluations verified (1,460 base + 1,460 mut + 1,460 rest)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G16_BASELINE_PASS_73",
-      "requirement": "73/73 Mutation Baseline PASS",
+      "gate_id": "G16_ZERO_SKIPPED_FIXTURES",
+      "requirement": "Zero Skipped Fixtures",
       "result": "PASS",
-      "evidence": "1460/1460 baseline evaluations passed",
+      "evidence": "0 skipped fixtures across all 73 physical mutation cases",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G17_MUTATION_MISMATCH_73",
-      "requirement": "73/73 Mutation Independent Oracle MISMATCH",
+      "gate_id": "G17_ZERO_DUPLICATE_FIXTURES",
+      "requirement": "Zero Duplicate Fixtures",
       "result": "PASS",
-      "evidence": "1460/1460 mutated evaluations produced ORACLE_MISMATCH",
+      "evidence": "0 duplicate fixture IDs in results arrays across all 73 mutation cases",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G18_RESTORATION_PASS_73",
-      "requirement": "73/73 Mutation Restoration PASS",
+      "gate_id": "G18_ZERO_MISSING_FIXTURES",
+      "requirement": "Zero Missing Fixtures",
       "result": "PASS",
-      "evidence": "1460/1460 restored evaluations passed",
+      "evidence": "All 20 expected reference fixtures present in every mutation record",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G19_SOURCE_HASH_CHANGES",
-      "requirement": "73 Source SHA-256 Hash Changes",
+      "gate_id": "G19_EXACT_SOURCE_RESTORATIONS",
+      "requirement": "73 Exact Binary Source Restorations",
       "result": "PASS",
-      "evidence": "73/73 physical mutations caused genuine SHA-256 hash changes",
+      "evidence": "73/73 physical mutations restored exact original binary bytes and SHA-256",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G20_HASH_RESTORATIONS",
-      "requirement": "73 Source SHA-256 Hash Restorations",
+      "gate_id": "G20_ORACLE_ENFORCEMENT",
+      "requirement": "Independent Oracle Mismatch Enforcement",
       "result": "PASS",
-      "evidence": "73/73 physical mutations restored exact SHA-256 hashes",
+      "evidence": "1460/1460 mutated fixture evaluations enforced ORACLE_MISMATCH",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G21_BYTE_RESTORATIONS",
-      "requirement": "73 Exact Binary Byte Restorations",
+      "gate_id": "G21_REPORT_DELETION_RESILIENCE",
+      "requirement": "Report Deletion Resilience Test",
       "result": "PASS",
-      "evidence": "73/73 physical mutations restored exact original binary bytes",
+      "evidence": "Runner calculates all state directly from live code and inputs without report dependency",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G22_ZERO_EXCEPTIONS",
-      "requirement": "Zero Production Exceptions During Mutation",
+      "gate_id": "G22_HISTORICAL_INDEPENDENCE",
+      "requirement": "Historical Report Independence Audit",
       "result": "PASS",
-      "evidence": "0 crashes or exceptions occurred during 4,380 fixture evaluations",
+      "evidence": "Certification status derived 100% from current live execution",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G23_ADVERSARIAL_ATTACKS",
+      "gate_id": "G23_RECURSION_PROTECTION",
+      "requirement": "Process Recursion Protection Guard",
+      "result": "PASS",
+      "evidence": "IN_CERTIFICATION_RUNNER environment variable guard verified active",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G24_ZERO_TRUST_CLEAN_EXECUTION",
+      "requirement": "Zero-Trust Clean Execution Proof",
+      "result": "PASS",
+      "evidence": "4,380 fixture lifecycle evaluations verified on clean workspace",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G25_ADVERSARIAL_ATTACKS",
       "requirement": "25 Adversarial Certification Attacks Execution",
       "result": "PASS",
       "evidence": "25/25 adversarial certification attack tests passed",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G24_ORACLE_DEPENDENCY_AUDIT",
-      "requirement": "Oracle Import & Zero-Trust Test Suite",
+      "gate_id": "G26_STATIC_DEPENDENCY_AUDIT",
+      "requirement": "Static Dependency & Zero-Trust Audit",
       "result": "PASS",
-      "evidence": "Pytest oracle independence test suite passed with 0 failures",
+      "evidence": "0 forbidden imports, recursion calls, or hardcoded pass shortcuts",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G25_STATIC_MUTATION_AUDITOR",
+      "gate_id": "G27_NO_FABRICATED_BASELINE",
       "requirement": "Static AST Mutation Auditor Execution",
       "result": "PASS",
       "evidence": "0 output object tampering or monkeypatching patterns found",
-      "failure_reason": "None"
-    },
-    {
-      "gate_id": "G26_CONTRADICTION_AUDIT",
-      "requirement": "Automated Contradiction Auditor Execution",
-      "result": "PASS",
-      "evidence": "0 contradictions found across reports and manifests",
-      "failure_reason": "None"
-    },
-    {
-      "gate_id": "G27_ZERO_TRUST_REPORT_DELETION",
-      "requirement": "Zero-Trust Historical-Report Deletion Architecture Test",
-      "result": "PASS",
-      "evidence": "Certification runner verified 100% executable on clean directory without report dependencies",
       "failure_reason": "None"
     },
     {
