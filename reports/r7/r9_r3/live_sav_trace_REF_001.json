@@ -1,0 +1,140 @@
+{
+  "fixture_id": "REF_001",
+  "houses": {
+    "1": {
+      "Sun": 5,
+      "Moon": 6,
+      "Mars": 2,
+      "Mercury": 2,
+      "Jupiter": 4,
+      "Venus": 2,
+      "Saturn": 4,
+      "sum": 25
+    },
+    "2": {
+      "Sun": 5,
+      "Moon": 3,
+      "Mars": 3,
+      "Mercury": 6,
+      "Jupiter": 5,
+      "Venus": 5,
+      "Saturn": 4,
+      "sum": 31
+    },
+    "3": {
+      "Sun": 4,
+      "Moon": 4,
+      "Mars": 2,
+      "Mercury": 3,
+      "Jupiter": 4,
+      "Venus": 6,
+      "Saturn": 4,
+      "sum": 27
+    },
+    "4": {
+      "Sun": 6,
+      "Moon": 5,
+      "Mars": 6,
+      "Mercury": 6,
+      "Jupiter": 5,
+      "Venus": 5,
+      "Saturn": 4,
+      "sum": 37
+    },
+    "5": {
+      "Sun": 3,
+      "Moon": 2,
+      "Mars": 3,
+      "Mercury": 6,
+      "Jupiter": 4,
+      "Venus": 4,
+      "Saturn": 2,
+      "sum": 24
+    },
+    "6": {
+      "Sun": 5,
+      "Moon": 5,
+      "Mars": 3,
+      "Mercury": 5,
+      "Jupiter": 3,
+      "Venus": 5,
+      "Saturn": 4,
+      "sum": 30
+    },
+    "7": {
+      "Sun": 3,
+      "Moon": 1,
+      "Mars": 1,
+      "Mercury": 3,
+      "Jupiter": 5,
+      "Venus": 4,
+      "Saturn": 2,
+      "sum": 19
+    },
+    "8": {
+      "Sun": 4,
+      "Moon": 5,
+      "Mars": 6,
+      "Mercury": 5,
+      "Jupiter": 6,
+      "Venus": 5,
+      "Saturn": 2,
+      "sum": 33
+    },
+    "9": {
+      "Sun": 5,
+      "Moon": 5,
+      "Mars": 3,
+      "Mercury": 5,
+      "Jupiter": 4,
+      "Venus": 4,
+      "Saturn": 5,
+      "sum": 31
+    },
+    "10": {
+      "Sun": 3,
+      "Moon": 5,
+      "Mars": 4,
+      "Mercury": 5,
+      "Jupiter": 5,
+      "Venus": 3,
+      "Saturn": 2,
+      "sum": 27
+    },
+    "11": {
+      "Sun": 3,
+      "Moon": 4,
+      "Mars": 5,
+      "Mercury": 7,
+      "Jupiter": 5,
+      "Venus": 5,
+      "Saturn": 2,
+      "sum": 31
+    },
+    "12": {
+      "Sun": 2,
+      "Moon": 4,
+      "Mars": 1,
+      "Mercury": 1,
+      "Jupiter": 6,
+      "Venus": 4,
+      "Saturn": 4,
+      "sum": 22
+    }
+  },
+  "sav_vector": [
+    25,
+    31,
+    27,
+    37,
+    24,
+    30,
+    19,
+    33,
+    31,
+    27,
+    31,
+    22
+  ],
+  "sav_total": 337
+}

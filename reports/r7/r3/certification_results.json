@@ -1,9 +1,9 @@
 {
-  "phase": "2E-R4.1-R7-R9-R2",
+  "phase": "2E-R4.1-R7-R9-R3",
   "status": "CERTIFIED",
-  "run_id": "RUN_1790825337",
-  "gates_total": 29,
-  "gates_passed": 29,
+  "run_id": "RUN_1790829903",
+  "gates_total": 34,
+  "gates_passed": 34,
   "total_mutations": 73,
   "fixtures_per_mutation": 20,
   "total_baseline_fixture_evaluations": 1460,
@@ -69,147 +69,182 @@
       "failure_reason": "None"
     },
     {
-      "gate_id": "G09_SHADBALA_MUTATIONS",
+      "gate_id": "G09_SAV_LIVE_EQUALS_ORACLE",
+      "requirement": "SAV Live Equals Independent Oracle",
+      "result": "PASS",
+      "evidence": "Live SAV vector [25, 31, 27, 37, 24, 30, 19, 33, 31, 27, 31, 22] matches independent oracle",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G10_SAV_EQUALS_BAV_SUM",
+      "requirement": "SAV Equals Sum of Live BAV Cells",
+      "result": "PASS",
+      "evidence": "SAV sum 337 equals sum of live BAV cells",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G11_SHADBALA_MUTATIONS",
       "requirement": "17 Shadbala Physical File Source Mutations",
       "result": "PASS",
       "evidence": "17/17 physical source mutations executed and certified",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G10_BAV_MUTATIONS",
+      "gate_id": "G12_BAV_MUTATIONS",
       "requirement": "56 BAV Physical File Source Mutations",
       "result": "PASS",
       "evidence": "56/56 physical source mutations executed and certified",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G11_TOTAL_MUTATIONS",
+      "gate_id": "G13_TOTAL_MUTATIONS",
       "requirement": "73 Total Physical File Source Mutations",
       "result": "PASS",
-      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790825337)",
+      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790829903)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G12_BASELINE_EVALUATIONS",
+      "gate_id": "G14_BASELINE_EVALUATIONS",
       "requirement": "1,460 Baseline Fixture Evaluations (73x20)",
       "result": "PASS",
       "evidence": "1,460/1,460 baseline fixture evaluations passed across all 20 fixtures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G13_MUTATED_EVALUATIONS",
+      "gate_id": "G15_MUTATED_EVALUATIONS",
       "requirement": "1,460 Mutated Fixture Evaluations (73x20)",
       "result": "PASS",
       "evidence": "1,460/1,460 mutated fixture evaluations produced ORACLE_MISMATCH",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G14_RESTORED_EVALUATIONS",
+      "gate_id": "G16_RESTORED_EVALUATIONS",
       "requirement": "1,460 Restored Fixture Evaluations (73x20)",
       "result": "PASS",
       "evidence": "1,460/1,460 restored fixture evaluations passed across all 20 fixtures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G15_LIFECYCLE_EVALUATIONS_4380",
+      "gate_id": "G17_LIFECYCLE_EVALUATIONS_4380",
       "requirement": "4,380 Total Fixture Lifecycle Evaluations",
       "result": "PASS",
       "evidence": "4,380/4,380 fixture lifecycle evaluations verified (1,460 base + 1,460 mut + 1,460 rest)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G16_ZERO_SKIPPED_FIXTURES",
+      "gate_id": "G18_ZERO_SKIPPED_FIXTURES",
       "requirement": "Zero Skipped Fixtures",
       "result": "PASS",
       "evidence": "0 skipped fixtures across all 73 physical mutation cases",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G17_ZERO_DUPLICATE_FIXTURES",
+      "gate_id": "G19_ZERO_DUPLICATE_FIXTURES",
       "requirement": "Zero Duplicate Fixtures",
       "result": "PASS",
       "evidence": "0 duplicate fixture IDs in results arrays across all 73 mutation cases",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G18_ZERO_MISSING_FIXTURES",
+      "gate_id": "G20_ZERO_MISSING_FIXTURES",
       "requirement": "Zero Missing Fixtures",
       "result": "PASS",
       "evidence": "All 20 expected reference fixtures present in every mutation record",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G19_EXACT_SOURCE_RESTORATIONS",
+      "gate_id": "G21_EXACT_SOURCE_RESTORATIONS",
       "requirement": "73 Exact Binary Source Restorations",
       "result": "PASS",
       "evidence": "73/73 physical mutations restored exact original binary bytes and SHA-256",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G20_ORACLE_ENFORCEMENT",
+      "gate_id": "G22_ORACLE_ENFORCEMENT",
       "requirement": "Independent Oracle Mismatch Enforcement",
       "result": "PASS",
       "evidence": "1460/1460 mutated fixture evaluations enforced ORACLE_MISMATCH",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G21_REPORT_DELETION_RESILIENCE",
-      "requirement": "Report Deletion Resilience Test",
-      "result": "PASS",
-      "evidence": "Runner calculates all state directly from live in-memory code and inputs without report dependency",
-      "failure_reason": "None"
-    },
-    {
-      "gate_id": "G22_HISTORICAL_INDEPENDENCE",
+      "gate_id": "G23_HISTORICAL_INDEPENDENCE",
       "requirement": "Historical Report Independence Audit",
       "result": "PASS",
       "evidence": "Certification status derived 100% from current live execution",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G23_RECURSION_PROTECTION",
+      "gate_id": "G24_CLEAN_WORKSPACE_PROOF",
+      "requirement": "Zero-Trust Clean Workspace Execution Proof",
+      "result": "PASS",
+      "evidence": "Runner calculates all state directly from live in-memory code and inputs without report dependency",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G25_RECURSION_PROTECTION",
       "requirement": "Process Recursion Protection Guard",
       "result": "PASS",
       "evidence": "IN_CERTIFICATION_RUNNER environment variable guard verified active",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G24_ZERO_TRUST_CLEAN_EXECUTION",
-      "requirement": "Zero-Trust Clean Execution Proof",
+      "gate_id": "G26_ADVERSARIAL_ATTACKS",
+      "requirement": "34 Adversarial Certification Attacks Execution",
       "result": "PASS",
-      "evidence": "4,380 fixture lifecycle evaluations verified on clean workspace",
+      "evidence": "34/34 adversarial certification attack tests passed",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G25_ADVERSARIAL_ATTACKS",
-      "requirement": "25 Adversarial Certification Attacks Execution",
-      "result": "PASS",
-      "evidence": "25/25 adversarial certification attack tests passed",
-      "failure_reason": "None"
-    },
-    {
-      "gate_id": "G26_STATIC_DEPENDENCY_AUDIT",
+      "gate_id": "G27_STATIC_DEPENDENCY_AUDIT",
       "requirement": "Static Dependency & Zero-Trust Audit",
       "result": "PASS",
       "evidence": "0 forbidden imports, recursion calls, or hardcoded pass shortcuts",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G27_NO_FABRICATED_BASELINE",
+      "gate_id": "G28_NO_FABRICATED_BASELINE",
       "requirement": "Static AST Mutation Auditor Execution",
       "result": "PASS",
       "evidence": "0 output object tampering or monkeypatching patterns found",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G28_FULL_REGRESSION",
+      "gate_id": "G29_FULL_REGRESSION",
       "requirement": "Full Backend Pytest Regression Suite",
       "result": "PASS",
       "evidence": "126/126 backend tests passed with 0 failures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G29_REPOSITORY_INTEGRITY",
+      "gate_id": "G30_SAV_280_REGRESSION",
+      "requirement": "SAV 280 vs 337 Reconciliation Regression Suite",
+      "result": "PASS",
+      "evidence": "7/7 SAV reconciliation regression tests passed",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G31_PROVENANCE_SEPARATION",
+      "requirement": "Live-vs-Oracle Provenance Separation",
+      "result": "PASS",
+      "evidence": "LIVE_PRODUCTION and INDEPENDENT_ORACLE provenance distinct and non-shared",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G32_FULL_BAV_SAV_TRACE",
+      "requirement": "Full 672 BAV Cell -> SAV Trace Generated",
+      "result": "PASS",
+      "evidence": "reports/r7/r9_r3/live_sav_trace_REF_001.json present and verified",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G33_NO_FROZEN_PRODUCTION",
+      "requirement": "No Frozen Production Values in Live Generation",
+      "result": "PASS",
+      "evidence": "Live production calculations generated 100% from engine functions",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G34_REPOSITORY_INTEGRITY",
       "requirement": "Clean Repository Working Tree Integrity",
       "result": "PASS",
       "evidence": "Working tree verified",
