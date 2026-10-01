@@ -37,3 +37,6 @@ Thumbs.db
 .env.local
 de421.bsp*
 scratch/
+
+# Live Mutation Execution Runs
+reports/**/live_runs/
