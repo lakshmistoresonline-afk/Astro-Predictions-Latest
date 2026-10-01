@@ -1,9 +1,9 @@
 {
   "phase": "2E-R4.1-R7-R12",
-  "status": "CERTIFIED",
-  "run_id": "RUN_1790841373",
+  "status": "REMEDIATION_REQUIRED",
+  "run_id": "RUN_1790843680",
   "gates_total": 42,
-  "gates_passed": 42,
+  "gates_passed": 39,
   "total_mutations": 73,
   "fixtures_per_mutation": 20,
   "total_baseline_fixture_evaluations": 1460,
@@ -99,9 +99,9 @@
     {
       "gate_id": "G13_PRODUCTION_ORACLE_SHADBALA",
       "requirement": "Production vs Oracle Shadbala Reconciliation",
-      "result": "PASS",
-      "evidence": "1,785 / 1,785 real-world birth records pass strict tolerance (delta <= 0.03)",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "0 / 1,785 real birth records passed",
+      "failure_reason": "Shadbala reconciliation mismatch"
     },
     {
       "gate_id": "G14_ORACLE_REFERENCE_SHADBALA",
@@ -141,9 +141,9 @@
     {
       "gate_id": "G19_PRODUCTION_ORACLE_BAV",
       "requirement": "Production vs Oracle BAV Cell Reconciliation",
-      "result": "PASS",
-      "evidence": "13,440 / 13,440 cells match with 0 difference",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "0 / 13,440 cells passed",
+      "failure_reason": "BAV cell reconciliation mismatch"
     },
     {
       "gate_id": "G20_ORACLE_REFERENCE_BAV",
@@ -226,7 +226,7 @@
       "gate_id": "G31_TOTAL_MUTATIONS",
       "requirement": "73 Total Physical File Source Mutations",
       "result": "PASS",
-      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790841373)",
+      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790843680)",
       "failure_reason": "None"
     },
     {
@@ -281,9 +281,9 @@
     {
       "gate_id": "G39_CLEAN_WORKSPACE_PROOF",
       "requirement": "Zero-Trust Clean Workspace Execution Proof",
-      "result": "PASS",
-      "evidence": "Runner calculates all state directly from live in-memory code and inputs without report dependency",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "Report dependency detected",
+      "failure_reason": "Failed report deletion test"
     },
     {
       "gate_id": "G40_EXACT_SOURCE_RESTORATIONS",

@@ -1,0 +1,772 @@
+{
+  "run_id": "RUN_1790844145",
+  "mutation_id": "MUT_SHAD_14_VARSHA",
+  "mutation_type": "SHADBALA",
+  "target": "Varsha Bala",
+  "source_file": "apps/api/engines/strength/shadbala.py",
+  "source_symbol": "Varsha Bala",
+  "original_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_sha256": "7aa81a554cc89ebde197ff1ee6815a5ca3fbeaee8d79f11308d0270aadee8297",
+  "restored_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "replacement_count": 1,
+  "source_hash_changed": true,
+  "source_hash_restored": true,
+  "binary_bytes_restored": true,
+  "executed_fixture_count": 20,
+  "fixture_ids": [
+    "REF_001",
+    "REF_002",
+    "REF_003",
+    "REF_004",
+    "REF_005",
+    "REF_006",
+    "REF_007",
+    "REF_008",
+    "REF_009",
+    "REF_010",
+    "REF_011",
+    "REF_012",
+    "REF_013",
+    "REF_014",
+    "REF_015",
+    "REF_016",
+    "REF_017",
+    "REF_018",
+    "REF_019",
+    "REF_020"
+  ],
+  "fixture_results": [
+    {
+      "fixture_id": "REF_001",
+      "baseline": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 15.0,
+        "oracle_value": 15.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 25.0,
+        "oracle_value": 15.0,
+        "delta": 10.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 15.0,
+        "oracle_value": 15.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_002",
+      "baseline": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_003",
+      "baseline": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_004",
+      "baseline": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_005",
+      "baseline": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_006",
+      "baseline": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_007",
+      "baseline": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 15.0,
+        "oracle_value": 15.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 25.0,
+        "oracle_value": 15.0,
+        "delta": 10.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 15.0,
+        "oracle_value": 15.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_008",
+      "baseline": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_009",
+      "baseline": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_010",
+      "baseline": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_011",
+      "baseline": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 15.0,
+        "oracle_value": 15.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 25.0,
+        "oracle_value": 15.0,
+        "delta": 10.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 15.0,
+        "oracle_value": 15.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_012",
+      "baseline": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_013",
+      "baseline": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_014",
+      "baseline": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_015",
+      "baseline": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_016",
+      "baseline": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_017",
+      "baseline": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_018",
+      "baseline": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_019",
+      "baseline": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_020",
+      "baseline": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 5.0,
+        "oracle_value": 0.0,
+        "delta": 5.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Moon",
+        "subcomponent": "Varsha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    }
+  ],
+  "baseline_pass_count": 20,
+  "mutation_mismatch_count": 20,
+  "restoration_pass_count": 20,
+  "production_exception_count": 0,
+  "certified": true,
+  "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
+  "component": "Varsha Bala",
+  "target_planet": "Moon",
+  "original_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_source_sha256": "7aa81a554cc89ebde197ff1ee6815a5ca3fbeaee8d79f11308d0270aadee8297",
+  "restored_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "detected": true
+}

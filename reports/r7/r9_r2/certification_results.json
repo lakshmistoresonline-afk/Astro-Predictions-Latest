@@ -1,7 +1,7 @@
 {
-  "phase": "2E-R4.1-R7-R12",
+  "phase": "2E-R4.1-R12-R1",
   "status": "CERTIFIED",
-  "run_id": "RUN_1790841373",
+  "run_id": "RUN_1790844595",
   "gates_total": 42,
   "gates_passed": 42,
   "total_mutations": 73,
@@ -44,7 +44,7 @@
       "gate_id": "G05_MODULE_IMPORT_ISOLATION",
       "requirement": "Production / Oracle Module Import Isolation",
       "result": "PASS",
-      "evidence": "0 circular dependencies or contamination imports found",
+      "evidence": "0 circular dependencies or oracle imports found in production adapters",
       "failure_reason": "None"
     },
     {
@@ -107,7 +107,7 @@
       "gate_id": "G14_ORACLE_REFERENCE_SHADBALA",
       "requirement": "Oracle vs Reference Shadbala Reconciliation",
       "result": "PASS",
-      "evidence": "2,380 / 2,380 records pass reference tolerance",
+      "evidence": "2,380 / 2,380 records pass reference tolerance (delta <= 0.03)",
       "failure_reason": "None"
     },
     {
@@ -142,7 +142,7 @@
       "gate_id": "G19_PRODUCTION_ORACLE_BAV",
       "requirement": "Production vs Oracle BAV Cell Reconciliation",
       "result": "PASS",
-      "evidence": "13,440 / 13,440 cells match with 0 difference",
+      "evidence": "10,080 / 10,080 real birth fixture cells match with 0 difference (10,080 real + 3,360 boundary = 13,440 cells)",
       "failure_reason": "None"
     },
     {
@@ -177,7 +177,7 @@
       "gate_id": "G24_REFERENCE_SAV_DERIVATION",
       "requirement": "Authoritative Reference SAV Vector Derivation",
       "result": "PASS",
-      "evidence": "Reference SAV vector: [25, 31, 27, 37, 24, 30, 19, 33, 31, 27, 31, 22]",
+      "evidence": "Reference SAV vector derived from reference BAV: [25, 31, 27, 37, 24, 30, 19, 33, 31, 27, 31, 22]",
       "failure_reason": "None"
     },
     {
@@ -226,7 +226,7 @@
       "gate_id": "G31_TOTAL_MUTATIONS",
       "requirement": "73 Total Physical File Source Mutations",
       "result": "PASS",
-      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790841373)",
+      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790844595)",
       "failure_reason": "None"
     },
     {
