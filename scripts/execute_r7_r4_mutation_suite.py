@@ -1,8 +1,11 @@
 """
-True Physical Source File Mutation Engine for Phase 2E-R4.1-R7-R9.
+True Physical Source File Mutation Engine for Phase 2E-R4.1-R7-R9-R1.
 Physically modifies file bytes on disk using worker-isolated temporary source files for:
   - apps/api/engines/strength/shadbala.py
   - apps/api/engines/strength/ashtakavarga.py
+CLI Usage:
+  python execute_r7_r4_mutation_suite.py [--run-id <run_id>] [--output-dir <output_dir>]
+
 Executes baseline, mutation, and restoration cases across ALL 20 REFERENCE FIXTURES (REF_001 through REF_020) for EVERY mutation.
 Total fixture-level evaluations: 73 mutations x 20 fixtures x 3 stages = 4,380 evaluations!
 Verifies:
@@ -13,6 +16,7 @@ Verifies:
   5. restored process exits 0 with ORACLE_PASS across all 20 fixtures
 Zero output object tampering! Zero fake baseline values! Zero REF_001-only shortcuts!
 """
+import argparse
 import concurrent.futures
 import hashlib
 import json
@@ -20,6 +24,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 # Add project root to sys.path
@@ -49,7 +54,7 @@ def run_case(mode: str, fixture_id: str, planet: str, cat_or_contrib: str, subco
         }
 
 def execute_single_shad_mutation_worker(item):
-    worker_idx, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, all_fixture_ids = item
+    worker_idx, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, all_fixture_ids, run_id = item
     mut_id, comp_name, p_target, bala_cat, sub_comp, orig_str, mut_str = spec
 
     # Unique temporary source file per mutation
@@ -130,6 +135,7 @@ def execute_single_shad_mutation_worker(item):
         )
 
         rec = {
+            "run_id": run_id,
             "mutation_id": mut_id,
             "mutation_type": "SHADBALA",
             "target": comp_name,
@@ -167,7 +173,7 @@ def execute_single_shad_mutation_worker(item):
             tmp_path.unlink()
 
 def execute_single_bav_mutation_worker(item):
-    worker_idx, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, all_fixture_ids = item
+    worker_idx, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, all_fixture_ids, run_id = item
     cell_idx, t_planet, c_source = spec
     mut_id = f"MUT_BAV_{cell_idx:02d}_{t_planet}_{c_source}"
 
@@ -260,6 +266,7 @@ def execute_single_bav_mutation_worker(item):
         )
 
         rec = {
+            "run_id": run_id,
             "mutation_id": mut_id,
             "mutation_type": "BAV",
             "target": f"BAV {t_planet} from {c_source}",
@@ -297,12 +304,15 @@ def execute_single_bav_mutation_worker(item):
         if tmp_path.exists():
             tmp_path.unlink()
 
-def run_73_physical_source_mutations():
+def run_73_physical_source_mutations(run_id="DEFAULT_RUN", output_dir=None):
     print("============================================================")
-    print("STARTING 73 PHYSICAL FILE SOURCE MUTATIONS ACROSS ALL 20 FIXTURES (4,380 LIFECYCLE STAGES)")
+    print(f"STARTING 73 PHYSICAL FILE SOURCE MUTATIONS ACROSS ALL 20 FIXTURES (RUN_ID: {run_id})")
     print("============================================================")
 
-    out_dirs = [Path("reports/r7/r9"), Path("reports/r7/r8"), Path("reports/r7/r7"), Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4"), Path("reports/r7/r3"), Path("reports/r7/r2"), Path("reports/r7/r1")]
+    out_dirs = [Path("reports/r7/r9_r1"), Path("reports/r7/r9"), Path("reports/r7/r8"), Path("reports/r7/r7"), Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4"), Path("reports/r7/r3"), Path("reports/r7/r2"), Path("reports/r7/r1")]
+    if output_dir:
+        out_dirs.insert(0, Path(output_dir))
+
     for out_p in out_dirs:
         m_dir = out_p / "mutations"
         if m_dir.exists():
@@ -355,8 +365,8 @@ def run_73_physical_source_mutations():
             bav_specs.append((cell_idx, t_planet, c_source))
             cell_idx += 1
 
-    shad_work_items = [(i+1, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, all_fixture_ids) for i, spec in enumerate(shad_sub_specs)]
-    bav_work_items = [(i+1, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, all_fixture_ids) for i, spec in enumerate(bav_specs)]
+    shad_work_items = [(i+1, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, all_fixture_ids, run_id) for i, spec in enumerate(shad_sub_specs)]
+    bav_work_items = [(i+1, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, all_fixture_ids, run_id) for i, spec in enumerate(bav_specs)]
 
     records = []
 
@@ -387,12 +397,14 @@ def run_73_physical_source_mutations():
     total_production_exceptions = sum(r.get("production_exception_count", 0) for r in records)
 
     summary_doc = {
+        "status": "PASS" if (attempted == 73 and detected_count == 73 and total_fixture_evaluations == 4380 and total_production_exceptions == 0) else "FAIL",
+        "run_id": run_id,
         "attempted_mutations": attempted,
         "detected_mutations": detected_count,
         "undetected_mutations": attempted - detected_count,
         "shadbala_mutations_detected": sum(1 for r in records if r["mutation_type"] == "SHADBALA" and r["certified"]),
         "bav_mutations_detected": sum(1 for r in records if r["mutation_type"] == "BAV" and r["certified"]),
-        "detection_score_percent": round((detected_count / attempted) * 100.0, 2),
+        "detection_score_percent": round((detected_count / attempted) * 100.0, 2) if attempted > 0 else 0.0,
         "total_baseline_fixture_evaluations": total_baseline_evaluations,
         "total_mutation_fixture_evaluations": total_mutation_evaluations,
         "total_restoration_fixture_evaluations": total_restoration_evaluations,
@@ -402,19 +414,26 @@ def run_73_physical_source_mutations():
     }
 
     for out_p in out_dirs:
+        with open(out_p / "mutation_execution.json", "w", encoding="utf-8") as f:
+            json.dump(summary_doc, f, indent=2)
         with open(out_p / "source_mutation_results.json", "w", encoding="utf-8") as f:
             json.dump(summary_doc, f, indent=2)
         with open(out_p / "mutation_results.json", "w", encoding="utf-8") as f:
             json.dump(summary_doc, f, indent=2)
-        with open(out_p / "mutation_execution.json", "w", encoding="utf-8") as f:
-            json.dump(summary_doc, f, indent=2)
-        with open(out_p / "mutation_inventory.json", "w", encoding="utf-8") as f:
-            json.dump(summary_doc, f, indent=2)
 
-    print("============================================================")
-    print(f"TOTAL PHYSICAL SOURCE MUTATIONS: {attempted} | CERTIFIED: {detected_count} ({summary_doc['detection_score_percent']}%)")
-    print(f"TOTAL FIXTURE-LEVEL EVALUATIONS: {total_fixture_evaluations} / 4380 (Baselines: {total_baseline_evaluations}, Mutated: {total_mutation_evaluations}, Restored: {total_restoration_evaluations})")
-    print("============================================================")
+    # Output full machine-readable JSON summary to stdout
+    print(json.dumps(summary_doc))
+
+    if summary_doc["status"] != "PASS":
+        sys.exit(1)
+
+def main():
+    parser = argparse.ArgumentParser(description="Run 73 Physical File Source Mutations")
+    parser.add_argument("--run-id", type=str, default=f"RUN_{int(time.time())}", help="Unique Run ID")
+    parser.add_argument("--output-dir", type=str, default=None, help="Output Directory")
+    args = parser.parse_args()
+
+    run_73_physical_source_mutations(args.run_id, args.output_dir)
 
 if __name__ == "__main__":
-    run_73_physical_source_mutations()
+    main()

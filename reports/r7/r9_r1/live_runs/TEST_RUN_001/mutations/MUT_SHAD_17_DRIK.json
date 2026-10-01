@@ -1,0 +1,772 @@
+{
+  "run_id": "TEST_RUN_001",
+  "mutation_id": "MUT_SHAD_17_DRIK",
+  "mutation_type": "SHADBALA",
+  "target": "Drik Bala",
+  "source_file": "apps/api/engines/strength/shadbala.py",
+  "source_symbol": "Drik Bala",
+  "original_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_sha256": "ffb04193bd7471927f5bd3a441908c043ecf0a48d37368783785351be9ab3d83",
+  "restored_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "replacement_count": 1,
+  "source_hash_changed": true,
+  "source_hash_restored": true,
+  "binary_bytes_restored": true,
+  "executed_fixture_count": 20,
+  "fixture_ids": [
+    "REF_001",
+    "REF_002",
+    "REF_003",
+    "REF_004",
+    "REF_005",
+    "REF_006",
+    "REF_007",
+    "REF_008",
+    "REF_009",
+    "REF_010",
+    "REF_011",
+    "REF_012",
+    "REF_013",
+    "REF_014",
+    "REF_015",
+    "REF_016",
+    "REF_017",
+    "REF_018",
+    "REF_019",
+    "REF_020"
+  ],
+  "fixture_results": [
+    {
+      "fixture_id": "REF_001",
+      "baseline": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -0.05,
+        "oracle_value": -0.05,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 16.47,
+        "oracle_value": -0.05,
+        "delta": 16.52,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -0.05,
+        "oracle_value": -0.05,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_002",
+      "baseline": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 11.71,
+        "oracle_value": 11.71,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 29.24,
+        "oracle_value": 11.71,
+        "delta": 17.53,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 11.71,
+        "oracle_value": 11.71,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_003",
+      "baseline": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 3.19,
+        "oracle_value": 3.19,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 21.26,
+        "oracle_value": 3.19,
+        "delta": 18.07,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 3.19,
+        "oracle_value": 3.19,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_004",
+      "baseline": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 9.8,
+        "oracle_value": 9.8,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 26.34,
+        "oracle_value": 9.8,
+        "delta": 16.54,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 9.8,
+        "oracle_value": 9.8,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_005",
+      "baseline": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -7.31,
+        "oracle_value": -7.31,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 12.66,
+        "oracle_value": -7.31,
+        "delta": 19.97,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -7.31,
+        "oracle_value": -7.31,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_006",
+      "baseline": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 6.79,
+        "oracle_value": 6.79,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 22.25,
+        "oracle_value": 6.79,
+        "delta": 15.46,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 6.79,
+        "oracle_value": 6.79,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_007",
+      "baseline": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -2.97,
+        "oracle_value": -2.97,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 16.17,
+        "oracle_value": -2.97,
+        "delta": 19.14,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -2.97,
+        "oracle_value": -2.97,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_008",
+      "baseline": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 3.38,
+        "oracle_value": 3.38,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 22.06,
+        "oracle_value": 3.38,
+        "delta": 18.68,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 3.38,
+        "oracle_value": 3.38,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_009",
+      "baseline": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 7.5,
+        "oracle_value": 7.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 26.0,
+        "oracle_value": 7.5,
+        "delta": 18.5,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 7.5,
+        "oracle_value": 7.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_010",
+      "baseline": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -14.51,
+        "oracle_value": -14.51,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 4.65,
+        "oracle_value": -14.51,
+        "delta": 19.16,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -14.51,
+        "oracle_value": -14.51,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_011",
+      "baseline": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 5.95,
+        "oracle_value": 5.95,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 23.5,
+        "oracle_value": 5.95,
+        "delta": 17.55,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 5.95,
+        "oracle_value": 5.95,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_012",
+      "baseline": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -0.78,
+        "oracle_value": -0.78,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 16.03,
+        "oracle_value": -0.78,
+        "delta": 16.81,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -0.78,
+        "oracle_value": -0.78,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_013",
+      "baseline": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 1.63,
+        "oracle_value": 1.63,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 21.3,
+        "oracle_value": 1.63,
+        "delta": 19.67,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 1.63,
+        "oracle_value": 1.63,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_014",
+      "baseline": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -1.09,
+        "oracle_value": -1.09,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 17.31,
+        "oracle_value": -1.09,
+        "delta": 18.4,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -1.09,
+        "oracle_value": -1.09,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_015",
+      "baseline": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -7.18,
+        "oracle_value": -7.18,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 12.13,
+        "oracle_value": -7.18,
+        "delta": 19.31,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": -7.18,
+        "oracle_value": -7.18,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_016",
+      "baseline": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 20.0,
+        "oracle_value": 0.0,
+        "delta": 20.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_017",
+      "baseline": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 27.5,
+        "oracle_value": 27.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 36.5,
+        "oracle_value": 27.5,
+        "delta": 9.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 27.5,
+        "oracle_value": 27.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_018",
+      "baseline": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 22.5,
+        "oracle_value": 22.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 35.0,
+        "oracle_value": 22.5,
+        "delta": 12.5,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 22.5,
+        "oracle_value": 22.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_019",
+      "baseline": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 30.0,
+        "oracle_value": 30.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 41.0,
+        "oracle_value": 30.0,
+        "delta": 11.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 30.0,
+        "oracle_value": 30.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_020",
+      "baseline": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 20.0,
+        "oracle_value": 0.0,
+        "delta": 20.0,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Drik Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    }
+  ],
+  "baseline_pass_count": 20,
+  "mutation_mismatch_count": 20,
+  "restoration_pass_count": 20,
+  "production_exception_count": 0,
+  "certified": true,
+  "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
+  "component": "Drik Bala",
+  "target_planet": "Sun",
+  "original_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_source_sha256": "ffb04193bd7471927f5bd3a441908c043ecf0a48d37368783785351be9ab3d83",
+  "restored_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "detected": true
+}
