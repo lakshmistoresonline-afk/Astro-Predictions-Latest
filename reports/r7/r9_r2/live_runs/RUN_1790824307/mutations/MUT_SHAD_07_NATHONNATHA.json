@@ -1,0 +1,772 @@
+{
+  "run_id": "RUN_1790824307",
+  "mutation_id": "MUT_SHAD_07_NATHONNATHA",
+  "mutation_type": "SHADBALA",
+  "target": "Nathonnatha Bala",
+  "source_file": "apps/api/engines/strength/shadbala.py",
+  "source_symbol": "Nathonnatha Bala",
+  "original_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_sha256": "34761de6ba39edf27a55a807ada54ca9f689ad4612b027051e16785ac293bd93",
+  "restored_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "replacement_count": 1,
+  "source_hash_changed": true,
+  "source_hash_restored": true,
+  "binary_bytes_restored": true,
+  "executed_fixture_count": 20,
+  "fixture_ids": [
+    "REF_001",
+    "REF_002",
+    "REF_003",
+    "REF_004",
+    "REF_005",
+    "REF_006",
+    "REF_007",
+    "REF_008",
+    "REF_009",
+    "REF_010",
+    "REF_011",
+    "REF_012",
+    "REF_013",
+    "REF_014",
+    "REF_015",
+    "REF_016",
+    "REF_017",
+    "REF_018",
+    "REF_019",
+    "REF_020"
+  ],
+  "fixture_results": [
+    {
+      "fixture_id": "REF_001",
+      "baseline": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 38.33,
+        "oracle_value": 38.33,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 41.67,
+        "oracle_value": 38.33,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_001",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 38.33,
+        "oracle_value": 38.33,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_002",
+      "baseline": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 41.0,
+        "oracle_value": 41.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 44.34,
+        "oracle_value": 41.0,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_002",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 41.0,
+        "oracle_value": 41.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_003",
+      "baseline": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 30.5,
+        "oracle_value": 30.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 33.83,
+        "oracle_value": 30.5,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_003",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 30.5,
+        "oracle_value": 30.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_004",
+      "baseline": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 59.96,
+        "oracle_value": 59.96,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 63.29,
+        "oracle_value": 59.96,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_004",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 59.96,
+        "oracle_value": 59.96,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_005",
+      "baseline": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 46.04,
+        "oracle_value": 46.04,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 49.37,
+        "oracle_value": 46.04,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_005",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 46.04,
+        "oracle_value": 46.04,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_006",
+      "baseline": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 46.59,
+        "oracle_value": 46.59,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 49.92,
+        "oracle_value": 46.59,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_006",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 46.59,
+        "oracle_value": 46.59,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_007",
+      "baseline": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 25.43,
+        "oracle_value": 25.43,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 28.77,
+        "oracle_value": 25.43,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_007",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 25.43,
+        "oracle_value": 25.43,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_008",
+      "baseline": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 8.11,
+        "oracle_value": 8.11,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 11.45,
+        "oracle_value": 8.11,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_008",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 8.11,
+        "oracle_value": 8.11,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_009",
+      "baseline": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 34.24,
+        "oracle_value": 34.24,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 37.57,
+        "oracle_value": 34.24,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_009",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 34.24,
+        "oracle_value": 34.24,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_010",
+      "baseline": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 24.5,
+        "oracle_value": 24.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 27.84,
+        "oracle_value": 24.5,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_010",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 24.5,
+        "oracle_value": 24.5,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_011",
+      "baseline": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 51.68,
+        "oracle_value": 51.68,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 55.01,
+        "oracle_value": 51.68,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_011",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 51.68,
+        "oracle_value": 51.68,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_012",
+      "baseline": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 49.45,
+        "oracle_value": 49.45,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 52.79,
+        "oracle_value": 49.45,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_012",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 49.45,
+        "oracle_value": 49.45,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_013",
+      "baseline": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 35.07,
+        "oracle_value": 35.07,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 38.41,
+        "oracle_value": 35.07,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_013",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 35.07,
+        "oracle_value": 35.07,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_014",
+      "baseline": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 10.87,
+        "oracle_value": 10.87,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 14.2,
+        "oracle_value": 10.87,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_014",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 10.87,
+        "oracle_value": 10.87,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_015",
+      "baseline": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 24.83,
+        "oracle_value": 24.83,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 28.16,
+        "oracle_value": 24.83,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_015",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 24.83,
+        "oracle_value": 24.83,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_016",
+      "baseline": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 26.67,
+        "oracle_value": 26.67,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 30.0,
+        "oracle_value": 26.67,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_016",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 26.67,
+        "oracle_value": 26.67,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_017",
+      "baseline": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 33.33,
+        "oracle_value": 33.33,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 36.67,
+        "oracle_value": 33.33,
+        "delta": 3.34,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_017",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 33.33,
+        "oracle_value": 33.33,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_018",
+      "baseline": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 60.0,
+        "oracle_value": 60.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 63.33,
+        "oracle_value": 60.0,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_018",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 60.0,
+        "oracle_value": 60.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_019",
+      "baseline": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 3.33,
+        "oracle_value": 0.0,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_019",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 0.0,
+        "oracle_value": 0.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    },
+    {
+      "fixture_id": "REF_020",
+      "baseline": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 30.0,
+        "oracle_value": 30.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      },
+      "mutation": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 33.33,
+        "oracle_value": 30.0,
+        "delta": 3.33,
+        "status": "ORACLE_MISMATCH",
+        "exit_code": 1
+      },
+      "restoration": {
+        "fixture_id": "REF_020",
+        "mode": "shadbala",
+        "planet": "Sun",
+        "subcomponent": "Nathonnatha Bala",
+        "production_value": 30.0,
+        "oracle_value": 30.0,
+        "delta": 0.0,
+        "status": "ORACLE_PASS",
+        "exit_code": 0
+      }
+    }
+  ],
+  "baseline_pass_count": 20,
+  "mutation_mismatch_count": 20,
+  "restoration_pass_count": 20,
+  "production_exception_count": 0,
+  "certified": true,
+  "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
+  "component": "Nathonnatha Bala",
+  "target_planet": "Sun",
+  "original_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "mutated_source_sha256": "34761de6ba39edf27a55a807ada54ca9f689ad4612b027051e16785ac293bd93",
+  "restored_source_sha256": "1cf9f6f7da2c5d7e0bc78dcb70060eef1fc2743d9cc01002c7756a2ef895309f",
+  "detected": true
+}

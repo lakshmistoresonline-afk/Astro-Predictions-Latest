@@ -1,9 +1,11 @@
 """
-Generate exact cell-level BAV matrix (13,440 records) and Shadbala component matrix (2,380 records) for Phase 2E-R4.1-R7-R2.
+Generate exact cell-level BAV matrix (13,440 records) and Shadbala component matrix (2,380 records) for Phase 2E-R4.1-R7-R9-R2.
+Exposes pure in-memory API functions returning Python structures:
+  - generate_shadbala_records() -> List[dict] (2,380 records)
+  - generate_bav_records() -> List[dict] (13,440 records)
+  - derive_sav_from_bav(fixture_id) -> List[int] (12 house SAV totals)
 Zero imports from apps.api.engines.* inside oracle evaluation!
-Outputs reports/r7/r2/shadbala_reference_matrix.json and reports/r7/r2/bav_reference_matrix.json.
 """
-import csv
 import json
 import sys
 from pathlib import Path
@@ -30,22 +32,18 @@ def get_frozen_subcomponent_val(frozen_dict, comp_name):
         kala_sub = frozen_dict.get("kala_sub", {})
         return kala_sub.get(comp_name, 0.0)
 
-def run_matrix_generation():
+def generate_shadbala_records() -> list:
     exp_dir = Path("apps/api/tests/fixtures/phase_2e_r4_1_expected")
     exp_files = sorted(list(exp_dir.glob("*.json")))
 
     shadbala_records = []
-    bav_cell_records = []
-
     shad_subcomponents = [
         "Uccha Bala", "Sapta Vargaja Bala", "Ojha Yugma Bala", "Kendradi Bala", "Drekkana Bala",
         "Dig Bala", "Nathonnatha Bala", "Paksha Bala", "Ayana Bala", "Tribhaga Bala",
         "Vara Bala", "Hora Bala", "Masa Bala", "Varsha Bala", "Cheshta Bala",
         "Naisargika Bala", "Drik Bala"
     ]
-
     planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
-    contributors = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Ascendant"]
 
     for fpath in exp_files:
         with open(fpath, "r", encoding="utf-8") as f:
@@ -54,7 +52,6 @@ def run_matrix_generation():
         fid = doc["fixture_id"]
         exp_data = doc["expected"]
 
-        # Build independent chart for oracle evaluation
         ind_chart = IndependentChart(
             doc["ascendant_sidereal_longitude"],
             doc["mc_sidereal_longitude"],
@@ -66,7 +63,6 @@ def run_matrix_generation():
         for p_name, p_info in doc["planets"].items():
             ind_chart.add_planet(p_name, p_info["longitude"], p_info["velocity_deg_day"], p_info["retrograde"])
 
-        # 1. Shadbala Matrix (20 fixtures x 7 planets x 17 components = 2380 records)
         for p in planets:
             oracle_shad = r4_calculate_shadbala_for_planet(ind_chart, p)
             frozen_shad = exp_data["shadbala"][p]
@@ -81,15 +77,42 @@ def run_matrix_generation():
                     "fixture_id": fid,
                     "planet": p,
                     "component": comp,
-                    "oracle_value": orc_val,
-                    "frozen_expected_value": frz_val,
+                    "oracle_value": round(orc_val, 4),
+                    "frozen_expected_value": round(frz_val, 4),
                     "difference": round(delta, 4),
                     "tolerance": 0.03,
                     "status": status,
                     "provenance": "ORACLE_DERIVED_REFERENCE"
                 })
 
-        # 2. BAV Cell-Level Matrix (20 fixtures x 7 targets x 8 contributors x 12 houses = 13,440 records)
+    return shadbala_records
+
+def generate_bav_records() -> list:
+    exp_dir = Path("apps/api/tests/fixtures/phase_2e_r4_1_expected")
+    exp_files = sorted(list(exp_dir.glob("*.json")))
+
+    bav_cell_records = []
+    planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
+    contributors = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Ascendant"]
+
+    for fpath in exp_files:
+        with open(fpath, "r", encoding="utf-8") as f:
+            doc = json.load(f)
+
+        fid = doc["fixture_id"]
+        exp_data = doc["expected"]
+
+        ind_chart = IndependentChart(
+            doc["ascendant_sidereal_longitude"],
+            doc["mc_sidereal_longitude"],
+            doc["ayanamsha"],
+            doc.get("julian_day", 2451545.0),
+            doc.get("local_year", 2000), doc.get("local_month", 1), doc.get("local_day", 1),
+            doc.get("local_hour", 12), doc.get("local_minute", 0)
+        )
+        for p_name, p_info in doc["planets"].items():
+            ind_chart.add_planet(p_name, p_info["longitude"], p_info["velocity_deg_day"], p_info["retrograde"])
+
         for target in planets:
             oracle_bav_vec = r4_independent_bav(ind_chart, target)
             frozen_bav_vec = exp_data["ashtakavarga"]["bav"][target]
@@ -97,11 +120,12 @@ def run_matrix_generation():
             for contrib in contributors:
                 allowed_houses = BAV_RULES[target][contrib]
 
-                for house_num in range(1, 13): # Houses 1 to 12
+                for house_num in range(1, 13):
                     is_applicable = house_num in allowed_houses
 
-                    frozen_bindu = 1 if house_num in frozen_bav_vec else 0
-                    oracle_bindu = 1 if house_num in oracle_bav_vec else 0
+                    # Target planet BAV bindu count for house_num is compared against frozen BAV
+                    frozen_bindu = frozen_bav_vec[house_num - 1]
+                    oracle_bindu = oracle_bav_vec[house_num - 1]
 
                     status = "PASS" if oracle_bindu == frozen_bindu else "FAIL"
 
@@ -120,47 +144,65 @@ def run_matrix_generation():
                         "status": status
                     })
 
-    # Save Shadbala JSON
-    reports_dir = Path("reports/r7/r2")
-    reports_dir.mkdir(parents=True, exist_ok=True)
+    return bav_cell_records
 
-    with open(reports_dir / "shadbala_reference_matrix.json", "w", encoding="utf-8") as f:
-        json.dump({
-            "record_count": len(shadbala_records),
-            "expected_count": 2380,
-            "match": len(shadbala_records) == 2380,
-            "records": shadbala_records
-        }, f, indent=2)
+def derive_sav_from_bav(bav_records=None, fixture_id: str = "REF_001") -> list:
+    """
+    Derives 12-house SAV totals directly from live BAV calculations for a fixture.
+    SAV[h] = sum(BAV_P[h] for P in 7 planets)
+    """
+    ref_path = Path(f"apps/api/tests/fixtures/phase_2e_r4_1_expected/{fixture_id}.json")
+    with open(ref_path, "r", encoding="utf-8") as f:
+        doc = json.load(f)
 
-    # Save BAV Cell JSON
-    with open(reports_dir / "bav_reference_matrix.json", "w", encoding="utf-8") as f:
-        json.dump({
-            "record_count": len(bav_cell_records),
-            "expected_count": 13440,
-            "match": len(bav_cell_records) == 13440,
-            "records": bav_cell_records
-        }, f, indent=2)
+    ind_chart = IndependentChart(
+        doc["ascendant_sidereal_longitude"],
+        doc["mc_sidereal_longitude"],
+        doc["ayanamsha"],
+        doc.get("julian_day", 2451545.0),
+        doc.get("local_year", 2000), doc.get("local_month", 1), doc.get("local_day", 1),
+        doc.get("local_hour", 12), doc.get("local_minute", 0)
+    )
+    for p_name, p_info in doc["planets"].items():
+        ind_chart.add_planet(p_name, p_info["longitude"], p_info["velocity_deg_day"], p_info["retrograde"])
 
-    # Save legacy/R1 path compatibility JSONs
-    r1_dir = Path("reports/r7/r1")
-    r1_dir.mkdir(parents=True, exist_ok=True)
-    with open(r1_dir / "shadbala_matrix.json", "w", encoding="utf-8") as f:
-        json.dump({
-            "record_count": len(shadbala_records),
-            "expected_count": 2380,
-            "match": len(shadbala_records) == 2380,
-            "records": shadbala_records
-        }, f, indent=2)
-    with open(r1_dir / "bav_cell_matrix.json", "w", encoding="utf-8") as f:
-        json.dump({
-            "record_count": len(bav_cell_records),
-            "expected_count": 13440,
-            "match": len(bav_cell_records) == 13440,
-            "records": bav_cell_records
-        }, f, indent=2)
+    planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
+    sav_vec = [0] * 12
+
+    for p in planets:
+        p_bav = r4_independent_bav(ind_chart, p) # 12 house bindu counts
+        for h_idx in range(12):
+            sav_vec[h_idx] += p_bav[h_idx]
+
+    return sav_vec
+
+def run_matrix_generation():
+    shadbala_records = generate_shadbala_records()
+    bav_cell_records = generate_bav_records()
+
+    # Persist artifact JSON files for compatibility
+    for out_p in [Path("reports/r7/r2"), Path("reports/r7/r1")]:
+        out_p.mkdir(parents=True, exist_ok=True)
+        with open(out_p / "shadbala_reference_matrix.json", "w", encoding="utf-8") as f:
+            json.dump({
+                "record_count": len(shadbala_records),
+                "expected_count": 2380,
+                "match": len(shadbala_records) == 2380,
+                "records": shadbala_records
+            }, f, indent=2)
+
+        with open(out_p / "bav_reference_matrix.json", "w", encoding="utf-8") as f:
+            json.dump({
+                "record_count": len(bav_cell_records),
+                "expected_count": 13440,
+                "match": len(bav_cell_records) == 13440,
+                "records": bav_cell_records
+            }, f, indent=2)
 
     print(f"Generated Shadbala matrix ({len(shadbala_records)} records, expected 2380: {len(shadbala_records) == 2380})")
     print(f"Generated BAV cell matrix ({len(bav_cell_records)} records, expected 13440: {len(bav_cell_records) == 13440})")
+
+    return shadbala_records, bav_cell_records
 
 if __name__ == "__main__":
     run_matrix_generation()
