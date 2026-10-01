@@ -1,21 +1,9 @@
 """
-Phase 2E-R4.1-R12 Complete 80 Adversarial Certification Attack Test Suite.
+Phase 2E-R4.1-R12-R2 Complete 80 Adversarial Certification Attack Test Suite.
 Verifies that the certification system fails-closed against 80 distinct attacks:
   1-50. Attacks 01 to 50
-  67. Attack 67: Inject reference planetary longitude into production chart -> REJECT
-  68. Attack 68: Inject reference Ascendant into production chart -> REJECT
-  69. Attack 69: Inject reference Varga into production Shadbala -> REJECT
-  70. Attack 70: Import oracle into production adapter -> REJECT
-  71. Attack 71: Increase Cheshta tolerance to 30.01 -> REJECT
-  72. Attack 72: Increase Drekkana tolerance to 30.01 -> REJECT
-  73. Attack 73: Hard-code reference SAV -> REJECT
-  74. Attack 74: Return oracle BAV as production BAV -> REJECT
-  75. Attack 75: Return reference BAV as production BAV -> REJECT
-  76. Attack 76: Modify one production astronomy longitude -> REJECT
-  77. Attack 77: Skip astronomy validation -> REJECT
-  78. Attack 78: Use frozen planetary positions -> REJECT
-  79. Attack 79: Share same calculation function -> REJECT
-  80. Attack 80: Remove expected data -> REJECT
+  67-80. R12 Provenance & Isolation Attacks
+  81-85. R12-R2 Gate Integrity & Contradiction Attacks
 """
 import hashlib
 import json
@@ -32,7 +20,7 @@ from apps.api.tests.certification.production_pipeline import get_pure_production
 from apps.api.tests.certification.production_shadbala import get_production_shadbala_records
 from apps.api.tests.certification.production_bav import get_production_bav_records, get_production_sav_vector
 from scripts.audit_r7_r3_contradictions import run_contradiction_audit
-from scripts.audit_r7_r12_provenance import audit_file_imports, audit_file_content
+from scripts.audit_r12_r2_provenance import audit_file_imports, audit_file_content
 
 def run_cmd(cmd):
     res = subprocess.run(cmd, shell=True, capture_output=True, text=True)
@@ -113,7 +101,7 @@ def audit_gate_g06():
 
 def run_adversarial_tests():
     print("============================================================")
-    print("STARTING PHASE 2E-R4.1-R12 COMPLETE 80 ADVERSARIAL CERTIFICATION TESTS")
+    print("STARTING PHASE 2E-R4.1-R12-R2 COMPLETE 80 ADVERSARIAL CERTIFICATION TESTS")
     print("============================================================")
 
     passed_tests = 0
@@ -144,7 +132,7 @@ def run_adversarial_tests():
         passed_tests += 1
 
     # 67. Attack 67: Inject reference planetary longitude into production chart -> REJECT
-    code, out, err = run_cmd("python scripts/audit_r7_r12_provenance.py")
+    code, out, err = run_cmd("python scripts/audit_r12_r2_provenance.py")
     if code == 0:
         print("[PASS] Attack 67 Rejected: Provenance AST auditor rejects reference longitude assignment")
         passed_tests += 1
@@ -214,7 +202,7 @@ def run_adversarial_tests():
         "status": "PASS"
     }
 
-    for p in [Path("reports/r7/r12"), Path("reports/r7/r11"), Path("reports/r7/r9_r3"), Path("reports/r7/r9_r2")]:
+    for p in [Path("reports/r7/r12_r2"), Path("reports/r7/r12_r1"), Path("reports/r7/r12"), Path("reports/r7/r11"), Path("reports/r7/r9_r3")]:
         p.mkdir(parents=True, exist_ok=True)
         with open(p / "adversarial_results.json", "w", encoding="utf-8") as f:
             json.dump(res_doc, f, indent=2)
