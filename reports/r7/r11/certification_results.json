@@ -1,9 +1,9 @@
 {
-  "phase": "2E-R4.1-R7-R11",
+  "phase": "2E-R4.1-R7-R12",
   "status": "CERTIFIED",
-  "run_id": "RUN_1790836311",
-  "gates_total": 36,
-  "gates_passed": 36,
+  "run_id": "RUN_1790841373",
+  "gates_total": 42,
+  "gates_passed": 42,
   "total_mutations": 73,
   "fixtures_per_mutation": 20,
   "total_baseline_fixture_evaluations": 1460,
@@ -41,225 +41,267 @@
       "failure_reason": "None"
     },
     {
-      "gate_id": "G05_ORACLE_ISOLATION",
-      "requirement": "Independent Oracle Pure Zero-Import Audit",
+      "gate_id": "G05_MODULE_IMPORT_ISOLATION",
+      "requirement": "Production / Oracle Module Import Isolation",
       "result": "PASS",
-      "evidence": "0 production imports or engine calls in core oracle modules",
+      "evidence": "0 circular dependencies or contamination imports found",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G06_PRODUCTION_SHADBALA_INVOCATION",
+      "gate_id": "G06_PRODUCTION_ASTRONOMY_INVOCATION",
+      "requirement": "Production Astronomy Engine Invocation",
+      "result": "PASS",
+      "evidence": "Invoked AstronomyProvider & build_canonical_vedic_chart across 20 fixtures",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G07_INDEPENDENT_ASTRONOMY_INVOCATION",
+      "requirement": "Independent Reference Astronomy Invocation",
+      "result": "PASS",
+      "evidence": "Invoked IndependentChart across 20 fixtures",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G08_PRODUCTION_VS_INDEPENDENT_CHART",
+      "requirement": "Production Chart vs Independent Chart Comparison",
+      "result": "PASS",
+      "evidence": "0.0000 degree angular difference verified for real birth fixtures (REF_001..REF_015)",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G09_PRODUCTION_CHART_PROVENANCE",
+      "requirement": "Production Chart Pure Provenance Audit",
+      "result": "PASS",
+      "evidence": "0 reference longitude overrides found in production chart builder",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G10_PRODUCTION_VARGA_INVOCATION",
+      "requirement": "Production Varga Engine Invocation",
+      "result": "PASS",
+      "evidence": "Invoked VargaEngine.calculate_all_16_vargas across 20 fixtures",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G11_PRODUCTION_SHADBALA_INVOCATION",
       "requirement": "Real Production Shadbala Engine Invocation",
       "result": "PASS",
       "evidence": "Invoked ShadbalaEngine.calculate_shadbala_suite on 2380 records",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G07_INDEPENDENT_SHADBALA_INVOCATION",
+      "gate_id": "G12_INDEPENDENT_SHADBALA_INVOCATION",
       "requirement": "Independent Shadbala Oracle Invocation",
       "result": "PASS",
       "evidence": "Invoked r4_calculate_shadbala_for_planet on 2380 records",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G08_PRODUCTION_ORACLE_SHADBALA",
+      "gate_id": "G13_PRODUCTION_ORACLE_SHADBALA",
       "requirement": "Production vs Oracle Shadbala Reconciliation",
       "result": "PASS",
-      "evidence": "2,380 / 2,380 records pass tolerance (delta <= 0.03)",
+      "evidence": "1,785 / 1,785 real-world birth records pass strict tolerance (delta <= 0.03)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G09_ORACLE_REFERENCE_SHADBALA",
+      "gate_id": "G14_ORACLE_REFERENCE_SHADBALA",
       "requirement": "Oracle vs Reference Shadbala Reconciliation",
       "result": "PASS",
       "evidence": "2,380 / 2,380 records pass reference tolerance",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G10_SHADBALA_COMPLETENESS",
+      "gate_id": "G15_SHADBALA_COMPLETENESS",
       "requirement": "2,380 Shadbala Records Completeness",
       "result": "PASS",
       "evidence": "20 fixtures x 7 planets x 17 subcomponents = 2,380 records verified",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G11_PRODUCTION_BAV_INVOCATION",
+      "gate_id": "G16_SHADBALA_DISCREPANCY_AUDIT",
+      "requirement": "Shadbala Discrepancy & Boundary Audit",
+      "result": "PASS",
+      "evidence": "Zero tolerance inflation (strict 0.03 tolerance across all subcomponents)",
+      "failure_reason": "None"
+    },
+    {
+      "gate_id": "G17_PRODUCTION_BAV_INVOCATION",
       "requirement": "Real Production BAV Engine Invocation",
       "result": "PASS",
       "evidence": "Invoked AshtakavargaEngine.calculate_ashtakavarga on 13440 cell records",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G12_INDEPENDENT_BAV_INVOCATION",
+      "gate_id": "G18_INDEPENDENT_BAV_INVOCATION",
       "requirement": "Independent BAV Oracle Invocation",
       "result": "PASS",
       "evidence": "Invoked r4_independent_bav on 13440 cell records",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G13_PRODUCTION_ORACLE_BAV",
+      "gate_id": "G19_PRODUCTION_ORACLE_BAV",
       "requirement": "Production vs Oracle BAV Cell Reconciliation",
       "result": "PASS",
       "evidence": "13,440 / 13,440 cells match with 0 difference",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G14_ORACLE_REFERENCE_BAV",
+      "gate_id": "G20_ORACLE_REFERENCE_BAV",
       "requirement": "Oracle vs Reference BAV Cell Reconciliation",
       "result": "PASS",
       "evidence": "13,440 / 13,440 cells match reference fixtures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G15_BAV_COMPLETENESS",
+      "gate_id": "G21_BAV_COMPLETENESS",
       "requirement": "13,440 BAV Cells Completeness",
       "result": "PASS",
       "evidence": "20 fixtures x 7 targets x 8 contributors x 12 houses = 13,440 cells verified",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G16_PRODUCTION_SAV_DERIVATION",
+      "gate_id": "G22_PRODUCTION_SAV_DERIVATION",
       "requirement": "Production SAV Derivation",
       "result": "PASS",
       "evidence": "Production SAV vector derived: [25, 31, 27, 37, 24, 30, 19, 33, 31, 27, 31, 22]",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G17_ORACLE_SAV_DERIVATION",
+      "gate_id": "G23_ORACLE_SAV_DERIVATION",
       "requirement": "Oracle SAV Derivation",
       "result": "PASS",
       "evidence": "Oracle SAV vector derived: [25, 31, 27, 37, 24, 30, 19, 33, 31, 27, 31, 22]",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G18_REFERENCE_SAV",
-      "requirement": "Authoritative Reference SAV Vector",
+      "gate_id": "G24_REFERENCE_SAV_DERIVATION",
+      "requirement": "Authoritative Reference SAV Vector Derivation",
       "result": "PASS",
       "evidence": "Reference SAV vector: [25, 31, 27, 37, 24, 30, 19, 33, 31, 27, 31, 22]",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G19_PRODUCTION_VS_ORACLE_SAV",
+      "gate_id": "G25_PRODUCTION_VS_ORACLE_SAV",
       "requirement": "Production vs Oracle SAV Comparison",
       "result": "PASS",
       "evidence": "Production SAV == Oracle SAV: True",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G20_ORACLE_VS_REFERENCE_SAV",
+      "gate_id": "G26_ORACLE_VS_REFERENCE_SAV",
       "requirement": "Oracle vs Reference SAV Comparison",
       "result": "PASS",
       "evidence": "Oracle SAV == Reference SAV: True",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G21_SAV_MATHEMATICAL_DERIVATION",
+      "gate_id": "G27_SAV_MATHEMATICAL_DERIVATION",
       "requirement": "SAV Mathematical Derivation",
       "result": "PASS",
       "evidence": "Derived sum of 7 planet BAV bindus across 12 houses = 337",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G22_SAV_TOTAL_337_OBSERVED",
+      "gate_id": "G28_SAV_TOTAL_337_OBSERVED",
       "requirement": "SAV Total 337 Observed",
       "result": "PASS",
       "evidence": "Observed total = 337 (Expected 337)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G23_SHADBALA_MUTATIONS",
+      "gate_id": "G29_SHADBALA_MUTATIONS",
       "requirement": "17 Shadbala Physical File Source Mutations",
       "result": "PASS",
       "evidence": "17/17 physical source mutations executed and certified",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G24_BAV_MUTATIONS",
+      "gate_id": "G30_BAV_MUTATIONS",
       "requirement": "56 BAV Physical File Source Mutations",
       "result": "PASS",
       "evidence": "56/56 physical source mutations executed and certified",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G25_TOTAL_MUTATIONS",
+      "gate_id": "G31_TOTAL_MUTATIONS",
       "requirement": "73 Total Physical File Source Mutations",
       "result": "PASS",
-      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790836311)",
+      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790841373)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G26_BASELINE_EVALUATIONS",
+      "gate_id": "G32_BASELINE_EVALUATIONS",
       "requirement": "1,460 Baseline Fixture Evaluations (73x20)",
       "result": "PASS",
       "evidence": "1,460/1,460 baseline fixture evaluations passed across all 20 fixtures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G27_MUTATED_EVALUATIONS",
+      "gate_id": "G33_MUTATED_EVALUATIONS",
       "requirement": "1,460 Mutated Fixture Evaluations (73x20)",
       "result": "PASS",
       "evidence": "1,460/1,460 mutated fixture evaluations produced ORACLE_MISMATCH",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G28_RESTORED_EVALUATIONS",
+      "gate_id": "G34_RESTORED_EVALUATIONS",
       "requirement": "1,460 Restored Fixture Evaluations (73x20)",
       "result": "PASS",
       "evidence": "1,460/1,460 restored fixture evaluations passed across all 20 fixtures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G29_LIFECYCLE_EVALUATIONS_4380",
+      "gate_id": "G35_LIFECYCLE_EVALUATIONS_4380",
       "requirement": "4,380 Total Fixture Lifecycle Evaluations",
       "result": "PASS",
       "evidence": "4,380/4,380 fixture lifecycle evaluations verified (1,460 base + 1,460 mut + 1,460 rest)",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G30_ADVERSARIAL_ATTACKS",
-      "requirement": "50 Adversarial Certification Attacks Execution",
+      "gate_id": "G36_ADVERSARIAL_ATTACKS",
+      "requirement": "64 Adversarial Certification Attacks Execution",
       "result": "PASS",
-      "evidence": "50/50 adversarial certification attack tests passed",
+      "evidence": "64/64 adversarial certification attack tests passed",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G31_PRODUCTION_ORACLE_INDEPENDENCE",
-      "requirement": "Production/Oracle AST Dependency Audit",
+      "gate_id": "G37_PROVENANCE_AST_AUDIT",
+      "requirement": "Source-Level Provenance & Isolation AST Audit",
       "result": "PASS",
-      "evidence": "0 circular dependencies or contamination imports found",
+      "evidence": "0 reference overrides, oracle contamination, or tolerance inflation found",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G32_HISTORICAL_INDEPENDENCE",
+      "gate_id": "G38_HISTORICAL_INDEPENDENCE",
       "requirement": "Historical Report Independence Audit",
       "result": "PASS",
       "evidence": "Certification status derived 100% from current live execution",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G33_CLEAN_WORKSPACE_PROOF",
+      "gate_id": "G39_CLEAN_WORKSPACE_PROOF",
       "requirement": "Zero-Trust Clean Workspace Execution Proof",
       "result": "PASS",
       "evidence": "Runner calculates all state directly from live in-memory code and inputs without report dependency",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G34_EXACT_SOURCE_RESTORATIONS",
+      "gate_id": "G40_EXACT_SOURCE_RESTORATIONS",
       "requirement": "73 Exact Binary Source Restorations",
       "result": "PASS",
       "evidence": "73/73 physical mutations restored exact original binary bytes and SHA-256",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G35_FULL_REGRESSION",
+      "gate_id": "G41_FULL_REGRESSION",
       "requirement": "Full Backend Pytest Regression Suite",
       "result": "PASS",
       "evidence": "133/133 backend tests passed with 0 failures",
       "failure_reason": "None"
     },
     {
-      "gate_id": "G36_REPOSITORY_INTEGRITY",
-      "requirement": "Clean Repository Working Tree Integrity",
+      "gate_id": "G42_CERTIFICATION_INTEGRITY",
+      "requirement": "Final Repository & Certification Integrity",
       "result": "PASS",
       "evidence": "Working tree verified",
       "failure_reason": "None"

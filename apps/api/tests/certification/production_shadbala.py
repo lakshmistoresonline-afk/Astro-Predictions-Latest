@@ -1,9 +1,10 @@
 """
-Real Production Shadbala Engine Certification Adapter for Phase 2E-R4.1-R7-R11.
+Real Production Shadbala Engine Certification Adapter for Phase 2E-R4.1-R7-R12.
 Invokes the REAL production Shadbala engine (ShadbalaEngine.calculate_shadbala_suite) on canonical charts built from BirthInput.
 Returns 2,380 production Shadbala subcomponent records across 20 reference fixtures.
 Zero imports from independent oracle inside production calculation logic.
 Zero frozen expected fixture values used as production output.
+Zero tolerance inflation (strict 0.03 tolerance across all 17 subcomponents).
 """
 import json
 from pathlib import Path
@@ -84,22 +85,10 @@ def get_production_shadbala_records() -> List[Dict]:
             elevation_m=0.0
         )
         prod_chart = build_canonical_vedic_chart(inp)
-
-        # Align with fixture longitudes for sub-arcsecond precision
-        if "ascendant_sidereal_longitude" in data:
-            prod_chart.ascendant.absolute_longitude = data["ascendant_sidereal_longitude"]
-            prod_chart.ascendant.sign_index = int(data["ascendant_sidereal_longitude"] // 30) + 1
-        if "mc_sidereal_longitude" in data:
-            prod_chart.mc.absolute_longitude = data["mc_sidereal_longitude"]
-        for p_name, p_info in data["planets"].items():
-            if p_name in prod_chart.placements:
-                prod_chart.placements[p_name].sidereal_longitude = p_info["longitude"]
-                prod_chart.placements[p_name].rashi.sign_index = int(p_info["longitude"] // 30) + 1
-
         varga_suite = VargaEngine.calculate_all_16_vargas(prod_chart)
         prod_shad_res = ShadbalaEngine.calculate_shadbala_suite(prod_chart, varga_suite)
 
-        # 2. INDEPENDENT ORACLE EXECUTION PATH
+        # 2. INDEPENDENT ORACLE EXECUTION PATH (Using fixture longitudes)
         ind_chart = IndependentChart(
             data["ascendant_sidereal_longitude"],
             data["mc_sidereal_longitude"],
@@ -128,7 +117,7 @@ def get_production_shadbala_records() -> List[Dict]:
                 p_vs_o_delta = abs(prod_val - oracle_val)
                 o_vs_r_delta = abs(oracle_val - ref_val)
 
-                tol = 30.01 if comp in ["Drekkana Bala", "Cheshta Bala"] else 0.03
+                tol = 0.03 # STRICT 0.03 TOLERANCE WITHOUT INFLATION
                 status = "PASS" if p_vs_o_delta <= tol else "FAIL"
 
                 records.append({
