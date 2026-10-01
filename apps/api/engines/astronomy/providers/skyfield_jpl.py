@@ -74,11 +74,13 @@ class SkyfieldJPLProvider(BaseAstronomyProvider):
             project_root = os.path.abspath(os.path.join(base_module_dir, "../../../../../"))
             cwd_dir = os.getcwd()
 
-            # Search only for designated DE440s / explicit kernel file
+            # Search for designated DE440s / explicit kernel file
             candidate_paths = [
+                os.path.join(base_module_dir, "..", self.DEFAULT_KERNEL_FILENAME),
+                os.path.join(project_root, "apps", "api", "engines", "astronomy", self.DEFAULT_KERNEL_FILENAME),
+                os.path.join(cwd_dir, "apps", "api", "engines", "astronomy", self.DEFAULT_KERNEL_FILENAME),
                 os.path.join(cwd_dir, self.DEFAULT_KERNEL_FILENAME),
                 os.path.join(project_root, self.DEFAULT_KERNEL_FILENAME),
-                # Local fallback during dev environment testing if DE440s is being provisioned
                 os.path.join(cwd_dir, "de421.bsp"),
                 os.path.join(project_root, "de421.bsp"),
             ]
