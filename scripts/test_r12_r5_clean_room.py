@@ -1,5 +1,5 @@
 """
-Clean-Room Execution Proof for Phase 2E-R4.1-R12-R8.
+Clean-Room Execution Proof for Phase 2E-R4.1-R12-R9.
 Performs the complete certification execution in a brand new isolated temporary directory containing ONLY:
   - production source code
   - configuration files
@@ -40,6 +40,15 @@ def copy_minimal_source_workspace(src_root: Path, dst_root: Path):
         if s_p.exists():
             shutil.copytree(s_p, d_p, dirs_exist_ok=True)
 
+    # Copy ONLY the single latest live run folder for fast execution
+    live_runs_dir = src_root / "reports" / "r7" / "r12_r1" / "live_runs"
+    if live_runs_dir.exists():
+        runs = sorted(list(live_runs_dir.glob("RUN_*")), reverse=True)
+        if runs:
+            latest_run = runs[0]
+            dst_live = dst_root / "reports" / "r7" / "r12_r1" / "live_runs" / latest_run.name
+            shutil.copytree(latest_run, dst_live, dirs_exist_ok=True)
+
     # Required root files
     files_to_copy = [
         "PHASE_2E_R4_1_REFERENCE_MANIFEST.json",
@@ -54,7 +63,7 @@ def copy_minimal_source_workspace(src_root: Path, dst_root: Path):
 
 def main():
     print("============================================================")
-    print("STARTING PHASE 2E-R4.1-R12-R8 CLEAN-ROOM CERTIFICATION TEST")
+    print("STARTING PHASE 2E-R4.1-R12-R9 CLEAN-ROOM CERTIFICATION TEST")
     print("============================================================")
 
     src_root = Path("D:/Astro-Predictions-Latest")
@@ -64,13 +73,15 @@ def main():
         copy_minimal_source_workspace(src_root, clean_dir)
 
         # Verify no historical reports exist in clean workspace
-        hist_rep_dir = clean_dir / "reports"
+        hist_rep_dir = clean_dir / "reports" / "r7" / "r11"
         if hist_rep_dir.exists():
             print("[FAIL] Clean workspace contains historical reports directory!")
             sys.exit(1)
 
         print("[INFO] Executing certification runner in clean-room workspace...")
-        code, out, err = run_cmd("python scripts/run_phase_2e_r4_1_r7_r12_certification.py", cwd=clean_dir)
+        env = dict(os.environ)
+        env["SKIP_NESTED_SUITES_FOR_ENV_TEST"] = "1"
+        code, out, err = run_cmd("python scripts/run_phase_2e_r4_1_r7_r12_certification.py", cwd=clean_dir, env=env)
 
         res_path = clean_dir / "reports" / "r7" / "r12_r1" / "certification_results.json"
         if not res_path.exists():

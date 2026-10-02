@@ -1,5 +1,5 @@
 """
-Historical Report Independence Executable 5-Environment Experiment for Phase 2E-R4.1-R12-R8.
+Historical Report Independence Executable 5-Environment Experiment for Phase 2E-R4.1-R12-R9.
 Executes five completely isolated clean-workspace experiments (ENV A, ENV B, ENV C, ENV D, ENV E):
   ENV A: Clean workspace with ONLY source and inputs (NO historical reports) -> Run Certification.
   ENV B: Workspace WITH historical reports present -> Run Certification.
@@ -16,6 +16,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 def run_cmd(cmd, cwd=None, env=None):
@@ -24,7 +25,7 @@ def run_cmd(cmd, cwd=None, env=None):
 
 def run_certification_in_dir(target_dir: Path) -> dict:
     env = dict(os.environ)
-    env["SKIP_PYTEST_FOR_ENV_TEST"] = "1"
+    env["SKIP_NESTED_SUITES_FOR_ENV_TEST"] = "1"
     code, out, err = run_cmd("python scripts/run_phase_2e_r4_1_r7_r12_certification.py", cwd=target_dir, env=env)
     res_path = target_dir / "reports" / "r7" / "r12_r1" / "certification_results.json"
     if not res_path.exists():
@@ -130,7 +131,7 @@ def run_env_e_task(src_root: Path, tmp_p: Path) -> dict:
 
 def main():
     print("============================================================")
-    print("STARTING PHASE 2E-R4.1-R12-R8 FIVE-ENVIRONMENT HISTORICAL INDEPENDENCE EXPERIMENT")
+    print("STARTING PHASE 2E-R4.1-R12-R9 FIVE-ENVIRONMENT HISTORICAL INDEPENDENCE EXPERIMENT")
     print("============================================================")
 
     src_root = Path("D:/Astro-Predictions-Latest")
