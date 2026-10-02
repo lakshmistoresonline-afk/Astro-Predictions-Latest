@@ -1,12 +1,15 @@
 """
-Authoritative Dynamic Zero-Trust Certification Runner for Phase 2E-R4.1-R7-R12-R9.
+Authoritative Dynamic Zero-Trust Certification Runner for Phase 2E-R4.1-R7-R12-R10.
 Executes all 42 certification gates dynamically from pure real production pipeline calculations across 4,380 fixture evaluations.
 Does NOT depend on previous PASS/CERTIFIED report JSON files or disk matrix files for certification authority.
 Contains ZERO certification caching, ZERO unconditional PASS gates, and ZERO test-mode bypasses.
 Includes process recursion guard (IN_CERTIFICATION_RUNNER).
 Prints the Section 28 Forensic Assertion before declaring CERTIFIED.
 Returns exit code 0 ONLY when certification is genuinely valid; otherwise exit code != 0.
+CLI Usage:
+  python scripts/run_phase_2e_r4_1_r7_r12_certification.py [--output-dir <dir>]
 """
+import argparse
 import ast
 import hashlib
 import json
@@ -45,12 +48,49 @@ from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
 from apps.api.engines.varga.engine import VargaEngine
 from apps.api.tests.oracles.phase_2e_r4_1.independent_chart import IndependentChart
 from apps.api.engines.vedic.models import BirthInput
+from apps.api.tests.fixtures.fixture_adapter import reference_fixture_to_birth_input
+from reference_source.cross_check_dual_ephemeris import run_cross_check
 
 def run_cmd(cmd, cwd=None, env=None):
     res = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd, env=env)
     return res.returncode, res.stdout, res.stderr
 
-def run_r7_r12_certification():
+def validate_reference_fixtures(ref_dir: Path) -> tuple:
+    expected_ids = [f"REF_{i:03d}" for i in range(1, 21)]
+    found_files = sorted(list(ref_dir.glob("*.json")))
+    found_ids = [f.stem for f in found_files]
+
+    if len(found_files) != 20:
+        return False, f"Fixture count mismatch: found {len(found_files)}, expected 20"
+    if found_ids != expected_ids:
+        return False, f"Fixture IDs mismatch: found {found_ids}"
+
+    seen_ids = set()
+    for fpath in found_files:
+        try:
+            with open(fpath, "r", encoding="utf-8") as f:
+                doc = json.load(f)
+        except Exception as e:
+            return False, f"Malformed JSON in {fpath.name}: {e}"
+
+        fid = doc.get("fixture_id")
+        if not fid or fid in seen_ids:
+            return False, f"Duplicate or missing fixture_id in {fpath.name}"
+        seen_ids.add(fid)
+
+        required_fields = ["local_year", "local_month", "local_day", "local_hour", "local_minute", "latitude", "longitude", "ascendant_sidereal_longitude", "planets"]
+        missing = [k for k in required_fields if k not in doc]
+        if missing:
+            return False, f"Missing required fields {missing} in {fpath.name}"
+
+        planets = doc.get("planets", {})
+        for p in ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]:
+            if p not in planets or "longitude" not in planets[p]:
+                return False, f"Missing planet {p} longitude in {fpath.name}"
+
+    return True, "All 20 reference fixtures (REF_001..REF_020) content-validated 100%"
+
+def run_r7_r12_certification(output_dir_override: Path = None):
     print("============================================================")
     print("STARTING PHASE 2E-R4.1-R7-R12 ZERO-TRUST AUTHORITATIVE CERTIFICATION RUNNER")
     print("============================================================")
@@ -92,39 +132,37 @@ def run_r7_r12_certification():
     else:
         log_gate("G02_REFERENCE_MANIFEST", "Raw Reference SHA-256 Manifest", "FAIL", "Missing manifest JSON", "Manifest missing")
 
-    # G03: Dual-Ephemeris Cross-Check
-    cross_path = Path("reference_source/cross_check_results.json")
-    if cross_path.exists():
-        with open(cross_path, "r", encoding="utf-8") as f:
-            cross_data = json.load(f)
-        mean_d = cross_data.get("mean_delta_arcsec", 999.0)
-        max_d = cross_data.get("max_delta_arcsec", 999.0)
-        c_count = cross_data.get("results_count", 0)
-        c_status = cross_data.get("overall_status", "FAIL")
+    # G03: Dual-Ephemeris Cross-Check (Executed LIVE)
+    try:
+        run_cross_check() # Generates live cross check results
+        cross_path = Path("reference_source/cross_check_results.json")
+        if cross_path.exists():
+            with open(cross_path, "r", encoding="utf-8") as f:
+                cross_data = json.load(f)
+            mean_d = cross_data.get("mean_delta_arcsec", 999.0)
+            max_d = cross_data.get("max_delta_arcsec", 999.0)
+            c_count = cross_data.get("results_count", 0)
+            c_status = cross_data.get("overall_status", "FAIL")
 
-        if c_status == "PASS" and c_count == 180 and max_d <= 120.0:
-            log_gate("G03_DUAL_EPHEMERIS", "PyEphem vs Skyfield Dual-Ephemeris Cross-Check", "PASS", f"{c_count} points checked; Mean delta = {mean_d}\", Max delta = {max_d}\"")
+            if c_status == "PASS" and c_count == 180 and max_d <= 120.0:
+                log_gate("G03_DUAL_EPHEMERIS", "PyEphem vs Skyfield Dual-Ephemeris Cross-Check", "PASS", f"{c_count} points checked; Mean delta = {mean_d:.2f}\", Max delta = {max_d:.2f}\"")
+            else:
+                log_gate("G03_DUAL_EPHEMERIS", "PyEphem vs Skyfield Dual-Ephemeris Cross-Check", "FAIL", f"Count: {c_count}, Max delta: {max_d:.2f}\"", "Cross-check failed tolerance")
         else:
-            log_gate("G03_DUAL_EPHEMERIS", "PyEphem vs Skyfield Dual-Ephemeris Cross-Check", "FAIL", f"Count: {c_count}, Max delta: {max_d}\"", "Cross-check failed tolerance")
-    else:
-        log_gate("G03_DUAL_EPHEMERIS", "PyEphem vs Skyfield Dual-Ephemeris Cross-Check", "FAIL", "Missing cross_check_results.json", "Results file missing")
+            log_gate("G03_DUAL_EPHEMERIS", "PyEphem vs Skyfield Dual-Ephemeris Cross-Check", "FAIL", "Missing cross_check_results.json", "Results file missing")
+    except Exception as e:
+        log_gate("G03_DUAL_EPHEMERIS", "PyEphem vs Skyfield Dual-Ephemeris Cross-Check", "FAIL", str(e), "Dual-ephemeris calculation exception")
 
-    # G04: 20/20 Reference Fixture Integrity & Validation
+    # G04: 20/20 Reference Fixture Integrity & Deep Content Validation
     ref_dir = Path("apps/api/tests/fixtures/phase_2e_r4_1_expected")
+    g04_valid, g04_msg = validate_reference_fixtures(ref_dir)
     ref_files = sorted(list(ref_dir.glob("*.json")))
     ref_fids = [f.stem for f in ref_files]
-    expected_fids = [f"REF_{i:03d}" for i in range(1, 21)]
 
-    ref_integrity_valid = (
-        len(ref_files) == 20 and
-        ref_fids == expected_fids and
-        all(f.stat().st_size > 100 for f in ref_files)
-    )
-
-    if ref_integrity_valid:
-        log_gate("G04_FIXTURE_INTEGRITY", "20/20 Reference Fixture Integrity Verified", "PASS", f"All {len(ref_files)} expected reference fixture files present, valid, and non-empty")
+    if g04_valid:
+        log_gate("G04_FIXTURE_INTEGRITY", "20/20 Reference Fixture Integrity Verified", "PASS", g04_msg)
     else:
-        log_gate("G04_FIXTURE_INTEGRITY", "20/20 Reference Fixture Integrity Verified", "FAIL", f"Found {len(ref_files)} fixtures", "Fixture count or content integrity mismatch")
+        log_gate("G04_FIXTURE_INTEGRITY", "20/20 Reference Fixture Integrity Verified", "FAIL", g04_msg, "Fixture content or count integrity mismatch")
 
     # G05: Production / Oracle Module Import Isolation (R12-R1 Audit)
     code, out, err = run_cmd("python scripts/audit_r12_r2_provenance.py")
@@ -144,18 +182,8 @@ def run_r7_r12_certification():
         with open(ref_p, "r", encoding="utf-8") as f:
             ref_doc = json.load(f)
 
-        # Build BirthInput from reference fixture fields
-        b_inp = BirthInput(
-            name=ref_doc.get("name", fid),
-            year=ref_doc["local_year"],
-            month=ref_doc["local_month"],
-            day=ref_doc["local_day"],
-            hour=ref_doc["local_hour"],
-            minute=ref_doc["local_minute"],
-            latitude=ref_doc["latitude"],
-            longitude=ref_doc["longitude"],
-            timezone_str=ref_doc.get("timezone_str", "Asia/Kolkata")
-        )
+        # Build BirthInput using canonical fixture adapter
+        b_inp = reference_fixture_to_birth_input(ref_doc)
 
         # Build Production Chart
         prod_chart = build_canonical_vedic_chart(b_inp)
@@ -401,8 +429,9 @@ def run_r7_r12_certification():
     # G28: SAV Total 337 Observed
     log_gate("G28_SAV_TOTAL_337_OBSERVED", "SAV Total 337 Observed", "PASS" if sav_sum == 337 else "FAIL", f"Observed total = {sav_sum} (Expected 337)")
 
-    # Save Machine-Readable Output Artifacts for R7-R12_R1
-    out_dir_r12_r1 = Path("reports/r7/r12_r1")
+    # Output directory handling for zero-trust untracked output option
+    out_base = output_dir_override if output_dir_override else Path("reports/r7/r12_r1")
+    out_dir_r12_r1 = Path(out_base)
     out_dir_r12_r1.mkdir(parents=True, exist_ok=True)
 
     with open(out_dir_r12_r1 / "production_shadbala_matrix.json", "w", encoding="utf-8") as f:
@@ -646,4 +675,9 @@ def run_r7_r12_certification():
         sys.exit(1)
 
 if __name__ == "__main__":
-    run_r7_r12_certification()
+    parser = argparse.ArgumentParser(description="Run R12 Certification Runner")
+    parser.add_argument("--output-dir", type=str, default=None, help="Optional output directory for certification artifacts")
+    args = parser.parse_args()
+
+    out_p = Path(args.output_dir) if args.output_dir else None
+    run_r7_r12_certification(out_p)

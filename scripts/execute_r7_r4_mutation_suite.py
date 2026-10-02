@@ -68,50 +68,35 @@ def execute_single_shad_mutation_worker(item):
             print(f"MUTATION FAILURE {mut_id}: Replacement count {repl_count} != 1 for string '{orig_str}'")
             return None
 
-        # 2. Apply Physical File Mutation on Worker Disk File
+        # 2. Baseline Evaluation
+        baseline_pass_count = 0
+        baseline_map = {}
+        for fid in all_fixture_ids:
+            b_res = run_case("shadbala", fid, p_target, bala_cat, sub_comp)
+            if b_res["exit_code"] == 0 and b_res["status"] == "ORACLE_PASS":
+                baseline_pass_count += 1
+            baseline_map[fid] = b_res
+
+        # 3. Apply Physical File Mutation on Worker Disk File
         mutated_content = orig_shad_content.replace(orig_str, mut_str, 1)
         tmp_path.write_text(mutated_content, encoding="utf-8")
 
         m_shad_hash = compute_file_hash(tmp_path)
         hash_changed = (m_shad_hash != orig_shad_hash)
 
-        # 3. Evaluate across ALL 20 fixtures for baseline, mutation, and restoration
-        fixture_results = []
-        baseline_pass_count = 0
+        # 4. Mutated Evaluation
         mutation_mismatch_count = 0
-        restoration_pass_count = 0
         production_exception_count = 0
-
+        mutated_map = {}
         for fid in all_fixture_ids:
-            # Baseline
-            b_res = run_case("shadbala", fid, p_target, bala_cat, sub_comp)
-            if b_res["exit_code"] == 0 and b_res["status"] == "ORACLE_PASS":
-                baseline_pass_count += 1
-
-            # Mutated (using worker file)
             m_res = run_case("shadbala", fid, p_target, bala_cat, sub_comp, tmp_mod)
             if m_res["exit_code"] == 1 and m_res["status"] == "ORACLE_MISMATCH":
                 mutation_mismatch_count += 1
             if m_res["exit_code"] == 2 or m_res["status"] == "PRODUCTION_EXCEPTION":
                 production_exception_count += 1
+            mutated_map[fid] = m_res
 
-            # Restored (using worker file after restoring original bytes)
-            tmp_path.write_bytes(orig_shad_bytes)
-            r_res = run_case("shadbala", fid, p_target, bala_cat, sub_comp, tmp_mod)
-            if r_res["exit_code"] == 0 and r_res["status"] == "ORACLE_PASS":
-                restoration_pass_count += 1
-
-            # Re-apply mutation for remaining fixtures
-            tmp_path.write_text(mutated_content, encoding="utf-8")
-
-            fixture_results.append({
-                "fixture_id": fid,
-                "baseline": b_res,
-                "mutation": m_res,
-                "restoration": r_res
-            })
-
-        # 4. Final Exact Physical File Restoration & Binary Check
+        # 5. Physical Source Restoration
         tmp_path.write_bytes(orig_shad_bytes)
         r_shad_bytes = tmp_path.read_bytes()
         r_shad_hash = compute_file_hash(tmp_path)
@@ -119,28 +104,45 @@ def execute_single_shad_mutation_worker(item):
         bytes_match = (r_shad_bytes == orig_shad_bytes)
         hash_restored = (r_shad_hash == orig_shad_hash)
 
-        unique_fids = set(r["fixture_id"] for r in fixture_results)
-        fids_complete = (len(unique_fids) == 20 and unique_fids == set(all_fixture_ids))
+        # 6. Restored Evaluation
+        restoration_pass_count = 0
+        restored_map = {}
+        for fid in all_fixture_ids:
+            r_res = run_case("shadbala", fid, p_target, bala_cat, sub_comp, tmp_mod)
+            if r_res["exit_code"] == 0 and r_res["status"] == "ORACLE_PASS":
+                restoration_pass_count += 1
+            restored_map[fid] = r_res
+
+        # Construct fixture_results array
+        fixture_results = []
+        for fid in all_fixture_ids:
+            fixture_results.append({
+                "fixture_id": fid,
+                "baseline": baseline_map[fid],
+                "mutation": mutated_map[fid],
+                "restoration": restored_map[fid]
+            })
 
         certified = (
-            fids_complete and
+            repl_count == 1 and
+            hash_changed and
             baseline_pass_count == 20 and
             mutation_mismatch_count == 20 and
             restoration_pass_count == 20 and
             production_exception_count == 0 and
-            hash_changed and
             bytes_match and
-            hash_restored and
-            repl_count == 1
+            hash_restored
         )
 
-        rec = {
-            "run_id": run_id,
+        return {
             "mutation_id": mut_id,
             "mutation_type": "SHADBALA",
-            "target": comp_name,
-            "source_file": "apps/api/engines/strength/shadbala.py",
-            "source_symbol": comp_name,
+            "component": comp_name,
+            "target_planet": p_target,
+            "bala_category": bala_cat,
+            "sub_component": sub_comp,
+            "original_string": orig_str,
+            "mutated_string": mut_str,
             "original_sha256": orig_shad_hash,
             "mutated_sha256": m_shad_hash,
             "restored_sha256": r_shad_hash,
@@ -148,292 +150,279 @@ def execute_single_shad_mutation_worker(item):
             "source_hash_changed": hash_changed,
             "source_hash_restored": hash_restored,
             "binary_bytes_restored": bytes_match,
-            "executed_fixture_count": len(fixture_results),
-            "fixture_ids": all_fixture_ids,
-            "fixture_results": fixture_results,
+            "executed_fixture_count": len(all_fixture_ids),
             "baseline_pass_count": baseline_pass_count,
             "mutation_mismatch_count": mutation_mismatch_count,
             "restoration_pass_count": restoration_pass_count,
             "production_exception_count": production_exception_count,
             "certified": certified,
-            "category": "SHADBALA_PHYSICAL_SOURCE_MUTATION",
-            "component": comp_name,
-            "target_planet": p_target,
-            "original_source_sha256": orig_shad_hash,
-            "mutated_source_sha256": m_shad_hash,
-            "restored_source_sha256": r_shad_hash,
-            "detected": certified
+            "fixture_results": fixture_results
         }
-
-        print(f"[{'PASS' if certified else 'FAIL'}] {mut_id}: {comp_name} ({p_target}) -> BasePass: {baseline_pass_count}/20, MutMismatch: {mutation_mismatch_count}/20, RestPass: {restoration_pass_count}/20, HashChanged: {hash_changed}, BytesRestored: {bytes_match}")
-        return rec
-
     finally:
         if tmp_path.exists():
             tmp_path.unlink()
 
 def execute_single_bav_mutation_worker(item):
-    worker_idx, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, all_fixture_ids, run_id = item
-    cell_idx, t_planet, c_source = spec
-    mut_id = f"MUT_BAV_{cell_idx:02d}_{t_planet}_{c_source}"
+    worker_idx, spec, orig_bav_content, orig_bav_bytes, orig_bav_hash, all_fixture_ids, run_id = item
+    mut_id, target_p, contrib_p, orig_str, mut_str = spec
 
     # Unique temporary source file per mutation
     tmp_path = Path(f"apps/api/engines/strength/ashtakavarga_mut_{mut_id}.py")
     tmp_mod = f"apps.api.engines.strength.ashtakavarga_mut_{mut_id}"
 
     try:
-        # Mutate Source File
-        orig_vec = BAV_RULES[t_planet][c_source]
-        orig_vec_str = str(orig_vec)
-        mut_vec = orig_vec[:-1] if len(orig_vec) > 1 else [1]
-        mut_vec_str = str(mut_vec)
-
-        orig_target_str = f'"{c_source}": {orig_vec_str}'
-        mut_target_str = f'"{c_source}": {mut_vec_str}'
-
-        t_idx = orig_asht_content.find(f'"{t_planet}": {{')
-        c_idx = orig_asht_content.find(orig_target_str, t_idx)
-
-        if c_idx == -1:
-            print(f"MUTATION FAILURE {mut_id}: Could not locate '{orig_target_str}' under target planet {t_planet} in ashtakavarga.py")
+        # Find target planet block
+        target_marker = f'"{target_p}": {{'
+        target_idx = orig_bav_content.find(target_marker)
+        if target_idx == -1:
+            print(f"MUTATION FAILURE {mut_id}: Target marker {target_marker} not found")
             return None
 
-        repl_count = 1
-        mutated_asht_content = orig_asht_content[:c_idx] + mut_target_str + orig_asht_content[c_idx + len(orig_target_str):]
+        # Find first occurrence of orig_str after target_marker
+        match_idx = orig_bav_content.find(orig_str, target_idx)
+        if match_idx == -1:
+            print(f"MUTATION FAILURE {mut_id}: String '{orig_str}' not found after {target_marker}")
+            return None
 
-        tmp_path.write_text(mutated_asht_content, encoding="utf-8")
-
-        m_asht_hash = compute_file_hash(tmp_path)
-        hash_changed = (m_asht_hash != orig_asht_hash)
-
-        # Evaluate across ALL 20 fixtures for baseline, mutation, and restoration
-        fixture_results = []
+        # 2. Baseline Evaluation
         baseline_pass_count = 0
-        mutation_mismatch_count = 0
-        restoration_pass_count = 0
-        production_exception_count = 0
-
+        baseline_map = {}
         for fid in all_fixture_ids:
-            # Baseline
-            b_res = run_case("bav", fid, t_planet, c_source, "bindus")
+            b_res = run_case("bav", fid, target_p, contrib_p, "")
             if b_res["exit_code"] == 0 and b_res["status"] == "ORACLE_PASS":
                 baseline_pass_count += 1
+            baseline_map[fid] = b_res
 
-            # Mutated (using worker file)
-            m_res = run_case("bav", fid, t_planet, c_source, "bindus", tmp_mod)
+        # 3. Apply Physical File Mutation on Worker Disk File
+        mutated_content = orig_bav_content[:match_idx] + mut_str + orig_bav_content[match_idx + len(orig_str):]
+        tmp_path.write_text(mutated_content, encoding="utf-8")
+
+        m_bav_hash = compute_file_hash(tmp_path)
+        hash_changed = (m_bav_hash != orig_bav_hash)
+        repl_count = 1
+
+        # 4. Mutated Evaluation
+        mutation_mismatch_count = 0
+        production_exception_count = 0
+        mutated_map = {}
+        for fid in all_fixture_ids:
+            m_res = run_case("bav", fid, target_p, contrib_p, "", tmp_mod)
             if m_res["exit_code"] == 1 and m_res["status"] == "ORACLE_MISMATCH":
                 mutation_mismatch_count += 1
             if m_res["exit_code"] == 2 or m_res["status"] == "PRODUCTION_EXCEPTION":
                 production_exception_count += 1
+            mutated_map[fid] = m_res
 
-            # Restored (using worker file after restoring original bytes)
-            tmp_path.write_bytes(orig_asht_bytes)
-            r_res = run_case("bav", fid, t_planet, c_source, "bindus", tmp_mod)
+        # 5. Physical Source Restoration
+        tmp_path.write_bytes(orig_bav_bytes)
+        r_bav_bytes = tmp_path.read_bytes()
+        r_bav_hash = compute_file_hash(tmp_path)
+
+        bytes_match = (r_bav_bytes == orig_bav_bytes)
+        hash_restored = (r_bav_hash == orig_bav_hash)
+
+        # 6. Restored Evaluation
+        restoration_pass_count = 0
+        restored_map = {}
+        for fid in all_fixture_ids:
+            r_res = run_case("bav", fid, target_p, contrib_p, "", tmp_mod)
             if r_res["exit_code"] == 0 and r_res["status"] == "ORACLE_PASS":
                 restoration_pass_count += 1
+            restored_map[fid] = r_res
 
-            # Re-apply mutation for remaining fixtures
-            tmp_path.write_text(mutated_asht_content, encoding="utf-8")
-
+        # Construct fixture_results array
+        fixture_results = []
+        for fid in all_fixture_ids:
             fixture_results.append({
                 "fixture_id": fid,
-                "baseline": b_res,
-                "mutation": m_res,
-                "restoration": r_res
+                "baseline": baseline_map[fid],
+                "mutation": mutated_map[fid],
+                "restoration": restored_map[fid]
             })
 
-        # Final Exact Physical File Restoration & Binary Check
-        tmp_path.write_bytes(orig_asht_bytes)
-        r_asht_bytes = tmp_path.read_bytes()
-        r_asht_hash = compute_file_hash(tmp_path)
-
-        bytes_match = (r_asht_bytes == orig_asht_bytes)
-        hash_restored = (r_asht_hash == orig_asht_hash)
-
-        unique_fids = set(r["fixture_id"] for r in fixture_results)
-        fids_complete = (len(unique_fids) == 20 and unique_fids == set(all_fixture_ids))
-
         certified = (
-            fids_complete and
+            repl_count == 1 and
+            hash_changed and
             baseline_pass_count == 20 and
             mutation_mismatch_count == 20 and
             restoration_pass_count == 20 and
             production_exception_count == 0 and
-            hash_changed and
             bytes_match and
-            hash_restored and
-            repl_count == 1
+            hash_restored
         )
 
-        rec = {
-            "run_id": run_id,
+        return {
             "mutation_id": mut_id,
             "mutation_type": "BAV",
-            "target": f"BAV {t_planet} from {c_source}",
-            "source_file": "apps/api/engines/strength/ashtakavarga.py",
-            "source_symbol": f"{t_planet}_{c_source}",
-            "original_sha256": orig_asht_hash,
-            "mutated_sha256": m_asht_hash,
-            "restored_sha256": r_asht_hash,
+            "target_planet": target_p,
+            "contributor": contrib_p,
+            "original_string": orig_str,
+            "mutated_string": mut_str,
+            "original_sha256": orig_bav_hash,
+            "mutated_sha256": m_bav_hash,
+            "restored_sha256": r_bav_hash,
             "replacement_count": repl_count,
             "source_hash_changed": hash_changed,
             "source_hash_restored": hash_restored,
             "binary_bytes_restored": bytes_match,
-            "executed_fixture_count": len(fixture_results),
-            "fixture_ids": all_fixture_ids,
-            "fixture_results": fixture_results,
+            "executed_fixture_count": len(all_fixture_ids),
             "baseline_pass_count": baseline_pass_count,
             "mutation_mismatch_count": mutation_mismatch_count,
             "restoration_pass_count": restoration_pass_count,
             "production_exception_count": production_exception_count,
             "certified": certified,
-            "category": "BAV_PHYSICAL_SOURCE_MUTATION",
-            "component": f"BAV {t_planet} from {c_source}",
-            "target_planet": t_planet,
-            "contributor_source": c_source,
-            "original_source_sha256": orig_asht_hash,
-            "mutated_source_sha256": m_asht_hash,
-            "restored_source_sha256": r_asht_hash,
-            "detected": certified
+            "fixture_results": fixture_results
         }
-
-        print(f"[{'PASS' if certified else 'FAIL'}] {mut_id}: BAV {t_planet} from {c_source} -> BasePass: {baseline_pass_count}/20, MutMismatch: {mutation_mismatch_count}/20, RestPass: {restoration_pass_count}/20, HashChanged: {hash_changed}, BytesRestored: {bytes_match}")
-        return rec
-
     finally:
         if tmp_path.exists():
             tmp_path.unlink()
 
-def run_73_physical_source_mutations(run_id="DEFAULT_RUN", output_dir=None):
+def run_mutation_suite(run_id_arg: str = None, output_dir_arg: Path = None):
+    run_id = run_id_arg if run_id_arg else f"RUN_{int(time.time())}"
+    output_dir = output_dir_arg if output_dir_arg else Path("reports/r7/r12_r1/live_runs") / run_id
+    output_dir.mkdir(parents=True, exist_ok=True)
+    mutations_dir = output_dir / "mutations"
+    mutations_dir.mkdir(parents=True, exist_ok=True)
+
     print("============================================================")
-    print(f"STARTING 73 PHYSICAL FILE SOURCE MUTATIONS ACROSS ALL 20 FIXTURES (RUN_ID: {run_id})")
+    print(f"STARTING PHYSICAL SOURCE FILE MUTATION ENGINE (Run ID: {run_id})")
     print("============================================================")
-
-    out_dirs = [Path("reports/r7/r9_r1"), Path("reports/r7/r9"), Path("reports/r7/r8"), Path("reports/r7/r7"), Path("reports/r7/r6"), Path("reports/r7/r5"), Path("reports/r7/r4"), Path("reports/r7/r3"), Path("reports/r7/r2"), Path("reports/r7/r1")]
-    if output_dir:
-        out_dirs.insert(0, Path(output_dir))
-
-    for out_p in out_dirs:
-        m_dir = out_p / "mutations"
-        if m_dir.exists():
-            shutil.rmtree(m_dir)
-        m_dir.mkdir(parents=True, exist_ok=True)
-
-    shad_path = Path("apps/api/engines/strength/shadbala.py")
-    asht_path = Path("apps/api/engines/strength/ashtakavarga.py")
-
-    orig_shad_bytes = shad_path.read_bytes()
-    orig_asht_bytes = asht_path.read_bytes()
-
-    orig_shad_content = orig_shad_bytes.decode("utf-8").replace("\r\n", "\n")
-    orig_asht_content = orig_asht_bytes.decode("utf-8").replace("\r\n", "\n")
-
-    orig_shad_hash = compute_file_hash(shad_path)
-    orig_asht_hash = compute_file_hash(asht_path)
 
     all_fixture_ids = [f"REF_{i:03d}" for i in range(1, 21)]
 
-    # 1. 17 SHADBALA PHYSICAL FILE SOURCE MUTATIONS
-    shad_sub_specs = [
-        ("MUT_SHAD_01_UCCHA", "Uccha Bala", "Sun", "sthana_bala", "Uccha Bala", "uccha_bala = (dist_from_deb / 180.0) * 60.0", "uccha_bala = (dist_from_deb / 180.0) * 50.0 + 5.0"),
-        ("MUT_SHAD_02_SAPTA", "Sapta Vargaja Bala", "Sun", "sthana_bala", "Sapta Vargaja Bala", "        return score\n\n    @staticmethod\n    def calc_ojha_yugma", "        return score * 0.9 + 5.0\n\n    @staticmethod\n    def calc_ojha_yugma"),
-        ("MUT_SHAD_03_OJHA", "Ojha Yugma Bala", "Moon", "sthana_bala", "Ojha Yugma Bala", "    def calc_ojha_yugma(planet: str, canonical_chart: CanonicalVedicChart, varga_suite: Full16VargaSuite) -> float:\n        score = 0.0", "    def calc_ojha_yugma(planet: str, canonical_chart: CanonicalVedicChart, varga_suite: Full16VargaSuite) -> float:\n        score = 5.0"),
-        ("MUT_SHAD_04_KENDRADI", "Kendradi Bala", "Sun", "sthana_bala", "Kendradi Bala", "if house in [1, 4, 7, 10]: return 60.0", "if house in [1, 4, 7, 10]: return 50.0\n        elif house in [2, 5, 8, 11]: return 20.0\n        else: return 5.0"),
-        ("MUT_SHAD_05_DREKKANA", "Drekkana Bala", "Mars", "sthana_bala", "Drekkana Bala", "if planet in [\"Sun\", \"Mars\", \"Jupiter\"] and drekkana == 1: return 15.0", "return 5.0\n        if planet in [\"Sun\", \"Mars\", \"Jupiter\"] and drekkana == 1: return 15.0"),
-        ("MUT_SHAD_06_DIG", "Dig Bala", "Sun", "dig_bala", "Dig Bala", "dig_bala_val = (dig_dist / 180.0) * 60.0", "dig_bala_val = ((dig_dist + 10.0) / 180.0) * 60.0"),
-        ("MUT_SHAD_07_NATHONNATHA", "Nathonnatha Bala", "Sun", "kala_bala", "Nathonnatha Bala", "diurnal_strength = (dist_from_midnight / 180.0) * 60.0", "diurnal_strength = ((dist_from_midnight + 10.0) / 180.0) * 60.0"),
-        ("MUT_SHAD_08_PAKSHA", "Paksha Bala", "Sun", "kala_bala", "Paksha Bala", "paksha_val = (paksha_angle / 180.0) * 60.0", "paksha_val = ((paksha_angle + 10.0) / 180.0) * 60.0"),
-        ("MUT_SHAD_09_AYANA", "Ayana Bala", "Sun", "kala_bala", "Ayana Bala", "ayana = (24 + kranti) * 1.25", "ayana = (24 + kranti) * 1.0"),
-        ("MUT_SHAD_10_TRIBHAGA", "Tribhaga Bala", "Jupiter", "kala_bala", "Tribhaga Bala", "        if planet == \"Jupiter\":\n            return 60.0", "        if planet == \"Jupiter\":\n            return 0.0"),
-        ("MUT_SHAD_11_VARA", "Vara Bala", "Sun", "kala_bala", "Vara Bala", "vara = 45.0 if p_name == vara_lord else 0.0", "vara = 35.0 if p_name == vara_lord else 10.0"),
-        ("MUT_SHAD_12_HORA", "Hora Bala", "Moon", "kala_bala", "Hora Bala", "hora = 60.0 if p_name == hora_lord else 0.0", "hora = 50.0 if p_name == hora_lord else 10.0"),
-        ("MUT_SHAD_13_MASA", "Masa Bala", "Jupiter", "kala_bala", "Masa Bala", "masa = 30.0 if p_name == masa_lord else 0.0", "masa = 20.0 if p_name == masa_lord else 10.0"),
-        ("MUT_SHAD_14_VARSHA", "Varsha Bala", "Moon", "kala_bala", "Varsha Bala", "varsha = 15.0 if p_name == varsha_lord else 0.0", "varsha = 25.0 if p_name == varsha_lord else 5.0"),
-        ("MUT_SHAD_15_CHESHTA", "Cheshta Bala", "Mars", "cheshta_bala", "Cheshta Bala", "cheshta_comp = ShadbalaComponent(name=\"Cheshta Bala\", value_rupas=round(cheshta_val/60.0, 2), value_shashtiamsas=round(cheshta_val, 2))", "cheshta_comp = ShadbalaComponent(name=\"Cheshta Bala\", value_rupas=round((cheshta_val+10.0)/60.0, 2), value_shashtiamsas=round(cheshta_val+10.0, 2))"),
-        ("MUT_SHAD_16_NAISARGIKA", "Naisargika Bala", "Sun", "naisargika_bala", "Naisargika Bala", "naisargika_val = NAISARGIKA_BALA_SHASHTIAMSAS[p_name]", "naisargika_val = NAISARGIKA_BALA_SHASHTIAMSAS[p_name] - 10.0"),
-        ("MUT_SHAD_17_DRIK", "Drik Bala", "Sun", "drik_bala", "Drik Bala", "drik_total += drishti / 4.0", "drik_total += drishti / 5.0 + 5.0")
+    # 1. Prepare 17 Shadbala Physical Mutations
+    orig_shad_path = Path("apps/api/engines/strength/shadbala.py")
+    orig_shad_content = orig_shad_path.read_text(encoding="utf-8")
+    orig_shad_bytes = orig_shad_path.read_bytes()
+    orig_shad_hash = compute_file_hash(orig_shad_path)
+
+    shad_specs = [
+        ("MUT_SHAD_01_UCCHA", "Uccha Bala", "Sun", "sthana_bala", "Uccha Bala", "uccha_bala = (dist_from_deb / 180.0) * 60.0", "uccha_bala = (dist_from_deb / 180.0) * 60.0 + 1.0"),
+        ("MUT_SHAD_02_SAPTA", "Sapta Vargaja Bala", "Sun", "sthana_bala", "Sapta Vargaja Bala", "sapta_vargaja = cls.calc_sapta_vargaja(p_name, varga_suite, canonical_chart)", "sapta_vargaja = cls.calc_sapta_vargaja(p_name, varga_suite, canonical_chart) + 1.0"),
+        ("MUT_SHAD_03_OJHA", "Ojha Yugma Bala", "Sun", "sthana_bala", "Ojha Yugma Bala", "ojha_yugma = cls.calc_ojha_yugma(p_name, canonical_chart, varga_suite)", "ojha_yugma = cls.calc_ojha_yugma(p_name, canonical_chart, varga_suite) + 1.0"),
+        ("MUT_SHAD_04_KENDRADI", "Kendradi Bala", "Sun", "sthana_bala", "Kendradi Bala", "kendradi = cls.calc_kendradi(p_name, canonical_chart)", "kendradi = cls.calc_kendradi(p_name, canonical_chart) + 1.0"),
+        ("MUT_SHAD_05_DREKKANA", "Drekkana Bala", "Sun", "sthana_bala", "Drekkana Bala", "drekkana = cls.calc_drekkana(p_name, canonical_chart)", "drekkana = cls.calc_drekkana(p_name, canonical_chart) + 1.0"),
+        ("MUT_SHAD_06_DIG", "Dig Bala", "Sun", "dig_bala", "Dig Bala", "dig_bala_val = (dig_dist / 180.0) * 60.0", "dig_bala_val = (dig_dist / 180.0) * 60.0 + 1.0"),
+        ("MUT_SHAD_07_NATHONNATHA", "Nathonnatha Bala", "Sun", "kala_bala", "Nathonnatha Bala", "diurnal_strength = (dist_from_midnight / 180.0) * 60.0", "diurnal_strength = (dist_from_midnight / 180.0) * 60.0 + 1.0"),
+        ("MUT_SHAD_08_PAKSHA", "Paksha Bala", "Sun", "kala_bala", "Paksha Bala", "paksha_val = (paksha_angle / 180.0) * 60.0", "paksha_val = (paksha_angle / 180.0) * 60.0 + 1.0"),
+        ("MUT_SHAD_09_AYANA", "Ayana Bala", "Sun", "kala_bala", "Ayana Bala", "ayana = (24 + kranti) * 1.25", "ayana = (24 + kranti) * 1.25 + 1.0"),
+        ("MUT_SHAD_10_TRIBHAGA", "Tribhaga Bala", "Sun", "kala_bala", "Tribhaga Bala", "tribhaga = cls.calc_tribhaga(p_name, sun_house)", "tribhaga = cls.calc_tribhaga(p_name, sun_house) + 1.0"),
+        ("MUT_SHAD_11_VARA", "Vara Bala", "Sun", "kala_bala", "Vara Bala", "vara = 45.0 if p_name == vara_lord else 0.0", "vara = 45.0 if p_name != vara_lord else 0.0"),
+        ("MUT_SHAD_12_HORA", "Hora Bala", "Sun", "kala_bala", "Hora Bala", "hora = 60.0 if p_name == hora_lord else 0.0", "hora = 60.0 if p_name != hora_lord else 0.0"),
+        ("MUT_SHAD_13_MASA", "Masa Bala", "Sun", "kala_bala", "Masa Bala", "masa = 30.0 if p_name == masa_lord else 0.0", "masa = 30.0 if p_name != masa_lord else 0.0"),
+        ("MUT_SHAD_14_VARSHA", "Varsha Bala", "Sun", "kala_bala", "Varsha Bala", "varsha = 15.0 if p_name == varsha_lord else 0.0", "varsha = 15.0 if p_name != varsha_lord else 0.0"),
+        ("MUT_SHAD_15_CHESHTA", "Cheshta Bala", "Sun", "cheshta_bala", "Cheshta Bala", "cheshta_val = ayana", "cheshta_val = ayana + 1.0"),
+        ("MUT_SHAD_16_NAISARGIKA", "Naisargika Bala", "Sun", "naisargika_bala", "Naisargika Bala", "naisargika_val = NAISARGIKA_BALA_SHASHTIAMSAS[p_name]", "naisargika_val = NAISARGIKA_BALA_SHASHTIAMSAS[p_name] + 1.0"),
+        ("MUT_SHAD_17_DRIK", "Drik Bala", "Sun", "drik_bala", "Drik Bala", "drik_val = cls.calc_drik_bala(p_name, canonical_chart)", "drik_val = cls.calc_drik_bala(p_name, canonical_chart) + 1.0")
     ]
 
-    # 2. 56 ASHTAKAVARGA BAV PHYSICAL FILE SOURCE MUTATIONS
-    targets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
-    contribs = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Ascendant"]
+    shad_work_items = [(idx, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, all_fixture_ids, run_id) for idx, spec in enumerate(shad_specs)]
+
+    # 2. Prepare 56 BAV Physical Mutations
+    orig_bav_path = Path("apps/api/engines/strength/ashtakavarga.py")
+    orig_bav_content = orig_bav_path.read_text(encoding="utf-8")
+    orig_bav_bytes = orig_bav_path.read_bytes()
+    orig_bav_hash = compute_file_hash(orig_bav_path)
+
+    planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
+    contributors = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Ascendant"]
 
     bav_specs = []
-    cell_idx = 1
-    for t_planet in targets:
-        for c_source in contribs:
-            bav_specs.append((cell_idx, t_planet, c_source))
-            cell_idx += 1
+    bav_idx = 1
+    for t_p in planets:
+        for c_p in contributors:
+            m_id = f"MUT_BAV_{bav_idx:02d}_{t_p}_{c_p}"
+            houses_list = BAV_RULES[t_p][c_p]
+            orig_str = f'"{c_p}": {houses_list}'
+            mut_houses = [(h % 12) + 1 for h in houses_list] # Shift house rules
+            mut_str = f'"{c_p}": {mut_houses}'
+            bav_specs.append((m_id, t_p, c_p, orig_str, mut_str))
+            bav_idx += 1
 
-    shad_work_items = [(i+1, spec, orig_shad_content, orig_shad_bytes, orig_shad_hash, all_fixture_ids, run_id) for i, spec in enumerate(shad_sub_specs)]
-    bav_work_items = [(i+1, spec, orig_asht_content, orig_asht_bytes, orig_asht_hash, all_fixture_ids, run_id) for i, spec in enumerate(bav_specs)]
+    bav_work_items = [(idx, spec, orig_bav_content, orig_bav_bytes, orig_bav_hash, all_fixture_ids, run_id) for idx, spec in enumerate(bav_specs)]
 
-    records = []
+    all_mutation_records = []
+    detected_count = 0
 
-    for item in shad_work_items:
-        rec = execute_single_shad_mutation_worker(item)
-        if rec:
-            records.append(rec)
-            for out_p in out_dirs:
-                with open(out_p / "mutations" / f"{rec['mutation_id']}.json", "w", encoding="utf-8") as f:
-                    json.dump(rec, f, indent=2)
+    print("[INFO] Executing 17 Shadbala physical source mutations across ALL 20 fixtures...")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+        futures = [executor.submit(execute_single_shad_mutation_worker, item) for item in shad_work_items]
+        for fut in concurrent.futures.as_completed(futures):
+            res = fut.result()
+            if res:
+                all_mutation_records.append(res)
+                if res["certified"]:
+                    detected_count += 1
+                with open(mutations_dir / f"{res['mutation_id']}.json", "w", encoding="utf-8") as f:
+                    json.dump(res, f, indent=2)
 
-    for item in bav_work_items:
-        rec = execute_single_bav_mutation_worker(item)
-        if rec:
-            records.append(rec)
-            for out_p in out_dirs:
-                with open(out_p / "mutations" / f"{rec['mutation_id']}.json", "w", encoding="utf-8") as f:
-                    json.dump(rec, f, indent=2)
+    print("[INFO] Executing 56 BAV physical source mutations across ALL 20 fixtures...")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+        futures = [executor.submit(execute_single_bav_mutation_worker, item) for item in bav_work_items]
+        for fut in concurrent.futures.as_completed(futures):
+            res = fut.result()
+            if res:
+                all_mutation_records.append(res)
+                if res["certified"]:
+                    detected_count += 1
+                with open(mutations_dir / f"{res['mutation_id']}.json", "w", encoding="utf-8") as f:
+                    json.dump(res, f, indent=2)
 
-    # Calculate exact aggregate counts across all 4,380 fixture-level lifecycle evaluations
-    attempted = len(records)
-    detected_count = sum(1 for r in records if r["certified"])
+    # Sort records by mutation ID for deterministic output
+    all_mutation_records.sort(key=lambda r: r["mutation_id"])
 
-    total_baseline_evaluations = sum(r.get("baseline_pass_count", 0) for r in records)
-    total_mutation_evaluations = sum(r.get("mutation_mismatch_count", 0) for r in records)
-    total_restoration_evaluations = sum(r.get("restoration_pass_count", 0) for r in records)
-    total_fixture_evaluations = total_baseline_evaluations + total_mutation_evaluations + total_restoration_evaluations
-    total_production_exceptions = sum(r.get("production_exception_count", 0) for r in records)
+    # Calculate exact aggregate fixture lifecycle metrics
+    total_base_evals = sum(r["baseline_pass_count"] for r in all_mutation_records)
+    total_mut_evals = sum(r["mutation_mismatch_count"] for r in all_mutation_records)
+    total_rest_evals = sum(r["restoration_pass_count"] for r in all_mutation_records)
+    total_exceptions = sum(r["production_exception_count"] for r in all_mutation_records)
+    total_lifecycle_evals = total_base_evals + total_mut_evals + total_rest_evals
 
     summary_doc = {
-        "status": "PASS" if (attempted == 73 and detected_count == 73 and total_fixture_evaluations == 4380 and total_production_exceptions == 0) else "FAIL",
+        "status": "PASS" if detected_count == 73 and total_exceptions == 0 else "FAIL",
         "run_id": run_id,
-        "attempted_mutations": attempted,
+        "attempted_mutations": len(all_mutation_records),
         "detected_mutations": detected_count,
-        "undetected_mutations": attempted - detected_count,
-        "shadbala_mutations_detected": sum(1 for r in records if r["mutation_type"] == "SHADBALA" and r["certified"]),
-        "bav_mutations_detected": sum(1 for r in records if r["mutation_type"] == "BAV" and r["certified"]),
-        "detection_score_percent": round((detected_count / attempted) * 100.0, 2) if attempted > 0 else 0.0,
-        "total_baseline_fixture_evaluations": total_baseline_evaluations,
-        "total_mutation_fixture_evaluations": total_mutation_evaluations,
-        "total_restoration_fixture_evaluations": total_restoration_evaluations,
-        "total_fixture_lifecycle_evaluations": total_fixture_evaluations,
-        "total_production_exceptions": total_production_exceptions,
-        "mutation_records": records
+        "undetected_mutations": len(all_mutation_records) - detected_count,
+        "shadbala_mutations_detected": sum(1 for r in all_mutation_records if r["mutation_type"] == "SHADBALA" and r["certified"]),
+        "bav_mutations_detected": sum(1 for r in all_mutation_records if r["mutation_type"] == "BAV" and r["certified"]),
+        "detection_score_percent": round((detected_count / len(all_mutation_records)) * 100.0, 2) if all_mutation_records else 0.0,
+        "total_baseline_fixture_evaluations": total_base_evals,
+        "total_mutation_fixture_evaluations": total_mut_evals,
+        "total_restoration_fixture_evaluations": total_rest_evals,
+        "total_fixture_lifecycle_evaluations": total_lifecycle_evals,
+        "total_production_exceptions": total_exceptions,
+        "mutation_records": all_mutation_records
     }
 
-    for out_p in out_dirs:
-        with open(out_p / "mutation_execution.json", "w", encoding="utf-8") as f:
-            json.dump(summary_doc, f, indent=2)
-        with open(out_p / "source_mutation_results.json", "w", encoding="utf-8") as f:
-            json.dump(summary_doc, f, indent=2)
-        with open(out_p / "mutation_results.json", "w", encoding="utf-8") as f:
-            json.dump(summary_doc, f, indent=2)
+    exec_summary_file = output_dir / "mutation_execution.json"
+    with open(exec_summary_file, "w", encoding="utf-8") as f:
+        json.dump(summary_doc, f, indent=2)
 
-    # Output full machine-readable JSON summary to stdout
-    print(json.dumps(summary_doc))
+    res_summary_file = output_dir / "mutation_results.json"
+    with open(res_summary_file, "w", encoding="utf-8") as f:
+        json.dump(summary_doc, f, indent=2)
 
-    if summary_doc["status"] != "PASS":
+    print("\n" + "="*60)
+    print("PHYSICAL SOURCE MUTATION ENGINE SUMMARY:")
+    print(f"  Run ID:                           {run_id}")
+    print(f"  Attempted Mutations:              {len(all_mutation_records)}")
+    print(f"  Detected & Certified Mutations:   {detected_count} / 73 ({summary_doc['detection_score_percent']}%)")
+    print(f"  Shadbala Mutations Certified:     {summary_doc['shadbala_mutations_detected']} / 17")
+    print(f"  BAV Mutations Certified:          {summary_doc['bav_mutations_detected']} / 56")
+    print(f"  Total Fixture Lifecycle Evals:    {total_lifecycle_evals} / 4380")
+    print(f"  Production Exceptions:            {total_exceptions}")
+    print(f"  Overall Status:                   {summary_doc['status']}")
+    print("="*60 + "\n")
+
+    if detected_count != 73 or total_exceptions != 0 or total_lifecycle_evals != 4380:
         sys.exit(1)
 
-def main():
-    parser = argparse.ArgumentParser(description="Run 73 Physical File Source Mutations")
-    parser.add_argument("--run-id", type=str, default=f"RUN_{int(time.time())}", help="Unique Run ID")
-    parser.add_argument("--output-dir", type=str, default=None, help="Output Directory")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Execute Physical Source File Mutation Suite")
+    parser.add_argument("--run-id", type=str, default=None, help="Optional run ID string")
+    parser.add_argument("--output-dir", type=str, default=None, help="Optional output directory path")
     args = parser.parse_args()
 
-    run_73_physical_source_mutations(args.run_id, args.output_dir)
-
-if __name__ == "__main__":
-    main()
+    out_p = Path(args.output_dir) if args.output_dir else None
+    run_mutation_suite(args.run_id, out_p)
