@@ -1,7 +1,7 @@
 {
   "phase": "2E-R4.1-R12-R1",
   "status": "REMEDIATION_REQUIRED",
-  "run_id": "RUN_1790926918",
+  "run_id": "RUN_1790927952",
   "gates_total": 42,
   "gates_passed": 39,
   "total_mutations": 73,
@@ -226,7 +226,7 @@
       "gate_id": "G31_TOTAL_MUTATIONS",
       "requirement": "73 Total Physical File Source Mutations",
       "result": "PASS",
-      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790926918)",
+      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790927952)",
       "failure_reason": "None"
     },
     {
@@ -303,7 +303,7 @@
       "gate_id": "G42_CERTIFICATION_INTEGRITY",
       "requirement": "Final Repository & Certification Integrity",
       "result": "FAIL",
-      "evidence": "Dirty working tree: 'M docs/PHASE_2E_R4_1_R12_R1_CERTIFICATION.json\\n M reports/r7/r1/certification_results.json\\n M report'",
+      "evidence": "Dirty working tree: 'M reports/r7/r1/mutation_execution.json\\n M reports/r7/r1/mutation_results.json\\n M reports/r7/r1/muta'",
       "failure_reason": "Working tree is dirty"
     }
   ]

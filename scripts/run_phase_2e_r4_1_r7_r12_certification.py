@@ -553,6 +553,8 @@ def run_r7_r12_certification():
     else:
         g38_env = dict(os.environ)
         g38_env["SKIP_NESTED_SUITES_FOR_ENV_TEST"] = "1"
+        if "IN_CERTIFICATION_RUNNER" in g38_env:
+            del g38_env["IN_CERTIFICATION_RUNNER"]
         g38_code, g38_out, g38_err = run_cmd("python scripts/test_r12_r5_historical_independence.py", env=g38_env)
         log_gate("G38_HISTORICAL_INDEPENDENCE", "Historical Report Independence Audit", "PASS" if g38_code == 0 else "FAIL", f"Five-Environment Experiment: {'PASS' if g38_code == 0 else 'FAIL'}")
 
@@ -562,6 +564,8 @@ def run_r7_r12_certification():
     else:
         g39_env = dict(os.environ)
         g39_env["SKIP_NESTED_SUITES_FOR_ENV_TEST"] = "1"
+        if "IN_CERTIFICATION_RUNNER" in g39_env:
+            del g39_env["IN_CERTIFICATION_RUNNER"]
         g39_code, g39_out, g39_err = run_cmd("python scripts/test_r12_r5_clean_room.py", env=g39_env)
         log_gate("G39_CLEAN_WORKSPACE_PROOF", "Zero-Trust Clean Workspace Execution Proof", "PASS" if g39_code == 0 else "FAIL", f"Clean-Room Execution Proof: {'PASS' if g39_code == 0 else 'FAIL'}")
 

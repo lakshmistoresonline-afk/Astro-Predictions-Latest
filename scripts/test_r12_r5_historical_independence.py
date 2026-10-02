@@ -155,25 +155,23 @@ def main():
             print("Stderr:", m_err[:300])
             sys.exit(1)
 
-    print(f"[INFO] Live mutation suite present. Executing all 5 environments (ENV A, B, C, D, E) sequentially...")
+    print(f"[INFO] Live mutation suite present. Executing all 5 environments (ENV A, B, C, D, E) concurrently in parallel...")
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp_p = Path(tmp_dir)
 
-        print("[INFO] Executing ENV A...")
-        res_a = run_env_a_task(src_root, tmp_p)
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            fut_a = executor.submit(run_env_a_task, src_root, tmp_p)
+            fut_b = executor.submit(run_env_b_task, src_root, tmp_p)
+            fut_c = executor.submit(run_env_c_task, src_root, tmp_p)
+            fut_d = executor.submit(run_env_d_task, src_root, tmp_p)
+            fut_e = executor.submit(run_env_e_task, src_root, tmp_p)
 
-        print("[INFO] Executing ENV B...")
-        res_b = run_env_b_task(src_root, tmp_p)
-
-        print("[INFO] Executing ENV C...")
-        res_c = run_env_c_task(src_root, tmp_p)
-
-        print("[INFO] Executing ENV D...")
-        res_d = run_env_d_task(src_root, tmp_p)
-
-        print("[INFO] Executing ENV E...")
-        res_e = run_env_e_task(src_root, tmp_p)
+            res_a = fut_a.result()
+            res_b = fut_b.result()
+            res_c = fut_c.result()
+            res_d = fut_d.result()
+            res_e = fut_e.result()
 
         status_a = res_a.get("status")
         status_b = res_b.get("status")
