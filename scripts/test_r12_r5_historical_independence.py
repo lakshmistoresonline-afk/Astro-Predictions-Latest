@@ -1,6 +1,6 @@
 """
 Historical Report Independence Executable 5-Environment Experiment for Phase 2E-R4.1-R12-R9.
-Executes five completely isolated clean-workspace experiments (ENV A, ENV B, ENV C, ENV D, ENV E):
+Executes five completely isolated clean-workspace experiments in parallel (ENV A, ENV B, ENV C, ENV D, ENV E):
   ENV A: Clean workspace with ONLY source and inputs (NO historical reports) -> Run Certification.
   ENV B: Workspace WITH historical reports present -> Run Certification.
   ENV C: Workspace with historical reports explicitly DELETED -> Run Certification.
@@ -17,6 +17,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 def run_cmd(cmd, cwd=None, env=None):

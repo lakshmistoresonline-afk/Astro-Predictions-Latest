@@ -1,9 +1,9 @@
 {
   "phase": "2E-R4.1-R12-R1",
-  "status": "CERTIFIED",
-  "run_id": "RUN_1790870545",
+  "status": "REMEDIATION_REQUIRED",
+  "run_id": "RUN_1790920071",
   "gates_total": 42,
-  "gates_passed": 42,
+  "gates_passed": 39,
   "total_mutations": 73,
   "fixtures_per_mutation": 20,
   "total_baseline_fixture_evaluations": 1460,
@@ -37,7 +37,7 @@
       "gate_id": "G04_FIXTURE_INTEGRITY",
       "requirement": "20/20 Reference Fixture Integrity Verified",
       "result": "PASS",
-      "evidence": "All 20 expected reference fixture files present and valid",
+      "evidence": "All 20 expected reference fixture files present, valid, and non-empty",
       "failure_reason": "None"
     },
     {
@@ -51,21 +51,21 @@
       "gate_id": "G06_PRODUCTION_ASTRONOMY_INVOCATION",
       "requirement": "Production Astronomy Engine Invocation",
       "result": "PASS",
-      "evidence": "Invoked AstronomyProvider & build_canonical_vedic_chart across 20 fixtures",
+      "evidence": "Invoked AstronomyProvider & build_canonical_vedic_chart across 15/15 real birth fixtures",
       "failure_reason": "None"
     },
     {
       "gate_id": "G07_INDEPENDENT_ASTRONOMY_INVOCATION",
       "requirement": "Independent Reference Astronomy Invocation",
       "result": "PASS",
-      "evidence": "Invoked IndependentChart across 20 fixtures",
+      "evidence": "Invoked IndependentChart across 15/15 real birth fixtures",
       "failure_reason": "None"
     },
     {
       "gate_id": "G08_PRODUCTION_VS_INDEPENDENT_CHART",
       "requirement": "Production Chart vs Independent Chart Comparison",
       "result": "PASS",
-      "evidence": "0.0000 degree angular difference verified for real birth fixtures (REF_001..REF_015)",
+      "evidence": "Max angular delta = 0.000001 deg across 15 real birth fixtures",
       "failure_reason": "None"
     },
     {
@@ -79,7 +79,7 @@
       "gate_id": "G10_PRODUCTION_VARGA_INVOCATION",
       "requirement": "Production Varga Engine Invocation",
       "result": "PASS",
-      "evidence": "Invoked VargaEngine.calculate_all_16_vargas across 20 fixtures",
+      "evidence": "Invoked VargaEngine.calculate_all_16_vargas across 15 fixtures (240/240 varga charts verified)",
       "failure_reason": "None"
     },
     {
@@ -121,7 +121,7 @@
       "gate_id": "G16_SHADBALA_DISCREPANCY_AUDIT",
       "requirement": "Shadbala Discrepancy & Boundary Audit",
       "result": "PASS",
-      "evidence": "Zero tolerance inflation (strict 0.03 tolerance across all subcomponents)",
+      "evidence": "Max delta = 0.0000, Mean delta = 0.0000, Failures = 0",
       "failure_reason": "None"
     },
     {
@@ -226,7 +226,7 @@
       "gate_id": "G31_TOTAL_MUTATIONS",
       "requirement": "73 Total Physical File Source Mutations",
       "result": "PASS",
-      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790870545)",
+      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790920071)",
       "failure_reason": "None"
     },
     {
@@ -274,15 +274,15 @@
     {
       "gate_id": "G38_HISTORICAL_INDEPENDENCE",
       "requirement": "Historical Report Independence Audit",
-      "result": "PASS",
-      "evidence": "Certification status derived 100% from current live execution",
+      "result": "FAIL",
+      "evidence": "Five-Environment Experiment: FAIL",
       "failure_reason": "None"
     },
     {
       "gate_id": "G39_CLEAN_WORKSPACE_PROOF",
       "requirement": "Zero-Trust Clean Workspace Execution Proof",
-      "result": "PASS",
-      "evidence": "Runner calculates all state directly from live in-memory code and inputs without report dependency",
+      "result": "FAIL",
+      "evidence": "Clean-Room Execution Proof: FAIL",
       "failure_reason": "None"
     },
     {
@@ -302,9 +302,9 @@
     {
       "gate_id": "G42_CERTIFICATION_INTEGRITY",
       "requirement": "Final Repository & Certification Integrity",
-      "result": "PASS",
-      "evidence": "git status --porcelain is empty",
-      "failure_reason": "None"
+      "result": "FAIL",
+      "evidence": "Dirty working tree: 'M docs/PHASE_2E_R4_1_R12_R1_CERTIFICATION.json\\n M reports/r7/r1/certification_results.json\\n M report'",
+      "failure_reason": "Working tree is dirty"
     }
   ]
 }
