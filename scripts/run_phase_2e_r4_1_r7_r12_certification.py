@@ -430,6 +430,7 @@ def run_r7_r12_certification():
                 if c_doc.get("attempted_mutations") == 73 and c_doc.get("detected_mutations") == 73:
                     existing_summary = c_doc
                     current_run_id = c_doc.get("run_id")
+                    live_run_dir = sub_dir
                     break
 
     if not existing_summary:
