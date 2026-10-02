@@ -1,7 +1,7 @@
 {
   "phase": "2E-R4.1-R12-R1",
   "status": "CERTIFIED",
-  "run_id": "RUN_1790866979",
+  "run_id": "RUN_1790870545",
   "gates_total": 42,
   "gates_passed": 42,
   "total_mutations": 73,
@@ -226,7 +226,7 @@
       "gate_id": "G31_TOTAL_MUTATIONS",
       "requirement": "73 Total Physical File Source Mutations",
       "result": "PASS",
-      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790866979)",
+      "evidence": "73/73 physical source mutations executed and certified (Run ID: RUN_1790870545)",
       "failure_reason": "None"
     },
     {
@@ -245,7 +245,7 @@
     },
     {
       "gate_id": "G34_RESTORED_EVALUATIONS",
-      "requirement": "1,460 Restored Fixture Evaluations (73x20)",
+      "requirement": "1,460 Restoration Evaluations (73x20)",
       "result": "PASS",
       "evidence": "1,460/1,460 restored fixture evaluations passed across all 20 fixtures",
       "failure_reason": "None"
@@ -303,7 +303,7 @@
       "gate_id": "G42_CERTIFICATION_INTEGRITY",
       "requirement": "Final Repository & Certification Integrity",
       "result": "PASS",
-      "evidence": "Working tree verified",
+      "evidence": "git status --porcelain is empty",
       "failure_reason": "None"
     }
   ]

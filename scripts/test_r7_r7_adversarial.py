@@ -27,7 +27,19 @@ def run_cmd(cmd):
     return res.returncode, res.stdout, res.stderr
 
 def audit_gate_g07():
-    mut_paths = [Path("reports/r7/r9_r2/mutation_execution.json"), Path("reports/r7/r9_r1/source_mutation_results.json"), Path("reports/r7/r8/source_mutation_results.json")]
+    mut_paths = [
+        Path("reports/r7/r9_r2/mutation_execution.json"),
+        Path("reports/r7/r9_r1/source_mutation_results.json"),
+        Path("reports/r7/r8/source_mutation_results.json")
+    ]
+    live_dir = Path("reports/r7/r12_r1/live_runs")
+    if live_dir.exists():
+        for sub in sorted(live_dir.glob("RUN_*"), reverse=True):
+            f = sub / "mutation_execution.json"
+            if f.exists():
+                mut_paths.insert(0, f)
+                break
+
     m_d = None
     for m_p in mut_paths:
         if m_p.exists():
@@ -107,11 +119,19 @@ def run_adversarial_tests():
     passed_tests = 0
 
     rec_path = Path("reports/r7/r9_r1/live_runs/RUN_1790820501/mutations/MUT_SHAD_01_UCCHA.json")
-    sum_path = Path("reports/r7/r9_r1/live_runs/RUN_1790820501/source_mutation_results.json")
+    live_dir = Path("reports/r7/r12_r1/live_runs")
+    if live_dir.exists():
+        for sub in sorted(live_dir.glob("RUN_*"), reverse=True):
+            f = sub / "mutations" / "MUT_SHAD_01_UCCHA.json"
+            if f.exists():
+                rec_path = f
+                break
+
+    sum_path = Path("reports/r7/r9_r1/source_mutation_results.json")
 
     # 1. Attack 01: Set detected=true without physical mutation
     if rec_path.exists():
-        bak01 = Path("reports/r7/r9_r1/live_runs/RUN_1790820501/mutations/MUT_SHAD_01_UCCHA.json.bak01")
+        bak01 = Path(str(rec_path) + ".bak01")
         shutil.copy(rec_path, bak01)
         try:
             with open(rec_path, "r", encoding="utf-8") as f: d = json.load(f)

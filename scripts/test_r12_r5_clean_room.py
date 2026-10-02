@@ -1,5 +1,5 @@
 """
-Clean-Room Execution Proof for Phase 2E-R4.1-R12-R5.
+Clean-Room Execution Proof for Phase 2E-R4.1-R12-R8.
 Performs the complete certification execution in a brand new isolated temporary directory containing ONLY:
   - production source code
   - configuration files
@@ -54,7 +54,7 @@ def copy_minimal_source_workspace(src_root: Path, dst_root: Path):
 
 def main():
     print("============================================================")
-    print("STARTING PHASE 2E-R4.1-R12-R5 CLEAN-ROOM CERTIFICATION TEST")
+    print("STARTING PHASE 2E-R4.1-R12-R8 CLEAN-ROOM CERTIFICATION TEST")
     print("============================================================")
 
     src_root = Path("D:/Astro-Predictions-Latest")
@@ -70,9 +70,7 @@ def main():
             sys.exit(1)
 
         print("[INFO] Executing certification runner in clean-room workspace...")
-        env = dict(os.environ)
-        env["IN_INDEPENDENCE_TEST"] = "1"
-        code, out, err = run_cmd("python scripts/run_phase_2e_r4_1_r7_r12_certification.py", cwd=clean_dir, env=env)
+        code, out, err = run_cmd("python scripts/run_phase_2e_r4_1_r7_r12_certification.py", cwd=clean_dir)
 
         res_path = clean_dir / "reports" / "r7" / "r12_r1" / "certification_results.json"
         if not res_path.exists():
