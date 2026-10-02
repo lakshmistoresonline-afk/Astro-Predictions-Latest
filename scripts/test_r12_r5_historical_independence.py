@@ -1,6 +1,6 @@
 """
 Historical Report Independence Executable 5-Environment Experiment for Phase 2E-R4.1-R12-R9.
-Executes five completely isolated clean-workspace experiments in parallel (ENV A, ENV B, ENV C, ENV D, ENV E):
+Executes five completely isolated clean-workspace experiments sequentially (ENV A, ENV B, ENV C, ENV D, ENV E):
   ENV A: Clean workspace with ONLY source and inputs (NO historical reports) -> Run Certification.
   ENV B: Workspace WITH historical reports present -> Run Certification.
   ENV C: Workspace with historical reports explicitly DELETED -> Run Certification.
@@ -17,7 +17,6 @@ import subprocess
 import sys
 import tempfile
 import time
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 def run_cmd(cmd, cwd=None, env=None):
@@ -155,23 +154,25 @@ def main():
             print("Stderr:", m_err[:300])
             sys.exit(1)
 
-    print(f"[INFO] Live mutation suite present. Executing all 5 environments (ENV A, B, C, D, E) concurrently in parallel...")
+    print(f"[INFO] Live mutation suite present. Executing all 5 environments (ENV A, B, C, D, E) sequentially...")
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp_p = Path(tmp_dir)
 
-        with ThreadPoolExecutor(max_workers=5) as executor:
-            fut_a = executor.submit(run_env_a_task, src_root, tmp_p)
-            fut_b = executor.submit(run_env_b_task, src_root, tmp_p)
-            fut_c = executor.submit(run_env_c_task, src_root, tmp_p)
-            fut_d = executor.submit(run_env_d_task, src_root, tmp_p)
-            fut_e = executor.submit(run_env_e_task, src_root, tmp_p)
+        print("[INFO] Executing ENV A...")
+        res_a = run_env_a_task(src_root, tmp_p)
 
-            res_a = fut_a.result()
-            res_b = fut_b.result()
-            res_c = fut_c.result()
-            res_d = fut_d.result()
-            res_e = fut_e.result()
+        print("[INFO] Executing ENV B...")
+        res_b = run_env_b_task(src_root, tmp_p)
+
+        print("[INFO] Executing ENV C...")
+        res_c = run_env_c_task(src_root, tmp_p)
+
+        print("[INFO] Executing ENV D...")
+        res_d = run_env_d_task(src_root, tmp_p)
+
+        print("[INFO] Executing ENV E...")
+        res_e = run_env_e_task(src_root, tmp_p)
 
         status_a = res_a.get("status")
         status_b = res_b.get("status")
