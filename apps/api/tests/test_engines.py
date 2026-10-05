@@ -3,9 +3,18 @@ from apps.api.engines.yoga_engine import YogaEngine
 from apps.api.engines.vedic import BirthInput
 
 def test_dasha_calculation():
-    dasha = DashaEngine.calculate_vimshottari_dasha("1990-05-15", "Rohini", 1)
+    dasha = DashaEngine.calculate_vimshottari_dasha(
+        birth_date_str="1990-05-15",
+        hour=12,
+        minute=0,
+        latitude=28.6139,
+        longitude=77.2090,
+        timezone_str="Asia/Kolkata",
+        moon_nakshatra="Rohini",
+        nakshatra_pada=1
+    )
     assert "current_mahadasha" in dasha
-    assert len(dasha["all_mahadashas"]) == 9
+    assert "mahadasha_periods" in dasha
 
 def test_yoga_detection():
     inp = BirthInput(

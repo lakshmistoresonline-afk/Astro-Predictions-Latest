@@ -1,39 +1,93 @@
+"""
+Authoritative AI Service for Astrovision.
+Section 16, 17, 18, 19, 20 Compliance:
+- Server owns all evidence. Client prompt cannot override factual astrology evidence.
+- Zero false success messages! If provider response is empty/absent, returns explicit unavailable status.
+- Zero fake PASS validations! If validator fails or returns empty output, returns "NOT_VALIDATED".
+"""
+import os
+import json
 import requests
+from typing import Dict, Any, Optional
 from apps.api.config import settings
 
 class AIService:
     """
-    AIService manages local Ollama inference for generation (Gemma) and validation (Qwen).
-    Enforces strict non-calculative prompts and validation pass/repair/reject cycles.
+    AIService manages AI interpretation synthesis over CanonicalAstrologyEvidence.
+    Enforces strict non-calculative prompts.
     """
 
-    @staticmethod
-    def generate_interpretation(prompt: str, evidence: dict) -> str:
+    SYSTEM_PROMPT = (
+        "You are Astrovision, an authoritative astrological interpretation engine. "
+        "DETERMINISTIC EVIDENCE IS AUTHORITATIVE. "
+        "You MUST NOT calculate planetary positions, houses, nakshatras, vargas, dashas, or yogas. "
+        "You MUST NOT invent astronomical values, dates, or planetary placements. "
+        "You must interpret ONLY the provided deterministic source evidence faithfully, "
+        "providing clear, compassionate, and traditional Parashari insights. "
+        "If evidence for a domain or factor is unavailable or marked UNAVAILABLE, state clearly that evidence is unavailable."
+    )
+
+    @classmethod
+    def generate_interpretation(
+        cls,
+        prompt: str,
+        evidence: Dict[str, Any],
+        provider: str = "primary"
+    ) -> str:
+        """
+        Generates narrative interpretation over structured evidence.
+        Fails closed on missing or empty responses.
+        """
+        # 1. Primary OpenAI or HTTP AI API Provider if configured
+        openai_api_key = os.environ.get("OPENAI_API_KEY")
+        if openai_api_key and provider == "primary":
+            try:
+                headers = {
+                    "Authorization": f"Bearer {openai_api_key}",
+                    "Content-Type": "application/json"
+                }
+                payload = {
+                    "model": os.environ.get("OPENAI_MODEL", "gpt-4o-mini"),
+                    "messages": [
+                        {"role": "system", "content": cls.SYSTEM_PROMPT},
+                        {"role": "user", "content": f"Structured Deterministic Evidence:\n{json.dumps(evidence, indent=2)}\n\nUser Request:\n{prompt}"}
+                    ],
+                    "temperature": 0.3
+                }
+                resp = requests.post("https://api.openai.com/v1/chat/completions", json=payload, headers=headers, timeout=20)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    content = data.get("choices", [{}])[0].get("message", {}).get("content")
+                    if content and content.strip():
+                        return content
+            except Exception:
+                pass # Fallback to local Ollama
+
+        # 2. Local Ollama Provider
         url = f"{settings.ollama_base_url}/api/generate"
-        system_prompt = (
-            "You are an interpretation engine. "
-            "You MUST NOT calculate planetary positions. "
-            "You MUST NOT invent astronomical values, houses, dashas, yogas, or dates. "
-            "You may only interpret the structured evidence provided."
-        )
         payload = {
             "model": settings.ai_model_generation,
-            "prompt": f"{system_prompt}\n\nEvidence:\n{evidence}\n\nRequest:\n{prompt}",
+            "prompt": f"{cls.SYSTEM_PROMPT}\n\nEvidence:\n{json.dumps(evidence, indent=2)}\n\nRequest:\n{prompt}",
             "stream": False
         }
 
         try:
-            response = requests.post(url, json=payload, timeout=30)
+            response = requests.post(url, json=payload, timeout=25)
             if response.status_code == 200:
-                return response.json().get("response", "AI interpretation generated successfully.")
+                res_content = response.json().get("response")
+                if res_content and res_content.strip():
+                    return res_content
         except Exception:
             pass
 
-        return "AI interpretation unavailable (Ollama server offline). Displaying deterministic astrological evidence."
+        return "AI interpretation service unavailable (Provider error or empty response). Displaying deterministic astrological evidence."
 
-    @staticmethod
-    def validate_interpretation(generated_text: str, source_evidence: dict) -> str:
-        # Secondary model validation (Qwen)
+    @classmethod
+    def validate_interpretation(cls, generated_text: str, source_evidence: Dict[str, Any]) -> str:
+        """
+        Validates generated text against source evidence.
+        Fails closed with 'NOT_VALIDATED' on provider error or empty response.
+        """
         url = f"{settings.ollama_base_url}/api/generate"
         validation_prompt = (
             "You are a strict astrological validation engine. Check if the generated interpretation "
@@ -47,12 +101,14 @@ class AIService:
         }
 
         try:
-            response = requests.post(url, json=payload, timeout=30)
+            response = requests.post(url, json=payload, timeout=20)
             if response.status_code == 200:
-                res_text = response.json().get("response", "PASS")
-                if "REPAIR" in res_text.upper():
+                res_text = response.json().get("response")
+                if res_text and "REPAIR" in res_text.upper():
                     return "REPAIR"
+                elif res_text and "PASS" in res_text.upper():
+                    return "PASS"
         except Exception:
             pass
 
-        return "PASS"
+        return "NOT_VALIDATED"

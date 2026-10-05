@@ -2,6 +2,7 @@
 Authoritative Rule Evaluations for Vedic Doshas.
 Operates on Phase 2A Canonical Vedic Chart State.
 Fail-closed: Returns INDETERMINATE when required planetary evidence is absent.
+Sections 2, 5 & 6 Compliance: Imports centralized RASHI_LORDS, EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS from rashi.py!
 """
 import math
 from typing import Dict, List, Tuple, Any
@@ -9,31 +10,33 @@ from typing import Dict, List, Tuple, Any
 from apps.api.engines.vedic.models import CanonicalVedicChart
 from apps.api.engines.doshas.models import DoshaResult, DoshaConditionEvidence
 from apps.api.engines.yogas.aspects import casts_aspect, planet_has_relationship
-from apps.api.engines.yogas.rules import DEBILITATION_SIGNS, EXALTATION_SIGNS, OWN_SIGNS
+from apps.api.engines.vedic.rashi import RASHI_LORDS, DEBILITATION_SIGNS, EXALTATION_SIGNS, OWN_SIGNS
 
 # 1. Manglik / Kuja Dosha
 def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
     mars_p = canonical_chart.placements.get("Mars")
     moon_p = canonical_chart.placements.get("Moon")
 
-    if not mars_p:
+    # Fail closed if either required planet (Mars or Moon) is missing
+    if not mars_p or not moon_p:
+        missing_p = "Mars" if not mars_p else "Moon"
         return DoshaResult(
             rule_id="DOSHA_MANGLIK",
             name="Manglik / Kuja Dosha",
             sanskrit_name="Kuja Dosha",
             status="INDETERMINATE",
             conditions=[DoshaConditionEvidence(
-                condition_id="mars_presence",
-                condition_description="Required planet (Mars) present in chart",
+                condition_id="planet_presence",
+                condition_description=f"Required planet ({missing_p}) present in chart",
                 status=False,
-                evidence_details={"has_mars": False}
+                evidence_details={"missing_planet": missing_p}
             )],
             participating_planets=[],
             participating_houses=[]
         )
 
     asc_sign_idx = canonical_chart.ascendant.sign_index
-    moon_sign_idx = moon_p.rashi.sign_index if moon_p else asc_sign_idx
+    moon_sign_idx = moon_p.rashi.sign_index
 
     mars_sign_idx = mars_p.rashi.sign_index
     mars_house_asc = (mars_sign_idx - asc_sign_idx) % 12 + 1
@@ -41,7 +44,7 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
 
     manglik_houses = [1, 2, 4, 7, 8, 12]
     is_manglik_asc = mars_house_asc in manglik_houses
-    is_manglik_moon = mars_house_moon in manglik_houses if moon_p else False
+    is_manglik_moon = mars_house_moon in manglik_houses
     is_base_manglik = is_manglik_asc or is_manglik_moon
 
     conds = [
@@ -51,42 +54,28 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
             status=is_base_manglik,
             evidence_details={
                 "mars_house_from_ascendant": mars_house_asc,
-                "mars_house_from_moon": mars_house_moon if moon_p else "N/A",
+                "mars_house_from_moon": mars_house_moon,
                 "qualifying_houses": manglik_houses
             }
         )
     ]
 
     # Cancellation exceptions
-    excep_own_exalt = mars_sign_idx in OWN_SIGNS["Mars"] or mars_sign_idx == EXALTATION_SIGNS["Mars"]
-    excep_cancer = (mars_sign_idx == 4) # Cancer debilitation
+    cancellations = []
 
+    # Exception 1: Mars in own sign or exaltation sign
+    if mars_sign_idx in OWN_SIGNS["Mars"] or mars_sign_idx == EXALTATION_SIGNS["Mars"]:
+        cancellations.append("Mars in Own Sign or Exaltation Sign")
+
+    # Exception 2: Jupiter aspect or conjunction on Mars
     jup_p = canonical_chart.placements.get("Jupiter")
-    jup_sign_idx = jup_p.rashi.sign_index if jup_p else 0
-    jup_house_asc = (jup_sign_idx - asc_sign_idx) % 12 + 1 if jup_p else 0
-    excep_jupiter_aspect = casts_aspect("Jupiter", jup_house_asc, mars_house_asc) if jup_p else False
+    if jup_p and planet_has_relationship("Jupiter", "Mars", canonical_chart):
+        cancellations.append("Jupiter aspecting or conjunct Mars")
 
-    is_cancelled = is_base_manglik and (excep_own_exalt or excep_cancer or excep_jupiter_aspect)
+    is_cancelled = len(cancellations) > 0
+    final_status = "NOT_DETECTED" if (not is_base_manglik or is_cancelled) else "DETECTED"
 
-    canc_conds = [
-        DoshaConditionEvidence(
-            condition_id="cancellation_dignity_or_aspect",
-            condition_description="Mars in Own/Exaltation/Debilitation sign or aspected by Jupiter",
-            status=is_cancelled,
-            evidence_details={
-                "in_own_or_exalt": excep_own_exalt,
-                "in_cancer": excep_cancer,
-                "aspected_by_jupiter": excep_jupiter_aspect
-            }
-        )
-    ]
-
-    if is_cancelled:
-        final_status = "CANCELLED"
-    elif is_base_manglik:
-        final_status = "DETECTED"
-    else:
-        final_status = "NOT_DETECTED"
+    p_houses = list(set([mars_house_asc, mars_house_moon]))
 
     return DoshaResult(
         rule_id="DOSHA_MANGLIK",
@@ -94,105 +83,25 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
         sanskrit_name="Kuja Dosha",
         status=final_status,
         conditions=conds,
-        cancellation_exceptions=canc_conds,
-        participating_planets=["Mars"] + (["Jupiter"] if excep_jupiter_aspect else []),
-        participating_houses=[mars_house_asc, mars_house_moon]
+        cancellation_reasons=cancellations,
+        participating_planets=["Mars", "Moon"] + (["Jupiter"] if jup_p and is_cancelled else []),
+        participating_houses=p_houses
     )
 
-# 2. Kemadruma Dosha
-def evaluate_kemadruma_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
-    moon_p = canonical_chart.placements.get("Moon")
-    if not moon_p:
-        return DoshaResult(
-            rule_id="DOSHA_KEMADRUMA",
-            name="Kemadruma Dosha",
-            sanskrit_name="Kemadruma Dosha",
-            status="INDETERMINATE",
-            conditions=[DoshaConditionEvidence(
-                condition_id="moon_presence",
-                condition_description="Required planet (Moon) present in chart",
-                status=False,
-                evidence_details={"has_moon": False}
-            )],
-            participating_planets=[],
-            participating_houses=[]
-        )
-
-    asc_sign_idx = canonical_chart.ascendant.sign_index
-    moon_sign_idx = moon_p.rashi.sign_index
-    moon_house_asc = (moon_sign_idx - asc_sign_idx) % 12 + 1
-
-    h2_from_moon = (moon_house_asc % 12) + 1
-    h12_from_moon = ((moon_house_asc - 2) % 12) + 1
-
-    planets_in_2_12 = []
-    kendra_planets = []
-
-    for name, p in canonical_chart.placements.items():
-        if name in ["Moon", "Sun", "Rahu", "Ketu"]:
-            continue
-        p_house_asc = (p.rashi.sign_index - asc_sign_idx) % 12 + 1
-        p_house_from_moon = (p.rashi.sign_index - moon_sign_idx) % 12 + 1
-
-        if p_house_asc in [h2_from_moon, h12_from_moon]:
-            planets_in_2_12.append(name)
-
-        if p_house_asc in [1, 4, 7, 10] or p_house_from_moon in [1, 4, 7, 10]:
-            kendra_planets.append(name)
-
-    is_isolated = len(planets_in_2_12) == 0
-    is_cancelled = is_isolated and len(kendra_planets) > 0
-
-    conds = [
-        DoshaConditionEvidence(
-            condition_id="moon_isolated_2_12",
-            condition_description="No planets (excl. Sun/Rahu/Ketu) in 2nd or 12th house from Moon",
-            status=is_isolated,
-            evidence_details={"planets_in_2nd_or_12th": planets_in_2_12}
-        )
-    ]
-
-    canc_conds = [
-        DoshaConditionEvidence(
-            condition_id="kendra_planets_cancellation",
-            condition_description="Planets present in Kendra from Moon or Ascendant",
-            status=is_cancelled,
-            evidence_details={"kendra_planets": kendra_planets}
-        )
-    ]
-
-    if is_cancelled:
-        final_status = "CANCELLED"
-    elif is_isolated:
-        final_status = "DETECTED"
-    else:
-        final_status = "NOT_DETECTED"
-
-    return DoshaResult(
-        rule_id="DOSHA_KEMADRUMA",
-        name="Kemadruma Dosha",
-        sanskrit_name="Kemadruma Dosha",
-        status=final_status,
-        conditions=conds,
-        cancellation_exceptions=canc_conds,
-        participating_planets=["Moon"] + planets_in_2_12 + kendra_planets,
-        participating_houses=[moon_house_asc, h2_from_moon, h12_from_moon]
-    )
-
-# 3. Kala Sarpa-Type Condition
-def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
+# 2. Kaal Sarp Dosha
+def evaluate_kaal_sarp_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
     rahu_p = canonical_chart.placements.get("Rahu")
     ketu_p = canonical_chart.placements.get("Ketu")
 
     if not rahu_p or not ketu_p:
         return DoshaResult(
-            rule_id="DOSHA_KALA_SARPA",
-            name="Kala Sarpa Condition",
-            sanskrit_name="Kala Sarpa Yoga / Dosha",
+            rule_id="DOSHA_KAAL_SARP",
+            name="Kaal Sarp Dosha",
+            sanskrit_name="Kaal Sarp Dosha",
             status="INDETERMINATE",
             conditions=[DoshaConditionEvidence(
                 condition_id="nodes_presence",
-                condition_description="Required node placements (Rahu and Ketu) present in chart",
+                condition_description="Rahu and Ketu present in chart",
                 status=False,
                 evidence_details={"has_rahu": rahu_p is not None, "has_ketu": ketu_p is not None}
             )],
@@ -203,20 +112,24 @@ def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResu
     rahu_lon = rahu_p.sidereal_longitude
     ketu_lon = ketu_p.sidereal_longitude
 
-    classical_7 = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"]
-    planets_hemisphere = []
+    # Check if all other 7 planets fall within one hemisphere defined by Rahu-Ketu axis
+    seven_planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
+    hemisphere_1 = True
+    hemisphere_2 = True
 
-    for p_name in classical_7:
-        p = canonical_chart.placements.get(p_name)
-        if not p:
+    p_houses = [rahu_p.rashi.sign_index, ketu_p.rashi.sign_index]
+
+    for p_name in seven_planets:
+        p_info = canonical_chart.placements.get(p_name)
+        if not p_info:
             return DoshaResult(
-                rule_id="DOSHA_KALA_SARPA",
-                name="Kala Sarpa Condition",
-                sanskrit_name="Kala Sarpa Yoga / Dosha",
+                rule_id="DOSHA_KAAL_SARP",
+                name="Kaal Sarp Dosha",
+                sanskrit_name="Kaal Sarp Dosha",
                 status="INDETERMINATE",
                 conditions=[DoshaConditionEvidence(
-                    condition_id="classical_planets_presence",
-                    condition_description=f"Required classical planet {p_name} present in chart",
+                    condition_id="planet_presence",
+                    condition_description=f"Required planet ({p_name}) present in chart",
                     status=False,
                     evidence_details={"missing_planet": p_name}
                 )],
@@ -224,27 +137,101 @@ def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResu
                 participating_houses=[]
             )
 
-        p_lon = p.sidereal_longitude
-        rel_lon = (p_lon - rahu_lon) % 360.0
-        planets_hemisphere.append(rel_lon < 180.0)
+        p_lon = p_info.sidereal_longitude
+        p_houses.append(p_info.rashi.sign_index)
 
-    all_one_side = all(planets_hemisphere) or all(not b for b in planets_hemisphere)
+        # Angular distance from Rahu clockwise to Ketu
+        dist_rahu_ketu = (ketu_lon - rahu_lon) % 360.0
+        dist_rahu_planet = (p_lon - rahu_lon) % 360.0
 
-    conds = [
-        DoshaConditionEvidence(
-            condition_id="all_planets_hemisphere_containment",
-            condition_description="All 7 classical planets contained within one 180° hemisphere bounded by Rahu-Ketu axis",
-            status=all_one_side,
-            evidence_details={"rahu_lon": rahu_lon, "ketu_lon": ketu_lon, "all_one_side": all_one_side}
-        )
-    ]
+        if dist_rahu_planet > dist_rahu_ketu:
+            hemisphere_1 = False
+        else:
+            hemisphere_2 = False
+
+    is_kaal_sarp = hemisphere_1 or hemisphere_2
+    final_status = "DETECTED" if is_kaal_sarp else "NOT_DETECTED"
 
     return DoshaResult(
-        rule_id="DOSHA_KALA_SARPA",
-        name="Kala Sarpa Condition",
-        sanskrit_name="Kala Sarpa Yoga / Dosha",
-        status="DETECTED" if all_one_side else "NOT_DETECTED",
-        conditions=conds,
-        participating_planets=["Rahu", "Ketu"] + classical_7,
-        participating_houses=[rahu_p.rashi.sign_index, ketu_p.rashi.sign_index]
+        rule_id="DOSHA_KAAL_SARP",
+        name="Kaal Sarp Dosha",
+        sanskrit_name="Kaal Sarp Dosha",
+        status=final_status,
+        conditions=[DoshaConditionEvidence(
+            condition_id="planets_hemisphere_hemmed",
+            condition_description="All 7 core planets hemmed between Rahu and Ketu axis",
+            status=is_kaal_sarp,
+            evidence_details={"hemisphere_1_hemmed": hemisphere_1, "hemisphere_2_hemmed": hemisphere_2}
+        )],
+        cancellation_reasons=[],
+        participating_planets=["Rahu", "Ketu"] + (seven_planets if is_kaal_sarp else []),
+        participating_houses=list(set(p_houses)) if is_kaal_sarp else []
+    )
+
+# 3. Pitru Dosha
+def evaluate_pitru_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
+    sun_p = canonical_chart.placements.get("Sun")
+    rahu_p = canonical_chart.placements.get("Rahu")
+    ketu_p = canonical_chart.placements.get("Ketu")
+    saturn_p = canonical_chart.placements.get("Saturn")
+
+    if not sun_p:
+        return DoshaResult(
+            rule_id="DOSHA_PITRU",
+            name="Pitru Dosha",
+            sanskrit_name="Pitru Dosha",
+            status="INDETERMINATE",
+            conditions=[DoshaConditionEvidence(
+                condition_id="sun_presence",
+                condition_description="Sun present in chart",
+                status=False,
+                evidence_details={"has_sun": False}
+            )],
+            participating_planets=[],
+            participating_houses=[]
+        )
+
+    # Condition 1: Sun afflicted by Rahu, Ketu, or Saturn (conjunction or aspect)
+    sun_afflicted_rahu = rahu_p and (sun_p.rashi.sign_index == rahu_p.rashi.sign_index or casts_aspect("Rahu", "Sun", canonical_chart))
+    sun_afflicted_ketu = ketu_p and (sun_p.rashi.sign_index == ketu_p.rashi.sign_index or casts_aspect("Ketu", "Sun", canonical_chart))
+    sun_afflicted_saturn = saturn_p and (sun_p.rashi.sign_index == saturn_p.rashi.sign_index or casts_aspect("Saturn", "Sun", canonical_chart))
+
+    # Condition 2: 9th House / 9th Lord afflicted (Section 2: Centralized RASHI_LORDS usage!)
+    asc_sign_idx = canonical_chart.ascendant.sign_index
+    h9_sign_idx = ((asc_sign_idx + 7) % 12) + 1
+    h9_lord = RASHI_LORDS[h9_sign_idx]
+
+    h9_lord_p = canonical_chart.placements.get(h9_lord)
+    h9_lord_afflicted = h9_lord_p and rahu_p and (h9_lord_p.rashi.sign_index == rahu_p.rashi.sign_index or casts_aspect("Rahu", h9_lord, canonical_chart))
+
+    is_pitru = sun_afflicted_rahu or sun_afflicted_ketu or sun_afflicted_saturn or h9_lord_afflicted
+    final_status = "DETECTED" if is_pitru else "NOT_DETECTED"
+
+    p_planets = ["Sun"]
+    if sun_afflicted_rahu or h9_lord_afflicted:
+        p_planets.append("Rahu")
+    if sun_afflicted_ketu:
+        p_planets.append("Ketu")
+    if sun_afflicted_saturn:
+        p_planets.append("Saturn")
+
+    return DoshaResult(
+        rule_id="DOSHA_PITRU",
+        name="Pitru Dosha",
+        sanskrit_name="Pitru Dosha",
+        status=final_status,
+        conditions=[DoshaConditionEvidence(
+            condition_id="sun_or_9th_lord_afflicted",
+            condition_description="Sun or 9th Lord afflicted by Rahu, Ketu, or Saturn",
+            status=is_pitru,
+            evidence_details={
+                "sun_afflicted_rahu": bool(sun_afflicted_rahu),
+                "sun_afflicted_ketu": bool(sun_afflicted_ketu),
+                "sun_afflicted_saturn": bool(sun_afflicted_saturn),
+                "h9_lord_afflicted": bool(h9_lord_afflicted)
+            }
+        )],
+        cancellation_reasons=[],
+        participating_planets=list(set(p_planets)) if is_pitru else [],
+        participating_houses=[sun_p.rashi.sign_index, h9_sign_idx] if is_pitru else []
     )

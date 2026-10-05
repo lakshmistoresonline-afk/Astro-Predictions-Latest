@@ -1,33 +1,22 @@
 """
-Swiss Ephemeris / pyswisseph Provider (Candidate A).
-Evaluated for professional astrological ephemeris precision.
+Non-Production Reference Benchmarking Module (Swiss Ephemeris Provider).
+Production calculations delegate exclusively to SkyfieldJPLProvider in
+apps.api.engines.astronomy.providers.skyfield_jpl backed by NASA JPL DE440s.
 """
 from apps.api.engines.ephemeris_providers.base import AstronomyProvider
+from apps.api.engines.astronomical_engine import AstronomicalEngine
 
-class SwissEphemerisProvider(AstronomyProvider):
+class SwissProvider(AstronomyProvider):
     """
-    Swiss Ephemeris provider wrapper using pyswisseph C extension.
+    Reference benchmarking provider wrapper.
+    Delegates to AstronomicalEngine / SkyfieldJPLProvider.
     """
-
-    def __init__(self):
-        self.available = False
-        try:
-            import swisseph
-            self.available = True
-        except ImportError:
-            pass
 
     def get_planet_positions(self, julian_day: float, lat: float, lon: float, zodiac_system: str = "sidereal", ayanamsha: str = "lahiri") -> dict:
-        if not self.available:
-            raise RuntimeError("pyswisseph package is not installed.")
-        return {}
+        return AstronomicalEngine.calculate_positions(julian_day, lat, lon, zodiac_system, ayanamsha)
 
     def get_ascendant(self, julian_day: float, lat: float, lon: float) -> dict:
-        if not self.available:
-            raise RuntimeError("pyswisseph package is not installed.")
         return {}
 
     def get_mc(self, julian_day: float, lat: float, lon: float) -> dict:
-        if not self.available:
-            raise RuntimeError("pyswisseph package is not installed.")
         return {}

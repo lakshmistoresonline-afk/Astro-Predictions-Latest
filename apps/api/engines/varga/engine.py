@@ -1,6 +1,7 @@
 """
 Authoritative 16-Varga Divisional Chart Engine for Astrovision.
 Consumes Canonical Sidereal Longitudes produced by Phase 2A.
+Section 1 Compliance: Strict placement lookups for calculation hash! Raises explicit ValueError if Sun or Moon is missing. Zero Ascendant fallbacks!
 """
 import hashlib
 import json
@@ -86,13 +87,18 @@ class VargaEngine:
                 is_vargottama=vargottama
             )
 
-        # 3. Calculation Hash
+        # 3. Calculation Hash with Strict Placement Validation (Section 1)
+        if "Sun" not in placements:
+            raise ValueError(f"Sun placement is missing from Varga chart division '{division}'")
+        if "Moon" not in placements:
+            raise ValueError(f"Moon placement is missing from Varga chart division '{division}'")
+
         payload = {
             "division": division,
             "chart_hash": canonical_chart.calculation_hash,
             "asc_sign": asc_sign_name,
-            "sun_sign": placements.get("Sun", asc_placement).varga_sign,
-            "moon_sign": placements.get("Moon", asc_placement).varga_sign
+            "sun_sign": placements["Sun"].varga_sign,
+            "moon_sign": placements["Moon"].varga_sign
         }
         varga_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
 
@@ -119,17 +125,41 @@ class VargaEngine:
         for div in ALL_SUPPORTED_DIVISIONS:
             vargas[div] = cls.calculate_varga_chart(canonical_chart, div)
 
-        # Identify all Vargottama bodies from D9 Navamsa chart
+        # Identify Vargottama bodies from D9
+        d1_chart = vargas["D1"]
         d9_chart = vargas["D9"]
-        if d9_chart.ascendant.is_vargottama:
-            vargottama_bodies.append("Ascendant")
 
-        for body_name, pos in d9_chart.placements.items():
-            if pos.is_vargottama:
-                vargottama_bodies.append(body_name)
+        for b_name, p in d1_chart.placements.items():
+            if b_name in d9_chart.placements:
+                if p.varga_sign == d9_chart.placements[b_name].varga_sign:
+                    vargottama_bodies.append(b_name)
+
+        payload = {
+            "chart_hash": canonical_chart.calculation_hash,
+            "vargottama_count": len(vargottama_bodies),
+            "vargottama_bodies": sorted(vargottama_bodies)
+        }
+        suite_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
 
         return Full16VargaSuite(
             chart_hash=canonical_chart.calculation_hash,
+            d1=vargas["D1"],
+            d2=vargas["D2"],
+            d3=vargas["D3"],
+            d4=vargas["D4"],
+            d7=vargas["D7"],
+            d9=vargas["D9"],
+            d10=vargas["D10"],
+            d12=vargas["D12"],
+            d16=vargas["D16"],
+            d20=vargas["D20"],
+            d24=vargas["D24"],
+            d27=vargas["D27"],
+            d30=vargas["D30"],
+            d40=vargas["D40"],
+            d45=vargas["D45"],
+            d60=vargas["D60"],
             vargas=vargas,
-            vargottama_bodies=vargottama_bodies
+            vargottama_bodies=vargottama_bodies,
+            calculation_hash=suite_hash
         )

@@ -1,5 +1,5 @@
 """
-Historical Report Independence Executable 5-Environment Experiment for Phase 2E-R4.1-R12-R9.
+Historical Report Independence Executable 5-Environment Experiment for Phase 2E-R4.1-R12-R10.
 Executes five completely isolated clean-workspace experiments sequentially (ENV A, ENV B, ENV C, ENV D, ENV E):
   ENV A: Clean workspace with ONLY source and inputs (NO historical reports) -> Run Certification.
   ENV B: Workspace WITH historical reports present -> Run Certification.
@@ -10,6 +10,7 @@ Verifies that RESULT_A == RESULT_B == RESULT_C == RESULT_D == RESULT_E == CERTIF
 Proves historical reports have ZERO authority over certification outcomes.
 Returns exit code 0 if historical independence is proven 100% across all 5 environments; otherwise exit code 1.
 """
+import argparse
 import json
 import os
 import shutil
@@ -22,21 +23,6 @@ from pathlib import Path
 def run_cmd(cmd, cwd=None, env=None):
     res = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd, env=env)
     return res.returncode, res.stdout, res.stderr
-
-def run_certification_in_dir(target_dir: Path) -> dict:
-    env = dict(os.environ)
-    env["SKIP_NESTED_SUITES_FOR_ENV_TEST"] = "1"
-    code, out, err = run_cmd("python scripts/run_phase_2e_r4_1_r7_r12_certification.py", cwd=target_dir, env=env)
-    res_path = target_dir / "reports" / "r7" / "r12_r1" / "certification_results.json"
-    if not res_path.exists():
-        res_path = target_dir / "docs" / "PHASE_2E_R4_1_R12_R1_CERTIFICATION.json"
-
-    if res_path.exists():
-        with open(res_path, "r", encoding="utf-8") as f:
-            d = json.load(f)
-        d["exit_code"] = code
-        return d
-    return {"exit_code": code, "status": "FAILED_TO_PRODUCE_REPORT", "stderr": err}
 
 def copy_minimal_source_workspace(src_root: Path, dst_root: Path):
     dst_root.mkdir(parents=True, exist_ok=True)
@@ -76,6 +62,19 @@ def copy_minimal_source_workspace(src_root: Path, dst_root: Path):
         d_f = dst_root / f
         if s_f.exists():
             shutil.copy(s_f, d_f)
+
+def run_certification_in_dir(target_dir: Path) -> dict:
+    code, out, err = run_cmd("python scripts/run_phase_2e_r4_1_r7_r12_certification.py --standalone-env --fast-env", cwd=target_dir)
+    res_path = target_dir / "reports" / "r7" / "r12_r1" / "certification_results.json"
+    if not res_path.exists():
+        res_path = target_dir / "docs" / "PHASE_2E_R4_1_R12_R1_CERTIFICATION.json"
+
+    if res_path.exists():
+        with open(res_path, "r", encoding="utf-8") as f:
+            d = json.load(f)
+        d["exit_code"] = code
+        return d
+    return {"exit_code": code, "status": "FAILED_TO_PRODUCE_REPORT", "stderr": err}
 
 def run_env_a_task(src_root: Path, tmp_p: Path) -> dict:
     env_dir = tmp_p / "env_a"
@@ -131,10 +130,11 @@ def run_env_e_task(src_root: Path, tmp_p: Path) -> dict:
 
 def main():
     print("============================================================")
-    print("STARTING PHASE 2E-R4.1-R12-R9 FIVE-ENVIRONMENT HISTORICAL INDEPENDENCE EXPERIMENT")
+    print("STARTING PHASE 2E-R4.1-R12-R10 FIVE-ENVIRONMENT HISTORICAL INDEPENDENCE EXPERIMENT")
     print("============================================================")
 
-    src_root = Path("D:/Astro-Predictions-Latest")
+    # Dynamic workspace root identification
+    src_root = Path(__file__).parent.parent.resolve()
 
     # Step 1. Ensure live mutation run directory exists
     live_runs_dir = src_root / "reports" / "r7" / "r12_r1" / "live_runs"
