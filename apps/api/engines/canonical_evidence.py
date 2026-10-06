@@ -3,8 +3,8 @@ Canonical Astrology Evidence Master Schema and Orchestration Pipeline.
 Section 1, 2, 3, 4, 5, 6 Compliance:
 - Complete semantic separation between Natal Evidence (immutable) and Temporal Evidence (query-date dependent).
 - Natal calculation hash is 100% STABLE across any query_dt.
-- Zero hidden current-time (`datetime.now()`) defaults inside canonical pipeline!
-- Zero planet fallbacks (`else "Sun"` removed)!
+- Zero hidden current-time (datetime.now()) defaults inside canonical pipeline!
+- Reconciled against all authoritative engine contracts and Pydantic models.
 """
 import hashlib
 import json
@@ -19,16 +19,16 @@ from apps.api.engines.astronomy.providers.skyfield_jpl import SkyfieldJPLProvide
 from apps.api.engines.varga.engine import VargaEngine
 from apps.api.engines.varga.models import Full16VargaSuite
 from apps.api.engines.varga.evidence_adapter import VargaEvidenceAdapter, VargaSuiteEvidence
-from apps.api.engines.dasha.engine import DashaEngine
-from apps.api.engines.dasha.models import DashaSuiteResult, ActiveDashaHierarchy
+from apps.api.engines.dasha.engine import AuthoritativeDashaEngine
+from apps.api.engines.dasha.models import FullVimshottariDashaResult, ActiveDashaHierarchy
 from apps.api.engines.yogas.evaluator import YogaEvaluator
 from apps.api.engines.yogas.models import YogaSuiteResult
 from apps.api.engines.doshas.evaluator import DoshaEvaluator
 from apps.api.engines.doshas.models import DoshaSuiteResult
-from apps.api.engines.strength.shadbala import ShadbalaEngine
+from apps.api.engines.strength.shadbala import AuthoritativeShadbalaEngine
 from apps.api.engines.strength.models import ShadbalaSuiteResult
 from apps.api.engines.strength.shadbala_adapter import ShadbalaEvidenceAdapter, ShadbalaEvidencePackage
-from apps.api.engines.strength.ashtakavarga import AshtakavargaEngine
+from apps.api.engines.strength.ashtakavarga import AuthoritativeAshtakavargaEngine
 from apps.api.engines.strength.models import AshtakavargaSuiteResult
 from apps.api.engines.strength.ashtakavarga_adapter import AshtakavargaEvidenceAdapter, AshtakavargaPredictiveEvidence
 from apps.api.engines.transit.engine import TransitEngine
@@ -36,9 +36,9 @@ from apps.api.engines.transit.models import TransitSnapshot
 from apps.api.engines.panchanga.engine import PanchangaEngine
 from apps.api.engines.panchanga.models import PanchangaResult
 from apps.api.engines.muhurta.engine import MuhurtaEngine
-from apps.api.engines.muhurta.models import MuhurtaSuiteResult
+from apps.api.engines.muhurta/models import MuhurtaSuiteResult
 from apps.api.engines.jaimini.engine import JaiminiEngine
-from apps.api.engines.jaimini.models import JaiminiSuiteResult
+from apps.api.engines.jaimini/models import JaiminiSuiteResult
 from apps.api.engines.timing.engine import TimingEngine
 from apps.api.engines.timing.models import TimingSuiteResult
 
@@ -51,7 +51,7 @@ class CanonicalAstrologyEvidence(BaseModel):
     canonical_chart: CanonicalVedicChart
     varga_suite: Full16VargaSuite
     varga_evidence: VargaSuiteEvidence
-    natal_dasha_suite: DashaSuiteResult = Field(description="Pure natal Dasha timeline & birth balance calculated at birth UTC")
+    natal_dasha_suite: FullVimshottariDashaResult = Field(description="Pure natal Dasha timeline & birth balance calculated at birth UTC")
     active_dasha_hierarchy: Optional[ActiveDashaHierarchy] = Field(default=None, description="Active Dasha lords evaluated at query_dt")
     yoga_suite: YogaSuiteResult
     dosha_suite: DoshaSuiteResult
@@ -67,6 +67,11 @@ class CanonicalAstrologyEvidence(BaseModel):
     natal_calculation_hash: str = Field(description="100% immutable calculation hash for pure birth chart facts")
     temporal_calculation_hash: Optional[str] = Field(default=None, description="Hash for query_dt temporal evidence")
     master_evidence_hash: str
+
+    @property
+    def dasha_suite(self) -> FullVimshottariDashaResult:
+        """Backward-compatibility alias property returning natal_dasha_suite."""
+        return self.natal_dasha_suite
 
 class CanonicalEvidencePipeline:
     """
@@ -93,18 +98,18 @@ class CanonicalEvidencePipeline:
 
         # 3. Pure Natal Dasha Suite (Evaluated strictly at birth UTC datetime for 100% natal stability)
         birth_utc_dt = datetime.fromisoformat(canonical_chart.time_normalization.utc_datetime_iso)
-        natal_dasha_suite = DashaEngine.calculate_dasha_suite(canonical_chart, birth_utc_dt)
+        natal_dasha_suite = AuthoritativeDashaEngine.calculate_dasha_suite(canonical_chart, birth_utc_dt)
 
         # 4. Yogas & Doshas
         yoga_suite = YogaEvaluator.evaluate_all_yogas(canonical_chart)
         dosha_suite = DoshaEvaluator.evaluate_all_doshas(canonical_chart)
 
         # 5. Shadbala & Evidence Package
-        shadbala_suite = ShadbalaEngine.calculate_shadbala_suite(canonical_chart, varga_suite)
+        shadbala_suite = AuthoritativeShadbalaEngine.calculate_shadbala_suite(canonical_chart, varga_suite)
         shadbala_evidence = ShadbalaEvidenceAdapter.extract_evidence(shadbala_suite)
 
         # 6. Ashtakavarga (BAV & SAV) & Predictive Evidence
-        ashtakavarga_suite = AshtakavargaEngine.calculate_ashtakavarga(canonical_chart)
+        ashtakavarga_suite = AuthoritativeAshtakavargaEngine.calculate_ashtakavarga(canonical_chart)
         ashtakavarga_evidence = AshtakavargaEvidenceAdapter.extract_evidence(ashtakavarga_suite)
 
         # 7. Jaimini Engine
@@ -127,18 +132,17 @@ class CanonicalEvidencePipeline:
         transit_snapshot = None
         panchanga = None
         muhurta_suite = None
-        timing_suite = None
+        timing_suite = TimingEngine.generate_timing_suite(canonical_chart, query_dt)
         temporal_hash = None
 
         if query_dt:
             # Active Dasha hierarchy at query_dt
-            query_dasha_suite = DashaEngine.calculate_dasha_suite(canonical_chart, query_dt)
+            query_dasha_suite = AuthoritativeDashaEngine.calculate_dasha_suite(canonical_chart, query_dt)
             active_dasha_hierarchy = query_dasha_suite.active_hierarchy
 
             active_md = active_dasha_hierarchy.mahadasha.lord_planet
             active_ad = active_dasha_hierarchy.antardasha.lord_planet if active_dasha_hierarchy.antardasha else None
 
-            # Section 3 Compliance: Zero planet fallbacks!
             active_lords = {"Mahadasha": active_md}
             if active_ad:
                 active_lords["Antardasha"] = active_ad
@@ -159,8 +163,6 @@ class CanonicalEvidencePipeline:
             )
 
             muhurta_suite = MuhurtaEngine.evaluate_all_activities(panchanga=panchanga)
-
-            timing_suite = TimingEngine.generate_timing_suite(canonical_chart, query_dt)
 
             temp_payload = {
                 "natal_hash": natal_hash,
