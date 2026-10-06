@@ -95,7 +95,7 @@ export default function Home() {
     }
   }
 
-  const report = chartData?.complete_report
+  const report = chartData?.report || chartData?.complete_report || null
 
   const sidebarLinks = [
     { id: 'home', label: 'Dashboard' },
