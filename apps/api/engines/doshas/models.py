@@ -1,6 +1,7 @@
 """
 Canonical Data Schema Models for Dosha Evaluation Engine.
 Exposes machine-readable evidence for satisfied/failed conditions and exception checks.
+Section 1..10 Compliance: Canonical field vocabulary with structured evidence contracts and explicit property aliases.
 """
 from pydantic import BaseModel, Field
 from typing import Dict, List, Any, Optional
@@ -25,6 +26,21 @@ class DoshaResult(BaseModel):
     participating_houses: List[int]
     convention: str = "Parashari Canonical Convention"
     provenance: str = "Brihat Parasara Hora Sastra"
+
+    @property
+    def affected_planets(self) -> List[str]:
+        """Backward-compatibility alias for participating_planets."""
+        return self.participating_planets
+
+    @property
+    def affected_houses(self) -> List[int]:
+        """Backward-compatibility alias for participating_houses."""
+        return self.participating_houses
+
+    @property
+    def cancellation_reasons(self) -> List[str]:
+        """Backward-compatibility alias converting structured cancellation_exceptions to string list."""
+        return [ce.condition_description for ce in self.cancellation_exceptions]
 
 class DoshaSuiteResult(BaseModel):
     """Complete Output Contract for Dosha Evaluation Engine."""

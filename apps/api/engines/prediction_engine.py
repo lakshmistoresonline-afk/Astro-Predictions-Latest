@@ -234,7 +234,7 @@ class PredictionEngine:
 
             domain_doshas = [
                 d.name for d in master_evidence.dosha_suite.detected_doshas
-                if any(p in rel_karakas for p in d.affected_planets) or any(h in rel_houses for h in d.affected_houses)
+                if any(p in rel_karakas for p in d.participating_planets) or any(h in rel_houses for h in d.participating_houses)
             ] if master_evidence.dosha_suite else []
 
             # 4. Section 5 Compliance: Ashtakavarga SAV Evidence across ALL domain houses with explicit unavailable state (sav_bindus = None, NOT 0!)
