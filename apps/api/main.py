@@ -309,12 +309,12 @@ def interpret_evidence_ai(req: AIInterpretationRequest):
         master_evidence = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
         prediction_package = PredictionEngine.generate_all_predictions(master_evidence)
 
-        # Select domain evidence server-side
+        # Select domain evidence server-side with fail-closed domain check
         dom_code = req.domain.upper() if req.domain else "CAREER"
-        dom_evidence = prediction_package.domain_predictions.get(
-            dom_code,
-            prediction_package.domain_predictions.get("CAREER")
-        )
+        if dom_code not in prediction_package.domain_predictions:
+            raise HTTPException(status_code=400, detail=f"Unsupported domain '{req.domain}'. Supported domains: {list(prediction_package.domain_predictions.keys())}")
+
+        dom_evidence = prediction_package.domain_predictions[dom_code]
 
         ai_payload = {
             "master_evidence_hash": master_evidence.master_evidence_hash,
