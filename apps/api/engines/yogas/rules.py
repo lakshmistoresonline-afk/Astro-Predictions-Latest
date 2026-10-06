@@ -181,8 +181,6 @@ def evaluate_gaja_kesari(canonical_chart: CanonicalVedicChart) -> YogaResult:
         participating_houses=[jup_house_asc, moon_house_asc] if is_kendra_from_moon else []
     )
 
-evaluate_gajakesari = evaluate_gaja_kesari
-
 # 3. Budha Aditya Yoga
 def evaluate_budha_aditya(canonical_chart: CanonicalVedicChart) -> YogaResult:
     sun_p = canonical_chart.placements.get("Sun")
@@ -228,8 +226,6 @@ def evaluate_budha_aditya(canonical_chart: CanonicalVedicChart) -> YogaResult:
         participating_planets=["Sun", "Mercury"] if is_active else [],
         participating_houses=[sun_house] if is_active else []
     )
-
-evaluate_budhaditya = evaluate_budha_aditya
 
 # 4. Dharma-Karma Adhipati Yoga
 def evaluate_dharma_karma(canonical_chart: CanonicalVedicChart) -> YogaResult:

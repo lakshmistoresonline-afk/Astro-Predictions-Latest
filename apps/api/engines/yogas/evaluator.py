@@ -67,10 +67,10 @@ class YogaEvaluator:
             "raja_count": sum(1 for y in detected if y.category in ["Raja", "Viparita", "NeechaBhanga"]),
         }
 
-        # Calculation Hash
+        # Calculation Hash derived from complete evaluated rule evidence (Requirement 13)
         payload = {
             "chart_hash": canonical_chart.calculation_hash,
-            "detected_rule_ids": sorted([y.rule_id for y in detected]),
+            "evaluated_rule_states": {y.rule_id: y.status for y in sorted(all_results, key=lambda r: r.rule_id)},
             "rule_set_version": "yoga_rules_v1"
         }
         yoga_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
