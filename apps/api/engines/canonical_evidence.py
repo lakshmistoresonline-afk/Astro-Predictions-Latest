@@ -36,9 +36,9 @@ from apps.api.engines.transit.models import TransitSnapshot
 from apps.api.engines.panchanga.engine import PanchangaEngine
 from apps.api.engines.panchanga.models import PanchangaResult
 from apps.api.engines.muhurta.engine import MuhurtaEngine
-from apps.api.engines.muhurta/models import MuhurtaSuiteResult
+from apps.api.engines.muhurta.models import MuhurtaSuiteResult
 from apps.api.engines.jaimini.engine import JaiminiEngine
-from apps.api.engines.jaimini/models import JaiminiSuiteResult
+from apps.api.engines.jaimini.models import JaiminiSuiteResult
 from apps.api.engines.timing.engine import TimingEngine
 from apps.api.engines.timing.models import TimingSuiteResult
 
