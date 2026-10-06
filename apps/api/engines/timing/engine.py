@@ -1,14 +1,14 @@
 """
 Authoritative Predictive Timing Window Engine for Astrovision.
-Section 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 Compliance:
+Section 1..10 Compliance:
 - Zero arbitrary scoring model! Evidence-driven timing window synthesis.
+- Requires query_dt; if query_dt is None, returns structured TimingSuiteResult with evidence_status="UNAVAILABLE".
+- Normalizes query_dt to UTC before timing calculations.
 - Creates TimingWindow objects ONLY when actual Dasha or Transit convergence exists for that domain.
 - relevant_planets contains ONLY planets actually involved in the timing event (Dasha lords, transiting Jupiter).
 - Domain-scoped Yoga filtering (only Yogas involving domain karakas are attached!).
-- Requires timezone-aware query_dt (fails closed on naive datetime).
 - Nullable end date (zero manufactured 180-day windows!).
-- Uses actual natal Ashtakavarga SAV bindus via AshtakavargaEngine (zero "SAV >= 28 in key house" fake text!).
-- Clean imports: removed unused VargaEngine and DoshaEvaluator imports.
+- Uses actual natal Ashtakavarga SAV bindus via AshtakavargaEngine.
 - 100% Deterministic timing window IDs and calculation hashes derived from SHA-256 over serialized window payloads.
 """
 import hashlib
@@ -52,13 +52,28 @@ class TimingEngine:
     def generate_timing_suite(
         cls,
         natal_chart: CanonicalVedicChart,
-        query_dt: datetime
+        query_dt: Optional[datetime] = None
     ) -> TimingSuiteResult:
         if not query_dt:
-            raise ValueError("query_dt is required for predictive timing window calculations.")
+            payload = {
+                "natal_hash": natal_chart.calculation_hash,
+                "evidence_status": "UNAVAILABLE",
+                "ruleset": TIMING_RULESET_VERSION
+            }
+            unavail_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
+            return TimingSuiteResult(
+                chart_hash=natal_chart.calculation_hash,
+                query_datetime_iso=None,
+                evidence_status="UNAVAILABLE",
+                active_mahadasha="UNAVAILABLE",
+                active_antardasha=None,
+                ruleset_version=TIMING_RULESET_VERSION,
+                timing_windows=[],
+                calculation_hash=unavail_hash
+            )
 
         if query_dt.tzinfo is None:
-            raise ValueError("query_dt must be a timezone-aware datetime (tzinfo cannot be None).")
+            query_dt = query_dt.replace(tzinfo=timezone.utc)
 
         utc_dt = query_dt.astimezone(timezone.utc)
 
@@ -102,11 +117,9 @@ class TimingEngine:
 
             transit_match = (trans_jupiter_house is not None and trans_jupiter_house in houses)
 
-            # Section 2 Compliance: Generate a TimingWindow ONLY if actual evidence matches
             if not (dasha_match or transit_match):
                 continue
 
-            # Section 4 Compliance: relevant_planets contains ONLY planets actually involved in the event
             active_event_planets = []
             if md_lord in primary_p:
                 active_event_planets.append(md_lord)
@@ -115,13 +128,11 @@ class TimingEngine:
             if transit_match and "Jupiter" not in active_event_planets:
                 active_event_planets.append("Jupiter")
 
-            # Section 3 Compliance: Domain-scoped Yoga filtering
             domain_yogas = [
                 y.name for y in yoga_suite.detected_yogas
                 if any(p in primary_p for p in y.participating_planets)
             ]
 
-            # Section 10 Compliance: Factual SAV bindus for Jupiter's transited house
             if trans_jupiter_house is not None and natal_av and natal_av.sav and len(natal_av.sav.bindus) >= 12:
                 lagna_r_idx = natal_chart.ascendant.rashi.rashi_index
                 trans_r_idx = ((lagna_r_idx + trans_jupiter_house - 2) % 12) + 1
@@ -141,8 +152,6 @@ class TimingEngine:
                 strength_cls = None
 
             start_iso = active_hier.antardasha.start_datetime_iso if active_hier.antardasha else utc_dt.isoformat()
-
-            # Nullable end date (Zero manufactured 180-day windows!)
             end_iso = active_hier.antardasha.end_datetime_iso if active_hier.antardasha else None
 
             ad_desc = f"-{ad_lord}" if ad_lord else ""
@@ -154,7 +163,6 @@ class TimingEngine:
                 f"Status: {evidence_status}."
             )
 
-            # Section 12 Compliance: 100% Deterministic SHA-256 Window ID (Zero time.time() calls!)
             id_payload = f"{natal_chart.calculation_hash}_{utc_dt.isoformat()}_{domain}_{start_iso}_{end_iso or 'NONE'}_{md_lord}_{ad_lord or 'NONE'}_{pd_lord or 'NONE'}_{sd_lord or 'NONE'}_{pr_lord or 'NONE'}_{TIMING_RULESET_VERSION}"
             w_hash = hashlib.sha256(id_payload.encode("utf-8")).hexdigest()[:12]
             window_id = f"TW_{domain}_{w_hash}"
@@ -180,7 +188,6 @@ class TimingEngine:
                 description=summary
             ))
 
-        # Section 11 Compliance: Complete timing calculation hash over serialized windows
         windows_serialized = [w.model_dump() for w in windows]
         payload = {
             "natal_hash": natal_chart.calculation_hash,
@@ -198,6 +205,8 @@ class TimingEngine:
 
         return TimingSuiteResult(
             chart_hash=natal_chart.calculation_hash,
+            query_datetime_iso=utc_dt.isoformat(),
+            evidence_status="AVAILABLE",
             active_mahadasha=md_lord,
             active_antardasha=ad_lord,
             ruleset_version=TIMING_RULESET_VERSION,

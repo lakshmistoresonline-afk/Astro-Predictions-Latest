@@ -5,7 +5,6 @@ Section 1 Compliance:
 - Unambiguous evidence_status (CONVERGENT, PARTIAL, UNAVAILABLE).
 - Nullable end_datetime_iso (zero manufactured 180-day windows!).
 - All 5 Vimshottari Dasha hierarchy levels represented accurately.
-- Removed PROVISIONAL from strength classes.
 """
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional
@@ -34,8 +33,10 @@ class TimingWindow(BaseModel):
 class TimingSuiteResult(BaseModel):
     """Suite of timing windows for a natal chart."""
     chart_hash: str
+    query_datetime_iso: Optional[str] = Field(default=None, description="UTC query datetime ISO string, or None if unavailable")
+    evidence_status: str = Field(default="AVAILABLE", description="AVAILABLE or UNAVAILABLE")
     active_mahadasha: str
     active_antardasha: Optional[str] = None
-    ruleset_version: str
-    timing_windows: List[TimingWindow]
+    ruleset_version: str = "2026.1_PARASHARI_CONVERGENCE_V1"
+    timing_windows: List[TimingWindow] = Field(default_factory=list)
     calculation_hash: str
