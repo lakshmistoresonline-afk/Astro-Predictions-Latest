@@ -3,8 +3,9 @@ Authoritative Ashtakavarga Evidence Adapter for Astrovision (Phase 2E-R4.1-R12-R
 Extracts structured interpretation evidence from AshtakavargaSuiteResult (BAV & SAV).
 Evaluates house SAV strengths, transit scoring through high vs low bindu houses, and Dasha-Ashtakavarga interactions.
 SAV total must ALWAYS be derived dynamically from BAV.
+Section 1..12 Compliance: HouseSAVEvidence sav_bindus is Optional[int] allowing explicit None state when evidence is unavailable.
 """
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 from pydantic import BaseModel, Field
 
 from apps.api.engines.strength.models import AshtakavargaSuiteResult
@@ -18,16 +19,16 @@ class HouseSAVEvidence(BaseModel):
     """SAV strength evidence for a single house / sign."""
     rashi_index: int = Field(description="1-based Rashi index (1=Aries)")
     rashi_name: str
-    sav_bindus: int = Field(description="SAV bindus in this sign (0-56)")
-    strength_category: str = Field(description="HIGHLY_FAVORABLE (>=30), FAVORABLE (>=28), AVERAGE (>=25), LOW (<25)")
+    sav_bindus: Optional[int] = Field(default=None, description="SAV bindus in this sign [0-56], or None if evidence is unavailable")
+    strength_category: str = Field(description="HIGHLY_FAVORABLE (>=30), FAVORABLE (>=28), AVERAGE (>=25), LOW (<25), or UNAVAILABLE")
     transit_recommendation: str
 
 class AshtakavargaPredictiveEvidence(BaseModel):
     """Complete Ashtakavarga predictive evidence package."""
     house_sav_evidences: List[HouseSAVEvidence]
-    total_sav_bindus: int = Field(description="Observed total SAV bindus derived from BAV (Canonical = 337)")
-    strongest_house_rashi: str
-    weakest_house_rashi: str
+    total_sav_bindus: Optional[int] = Field(default=None, description="Observed total SAV bindus derived from BAV (Canonical = 337), or None if unavailable")
+    strongest_house_rashi: Optional[str] = Field(default=None, description="Strongest SAV house, or None if unavailable")
+    weakest_house_rashi: Optional[str] = Field(default=None, description="Weakest SAV house, or None if unavailable")
     summary_evidence: str
     calculation_hash: str
 
@@ -93,6 +94,7 @@ class AshtakavargaEvidenceAdapter:
             house_sav_evidences=house_evidences,
             total_sav_bindus=obs_total,
             strongest_house_rashi=best_rashi,
+            worst_house_rashi=worst_rashi, # Backward compatibility attribute
             weakest_house_rashi=worst_rashi,
             summary_evidence=summary,
             calculation_hash=ashtakavarga_suite.calculation_hash
