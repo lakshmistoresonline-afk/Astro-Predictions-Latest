@@ -2,7 +2,9 @@
 Authoritative Varga Evidence Adapter for Astrovision (Phase 2E-R4.1-R12-R10).
 Extracts structured interpretation evidence from the 16-Varga Suite (D1 through D60).
 Explicitly maps each Varga to its canonical Parashari domain.
-Section 1..12 Compliance: Uses exact VargaPlacement schema properties and centralized rashi dignity rules.
+Section 1..12 Compliance:
+- Uses exact VargaPlacement schema properties and centralized rashi dignity rules.
+- Explicit evidence_status (AVAILABLE / UNAVAILABLE) for every declared Varga division.
 """
 from typing import Dict, List, Any
 from pydantic import BaseModel, Field
@@ -34,6 +36,7 @@ class VargaDomainEvidence(BaseModel):
     varga_code: str
     domain_title: str
     domain_description: str
+    evidence_status: str = Field(default="AVAILABLE", description="AVAILABLE or UNAVAILABLE")
     lagna_rashi_name: str
     lagna_lord_planet: str
     key_placements: Dict[str, str] = Field(description="Map planet name to sign name in this Varga")
@@ -59,7 +62,7 @@ class VargaEvidenceAdapter:
         v_dict = varga_suite.vargas # Map 'D1', 'D2', ..., 'D60' -> VargaChart
 
         for v_code, (title, desc) in VARGA_DOMAIN_MAP.items():
-            if v_code in v_dict:
+            if v_code in v_dict and v_dict[v_code] is not None:
                 v_chart: VargaChart = v_dict[v_code]
                 lagna_rashi = v_chart.ascendant.varga_sign
                 lagna_sign_idx = v_chart.ascendant.varga_sign_index
@@ -95,6 +98,7 @@ class VargaEvidenceAdapter:
                     varga_code=v_code,
                     domain_title=title,
                     domain_description=desc,
+                    evidence_status="AVAILABLE",
                     lagna_rashi_name=lagna_rashi,
                     lagna_lord_planet=lagna_lord,
                     key_placements=placements_map,
@@ -102,6 +106,20 @@ class VargaEvidenceAdapter:
                     debilitated_planets=debilitated,
                     vargottama_planets=vargottama_list,
                     summary_evidence=summary
+                )
+            else:
+                evidences[v_code] = VargaDomainEvidence(
+                    varga_code=v_code,
+                    domain_title=title,
+                    domain_description=desc,
+                    evidence_status="UNAVAILABLE",
+                    lagna_rashi_name="UNAVAILABLE",
+                    lagna_lord_planet="UNAVAILABLE",
+                    key_placements={},
+                    exalted_planets=[],
+                    debilitated_planets=[],
+                    vargottama_planets=[],
+                    summary_evidence=f"{v_code} ({title}) evidence unavailable."
                 )
 
         return VargaSuiteEvidence(
