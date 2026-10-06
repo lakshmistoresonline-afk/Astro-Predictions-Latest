@@ -7,7 +7,7 @@ Sections 1..10 Compliance:
 - Outside-exclusion windows classified as CLEAR/NEUTRAL_FACTOR.
 - Explicit Tithi (1..30) and Karana nature classification.
 - Supports all 6 major activities (TRAVEL, MARRIAGE, BUSINESS, EDUCATION, PROPERTY, SPIRITUALITY).
-- Derived directly from deterministic rule outcomes with full backward-compatible model contract.
+- Unified canonical public API: evaluate_all_activities and calculate_muhurta_suite.
 - Fails closed with ValueError for unsupported or invalid activity names!
 """
 import hashlib
@@ -15,6 +15,7 @@ import json
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
+from apps.api.engines.astronomy.provider import BaseAstronomyProvider
 from apps.api.engines.panchanga.models import PanchangaResult
 from apps.api.engines.panchanga.engine import PanchangaEngine
 from apps.api.engines.muhurta.models import (
@@ -76,7 +77,7 @@ class MuhurtaEngine:
 
         factors: List[ActivityRuleResult] = []
 
-        # 1. Tithi Check (Section 4: Explicit 1..30 Rikta / Amavasya Tithi classification)
+        # 1. Tithi Check (Explicit 1..30 Rikta / Amavasya Tithi classification)
         t_num = panchanga.tithi.tithi_number
         is_rikta_or_amavasya = (t_num in [4, 9, 14, 19, 24, 29, 30])
         if is_rikta_or_amavasya:
@@ -119,7 +120,7 @@ class MuhurtaEngine:
                 description=f"Nakshatra {panchanga.nakshatra_name} is not explicitly listed as favorable for {act}."
             ))
 
-        # 3. Nitya Yoga Check (Section 5)
+        # 3. Nitya Yoga Check
         if panchanga.nitya_yoga.nature == "Inauspicious":
             factors.append(ActivityRuleResult(
                 rule_id="MUHURTA_RULE_NITYA_YOGA",
@@ -139,7 +140,7 @@ class MuhurtaEngine:
                 description=f"Nitya Yoga {panchanga.nitya_yoga.yoga_name} is auspicious."
             ))
 
-        # 4. Karana Check (Section 6: Vishti/Bhadra hard exclusion)
+        # 4. Karana Check (Vishti/Bhadra hard exclusion)
         is_vishti = (panchanga.karana.nature == "Vishti/Bhadra" or "Vishti" in panchanga.karana.karana_name)
         if is_vishti:
             factors.append(ActivityRuleResult(
@@ -244,7 +245,7 @@ class MuhurtaEngine:
                 description="Abhijit Muhurta is active; auspicious temporal window for initiating major ventures."
             ))
 
-        # Pure Rule Precedence Recommendation Derivation (Section 2: Zero factor-count decision branching!)
+        # Pure Rule Precedence Recommendation Derivation
         has_hard_exclusion = any(f.is_hard_exclusion for f in factors)
         has_unfavorable_factor = any(f.status == "UNFAVORABLE" for f in factors)
         has_favorable_factor = any(f.status == "FAVORABLE" for f in factors)
@@ -286,7 +287,7 @@ class MuhurtaEngine:
             activity_name=act,
             datetime_iso=panchanga.datetime_iso,
             recommendation=rec,
-            overall_suitability_score=None, # Explicitly unweighted rule precedence model
+            overall_suitability_score=None,
             is_rahu_kalam_active=rahu_active,
             is_abhijit_active=abhijit_active,
             has_hard_exclusion=has_hard_exclusion,
@@ -298,10 +299,39 @@ class MuhurtaEngine:
         )
 
     @classmethod
+    def evaluate_all_activities(
+        cls,
+        panchanga: Optional[PanchangaResult] = None,
+        dt: Optional[datetime] = None,
+        latitude: Optional[float] = None,
+        longitude: Optional[float] = None,
+        location_name: str = "Local Observer",
+        astronomy_provider: Optional[BaseAstronomyProvider] = None
+    ) -> MuhurtaSuiteResult:
+        """
+        Primary canonical public API for evaluating all supported Muhurta activities.
+        Consumes canonical PanchangaResult evidence directly, or calculates it from observer parameters.
+        """
+        if not panchanga:
+            if not dt or latitude is None or longitude is None:
+                raise ValueError("Either panchanga or (dt, latitude, longitude) must be provided for Muhurta evaluation.")
+            panchanga = PanchangaEngine.calculate_panchanga(
+                dt=dt,
+                latitude=latitude,
+                longitude=longitude,
+                location_name=location_name,
+                astronomy_provider=astronomy_provider
+            )
+        return cls.calculate_muhurta_suite(panchanga)
+
+    @classmethod
     def calculate_muhurta_suite(
         cls,
         panchanga: PanchangaResult
     ) -> MuhurtaSuiteResult:
+        """
+        Calculates complete Muhurta suite across all supported activities.
+        """
         evaluations: Dict[str, MuhurtaEvaluation] = {}
         for act in ACTIVITY_FAVORABLE_NAKSHATRAS.keys():
             evaluations[act] = cls.evaluate_muhurta(panchanga, act)
