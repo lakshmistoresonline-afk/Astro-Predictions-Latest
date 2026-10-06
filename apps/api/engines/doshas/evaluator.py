@@ -1,6 +1,7 @@
 """
 Authoritative Dosha Evaluation Engine for Astrovision.
 Orchestrates rule evaluation across supported classical Parashari Doshas.
+Section 1..12 Compliance: Suite calculation hash represents complete evaluated rule states.
 """
 import hashlib
 import json
@@ -45,10 +46,10 @@ class DoshaEvaluator:
             "kala_sarpa_status": next((d.status for d in all_results if d.rule_id == "DOSHA_KALA_SARPA"), "NOT_DETECTED"),
         }
 
+        # Suite calculation hash derived from complete evaluated rule states
         payload = {
             "chart_hash": canonical_chart.calculation_hash,
-            "detected_rule_ids": sorted([d.rule_id for d in detected]),
-            "cancelled_rule_ids": sorted([d.rule_id for d in cancelled]),
+            "evaluated_rule_states": {d.rule_id: d.status for d in sorted(all_results, key=lambda r: r.rule_id)},
             "rule_set_version": "dosha_rules_v1"
         }
         dosha_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
