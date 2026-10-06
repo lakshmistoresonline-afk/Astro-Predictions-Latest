@@ -10,7 +10,12 @@ Section 1..12 Compliance:
 from typing import Dict, List, Any, Optional
 from pydantic import BaseModel, Field
 
-from apps.api.engines.strength.models import ShadbalaSuiteResult, PlanetShadbala
+from apps.api.engines.strength.models import (
+    ShadbalaSuiteResult,
+    PlanetShadbala,
+    StrengthClass,
+    DetailedStrengthTier
+)
 
 # Mapping from prediction domain to primary karaka/lord planets
 DOMAIN_SHADBALA_MAP = {
@@ -135,24 +140,24 @@ class ShadbalaEvidenceAdapter:
             if valid_p:
                 avg_rupas = sum(planet_evidence_map[p].total_rupas for p in valid_p) / len(valid_p)
                 if avg_rupas >= 7.5:
-                    s_class = "HIGH"
-                    sub_tier = "EXCEPTIONAL"
+                    s_class = StrengthClass.HIGH
+                    sub_tier = DetailedStrengthTier.EXCEPTIONAL
                 elif avg_rupas >= 6.5:
-                    s_class = "HIGH"
-                    sub_tier = "STRONG"
+                    s_class = StrengthClass.HIGH
+                    sub_tier = DetailedStrengthTier.STRONG
                 elif avg_rupas >= 5.5:
-                    s_class = "MODERATE"
-                    sub_tier = "ADEQUATE"
+                    s_class = StrengthClass.MODERATE
+                    sub_tier = DetailedStrengthTier.ADEQUATE
                 elif avg_rupas >= 4.5:
-                    s_class = "MODERATE"
-                    sub_tier = "MODERATE"
+                    s_class = StrengthClass.MODERATE
+                    sub_tier = DetailedStrengthTier.MODERATE
                 else:
-                    s_class = "LOW"
-                    sub_tier = "CRITICAL"
+                    s_class = StrengthClass.LOW
+                    sub_tier = DetailedStrengthTier.CRITICAL
             else:
                 avg_rupas = 0.0
-                s_class = "UNAVAILABLE"
-                sub_tier = "UNAVAILABLE"
+                s_class = StrengthClass.UNAVAILABLE
+                sub_tier = DetailedStrengthTier.UNAVAILABLE
 
             summary = f"Domain {dom_code} supported by {', '.join(valid_p)} with average Shadbala of {avg_rupas:.2f} Rupas ({s_class} / {sub_tier})."
 

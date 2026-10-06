@@ -1,9 +1,31 @@
 """
 Canonical Data Schema Models for Ashtakavarga and Shadbala Evaluation Engine.
-Exposes machine-readable evidence for strength calculations.
+Exposes machine-readable evidence for strength calculations and centralized strength vocabularies.
 """
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional
+
+# Centralized Canonical Strength Classification Vocabularies
+class StrengthClass:
+    HIGH = "HIGH"
+    MODERATE = "MODERATE"
+    LOW = "LOW"
+    UNAVAILABLE = "UNAVAILABLE"
+
+class DetailedStrengthTier:
+    EXCEPTIONAL = "EXCEPTIONAL"
+    STRONG = "STRONG"
+    ADEQUATE = "ADEQUATE"
+    MODERATE = "MODERATE"
+    CRITICAL = "CRITICAL"
+    UNAVAILABLE = "UNAVAILABLE"
+
+class AshtakavargaCategory:
+    HIGHLY_FAVORABLE = "HIGHLY_FAVORABLE"
+    FAVORABLE = "FAVORABLE"
+    AVERAGE = "AVERAGE"
+    LOW = "LOW"
+    UNAVAILABLE = "UNAVAILABLE"
 
 class BhinnashtakavargaResult(BaseModel):
     """BAV result for a single planet."""
