@@ -2,11 +2,13 @@
 Authoritative Varga Evidence Adapter for Astrovision (Phase 2E-R4.1-R12-R10).
 Extracts structured interpretation evidence from the 16-Varga Suite (D1 through D60).
 Explicitly maps each Varga to its canonical Parashari domain.
+Section 1..12 Compliance: Uses exact VargaPlacement schema properties and centralized rashi dignity rules.
 """
 from typing import Dict, List, Any
 from pydantic import BaseModel, Field
 
 from apps.api.engines.varga.models import Full16VargaSuite, VargaChart
+from apps.api.engines.vedic.rashi import RASHI_LORDS, EXALTATION_SIGNS, DEBILITATION_SIGNS
 
 VARGA_DOMAIN_MAP = {
     "D1": ("Physical Body & General Life Path", "Overview of physical constitution, Lagna strength, and life purpose."),
@@ -37,6 +39,7 @@ class VargaDomainEvidence(BaseModel):
     key_placements: Dict[str, str] = Field(description="Map planet name to sign name in this Varga")
     exalted_planets: List[str]
     debilitated_planets: List[str]
+    vargottama_planets: List[str] = Field(default_factory=list, description="Planets with is_vargottama == True")
     summary_evidence: str
 
 class VargaSuiteEvidence(BaseModel):
@@ -58,26 +61,34 @@ class VargaEvidenceAdapter:
         for v_code, (title, desc) in VARGA_DOMAIN_MAP.items():
             if v_code in v_dict:
                 v_chart: VargaChart = v_dict[v_code]
-                lagna_rashi = v_chart.ascendant.rashi.name_english
-                lagna_lord = v_chart.ascendant.rashi.ruling_planet
+                lagna_rashi = v_chart.ascendant.varga_sign
+                lagna_sign_idx = v_chart.ascendant.varga_sign_index
+                lagna_lord = RASHI_LORDS[lagna_sign_idx]
 
-                placements_map = {}
-                exalted = []
-                debilitated = []
+                placements_map: Dict[str, str] = {}
+                exalted: List[str] = []
+                debilitated: List[str] = []
+                vargottama_list: List[str] = []
 
                 for p_name, p_place in v_chart.placements.items():
-                    placements_map[p_name] = p_place.rashi.name_english
-                    if p_place.dignity == "Exalted":
+                    placements_map[p_name] = p_place.varga_sign
+                    p_sign_idx = p_place.varga_sign_index
+
+                    if EXALTATION_SIGNS.get(p_name) == p_sign_idx:
                         exalted.append(p_name)
-                    elif p_place.dignity == "Debilitated":
+                    elif DEBILITATION_SIGNS.get(p_name) == p_sign_idx:
                         debilitated.append(p_name)
+
+                    if p_place.is_vargottama:
+                        vargottama_list.append(p_name)
 
                 ex_str = f" Exalted: {', '.join(exalted)}." if exalted else ""
                 deb_str = f" Debilitated: {', '.join(debilitated)}." if debilitated else ""
+                varg_str = f" Vargottama: {', '.join(vargottama_list)}." if vargottama_list else ""
 
                 summary = (
-                    f"{v_code} ({title}) has Lagna in {lagna_rashi} (Lord: {lagna_lord})."
-                    f"{ex_str}{deb_str}"
+                    f"{v_code} ({title}) Lagna in {lagna_rashi} (Lord: {lagna_lord})."
+                    f"{ex_str}{deb_str}{varg_str}"
                 )
 
                 evidences[v_code] = VargaDomainEvidence(
@@ -89,6 +100,7 @@ class VargaEvidenceAdapter:
                     key_placements=placements_map,
                     exalted_planets=exalted,
                     debilitated_planets=debilitated,
+                    vargottama_planets=vargottama_list,
                     summary_evidence=summary
                 )
 
