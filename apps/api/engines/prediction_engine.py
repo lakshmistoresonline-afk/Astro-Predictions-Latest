@@ -302,6 +302,20 @@ class PredictionEngine:
                 "rule_description": cfg["description"]
             }
 
+            obs_evidence = ObservedChartEvidence(
+                varga_evidence=v_ev,
+                detected_yogas=domain_yogas,
+                detected_doshas=domain_doshas,
+                active_dasha_summary=dasha_summary,
+                active_transits_summary=t_summary,
+                shadbala_domain_evidence=shad_dom,
+                ashtakavarga_house_evidences=sav_house_evs,
+                jaimini_atmakaraka_info=ak_info,
+                jaimini_amatyakaraka_info=amk_info,
+                jaimini_darakaraka_info=dk_info,
+                timing_windows=dom_windows
+            )
+
             domain_results[dom] = DomainPredictionEvidence(
                 rule_definition=rule_def,
                 observed_evidence=obs_evidence,
