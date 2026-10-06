@@ -1,6 +1,9 @@
 """
 Canonical Vedic Chart Builder Engine for Astrovision.
 Orchestrates: Birth Input -> Time Normalization -> Skyfield Provider -> Lahiri Sidereal -> Rashi -> Nakshatra -> Pada -> Ascendant -> MC -> Whole Sign Houses.
+Section 1, 2 & 3 Compliance:
+- Perfectly matches CanonicalVedicChart schema contract (input_data, time_normalization, whole_sign_houses, metadata).
+- Sidereal Time (GMST/LMST) calculated using Universal Time (julian_day_utc) for Earth rotation accuracy!
 """
 import math
 import hashlib
@@ -34,7 +37,7 @@ def build_canonical_vedic_chart(
     Builds the complete canonical Vedic chart object.
     Source separation enforced: Vedic modules never call Skyfield directly, but consume the astronomy provider.
     """
-    # 1. Time Normalization (Local Civil Time -> UTC)
+    # 1. Time Normalization (Local Civil Time -> UTC & TT)
     time_norm = normalize_birth_time(birth_input)
     utc_dt = datetime.fromisoformat(time_norm.utc_datetime_iso)
 
@@ -55,11 +58,11 @@ def build_canonical_vedic_chart(
         ayanamsha_mode="Lahiri"
     )
 
-    ayanamsha_val = astro_res.sidereal_state.ayanamsha_value_deg
+    ayanamsha_val = astro_res.sidereal_state.ayanamsha_degrees
     placements: Dict[str, PlanetaryVedicPlacement] = {}
 
     # 3. Process Celestial Bodies
-    for body_name, pos in astro_res.raw_ephemeris.bodies.items():
+    for body_name, pos in astro_res.raw_ephemeris.planet_positions.items():
         sid_lon = astro_res.sidereal_state.sidereal_longitudes[body_name]
         rashi = calculate_rashi(sid_lon)
         nak_pada = calculate_nakshatra_pada(sid_lon)
@@ -78,7 +81,7 @@ def build_canonical_vedic_chart(
 
     # 4. Explicit Centralized Mean Nodes: Rahu and Ketu
     rahu_sid_lon, ketu_sid_lon, node_vel = calculate_canonical_mean_nodes(
-        astro_res.raw_ephemeris.julian_day_tt,
+        astro_res.raw_ephemeris.julian_date_tt,
         ayanamsha_val
     )
 
@@ -118,9 +121,9 @@ def build_canonical_vedic_chart(
     sin_eps = 0.397777156 # sin(obliquity)
     cos_eps = 0.917482062 # cos(obliquity)
 
-    # Sidereal Time calculation
-    jd = astro_res.raw_ephemeris.julian_day_tt
-    D = jd - 2451545.0
+    # Sidereal Time (GMST/LMST) calculation using Universal Time (julian_day_utc)
+    jd_ut = time_norm.julian_day_utc
+    D = jd_ut - 2451545.0
     GMST_deg = (280.46061837 + 360.98564736629 * D) % 360.0
     LMST_deg = (GMST_deg + birth_input.longitude) % 360.0
 
@@ -135,58 +138,38 @@ def build_canonical_vedic_chart(
 
     asc_sid_deg = (asc_trop_deg - ayanamsha_val) % 360.0
     asc_rashi = calculate_rashi(asc_sid_deg)
-    asc_nak_pada = calculate_nakshatra_pada(asc_sid_deg)
-
-    asc_placement = PlanetaryVedicPlacement(
-        body_name="Ascendant",
-        geocentric_tropical_lon=round(asc_trop_deg, 6),
-        geocentric_latitude=0.0,
-        distance_au=0.0,
-        velocity_deg_day=360.0,
-        retrograde=False,
-        sidereal_longitude=round(asc_sid_deg, 6),
-        rashi=asc_rashi,
-        nakshatra_pada=asc_nak_pada
-    )
 
     # Tropical Midheaven (MC)
     mc_trop_rad = math.atan2(math.sin(rad_lmst), math.cos(rad_lmst) * cos_eps)
     mc_trop_deg = math.degrees(mc_trop_rad) % 360.0
     mc_sid_deg = (mc_trop_deg - ayanamsha_val) % 360.0
     mc_rashi = calculate_rashi(mc_sid_deg)
-    mc_nak_pada = calculate_nakshatra_pada(mc_sid_deg)
-
-    mc_placement = PlanetaryVedicPlacement(
-        body_name="MC",
-        geocentric_tropical_lon=round(mc_trop_deg, 6),
-        geocentric_latitude=0.0,
-        distance_au=0.0,
-        velocity_deg_day=360.0,
-        retrograde=False,
-        sidereal_longitude=round(mc_sid_deg, 6),
-        rashi=mc_rashi,
-        nakshatra_pada=mc_nak_pada
-    )
 
     # 6. Whole Sign Houses
-    houses = generate_whole_sign_houses(asc_sid_deg, placements)
+    whole_houses = generate_whole_sign_houses(asc_sid_deg, placements)
 
     payload = {
         "birth_input": birth_input.model_dump(),
-        "julian_day_tt": astro_res.raw_ephemeris.julian_day_tt,
+        "julian_day_utc": time_norm.julian_day_utc,
+        "julian_day_tt": astro_res.raw_ephemeris.julian_date_tt,
         "ascendant_sidereal_longitude": round(asc_sid_deg, 6),
         "ayanamsha": round(ayanamsha_val, 6)
     }
     calc_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
 
     return CanonicalVedicChart(
-        birth_input=birth_input,
+        input_data=birth_input,
         time_normalization=time_norm,
-        astronomical_state=astro_res.derived_state,
-        ascendant=asc_placement,
-        mc=mc_placement,
+        ayanamsha_mode="Lahiri",
+        ayanamsha_value_deg=round(ayanamsha_val, 6),
+        ascendant=asc_rashi,
+        mc=mc_rashi,
         placements=placements,
-        houses=houses,
+        whole_sign_houses=whole_houses,
         calculation_hash=calc_hash,
-        ayanamsha_value_deg=round(ayanamsha_val, 6)
+        metadata={
+            "engine_version": "2026.1_CANONICAL_CHARTS_V1",
+            "ephemeris_kernel": astro_res.metadata.kernel_filename,
+            "ephemeris_checksum": astro_res.metadata.kernel_sha256
+        }
     )

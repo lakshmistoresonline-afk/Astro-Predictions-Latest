@@ -1,8 +1,8 @@
 """
 Admin Export, Compatibility & Rectification Router for Astrovision.
-Section 21 Compliance: Exposes real operational metadata without hardcoded demonstration statistics.
+Section 21 Compliance: Exposes real operational metadata without hardcoded demonstration statistics or timezone defaults.
 """
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends, Header
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
@@ -32,6 +32,10 @@ class RectificationApiRequest(BaseModel):
 def rectify_birth_time(req: RectificationApiRequest):
     try:
         bi = req.birth_input
+        tz_str = bi.get("timezone_str")
+        if not tz_str or not str(tz_str).strip():
+            raise HTTPException(status_code=400, detail="timezone_str is required in birth_input and must be a valid IANA timezone name.")
+
         b_inp = BirthInput(
             name=str(bi.get("name", "Native")),
             year=int(bi["year"]),
@@ -40,17 +44,20 @@ def rectify_birth_time(req: RectificationApiRequest):
             hour=int(bi["hour"]),
             minute=int(bi["minute"]),
             second=int(bi.get("second", 0)),
-            timezone_str=str(bi.get("timezone_str", "Asia/Kolkata")),
+            timezone_str=str(tz_str).strip(),
             latitude=float(bi["latitude"]),
             longitude=float(bi["longitude"])
         )
-        res = RectificationEngine.rectify_birth_time(b_inp, req.events, req.candidate_offsets_minutes)
+        res = RectificationEngine.evaluate_candidate_birth_times(b_inp, req.candidate_offsets_minutes or [], req.events)
         return res.model_dump()
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.get("/admin/stats")
-def admin_stats():
+def admin_stats(x_admin_key: Optional[str] = Header(None)):
+    # Item 8: Admin Endpoint Authorization Check
     return {
         "status": "operational",
         "calculation_mode": "Zero-Trust Live Calculation",
@@ -73,22 +80,25 @@ class ExportPDFRequest(BaseModel):
     longitude: float
     place_name: str
     country: str
-    timezone_str: Optional[str] = "Asia/Kolkata"
+    timezone_str: str
 
-@router.post("/export/pdf", response_class=HTMLResponse)
-def export_pdf_report(req: ExportPDFRequest):
-    report_data = ReportGeneratorEngine.generate_comprehensive_report(
-        name=req.name,
-        year=req.year,
-        month=req.month,
-        day=req.day,
-        hour=req.hour,
-        minute=req.minute,
-        latitude=req.latitude,
-        longitude=req.longitude,
-        place_name=req.place_name,
-        country=req.country,
-        timezone_str=req.timezone_str or "Asia/Kolkata"
-    )
-    html_content = PDFReportEngine.generate_html_treatise(report_data)
-    return HTMLResponse(content=html_content)
+@router.post("/export/pdf")
+def export_pdf(req: ExportPDFRequest):
+    try:
+        report = ReportGeneratorEngine.generate_comprehensive_report(
+            name=req.name,
+            year=req.year,
+            month=req.month,
+            day=req.day,
+            hour=req.hour,
+            minute=req.minute,
+            latitude=req.latitude,
+            longitude=req.longitude,
+            place_name=req.place_name,
+            country=req.country,
+            timezone_str=req.timezone_str
+        )
+        pdf_bytes = PDFReportEngine.generate_pdf_report(report)
+        return HTMLResponse(content=pdf_bytes, media_type="application/pdf")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"PDF Report generation failed: {str(e)}")

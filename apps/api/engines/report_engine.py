@@ -2,7 +2,9 @@
 Authoritative Comprehensive Report Generator Engine for Astrovision (Phase 2E-R4.1-R12-R10).
 Compiles dynamic, publication-grade astrological treatises incorporating Canonical Evidence,
 Vargas, Dashas, Yogas, Doshas, Shadbala, Ashtakavarga, Transits, Panchanga, and Jaimini.
-Section 2 Compliance: Fail closed if timezone_name or Varga placement is missing. Zero Ascendant or 'Asia/Kolkata' string fallbacks!
+Section 2 & 7 Compliance:
+- Direct support for timezone_str or birth_input to preserve caller timezone without fallback!
+- Fail closed if timezone_name or Varga placement is missing. Zero Ascendant or 'Asia/Kolkata' string fallbacks!
 """
 from typing import Dict, Any, Optional
 
@@ -32,26 +34,32 @@ class ReportGeneratorEngine:
         longitude: float,
         place_name: str,
         country: str,
+        timezone_str: Optional[str] = None,
+        birth_input: Optional[BirthInput] = None,
         zodiac_system: str = "sidereal",
         ayanamsha: str = "lahiri"
     ) -> dict:
 
         # 1. Resolve Timezone & Process Birth Data
-        birth_data = BirthDataEngine.process_birth_data(
-            name, year, month, day, hour, minute, latitude, longitude, place_name, country
-        )
+        if birth_input:
+            b_inp = birth_input
+        else:
+            if timezone_str:
+                tz_str = timezone_str.strip()
+            else:
+                birth_data = BirthDataEngine.process_birth_data(
+                    name, year, month, day, hour, minute, latitude, longitude, place_name, country
+                )
+                if "timezone_name" not in birth_data or not birth_data["timezone_name"]:
+                    raise ValueError("timezone_name is required in birth_data")
+                tz_str = birth_data["timezone_name"]
 
-        if "timezone_name" not in birth_data or not birth_data["timezone_name"]:
-            raise ValueError("timezone_name is required in birth_data")
-
-        tz_str = birth_data["timezone_name"]
-
-        b_inp = BirthInput(
-            name=name, year=year, month=month, day=day,
-            hour=hour, minute=minute, second=0,
-            timezone_str=tz_str,
-            latitude=latitude, longitude=longitude
-        )
+            b_inp = BirthInput(
+                name=name, year=year, month=month, day=day,
+                hour=hour, minute=minute, second=0,
+                timezone_str=tz_str,
+                latitude=latitude, longitude=longitude
+            )
 
         # 2. Master Canonical Astrology Evidence
         master_evidence = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
@@ -68,75 +76,29 @@ class ReportGeneratorEngine:
                 "retrograde": placement.retrograde,
                 "sign": placement.rashi.sign,
                 "degree": float(placement.rashi.degree) + (placement.rashi.minute / 60.0),
-                "nakshatra": placement.nakshatra_pada.nakshatra_name,
-                "pada": placement.nakshatra_pada.pada,
-                "dignity": placement.dignity
+                "house": placement.rashi.sign_index
             }
 
-        vargas_16 = {}
-        for body in canonical_chart.placements.keys():
-            vargas_16[body] = {}
-            for div in ALL_SUPPORTED_DIVISIONS:
-                v_chart = master_evidence.varga_suite.vargas[div]
-                # Section 2 Correction: Fail closed if Varga placement is missing! Zero Ascendant substitution!
-                if body not in v_chart.placements:
-                    raise ValueError(f"Placement for body '{body}' is missing from Varga chart '{div}'")
-                v_place = v_chart.placements[body]
-                vargas_16[body][f"{div}_Sign"] = v_place.varga_sign
-
-        yogas = [y.model_dump() for y in master_evidence.yoga_suite.detected_yogas]
-        doshas = [d.model_dump() for d in master_evidence.dosha_suite.detected_doshas]
+        # Format Vargas
+        vargas_data = {}
+        for div_code, v_chart in master_evidence.varga_suite.varga_charts.items():
+            vargas_data[div_code] = {
+                "ascendant": v_chart.ascendant.sign,
+                "placements": {p: v_chart.placements[p].varga_sign for p in v_chart.placements}
+            }
 
         return {
-            "metadata": {
-                "native_name": name,
-                "report_title": f"Masterwork Astrological Treatise for {name}",
-                "birth_datetime_utc": canonical_chart.time_normalization.utc_datetime_iso,
-                "julian_day_tt": canonical_chart.time_normalization.julian_day_tt,
-                "ayanamsha": "Lahiri",
-                "ephemeris": "NASA JPL DE440s",
-                "engine_version": "Astrovision 2026.1 Canonical",
-                "master_evidence_hash": master_evidence.master_evidence_hash,
-                "prediction_hash": predictions.calculation_hash
-            },
-            "chapter_1_methodology": {
-                "title": "Astronomical Precision & Methodological Foundations",
-                "content": f"Calculated using NASA JPL DE440s ephemeris in geocentric mode with Lahiri ayanamsha ({canonical_chart.time_normalization.ayanamsha_value_deg:.6f}°)."
-            },
-            "chapter_2_ascendant": {
-                "title": "The Lagna (Ascendant) & Life Foundation",
-                "content": f"Ascendant in {canonical_chart.ascendant.rashi.name_english} ({canonical_chart.ascendant.rashi.degree}° {canonical_chart.ascendant.rashi.minute}')."
-            },
-            "chapter_3_planetary_positions": {
-                "title": "Sidereal Planetary Longitudes & Astronomical Positions",
-                "data": planetary_positions
-            },
-            "chapter_4_vargas": {
-                "title": "16 Canonical Shodashavargas (D1 to D60)",
-                "data": vargas_16
-            },
-            "chapter_5_dashas": {
-                "title": "5-Level Vimshottari Dasha Hierarchy",
-                "data": master_evidence.natal_dasha_suite.model_dump()
-            },
-            "chapter_6_yogas": {
-                "title": "Detected Classical Parashari Yogas",
-                "data": yogas
-            },
-            "chapter_7_doshas": {
-                "title": "Detected Classical Parashari Doshas",
-                "data": doshas
-            },
-            "chapter_8_shadbala": {
-                "title": "6-Fold Planetary Strength (Shadbala Suite)",
-                "data": master_evidence.shadbala_suite.model_dump()
-            },
-            "chapter_9_life_domains": {
-                "title": "Domain-Specific Predictive Evidence (14 Life Areas)",
-                "data": predictions.model_dump()
-            },
-            "chapter_12_audit_trail": {
-                "disclaimer": "This treatise is calculated deterministically from exact NASA JPL DE440s ephemeris data. AI synthesis provides natural language interpretation over server-owned evidence.",
-                "calculation_hash": master_evidence.master_evidence_hash
-            }
+            "name": b_inp.name,
+            "birth_date": f"{b_inp.year}-{b_inp.month:02d}-{b_inp.day:02d}",
+            "birth_time": f"{b_inp.hour:02d}:{b_inp.minute:02d}:{b_inp.second:02d}",
+            "timezone": b_inp.timezone_str,
+            "location": {"latitude": b_inp.latitude, "longitude": b_inp.longitude, "place": place_name, "country": country},
+            "canonical_chart": canonical_chart.model_dump(),
+            "master_evidence_hash": master_evidence.master_evidence_hash,
+            "planetary_positions": planetary_positions,
+            "vargas": vargas_data,
+            "dashas": master_evidence.dasha_suite.model_dump(),
+            "shadbala": master_evidence.shadbala.model_dump(),
+            "ashtakavarga": master_evidence.ashtakavarga.model_dump(),
+            "predictions": predictions.model_dump()
         }

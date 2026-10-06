@@ -1,10 +1,12 @@
 """
 Canonical Vedic Foundation Data Models.
 Defines strict schemas for input, time normalization, Rashi, Nakshatra, Pada, Houses, and Canonical Chart.
+Item 4 Compliance: Uses zoneinfo.ZoneInfo for timezone validation throughout!
 """
+import zoneinfo
+from datetime import datetime
 from pydantic import BaseModel, Field, field_validator
 from typing import Dict, List, Optional
-import pytz
 
 class BirthInput(BaseModel):
     """Validated Canonical Birth Input."""
@@ -25,9 +27,11 @@ class BirthInput(BaseModel):
     def validate_timezone(cls, v: str) -> str:
         if not v or v.strip() == "":
             raise ValueError("Timezone string cannot be empty.")
-        if v not in pytz.all_timezones_set:
-            raise ValueError(f"Unknown or unresolvable IANA timezone string: '{v}'.")
-        return v
+        try:
+            zoneinfo.ZoneInfo(v.strip())
+        except Exception as e:
+            raise ValueError(f"Unknown or unresolvable IANA timezone string '{v}': {str(e)}")
+        return v.strip()
 
     @field_validator("latitude")
     @classmethod
@@ -44,12 +48,13 @@ class BirthInput(BaseModel):
         return v
 
 class TimeNormalization(BaseModel):
-    """Normalized Time Outputs."""
+    """Normalized Time Outputs with explicit UTC and Terrestrial Time (TT) Julian Days."""
     local_datetime_iso: str
     timezone_identifier: str
     utc_datetime_iso: str
     utc_offset_hours: float
-    julian_day_tt: float
+    julian_day_utc: float = Field(description="Julian Day in Universal Time Coordinated (UT/UTC)")
+    julian_day_tt: float = Field(description="Julian Day in Terrestrial Time (TT)")
     time_scale: str = "UTC / TT"
 
 class RashiPosition(BaseModel):
@@ -91,7 +96,7 @@ class WholeSignHouse(BaseModel):
     end_longitude: float = Field(description="End longitude of house in sidereal zodiac")
 
 class CanonicalVedicChart(BaseModel):
-    """Complete Canonical Vedic Chart Object for Phase 2A."""
+    """Complete Canonical Vedic Chart Object."""
     input_data: BirthInput
     time_normalization: TimeNormalization
     ayanamsha_mode: str = "Lahiri"
