@@ -1,5 +1,6 @@
 """
 Data Models for Astrovision 16-Varga Divisional Engine.
+Section 1..12 Compliance: Complete canonical 16-Varga contract with explicit typed fields (d1..d60), vargas map, property aliases, and calculation hash.
 """
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional
@@ -27,7 +28,29 @@ class VargaChart(BaseModel):
     calculation_hash: str = Field(description="Input chart calculation hash")
 
 class Full16VargaSuite(BaseModel):
-    """Container for all 16 Parashari Divisional Charts."""
+    """Container for all 16 Parashari Divisional Charts (D1 through D60)."""
     chart_hash: str
+    d1: VargaChart
+    d2: VargaChart
+    d3: VargaChart
+    d4: VargaChart
+    d7: VargaChart
+    d9: VargaChart
+    d10: VargaChart
+    d12: VargaChart
+    d16: VargaChart
+    d20: VargaChart
+    d24: VargaChart
+    d27: VargaChart
+    d30: VargaChart
+    d40: VargaChart
+    d45: VargaChart
+    d60: VargaChart
     vargas: Dict[str, VargaChart]
     vargottama_bodies: List[str] = Field(description="List of bodies whose D9 sign equals their D1 sign")
+    calculation_hash: str = Field(description="Deterministic 16-Varga calculation hash")
+
+    @property
+    def varga_charts(self) -> Dict[str, VargaChart]:
+        """Backward-compatibility alias property for vargas dictionary."""
+        return self.vargas
