@@ -2,8 +2,12 @@
 Authoritative Shadbala Evidence Adapter for Astrovision (Phase 2E-R4.1-R12-R10).
 Extracts structured interpretation evidence from ShadbalaSuiteResult.
 Maps planetary strengths (Sthana, Dig, Kala, Cheshta, Naisargika, Drik Bala, Rupas) to prediction domains.
+Section 1..12 Compliance:
+- Unified canonical strength classification vocabulary (HIGH, MODERATE, LOW, UNAVAILABLE).
+- Preserves detailed BPHS strength tier (EXCEPTIONAL, STRONG, ADEQUATE, MODERATE, CRITICAL) in detailed_strength_category.
+- Preserves BPHS minimum strength status (is_sufficient_strength) separately.
 """
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 from pydantic import BaseModel, Field
 
 from apps.api.engines.strength.models import ShadbalaSuiteResult, PlanetShadbala
@@ -43,7 +47,8 @@ class DomainStrengthEvidence(BaseModel):
     domain_focus: str
     relevant_planets: List[str]
     average_domain_rupas: float
-    domain_strength_class: str = Field(description="EXCEPTIONAL, STRONG, ADEQUATE, MODERATE, CRITICAL")
+    domain_strength_class: str = Field(description="Canonical strength class: HIGH, MODERATE, LOW, or UNAVAILABLE")
+    detailed_strength_category: Optional[str] = Field(default=None, description="Detailed BPHS tier: EXCEPTIONAL, STRONG, ADEQUATE, MODERATE, CRITICAL")
     summary: str
 
 class ShadbalaEvidencePackage(BaseModel):
@@ -123,27 +128,33 @@ class ShadbalaEvidenceAdapter:
                 summary_evidence=summary
             )
 
-        # 2. Compute Domain Strengths
+        # 2. Compute Domain Strengths using unified HIGH | MODERATE | LOW | UNAVAILABLE vocabulary
         domain_evidence_map: Dict[str, DomainStrengthEvidence] = {}
         for dom_code, (rel_planets, dom_focus) in DOMAIN_SHADBALA_MAP.items():
             valid_p = [p for p in rel_planets if p in planet_evidence_map]
             if valid_p:
                 avg_rupas = sum(planet_evidence_map[p].total_rupas for p in valid_p) / len(valid_p)
+                if avg_rupas >= 7.5:
+                    s_class = "HIGH"
+                    sub_tier = "EXCEPTIONAL"
+                elif avg_rupas >= 6.5:
+                    s_class = "HIGH"
+                    sub_tier = "STRONG"
+                elif avg_rupas >= 5.5:
+                    s_class = "MODERATE"
+                    sub_tier = "ADEQUATE"
+                elif avg_rupas >= 4.5:
+                    s_class = "MODERATE"
+                    sub_tier = "MODERATE"
+                else:
+                    s_class = "LOW"
+                    sub_tier = "CRITICAL"
             else:
-                avg_rupas = 6.0
+                avg_rupas = 0.0
+                s_class = "UNAVAILABLE"
+                sub_tier = "UNAVAILABLE"
 
-            if avg_rupas >= 7.5:
-                s_class = "EXCEPTIONAL"
-            elif avg_rupas >= 6.5:
-                s_class = "STRONG"
-            elif avg_rupas >= 5.5:
-                s_class = "ADEQUATE"
-            elif avg_rupas >= 4.5:
-                s_class = "MODERATE"
-            else:
-                s_class = "CRITICAL"
-
-            summary = f"Domain {dom_code} supported by {', '.join(valid_p)} with average Shadbala of {avg_rupas:.2f} Rupas ({s_class})."
+            summary = f"Domain {dom_code} supported by {', '.join(valid_p)} with average Shadbala of {avg_rupas:.2f} Rupas ({s_class} / {sub_tier})."
 
             domain_evidence_map[dom_code] = DomainStrengthEvidence(
                 domain=dom_code,
@@ -151,6 +162,7 @@ class ShadbalaEvidenceAdapter:
                 relevant_planets=valid_p,
                 average_domain_rupas=round(avg_rupas, 2),
                 domain_strength_class=s_class,
+                detailed_strength_category=sub_tier,
                 summary=summary
             )
 
