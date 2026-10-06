@@ -23,7 +23,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [loadingStep, setLoadingStep] = useState(0)
   const [chartData, setChartData] = useState<any>(null)
-  const [chartView, setChartView] = useState<'d1' | 'd9'>('d1')
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   // Form state - Start empty for new user input (No default sample profile)
   const [name, setName] = useState('')
@@ -40,7 +40,6 @@ export default function Home() {
   const [placeName, setPlaceName] = useState(CITIES[0].name)
   const [country, setCountry] = useState(CITIES[0].country)
   const [timezoneStr, setTimezoneStr] = useState(CITIES[0].tz)
-  const [showAdvancedCoords, setShowAdvancedCoords] = useState(false)
 
   const [zodiacSystem, setZodiacSystem] = useState('sidereal')
 
@@ -64,6 +63,7 @@ export default function Home() {
     }
 
     setLoading(true)
+    setErrorMsg(null)
     setLoadingStep(1)
 
     setTimeout(() => setLoadingStep(2), 600)
@@ -82,35 +82,43 @@ export default function Home() {
           place_name: placeName, country, zodiac_system: zodiacSystem, ayanamsha: 'lahiri'
         })
       })
+
+      if (!res.ok) {
+        const errData = await res.json()
+        throw new Error(errData.detail || 'Birth profile calculation failed.')
+      }
+
       const data = await res.json()
       setTimeout(() => {
         setChartData(data)
         setLoading(false)
         setActiveTab('home')
       }, 2400)
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
-      alert('Failed to connect to backend FastAPI engine. Ensure backend is running.')
+      setErrorMsg(err.message || 'Failed to connect to backend FastAPI engine.')
       setLoading(false)
     }
   }
 
+  // Canonical report data safely extracted from backend JSON contract (Zero hardcoded fallbacks!)
   const report = chartData?.report || chartData?.complete_report || null
+  const masterEv = chartData?.master_evidence || null
+  const predictions = chartData?.predictions || null
+
+  const ascSign = report?.canonical_chart?.ascendant?.sign || (chartData ? 'Unavailable' : null)
+  const ascDegree = report?.canonical_chart?.ascendant?.degree !== undefined ? `${report.canonical_chart.ascendant.degree}°` : ''
+  const moonSign = report?.canonical_chart?.placements?.Moon?.rashi?.sign || (chartData ? 'Unavailable' : null)
+  const sunSign = report?.canonical_chart?.placements?.Sun?.rashi?.sign || (chartData ? 'Unavailable' : null)
+  const moonNakshatra = report?.canonical_chart?.placements?.Moon?.nakshatra_pada?.nakshatra || (chartData ? 'Unavailable' : null)
+  const moonPada = report?.canonical_chart?.placements?.Moon?.nakshatra_pada?.pada || ''
+  const activeDasha = predictions?.active_dasha_summary || (chartData ? 'Unavailable' : null)
 
   const sidebarLinks = [
     { id: 'home', label: 'Dashboard' },
     { id: 'chart-form', label: 'Birth Profile' },
     { id: 'reports', label: 'Reports & Astrolabe' },
     { id: 'predictions', label: 'Predictions' },
-    { id: 'dashas', label: 'Dashas & Timing' },
-    { id: 'transits', label: 'Transits' },
-    { id: 'divisional', label: 'Divisional Charts' },
-    { id: 'yogas', label: 'Yogas & Doshas' },
-    { id: 'life-areas', label: 'Life Areas' },
-    { id: 'compatibility', label: 'Compatibility' },
-    { id: 'remedies', label: 'Remedies' },
-    { id: 'learn', label: 'Learn Astrology' },
-    { id: 'settings', label: 'Settings' },
   ]
 
   return (
@@ -181,6 +189,13 @@ export default function Home() {
         )}
 
         <main className="flex-1 p-10 space-y-10 w-full max-w-[1600px] mx-auto">
+          {errorMsg && (
+            <div className="bg-rose-950/80 border border-rose-500/50 p-6 rounded-2xl text-rose-200 space-y-2">
+              <h4 className="font-bold text-lg text-rose-100">Calculation Error</h4>
+              <p className="text-sm">{errorMsg}</p>
+            </div>
+          )}
+
           {activeTab === 'chart-form' && (
             <div className="bg-[#17163A]/90 p-12 rounded-3xl border border-champagne/40 shadow-2xl max-w-4xl mx-auto backdrop-blur-2xl relative overflow-hidden w-full">
               <div className="absolute top-0 right-0 w-80 h-80 bg-purple/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -274,19 +289,45 @@ export default function Home() {
               ) : (
                 <>
                   <div
-                    className="relative rounded-3xl overflow-hidden border border-champagne/40 shadow-2xl p-12 flex flex-col justify-end min-h-[420px] bg-cover bg-center w-full"
+                    className="relative rounded-3xl overflow-hidden border border-champagne/40 shadow-2xl p-12 flex flex-col justify-end min-h-[300px] bg-cover bg-center w-full"
                     style={{
                       backgroundImage: `linear-gradient(to top, rgba(5,8,22,0.95) 0%, rgba(23,22,58,0.5) 60%, rgba(5,8,22,0.8) 100%), url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2000&auto=format&fit=crop')`
                     }}
                   >
-                    <div className="z-10 space-y-4 max-w-3xl relative">
+                    <div className="z-10 space-y-3 max-w-3xl relative">
                       <span className="px-4 py-1.5 bg-champagne/25 border border-champagne/60 text-champagne text-xs font-extrabold rounded-full uppercase tracking-widest shadow-xl">Astrovision Masterpiece</span>
-                      <h2 className="text-5xl font-extrabold text-white tracking-wide">Align with the Cosmic Rhythm</h2>
-                      <p className="text-mutedtext text-base leading-relaxed">
-                        Precision ephemeris calculations and celestial intelligence for <b className="text-champagne">{name}</b>.
+                      <h2 className="text-4xl font-extrabold text-white tracking-wide">Cosmic Profile for {name}</h2>
+                      <p className="text-mutedtext text-sm leading-relaxed">
+                        Deterministic NASA JPL DE440s calculation results. Zero fabricated astrological fallbacks.
                       </p>
                     </div>
                   </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
+                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Ascendant (Lagna)</span>
+                      <p className="text-2xl font-bold text-white">{ascSign} {ascDegree}</p>
+                    </div>
+                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
+                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Moon Sign (Rashi)</span>
+                      <p className="text-2xl font-bold text-white">{moonSign}</p>
+                    </div>
+                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
+                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Sun Sign</span>
+                      <p className="text-2xl font-bold text-white">{sunSign}</p>
+                    </div>
+                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
+                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Nakshatra & Pada</span>
+                      <p className="text-2xl font-bold text-white">{moonNakshatra} {moonPada ? `(Pada ${moonPada})` : ''}</p>
+                    </div>
+                  </div>
+
+                  {activeDasha && (
+                    <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-3">
+                      <h3 className="text-xl font-extrabold text-champagne">Active Vimshottari Dasha Hierarchy</h3>
+                      <p className="text-lg text-white font-semibold">{activeDasha}</p>
+                    </div>
+                  )}
                 </>
               )}
             </div>
