@@ -102,7 +102,7 @@ export default function Home() {
   }
 
   // Canonical report data safely extracted from backend JSON contract (Zero hardcoded fallbacks!)
-  const report = chartData?.report || chartData?.complete_report || null
+  const report = chartData?.report || null
   const masterEv = chartData?.master_evidence || null
   const predictions = chartData?.predictions || null
 
