@@ -189,7 +189,13 @@ def get_transit_snapshot(req: TransitRequest):
         )
 
         master_evidence = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
-        query_dt = datetime.fromisoformat(req.query_datetime_iso) if req.query_datetime_iso else datetime.now(timezone.utc)
+        tz_name = req.birth_input.timezone_str
+        tz = zoneinfo.ZoneInfo(tz_name)
+        if req.query_datetime_iso:
+            dt_parsed = datetime.fromisoformat(req.query_datetime_iso)
+            query_dt = dt_parsed if dt_parsed.tzinfo else dt_parsed.replace(tzinfo=tz)
+        else:
+            query_dt = datetime.now(tz)
 
         snapshot = TransitEngine.calculate_transit_snapshot(
             natal_chart=master_evidence.canonical_chart,
@@ -203,12 +209,20 @@ def get_transit_snapshot(req: TransitRequest):
 @app.post("/api/v1/panchanga")
 def get_panchanga(req: TransitRequest):
     try:
-        query_dt = datetime.fromisoformat(req.query_datetime_iso) if req.query_datetime_iso else datetime.now(timezone.utc)
+        tz_name = req.birth_input.timezone_str
+        tz = zoneinfo.ZoneInfo(tz_name)
+        if req.query_datetime_iso:
+            dt_parsed = datetime.fromisoformat(req.query_datetime_iso)
+            query_dt = dt_parsed if dt_parsed.tzinfo else dt_parsed.replace(tzinfo=tz)
+        else:
+            query_dt = datetime.now(tz)
+
         panch = PanchangaEngine.calculate_panchanga(
             dt=query_dt,
             latitude=req.birth_input.latitude,
             longitude=req.birth_input.longitude,
-            location_name=req.birth_input.place_name
+            location_name=req.birth_input.place_name,
+            timezone_str=tz_name
         )
         return panch.model_dump()
     except Exception as e:
@@ -217,7 +231,14 @@ def get_panchanga(req: TransitRequest):
 @app.post("/api/v1/muhurta")
 def get_muhurta_suite(req: TransitRequest):
     try:
-        query_dt = datetime.fromisoformat(req.query_datetime_iso) if req.query_datetime_iso else datetime.now(timezone.utc)
+        tz_name = req.birth_input.timezone_str
+        tz = zoneinfo.ZoneInfo(tz_name)
+        if req.query_datetime_iso:
+            dt_parsed = datetime.fromisoformat(req.query_datetime_iso)
+            query_dt = dt_parsed if dt_parsed.tzinfo else dt_parsed.replace(tzinfo=tz)
+        else:
+            query_dt = datetime.now(tz)
+
         muhurta = MuhurtaEngine.evaluate_all_activities(
             dt=query_dt,
             latitude=req.birth_input.latitude,

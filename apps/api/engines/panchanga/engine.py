@@ -3,7 +3,7 @@ Authoritative Panchanga Calculation Engine.
 Calculates exact Tithi, Vara, Nakshatra, Nitya Yoga, Karana, Solar/Lunar Times, Rahu Kalam, Yamaganda, Gulika Kalam, and Abhijit Muhurta.
 Uses Skyfield & DE440s via AstronomyProvider.
 Sections 1..10 Compliance:
-- Fails closed on naive datetime input (requires timezone-aware datetime with valid IANA ZoneInfo key).
+- Fails closed on naive datetime input (requires timezone-aware datetime with valid IANA ZoneInfo key or timezone_str).
 - Zero clamping in Tithi (1..30) or Karana (1..60) derivations. Raises explicit ValueError on out-of-range values.
 - Literal, immutable CANONICAL_60_KARANAS tuple explicitly defining all 60 half-Tithis (zero loop-generated specs!).
 - Movable non-Vishti Karanas classified explicitly as Neutral (zero fabricated Auspicious labels!).
@@ -185,22 +185,38 @@ class PanchangaEngine:
         longitude: float,
         elevation: float = 0.0,
         location_name: str = "Local Observer",
+        timezone_str: Optional[str] = None,
         astronomy_provider: Optional[BaseAstronomyProvider] = None
     ) -> PanchangaResult:
         if not astronomy_provider:
             astronomy_provider = SkyfieldJPLProvider()
 
-        # Section 2: Strict timezone-aware input validation requiring IANA ZoneInfo key
+        # Section 2: Strict timezone-aware input validation requiring IANA ZoneInfo key or resolvable timezone string
         if dt.tzinfo is None:
             raise ValueError(f"Input datetime '{dt}' must be timezone-aware with a valid IANA timezone.")
 
-        tz_key = getattr(dt.tzinfo, "key", None)
-        if not tz_key or not isinstance(tz_key, str):
-            raise ValueError(f"Input datetime '{dt}' must carry a valid IANA ZoneInfo key. Got '{dt.tzinfo}'.")
+        tz_str = None
+        if timezone_str and isinstance(timezone_str, str) and timezone_str.strip():
+            tz_str = timezone_str.strip()
+        else:
+            tz_key = getattr(dt.tzinfo, "key", None)
+            if tz_key and isinstance(tz_key, str) and tz_key.strip():
+                tz_str = tz_key.strip()
+            elif dt.tzinfo == timezone.utc or str(dt.tzinfo) in ["UTC", "utc", "UTC+00:00", "+00:00"]:
+                tz_str = "UTC"
+            else:
+                tz_cand = str(dt.tzinfo).strip()
+                try:
+                    zoneinfo.ZoneInfo(tz_cand)
+                    tz_str = tz_cand
+                except Exception:
+                    tz_str = None
 
-        tz_str = tz_key.strip()
+        if not tz_str:
+            raise ValueError(f"Input datetime '{dt}' must carry a valid IANA ZoneInfo key or resolvable timezone string. Got '{dt.tzinfo}'.")
+
         try:
-            zoneinfo.ZoneInfo(tz_str)
+            target_zone = zoneinfo.ZoneInfo(tz_str)
         except Exception as e:
             raise ValueError(f"Invalid or unresolvable IANA timezone key '{tz_str}': {str(e)}")
 
