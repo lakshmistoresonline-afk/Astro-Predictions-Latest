@@ -2,12 +2,12 @@
 Authoritative Local Jaimini Calculation Engine.
 Calculates 7 Chara Karakas (AK, AmK, BK, MK, PK, GK, DK), Jaimini Rashi aspects, Arudha Lagna (AL), Upapada Lagna (UL), and Karakamsha.
 Consumes CanonicalVedicChart & VargaEngine D9.
-Section 1..10 Compliance:
-- Corrected VargaPlacement field access: uses varga_sign_index for D9 Navamsha Karakamsha calculation.
-- Corrected RashiPosition field access: uses ascendant.sign_index for Lagna sign index.
-- Strict CanonicalVedicChart instance validation.
-- Imports centralized RASHI_LORDS and ZODIAC_SIGNS from rashi.py!
-- Fail closed if 7 core planets missing, boolean, or out of range [0.0, 360.0).
+Section 1..13 Compliance:
+- Deterministic tie-breaking for equal-degree Chara Karakas via full absolute longitude.
+- Corrected VargaPlacement field access: uses varga_sign_index & varga_sign for D9 Navamsha Karakamsha calculation.
+- Arudha Lagna (AL) and Upapada Lagna (UL) calculations with 1st/7th house exception handling.
+- Structured Jaimini Rashi aspect rules for Movable, Fixed, and Dual signs.
+- Complete deterministic SHA-256 suite calculation hash.
 """
 import hashlib
 import json
@@ -34,15 +34,21 @@ CHARA_KARAKA_NAMES = [
     ("DK", "Darakaraka")
 ]
 
+SEVEN_PLANET_ORDER = {
+    "Sun": 1, "Moon": 2, "Mars": 3, "Mercury": 4, "Jupiter": 5, "Venus": 6, "Saturn": 7
+}
+
 class JaiminiEngine:
     """
     Authoritative Local Jaimini Engine.
+    Source Separation: Consumes Canonical Sidereal Chart. Never recalculates positions or calls Skyfield.
     """
 
     @classmethod
     def _calculate_chara_karakas_internal(cls, longitudes: Dict[str, float]) -> Dict[str, CharaKarakaInfo]:
         """
         Internal single source of truth for 7 Chara Karakas calculation.
+        Tie-breaking rule: Sorts by degree in sign descending; uses full absolute longitude as tie-breaker.
         Fails closed with ValueError if any of the 7 core planets is missing, boolean, or has out-of-range longitude [0.0, 360.0).
         """
         seven_planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
@@ -57,13 +63,14 @@ class JaiminiEngine:
             if not (0.0 <= lon < 360.0):
                 raise ValueError(f"Longitude for planet '{p_name}' ({lon}) must be in valid astronomical range [0.0, 360.0).")
             deg_val = lon % 30.0
-            planet_degrees.append((p_name, deg_val))
+            # Tie breaker: degree in sign primary (descending), full absolute longitude secondary (descending)
+            planet_degrees.append((p_name, deg_val, lon, SEVEN_PLANET_ORDER[p_name]))
 
-        planet_degrees.sort(key=lambda x: x[1], reverse=True)
+        planet_degrees.sort(key=lambda x: (x[1], x[2], -x[3]), reverse=True)
 
         chara_karakas: Dict[str, CharaKarakaInfo] = {}
         for idx, (code, full_name) in enumerate(CHARA_KARAKA_NAMES):
-            p_name, deg_val = planet_degrees[idx]
+            p_name, deg_val, _, _ = planet_degrees[idx]
             chara_karakas[code] = CharaKarakaInfo(
                 karaka_code=code,
                 karaka_name=full_name,
@@ -150,6 +157,7 @@ class JaiminiEngine:
             raise ValueError(f"Atmakaraka planet '{ak_planet}' is missing from D9 Navamsha chart.")
 
         karakamsha_idx = d9_chart.placements[ak_planet].varga_sign_index
+        karakamsha_name = d9_chart.placements[ak_planet].varga_sign
 
         # 5. Jaimini / Rashi Aspects
         rashi_aspects: List[RashiAspectInfo] = []
@@ -178,7 +186,9 @@ class JaiminiEngine:
             "ak": ak_planet,
             "al": al_idx,
             "ul": ul_idx,
-            "karakamsha": karakamsha_idx
+            "karakamsha_index": karakamsha_idx,
+            "karakamsha_name": karakamsha_name,
+            "chara_karakas": {k: v.model_dump() for k, v in chara_karakas.items()}
         }
         j_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
 
@@ -191,7 +201,7 @@ class JaiminiEngine:
             upapada_lagna_rashi_index=ul_idx,
             upapada_lagna_rashi_name=RASHI_NAMES[ul_idx - 1],
             karakamsha_rashi_index=karakamsha_idx,
-            karakamsha_rashi_name=RASHI_NAMES[karakamsha_idx - 1],
+            karakamsha_rashi_name=karakamsha_name,
             rashi_aspects=rashi_aspects,
             calculation_hash=j_hash
         )
