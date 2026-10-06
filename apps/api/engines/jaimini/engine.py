@@ -2,7 +2,9 @@
 Authoritative Local Jaimini Calculation Engine.
 Calculates 7 Chara Karakas (AK, AmK, BK, MK, PK, GK, DK), Jaimini Rashi aspects, Arudha Lagna (AL), Upapada Lagna (UL), and Karakamsha.
 Consumes CanonicalVedicChart & VargaEngine D9.
-Section 2, 3 & 7 Compliance:
+Section 1..10 Compliance:
+- Corrected VargaPlacement field access: uses varga_sign_index for D9 Navamsha Karakamsha calculation.
+- Corrected RashiPosition field access: uses ascendant.sign_index for Lagna sign index.
 - Strict CanonicalVedicChart instance validation.
 - Imports centralized RASHI_LORDS and ZODIAC_SIGNS from rashi.py!
 - Fail closed if 7 core planets missing, boolean, or out of range [0.0, 360.0).
@@ -104,14 +106,14 @@ class JaiminiEngine:
         ak_planet = chara_karakas["AK"].planet
 
         # 2. Arudha Lagna (AL) Calculation
-        lagna_rashi_idx = canonical_chart.ascendant.rashi.rashi_index
+        lagna_rashi_idx = canonical_chart.ascendant.sign_index
         lagna_lord = RASHI_LORDS[lagna_rashi_idx]
 
         # Fail closed if lagna_lord is missing from canonical chart placements
         if lagna_lord not in canonical_chart.placements:
             raise ValueError(f"Lagna lord '{lagna_lord}' is missing from canonical chart placements.")
 
-        lagna_lord_rashi_idx = canonical_chart.placements[lagna_lord].rashi.rashi_index
+        lagna_lord_rashi_idx = canonical_chart.placements[lagna_lord].rashi.sign_index
 
         dist_houses = ((lagna_lord_rashi_idx - lagna_rashi_idx) % 12)
         if dist_houses == 0:
@@ -130,7 +132,7 @@ class JaiminiEngine:
         if h12_lord not in canonical_chart.placements:
             raise ValueError(f"12th house lord '{h12_lord}' is missing from canonical chart placements.")
 
-        h12_lord_rashi_idx = canonical_chart.placements[h12_lord].rashi.rashi_index
+        h12_lord_rashi_idx = canonical_chart.placements[h12_lord].rashi.sign_index
 
         dist_h12 = ((h12_lord_rashi_idx - h12_rashi_idx) % 12)
         if dist_h12 == 0:
@@ -147,7 +149,7 @@ class JaiminiEngine:
         if ak_planet not in d9_chart.placements:
             raise ValueError(f"Atmakaraka planet '{ak_planet}' is missing from D9 Navamsha chart.")
 
-        karakamsha_idx = d9_chart.placements[ak_planet].rashi.rashi_index
+        karakamsha_idx = d9_chart.placements[ak_planet].varga_sign_index
 
         # 5. Jaimini / Rashi Aspects
         rashi_aspects: List[RashiAspectInfo] = []
