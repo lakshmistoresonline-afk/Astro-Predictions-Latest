@@ -48,7 +48,7 @@ def _is_planet_conjunct(p1_name: str, p2_name: str, house_map: Dict[str, int]) -
     h2 = house_map.get(p2_name)
     if h1 is None or h2 is None:
         return False
-    return h1 == h2
+    return is_conjunct(h1, h2)
 
 def _planet_aspects_planet(p1_name: str, p2_name: str, house_map: Dict[str, int]) -> bool:
     """Returns True if p1_name in its house casts a Parashari aspect onto p2_name's house."""
@@ -60,11 +60,11 @@ def _planet_aspects_planet(p1_name: str, p2_name: str, house_map: Dict[str, int]
 
 def _planets_have_relationship(p1_name: str, p2_name: str, house_map: Dict[str, int]) -> bool:
     """Returns True if p1 and p2 are conjunct OR either p1 aspects p2 OR p2 aspects p1."""
-    return (
-        _is_planet_conjunct(p1_name, p2_name, house_map)
-        or _planet_aspects_planet(p1_name, p2_name, house_map)
-        or _planet_aspects_planet(p2_name, p1_name, house_map)
-    )
+    h1 = house_map.get(p1_name)
+    h2 = house_map.get(p2_name)
+    if h1 is None or h2 is None:
+        return False
+    return planet_has_relationship(p1_name, h1, h2) or casts_aspect(p2_name, h2, h1)
 
 # 1. Pancha Mahapurusha Yogas
 MAHAPURUSHA_SPECS = [
@@ -257,7 +257,6 @@ def evaluate_dharma_karma(canonical_chart: CanonicalVedicChart) -> YogaResult:
         )
 
     if lord_9 == lord_10:
-        # Single planet ruling both 9th and 10th (Yogakaraka)
         is_active = True
         rel_type = "Yogakaraka (Single ruler of 9th and 10th)"
     else:
@@ -496,14 +495,11 @@ def evaluate_neecha_bhanga(canonical_chart: CanonicalVedicChart) -> List[YogaRes
             continue
 
         # Cancellation Checks (Neecha Bhanga)
-        # 1. Sign lord of debilitated planet is in Kendra from Lagna or Moon
         sign_lord = SIGN_RULERS[p_sign_idx]
         sign_lord_h = house_map.get(sign_lord)
         sign_lord_kendra_lagna = (sign_lord_h in [1, 4, 7, 10]) if sign_lord_h else False
         sign_lord_kendra_moon = ((sign_lord_h - moon_house) % 12 + 1 in [1, 4, 7, 10]) if (sign_lord_h and moon_house) else False
 
-        # 2. Exaltation lord of the sign where planet is debilitated is in Kendra from Lagna or Moon
-        # Find which planet gets exalted in p_sign_idx
         exalt_planet = next((pl for pl, ex_sign in EXALTATION_SIGNS.items() if ex_sign == p_sign_idx), None)
         exalt_planet_h = house_map.get(exalt_planet) if exalt_planet else None
         exalt_kendra_lagna = (exalt_planet_h in [1, 4, 7, 10]) if exalt_planet_h else False
@@ -581,7 +577,6 @@ def evaluate_chandra_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaRes
     h2_from_moon = (moon_house % 12) + 1
     h12_from_moon = ((moon_house - 2) % 12) + 1
 
-    # Planets excluding Sun, Rahu, Ketu
     planets_in_2nd = [
         p for p, h in house_map.items()
         if h == h2_from_moon and p not in ["Sun", "Moon", "Rahu", "Ketu"]
@@ -598,7 +593,6 @@ def evaluate_chandra_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaRes
 
     results = []
 
-    # Sunapha
     results.append(YogaResult(
         rule_id="YOGA_SUNAPHA",
         name="Sunapha Yoga",
@@ -615,7 +609,6 @@ def evaluate_chandra_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaRes
         participating_houses=[moon_house, h2_from_moon] if has_sunapha else []
     ))
 
-    # Anapha
     results.append(YogaResult(
         rule_id="YOGA_ANAPHA",
         name="Anapha Yoga",
@@ -632,7 +625,6 @@ def evaluate_chandra_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaRes
         participating_houses=[moon_house, h12_from_moon] if has_anapha else []
     ))
 
-    # Durudhara
     results.append(YogaResult(
         rule_id="YOGA_DURUDHARA",
         name="Durudhara Yoga",
@@ -649,7 +641,6 @@ def evaluate_chandra_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaRes
         participating_houses=[moon_house, h2_from_moon, h12_from_moon] if has_durudhara else []
     ))
 
-    # Kemadruma
     results.append(YogaResult(
         rule_id="YOGA_KEMADRUMA",
         name="Kemadruma Yoga",
@@ -696,7 +687,6 @@ def evaluate_surya_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaResul
     h2_from_sun = (sun_house % 12) + 1
     h12_from_sun = ((sun_house - 2) % 12) + 1
 
-    # Planets excluding Moon, Rahu, Ketu
     planets_in_2nd = [
         p for p, h in house_map.items()
         if h == h2_from_sun and p not in ["Sun", "Moon", "Rahu", "Ketu"]
@@ -712,7 +702,6 @@ def evaluate_surya_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaResul
 
     results = []
 
-    # Vesi
     results.append(YogaResult(
         rule_id="YOGA_VESI",
         name="Vesi Yoga",
@@ -729,7 +718,6 @@ def evaluate_surya_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaResul
         participating_houses=[sun_house, h2_from_sun] if has_vesi else []
     ))
 
-    # Vasi
     results.append(YogaResult(
         rule_id="YOGA_VASI",
         name="Vasi Yoga",
@@ -746,7 +734,6 @@ def evaluate_surya_yogas(canonical_chart: CanonicalVedicChart) -> List[YogaResul
         participating_houses=[sun_house, h12_from_sun] if has_vasi else []
     ))
 
-    # Ubhayachari
     results.append(YogaResult(
         rule_id="YOGA_UBHAYACHARI",
         name="Ubhayachari Yoga",

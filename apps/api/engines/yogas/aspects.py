@@ -1,23 +1,59 @@
 """
 Canonical Parashari Planetary Aspect & Conjunction Engine for Astrovision.
-Strictly separates Conjunction (same house) from Cast Aspect (4th, 7th, 8th, etc. across houses).
+Strictly separates Conjunction (same Whole Sign house) from Cast Aspect (4th, 7th, 8th, etc. across houses).
+Unified API supporting both integer Whole Sign house numbers (1..12) and CanonicalVedicChart planet-to-planet lookups.
 """
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Optional, Set, Tuple, Union, Any
 
 def get_house_distance(source_house: int, target_house: int) -> int:
     """Returns 0-based Whole Sign house distance from source_house to target_house in [0, 11]."""
     dist = (target_house - source_house) % 12
     return dist if dist >= 0 else dist + 12
 
-def is_conjunct(house_A: int, house_B: int) -> bool:
-    """Returns True if house_A and house_B are identical (co-location / conjunction)."""
-    return house_A == house_B
+def is_conjunct(house_A: Union[int, Any], house_B: Union[int, Any]) -> bool:
+    """Returns True if house_A and house_B represent the identical Whole Sign house."""
+    if isinstance(house_A, int) and isinstance(house_B, int):
+        return house_A == house_B
+    return False
 
-def casts_aspect(planet_name: str, source_house: int, target_house: int) -> bool:
+def get_planet_house(canonical_chart: Any, planet_name: str) -> Optional[int]:
+    """
+    Returns the 1-based Whole Sign house number (1..12) from Lagna for a given planet_name in canonical_chart.
+    Returns None if planet placement or Lagna is missing.
+    """
+    if not hasattr(canonical_chart, "placements") or not hasattr(canonical_chart, "ascendant"):
+        return None
+    placement = canonical_chart.placements.get(planet_name)
+    if not placement:
+        return None
+    asc_sign_idx = canonical_chart.ascendant.sign_index
+    p_sign_idx = placement.rashi.sign_index
+    return ((p_sign_idx - asc_sign_idx) % 12) + 1
+
+def casts_aspect(
+    planet_name: str,
+    source_house: Union[int, str],
+    target_house: Union[int, Any]
+) -> bool:
     """
     Evaluates whether planet_name in source_house casts a Parashari aspect onto target_house.
     Conjunction (source_house == target_house) is NOT an aspect and returns False.
+    Supports either integer 1-based house numbers or (planet_name, target_planet_name, canonical_chart).
     """
+    # Overload handling for planet_name, target_planet, canonical_chart
+    if isinstance(source_house, str) and hasattr(target_house, "placements"):
+        canonical_chart = target_house
+        target_planet = source_house
+        h_source = get_planet_house(canonical_chart, planet_name)
+        h_target = get_planet_house(canonical_chart, target_planet)
+        if h_source is None or h_target is None:
+            return False
+        source_house = h_source
+        target_house = h_target
+
+    if not isinstance(source_house, int) or not isinstance(target_house, int):
+        return False
+
     if source_house == target_house:
         return False # Conjunction is distinct from aspect
 
@@ -46,8 +82,29 @@ def casts_aspect(planet_name: str, source_house: int, target_house: int) -> bool
 
     return False
 
-def planet_has_relationship(planet_name: str, source_house: int, target_house: int) -> bool:
-    """Returns True if source_house and target_house are conjunct OR planet casts an aspect."""
+def planet_has_relationship(
+    planet_name: str,
+    source_house: Union[int, str],
+    target_house: Union[int, Any]
+) -> bool:
+    """
+    Returns True if source_house and target_house are conjunct OR planet casts an aspect.
+    Supports either integer 1-based house numbers or (planet_name, target_planet_name, canonical_chart).
+    """
+    # Overload handling for planet_name, target_planet, canonical_chart
+    if isinstance(source_house, str) and hasattr(target_house, "placements"):
+        canonical_chart = target_house
+        target_planet = source_house
+        h_source = get_planet_house(canonical_chart, planet_name)
+        h_target = get_planet_house(canonical_chart, target_planet)
+        if h_source is None or h_target is None:
+            return False
+        source_house = h_source
+        target_house = h_target
+
+    if not isinstance(source_house, int) or not isinstance(target_house, int):
+        return False
+
     return is_conjunct(source_house, target_house) or casts_aspect(planet_name, source_house, target_house)
 
 def get_aspecting_planets_for_house(
