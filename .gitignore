@@ -9,6 +9,14 @@ out/
 build/
 dist/
 
+# Android & Gradle
+.gradle/
+build/
+app/build/
+local.properties
+*.apk
+*.aar
+
 # Python
 __pycache__/
 *.py[cod]
