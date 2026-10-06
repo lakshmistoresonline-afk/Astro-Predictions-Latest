@@ -2,14 +2,17 @@
 Authoritative Rule Evaluations for Vedic Doshas.
 Operates on Phase 2A Canonical Vedic Chart State.
 Fail-closed: Returns INDETERMINATE when required planetary evidence is absent.
-Sections 2, 5 & 6 Compliance: Imports centralized RASHI_LORDS, EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS from rashi.py!
+Sections 2, 5 & 6 Compliance:
+- Explicit 1..12 Whole Sign house number derivation from Lagna for all aspect & conjunction calls.
+- Participating_houses strictly populated with 1..12 Whole Sign house numbers (never sign indices!).
+- Centralized RASHI_LORDS, EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS imported from rashi.py.
 """
 import math
 from typing import Dict, List, Tuple, Any, Optional
 
 from apps.api.engines.vedic.models import CanonicalVedicChart
 from apps.api.engines.doshas.models import DoshaResult, DoshaConditionEvidence
-from apps.api.engines.yogas.aspects import casts_aspect, planet_has_relationship, get_planet_house
+from apps.api.engines.yogas.aspects import casts_aspect, planet_has_relationship
 from apps.api.engines.vedic.rashi import RASHI_LORDS, DEBILITATION_SIGNS, EXALTATION_SIGNS, OWN_SIGNS
 from apps.api.engines.vedic.houses import get_house_from_lagna
 
@@ -38,9 +41,13 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
 
     asc_sign_idx = canonical_chart.ascendant.sign_index
     moon_sign_idx = moon_p.rashi.sign_index
-
     mars_sign_idx = mars_p.rashi.sign_index
-    mars_house_asc = (mars_sign_idx - asc_sign_idx) % 12 + 1
+
+    # 1-based Whole Sign houses from Lagna
+    mars_house_asc = get_house_from_lagna(mars_sign_idx, asc_sign_idx)
+    moon_house_asc = get_house_from_lagna(moon_sign_idx, asc_sign_idx)
+
+    # Houses from Moon
     mars_house_moon = (mars_sign_idx - moon_sign_idx) % 12 + 1
 
     manglik_houses = [1, 2, 4, 7, 8, 12]
@@ -74,17 +81,19 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
             evidence_details={"mars_sign_index": mars_sign_idx}
         ))
 
-    # Exception 2: Jupiter aspect or conjunction on Mars
+    # Exception 2: Jupiter aspect or conjunction on Mars (Explicit 1..12 Whole Sign house numbers from Lagna)
     jup_p = canonical_chart.placements.get("Jupiter")
     jup_cancels = False
-    if jup_p and planet_has_relationship("Jupiter", "Mars", canonical_chart):
-        jup_cancels = True
-        cancellation_evs.append(DoshaConditionEvidence(
-            condition_id="jupiter_aspect_cancellation",
-            condition_description="Jupiter aspecting or conjunct Mars",
-            status=True,
-            evidence_details={"jupiter_present": True}
-        ))
+    if jup_p:
+        jup_house_asc = get_house_from_lagna(jup_p.rashi.sign_index, asc_sign_idx)
+        if planet_has_relationship("Jupiter", jup_house_asc, mars_house_asc):
+            jup_cancels = True
+            cancellation_evs.append(DoshaConditionEvidence(
+                condition_id="jupiter_aspect_cancellation",
+                condition_description="Jupiter aspecting or conjunct Mars",
+                status=True,
+                evidence_details={"jupiter_house": jup_house_asc, "mars_house": mars_house_asc}
+            ))
 
     is_cancelled = is_base_manglik and (len(cancellation_evs) > 0)
     if is_cancelled:
@@ -94,7 +103,9 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
     else:
         final_status = "NOT_DETECTED"
 
-    p_houses = list(set([mars_house_asc, mars_house_moon]))
+    participating_h = [mars_house_asc, moon_house_asc]
+    if jup_p and jup_cancels:
+        participating_h.append(get_house_from_lagna(jup_p.rashi.sign_index, asc_sign_idx))
 
     return DoshaResult(
         rule_id="DOSHA_MANGLIK",
@@ -104,7 +115,7 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
         conditions=conds,
         cancellation_exceptions=cancellation_evs,
         participating_planets=["Mars", "Moon"] + (["Jupiter"] if jup_cancels else []),
-        participating_houses=p_houses if final_status in ["DETECTED", "CANCELLED"] else []
+        participating_houses=list(set(participating_h)) if final_status in ["DETECTED", "CANCELLED"] else []
     )
 
 # 2. Kemadruma Dosha
@@ -134,7 +145,7 @@ def evaluate_kemadruma_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResul
     h2_from_moon = (moon_house_asc % 12) + 1
     h12_from_moon = ((moon_house_asc - 2) % 12) + 1
 
-    # Map planets to Whole Sign houses from Lagna
+    # Map planets to Whole Sign houses from Lagna (1..12)
     house_map: Dict[str, int] = {}
     for p_name, p in canonical_chart.placements.items():
         house_map[p_name] = get_house_from_lagna(p.rashi.sign_index, asc_sign_idx)
@@ -237,6 +248,10 @@ def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResu
             participating_houses=[]
         )
 
+    asc_sign_idx = canonical_chart.ascendant.sign_index
+    rahu_house = get_house_from_lagna(rahu_p.rashi.sign_index, asc_sign_idx)
+    ketu_house = get_house_from_lagna(ketu_p.rashi.sign_index, asc_sign_idx)
+
     rahu_lon = rahu_p.sidereal_longitude
     ketu_lon = ketu_p.sidereal_longitude
 
@@ -244,7 +259,7 @@ def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResu
     hemisphere_1 = True
     hemisphere_2 = True
 
-    p_houses = [rahu_p.rashi.sign_index, ketu_p.rashi.sign_index]
+    p_houses = [rahu_house, ketu_house]
 
     for p_name in seven_planets:
         p_info = canonical_chart.placements.get(p_name)
@@ -265,7 +280,8 @@ def evaluate_kala_sarpa_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResu
             )
 
         p_lon = p_info.sidereal_longitude
-        p_houses.append(p_info.rashi.sign_index)
+        p_house = get_house_from_lagna(p_info.rashi.sign_index, asc_sign_idx)
+        p_houses.append(p_house)
 
         dist_rahu_ketu = (ketu_lon - rahu_lon) % 360.0
         dist_rahu_planet = (p_lon - rahu_lon) % 360.0
@@ -319,16 +335,26 @@ def evaluate_pitru_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
             participating_houses=[]
         )
 
-    sun_afflicted_rahu = rahu_p and (sun_p.rashi.sign_index == rahu_p.rashi.sign_index or casts_aspect("Rahu", "Sun", canonical_chart))
-    sun_afflicted_ketu = ketu_p and (sun_p.rashi.sign_index == ketu_p.rashi.sign_index or casts_aspect("Ketu", "Sun", canonical_chart))
-    sun_afflicted_saturn = saturn_p and (sun_p.rashi.sign_index == saturn_p.rashi.sign_index or casts_aspect("Saturn", "Sun", canonical_chart))
-
     asc_sign_idx = canonical_chart.ascendant.sign_index
-    h9_sign_idx = ((asc_sign_idx + 7) % 12) + 1
+
+    # Derive exact 1..12 Whole Sign houses from Lagna
+    sun_house = get_house_from_lagna(sun_p.rashi.sign_index, asc_sign_idx)
+    rahu_house = get_house_from_lagna(rahu_p.rashi.sign_index, asc_sign_idx) if rahu_p else None
+    ketu_house = get_house_from_lagna(ketu_p.rashi.sign_index, asc_sign_idx) if ketu_p else None
+    saturn_house = get_house_from_lagna(saturn_p.rashi.sign_index, asc_sign_idx) if saturn_p else None
+
+    # Condition 1: Sun afflicted by Rahu, Ketu, or Saturn (conjunction or aspect using 1..12 Whole Sign houses)
+    sun_afflicted_rahu = rahu_p and (sun_house == rahu_house or casts_aspect("Rahu", rahu_house, sun_house))
+    sun_afflicted_ketu = ketu_p and (sun_house == ketu_house or casts_aspect("Ketu", ketu_house, sun_house))
+    sun_afflicted_saturn = saturn_p and (sun_house == saturn_house or casts_aspect("Saturn", saturn_house, sun_house))
+
+    # Condition 2: 9th House / 9th Lord afflicted (Section 2: Centralized RASHI_LORDS usage!)
+    h9_sign_idx = ((asc_sign_idx + 7) % 12) + 1 # 9th house sign index (1..12)
     h9_lord = RASHI_LORDS[h9_sign_idx]
 
     h9_lord_p = canonical_chart.placements.get(h9_lord)
-    h9_lord_afflicted = h9_lord_p and rahu_p and (h9_lord_p.rashi.sign_index == rahu_p.rashi.sign_index or casts_aspect("Rahu", h9_lord, canonical_chart))
+    h9_lord_house = get_house_from_lagna(h9_lord_p.rashi.sign_index, asc_sign_idx) if h9_lord_p else None
+    h9_lord_afflicted = h9_lord_p and rahu_p and (h9_lord_house == rahu_house or casts_aspect("Rahu", rahu_house, h9_lord_house))
 
     is_pitru = sun_afflicted_rahu or sun_afflicted_ketu or sun_afflicted_saturn or h9_lord_afflicted
     final_status = "DETECTED" if is_pitru else "NOT_DETECTED"
@@ -340,6 +366,10 @@ def evaluate_pitru_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
         p_planets.append("Ketu")
     if sun_afflicted_saturn:
         p_planets.append("Saturn")
+
+    p_houses = [sun_house, 9]
+    if h9_lord_house:
+        p_houses.append(h9_lord_house)
 
     return DoshaResult(
         rule_id="DOSHA_PITRU",
@@ -359,5 +389,5 @@ def evaluate_pitru_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
         )],
         cancellation_exceptions=[],
         participating_planets=list(set(p_planets)) if is_pitru else [],
-        participating_houses=[sun_p.rashi.sign_index, h9_sign_idx] if is_pitru else []
+        participating_houses=list(set(p_houses)) if is_pitru else []
     )
