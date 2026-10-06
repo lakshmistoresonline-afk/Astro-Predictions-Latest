@@ -207,6 +207,18 @@ def evaluate_kemadruma_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResul
             evidence_details={"planets": planets_in_kendra_moon}
         ))
 
+    # Cancellation 3: Jupiter conjunct or aspecting Moon
+    jup_p = canonical_chart.placements.get("Jupiter")
+    if jup_p:
+        jup_house_asc = get_house_from_lagna(jup_p.rashi.sign_index, asc_sign_idx)
+        if planet_has_relationship("Jupiter", jup_house_asc, moon_house_asc):
+            cancellation_evs.append(DoshaConditionEvidence(
+                condition_id="jupiter_aspects_or_conjuncts_moon",
+                condition_description="Jupiter aspecting or conjunct Moon",
+                status=True,
+                evidence_details={"jupiter_house": jup_house_asc, "moon_house": moon_house_asc}
+            ))
+
     is_cancelled = is_base_kemadruma and (len(cancellation_evs) > 0)
 
     if is_cancelled:
