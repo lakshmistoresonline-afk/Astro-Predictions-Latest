@@ -158,13 +158,7 @@ class CanonicalEvidencePipeline:
                 astronomy_provider=astronomy_provider
             )
 
-            muhurta_suite = MuhurtaEngine.evaluate_all_activities(
-                dt=query_dt,
-                latitude=birth_input.latitude,
-                longitude=birth_input.longitude,
-                location_name=birth_input.name,
-                astronomy_provider=astronomy_provider
-            )
+            muhurta_suite = MuhurtaEngine.evaluate_all_activities(panchanga=panchanga)
 
             timing_suite = TimingEngine.generate_timing_suite(canonical_chart, query_dt)
 
