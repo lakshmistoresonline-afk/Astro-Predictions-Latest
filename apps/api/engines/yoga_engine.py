@@ -3,7 +3,7 @@ Legacy Adapter Wrapper for Yoga Engine.
 Delegates directly to Authoritative YogaEvaluator and DoshaEvaluator (apps.api.engines.yogas & doshas).
 Preserves API contract for existing report generation, evidence aggregation, and prediction consumers.
 """
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 from apps.api.engines.vedic.models import BirthInput
 from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
@@ -20,23 +20,16 @@ class YogaEngine:
     def detect_yogas(
         cls,
         planetary_positions: dict,
-        birth_input: BirthInput = None
+        birth_input: Optional[BirthInput] = None
     ) -> List[Dict[str, Any]]:
         """
         Detects traditional Vedic yogas and doshas using Authoritative Yoga and Dosha Engines.
+        Fails closed if birth_input is missing.
         """
         if not birth_input:
-            inp = BirthInput(
-                name="Native",
-                year=1986, month=9, day=28,
-                hour=16, minute=30, second=0,
-                timezone_str="Asia/Kolkata",
-                latitude=10.7867, longitude=76.6548
-            )
-        else:
-            inp = birth_input
+            raise ValueError("birth_input is required for Yoga and Dosha detection.")
 
-        chart = build_canonical_vedic_chart(inp)
+        chart = build_canonical_vedic_chart(birth_input)
         yoga_suite = YogaEvaluator.evaluate_all_yogas(chart)
         dosha_suite = DoshaEvaluator.evaluate_all_doshas(chart)
 
