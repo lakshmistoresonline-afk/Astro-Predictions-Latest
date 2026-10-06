@@ -1,6 +1,7 @@
 """
 Authoritative Vimshottari Dasha Engine Main Class for Astrovision.
 Consumes Canonical Sidereal Moon State produced by Phase 2A.
+Section 1..13 Compliance: Reconciles active_hierarchy and active_dasha_at_birth across all Dasha consumers.
 """
 from datetime import datetime, timezone
 from typing import Optional
@@ -90,6 +91,7 @@ class AuthoritativeDashaEngine:
             nakshatra_info=nak_info,
             birth_balance=birth_balance,
             mahadashas=md_nodes,
+            active_hierarchy=active_at_query,
             active_dasha_at_birth=active_at_query,
             dasha_convention="Parashari Vimshottari (120 Years)",
             time_convention="Tropical Solar Year (365.25 Days/Year)",
@@ -110,4 +112,4 @@ class AuthoritativeDashaEngine:
             query_datetime_utc = query_datetime_utc.replace(tzinfo=timezone.utc)
 
         suite = cls.calculate_dasha_suite(canonical_chart, query_datetime_utc)
-        return suite.active_dasha_at_birth
+        return suite.active_hierarchy

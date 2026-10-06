@@ -1,6 +1,7 @@
 """
 Canonical Data Schema Models for Vimshottari Dasha Engine (Phase 2C).
 Supports 5-level nested hierarchy (Mahadasha, Antardasha, Pratyantardasha, Sookshma, Prana) and query responses.
+Section 1..13 Compliance: Reconciles lord/lord_planet, active_hierarchy, and property aliases across all producers & consumers.
 """
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional
@@ -39,8 +40,13 @@ class DashaPeriodNode(BaseModel):
     duration_days: float = Field(description="Exact duration in days (365.25 d/yr)")
     duration_years: float = Field(description="Duration in Vimshottari years")
 
+    @property
+    def lord_planet(self) -> str:
+        """Backward-compatibility property returning lord planet name."""
+        return self.lord
+
 class ActiveDashaHierarchy(BaseModel):
-    """Active Dasha levels for an arbitrary query datetime."""
+    """Active Dasha levels for a query datetime."""
     query_utc_iso: str
     active_mahadasha: DashaPeriodNode
     active_antardasha: DashaPeriodNode
@@ -52,6 +58,31 @@ class ActiveDashaHierarchy(BaseModel):
     percentage_elapsed_in_prana: float
     percentage_remaining_in_prana: float
 
+    @property
+    def mahadasha(self) -> DashaPeriodNode:
+        """Alias property for active_mahadasha."""
+        return self.active_mahadasha
+
+    @property
+    def antardasha(self) -> DashaPeriodNode:
+        """Alias property for active_antardasha."""
+        return self.active_antardasha
+
+    @property
+    def pratyantardasha(self) -> DashaPeriodNode:
+        """Alias property for active_pratyantardasha."""
+        return self.active_pratyantardasha
+
+    @property
+    def sookshma(self) -> DashaPeriodNode:
+        """Alias property for active_sookshma."""
+        return self.active_sookshma
+
+    @property
+    def prana(self) -> DashaPeriodNode:
+        """Alias property for active_prana."""
+        return self.active_prana
+
 class FullVimshottariDashaResult(BaseModel):
     """Complete Output Contract for Vimshottari Dasha Engine."""
     birth_utc_datetime_iso: str
@@ -59,7 +90,8 @@ class FullVimshottariDashaResult(BaseModel):
     nakshatra_info: BirthNakshatraInfo
     birth_balance: BirthDashaBalance
     mahadashas: List[DashaPeriodNode]
-    active_dasha_at_birth: ActiveDashaHierarchy
+    active_hierarchy: ActiveDashaHierarchy = Field(description="Active Dasha hierarchy for query datetime")
+    active_dasha_at_birth: Optional[ActiveDashaHierarchy] = Field(default=None, description="Alias for active_hierarchy")
     dasha_convention: str = "Parashari Vimshottari (120 Years)"
     time_convention: str = "Tropical Solar Year (365.25 Days/Year)"
     calculation_hash: str
