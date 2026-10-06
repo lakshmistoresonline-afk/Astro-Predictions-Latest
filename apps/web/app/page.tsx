@@ -101,10 +101,11 @@ export default function Home() {
     }
   }
 
-  // Canonical report data safely extracted from backend JSON contract (Zero hardcoded fallbacks!)
+  // Canonical report & master evidence safely extracted from backend JSON contract (Zero hardcoded fallbacks!)
   const report = chartData?.report || null
   const masterEv = chartData?.master_evidence || null
   const predictions = chartData?.predictions || null
+  const svgChart = chartData?.svg_chart || null
 
   const ascSign = report?.canonical_chart?.ascendant?.sign || (chartData ? 'Unavailable' : null)
   const ascDegree = report?.canonical_chart?.ascendant?.degree !== undefined ? `${report.canonical_chart.ascendant.degree}°` : ''
@@ -114,11 +115,19 @@ export default function Home() {
   const moonPada = report?.canonical_chart?.placements?.Moon?.nakshatra_pada?.pada || ''
   const activeDasha = predictions?.active_dasha_summary || (chartData ? 'Unavailable' : null)
 
+  const yogas = masterEv?.yoga_suite?.detected_yogas || []
+  const doshas = masterEv?.dosha_suite?.detected_doshas || []
+  const vargas = masterEv?.varga_suite?.vargas || {}
+  const panchanga = masterEv?.panchanga || null
+  const transits = masterEv?.transit_snapshot || null
+
   const sidebarLinks = [
     { id: 'home', label: 'Dashboard' },
     { id: 'chart-form', label: 'Birth Profile' },
     { id: 'reports', label: 'Reports & Astrolabe' },
     { id: 'predictions', label: 'Predictions' },
+    { id: 'yogas', label: 'Yogas & Doshas' },
+    { id: 'panchanga', label: 'Panchanga & Muhurta' },
   ]
 
   return (
@@ -329,6 +338,123 @@ export default function Home() {
                     </div>
                   )}
                 </>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'reports' && (
+            <div className="space-y-8 w-full">
+              {!chartData ? (
+                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
+              ) : (
+                <div className="bg-[#17163A]/90 p-10 rounded-3xl border border-champagne/30 space-y-6">
+                  <h2 className="text-3xl font-extrabold text-champagne">North Indian Kundali Astrolabe</h2>
+                  {svgChart ? (
+                    <div dangerouslySetInnerHTML={{ __html: svgChart }} className="max-w-md mx-auto p-4 bg-black/40 rounded-2xl border border-champagne/20" />
+                  ) : (
+                    <p className="text-mutedtext">Chart SVG unavailable</p>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'predictions' && (
+            <div className="space-y-8 w-full">
+              {!predictions ? (
+                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {Object.entries(predictions.domain_predictions || {}).map(([domCode, domData]: [string, any]) => (
+                    <div key={domCode} className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-3">
+                      <div className="flex justify-between items-center">
+                        <h4 className="text-lg font-bold text-champagne">{domData.rule_definition?.domain_title || domCode}</h4>
+                        <span className="text-xs px-3 py-1 rounded-full bg-champagne/20 text-champagne font-bold">{domData.evidence_status}</span>
+                      </div>
+                      <p className="text-xs text-mutedtext">{domData.rule_definition?.rule_description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'yogas' && (
+            <div className="space-y-8 w-full">
+              {!chartData ? (
+                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
+              ) : (
+                <div className="space-y-6">
+                  <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-4">
+                    <h3 className="text-2xl font-extrabold text-champagne">Detected Yogas ({yogas.length})</h3>
+                    {yogas.length === 0 ? (
+                      <p className="text-sm text-mutedtext">No classical Yogas detected for this chart.</p>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {yogas.map((y: any, i: int) => (
+                          <div key={i} className="p-4 bg-black/30 rounded-xl border border-champagne/20 space-y-1">
+                            <h4 className="font-bold text-white">{y.name}</h4>
+                            <p className="text-xs text-mutedtext">{y.sanskrit_name} ({y.category})</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-4">
+                    <h3 className="text-2xl font-extrabold text-champagne">Detected Doshas ({doshas.length})</h3>
+                    {doshas.length === 0 ? (
+                      <p className="text-sm text-mutedtext">No classical Doshas detected for this chart.</p>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {doshas.map((d: any, i: int) => (
+                          <div key={i} className="p-4 bg-black/30 rounded-xl border border-champagne/20 space-y-1">
+                            <h4 className="font-bold text-white">{d.name}</h4>
+                            <p className="text-xs text-mutedtext">Status: {d.status}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'panchanga' && (
+            <div className="space-y-8 w-full">
+              {!panchanga ? (
+                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
+              ) : (
+                <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-6">
+                  <h3 className="text-2xl font-extrabold text-champagne">Live Astronomical Panchanga & Muhurta</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
+                      <span className="text-xs text-mutedtext uppercase font-bold">Tithi</span>
+                      <p className="text-lg font-bold text-white">{panchanga.tithi?.tithi_name || 'Unavailable'} ({panchanga.tithi?.paksha || ''})</p>
+                    </div>
+                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
+                      <span className="text-xs text-mutedtext uppercase font-bold">Vara</span>
+                      <p className="text-lg font-bold text-white">{panchanga.vara?.day_name_english || 'Unavailable'} ({panchanga.vara?.day_name_sanskrit || ''})</p>
+                    </div>
+                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
+                      <span className="text-xs text-mutedtext uppercase font-bold">Nakshatra</span>
+                      <p className="text-lg font-bold text-white">{panchanga.nakshatra_name || 'Unavailable'} (Pada {panchanga.nakshatra_pada || ''})</p>
+                    </div>
+                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
+                      <span className="text-xs text-mutedtext uppercase font-bold">Nitya Yoga</span>
+                      <p className="text-lg font-bold text-white">{panchanga.nitya_yoga?.yoga_name || 'Unavailable'}</p>
+                    </div>
+                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
+                      <span className="text-xs text-mutedtext uppercase font-bold">Karana</span>
+                      <p className="text-lg font-bold text-white">{panchanga.karana?.karana_name || 'Unavailable'}</p>
+                    </div>
+                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
+                      <span className="text-xs text-mutedtext uppercase font-bold">Rahu Kalam</span>
+                      <p className="text-xs font-bold text-white">{panchanga.rahu_kalam?.start_time_iso ? `${panchanga.rahu_kalam.start_time_iso.substring(11,16)} - ${panchanga.rahu_kalam.end_time_iso.substring(11,16)}` : 'Unavailable'}</p>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
           )}
