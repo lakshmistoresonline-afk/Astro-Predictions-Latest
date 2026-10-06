@@ -3,12 +3,14 @@ Authoritative Ashtakavarga Evidence Adapter for Astrovision (Phase 2E-R4.1-R12-R
 Extracts structured interpretation evidence from AshtakavargaSuiteResult (BAV & SAV).
 Evaluates house SAV strengths, transit scoring through high vs low bindu houses, and Dasha-Ashtakavarga interactions.
 SAV total must ALWAYS be derived dynamically from BAV.
-Section 1..12 Compliance: HouseSAVEvidence sav_bindus is Optional[int] allowing explicit None state when evidence is unavailable.
+Section 1..12 Compliance:
+- HouseSAVEvidence sav_bindus is Optional[int] allowing explicit None state when evidence is unavailable.
+- Zero hardcoded SAV total descriptions (dynamic BAV total calculation preserved).
 """
 from typing import Dict, List, Any, Optional
 from pydantic import BaseModel, Field
 
-from apps.api.engines.strength.models import AshtakavargaSuiteResult
+from apps.api.engines.strength.models import AshtakavargaSuiteResult, AshtakavargaCategory
 
 RASHI_NAMES = [
     "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
@@ -26,9 +28,10 @@ class HouseSAVEvidence(BaseModel):
 class AshtakavargaPredictiveEvidence(BaseModel):
     """Complete Ashtakavarga predictive evidence package."""
     house_sav_evidences: List[HouseSAVEvidence]
-    total_sav_bindus: Optional[int] = Field(default=None, description="Observed total SAV bindus derived from BAV (Canonical = 337), or None if unavailable")
+    total_sav_bindus: Optional[int] = Field(default=None, description="Observed total SAV bindus derived dynamically from BAV, or None if unavailable")
     strongest_house_rashi: Optional[str] = Field(default=None, description="Strongest SAV house, or None if unavailable")
     weakest_house_rashi: Optional[str] = Field(default=None, description="Weakest SAV house, or None if unavailable")
+    worst_house_rashi: Optional[str] = Field(default=None, description="Backward-compatibility alias for weakest_house_rashi")
     summary_evidence: str
     calculation_hash: str
 
@@ -61,16 +64,16 @@ class AshtakavargaEvidenceAdapter:
                 worst_r_idx = r_idx_1
 
             if b_val >= 30:
-                s_cat = "HIGHLY_FAVORABLE"
+                s_cat = AshtakavargaCategory.HIGHLY_FAVORABLE
                 t_rec = "Transits through this house yield robust, tangible success, wealth gains, and smooth execution."
             elif b_val >= 28:
-                s_cat = "FAVORABLE"
+                s_cat = AshtakavargaCategory.FAVORABLE
                 t_rec = "Transits through this house yield steady, positive outcomes and constructive progress."
             elif b_val >= 25:
-                s_cat = "AVERAGE"
+                s_cat = AshtakavargaCategory.AVERAGE
                 t_rec = "Transits through this house yield mixed, moderate outcomes requiring consistent effort."
             else:
-                s_cat = "LOW"
+                s_cat = AshtakavargaCategory.LOW
                 t_rec = "Transits through this house require heightened caution, patience, and risk mitigation."
 
             house_evidences.append(HouseSAVEvidence(
@@ -94,7 +97,7 @@ class AshtakavargaEvidenceAdapter:
             house_sav_evidences=house_evidences,
             total_sav_bindus=obs_total,
             strongest_house_rashi=best_rashi,
-            worst_house_rashi=worst_rashi, # Backward compatibility attribute
+            worst_house_rashi=worst_rashi,
             weakest_house_rashi=worst_rashi,
             summary_evidence=summary,
             calculation_hash=ashtakavarga_suite.calculation_hash
