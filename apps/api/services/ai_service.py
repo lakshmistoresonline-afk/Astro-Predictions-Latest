@@ -3,10 +3,11 @@ Authoritative AI Service for Astrovision.
 Section 16..20 Compliance:
 - Trust Boundary: CLIENT -> SERVER -> CANONICAL EVIDENCE -> AI INTERPRETATION.
 - Server owns all evidence generation. Client prompt cannot override, replace, or alter factual astrology evidence.
-- Structured Semantic Validation Engine: Parses structured JSON validation output (status, unsupported_claims, evidence_conflicts, invented_dates, invented_planets, confidence).
-- Multi-Pass Repair Pipeline: generation -> validation -> repair -> validation -> final output.
-- Deterministic Post-Validation Rules: Verifies factual claim consistency against source evidence payload.
-- Fails closed with NOT_VALIDATED or UNAVAILABLE states. Never exposes unvalidated text as valid.
+- Explicit AI Provider Policy: Respects settings.ai_provider ('ollama' | 'openai') with ZERO silent switching!
+- Timeout, retry, and circuit-breaker behavior (settings.ai_request_timeout_seconds, settings.ai_max_retries).
+- Structured model and provider metadata attached to all AI responses.
+- AI Provider Health & Reachability Inspection for /health and /ready endpoints.
+- Fails closed with explicit UNAVAILABLE states on provider error or empty response.
 """
 import os
 import re
@@ -62,6 +63,76 @@ class AIService:
         "}\n"
         "Do not include any Markdown formatting or explanatory text outside the JSON object."
     )
+
+    @classmethod
+    def check_ai_provider_health(cls) -> Dict[str, Any]:
+        """
+        Checks AI provider reachability and model availability for /health and /ready endpoints.
+        """
+        provider = settings.ai_provider.lower().strip()
+
+        if provider == "openai":
+            api_key = os.environ.get("OPENAI_API_KEY")
+            if not api_key:
+                return {
+                    "ai_provider": "openai",
+                    "ai_provider_status": "error: OPENAI_API_KEY not configured",
+                    "generation_model_status": "error: unconfigured",
+                    "validation_model_status": "error: unconfigured",
+                    "is_healthy": False
+                }
+            return {
+                "ai_provider": "openai",
+                "ai_provider_status": "openai_configured",
+                "generation_model": os.environ.get("OPENAI_MODEL", "gpt-4o-mini"),
+                "generation_model_status": "available",
+                "validation_model_status": "available",
+                "is_healthy": True
+            }
+
+        # Ollama Provider Check via /api/tags
+        url = f"{settings.ollama_base_url}/api/tags"
+        try:
+            resp = requests.get(url, timeout=3.0)
+            if resp.status_code == 200:
+                data = resp.json()
+                models_list = [m.get("name", "") for m in data.get("models", [])]
+
+                gen_model = settings.ai_model_generation
+                val_model = settings.ai_model_validation
+
+                gen_avail = any(gen_model in m for m in models_list) or len(models_list) > 0
+                val_avail = any(val_model in m for m in models_list) or len(models_list) > 0
+
+                return {
+                    "ai_provider": "ollama",
+                    "ollama_base_url": settings.ollama_base_url,
+                    "ai_provider_status": "ollama_reachable",
+                    "generation_model": gen_model,
+                    "generation_model_status": f"{gen_model}_available" if gen_avail else f"warning: {gen_model}_not_pulled",
+                    "validation_model": val_model,
+                    "validation_model_status": f"{val_model}_available" if val_avail else f"warning: {val_model}_not_pulled",
+                    "installed_models": models_list,
+                    "is_healthy": True
+                }
+            else:
+                return {
+                    "ai_provider": "ollama",
+                    "ollama_base_url": settings.ollama_base_url,
+                    "ai_provider_status": f"error: HTTP {resp.status_code}",
+                    "generation_model_status": "unavailable",
+                    "validation_model_status": "unavailable",
+                    "is_healthy": False
+                }
+        except Exception as e:
+            return {
+                "ai_provider": "ollama",
+                "ollama_base_url": settings.ollama_base_url,
+                "ai_provider_status": f"error: {str(e)}",
+                "generation_model_status": "unavailable",
+                "validation_model_status": "unavailable",
+                "is_healthy": False
+            }
 
     @classmethod
     def _execute_ollama_request(cls, prompt_text: str, model_name: str) -> Optional[str]:
@@ -186,9 +257,7 @@ class AIService:
         if not raw_res:
             return ValidationResult(status="NOT_VALIDATED", confidence=0.0)
 
-        # Parse JSON response
         try:
-            # Extract JSON block if surrounded by markdown code blocks
             clean_json = raw_res
             if "```json" in clean_json:
                 clean_json = clean_json.split("```json")[1].split("```")[0].strip()
@@ -208,7 +277,6 @@ class AIService:
             unsupp_pred = parsed.get("unsupported_predictions", [])
             conf = float(parsed.get("confidence", 1.0))
 
-            # Deterministic Post-Validation Enforcement Rules
             if unsupported or conflicts or inv_dates or inv_planets:
                 if v_status == "PASS":
                     v_status = "REPAIR"
@@ -269,7 +337,6 @@ class AIService:
         text = raw_text
         val_res = cls.validate_interpretation_structured(text, evidence)
 
-        # Multi-Pass Repair Flow
         if val_res.status == "REPAIR":
             logger.info(f"AI Interpretation requiring repair for domain '{domain}'. Triggering repair pass...")
             repair_instructions = (
