@@ -1,23 +1,22 @@
-# Dependencies
+# Node & Next.js
 node_modules/
-.pnp/
-.pnp.js
-
-# Next.js
 .next/
 out/
 build/
 dist/
+.pnp/
+.pnp.js
 
 # Android & Gradle
 .gradle/
 build/
+**/build/
 app/build/
 local.properties
 *.apk
 *.aar
 
-# Python
+# Python & Caches
 __pycache__/
 *.py[cod]
 *$py.class
@@ -27,18 +26,20 @@ venv/
 env/
 ENV/
 *.egg-info/
-dist/
-build/
+*.sqlite3
+astrovision.db
 
-# IDE & OS
+# IDEs, Editors & OS
 .vscode/
 .idea/
 *.swp
 *.swo
 .DS_Store
 Thumbs.db
+*.sublime-project
+*.sublime-workspace
 
-# Artifacts & Local Data
+# Artifacts, Logs & Temp Data
 .artifacts/
 *.log
 .env
@@ -46,5 +47,6 @@ Thumbs.db
 de421.bsp*
 scratch/
 
-# Live Mutation Execution Runs
+# Live Mutation & Temporary Run Outputs
 reports/**/live_runs/
+reports/**/temp/
