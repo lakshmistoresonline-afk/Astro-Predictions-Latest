@@ -51,6 +51,7 @@ from apps.api.services.ai_service import AIService
 from apps.api.routers.admin_export import router as admin_export_router
 from apps.api.routers.persistence import router as persistence_router
 from apps.api.routers.auth import router as auth_router
+from apps.api.routers.geocoding import router as geocoding_router
 from apps.api.db.database import init_db, get_database_status
 
 logger = logging.getLogger("astrovision.api")
@@ -75,6 +76,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(admin_export_router)
 app.include_router(persistence_router)
+app.include_router(geocoding_router)
 
 from apps.api.config import settings, validate_and_init_secrets
 
