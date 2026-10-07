@@ -426,6 +426,104 @@ fun YogasDoshasView(yogaSuite: YogaSuiteResult, doshaSuite: DoshaSuiteResult) {
     }
 }
 
+// --- Shadbala & Ashtakavarga View ---
+@Composable
+fun ShadbalaAshtakavargaView(
+    shadbalaSuite: ShadbalaSuiteResult?,
+    ashtakavargaEvidence: AshtakavargaPredictiveEvidence?
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text("Shadbala & Ashtakavarga Strengths", color = Champagne, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+
+        if (shadbalaSuite != null) {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = DarkPurple.copy(alpha = 0.8f)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text("Six-Fold Planetary Strengths", color = Champagne, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    shadbalaSuite.planets.values.forEach { p ->
+                        Text("${p.planet}: ${p.totalRupas} Rupas (${p.totalShashtiamsas} pts) - ${p.strengthPercentage}%", color = Color.White, fontSize = 12.sp)
+                    }
+                }
+            }
+        } else {
+            Text("Shadbala Suite Evidence Unavailable", color = MutedText, fontSize = 12.sp)
+        }
+
+        if (ashtakavargaEvidence != null) {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = DarkPurple.copy(alpha = 0.8f)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text("Sarvashtakavarga (SAV) House Bindus", color = Champagne, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text("Total SAV Bindus: ${ashtakavargaEvidence.totalSavBindus ?: "N/A"}", color = Color.White, fontSize = 12.sp)
+                    Text("Strongest House: ${ashtakavargaEvidence.strongestHouseRashi ?: "N/A"}", color = Color.White, fontSize = 12.sp)
+                    Text("Weakest House: ${ashtakavargaEvidence.weakestHouseRashi ?: "N/A"}", color = Color.White, fontSize = 12.sp)
+                }
+            }
+        } else {
+            Text("Ashtakavarga Evidence Unavailable", color = MutedText, fontSize = 12.sp)
+        }
+    }
+}
+
+// --- Jaimini View ---
+@Composable
+fun JaiminiView(
+    jaiminiSuite: JaiminiSuiteResult?
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text("Jaimini Sutras & 7 Chara Karakas", color = Champagne, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+
+        if (jaiminiSuite != null) {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = DarkPurple.copy(alpha = 0.8f)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text("Atmakaraka (AK): ${jaiminiSuite.atmakarakaPlanet}", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text("Arudha Lagna (AL): ${jaiminiSuite.arudhaLagnaRashiName} (Sign ${jaiminiSuite.arudhaLagnaRashiIndex})", color = Color.White)
+                    Text("Upapada Lagna (UL): ${jaiminiSuite.upapadaLagnaRashiName} (Sign ${jaiminiSuite.upapadaLagnaRashiIndex})", color = Color.White)
+                    Text("Karakamsha: ${jaiminiSuite.karakamshaRashiName} (Sign ${jaiminiSuite.karakamshaRashiIndex})", color = Color.White)
+                }
+            }
+
+            Text("7 Chara Karaka Assignments", color = Champagne, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            jaiminiSuite.charaKarakas.values.forEach { k ->
+                Card(
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(containerColor = DarkPurple.copy(alpha = 0.8f)),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(modifier = Modifier.padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                        Text("${k.karakaCode} - ${k.karakaName}", color = Champagne, fontSize = 12.sp)
+                        Text(k.planet, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                    }
+                }
+            }
+        } else {
+            Text("Jaimini Suite Evidence Unavailable", color = MutedText, fontSize = 12.sp)
+        }
+    }
+}
+
 // --- Panchanga & Muhurta View ---
 @Composable
 fun PanchangaMuhurtaView(panchanga: PanchangaResult?, muhurtaSuite: MuhurtaSuiteResult?) {
@@ -484,7 +582,7 @@ fun PredictionsView(predictions: ComprehensivePredictionPackage) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
-            Text("14 Domain Predictions Evidence", color = Champagne, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Text("14 Domain Prediction Evidence Packages", color = Champagne, fontSize = 20.sp, fontWeight = FontWeight.Bold)
         }
         items(predictions.domainPredictions.entries.toList()) { (dom, data) ->
             Card(

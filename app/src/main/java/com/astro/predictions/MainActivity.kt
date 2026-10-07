@@ -163,21 +163,13 @@ fun AstrovisionApp(
                         NavigationTab.VARGAS -> VargasView(resp.masterEvidence.vargaSuite)
                         NavigationTab.DASHAS -> DashasView(resp.masterEvidence.natalDashaSuite)
                         NavigationTab.YOGAS_DOSHAS -> YogasDoshasView(resp.masterEvidence.yogaSuite, resp.masterEvidence.doshaSuite)
-                        NavigationTab.STRENGTH -> {
-                            resp.masterEvidence.shadbalaEvidence?.let {
-                                Text("Shadbala Strongest Planet: ${it.strongestPlanet}", color = Champagne, modifier = Modifier.padding(16.dp))
-                            } ?: Text("Shadbala Evidence Unavailable", color = MutedText, modifier = Modifier.padding(16.dp))
-                        }
-                        NavigationTab.JAIMINI -> {
-                            resp.masterEvidence.jaiminiSuite?.let { j ->
-                                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    Text("Jaimini Atmakaraka: ${j.atmakarakaPlanet}", color = Champagne, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                                    Text("Arudha Lagna: ${j.arudhaLagnaRashiName}", color = Ivory)
-                                    Text("Upapada Lagna: ${j.upapadaLagnaRashiName}", color = Ivory)
-                                    Text("Karakamsha: ${j.karakamshaRashiName}", color = Ivory)
-                                }
-                            } ?: Text("Jaimini Suite Unavailable", color = MutedText, modifier = Modifier.padding(16.dp))
-                        }
+                        NavigationTab.STRENGTH -> ShadbalaAshtakavargaView(
+                            shadbalaSuite = resp.masterEvidence.shadbalaSuite,
+                            ashtakavargaEvidence = resp.masterEvidence.ashtakavargaEvidence
+                        )
+                        NavigationTab.JAIMINI -> JaiminiView(
+                            jaiminiSuite = resp.masterEvidence.jaiminiSuite
+                        )
                         NavigationTab.PANCHANGA -> PanchangaMuhurtaView(resp.masterEvidence.panchanga, resp.masterEvidence.muhurtaSuite)
                         NavigationTab.PREDICTIONS -> PredictionsView(resp.predictions)
                         NavigationTab.AI_INTERPRETATION -> AiInterpretationView(
