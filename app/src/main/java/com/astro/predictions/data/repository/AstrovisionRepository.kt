@@ -1,52 +1,53 @@
 package com.astro.predictions.data.repository
 
+import com.astro.predictions.BuildConfig
 import com.astro.predictions.data.api.AstrovisionApiService
+import com.astro.predictions.data.api.AstrovisionNetworkException
+import com.astro.predictions.data.api.NetworkModule
 import com.astro.predictions.data.model.*
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import retrofit2.HttpException
+import java.io.IOException
 
 class AstrovisionRepository(
-    baseUrl: String = "http://10.0.2.2:8000/" // Default Android Emulator host pointing to local FastAPI server
+    private val apiService: AstrovisionApiService = NetworkModule.createApiService(BuildConfig.BASE_URL)
 ) {
-    private val apiService: AstrovisionApiService
-    private var userAuthToken: String? = null
 
     fun setAuthToken(token: String?) {
-        userAuthToken = token
+        NetworkModule.setAuthToken(token)
     }
 
-    init {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-
-        val authInterceptor = Interceptor { chain ->
-            val requestBuilder = chain.request().newBuilder()
-            userAuthToken?.let { token ->
-                requestBuilder.header("Authorization", "Bearer $token")
+    private fun handleNetworkException(e: Exception): Throwable {
+        return when (e) {
+            is HttpException -> {
+                val code = e.code()
+                val message = when (code) {
+                    400 -> "Invalid birth parameters or calculation input."
+                    401 -> "Authentication required. Please log in."
+                    403 -> "Access forbidden: insufficient permissions."
+                    404 -> "Requested birth profile or report not found."
+                    422 -> "Unprocessable calculation entity."
+                    429 -> "Usage quota exceeded. Please try again later."
+                    500 -> "Internal calculation engine error."
+                    503 -> "NASA JPL DE440s ephemeris service temporarily unavailable."
+                    else -> "Server error ($code)."
+                }
+                AstrovisionNetworkException(message, errorCode = "HTTP_$code", httpStatusCode = code)
             }
-            chain.proceed(requestBuilder.build())
+            is IOException -> {
+                AstrovisionNetworkException(
+                    "Network connection failed. Please check internet connection.",
+                    errorCode = "CONNECTIVITY_OFFLINE",
+                    httpStatusCode = 0
+                )
+            }
+            else -> {
+                AstrovisionNetworkException(
+                    e.localizedMessage ?: "Unexpected network error.",
+                    errorCode = "UNKNOWN_ERROR",
+                    httpStatusCode = 0
+                )
+            }
         }
-
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .addInterceptor(authInterceptor)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        apiService = retrofit.create(AstrovisionApiService::class.java)
     }
 
     suspend fun calculateBirthProfile(request: BirthProfileRequest): Result<BirthProfileResponse> {
@@ -54,7 +55,7 @@ class AstrovisionRepository(
             val response = apiService.calculateBirthProfile(request)
             Result.success(response)
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(handleNetworkException(e))
         }
     }
 
@@ -63,7 +64,7 @@ class AstrovisionRepository(
             val response = apiService.interpretEvidenceAi(request)
             Result.success(response)
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(handleNetworkException(e))
         }
     }
 
@@ -72,7 +73,7 @@ class AstrovisionRepository(
             val response = apiService.getPanchanga(request)
             Result.success(response)
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(handleNetworkException(e))
         }
     }
 
@@ -81,7 +82,7 @@ class AstrovisionRepository(
             val response = apiService.getMuhurtaSuite(request)
             Result.success(response)
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(handleNetworkException(e))
         }
     }
 }
