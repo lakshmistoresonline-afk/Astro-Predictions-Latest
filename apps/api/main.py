@@ -439,13 +439,8 @@ def interpret_evidence_ai(req: AIInterpretationRequest):
             "domain_evidence": dom_evidence.model_dump() if dom_evidence else {}
         }
 
-        text = AIService.generate_interpretation(req.prompt, ai_payload)
-        status_val = AIService.validate_interpretation(text, ai_payload)
-        return {
-            "domain": dom_code,
-            "interpretation": text,
-            "validation_status": status_val
-        }
+        ai_result = AIService.synthesize_interpretation(req.prompt, ai_payload, domain=dom_code)
+        return ai_result
     except AstrovisionException:
         raise
     except (ValueError, TypeError) as e:

@@ -8,10 +8,13 @@ class Settings(BaseSettings):
     # Admin Security Configuration
     admin_api_key: str = "astrovision_admin_secret_key_2026"
 
-    # AI Configuration
+    # AI Provider Configuration (ollama | openai)
+    ai_provider: str = "ollama"
     ollama_base_url: str = "http://localhost:11434"
     ai_model_generation: str = "gemma4"
     ai_model_validation: str = "qwen3.5"
+    ai_request_timeout_seconds: float = 20.0
+    ai_max_retries: int = 2
 
     # Free Tier Governance Limits
     free_daily_charts: int = 10
