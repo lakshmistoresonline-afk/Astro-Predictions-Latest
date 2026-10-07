@@ -62,16 +62,10 @@ app = FastAPI(
 
 app.add_middleware(CorrelationIdMiddleware)
 
-# Production-safe explicit CORS configuration
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://astrovision.io"
-]
-
+# Environment-configured CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=settings.cors_origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
