@@ -5,7 +5,7 @@ Section 21 Compliance: Enforces real server-side admin authentication and audit 
 import os
 import logging
 import secrets
-from fastapi import APIRouter, HTTPException, Depends, Header, status
+from fastapi import APIRouter, HTTPException, Depends, Header, status, Response
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
@@ -143,6 +143,10 @@ def export_pdf(req: ExportPDFRequest):
             timezone_str=req.timezone_str
         )
         pdf_bytes = PDFReportEngine.generate_pdf_report(report)
-        return HTMLResponse(content=pdf_bytes, media_type="application/pdf")
+        return Response(
+            content=pdf_bytes,
+            media_type="application/pdf",
+            headers={"Content-Disposition": 'attachment; filename="astrovision_report.pdf"'}
+        )
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"PDF Report generation failed: {str(e)}")

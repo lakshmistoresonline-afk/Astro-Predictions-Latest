@@ -1,25 +1,106 @@
 """
 Publication-Grade Astrological Treatise & PDF Report Renderer for Astrovision.
+Generates genuine, binary PDF documents starting with %PDF-1.4.
 Renders all 12 canonical chapters from CanonicalAstrologyEvidence and ReportGeneratorEngine.
 Section 5 & 17 Compliance:
-- HTML-escapes all user-controlled text fields before inserting into HTML templates.
-- Reports ephemeris metadata accurately as NASA JPL DE440s.
-- Renders every canonical chapter explicitly without inventing absent content.
+- HTML-escapes all user-controlled text fields before processing.
+- Generates true binary PDF files starting with %PDF-1.4.
 - Preserves master evidence hash, calculation hash, engine version, and legal disclaimer.
 """
 import html
-import os
-from typing import Dict, Any
+import io
+import re
+import logging
+from typing import Dict, Any, List
+
+logger = logging.getLogger("astrovision.pdf")
+
+try:
+    from reportlab.lib.pagesizes import letter
+    from reportlab.lib import colors
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
+    REPORTLAB_AVAILABLE = True
+except ImportError:
+    REPORTLAB_AVAILABLE = False
+
+
+def _build_pure_pdf_document(title: str, text_lines: List[str]) -> bytes:
+    """
+    Pure Python PDF 1.4 Document Generator.
+    Guarantees binary PDF output beginning with b'%PDF-1.4' when ReportLab is unavailable.
+    """
+    stream_elements = []
+
+    current_page_lines = []
+    for line in text_lines:
+        clean = line.strip().replace("(", "\\(").replace(")", "\\)")
+        if not clean:
+            continue
+        current_page_lines.append(clean)
+        if len(current_page_lines) >= 42:
+            txt_block = "BT /F2 10 Tf 50 720 Td 14 TL\n"
+            for pline in current_page_lines:
+                txt_block += f"({pline[:90]}) '\n"
+            txt_block += "ET\n"
+            stream_elements.append(txt_block)
+            current_page_lines = []
+
+    if current_page_lines:
+        txt_block = "BT /F2 10 Tf 50 720 Td 14 TL\n"
+        for pline in current_page_lines:
+            txt_block += f"({pline[:90]}) '\n"
+        txt_block += "ET\n"
+        stream_elements.append(txt_block)
+
+    num_pages = len(stream_elements)
+    if num_pages == 0:
+        stream_elements.append("BT /F2 10 Tf 50 720 Td (Astrovision Report) Tj ET\n")
+        num_pages = 1
+
+    objects = []
+    objects.append(b"1 0 obj\n<< /Type /Catalog /Pages 3 0 R >>\nendobj\n")
+    objects.append(b"2 0 obj\n<< /Type /Outlines /Count 0 >>\nendobj\n")
+
+    page_refs = " ".join([f"{4 + i * 2} 0 R" for i in range(num_pages)])
+    objects.append(f"3 0 obj\n<< /Type /Pages /Count {num_pages} /Kids [ {page_refs} ] >>\nendobj\n".encode("utf-8"))
+
+    for i in range(num_pages):
+        page_obj_id = 4 + i * 2
+        content_obj_id = 5 + i * 2
+
+        page_str = f"{page_obj_id} 0 obj\n<< /Type /Page /Parent 3 0 R /MediaBox [0 0 612 792] /Contents {content_obj_id} 0 R /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> >>\nendobj\n"
+        objects.append(page_str.encode("utf-8"))
+
+        stream_bytes = stream_elements[i].encode("utf-8")
+        content_str = f"{content_obj_id} 0 obj\n<< /Length {len(stream_bytes)} >>\nstream\n".encode("utf-8") + stream_bytes + b"\nendstream\nendobj\n"
+        objects.append(content_str)
+
+    out = io.BytesIO()
+    out.write(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n")
+
+    offsets = []
+    for obj in objects:
+        offsets.append(out.tell())
+        out.write(obj)
+
+    xref_offset = out.tell()
+    out.write(f"xref\n0 {len(objects) + 1}\n0000000000 65535 f \n".encode("utf-8"))
+    for off in offsets:
+        out.write(f"{off:010d} 00000 n \n".encode("utf-8"))
+
+    out.write(f"trailer\n<< /Size {len(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref_offset}\n%%EOF\n".encode("utf-8"))
+    return out.getvalue()
+
 
 class PDFReportEngine:
     """
     PDFReportEngine compiles a publication-grade multi-page astrological treatise
-    into a hardcopy-ready PDF / printable HTML document.
+    into a hardcopy-ready PDF document.
     """
 
     @classmethod
     def generate_html_treatise(cls, report_data: Dict[str, Any]) -> str:
-        # Extract native metadata
         name = html.escape(str(report_data.get("name", report_data.get("metadata", {}).get("native_name", "Native"))))
         birth_date = html.escape(str(report_data.get("birth_date", "")))
         birth_time = html.escape(str(report_data.get("birth_time", "")))
@@ -32,7 +113,6 @@ class PDFReportEngine:
 
         master_hash = html.escape(str(report_data.get("master_evidence_hash", report_data.get("calculation_hash", "UNAVAILABLE"))))
 
-        # Build 12 Chapters
         html_sections = []
 
         # Cover Page
@@ -98,7 +178,7 @@ class PDFReportEngine:
 
         html_sections[-1] += "</tbody></table></div>"
 
-        # Chapter 4: House (Bhava) Analysis
+        # Chapter 4: House Divisions
         houses = chart.get("whole_sign_houses", [])
         html_sections.append("""
         <div class="chapter">
@@ -266,7 +346,48 @@ class PDFReportEngine:
     @classmethod
     def generate_pdf_report(cls, report_data: Dict[str, Any]) -> bytes:
         """
-        Compiles generated HTML treatise into UTF-8 encoded byte stream suitable for HTTP PDF / HTML Response.
+        Compiles generated report data into a genuine, binary PDF document starting with b'%PDF-1.4'.
         """
-        html_str = cls.generate_html_treatise(report_data)
-        return html_str.encode("utf-8")
+        title = str(report_data.get("name", "Astrovision Masterwork Astrological Treatise"))
+        html_content = cls.generate_html_treatise(report_data)
+
+        if REPORTLAB_AVAILABLE:
+            try:
+                buffer = io.BytesIO()
+                doc = SimpleDocTemplate(buffer, pagesize=letter)
+                styles = getSampleStyleSheet()
+
+                title_style = ParagraphStyle('TitleStyle', parent=styles['Title'], fontName='Helvetica-Bold', fontSize=20, textColor=colors.HexColor('#B8860B'))
+                h2_style = ParagraphStyle('H2Style', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=14, textColor=colors.HexColor('#B8860B'))
+                body_style = ParagraphStyle('BodyStyle', parent=styles['Normal'], fontName='Helvetica', fontSize=10, leading=14)
+
+                story = []
+                story.append(Paragraph(f"Astrovision Astrological Treatise for {title}", title_style))
+                story.append(Spacer(1, 20))
+
+                # Strip HTML tags for ReportLab paragraphs
+                clean_text = re.sub(r'<[^>]+>', ' ', html_content)
+                paragraphs = clean_text.split("\n")
+
+                for p in paragraphs:
+                    p_clean = p.strip()
+                    if not p_clean:
+                        continue
+                    if "Chapter " in p_clean:
+                        story.append(Spacer(1, 15))
+                        story.append(Paragraph(p_clean, h2_style))
+                        story.append(Spacer(1, 10))
+                    else:
+                        story.append(Paragraph(p_clean, body_style))
+                        story.append(Spacer(1, 6))
+
+                doc.build(story)
+                pdf_data = buffer.getvalue()
+                if pdf_data and pdf_data.startswith(b"%PDF-"):
+                    return pdf_data
+            except Exception as e:
+                logger.warning(f"ReportLab PDF compilation failed: {str(e)}. Falling back to pure PDF generator.")
+
+        # Pure Python PDF 1.4 Binary Generator Fallback
+        lines = re.sub(r'<[^>]+>', '\n', html_content).splitlines()
+        return _build_pure_pdf_document(f"Astrovision Astrological Treatise for {title}", lines)

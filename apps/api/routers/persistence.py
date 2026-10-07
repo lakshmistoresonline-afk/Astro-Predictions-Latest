@@ -8,7 +8,7 @@ Section 1..13 Compliance:
 import json
 import logging
 from typing import List, Dict, Any, Optional
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Response
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -352,4 +352,8 @@ def export_report_pdf(
 
     report_dict = json.loads(report_record.report_json)
     pdf_bytes = PDFReportEngine.generate_pdf_report(report_dict)
-    return HTMLResponse(content=pdf_bytes, media_type="application/pdf")
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": 'attachment; filename="astrovision_report.pdf"'}
+    )
