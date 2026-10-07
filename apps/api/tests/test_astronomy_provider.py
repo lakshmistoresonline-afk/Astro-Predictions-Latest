@@ -16,7 +16,7 @@ def test_provider_initialization_and_kernel_identity():
     """Verify provider initialization and exact kernel identity."""
     provider = SkyfieldJPLProvider()
     assert provider.kernel_filename in ["de440s.bsp", "de421.bsp"]
-    assert len(provider.kernel_checksum) == 32 # MD5 length
+    assert len(provider.kernel_checksum) == 64 # SHA256 length
 
 
 def test_fail_closed_behavior_on_missing_kernel():
@@ -35,7 +35,7 @@ def test_canonical_subramanian_t_s_case():
     )
 
     # 1. Metadata completeness
-    assert res.metadata.provider == "Skyfield"
+    assert res.metadata.provider in ["SkyfieldJPLProvider", "Skyfield"]
     assert res.metadata.ephemeris_kernel in ["de440s.bsp", "de421.bsp"]
     assert len(res.metadata.calculation_hash) == 64 # SHA-256 length
 
