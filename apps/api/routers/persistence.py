@@ -357,3 +357,81 @@ def export_report_pdf(
         media_type="application/pdf",
         headers={"Content-Disposition": 'attachment; filename="astrovision_report.pdf"'}
     )
+
+@router.post("/saved-charts", status_code=status.HTTP_201_CREATED)
+def create_saved_chart(
+    req: SavedChartCreateRequest,
+    current_user: UserModel = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Creates a saved chart with title and notes for an owned birth profile."""
+    profile = db.query(BirthProfileModel).filter(
+        BirthProfileModel.id == req.birth_profile_id,
+        BirthProfileModel.user_id == current_user.id
+    ).first()
+
+    if not profile:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Birth profile '{req.birth_profile_id}' not found or access denied."
+        )
+
+    chart = SavedChartModel(
+        user_id=current_user.id,
+        birth_profile_id=profile.id,
+        chart_title=req.chart_title.strip(),
+        notes=req.notes.strip() if req.notes else None
+    )
+    db.add(chart)
+    db.commit()
+    db.refresh(chart)
+
+    return {
+        "id": chart.id,
+        "user_id": chart.user_id,
+        "birth_profile_id": chart.birth_profile_id,
+        "chart_title": chart.chart_title,
+        "notes": chart.notes,
+        "created_at": chart.created_at.isoformat()
+    }
+
+@router.get("/saved-charts")
+def list_saved_charts(
+    current_user: UserModel = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Lists all saved charts owned strictly by current_user."""
+    charts = db.query(SavedChartModel).filter(SavedChartModel.user_id == current_user.id).all()
+    return [
+        {
+            "id": c.id,
+            "user_id": c.user_id,
+            "birth_profile_id": c.birth_profile_id,
+            "chart_title": c.chart_title,
+            "notes": c.notes,
+            "created_at": c.created_at.isoformat()
+        } for c in charts
+    ]
+
+@router.delete("/saved-charts/{chart_id}")
+def delete_saved_chart(
+    chart_id: str,
+    current_user: UserModel = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Deletes a saved chart owned strictly by current_user."""
+    chart = db.query(SavedChartModel).filter(
+        SavedChartModel.id == chart_id,
+        SavedChartModel.user_id == current_user.id
+    ).first()
+
+    if not chart:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Saved chart '{chart_id}' not found or access denied."
+        )
+
+    db.delete(chart)
+    db.commit()
+
+    return {"status": "deleted", "id": chart_id}
