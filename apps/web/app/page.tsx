@@ -1,31 +1,46 @@
 'use client'
 
 import React, { useState } from 'react'
+import { PRESET_CITIES, BirthProfileResponse } from '../types/api'
+import { calculateBirthProfile, interpretEvidenceAi } from '../services/apiClient'
 
-// Preset major cities with automatic coordinates, countries, and explicit IANA timezones
-const CITIES = [
-  { name: 'New Delhi', country: 'India', lat: 28.6139, lon: 77.2090, tz: 'Asia/Kolkata' },
-  { name: 'Mumbai', country: 'India', lat: 18.9220, lon: 72.8347, tz: 'Asia/Kolkata' },
-  { name: 'Bengaluru', country: 'India', lat: 12.9716, lon: 77.5946, tz: 'Asia/Kolkata' },
-  { name: 'London', country: 'United Kingdom', lat: 51.5074, lon: -0.1278, tz: 'Europe/London' },
-  { name: 'New York', country: 'United States', lat: 40.7128, lon: -74.0060, tz: 'America/New_York' },
-  { name: 'Los Angeles', country: 'United States', lat: 34.0522, lon: -118.2437, tz: 'America/Los_Angeles' },
-  { name: 'Tokyo', country: 'Japan', lat: 35.6762, lon: 139.6503, tz: 'Asia/Tokyo' },
-  { name: 'Sydney', country: 'Australia', lat: -33.8688, lon: 151.2093, tz: 'Australia/Sydney' },
-  { name: 'Paris', country: 'France', lat: 48.8566, lon: 2.3522, tz: 'Europe/Paris' },
-  { name: 'Dubai', country: 'United Arab Emirates', lat: 25.2048, lon: 55.2708, tz: 'Asia/Dubai' },
-  { name: 'Singapore', country: 'Singapore', lat: 1.3521, lon: 103.8198, tz: 'Asia/Singapore' },
-  { name: 'Toronto', country: 'Canada', lat: 43.6532, lon: -79.3832, tz: 'America/Toronto' },
-]
+import { LoadingState } from '../components/ui/LoadingState'
+import { ErrorState } from '../components/ui/ErrorState'
+import { BirthProfileForm } from '../components/features/BirthProfileForm'
+import { DashboardOverview } from '../components/features/DashboardOverview'
+import { KundaliAstrolabe } from '../components/features/KundaliAstrolabe'
+import { PlanetaryPositionsTable } from '../components/features/PlanetaryPositionsTable'
+import { VargasGrid } from '../components/features/VargasGrid'
+import { DashasTimeline } from '../components/features/DashasTimeline'
+import { YogasDoshasView } from '../components/features/YogasDoshasView'
+import { ShadbalaAshtakavargaView } from '../components/features/ShadbalaAshtakavargaView'
+import { JaiminiView } from '../components/features/JaiminiView'
+import { PanchangaMuhurtaView } from '../components/features/PanchangaMuhurtaView'
+import { PredictionsView } from '../components/features/PredictionsView'
+import { AiInterpretationView } from '../components/features/AiInterpretationView'
+
+type NavigationTab =
+  | 'home'
+  | 'chart-form'
+  | 'reports'
+  | 'predictions'
+  | 'planets'
+  | 'vargas'
+  | 'dashas'
+  | 'yogas'
+  | 'strength'
+  | 'jaimini'
+  | 'panchanga'
+  | 'ai'
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('chart-form')
+  const [activeTab, setActiveTab] = useState<NavigationTab>('chart-form')
   const [loading, setLoading] = useState(false)
   const [loadingStep, setLoadingStep] = useState(0)
-  const [chartData, setChartData] = useState<any>(null)
+  const [chartData, setChartData] = useState<BirthProfileResponse | null>(null)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
-  // Form state - Start empty for new user input (No default sample profile)
+  // Form state
   const [name, setName] = useState('')
   const [year, setYear] = useState(1995)
   const [month, setMonth] = useState(1)
@@ -33,19 +48,19 @@ export default function Home() {
   const [hour, setHour] = useState(12)
   const [minute, setMinute] = useState(0)
 
-  // City selection & timezone state
-  const [selectedCity, setSelectedCity] = useState(CITIES[0].name)
-  const [latitude, setLatitude] = useState(CITIES[0].lat)
-  const [longitude, setLongitude] = useState(CITIES[0].lon)
-  const [placeName, setPlaceName] = useState(CITIES[0].name)
-  const [country, setCountry] = useState(CITIES[0].country)
-  const [timezoneStr, setTimezoneStr] = useState(CITIES[0].tz)
+  // Location & Timezone
+  const [selectedCity, setSelectedCity] = useState(PRESET_CITIES[0].name)
+  const [latitude, setLatitude] = useState(PRESET_CITIES[0].lat)
+  const [longitude, setLongitude] = useState(PRESET_CITIES[0].lon)
+  const [placeName, setPlaceName] = useState(PRESET_CITIES[0].name)
+  const [country, setCountry] = useState(PRESET_CITIES[0].country)
+  const [timezoneStr, setTimezoneStr] = useState(PRESET_CITIES[0].tz)
 
   const [zodiacSystem, setZodiacSystem] = useState('sidereal')
 
   const handleCityChange = (cityName: string) => {
     setSelectedCity(cityName)
-    const found = CITIES.find(c => c.name === cityName)
+    const found = PRESET_CITIES.find(c => c.name === cityName)
     if (found) {
       setPlaceName(found.name)
       setCountry(found.country)
@@ -58,7 +73,7 @@ export default function Home() {
   const handleCalculate = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name.trim()) {
-      alert('Please enter your full name.')
+      alert('Please enter your full birth name.')
       return
     }
 
@@ -71,24 +86,23 @@ export default function Home() {
     setTimeout(() => setLoadingStep(4), 1800)
 
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-      const res = await fetch(`${API_BASE}/api/v1/birth-profile`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name, year, month, day, hour, minute, second: 0,
-          timezone_str: timezoneStr,
-          latitude, longitude,
-          place_name: placeName, country, zodiac_system: zodiacSystem, ayanamsha: 'lahiri'
-        })
+      const data = await calculateBirthProfile({
+        name,
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second: 0,
+        timezone_str: timezoneStr,
+        latitude,
+        longitude,
+        place_name: placeName,
+        country,
+        zodiac_system: zodiacSystem,
+        ayanamsha: 'lahiri'
       })
 
-      if (!res.ok) {
-        const errData = await res.json()
-        throw new Error(errData.detail || 'Birth profile calculation failed.')
-      }
-
-      const data = await res.json()
       setTimeout(() => {
         setChartData(data)
         setLoading(false)
@@ -101,34 +115,33 @@ export default function Home() {
     }
   }
 
-  // Canonical report & master evidence safely extracted from backend JSON contract (Zero hardcoded fallbacks!)
-  const report = chartData?.report || null
-  const masterEv = chartData?.master_evidence || null
-  const predictions = chartData?.predictions || null
-  const svgChart = chartData?.svg_chart || null
+  const handleAiInterpret = async (domain: string, prompt: string) => {
+    if (!chartData) throw new Error('Please calculate birth profile first.')
+    return await interpretEvidenceAi(chartData.birth_input, domain, prompt)
+  }
 
-  const ascSign = report?.canonical_chart?.ascendant?.sign || (chartData ? 'Unavailable' : null)
-  const ascDegree = report?.canonical_chart?.ascendant?.degree !== undefined ? `${report.canonical_chart.ascendant.degree}°` : ''
-  const moonSign = report?.canonical_chart?.placements?.Moon?.rashi?.sign || (chartData ? 'Unavailable' : null)
-  const sunSign = report?.canonical_chart?.placements?.Sun?.rashi?.sign || (chartData ? 'Unavailable' : null)
-  const moonNakshatra = report?.canonical_chart?.placements?.Moon?.nakshatra_pada?.nakshatra || (chartData ? 'Unavailable' : null)
-  const moonPada = report?.canonical_chart?.placements?.Moon?.nakshatra_pada?.pada || ''
-  const activeDasha = predictions?.active_dasha_summary || (chartData ? 'Unavailable' : null)
+  const masterEv = chartData?.master_evidence
 
-  const yogas = masterEv?.yoga_suite?.detected_yogas || []
-  const doshas = masterEv?.dosha_suite?.detected_doshas || []
-  const vargas = masterEv?.varga_suite?.vargas || {}
-  const panchanga = masterEv?.panchanga || null
-  const transits = masterEv?.transit_snapshot || null
-
-  const sidebarLinks = [
+  const sidebarLinks: { id: NavigationTab; label: string }[] = [
     { id: 'home', label: 'Dashboard' },
     { id: 'chart-form', label: 'Birth Profile' },
-    { id: 'reports', label: 'Reports & Astrolabe' },
-    { id: 'predictions', label: 'Predictions' },
+    { id: 'reports', label: 'Kundali Astrolabe' },
+    { id: 'planets', label: 'Planetary Positions' },
+    { id: 'vargas', label: '16 Vargas' },
+    { id: 'dashas', label: 'Vimshottari Dashas' },
     { id: 'yogas', label: 'Yogas & Doshas' },
+    { id: 'strength', label: 'Shadbala & SAV' },
+    { id: 'jaimini', label: 'Jaimini Sutras' },
     { id: 'panchanga', label: 'Panchanga & Muhurta' },
+    { id: 'predictions', label: '14 Domain Predictions' },
+    { id: 'ai', label: 'AI Interpretation' },
   ]
+
+  const loadingStepMessage =
+    loadingStep === 1 ? 'Querying NASA JPL DE440s Ephemeris Kernel...' :
+    loadingStep === 2 ? 'Normalizing Local Civil Time and Julian Day (UTC & TT)...' :
+    loadingStep === 3 ? 'Evaluating 16 Parashari Vargas, Vimshottari Dashas & Yogas...' :
+    'Synthesizing Canonical Astrology Evidence Package...'
 
   return (
     <div
@@ -137,18 +150,18 @@ export default function Home() {
         minHeight: '100vh',
         backgroundAttachment: 'fixed'
       }}
-      className="text-ivory flex selection:bg-champagne selection:text-midnight relative overflow-x-hidden font-sans w-full"
+      className="text-[#FFFFF0] flex selection:bg-[#F3E5AB] selection:text-[#050816] relative overflow-x-hidden font-sans w-full"
     >
       {/* Sidebar Navigation */}
-      <aside className="w-80 bg-[#0A0D28]/95 border-r border-champagne/20 flex flex-col justify-between p-8 backdrop-blur-2xl shrink-0 hidden md:flex min-h-screen sticky top-0 shadow-2xl">
+      <aside className="w-80 bg-[#0A0D28]/95 border-r border-[#F3E5AB]/20 flex flex-col justify-between p-8 backdrop-blur-2xl shrink-0 hidden md:flex min-h-screen sticky top-0 shadow-2xl">
         <div className="space-y-10">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-champagne via-lightgold to-purple flex items-center justify-center text-midnight font-extrabold text-2xl shadow-xl border border-champagne/40">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#F3E5AB] via-[#F7E792] to-purple-600 flex items-center justify-center text-[#050816] font-extrabold text-2xl shadow-xl border border-[#F3E5AB]/40">
               ✦
             </div>
             <div>
-              <h1 className="text-2xl font-black text-champagne tracking-wider">Astrovision</h1>
-              <p className="text-[10px] text-mutedtext uppercase tracking-widest font-semibold">NASA DE440s Ephemeris Engine</p>
+              <h1 className="text-2xl font-black text-[#F3E5AB] tracking-wider">Astrovision</h1>
+              <p className="text-[10px] text-[#A0A5C0] uppercase tracking-widest font-semibold">NASA DE440s Ephemeris Engine</p>
             </div>
           </div>
 
@@ -159,8 +172,8 @@ export default function Home() {
                 onClick={() => setActiveTab(link.id)}
                 className={`w-full text-left px-5 py-3.5 rounded-2xl transition duration-200 font-semibold text-sm flex items-center gap-3 ${
                   activeTab === link.id
-                    ? 'bg-champagne/20 text-champagne border border-champagne/50 shadow-xl'
-                    : 'text-mutedtext hover:text-ivory hover:bg-white/5'
+                    ? 'bg-[#F3E5AB]/20 text-[#F3E5AB] border border-[#F3E5AB]/50 shadow-xl'
+                    : 'text-[#A0A5C0] hover:text-[#FFFFF0] hover:bg-white/5'
                 }`}
               >
                 <span className="text-xs">✦</span>
@@ -170,293 +183,128 @@ export default function Home() {
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-champagne/15 text-xs text-mutedtext space-y-1">
-          <p className="font-bold text-champagne">Engine Version 6.0.0</p>
+        <div className="pt-6 border-t border-[#F3E5AB]/15 text-xs text-[#A0A5C0] space-y-1">
+          <p className="font-bold text-[#F3E5AB]">Engine Version 6.0.0</p>
           <p>NASA JPL DE440s Sub-Arcsecond Kernel</p>
         </div>
       </aside>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Loading Overlay */}
-        {loading && (
-          <div className="fixed inset-0 bg-midnight/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center p-8 space-y-8">
-            <div className="relative w-32 h-32 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full border-4 border-champagne/20 border-t-champagne animate-spin"></div>
-              <div className="text-4xl text-champagne animate-pulse">✦</div>
-            </div>
-            <div className="text-center space-y-3 max-w-md">
-              <h3 className="text-2xl font-extrabold text-champagne">Calculating Ephemeris State</h3>
-              <p className="text-sm text-mutedtext">
-                {loadingStep === 1 && 'Querying NASA JPL DE440s Ephemeris Kernel...'}
-                {loadingStep === 2 && 'Normalizing Local Civil Time and Julian Day (UTC & TT)...'}
-                {loadingStep === 3 && 'Evaluating 16 Parashari Vargas, Vimshottari Dashas & Yogas...'}
-                {loadingStep === 4 && 'Synthesizing Canonical Astrology Evidence Package...'}
-              </p>
-            </div>
+        {/* Mobile Navigation Bar */}
+        <header className="md:hidden bg-[#0A0D28]/95 border-b border-[#F3E5AB]/20 p-4 flex justify-between items-center sticky top-0 z-40 backdrop-blur-xl">
+          <div className="flex items-center gap-2">
+            <span className="text-xl text-[#F3E5AB]">✦</span>
+            <span className="font-extrabold text-[#F3E5AB]">Astrovision</span>
           </div>
-        )}
+          <select
+            value={activeTab}
+            onChange={e => setActiveTab(e.target.value as NavigationTab)}
+            className="bg-[#050816] border border-[#F3E5AB]/40 rounded-xl p-2 text-xs text-[#FFFFF0]"
+          >
+            {sidebarLinks.map(l => (
+              <option key={l.id} value={l.id}>{l.label}</option>
+            ))}
+          </select>
+        </header>
 
-        <main className="flex-1 p-10 space-y-10 w-full max-w-[1600px] mx-auto">
+        {/* Loading Overlay */}
+        {loading && <LoadingState stepMessage={loadingStepMessage} />}
+
+        <main className="flex-1 p-6 md:p-10 space-y-10 w-full max-w-[1600px] mx-auto">
           {errorMsg && (
-            <div className="bg-rose-950/80 border border-rose-500/50 p-6 rounded-2xl text-rose-200 space-y-2">
-              <h4 className="font-bold text-lg text-rose-100">Calculation Error</h4>
-              <p className="text-sm">{errorMsg}</p>
-            </div>
+            <ErrorState
+              message={errorMsg}
+              onRetry={() => setErrorMsg(null)}
+            />
           )}
 
           {activeTab === 'chart-form' && (
-            <div className="bg-[#17163A]/90 p-12 rounded-3xl border border-champagne/40 shadow-2xl max-w-4xl mx-auto backdrop-blur-2xl relative overflow-hidden w-full">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-purple/30 rounded-full blur-3xl pointer-events-none"></div>
-              <h2 className="text-3xl font-extrabold mb-3 text-champagne">Enter Birth Details</h2>
-              <p className="text-sm text-mutedtext mb-8">Enter your birth particulars to generate your personalized NASA JPL DE440s natal chart and astrological portrait.</p>
-
-              <form onSubmit={handleCalculate} className="space-y-6">
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Full Name</label>
-                  <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Jane Doe" className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base" required />
-                </div>
-
-                <div className="grid grid-cols-3 gap-6">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Year</label>
-                    <input type="number" value={year} onChange={e => setYear(Number(e.target.value))} className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base" required />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Month</label>
-                    <input type="number" value={month} onChange={e => setMonth(Number(e.target.value))} className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base" required />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Day</label>
-                    <input type="number" value={day} onChange={e => setDay(Number(e.target.value))} className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base" required />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Hour (0-23)</label>
-                    <input type="number" value={hour} onChange={e => setHour(Number(e.target.value))} className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base" required />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Minute</label>
-                    <input type="number" value={minute} onChange={e => setMinute(Number(e.target.value))} className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base" required />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Birth City / Location</label>
-                    <select
-                      value={selectedCity}
-                      onChange={e => handleCityChange(e.target.value)}
-                      className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base"
-                    >
-                      {CITIES.map(c => (
-                        <option key={c.name} value={c.name}>{c.name}, {c.country}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">IANA Timezone</label>
-                    <input
-                      type="text"
-                      value={timezoneStr}
-                      onChange={e => setTimezoneStr(e.target.value)}
-                      placeholder="e.g. Asia/Kolkata"
-                      className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-widest text-mutedtext mb-2">Astrology System</label>
-                  <select value={zodiacSystem} onChange={e => setZodiacSystem(e.target.value)} className="w-full bg-[#050816] border border-champagne/40 rounded-2xl p-4 text-ivory focus:border-champagne outline-none transition text-base">
-                    <option value="sidereal">Vedic / Sidereal (Lahiri)</option>
-                    <option value="tropical">Western / Tropical</option>
-                  </select>
-                </div>
-
-                <button type="submit" className="w-full bg-gradient-to-r from-champagne to-lightgold text-midnight font-extrabold py-5 rounded-2xl shadow-2xl hover:opacity-95 transition transform active:scale-[0.99] mt-8 tracking-wide text-lg">
-                  Calculate Personal Birth Chart
-                </button>
-              </form>
-            </div>
+            <BirthProfileForm
+              name={name} setName={setName}
+              year={year} setYear={setYear}
+              month={month} setMonth={setMonth}
+              day={day} setDay={setDay}
+              hour={hour} setHour={setHour}
+              minute={minute} setMinute={setMinute}
+              selectedCity={selectedCity} handleCityChange={handleCityChange}
+              timezoneStr={timezoneStr} setTimezoneStr={setTimezoneStr}
+              zodiacSystem={zodiacSystem} setZodiacSystem={setZodiacSystem}
+              onSubmit={handleCalculate}
+            />
           )}
 
           {activeTab === 'home' && (
-            <div className="space-y-10 w-full">
-              {!chartData ? (
-                <div className="bg-[#17163A]/90 p-16 rounded-3xl border border-champagne/40 shadow-2xl text-center space-y-6 w-full max-w-2xl mx-auto">
-                  <span className="text-4xl text-champagne">✦</span>
-                  <h2 className="text-3xl font-extrabold text-champagne">No Birth Profile Calculated</h2>
-                  <p className="text-mutedtext text-base leading-relaxed">Please enter your exact birth particulars to calculate your NASA JPL DE440s natal chart and unlock your cosmic dashboard.</p>
-                  <button onClick={() => setActiveTab('chart-form')} className="bg-gradient-to-r from-champagne to-lightgold text-midnight font-extrabold px-8 py-4 rounded-2xl shadow-xl text-base">
-                    Enter Birth Details →
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div
-                    className="relative rounded-3xl overflow-hidden border border-champagne/40 shadow-2xl p-12 flex flex-col justify-end min-h-[300px] bg-cover bg-center w-full"
-                    style={{
-                      backgroundImage: `linear-gradient(to top, rgba(5,8,22,0.95) 0%, rgba(23,22,58,0.5) 60%, rgba(5,8,22,0.8) 100%), url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2000&auto=format&fit=crop')`
-                    }}
-                  >
-                    <div className="z-10 space-y-3 max-w-3xl relative">
-                      <span className="px-4 py-1.5 bg-champagne/25 border border-champagne/60 text-champagne text-xs font-extrabold rounded-full uppercase tracking-widest shadow-xl">Astrovision Masterpiece</span>
-                      <h2 className="text-4xl font-extrabold text-white tracking-wide">Cosmic Profile for {name}</h2>
-                      <p className="text-mutedtext text-sm leading-relaxed">
-                        Deterministic NASA JPL DE440s calculation results. Zero fabricated astrological fallbacks.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
-                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Ascendant (Lagna)</span>
-                      <p className="text-2xl font-bold text-white">{ascSign} {ascDegree}</p>
-                    </div>
-                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
-                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Moon Sign (Rashi)</span>
-                      <p className="text-2xl font-bold text-white">{moonSign}</p>
-                    </div>
-                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
-                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Sun Sign</span>
-                      <p className="text-2xl font-bold text-white">{sunSign}</p>
-                    </div>
-                    <div className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-2">
-                      <span className="text-xs uppercase font-extrabold tracking-widest text-champagne">Nakshatra & Pada</span>
-                      <p className="text-2xl font-bold text-white">{moonNakshatra} {moonPada ? `(Pada ${moonPada})` : ''}</p>
-                    </div>
-                  </div>
-
-                  {activeDasha && (
-                    <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-3">
-                      <h3 className="text-xl font-extrabold text-champagne">Active Vimshottari Dasha Hierarchy</h3>
-                      <p className="text-lg text-white font-semibold">{activeDasha}</p>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
+            chartData ? (
+              <DashboardOverview
+                data={chartData}
+                onNewProfile={() => setActiveTab('chart-form')}
+              />
+            ) : (
+              <div className="bg-[#17163A]/90 p-16 rounded-3xl border border-[#F3E5AB]/40 shadow-2xl text-center space-y-6 w-full max-w-2xl mx-auto">
+                <span className="text-4xl text-[#F3E5AB]">✦</span>
+                <h2 className="text-3xl font-extrabold text-[#F3E5AB]">No Birth Profile Calculated</h2>
+                <p className="text-[#A0A5C0] text-base leading-relaxed">
+                  Please enter your exact birth particulars to calculate your NASA JPL DE440s natal chart and unlock your cosmic dashboard.
+                </p>
+                <button
+                  onClick={() => setActiveTab('chart-form')}
+                  className="bg-gradient-to-r from-[#F3E5AB] to-[#F7E792] text-[#050816] font-extrabold px-8 py-4 rounded-2xl shadow-xl text-base"
+                >
+                  Enter Birth Details →
+                </button>
+              </div>
+            )
           )}
 
           {activeTab === 'reports' && (
-            <div className="space-y-8 w-full">
-              {!chartData ? (
-                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
-              ) : (
-                <div className="bg-[#17163A]/90 p-10 rounded-3xl border border-champagne/30 space-y-6">
-                  <h2 className="text-3xl font-extrabold text-champagne">North Indian Kundali Astrolabe</h2>
-                  {svgChart ? (
-                    <div dangerouslySetInnerHTML={{ __html: svgChart }} className="max-w-md mx-auto p-4 bg-black/40 rounded-2xl border border-champagne/20" />
-                  ) : (
-                    <p className="text-mutedtext">Chart SVG unavailable</p>
-                  )}
-                </div>
-              )}
-            </div>
+            <KundaliAstrolabe svgChart={chartData?.svg_chart || null} />
           )}
 
-          {activeTab === 'predictions' && (
-            <div className="space-y-8 w-full">
-              {!predictions ? (
-                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {Object.entries(predictions.domain_predictions || {}).map(([domCode, domData]: [string, any]) => (
-                    <div key={domCode} className="bg-[#17163A]/90 p-6 rounded-2xl border border-champagne/30 space-y-3">
-                      <div className="flex justify-between items-center">
-                        <h4 className="text-lg font-bold text-champagne">{domData.rule_definition?.domain_title || domCode}</h4>
-                        <span className="text-xs px-3 py-1 rounded-full bg-champagne/20 text-champagne font-bold">{domData.evidence_status}</span>
-                      </div>
-                      <p className="text-xs text-mutedtext">{domData.rule_definition?.rule_description}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+          {activeTab === 'planets' && (
+            masterEv?.canonical_chart ? (
+              <PlanetaryPositionsTable chart={masterEv.canonical_chart} />
+            ) : (
+              <div className="text-center py-12 text-[#A0A5C0]">Please calculate a birth profile first.</div>
+            )
+          )}
+
+          {activeTab === 'vargas' && (
+            <VargasGrid vargaSuite={masterEv?.varga_suite} />
+          )}
+
+          {activeTab === 'dashas' && (
+            <DashasTimeline dashaSuite={masterEv?.natal_dasha_suite} />
           )}
 
           {activeTab === 'yogas' && (
-            <div className="space-y-8 w-full">
-              {!chartData ? (
-                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
-              ) : (
-                <div className="space-y-6">
-                  <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-4">
-                    <h3 className="text-2xl font-extrabold text-champagne">Detected Yogas ({yogas.length})</h3>
-                    {yogas.length === 0 ? (
-                      <p className="text-sm text-mutedtext">No classical Yogas detected for this chart.</p>
-                    ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {yogas.map((y: any, i: int) => (
-                          <div key={i} className="p-4 bg-black/30 rounded-xl border border-champagne/20 space-y-1">
-                            <h4 className="font-bold text-white">{y.name}</h4>
-                            <p className="text-xs text-mutedtext">{y.sanskrit_name} ({y.category})</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+            <YogasDoshasView yogaSuite={masterEv?.yoga_suite} doshaSuite={masterEv?.dosha_suite} />
+          )}
 
-                  <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-4">
-                    <h3 className="text-2xl font-extrabold text-champagne">Detected Doshas ({doshas.length})</h3>
-                    {doshas.length === 0 ? (
-                      <p className="text-sm text-mutedtext">No classical Doshas detected for this chart.</p>
-                    ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {doshas.map((d: any, i: int) => (
-                          <div key={i} className="p-4 bg-black/30 rounded-xl border border-champagne/20 space-y-1">
-                            <h4 className="font-bold text-white">{d.name}</h4>
-                            <p className="text-xs text-mutedtext">Status: {d.status}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+          {activeTab === 'strength' && (
+            <ShadbalaAshtakavargaView
+              shadbalaSuite={masterEv?.shadbala_suite}
+              ashtakavargaEvidence={masterEv?.ashtakavarga_evidence}
+            />
+          )}
+
+          {activeTab === 'jaimini' && (
+            <JaiminiView jaiminiSuite={masterEv?.jaimini_suite} />
           )}
 
           {activeTab === 'panchanga' && (
-            <div className="space-y-8 w-full">
-              {!panchanga ? (
-                <p className="text-mutedtext text-center py-12">Please calculate a birth profile first.</p>
-              ) : (
-                <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-champagne/30 space-y-6">
-                  <h3 className="text-2xl font-extrabold text-champagne">Live Astronomical Panchanga & Muhurta</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
-                      <span className="text-xs text-mutedtext uppercase font-bold">Tithi</span>
-                      <p className="text-lg font-bold text-white">{panchanga.tithi?.tithi_name || 'Unavailable'} ({panchanga.tithi?.paksha || ''})</p>
-                    </div>
-                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
-                      <span className="text-xs text-mutedtext uppercase font-bold">Vara</span>
-                      <p className="text-lg font-bold text-white">{panchanga.vara?.day_name_english || 'Unavailable'} ({panchanga.vara?.day_name_sanskrit || ''})</p>
-                    </div>
-                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
-                      <span className="text-xs text-mutedtext uppercase font-bold">Nakshatra</span>
-                      <p className="text-lg font-bold text-white">{panchanga.nakshatra_name || 'Unavailable'} (Pada {panchanga.nakshatra_pada || ''})</p>
-                    </div>
-                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
-                      <span className="text-xs text-mutedtext uppercase font-bold">Nitya Yoga</span>
-                      <p className="text-lg font-bold text-white">{panchanga.nitya_yoga?.yoga_name || 'Unavailable'}</p>
-                    </div>
-                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
-                      <span className="text-xs text-mutedtext uppercase font-bold">Karana</span>
-                      <p className="text-lg font-bold text-white">{panchanga.karana?.karana_name || 'Unavailable'}</p>
-                    </div>
-                    <div className="p-4 bg-black/30 rounded-xl space-y-1">
-                      <span className="text-xs text-mutedtext uppercase font-bold">Rahu Kalam</span>
-                      <p className="text-xs font-bold text-white">{panchanga.rahu_kalam?.start_time_iso ? `${panchanga.rahu_kalam.start_time_iso.substring(11,16)} - ${panchanga.rahu_kalam.end_time_iso.substring(11,16)}` : 'Unavailable'}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+            <PanchangaMuhurtaView
+              panchanga={masterEv?.panchanga}
+              muhurtaSuite={masterEv?.muhurta_suite}
+            />
+          )}
+
+          {activeTab === 'predictions' && (
+            <PredictionsView predictions={chartData?.predictions} />
+          )}
+
+          {activeTab === 'ai' && (
+            <AiInterpretationView onInterpret={handleAiInterpret} />
           )}
         </main>
       </div>
