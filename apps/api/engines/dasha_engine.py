@@ -77,7 +77,7 @@ class DashaEngine:
         if "Moon" not in chart.placements:
             raise ValueError("Moon placement is missing from calculated canonical chart.")
 
-        calc_nak = chart.placements["Moon"].nakshatra_pada.nakshatra_name
+        calc_nak = chart.placements["Moon"].nakshatra_pada.nakshatra
         calc_pada = chart.placements["Moon"].nakshatra_pada.pada
         if moon_nakshatra and moon_nakshatra != calc_nak:
             raise ValueError(
