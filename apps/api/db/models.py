@@ -45,7 +45,7 @@ class BirthProfileModel(Base):
     longitude = Column(Float, nullable=False)
     place_name = Column(String(255), nullable=False)
     country = Column(String(255), nullable=False)
-    created_at = Column(DateTime, default_utc_now, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
 
     owner = relationship("UserModel", back_populates="birth_profiles")
     reports = relationship("CalculationReportModel", back_populates="birth_profile", cascade="all, delete-orphan")
@@ -65,7 +65,7 @@ class CalculationReportModel(Base):
     predictions_json = Column(Text, nullable=False)
     svg_chart = Column(Text, nullable=True)
     report_json = Column(Text, nullable=True)
-    created_at = Column(DateTime, default_utc_now, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
 
     owner = relationship("UserModel", back_populates="calculation_reports")
     birth_profile = relationship("BirthProfileModel", back_populates="reports")
@@ -85,7 +85,7 @@ class AIInterpretationRecordModel(Base):
     prompt = Column(Text, nullable=False)
     interpretation_text = Column(Text, nullable=False)
     validation_status = Column(String(50), nullable=False)
-    created_at = Column(DateTime, default_utc_now, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
 
     report = relationship("CalculationReportModel", back_populates="ai_interpretations")
 
@@ -110,4 +110,4 @@ class AuditRecordModel(Base):
     endpoint = Column(String(255), nullable=False)
     ip_address = Column(String(50), nullable=True)
     details_json = Column(Text, nullable=True)
-    created_at = Column(DateTime, default_utc_now, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)

@@ -36,15 +36,15 @@ router = APIRouter(prefix="/api/v1", tags=["Persistence & User Resources"])
 
 class BirthProfileCreateRequest(BaseModel):
     name: str
-    year: Int
-    month: Int
-    day: Int
-    hour: Int
-    minute: Int
-    second: Int = 0
+    year: int
+    month: int
+    day: int
+    hour: int
+    minute: int
+    second: int = 0
     timezone_str: str
-    latitude: Float
-    longitude: Float
+    latitude: float
+    longitude: float
     place_name: str
     country: str
 
