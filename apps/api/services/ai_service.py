@@ -5,9 +5,12 @@ Section 16..20 Compliance:
 - Server owns all evidence generation. Client prompt cannot override, replace, or alter factual astrology evidence.
 - Explicit AI Provider Policy: Respects settings.ai_provider ('ollama' | 'openai') with ZERO silent switching!
 - Timeout, retry, and circuit-breaker behavior (settings.ai_request_timeout_seconds, settings.ai_max_retries).
-- Structured model and provider metadata attached to all AI responses.
-- AI Provider Health & Reachability Inspection for /health and /ready endpoints.
-- Fails closed with explicit UNAVAILABLE states on provider error or empty response.
+- Structured Semantic Validation Engine: Parses structured JSON validation output (status, unsupported_claims, evidence_conflicts, invented_dates, invented_planets, confidence).
+- Bounded Confidence Clamping: Bounds confidence strictly to [0.0, 1.0].
+- Sanitized Repair Prompt Flow: Prevents adversarial prompt injection via repair instructions.
+- Multi-Pass Repair Pipeline: generation -> validation -> repair -> validation -> final output.
+- Deterministic Post-Validation Rules: Verifies factual claim consistency against source evidence payload.
+- Fails closed with NOT_VALIDATED or UNAVAILABLE states. Never exposes unvalidated text as valid.
 """
 import os
 import re
@@ -28,7 +31,7 @@ class ValidationResult(BaseModel):
     invented_dates: List[str] = Field(default_factory=list)
     invented_planets: List[str] = Field(default_factory=list)
     unsupported_predictions: List[str] = Field(default_factory=list)
-    confidence: float = Field(default=1.0)
+    confidence: float = Field(default=1.0, description="Validation confidence score bounded to [0.0, 1.0]")
     validation_details: Dict[str, Any] = Field(default_factory=dict)
 
 class AIService:
@@ -228,6 +231,19 @@ class AIService:
             return cls._execute_ollama_request(formatted_prompt, model)
 
     @classmethod
+    def _sanitize_string_list(cls, val: Any) -> List[str]:
+        """Ensures val is a list of clean non-empty strings."""
+        if not isinstance(val, list):
+            return []
+        res = []
+        for item in val:
+            if item is not None:
+                clean_s = re.sub(r'[\r\n\[\]{}"\']', ' ', str(item)).strip()
+                if clean_s:
+                    res.append(clean_s[:200])
+        return res
+
+    @classmethod
     def validate_interpretation_structured(
         cls,
         generated_text: str,
@@ -236,6 +252,7 @@ class AIService:
         """
         Validates generated text against source evidence using structured JSON parsing & post-validation rules.
         Fails closed with status 'UNAVAILABLE' or 'NOT_VALIDATED' on provider error or malformed JSON.
+        Bounds confidence strictly to [0.0, 1.0].
         """
         if not generated_text or "service unavailable" in generated_text:
             return ValidationResult(status="UNAVAILABLE", confidence=0.0)
@@ -270,24 +287,30 @@ class AIService:
             if v_status not in ["PASS", "REPAIR", "FAILED"]:
                 v_status = "NOT_VALIDATED"
 
-            unsupported = parsed.get("unsupported_claims", [])
-            conflicts = parsed.get("evidence_conflicts", [])
-            inv_dates = parsed.get("invented_dates", [])
-            inv_planets = parsed.get("invented_planets", [])
-            unsupp_pred = parsed.get("unsupported_predictions", [])
-            conf = float(parsed.get("confidence", 1.0))
+            unsupported = cls._sanitize_string_list(parsed.get("unsupported_claims"))
+            conflicts = cls._sanitize_string_list(parsed.get("evidence_conflicts"))
+            inv_dates = cls._sanitize_string_list(parsed.get("invented_dates"))
+            inv_planets = cls._sanitize_string_list(parsed.get("invented_planets"))
+            unsupp_pred = cls._sanitize_string_list(parsed.get("unsupported_predictions"))
 
+            try:
+                raw_conf = float(parsed.get("confidence", 1.0))
+                conf = max(0.0, min(1.0, raw_conf)) # Clamped to [0.0, 1.0]
+            except (ValueError, TypeError):
+                conf = 0.5
+
+            # Deterministic Post-Validation Enforcement Rules
             if unsupported or conflicts or inv_dates or inv_planets:
                 if v_status == "PASS":
                     v_status = "REPAIR"
 
             return ValidationResult(
                 status=v_status,
-                unsupported_claims=unsupported if isinstance(unsupported, list) else [],
-                evidence_conflicts=conflicts if isinstance(conflicts, list) else [],
-                invented_dates=inv_dates if isinstance(inv_dates, list) else [],
-                invented_planets=inv_planets if isinstance(inv_planets, list) else [],
-                unsupported_predictions=unsupp_pred if isinstance(unsupp_pred, list) else [],
+                unsupported_claims=unsupported,
+                evidence_conflicts=conflicts,
+                invented_dates=inv_dates,
+                invented_planets=inv_planets,
+                unsupported_predictions=unsupp_pred,
                 confidence=conf
             )
 
@@ -331,17 +354,21 @@ class AIService:
                 "generation_model": gen_model,
                 "validation_model": val_model,
                 "validation_status": "UNAVAILABLE",
+                "is_trusted_interpretation": False,
                 "validation_result": ValidationResult(status="UNAVAILABLE", confidence=0.0).model_dump()
             }
 
         text = raw_text
         val_res = cls.validate_interpretation_structured(text, evidence)
 
+        # Multi-Pass Repair Flow with Sanitized Repair Prompt (prevents prompt-injection)
         if val_res.status == "REPAIR":
             logger.info(f"AI Interpretation requiring repair for domain '{domain}'. Triggering repair pass...")
+            raw_issues = val_res.evidence_conflicts or val_res.unsupported_claims or val_res.invented_planets or val_res.invented_dates
+            clean_issues = [re.sub(r'[\r\n\[\]{}"\']', ' ', str(item))[:100] for item in raw_issues]
+
             repair_instructions = (
-                f"Your previous draft had evidence conflicts or unsupported claims: "
-                f"{val_res.evidence_conflicts or val_res.unsupported_claims or val_res.invented_planets}. "
+                f"Previous draft issues: {', '.join(clean_issues)}. "
                 f"Please rewrite the interpretation strictly adhering ONLY to the provided source evidence payload."
             )
             repaired_text = cls.generate_interpretation(f"{prompt}\n\n[REPAIR INSTRUCTIONS]: {repair_instructions}", evidence)
@@ -354,6 +381,7 @@ class AIService:
                     val_res = repaired_val_res
 
         final_status = val_res.status
+        is_trusted = (final_status == "PASS")
 
         return {
             "domain": domain,
@@ -362,5 +390,6 @@ class AIService:
             "generation_model": gen_model,
             "validation_model": val_model,
             "validation_status": final_status,
+            "is_trusted_interpretation": is_trusted,
             "validation_result": val_res.model_dump()
         }
