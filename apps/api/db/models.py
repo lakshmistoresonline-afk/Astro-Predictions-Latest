@@ -20,6 +20,7 @@ class UserModel(Base):
     id = Column(String(36), primary_key=True, default=generate_uuid)
     email = Column(String(255), unique=True, nullable=False, index=True)
     hashed_password = Column(String(255), nullable=False)
+    password_salt = Column(String(64), nullable=True)
     full_name = Column(String(255), nullable=False)
     created_at = Column(DateTime, default=utc_now, nullable=False)
 
@@ -44,7 +45,7 @@ class BirthProfileModel(Base):
     longitude = Column(Float, nullable=False)
     place_name = Column(String(255), nullable=False)
     country = Column(String(255), nullable=False)
-    created_at = Column(DateTime, default=utc_now, nullable=False)
+    created_at = Column(DateTime, default_utc_now, nullable=False)
 
     owner = relationship("UserModel", back_populates="birth_profiles")
     reports = relationship("CalculationReportModel", back_populates="birth_profile", cascade="all, delete-orphan")

@@ -6,6 +6,11 @@ class Settings(BaseSettings):
     app_name: str = "Astro Predictions API"
     environment: str = "development"
 
+    # JWT & Auth Security Configuration
+    jwt_secret_key: str = "astrovision_jwt_secret_key_2026_x89a"
+    jwt_algorithm: str = "HS256"
+    jwt_expiration_hours: int = 24
+
     # CORS Configuration
     cors_allowed_origins: str = "http://localhost:3000,http://127.0.0.1:3000,https://astrovision.io"
 

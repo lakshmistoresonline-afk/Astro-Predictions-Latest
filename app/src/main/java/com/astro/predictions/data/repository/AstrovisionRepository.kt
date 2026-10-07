@@ -2,6 +2,7 @@ package com.astro.predictions.data.repository
 
 import com.astro.predictions.data.api.AstrovisionApiService
 import com.astro.predictions.data.model.*
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,14 +13,28 @@ class AstrovisionRepository(
     baseUrl: String = "http://10.0.2.2:8000/" // Default Android Emulator host pointing to local FastAPI server
 ) {
     private val apiService: AstrovisionApiService
+    private var userAuthToken: String? = null
+
+    fun setAuthToken(token: String?) {
+        userAuthToken = token
+    }
 
     init {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
+        val authInterceptor = Interceptor { chain ->
+            val requestBuilder = chain.request().newBuilder()
+            userAuthToken?.let { token ->
+                requestBuilder.header("Authorization", "Bearer $token")
+            }
+            chain.proceed(requestBuilder.build())
+        }
+
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(logging)
+            .addInterceptor(authInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
