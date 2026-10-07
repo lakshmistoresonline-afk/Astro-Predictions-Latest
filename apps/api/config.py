@@ -5,6 +5,9 @@ class Settings(BaseSettings):
     app_name: str = "Astro Predictions API"
     environment: str = "development"
 
+    # Admin Security Configuration
+    admin_api_key: str = "astrovision_admin_secret_key_2026"
+
     # AI Configuration
     ollama_base_url: str = "http://localhost:11434"
     ai_model_generation: str = "gemma4"

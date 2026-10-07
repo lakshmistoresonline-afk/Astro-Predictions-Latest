@@ -1,19 +1,62 @@
 """
 Admin Export, Compatibility & Rectification Router for Astrovision.
-Section 21 Compliance: Exposes real operational metadata without hardcoded demonstration statistics or timezone defaults.
+Section 21 Compliance: Enforces real server-side admin authentication and audit logging for administrative routes.
 """
-from fastapi import APIRouter, HTTPException, Depends, Header
+import os
+import logging
+import secrets
+from fastapi import APIRouter, HTTPException, Depends, Header, status
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
 
+from apps.api.config import settings
 from apps.api.engines.vedic.models import BirthInput
 from apps.api.engines.compatibility_engine import CompatibilityEngine
 from apps.api.engines.rectification_engine import RectificationEngine
 from apps.api.engines.pdf_report_engine import PDFReportEngine
 from apps.api.engines.report_engine import ReportGeneratorEngine
 
+logger = logging.getLogger("astrovision.security")
+
 router = APIRouter(prefix="/api/v1", tags=["Admin, Compatibility, Rectification & Export"])
+
+def verify_admin_key(
+    x_admin_key: Optional[str] = Header(None, alias="X-Admin-Key"),
+    authorization: Optional[str] = Header(None)
+) -> str:
+    """
+    Enforces server-side admin authentication.
+    Accepts X-Admin-Key header or Bearer token in Authorization header.
+    Fails closed with HTTP 401 (missing credentials) or HTTP 403 (invalid credentials).
+    Audit logs all administrative attempts without logging secret keys.
+    """
+    admin_key = os.environ.get("ADMIN_API_KEY", settings.admin_api_key)
+
+    token = None
+    if x_admin_key and x_admin_key.strip():
+        token = x_admin_key.strip()
+    elif authorization and authorization.startswith("Bearer "):
+        token = authorization[7:].strip()
+
+    if not token:
+        logger.warning("Admin authorization failed: Missing administrative credentials header.")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Missing administrative credentials. Provide X-Admin-Key or Authorization Bearer header.",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
+
+    # Constant-time comparison to prevent timing attacks
+    if not secrets.compare_digest(token, admin_key):
+        logger.warning("Admin authorization failed: Invalid administrative key attempted.")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access forbidden: Invalid administrative key."
+        )
+
+    logger.info("Admin authorization succeeded for administrative endpoint access.")
+    return "authorized_admin"
 
 class CompatibilityRequest(BaseModel):
     person_a_nakshatra: str
@@ -56,11 +99,12 @@ def rectify_birth_time(req: RectificationApiRequest):
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.get("/admin/stats")
-def admin_stats(x_admin_key: Optional[str] = Header(None)):
-    # Item 8: Admin Endpoint Authorization Check
+def admin_stats(admin_user: str = Depends(verify_admin_key)):
+    """Protected Admin Route: Returns operational server stats and engine versions."""
     return {
         "status": "operational",
         "calculation_mode": "Zero-Trust Live Calculation",
+        "admin_status": "authenticated",
         "engine_versions": {
             "calculation_engine": "6.0.0-Celestial-Astrolabe",
             "rule_version": "1.0.0",
