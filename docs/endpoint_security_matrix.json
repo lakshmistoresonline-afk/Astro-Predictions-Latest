@@ -1,0 +1,31 @@
+{
+  "matrix_version": "1.0.0",
+  "security_policy": "Zero-Trust Server-Enforced User Ownership & Administrative Key Verification",
+  "endpoints": [
+    {"route": "/health", "method": "GET", "scope": "public", "auth": "none", "idor": "none"},
+    {"route": "/ready", "method": "GET", "scope": "public", "auth": "none", "idor": "none"},
+    {"route": "/version", "method": "GET", "scope": "public", "auth": "none", "idor": "none"},
+    {"route": "/api/v1/auth/register", "method": "POST", "scope": "public", "auth": "none", "idor": "none"},
+    {"route": "/api/v1/auth/login", "method": "POST", "scope": "public", "auth": "none", "idor": "none"},
+    {"route": "/api/v1/auth/me", "method": "GET", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/birth-profile", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/transits", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/panchanga", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/muhurta", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/jaimini", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/timing-windows", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/interpret-evidence", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/compatibility", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/rectification", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/export/pdf", "method": "POST", "scope": "authenticated_user", "auth": "bearer_jwt", "idor": "none"},
+    {"route": "/api/v1/profiles", "method": "POST", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/profiles", "method": "GET", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/profiles/{id}", "method": "GET", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/profiles/{id}", "method": "PUT", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/profiles/{id}", "method": "DELETE", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/reports", "method": "POST", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/reports/{id}", "method": "GET", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/reports/{id}/pdf", "method": "GET", "scope": "owner_only", "auth": "bearer_jwt", "idor": "server_enforced"},
+    {"route": "/api/v1/admin/stats", "method": "GET", "scope": "admin_only", "auth": "admin_key", "idor": "none"}
+  ]
+}

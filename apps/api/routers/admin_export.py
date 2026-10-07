@@ -1,6 +1,6 @@
 """
 Admin Export, Compatibility & Rectification Router for Astrovision.
-Section 21 Compliance: Enforces real server-side admin authentication and audit logging for administrative routes.
+Section 21 Compliance: Enforces real server-side admin authentication and user authorization for all endpoints.
 """
 import os
 import logging
@@ -11,6 +11,8 @@ from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
 
 from apps.api.config import settings
+from apps.api.db.models import UserModel
+from apps.api.db.auth import get_current_user
 from apps.api.engines.vedic.models import BirthInput
 from apps.api.engines.compatibility_engine import CompatibilityEngine
 from apps.api.engines.rectification_engine import RectificationEngine
@@ -63,7 +65,11 @@ class CompatibilityRequest(BaseModel):
     person_b_nakshatra: str
 
 @router.post("/compatibility")
-def calculate_compatibility(req: CompatibilityRequest):
+def calculate_compatibility(
+    req: CompatibilityRequest,
+    current_user: UserModel = Depends(get_current_user)
+):
+    """Authenticated Route: Computes 36-point Vedic Ashtakoota compatibility matching."""
     return CompatibilityEngine.calculate_ashtakoota(req.person_a_nakshatra, req.person_b_nakshatra)
 
 class RectificationApiRequest(BaseModel):
@@ -72,7 +78,11 @@ class RectificationApiRequest(BaseModel):
     candidate_offsets_minutes: Optional[List[int]] = None
 
 @router.post("/rectification")
-def rectify_birth_time(req: RectificationApiRequest):
+def rectify_birth_time(
+    req: RectificationApiRequest,
+    current_user: UserModel = Depends(get_current_user)
+):
+    """Authenticated Route: Evaluates candidate birth times against milestone events."""
     try:
         bi = req.birth_input
         tz_str = bi.get("timezone_str")
@@ -127,7 +137,11 @@ class ExportPDFRequest(BaseModel):
     timezone_str: str
 
 @router.post("/export/pdf")
-def export_pdf(req: ExportPDFRequest):
+def export_pdf(
+    req: ExportPDFRequest,
+    current_user: UserModel = Depends(get_current_user)
+):
+    """Authenticated Route: Renders and exports 12-chapter PDF report treatise."""
     try:
         report = ReportGeneratorEngine.generate_comprehensive_report(
             name=req.name,
