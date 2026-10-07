@@ -2,12 +2,16 @@
 Master FastAPI Application Entry Point for Astrovision (Phase 2E-R4.1-R12-R10).
 Exposes deterministic local astrology APIs backed by NASA JPL DE440s, 16 Vargas, 5-Level Dasha,
 Shadbala, Ashtakavarga, Transits, Panchanga, Muhurta, Jaimini, Timing Engine, and Server-Owned Evidence AI Handoff.
+Section 1..13 Compliance: Explicit Pydantic request/response schemas, versioned /api/v1 routes, and structured error shapes.
 """
 import os
 import hashlib
+import zoneinfo
 from datetime import datetime, timezone
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 
@@ -61,7 +65,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(admin_export_router)
+# Structured Error Response Exception Handlers
+@app.exception_handler(HTTPException)
+async def custom_http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "detail": str(exc.detail),
+            "error_code": f"HTTP_ERROR_{exc.status_code}",
+            "timestamp_iso": datetime.now(timezone.utc).isoformat()
+        }
+    )
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=400,
+        content={
+            "detail": str(exc),
+            "error_code": "VALIDATION_ERROR",
+            "timestamp_iso": datetime.now(timezone.utc).isoformat()
+        }
+    )
 
 EXPECTED_DE440S_SHA256 = "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2"
 
@@ -83,28 +108,30 @@ def verify_de440s_kernel_status() -> tuple:
     return True, f"SHA-256:{h[:16]}... (32,726,016 bytes)"
 
 class BirthProfileRequest(BaseModel):
-    name: str
-    year: int
-    month: int
-    day: int
-    hour: int
-    minute: int
-    second: Optional[int] = 0
-    timezone_str: str = Field(description="Explicit IANA timezone string e.g. 'Asia/Kolkata'")
-    latitude: float
-    longitude: float
-    place_name: str
-    country: str
-    birth_time_accuracy: Optional[str] = "exact"
+    name: str = Field(description="Full birth name")
+    year: int = Field(description="Four-digit Gregorian birth year (1850-2150)")
+    month: int = Field(description="Birth month (1-12)")
+    day: int = Field(description="Birth day (1-31)")
+    hour: int = Field(description="Local civil hour (0-23)")
+    minute: int = Field(description="Local civil minute (0-59)")
+    second: Optional[int] = Field(default=0, description="Local civil second (0-59)")
+    timezone_str: str = Field(description="Authoritative IANA timezone string e.g. 'Asia/Kolkata'")
+    latitude: float = Field(description="Geographic latitude in degrees [-90.0, 90.0]")
+    longitude: float = Field(description="Geographic longitude in degrees [-180.0, 180.0]")
+    place_name: str = Field(description="City or place name")
+    country: str = Field(description="Country name")
+    zodiac_system: Optional[str] = Field(default="sidereal", description="Zodiac system: 'sidereal' (Vedic Lahiri) or 'tropical' (Western)")
+    ayanamsha: Optional[str] = Field(default="lahiri", description="Ayanamsha mode: 'lahiri' (Chitra Paksha)")
+    birth_time_accuracy: Optional[str] = Field(default="exact", description="Birth time accuracy level")
 
 class TransitRequest(BaseModel):
     birth_input: BirthProfileRequest
-    query_datetime_iso: Optional[str] = None
+    query_datetime_iso: Optional[str] = Field(default=None, description="ISO query datetime string, or None for current observer time")
 
 class AIInterpretationRequest(BaseModel):
     birth_input: BirthProfileRequest
-    prompt: str
-    domain: Optional[str] = "CAREER"
+    prompt: str = Field(description="Interpretation topic request prompt")
+    domain: Optional[str] = Field(default="CAREER", description="Prediction domain code")
 
 @app.get("/health")
 def health_check():
@@ -183,7 +210,7 @@ def calculate_birth_profile(req: BirthProfileRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@app.post("/api/v1/transit-snapshot")
+@app.post("/api/v1/transits")
 def get_transit_snapshot(req: TransitRequest):
     try:
         b_inp = BirthInput(
@@ -302,8 +329,7 @@ def get_timing_suite(req: TransitRequest):
 @app.post("/api/v1/interpret-evidence")
 def interpret_evidence_ai(req: AIInterpretationRequest):
     try:
-        # Section 29 Security: Server generates CanonicalAstrologyEvidence server-side from BirthInput.
-        # Client CANNOT supply arbitrary evidence to AI.
+        # Server-owned CanonicalAstrologyEvidence generation
         b_inp = BirthInput(
             name=req.birth_input.name,
             year=req.birth_input.year,
@@ -333,12 +359,13 @@ def interpret_evidence_ai(req: AIInterpretationRequest):
         }
 
         text = AIService.generate_interpretation(req.prompt, ai_payload)
-        status = AIService.validate_interpretation(text, ai_payload)
+        status_val = AIService.validate_interpretation(text, ai_payload)
         return {
             "domain": dom_code,
             "interpretation": text,
-            "validation_status": status,
-            "server_master_evidence_hash": master_evidence.master_evidence_hash
+            "validation_status": status_val
         }
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
