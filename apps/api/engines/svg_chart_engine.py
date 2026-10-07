@@ -1,4 +1,5 @@
 import math
+from typing import Any
 
 class SVGChartEngine:
     """
@@ -52,7 +53,14 @@ class SVGChartEngine:
 
         # Plot planets along the zodiac wheel based on longitude
         for planet, data in planetary_positions.items():
-            lon = data["longitude"]
+            if hasattr(data, "geocentric_longitude"):
+                lon = data.geocentric_longitude
+            elif hasattr(data, "longitude"):
+                lon = data.longitude
+            elif isinstance(data, dict):
+                lon = data.get("geocentric_longitude", data.get("longitude", 0.0))
+            else:
+                lon = 0.0
             p_rad = math.radians(lon)
             # Position planet marker between inner and outer ring
             pr = r_inner + 25
@@ -68,3 +76,12 @@ class SVGChartEngine:
     @staticmethod
     def generate_south_indian_chart(planetary_positions: dict, title: str = "RASHI CHART (D1)") -> str:
         return SVGChartEngine.generate_circular_zodiac_wheel(planetary_positions, title)
+
+    @staticmethod
+    def generate_north_indian_chart(canonical_chart: Any, title: str = "RASHI CHART (D1)") -> str:
+        placements = {}
+        if hasattr(canonical_chart, "placements"):
+            placements = canonical_chart.placements
+        elif isinstance(canonical_chart, dict):
+            placements = canonical_chart.get("placements", {})
+        return SVGChartEngine.generate_circular_zodiac_wheel(placements, title=title)

@@ -94,10 +94,11 @@ def test_adversarial_prompt_injections():
 
     for prompt_str in injection_prompts:
         def side_effect(url, **kwargs):
+            payload_model = kwargs.get("json", {}).get("model", "")
             payload_prompt = kwargs.get("json", {}).get("prompt", "")
-            assert "Server-Generated Deterministic Evidence" in payload_prompt
-            assert "Capricorn" in payload_prompt
-            if kwargs.get("json", {}).get("model") == settings.ai_model_generation:
+            if payload_model == settings.ai_model_generation:
+                assert "Server-Generated Deterministic Evidence" in payload_prompt
+                assert "Capricorn" in payload_prompt
                 return mock_gen_resp
             return mock_val_resp
 

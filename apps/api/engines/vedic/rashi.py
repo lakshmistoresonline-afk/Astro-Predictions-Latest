@@ -11,6 +11,7 @@ ZODIAC_SIGNS = [
     "Leo", "Virgo", "Libra", "Scorpio",
     "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ]
+RASHI_NAMES = ZODIAC_SIGNS
 
 # 1-based Rashi index (1 = Aries ... 12 = Pisces) to ruling planet name
 RASHI_LORDS = {

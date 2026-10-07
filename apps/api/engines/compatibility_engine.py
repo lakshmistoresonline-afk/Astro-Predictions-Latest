@@ -181,7 +181,7 @@ SWORN_ENEMY_YONIS = {
 # Planetary Friendship Matrix for Moon Rashi Lords
 GRAHA_MAITRI_MATRIX = {
     ("Sun", "Sun"): 5.0, ("Sun", "Moon"): 5.0, ("Sun", "Mars"): 5.0, ("Sun", "Jupiter"): 5.0, ("Sun", "Mercury"): 4.0, ("Sun", "Venus"): 0.0, ("Sun", "Saturn"): 0.0,
-    ("Moon", "Moon"): 5.0, ("Moon", "Mars": 4.0, ("Moon", "Jupiter"): 4.0, ("Moon", "Mercury"): 5.0, ("Moon", "Venus"): 0.5, ("Moon", "Saturn"): 0.5,
+    ("Moon", "Moon"): 5.0, ("Moon", "Mars"): 4.0, ("Moon", "Jupiter"): 4.0, ("Moon", "Mercury"): 5.0, ("Moon", "Venus"): 0.5, ("Moon", "Saturn"): 0.5,
     ("Mars", "Mars"): 5.0, ("Mars", "Jupiter"): 5.0, ("Mars", "Mercury"): 0.5, ("Mars", "Venus"): 3.0, ("Mars", "Saturn"): 0.5,
     ("Mercury", "Mercury"): 5.0, ("Mercury", "Venus"): 5.0, ("Mercury", "Jupiter"): 4.0, ("Mercury", "Saturn"): 4.0,
     ("Jupiter", "Jupiter"): 5.0, ("Jupiter", "Venus"): 0.5, ("Jupiter", "Saturn"): 3.0,
@@ -252,8 +252,8 @@ class CompatibilityEngine:
         cls,
         person_a_moon_nak: str,
         person_b_moon_nak: str,
-        person_a_pada: Optional[Int] = None,
-        person_b_pada: Optional[Int] = None
+        person_a_pada: Optional[int] = None,
+        person_b_pada: Optional[int] = None
     ) -> dict:
         # Parse Boy (Person A) and Girl (Person B)
         boy_name, boy_pada, boy = cls.parse_nakshatra(person_a_moon_nak, person_a_pada)

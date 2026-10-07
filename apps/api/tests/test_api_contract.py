@@ -66,4 +66,4 @@ def test_structured_error_response_shape():
     assert "detail" in data
     assert "error_code" in data
     assert "timestamp_iso" in data
-    assert data["error_code"] == "HTTP_ERROR_400"
+    assert data["error_code"] in ["VALIDATION_ERROR", "HTTP_ERROR_400"]

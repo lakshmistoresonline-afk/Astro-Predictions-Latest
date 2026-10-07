@@ -27,11 +27,16 @@ class BirthInput(BaseModel):
     def validate_timezone(cls, v: str) -> str:
         if not v or v.strip() == "":
             raise ValueError("Timezone string cannot be empty.")
+        tz_clean = v.strip()
         try:
-            zoneinfo.ZoneInfo(v.strip())
-        except Exception as e:
-            raise ValueError(f"Unknown or unresolvable IANA timezone string '{v}': {str(e)}")
-        return v.strip()
+            zoneinfo.ZoneInfo(tz_clean)
+        except Exception:
+            try:
+                import pytz
+                pytz.timezone(tz_clean)
+            except Exception as e:
+                raise ValueError(f"Unknown or unresolvable IANA timezone string '{v}': {str(e)}")
+        return tz_clean
 
     @field_validator("latitude")
     @classmethod

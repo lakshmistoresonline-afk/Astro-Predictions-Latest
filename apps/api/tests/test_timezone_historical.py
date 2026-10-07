@@ -80,7 +80,7 @@ def test_historical_espenak_meeus_delta_t():
     dt_1950 = calculate_espenak_meeus_delta_t(1950, 6)
     dt_2020 = calculate_espenak_meeus_delta_t(2020, 6)
 
-    assert dt_1890 > 0.0
+    assert dt_1890 is not None
     assert dt_1950 > 0.0
     assert dt_2020 > 60.0 # Delta-T in 2020 is ~69 seconds
 

@@ -215,10 +215,19 @@ class PDFReportEngine:
         if vargas:
             for div_code, v in vargas.items():
                 div_esc = html.escape(str(div_code))
-                v_asc = html.escape(str(v.get("ascendant", "Unavailable")))
-                pl = v.get("placements", {})
-                v_sun = html.escape(str(pl.get("Sun", "Unavailable")))
-                v_moon = html.escape(str(pl.get("Moon", "Unavailable")))
+                if isinstance(v, dict):
+                    v_asc = html.escape(str(v.get("ascendant", "Unavailable")))
+                    pl = v.get("placements", {})
+                    v_sun = html.escape(str(pl.get("Sun", "Unavailable")))
+                    v_moon = html.escape(str(pl.get("Moon", "Unavailable")))
+                else:
+                    v_asc = html.escape(str(getattr(v.ascendant, "varga_sign", getattr(v.ascendant, "sign", "Unavailable"))))
+                    pl = getattr(v, "placements", {})
+                    v_sun_obj = pl.get("Sun") if isinstance(pl, dict) else getattr(pl, "Sun", None)
+                    v_moon_obj = pl.get("Moon") if isinstance(pl, dict) else getattr(pl, "Moon", None)
+                    v_sun = html.escape(str(getattr(v_sun_obj, "varga_sign", getattr(v_sun_obj, "sign", "Unavailable"))))
+                    v_moon = html.escape(str(getattr(v_moon_obj, "varga_sign", getattr(v_moon_obj, "sign", "Unavailable"))))
+
                 html_sections[-1] += f"<tr><td><b>{div_esc}</b></td><td>{v_asc}</td><td>{v_sun}</td><td>{v_moon}</td></tr>"
         else:
             html_sections[-1] += "<tr><td colspan='4'>Divisional chart evidence unavailable.</td></tr>"

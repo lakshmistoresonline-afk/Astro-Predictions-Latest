@@ -1,0 +1,202 @@
+{
+  "version": "6.0.0",
+  "commit_sha": "825995fa8de623465ce8267bbcb82ca86de37169",
+  "timestamp_iso": "2026-10-07T13:08:36.136889+00:00",
+  "test_environment": {
+    "python_version": "3.13.0",
+    "platform": "Windows-10-10.0.16299-SP0",
+    "os": "win32"
+  },
+  "total_tests_run": 126,
+  "passed_gates_count": 26,
+  "failed_gates_count": 0,
+  "skipped_gates_count": 0,
+  "artifact_hashes": {
+    "de440s_bsp_sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2"
+  },
+  "gate_details": [
+    {
+      "gate_id": "G01_DE440S_HASH",
+      "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
+      "status": "PASS",
+      "tests_run": 1,
+      "details": "DE440s kernel verified (32,726,016 bytes, SHA-256: c1c7feeab882263f...)"
+    },
+    {
+      "gate_id": "G02_ASTRONOMY",
+      "gate_title": "Sub-Arcsecond Astronomy Accuracy",
+      "status": "PASS",
+      "tests_run": 9,
+      "details": "Pytest executed successfully (9 tests passed)"
+    },
+    {
+      "gate_id": "G03_TIMEZONE_DST",
+      "gate_title": "Historical IANA Timezones & DST Transitions",
+      "status": "PASS",
+      "tests_run": 5,
+      "details": "Pytest executed successfully (5 tests passed)"
+    },
+    {
+      "gate_id": "G04_RASHI_NAKSHATRA",
+      "gate_title": "Rashi, Nakshatra & Pada Boundary Handling",
+      "status": "PASS",
+      "tests_run": 8,
+      "details": "Pytest executed successfully (8 tests passed)"
+    },
+    {
+      "gate_id": "G05_ASCENDANT_HOUSES",
+      "gate_title": "Ascendant & Whole Sign House Divisions",
+      "status": "PASS",
+      "tests_run": 8,
+      "details": "Pytest executed successfully (8 tests passed)"
+    },
+    {
+      "gate_id": "G06_VARGAS_D1_D60",
+      "gate_title": "16 Parashari Divisional Charts D1 through D60",
+      "status": "PASS",
+      "tests_run": 8,
+      "details": "Pytest executed successfully (8 tests passed)"
+    },
+    {
+      "gate_id": "G07_VIMSHOTTARI_DASHA",
+      "gate_title": "5-Level Vimshottari Dasha Hierarchy & Timeline",
+      "status": "PASS",
+      "tests_run": 7,
+      "details": "Pytest executed successfully (7 tests passed)"
+    },
+    {
+      "gate_id": "G08_CLASSICAL_YOGAS",
+      "gate_title": "Parashari Yogas & Independent Oracle Verification",
+      "status": "PASS",
+      "tests_run": 4,
+      "details": "Pytest executed successfully (4 tests passed)"
+    },
+    {
+      "gate_id": "G09_CLASSICAL_DOSHAS",
+      "gate_title": "Parashari Doshas & Structured Cancellations",
+      "status": "PASS",
+      "tests_run": 2,
+      "details": "Pytest executed successfully (2 tests passed)"
+    },
+    {
+      "gate_id": "G10_SHADBALA",
+      "gate_title": "Shadbala 6-Bala Strengths & Subcomponents",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G11_ASHTAKAVARGA",
+      "gate_title": "Ashtakavarga BAV & Dynamic SAV Bindu Matrix",
+      "status": "PASS",
+      "tests_run": 2,
+      "details": "Pytest executed successfully (2 tests passed)"
+    },
+    {
+      "gate_id": "G12_JAIMINI_SUTRAS",
+      "gate_title": "Jaimini Chara Karakas, Arudha Lagna & Karakamsha",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G13_TRANSITS",
+      "gate_title": "Geocentric Planetary Transits & Aspect Contacts",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G14_PANCHANGA",
+      "gate_title": "Panchanga Elements & Local Solar Day Timing",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G15_MUHURTA",
+      "gate_title": "Activity Suitability & Rule Precedence",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G16_PREDICTIVE_TIMING",
+      "gate_title": "Convergent Domain Timing Windows",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G17_RECTIFICATION",
+      "gate_title": "Event-Date Driven Birth Time Rectification",
+      "status": "PASS",
+      "tests_run": 7,
+      "details": "Pytest executed successfully (7 tests passed)"
+    },
+    {
+      "gate_id": "G18_COMPATIBILITY",
+      "gate_title": "Vedic Ashtakoota 36-Point Compatibility",
+      "status": "PASS",
+      "tests_run": 6,
+      "details": "Pytest executed successfully (6 tests passed)"
+    },
+    {
+      "gate_id": "G19_PREDICTION_EVIDENCE",
+      "gate_title": "14 Domain Prediction Evidence Synthesis",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G20_AI_TRUST_BOUNDARY",
+      "gate_title": "Server-Owned Evidence AI Boundary Defense",
+      "status": "PASS",
+      "tests_run": 5,
+      "details": "Pytest executed successfully (5 tests passed)"
+    },
+    {
+      "gate_id": "G21_AI_VALIDATION",
+      "gate_title": "Structured Semantic Validation & Repair Pipeline",
+      "status": "PASS",
+      "tests_run": 5,
+      "details": "Pytest executed successfully (5 tests passed)"
+    },
+    {
+      "gate_id": "G22_PERSISTENCE",
+      "gate_title": "SQLAlchemy Persistent Relational Models & CRUD",
+      "status": "PASS",
+      "tests_run": 7,
+      "details": "Pytest executed successfully (7 tests passed)"
+    },
+    {
+      "gate_id": "G23_IDOR_CONTROLS",
+      "gate_title": "Server-Enforced User Ownership & IDOR Security",
+      "status": "PASS",
+      "tests_run": 7,
+      "details": "Pytest executed successfully (7 tests passed)"
+    },
+    {
+      "gate_id": "G24_API_CONTRACTS",
+      "gate_title": "Versioned /api/v1 OpenAPI & Error Shapes",
+      "status": "PASS",
+      "tests_run": 3,
+      "details": "Pytest executed successfully (3 tests passed)"
+    },
+    {
+      "gate_id": "G25_PDF_EXPORT",
+      "gate_title": "12-Chapter HTML/PDF Report Treatise Export",
+      "status": "PASS",
+      "tests_run": 4,
+      "details": "Pytest executed successfully (4 tests passed)"
+    },
+    {
+      "gate_id": "G26_ADMIN_SECURITY",
+      "gate_title": "Server-Side Admin Key Authentication",
+      "status": "PASS",
+      "tests_run": 7,
+      "details": "Pytest executed successfully (7 tests passed)"
+    }
+  ],
+  "verdict": "PASS - PRODUCTION READY"
+}

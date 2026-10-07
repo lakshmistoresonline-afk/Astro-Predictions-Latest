@@ -9,7 +9,7 @@ Section 13 Compliance:
 """
 import hashlib
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional
 
 from apps.api.engines.vedic.models import BirthInput
@@ -17,11 +17,36 @@ from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
 from apps.api.engines.dasha.engine import AuthoritativeDashaEngine
 from apps.api.engines.transit.engine import TransitEngine
 from apps.api.engines.canonical_evidence import generate_canonical_evidence
-from apps.api.engines.rectification.models import (
-    RectificationEventEvaluation,
-    CandidateTimeEvaluation,
-    RectificationSuiteResult
-)
+from pydantic import BaseModel, Field
+
+class RectificationEventEvaluation(BaseModel):
+    event_type: str
+    event_date: str
+    event_description: str
+    matched_houses: List[int] = Field(default_factory=list)
+    status: str = "INSUFFICIENT_EVIDENCE"
+
+class CandidateTimeEvaluation(BaseModel):
+    offset_minutes: int
+    candidate_birth_time_iso: str
+    supported_event_count: int = 0
+    partially_supported_event_count: int = 0
+    unsupported_event_count: int = 0
+    insufficient_evidence_count: int = 0
+    event_evaluations: List[RectificationEventEvaluation] = Field(default_factory=list)
+    confidence_score: float = 0.0
+
+    @property
+    def time_offset_minutes(self) -> int:
+        return self.offset_minutes
+
+class RectificationSuiteResult(BaseModel):
+    base_birth_time_iso: str
+    best_candidate_offset_minutes: int = 0
+    best_confidence_score: float = 0.0
+    candidate_evaluations: List[CandidateTimeEvaluation] = Field(default_factory=list)
+    rectification_summary: str = "Rectification evaluated."
+    calculation_hash: str = ""
 
 # Supported life milestone event types mapped to relevant Whole Sign houses
 DOMAIN_EVENT_HOUSES = {
@@ -78,7 +103,7 @@ class RectificationEngine:
             )
 
             cand_evidence = generate_canonical_evidence(cand_input)
-            cand_local_dt = cand_evidence.canonical_chart.time_normalization.local_datetime
+            cand_local_dt = cand_evidence.canonical_chart.time_normalization.local_datetime_iso
 
             event_evals: List[RectificationEventEvaluation] = []
             supp_cnt = 0
@@ -114,7 +139,7 @@ class RectificationEngine:
                             event_type=e_type,
                             event_date=e_date_str,
                             event_description=e_desc,
-                            candidate_birth_time=cand_local_dt.strftime("%H:%M:%S"),
+                            candidate_birth_time=str(cand_local_dt),
                             dasha_at_event_date="UNKNOWN",
                             transits_at_event_date="UNKNOWN",
                             relevant_house_connection="None",
@@ -183,17 +208,14 @@ class RectificationEngine:
             cand_hash = hashlib.sha256(json.dumps(c_payload, sort_keys=True).encode("utf-8")).hexdigest()
 
             candidates.append(CandidateTimeEvaluation(
-                time_offset_minutes=offset,
-                candidate_birth_time=cand_local_dt.strftime("%H:%M:%S"),
-                candidate_birth_date_iso=cand_local_dt.strftime("%Y-%m-%d"),
-                candidate_chart_hash=cand_evidence.canonical_chart.calculation_hash,
-                alignment_status=cand_align,
+                offset_minutes=offset,
+                candidate_birth_time_iso=str(cand_local_dt),
                 supported_event_count=supp_cnt,
                 partially_supported_event_count=part_cnt,
                 unsupported_event_count=unsupp_cnt,
-                insufficient_evidence_event_count=insuff_cnt,
+                insufficient_evidence_count=insuff_cnt,
                 event_evaluations=event_evals,
-                calculation_hash=cand_hash
+                confidence_score=0.0 if cand_align == "INSUFFICIENT_EVIDENCE" else round((supp_cnt * 1.0 + part_cnt * 0.5) / max(1, len(events)), 2)
             ))
 
         # Determine overall recommendation across candidates
@@ -223,10 +245,10 @@ class RectificationEngine:
         suite_hash = hashlib.sha256(json.dumps(s_payload, sort_keys=True).encode("utf-8")).hexdigest()
 
         return RectificationSuiteResult(
-            base_birth_input_hash=generate_canonical_evidence(base_birth_input).canonical_chart.calculation_hash,
+            base_birth_time_iso=str(base_birth_dt),
+            best_candidate_offset_minutes=rec_offset or 0,
+            best_confidence_score=best_candidate.confidence_score if best_candidate else 0.0,
             candidate_evaluations=candidates,
-            recommendation_status=rec_status,
-            recommended_adjustment_minutes=rec_offset,
-            explanation=rec_expl,
+            rectification_summary=rec_expl,
             calculation_hash=suite_hash
         )

@@ -58,11 +58,11 @@ def build_canonical_vedic_chart(
         ayanamsha_mode="Lahiri"
     )
 
-    ayanamsha_val = astro_res.sidereal_state.ayanamsha_degrees
+    ayanamsha_val = astro_res.sidereal_state.ayanamsha_value_deg
     placements: Dict[str, PlanetaryVedicPlacement] = {}
 
     # 3. Process Celestial Bodies
-    for body_name, pos in astro_res.raw_ephemeris.planet_positions.items():
+    for body_name, pos in astro_res.raw_ephemeris.bodies.items():
         sid_lon = astro_res.sidereal_state.sidereal_longitudes[body_name]
         rashi = calculate_rashi(sid_lon)
         nak_pada = calculate_nakshatra_pada(sid_lon)
@@ -81,7 +81,7 @@ def build_canonical_vedic_chart(
 
     # 4. Explicit Centralized Mean Nodes: Rahu and Ketu
     rahu_sid_lon, ketu_sid_lon, node_vel = calculate_canonical_mean_nodes(
-        astro_res.raw_ephemeris.julian_date_tt,
+        astro_res.raw_ephemeris.julian_day_tt,
         ayanamsha_val
     )
 
@@ -146,12 +146,12 @@ def build_canonical_vedic_chart(
     mc_rashi = calculate_rashi(mc_sid_deg)
 
     # 6. Whole Sign Houses
-    whole_houses = generate_whole_sign_houses(asc_sid_deg, placements)
+    whole_houses = generate_whole_sign_houses(asc_rashi, placements)
 
     payload = {
         "birth_input": birth_input.model_dump(),
         "julian_day_utc": time_norm.julian_day_utc,
-        "julian_day_tt": astro_res.raw_ephemeris.julian_date_tt,
+        "julian_day_tt": astro_res.raw_ephemeris.julian_day_tt,
         "ascendant_sidereal_longitude": round(asc_sid_deg, 6),
         "ayanamsha": round(ayanamsha_val, 6)
     }
@@ -169,7 +169,7 @@ def build_canonical_vedic_chart(
         calculation_hash=calc_hash,
         metadata={
             "engine_version": "2026.1_CANONICAL_CHARTS_V1",
-            "ephemeris_kernel": astro_res.metadata.kernel_filename,
-            "ephemeris_checksum": astro_res.metadata.kernel_sha256
+            "ephemeris_kernel": astro_res.metadata.ephemeris_kernel,
+            "ephemeris_checksum": astro_res.metadata.kernel_checksum
         }
     )

@@ -11,6 +11,7 @@ NAKSHATRAS = [
     "Mula", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishta", "Shatabhisha",
     "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"
 ]
+NAKSHATRA_NAMES = NAKSHATRAS
 
 NAKSHATRA_SPAN_DEG = 360.0 / 27.0 # 13.333333333333334 degrees (13° 20')
 PADA_SPAN_DEG = NAKSHATRA_SPAN_DEG / 4.0 # 3.3333333333333335 degrees (3° 20')

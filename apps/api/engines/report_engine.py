@@ -81,9 +81,9 @@ class ReportGeneratorEngine:
 
         # Format Vargas
         vargas_data = {}
-        for div_code, v_chart in master_evidence.varga_suite.varga_charts.items():
+        for div_code, v_chart in master_evidence.varga_suite.vargas.items():
             vargas_data[div_code] = {
-                "ascendant": v_chart.ascendant.sign,
+                "ascendant": v_chart.ascendant.varga_sign,
                 "placements": {p: v_chart.placements[p].varga_sign for p in v_chart.placements}
             }
 

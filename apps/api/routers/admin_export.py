@@ -33,7 +33,7 @@ def verify_admin_key(
     Fails closed with HTTP 401 (missing credentials) or HTTP 403 (invalid credentials).
     Audit logs all administrative attempts without logging secret keys.
     """
-    admin_key = os.environ.get("ADMIN_API_KEY", settings.admin_api_key)
+    admin_key = os.environ.get("ADMIN_API_KEY", settings.admin_api_key) or ""
 
     token = None
     if x_admin_key and x_admin_key.strip():
@@ -41,7 +41,7 @@ def verify_admin_key(
     elif authorization and authorization.startswith("Bearer "):
         token = authorization[7:].strip()
 
-    if not token:
+    if not token or not admin_key:
         logger.warning("Admin authorization failed: Missing administrative credentials header.")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

@@ -70,13 +70,9 @@ def normalize_birth_time(input_data: BirthInput) -> TimeNormalization:
             f"maximum supported boundary of {MAX_SUPPORTED_YEAR}-01-22."
         )
 
-    # Timezone resolution using zoneinfo.ZoneInfo
+    # Timezone resolution using zoneinfo.ZoneInfo with pytz.localize fallback for Windows tzdata
     try:
         tz = zoneinfo.ZoneInfo(input_data.timezone_str)
-    except Exception as e:
-        raise TimezoneResolutionError(f"Failed to resolve IANA timezone '{input_data.timezone_str}': {str(e)}")
-
-    try:
         dt_local = datetime(
             input_data.year,
             input_data.month,
@@ -86,8 +82,21 @@ def normalize_birth_time(input_data: BirthInput) -> TimeNormalization:
             input_data.second,
             tzinfo=tz
         )
-    except Exception as e:
-        raise TimezoneResolutionError(f"Ambiguous or non-existent local civil time in timezone '{input_data.timezone_str}': {str(e)}")
+    except Exception:
+        try:
+            import pytz
+            tz_pytz = pytz.timezone(input_data.timezone_str)
+            naive_dt = datetime(
+                input_data.year,
+                input_data.month,
+                input_data.day,
+                input_data.hour,
+                input_data.minute,
+                input_data.second
+            )
+            dt_local = tz_pytz.localize(naive_dt)
+        except Exception as e:
+            raise TimezoneResolutionError(f"Failed to resolve IANA timezone '{input_data.timezone_str}': {str(e)}")
 
     dt_utc = dt_local.astimezone(timezone.utc)
     utc_offset_hrs = dt_local.utcoffset().total_seconds() / 3600.0 if dt_local.utcoffset() else 0.0

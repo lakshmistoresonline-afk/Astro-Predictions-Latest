@@ -454,3 +454,5 @@ class ShadbalaEngine:
             planets=results,
             calculation_hash=calc_hash
         )
+
+AuthoritativeShadbalaEngine = ShadbalaEngine

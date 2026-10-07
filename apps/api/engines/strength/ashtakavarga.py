@@ -152,3 +152,5 @@ class AshtakavargaEngine:
             sav=sav_res,
             calculation_hash=hashlib.sha256(json.dumps({"chart_hash": canonical_chart.calculation_hash, "sav": sav_bindus, "total": total_sav}, sort_keys=True).encode("utf-8")).hexdigest()
         )
+
+AuthoritativeAshtakavargaEngine = AshtakavargaEngine

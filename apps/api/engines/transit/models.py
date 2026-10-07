@@ -9,6 +9,7 @@ Sections 1, 4, 12 & 15 Compliance:
 import math
 from pydantic import BaseModel, Field, model_validator
 from typing import Dict, List, Optional
+from apps.api.engines.vedic.models import RashiPosition, NakshatraPada
 
 CANONICAL_PLANETS = {"Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"}
 ALLOWED_ASPECT_CONVENTIONS = {"Parashari", "Western"}

@@ -3,7 +3,7 @@ Whole Sign House System Metadata Module for Astrovision.
 Maps the 12 houses to zodiac signs based on the canonical Ascendant sign.
 Section 5 & 7 Compliance: Centralized get_house_from_lagna and get_relative_house_distance helpers!
 """
-from typing import List
+from typing import List, Optional, Any
 from apps.api.engines.vedic.models import WholeSignHouse, RashiPosition
 from apps.api.engines.vedic.rashi import ZODIAC_SIGNS
 
@@ -25,7 +25,10 @@ def get_relative_house_distance(source_house: int, target_house: int) -> int:
         raise ValueError("source_house and target_house must be between 1 and 12")
     return ((target_house - source_house) % 12) + 1
 
-def generate_whole_sign_houses(ascendant_rashi: RashiPosition) -> List[WholeSignHouse]:
+def generate_whole_sign_houses(
+    ascendant_rashi: RashiPosition,
+    placements: Optional[Any] = None
+) -> List[WholeSignHouse]:
     """
     Generates Whole Sign house metadata starting from the Ascendant's sign.
     House 1 is the complete sign of the Ascendant.

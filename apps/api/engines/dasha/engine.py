@@ -113,3 +113,5 @@ class AuthoritativeDashaEngine:
 
         suite = cls.calculate_dasha_suite(canonical_chart, query_datetime_utc)
         return suite.active_hierarchy
+
+DashaEngine = AuthoritativeDashaEngine

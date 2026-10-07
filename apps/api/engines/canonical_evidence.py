@@ -73,6 +73,16 @@ class CanonicalAstrologyEvidence(BaseModel):
         """Backward-compatibility alias property returning natal_dasha_suite."""
         return self.natal_dasha_suite
 
+    @property
+    def shadbala(self) -> ShadbalaSuiteResult:
+        """Backward-compatibility alias property returning shadbala_suite."""
+        return self.shadbala_suite
+
+    @property
+    def ashtakavarga(self) -> AshtakavargaSuiteResult:
+        """Backward-compatibility alias property returning ashtakavarga_suite."""
+        return self.ashtakavarga_suite
+
 class CanonicalEvidencePipeline:
     """
     Authoritative Master Pipeline.
@@ -204,3 +214,5 @@ class CanonicalEvidencePipeline:
             temporal_calculation_hash=temporal_hash,
             master_evidence_hash=master_hash
         )
+
+generate_canonical_evidence = CanonicalEvidencePipeline.generate_canonical_evidence

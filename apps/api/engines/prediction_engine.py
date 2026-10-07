@@ -199,7 +199,7 @@ class PredictionEngine:
             pr = active_h.prana.lord_planet if active_h.prana else "None"
             dasha_summary = f"MD: {md}, AD: {ad}, PD: {pd}, SD: {sd}, Prana: {pr}"
 
-        lagna_r_idx = master_evidence.canonical_chart.ascendant.rashi.rashi_index
+        lagna_r_idx = master_evidence.canonical_chart.ascendant.sign_index
 
         for dom in cls.DOMAINS:
             if dom not in DOMAIN_RULES_CONFIG:

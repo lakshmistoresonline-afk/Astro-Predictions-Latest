@@ -23,7 +23,7 @@ import hashlib
 import json
 import math
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 
 from apps.api.engines.astronomy.provider import BaseAstronomyProvider
 from apps.api.engines.astronomy.providers.skyfield_jpl import SkyfieldJPLProvider

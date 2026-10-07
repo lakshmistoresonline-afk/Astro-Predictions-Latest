@@ -6,7 +6,7 @@ from apps.api.engines.vedic.rashi import ZODIAC_SIGNS
 def get_base_chart() -> CanonicalVedicChart:
     """Creates a dummy valid canonical chart that can be mutated for testing. Bypasses Skyfield."""
     inp = BirthInput(name="Synthetic", year=2000, month=1, day=1, hour=12, minute=0, timezone_str="UTC", latitude=0.0, longitude=0.0)
-    tn = TimeNormalization(local_datetime_iso="2000-01-01T12:00:00+00:00", timezone_identifier="UTC", utc_datetime_iso="2000-01-01T12:00:00+00:00", utc_offset_hours=0, julian_day_tt=2451545.0, time_scale="UTC / TT")
+    tn = TimeNormalization(local_datetime_iso="2000-01-01T12:00:00+00:00", timezone_identifier="UTC", utc_datetime_iso="2000-01-01T12:00:00+00:00", utc_offset_hours=0, julian_day_utc=2451545.0, julian_day_tt=2451545.0, time_scale="UTC / TT")
 
     asc = RashiPosition(absolute_longitude=0.0, sign="Aries", sign_index=1, degree=0, minute=0, second=0.0)
     mc = RashiPosition(absolute_longitude=90.0, sign="Cancer", sign_index=4, degree=0, minute=0, second=0.0)

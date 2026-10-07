@@ -3,7 +3,7 @@ User Registration, Login, and Authentication Router for Astrovision.
 Exposes user signup, login token issuance, and authenticated user context routes.
 """
 from fastapi import APIRouter, HTTPException, Depends, status
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.orm import Session
 
 from apps.api.config import settings
@@ -24,13 +24,29 @@ from apps.api.exceptions import (
 router = APIRouter(prefix="/api/v1/auth", tags=["User Authentication"])
 
 class UserRegisterRequest(BaseModel):
-    email: EmailStr = Field(description="User's unique email address")
+    email: str = Field(description="User's unique email address")
     password: str = Field(min_length=8, description="Password (minimum 8 characters)")
     full_name: str = Field(min_length=1, description="User's full name")
 
+    @field_validator("email")
+    @classmethod
+    def validate_email_format(cls, v: str) -> str:
+        v_clean = v.strip().lower()
+        if "@" not in v_clean or "." not in v_clean:
+            raise ValueError("Invalid email address format.")
+        return v_clean
+
 class UserLoginRequest(BaseModel):
-    email: EmailStr = Field(description="User's registered email address")
+    email: str = Field(description="User's registered email address")
     password: str = Field(description="User's plain password")
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_format(cls, v: str) -> str:
+        v_clean = v.strip().lower()
+        if "@" not in v_clean or "." not in v_clean:
+            raise ValueError("Invalid email address format.")
+        return v_clean
 
 class TokenResponse(BaseModel):
     access_token: str
