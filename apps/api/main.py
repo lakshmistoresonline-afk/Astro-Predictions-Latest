@@ -2,10 +2,14 @@
 Master FastAPI Application Entry Point for Astrovision (Phase 2E-R4.1-R12-R10).
 Exposes deterministic local astrology APIs backed by NASA JPL DE440s, 16 Vargas, 5-Level Dasha,
 Shadbala, Ashtakavarga, Transits, Panchanga, Muhurta, Jaimini, Timing Engine, and Server-Owned Evidence AI Handoff.
-Section 1..13 Compliance: Explicit Pydantic request/response schemas, versioned /api/v1 routes, and structured error shapes.
+Section 1..13 Compliance:
+- Correlation ID middleware (X-Request-ID).
+- Structured JSON error responses across all failure classes.
+- Full server-side diagnostic logging with zero client information leakage.
 """
 import os
 import hashlib
+import logging
 import zoneinfo
 from datetime import datetime, timezone
 from fastapi import FastAPI, HTTPException, Request, status
@@ -16,6 +20,17 @@ from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 
 from apps.api.config import settings
+from apps.api.exceptions import (
+    AstrovisionException,
+    AstrovisionValidationError,
+    TimezoneError,
+    ResourceNotFoundError,
+    AuthenticationError,
+    AuthorizationError,
+    AstronomyKernelError,
+    CalculationEngineError
+)
+from apps.api.middleware.correlation import CorrelationIdMiddleware
 from apps.api.engines.birth_engine import BirthDataEngine
 from apps.api.engines.report_engine import ReportGeneratorEngine
 from apps.api.engines.svg_chart_engine import SVGChartEngine
@@ -37,18 +52,15 @@ from apps.api.routers.admin_export import router as admin_export_router
 from apps.api.routers.persistence import router as persistence_router
 from apps.api.db.database import init_db, get_database_status
 
+logger = logging.getLogger("astrovision.api")
+
 app = FastAPI(
     title=settings.app_name,
     version="6.0.0",
     description="Deterministic Astrology Computation, Transit, Panchanga, Muhurta, Jaimini and Prediction Platform"
 )
 
-app.include_router(admin_export_router)
-app.include_router(persistence_router)
-
-@app.on_event("startup")
-def on_startup():
-    init_db()
+app.add_middleware(CorrelationIdMiddleware)
 
 # Production-safe explicit CORS configuration
 origins = [
@@ -65,25 +77,66 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(admin_export_router)
+app.include_router(persistence_router)
+
+@app.on_event("startup")
+def on_startup():
+    init_db()
+
 # Structured Error Response Exception Handlers
+@app.exception_handler(AstrovisionException)
+async def astrovision_exception_handler(request: Request, exc: AstrovisionException):
+    req_id = getattr(request.state, "request_id", "req_unknown")
+    logger.warning(f"[{req_id}] Domain exception: {exc.message} ({exc.error_code})")
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "detail": exc.message,
+            "error_code": exc.error_code,
+            "request_id": req_id,
+            "timestamp_iso": datetime.now(timezone.utc).isoformat()
+        }
+    )
+
 @app.exception_handler(HTTPException)
 async def custom_http_exception_handler(request: Request, exc: HTTPException):
+    req_id = getattr(request.state, "request_id", "req_unknown")
+    logger.warning(f"[{req_id}] HTTP exception {exc.status_code}: {exc.detail}")
     return JSONResponse(
         status_code=exc.status_code,
         content={
             "detail": str(exc.detail),
             "error_code": f"HTTP_ERROR_{exc.status_code}",
+            "request_id": req_id,
             "timestamp_iso": datetime.now(timezone.utc).isoformat()
         }
     )
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    req_id = getattr(request.state, "request_id", "req_unknown")
+    logger.warning(f"[{req_id}] Request validation error: {str(exc)}")
     return JSONResponse(
         status_code=400,
         content={
-            "detail": str(exc),
+            "detail": "Invalid request payload or parameters.",
             "error_code": "VALIDATION_ERROR",
+            "request_id": req_id,
+            "timestamp_iso": datetime.now(timezone.utc).isoformat()
+        }
+    )
+
+@app.exception_handler(Exception)
+async def uncaught_exception_handler(request: Request, exc: Exception):
+    req_id = getattr(request.state, "request_id", "req_unknown")
+    logger.exception(f"[{req_id}] Uncaught internal server error: {str(exc)}")
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail": "An internal server error occurred while processing the request.",
+            "error_code": "INTERNAL_SERVER_ERROR",
+            "request_id": req_id,
             "timestamp_iso": datetime.now(timezone.utc).isoformat()
         }
     )
@@ -151,7 +204,7 @@ def health_check():
 def readiness_check():
     de440s_valid, de440s_msg = verify_de440s_kernel_status()
     if not de440s_valid:
-        raise HTTPException(status_code=503, detail=f"Ephemeris kernel DE440s unavailable: {de440s_msg}")
+        raise AstronomyKernelError(f"Ephemeris kernel DE440s unavailable: {de440s_msg}")
     return {"ready": True}
 
 @app.get("/version")
@@ -207,8 +260,13 @@ def calculate_birth_profile(req: BirthProfileRequest):
             "svg_chart": svg_chart,
             "report": report
         }
+    except (ValueError, TypeError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.exception("Error in calculate_birth_profile")
+        raise CalculationEngineError("Calculation failed due to internal engine error.")
 
 @app.post("/api/v1/transits")
 def get_transit_snapshot(req: TransitRequest):
@@ -240,8 +298,13 @@ def get_transit_snapshot(req: TransitRequest):
         )
 
         return snapshot.model_dump()
+    except (ValueError, TypeError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.exception("Error in get_transit_snapshot")
+        raise CalculationEngineError("Transit calculation failed due to internal engine error.")
 
 @app.post("/api/v1/panchanga")
 def get_panchanga(req: TransitRequest):
@@ -262,8 +325,13 @@ def get_panchanga(req: TransitRequest):
             timezone_str=tz_name
         )
         return panch.model_dump()
+    except (ValueError, TypeError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.exception("Error in get_panchanga")
+        raise CalculationEngineError("Panchanga calculation failed due to internal engine error.")
 
 @app.post("/api/v1/muhurta")
 def get_muhurta_suite(req: TransitRequest):
@@ -283,8 +351,13 @@ def get_muhurta_suite(req: TransitRequest):
             location_name=req.birth_input.place_name
         )
         return muhurta.model_dump()
+    except (ValueError, TypeError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.exception("Error in get_muhurta_suite")
+        raise CalculationEngineError("Muhurta calculation failed due to internal engine error.")
 
 @app.post("/api/v1/jaimini")
 def get_jaimini_suite(req: BirthProfileRequest):
@@ -303,8 +376,13 @@ def get_jaimini_suite(req: BirthProfileRequest):
 
         master_evidence = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
         return master_evidence.jaimini_suite.model_dump()
+    except (ValueError, TypeError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.exception("Error in get_jaimini_suite")
+        raise CalculationEngineError("Jaimini calculation failed due to internal engine error.")
 
 @app.post("/api/v1/timing-windows")
 def get_timing_suite(req: TransitRequest):
@@ -323,13 +401,17 @@ def get_timing_suite(req: TransitRequest):
 
         master_evidence = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
         return master_evidence.timing_suite.model_dump()
+    except (ValueError, TypeError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.exception("Error in get_timing_suite")
+        raise CalculationEngineError("Timing window calculation failed due to internal engine error.")
 
 @app.post("/api/v1/interpret-evidence")
 def interpret_evidence_ai(req: AIInterpretationRequest):
     try:
-        # Server-owned CanonicalAstrologyEvidence generation
         b_inp = BirthInput(
             name=req.birth_input.name,
             year=req.birth_input.year,
@@ -345,10 +427,9 @@ def interpret_evidence_ai(req: AIInterpretationRequest):
         master_evidence = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
         prediction_package = PredictionEngine.generate_all_predictions(master_evidence)
 
-        # Select domain evidence server-side with fail-closed domain check
         dom_code = req.domain.upper() if req.domain else "CAREER"
         if dom_code not in prediction_package.domain_predictions:
-            raise HTTPException(status_code=400, detail=f"Unsupported domain '{req.domain}'. Supported domains: {list(prediction_package.domain_predictions.keys())}")
+            raise AstrovisionValidationError(f"Unsupported domain '{req.domain}'. Supported domains: {list(prediction_package.domain_predictions.keys())}")
 
         dom_evidence = prediction_package.domain_predictions[dom_code]
 
@@ -365,7 +446,10 @@ def interpret_evidence_ai(req: AIInterpretationRequest):
             "interpretation": text,
             "validation_status": status_val
         }
-    except HTTPException:
+    except AstrovisionException:
         raise
+    except (ValueError, TypeError) as e:
+        raise AstrovisionValidationError(str(e))
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.exception("Error in interpret_evidence_ai")
+        raise CalculationEngineError("AI interpretation synthesis failed due to internal service error.")
