@@ -24,6 +24,16 @@ class AstrovisionViewModelTest {
     }
 
     @Test
+    fun testCleanFormInitialization() {
+        assertEquals("", viewModel.nameState.value)
+        assertEquals(2000, viewModel.yearState.value)
+        assertEquals(1, viewModel.monthState.value)
+        assertEquals(1, viewModel.dayState.value)
+        assertEquals(12, viewModel.hourState.value)
+        assertEquals(0, viewModel.minuteState.value)
+    }
+
+    @Test
     fun testCitySelectionUpdatesFormFields() {
         viewModel.onCitySelected(3) // London
         assertEquals("London", viewModel.placeNameState.value)

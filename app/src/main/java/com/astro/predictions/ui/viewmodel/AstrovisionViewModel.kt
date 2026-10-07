@@ -51,9 +51,9 @@ class AstrovisionViewModel(
     private val _activeTab = MutableStateFlow(NavigationTab.FORM)
     val activeTab: StateFlow<NavigationTab> = _activeTab.asStateFlow()
 
-    // Form inputs
-    val nameState = MutableStateFlow("Jane Doe")
-    val yearState = MutableStateFlow(1995)
+    // Form inputs initialized clean (no fake/sample name or preloaded profile)
+    val nameState = MutableStateFlow("")
+    val yearState = MutableStateFlow(2000)
     val monthState = MutableStateFlow(1)
     val dayState = MutableStateFlow(1)
     val hourState = MutableStateFlow(12)
@@ -155,6 +155,19 @@ class AstrovisionViewModel(
     }
 
     fun resetForm() {
+        nameState.value = ""
+        yearState.value = 2000
+        monthState.value = 1
+        dayState.value = 1
+        hourState.value = 12
+        minuteState.value = 0
+        selectedCityIndexState.value = 0
+        timezoneStrState.value = PRESET_CITIES[0].tz
+        placeNameState.value = PRESET_CITIES[0].name
+        countryState.value = PRESET_CITIES[0].country
+        latitudeState.value = PRESET_CITIES[0].lat
+        longitudeState.value = PRESET_CITIES[0].lon
+
         _uiState.value = AstrovisionUiState.Idle
         _aiUiState.value = AiInterpretationUiState.Idle
         _activeTab.value = NavigationTab.FORM
