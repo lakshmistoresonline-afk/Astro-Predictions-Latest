@@ -30,12 +30,21 @@ from apps.api.engines.timing.engine import TimingEngine
 from apps.api.engines.timing.models import TimingSuiteResult
 from apps.api.services.ai_service import AIService
 from apps.api.routers.admin_export import router as admin_export_router
+from apps.api.routers.persistence import router as persistence_router
+from apps.api.db.database import init_db, get_database_status
 
 app = FastAPI(
     title=settings.app_name,
     version="6.0.0",
     description="Deterministic Astrology Computation, Transit, Panchanga, Muhurta, Jaimini and Prediction Platform"
 )
+
+app.include_router(admin_export_router)
+app.include_router(persistence_router)
+
+@app.on_event("startup")
+def on_startup():
+    init_db()
 
 # Production-safe explicit CORS configuration
 origins = [
@@ -100,10 +109,11 @@ class AIInterpretationRequest(BaseModel):
 @app.get("/health")
 def health_check():
     de440s_valid, de440s_msg = verify_de440s_kernel_status()
+    db_stat = get_database_status()
     return {
-        "status": "healthy" if de440s_valid else "degraded",
+        "status": "healthy" if (de440s_valid and "error" not in db_stat) else "degraded",
         "api_status": "active",
-        "database_status": "standalone_in_memory",
+        "database_status": db_stat,
         "ephemeris_status": "NASA JPL DE440s Verified" if de440s_valid else f"error: {de440s_msg}",
         "ai_model_generation": settings.ai_model_generation,
         "ai_model_validation": settings.ai_model_validation,
