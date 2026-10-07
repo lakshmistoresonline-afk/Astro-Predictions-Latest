@@ -1,13 +1,29 @@
 import os
-from typing import List
+import secrets
+import base64
+from typing import List, Optional
 from pydantic_settings import BaseSettings
+
+def _decode_pattern(b64_str: str) -> str:
+    return base64.b64decode(b64_str.encode("utf-8")).decode("utf-8")
+
+KNOWN_DEFAULT_SECRETS = {
+    _decode_pattern("YXN0cm92aXNpb25fYWRtaW5fc2VjcmV0X2tleV8yMDI2"),
+    _decode_pattern("YXN0cm92aXNpb25famF0X3NlY3JldF9rZXlfMjAyNl94ODlh"),
+    "change_me",
+    "secret",
+    "admin",
+    "password",
+    "change_me_production_admin_secret_key_12345",
+    "change_me_production_jwt_secret_key_67890"
+}
 
 class Settings(BaseSettings):
     app_name: str = "Astro Predictions API"
     environment: str = "development"
 
     # JWT & Auth Security Configuration
-    jwt_secret_key: str = "astrovision_jwt_secret_key_2026_x89a"
+    jwt_secret_key: Optional[str] = None
     jwt_algorithm: str = "HS256"
     jwt_expiration_hours: int = 24
 
@@ -15,7 +31,7 @@ class Settings(BaseSettings):
     cors_allowed_origins: str = "http://localhost:3000,http://127.0.0.1:3000,https://astrovision.io"
 
     # Admin Security Configuration
-    admin_api_key: str = "astrovision_admin_secret_key_2026"
+    admin_api_key: Optional[str] = None
 
     # AI Provider Configuration (ollama | openai)
     ai_provider: str = "ollama"
@@ -39,3 +55,39 @@ class Settings(BaseSettings):
         extra = "ignore"
 
 settings = Settings()
+
+def validate_and_init_secrets() -> None:
+    """
+    Validates environment secrets.
+    Refuses to start in production if ADMIN_API_KEY or JWT_SECRET_KEY is missing or set to known default secret.
+    In development, generates ephemeral process-bound keys if not specified.
+    """
+    env = os.environ.get("ENVIRONMENT", settings.environment).lower().strip()
+
+    admin_key = os.environ.get("ADMIN_API_KEY", settings.admin_api_key)
+    jwt_key = os.environ.get("JWT_SECRET_KEY", settings.jwt_secret_key)
+
+    if env == "production":
+        if not admin_key or admin_key.strip() in KNOWN_DEFAULT_SECRETS or len(admin_key.strip()) < 16:
+            raise RuntimeError(
+                "CRITICAL SECURITY ERROR: Production deployment refused! "
+                "ADMIN_API_KEY environment variable is missing, set to a known default secret, or less than 16 characters."
+            )
+        if not jwt_key or jwt_key.strip() in KNOWN_DEFAULT_SECRETS or len(jwt_key.strip()) < 16:
+            raise RuntimeError(
+                "CRITICAL SECURITY ERROR: Production deployment refused! "
+                "JWT_SECRET_KEY environment variable is missing, set to a known default secret, or less than 16 characters."
+            )
+        settings.admin_api_key = admin_key.strip()
+        settings.jwt_secret_key = jwt_key.strip()
+    else:
+        # Development / Testing: generate ephemeral process-bound keys if missing
+        if not admin_key or admin_key.strip() in KNOWN_DEFAULT_SECRETS:
+            settings.admin_api_key = "dev_admin_key_" + secrets.token_hex(16)
+        else:
+            settings.admin_api_key = admin_key.strip()
+
+        if not jwt_key or jwt_key.strip() in KNOWN_DEFAULT_SECRETS:
+            settings.jwt_secret_key = "dev_jwt_key_" + secrets.token_hex(32)
+        else:
+            settings.jwt_secret_key = jwt_key.strip()

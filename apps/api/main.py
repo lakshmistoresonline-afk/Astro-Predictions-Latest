@@ -76,8 +76,11 @@ app.include_router(auth_router)
 app.include_router(admin_export_router)
 app.include_router(persistence_router)
 
+from apps.api.config import settings, validate_and_init_secrets
+
 @app.on_event("startup")
 def on_startup():
+    validate_and_init_secrets()
     init_db()
 
 # Structured Error Response Exception Handlers

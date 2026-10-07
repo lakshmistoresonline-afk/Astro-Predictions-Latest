@@ -10,14 +10,15 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - ENVIRONMENT=production
-      - CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://astrovision.io
-      - ADMIN_API_KEY=astrovision_admin_secret_key_2026
-      - AI_PROVIDER=ollama
-      - OLLAMA_BASE_URL=http://ollama:11434
-      - AI_MODEL_GENERATION=gemma4
-      - AI_MODEL_VALIDATION=qwen3.5
-      - DATABASE_URL=sqlite:////app/data/astrovision.db
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000,https://astrovision.io}
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - AI_PROVIDER=${AI_PROVIDER:-ollama}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
+      - AI_MODEL_GENERATION=${AI_MODEL_GENERATION:-gemma4}
+      - AI_MODEL_VALIDATION=${AI_MODEL_VALIDATION:-qwen3.5}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:////app/data/astrovision.db}
     volumes:
       - astrovision-data:/app/data
     depends_on:
