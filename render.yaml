@@ -3,7 +3,7 @@ services:
     name: astrovision-api
     env: python
     buildCommand: pip install -r apps/api/requirements.txt
-    startCommand: uvicorn apps.api.main:app --host 0.0.0.0 --port $PORT
+    startCommand: alembic upgrade head && uvicorn apps.api.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: ENVIRONMENT
@@ -12,7 +12,18 @@ services:
         value: https://astrovision.io,http://localhost:3000
       - key: ADMIN_API_KEY
         generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: astrovision-postgres
+          property: connectionString
       - key: AI_PROVIDER
         value: ollama
       - key: OLLAMA_BASE_URL
         value: http://localhost:11434
+
+databases:
+  - name: astrovision-postgres
+    databaseName: astrovision_db
+    user: astro_user

@@ -1,6 +1,6 @@
 """
 Authoritative Database Session & Engine Configuration for Astrovision.
-Supports SQLite persistent storage (default astrovision.db) and PostgreSQL via DATABASE_URL.
+Supports SQLite persistent storage for development/testing and PostgreSQL for production via DATABASE_URL.
 """
 import os
 import logging
@@ -8,21 +8,36 @@ from typing import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
 
+from apps.api.config import settings
+
 logger = logging.getLogger("astrovision.db")
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./astrovision.db")
+def get_database_url() -> str:
+    """Resolves database URL from environment or settings."""
+    return os.environ.get("DATABASE_URL", settings.database_url or "sqlite:///./astrovision.db")
 
-connect_args = {}
-if DATABASE_URL.startswith("sqlite"):
-    connect_args["check_same_thread"] = False
+def create_db_engine():
+    """Creates SQLAlchemy engine with dialect-specific connection pooling."""
+    db_url = get_database_url()
 
-engine = create_engine(
-    DATABASE_URL,
-    connect_args=connect_args,
-    echo=False,
-    pool_pre_ping=True
-)
+    if db_url.startswith("sqlite"):
+        return create_engine(
+            db_url,
+            connect_args={"check_same_thread": False},
+            echo=False
+        )
+    else:
+        # PostgreSQL / Server Relational Database
+        return create_engine(
+            db_url,
+            pool_size=10,
+            max_overflow=20,
+            pool_timeout=30,
+            pool_pre_ping=True,
+            echo=False
+        )
 
+engine = create_db_engine()
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -57,7 +72,8 @@ def get_database_status() -> str:
         from sqlalchemy import text
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
-        if DATABASE_URL.startswith("sqlite"):
+        db_url = get_database_url()
+        if db_url.startswith("sqlite"):
             return "sqlite_persistent"
         return "postgresql_persistent"
     except Exception as e:

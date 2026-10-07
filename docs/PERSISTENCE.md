@@ -1,43 +1,45 @@
-# Astrovision Production Persistence & IDOR Security Architecture
+# Astrovision Production Persistence Strategy & Database Architecture
 
-## 1. Persistence Engine & Models (`apps/api/db/`)
-Astrovision implements a production-grade relational persistence layer via SQLAlchemy ORM supporting SQLite persistent storage (default `astrovision.db` file) and PostgreSQL (`DATABASE_URL`).
+## 1. Environment-Dependent Database Strategy
+Astrovision strictly separates development/testing storage from production persistence:
 
-### Persistent Models
-- **`UserModel`** (`users` table): User accounts and authentication credentials.
-- **`BirthProfileModel`** (`birth_profiles` table): User birth profile particulars (Name, DOB, Time, Location, IANA Timezone).
-- **`CalculationReportModel`** (`calculation_reports` table): Persistent master evidence, prediction packages, and comprehensive report JSON artifacts.
+- **Local Development & Testing (`ENVIRONMENT=development`)**:
+  Uses SQLite file database (`sqlite:///./astrovision.db`). Enables rapid local development and isolated test runs.
+- **Production (`ENVIRONMENT=production`)**:
+  **Requires PostgreSQL**. The server startup validation (`validate_and_init_secrets()`) **refuses to start** (`RuntimeError`) if `ENVIRONMENT=production` and `DATABASE_URL` is missing or uses local SQLite (`sqlite://`).
+
+## 2. Production Startup Validation
+At server startup:
+```python
+if env == "production":
+    if not db_url or db_url.strip().startswith("sqlite"):
+        raise RuntimeError(
+            "CRITICAL PERSISTENCE ERROR: Production deployment refused! "
+            "DATABASE_URL environment variable is missing or configured for local SQLite (sqlite://). "
+            "Production deployment requires a persistent PostgreSQL database connection string."
+        )
+```
+
+## 3. Database Connection Pooling & Concurrency
+When connected to a PostgreSQL database, SQLAlchemy configures production connection pooling:
+- `pool_size = 10`
+- `max_overflow = 20`
+- `pool_timeout = 30`
+- `pool_pre_ping = True`
+
+This supports high concurrent user requests without connection exhaustion or stale connection drops.
+
+## 4. Persistent Relational Models (`apps/api/db/models.py`)
+- **`UserModel`** (`users` table): User account credentials with PBKDF2-HMAC-SHA256 salted password hashes and UUID primary keys.
+- **`BirthProfileModel`** (`birth_profiles` table): User birth profile particulars with compound user index `(user_id, id)`.
+- **`CalculationReportModel`** (`calculation_reports` table): Persistent master evidence, prediction packages, and report JSON artifacts.
 - **`AIInterpretationRecordModel`** (`ai_interpretations` table): Historical domain AI narrative interpretations and validation statuses.
 - **`SavedChartModel`** (`saved_charts` table): User saved natal charts and notes.
-- **`AuditRecordModel`** (`audit_records` table): Server-side security audit logs for user actions.
+- **`AuditRecordModel`** (`audit_records` table): Server-side security audit logs for user operations.
 
-## 2. Server-Enforced User Ownership & IDOR Protection
-- **No Client-Supplied Owner Trust**: The server **never** trusts client-supplied user IDs in request bodies or URL path parameters. User identity is resolved strictly server-side via `get_current_user` dependency from the `X-User-Token` or `Authorization: Bearer` headers.
-- **Server-Enforced Scope Filtering**: Every read, update, delete, or export operation filters strictly on `(Model.id == record_id) & (Model.user_id == current_user.id)`.
-- **404 Not Found Handling**: If User B attempts to access User A's record, the server returns `HTTP 404 Not Found` (preventing resource existence enumeration).
-
-## 3. Query Indexes
-For ultra-fast query execution, explicit database indexes are defined on:
-- `users.email`
-- `birth_profiles.user_id` and compound index `(user_id, id)`
-- `calculation_reports.user_id`, `birth_profile_id`, `chart_hash`
-- `ai_interpretations.user_id`, `calculation_report_id`
-- `saved_charts.user_id`, `birth_profile_id`
-
-## 4. Setup & Migration Instructions
-1. **Default Persistent SQLite Storage**:
-   By default, the engine creates and connects to `./astrovision.db` automatically on startup via `init_db()`.
-2. **PostgreSQL Migration**:
-   To connect to a production PostgreSQL cluster, set the `DATABASE_URL` environment variable:
-   ```bash
-   export DATABASE_URL="postgresql://astro_user:secure_password@localhost:5432/astrovision_db"
-   ```
-3. **Health Status Verification**:
-   Query `GET /health`. It will report:
-   ```json
-   {
-     "status": "healthy",
-     "api_status": "active",
-     "database_status": "sqlite_persistent"
-   }
-   ```
+## 5. Schema Migrations (Alembic)
+Production schema upgrades are governed deterministically by Alembic:
+```bash
+alembic upgrade head
+```
+See [`docs/DATABASE_MIGRATIONS.md`](./DATABASE_MIGRATIONS.md) for full migration procedures.

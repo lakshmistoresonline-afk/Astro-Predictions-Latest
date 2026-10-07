@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     app_name: str = "Astro Predictions API"
     environment: str = "development"
 
+    # Database Configuration
+    database_url: Optional[str] = None
+
     # JWT & Auth Security Configuration
     jwt_secret_key: Optional[str] = None
     jwt_algorithm: str = "HS256"
@@ -58,14 +61,15 @@ settings = Settings()
 
 def validate_and_init_secrets() -> None:
     """
-    Validates environment secrets.
-    Refuses to start in production if ADMIN_API_KEY or JWT_SECRET_KEY is missing or set to known default secret.
-    In development, generates ephemeral process-bound keys if not specified.
+    Validates environment secrets and database configuration.
+    Refuses to start in production if ADMIN_API_KEY or JWT_SECRET_KEY is missing or set to default secret,
+    or if DATABASE_URL is missing or uses local SQLite.
     """
     env = os.environ.get("ENVIRONMENT", settings.environment).lower().strip()
 
     admin_key = os.environ.get("ADMIN_API_KEY", settings.admin_api_key)
     jwt_key = os.environ.get("JWT_SECRET_KEY", settings.jwt_secret_key)
+    db_url = os.environ.get("DATABASE_URL", settings.database_url)
 
     if env == "production":
         if not admin_key or admin_key.strip() in KNOWN_DEFAULT_SECRETS or len(admin_key.strip()) < 16:
@@ -78,8 +82,15 @@ def validate_and_init_secrets() -> None:
                 "CRITICAL SECURITY ERROR: Production deployment refused! "
                 "JWT_SECRET_KEY environment variable is missing, set to a known default secret, or less than 16 characters."
             )
+        if not db_url or db_url.strip().startswith("sqlite"):
+            raise RuntimeError(
+                "CRITICAL PERSISTENCE ERROR: Production deployment refused! "
+                "DATABASE_URL environment variable is missing or configured for local SQLite (sqlite://). "
+                "Production deployment requires a persistent PostgreSQL database connection string (e.g. postgresql://user:pass@host:5432/dbname)."
+            )
         settings.admin_api_key = admin_key.strip()
         settings.jwt_secret_key = jwt_key.strip()
+        settings.database_url = db_url.strip()
     else:
         # Development / Testing: generate ephemeral process-bound keys if missing
         if not admin_key or admin_key.strip() in KNOWN_DEFAULT_SECRETS:
@@ -91,3 +102,8 @@ def validate_and_init_secrets() -> None:
             settings.jwt_secret_key = "dev_jwt_key_" + secrets.token_hex(32)
         else:
             settings.jwt_secret_key = jwt_key.strip()
+
+        if not db_url:
+            settings.database_url = "sqlite:///./astrovision.db"
+        else:
+            settings.database_url = db_url.strip()
