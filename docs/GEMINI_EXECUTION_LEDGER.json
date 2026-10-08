@@ -209,6 +209,7 @@
       "status": "FIXED",
       "files_changed": [
         "scripts/live_pilot_smoke_test.py",
+        "apps/api/middleware/rate_limiter.py",
         "apps/api/main.py",
         "docs/LIVE_USER_PILOT_READINESS.json",
         "docs/LIVE_USER_PILOT_READINESS.md"
@@ -218,8 +219,8 @@
       ],
       "tests_passed": 11,
       "tests_failed": 0,
-      "commit_sha": "14f76781511998d6005ff5dc5e8788ee6fab873b",
-      "notes": "Refined live-pilot smoke test: real HTTP path 429 rate limit check, 12-chapter semantic PDF verification, direct DB multi-table account deletion cascade check, and exit code 2 on blocked state."
+      "commit_sha": "1cacb39a5583a4a07114623303f3f598fd9fe069",
+      "notes": "Refined live-pilot smoke test: real 429 RATE_LIMIT_EXCEEDED check, 12-chapter semantic PDF verification, direct DB multi-table account deletion cascade check, and exit code 2 on blocked state."
     }
   ]
 }

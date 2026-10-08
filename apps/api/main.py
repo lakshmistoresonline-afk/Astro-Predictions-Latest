@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 from apps.api.config import settings, validate_and_init_secrets
 from apps.api.middleware.correlation import CorrelationIdMiddleware
+from apps.api.middleware.rate_limiter import enforce_rate_limit
 from apps.api.engines.astronomy.provider import verify_de440s_kernel_status
 from apps.api.engines.astronomy.exceptions import CalculationError, KernelNotFoundError
 from apps.api.engines.vedic.exceptions import VedicEngineError, OutOfBoundaryError, TimezoneResolutionError
@@ -95,6 +96,14 @@ async def astrovision_exception_handler(request: Request, exc: AstrovisionExcept
 async def custom_http_exception_handler(request: Request, exc: HTTPException):
     req_id = getattr(request.state, "request_id", "req_unknown")
     logger.warning(f"[{req_id}] HTTP exception {exc.status_code}: {exc.detail}")
+    if isinstance(exc.detail, dict):
+        content_dict = exc.detail
+        if "request_id" not in content_dict:
+            content_dict["request_id"] = req_id
+        if "timestamp_iso" not in content_dict:
+            content_dict["timestamp_iso"] = datetime.now(timezone.utc).isoformat()
+        return JSONResponse(status_code=exc.status_code, content=content_dict, headers=exc.headers)
+
     return JSONResponse(
         status_code=exc.status_code,
         content={
@@ -102,7 +111,8 @@ async def custom_http_exception_handler(request: Request, exc: HTTPException):
             "error_code": f"HTTP_ERROR_{exc.status_code}",
             "request_id": req_id,
             "timestamp_iso": datetime.now(timezone.utc).isoformat()
-        }
+        },
+        headers=exc.headers
     )
 
 @app.exception_handler(RequestValidationError)
@@ -201,11 +211,15 @@ class TransitRequest(BaseModel):
 @app.post("/api/v1/birth-profile")
 def calculate_birth_profile(
     req: BirthProfileRequest,
+    request: Request,
     current_user: Optional[UserModel] = Depends(get_optional_current_user),
     db: Session = Depends(get_db)
 ):
     try:
-        user_ident = current_user.id if current_user else "anonymous_client"
+        client_ip = request.client.host if request.client else "anonymous_client"
+        user_ident = current_user.id if current_user else f"ip_{client_ip}"
+
+        enforce_rate_limit(request, user_ident)
         QuotaGovernanceService.check_and_increment_chart_quota(db, user_ident)
 
         b_inp = BirthInput(

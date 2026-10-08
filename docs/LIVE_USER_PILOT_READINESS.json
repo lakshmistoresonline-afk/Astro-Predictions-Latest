@@ -2,7 +2,7 @@
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
   "readiness_state": "LOCAL_READY",
-  "timestamp_iso": "2026-10-08T12:08:32.110079+00:00",
+  "timestamp_iso": "2026-10-08T15:04:38.196790+00:00",
   "total_gates": 18,
   "passed_gates": 11,
   "blocked_gates": 7,
@@ -48,7 +48,7 @@
       "gate_title": "API Abuse & Heavy Computational Endpoint Protection",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Protected HTTP API endpoint /api/v1/birth-profile rate limiting and daily threshold (10 requests) enforced with HTTP 429 Too Many Requests."
+      "details": "Sliding-window request-frequency rate limiter enforced on /api/v1/birth-profile (5 requests allowed before HTTP 429 RATE_LIMIT_EXCEEDED with Retry-After: 1s)."
     },
     {
       "gate_id": "L07_AI_RESILIENCE",

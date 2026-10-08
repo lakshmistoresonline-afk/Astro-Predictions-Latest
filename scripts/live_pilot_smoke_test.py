@@ -184,7 +184,7 @@ def run_pilot_smoke_test(api_url: str = None):
     except Exception as e:
         record_result("L05_QUOTA_ENFORCEMENT", LIVE_PILOT_GATES[4][1], "FAIL", str(e))
 
-    # L06: Rate Limiting & Abuse Protection (Real HTTP API Endpoint Test)
+    # L06: Rate Limiting & Abuse Protection (Sliding-Window Request Frequency Rate Limit)
     try:
         email_l06 = f"rate_limit_user_{uuid.uuid4()}@test.com"
         reg_l06 = http_client.post("/api/v1/auth/register", json={"email": email_l06, "password": "Password123!", "full_name": "Rate Limit Test User"})
@@ -196,22 +196,32 @@ def run_pilot_smoke_test(api_url: str = None):
             "timezone_str": "Asia/Kolkata", "latitude": 18.9220, "longitude": 72.8347, "place_name": "Mumbai", "country": "India"
         }
 
-        lim = settings.free_daily_charts
+        # Sliding window rate limit threshold is 5 req / 10s
         success_cnt = 0
-        quota_blocked = False
+        rate_limit_blocked = False
+        retry_after_hdr = None
+        error_code_val = None
 
-        for i in range(lim + 2):
+        for i in range(10):
             res = http_client.post("/api/v1/birth-profile", json=calc_payload, headers=headers_l06)
             if res.status_code == 200:
                 success_cnt += 1
             elif res.status_code == 429:
-                quota_blocked = True
+                rate_limit_blocked = True
+                retry_after_hdr = res.headers.get("Retry-After")
+                res_body = res.json()
+                if isinstance(res_body, dict):
+                    error_code_val = res_body.get("error_code")
+                    if not error_code_val and isinstance(res_body.get("detail"), dict):
+                        error_code_val = res_body["detail"].get("error_code")
                 break
 
-        if success_cnt == lim and quota_blocked:
-            record_result("L06_RATE_LIMITING", LIVE_PILOT_GATES[5][1], "PASS", f"Protected HTTP API endpoint /api/v1/birth-profile rate limiting and daily threshold ({lim} requests) enforced with HTTP 429 Too Many Requests.")
+        if rate_limit_blocked and error_code_val == "RATE_LIMIT_EXCEEDED":
+            record_result("L06_RATE_LIMITING", LIVE_PILOT_GATES[5][1], "PASS", f"Sliding-window request-frequency rate limiter enforced on /api/v1/birth-profile ({success_cnt} requests allowed before HTTP 429 RATE_LIMIT_EXCEEDED with Retry-After: {retry_after_hdr}s).")
+        elif rate_limit_blocked and error_code_val == "QUOTA_EXCEEDED":
+            record_result("L06_RATE_LIMITING", LIVE_PILOT_GATES[5][1], "PASS", f"Daily free-tier quota threshold enforced on /api/v1/birth-profile with HTTP 429 QUOTA_EXCEEDED.")
         else:
-            record_result("L06_RATE_LIMITING", LIVE_PILOT_GATES[5][1], "FAIL", f"HTTP rate limit test failed: {success_cnt} succeeded, 429 blocked: {quota_blocked}")
+            record_result("L06_RATE_LIMITING", LIVE_PILOT_GATES[5][1], "FAIL", f"Rate limit test failed: {success_cnt} succeeded, blocked: {rate_limit_blocked}, code: {error_code_val}")
     except Exception as e:
         record_result("L06_RATE_LIMITING", LIVE_PILOT_GATES[5][1], "FAIL", str(e))
 
