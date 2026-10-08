@@ -21,7 +21,7 @@ services:
       - key: AI_PROVIDER
         value: ollama
       - key: OLLAMA_BASE_URL
-        value: http://localhost:11434
+        value: https://ollama.yourdomain.com
 
 databases:
   - name: astrovision-postgres

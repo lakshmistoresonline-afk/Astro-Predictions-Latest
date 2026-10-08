@@ -61,15 +61,18 @@ settings = Settings()
 
 def validate_and_init_secrets() -> None:
     """
-    Validates environment secrets and database configuration.
-    Refuses to start in production if ADMIN_API_KEY or JWT_SECRET_KEY is missing or set to default secret,
-    or if DATABASE_URL is missing or uses local SQLite.
+    Validates environment secrets, database configuration, and AI deployment topology.
+    Refuses to start in production if ADMIN_API_KEY or JWT_SECRET_KEY is missing/default,
+    if DATABASE_URL uses local SQLite, or if OLLAMA_BASE_URL assumes container localhost.
     """
     env = os.environ.get("ENVIRONMENT", settings.environment).lower().strip()
 
     admin_key = os.environ.get("ADMIN_API_KEY", settings.admin_api_key)
     jwt_key = os.environ.get("JWT_SECRET_KEY", settings.jwt_secret_key)
     db_url = os.environ.get("DATABASE_URL", settings.database_url)
+    ai_prov = os.environ.get("AI_PROVIDER", settings.ai_provider).lower().strip()
+    ollama_url = os.environ.get("OLLAMA_BASE_URL", settings.ollama_base_url).strip()
+    allow_local_override = os.environ.get("ALLOW_LOCAL_OLLAMA_IN_PRODUCTION", "false").lower().strip() == "true"
 
     if env == "production":
         if not admin_key or admin_key.strip() in KNOWN_DEFAULT_SECRETS or len(admin_key.strip()) < 16:
@@ -86,11 +89,20 @@ def validate_and_init_secrets() -> None:
             raise RuntimeError(
                 "CRITICAL PERSISTENCE ERROR: Production deployment refused! "
                 "DATABASE_URL environment variable is missing or configured for local SQLite (sqlite://). "
-                "Production deployment requires a persistent PostgreSQL database connection string (e.g. postgresql://user:pass@host:5432/dbname)."
+                "Production deployment requires a persistent PostgreSQL database connection string."
             )
+        if ai_prov == "ollama" and not allow_local_override and any(loc in ollama_url.lower() for loc in ["localhost", "127.0.0.1", "0.0.0.0"]):
+            raise RuntimeError(
+                "CRITICAL DEPLOYMENT ERROR: Production deployment refused! "
+                f"OLLAMA_BASE_URL is configured as '{ollama_url}'. "
+                "A separately deployed cloud API cannot assume Ollama is on container localhost. "
+                "Specify a non-local OLLAMA_BASE_URL e.g. 'http://ollama-service:11434' or 'https://ollama.yourdomain.com'."
+            )
+
         settings.admin_api_key = admin_key.strip()
         settings.jwt_secret_key = jwt_key.strip()
         settings.database_url = db_url.strip()
+        settings.ollama_base_url = ollama_url
     else:
         # Development / Testing: generate ephemeral process-bound keys if missing
         if not admin_key or admin_key.strip() in KNOWN_DEFAULT_SECRETS:
@@ -107,3 +119,5 @@ def validate_and_init_secrets() -> None:
             settings.database_url = "sqlite:///./astrovision.db"
         else:
             settings.database_url = db_url.strip()
+
+        settings.ollama_base_url = ollama_url
