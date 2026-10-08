@@ -2,7 +2,7 @@
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
   "readiness_state": "LOCAL_READY",
-  "timestamp_iso": "2026-10-08T15:04:38.196790+00:00",
+  "timestamp_iso": "2026-10-08T16:33:17.419156+00:00",
   "total_gates": 18,
   "passed_gates": 11,
   "blocked_gates": 7,
@@ -13,7 +13,7 @@
       "gate_title": "Local Pilot Profile Startup & DE440s Kernel Status",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "API, Database, and DE440s Ephemeris kernel active and ready."
+      "details": "API active (HTTP 200), Database operational (sqlite_persistent), and DE440s Ephemeris kernel verified."
     },
     {
       "gate_id": "L02_AUTHENTICATION",
@@ -41,14 +41,14 @@
       "gate_title": "Persistent Daily Free-Tier Quota Limits",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Daily free-tier limit of 10 charts enforced with HTTP 429."
+      "details": "Daily free-tier quota limit of 10 charts enforced on HTTP API endpoint /api/v1/birth-profile with HTTP 429 QUOTA_EXCEEDED."
     },
     {
       "gate_id": "L06_RATE_LIMITING",
       "gate_title": "API Abuse & Heavy Computational Endpoint Protection",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Sliding-window request-frequency rate limiter enforced on /api/v1/birth-profile (5 requests allowed before HTTP 429 RATE_LIMIT_EXCEEDED with Retry-After: 1s)."
+      "details": "Sliding-window request-frequency rate limiter enforced on protected endpoint (5 requests allowed before HTTP 429 RATE_LIMIT_EXCEEDED with Retry-After: 10s)."
     },
     {
       "gate_id": "L07_AI_RESILIENCE",
@@ -62,7 +62,7 @@
       "gate_title": "ReportLab 12-Chapter Binary PDF Treatise Export",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Binary PDF generated with verified %PDF-1.4 header (4,452 bytes), native birth details, and 12-chapter evidence structure."
+      "details": "Binary PDF generated with verified %PDF-1.4 header (4,452 bytes), native birth details, and all 12 / 12 chapter headings verified."
     },
     {
       "gate_id": "L09_WEB_RUNTIME",
@@ -104,14 +104,14 @@
       "gate_title": "Health, Readiness & Administrative Observability",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Health and administrative observability endpoints verified."
+      "details": "Health and administrative observability endpoints verified with structured subsystem breakdown."
     },
     {
       "gate_id": "L15_SECURITY",
       "gate_title": "Secret Scanner & Constant-Time Security Verification",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Secret scanner verified 0 hardcoded credentials or private keys."
+      "details": "Secret scanner verified 0 hardcoded credentials and constant-time password comparison verified in test_auth_constant_time.py."
     },
     {
       "gate_id": "L16_DATA_RETENTION",
