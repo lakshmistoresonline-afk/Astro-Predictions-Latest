@@ -213,3 +213,5 @@ class TimingEngine:
             timing_windows=windows,
             calculation_hash=calc_hash
         )
+
+TimingEngine.evaluate_timing_suite = TimingEngine.generate_timing_suite

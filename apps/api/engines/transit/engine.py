@@ -206,16 +206,16 @@ class TransitEngine:
             hour=utc_dt.hour,
             minute=utc_dt.minute,
             second=utc_dt.second,
-            lat=natal_chart.birth_input.latitude,
-            lon=natal_chart.birth_input.longitude,
-            elevation=natal_chart.birth_input.elevation_m,
+            lat=natal_chart.input_data.latitude,
+            lon=natal_chart.input_data.longitude,
+            elevation=natal_chart.input_data.elevation_m,
             ayanamsha_mode="Lahiri",
             coord_mode="geocentric"
         )
 
         ayanamsha_val = astro_res.sidereal_state.ayanamsha_value_deg
-        natal_lagna_rashi = natal_chart.ascendant.rashi.rashi_index
-        natal_moon_rashi = natal_chart.placements["Moon"].rashi.rashi_index if "Moon" in natal_chart.placements else natal_lagna_rashi
+        natal_lagna_rashi = natal_chart.ascendant.sign_index
+        natal_moon_rashi = natal_chart.placements["Moon"].rashi.sign_index if "Moon" in natal_chart.placements else natal_lagna_rashi
 
         placements: Dict[str, TransitPlacement] = {}
 
@@ -230,8 +230,8 @@ class TransitEngine:
             nak_pada = calculate_nakshatra_pada(sid_lon)
 
             # Centralized Whole Sign house calculation via get_house_from_lagna
-            house_from_lagna = get_house_from_lagna(rashi.rashi_index, natal_lagna_rashi)
-            house_from_moon = get_house_from_lagna(rashi.rashi_index, natal_moon_rashi)
+            house_from_lagna = get_house_from_lagna(rashi.sign_index, natal_lagna_rashi)
+            house_from_moon = get_house_from_lagna(rashi.sign_index, natal_moon_rashi)
 
             placements[body_name] = TransitPlacement(
                 body_name=body_name,
@@ -283,6 +283,8 @@ class TransitEngine:
         # A. Planet Target Aspects
         for t_name, t_place in placements.items():
             for n_name, n_place in natal_chart.placements.items():
+                if n_name not in CANONICAL_PHYSICAL_TRANSIT_BODIES and n_name not in ["Rahu", "Ketu"]:
+                    continue
                 fwd_angle = forward_angular_difference(t_place.sidereal_longitude, n_place.sidereal_longitude)
                 sep = angular_separation(t_place.sidereal_longitude, n_place.sidereal_longitude)
 

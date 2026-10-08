@@ -71,6 +71,18 @@ class RashiPosition(BaseModel):
     minute: int = Field(description="Arcminutes within degree [0, 59]")
     second: float = Field(description="Arcseconds within minute [0.0, 60.0)")
 
+    @property
+    def rashi_index(self) -> int:
+        return self.sign_index
+
+    @property
+    def rashi(self) -> "RashiPosition":
+        return self
+
+    @property
+    def name_english(self) -> str:
+        return self.sign
+
 class NakshatraPada(BaseModel):
     """Full Precision Nakshatra and Pada Placement."""
     nakshatra: str = Field(description="Nakshatra name (e.g., 'Pushya')")
@@ -100,6 +112,14 @@ class WholeSignHouse(BaseModel):
     start_longitude: float = Field(description="Start longitude of house in sidereal zodiac")
     end_longitude: float = Field(description="End longitude of house in sidereal zodiac")
 
+    @property
+    def rashi(self) -> "WholeSignHouse":
+        return self
+
+    @property
+    def name_english(self) -> str:
+        return self.sign
+
 class CanonicalVedicChart(BaseModel):
     """Complete Canonical Vedic Chart Object."""
     input_data: BirthInput
@@ -112,3 +132,11 @@ class CanonicalVedicChart(BaseModel):
     whole_sign_houses: List[WholeSignHouse]
     calculation_hash: str
     metadata: Dict[str, str]
+
+    @property
+    def birth_input(self) -> BirthInput:
+        return self.input_data
+
+    @property
+    def houses(self) -> List[WholeSignHouse]:
+        return self.whole_sign_houses

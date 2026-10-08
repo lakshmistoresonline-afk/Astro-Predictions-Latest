@@ -45,6 +45,14 @@ class DashaPeriodNode(BaseModel):
         """Backward-compatibility property returning lord planet name."""
         return self.lord
 
+    @property
+    def start_datetime_iso(self) -> str:
+        return self.start_utc_iso
+
+    @property
+    def end_datetime_iso(self) -> str:
+        return self.end_utc_iso
+
 class ActiveDashaHierarchy(BaseModel):
     """Active Dasha levels for a query datetime."""
     query_utc_iso: str

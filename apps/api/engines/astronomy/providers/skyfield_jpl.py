@@ -61,9 +61,11 @@ class SkyfieldJPLProvider(BaseAstronomyProvider):
         self.skyfield_version = "Unknown"
         try:
             import skyfield
+            from skyfield import almanac
             from skyfield.api import load, wgs84
             from skyfield.errors import EphemerisRangeError
             self.skyfield = skyfield
+            self.almanac = almanac
             self.load = load
             self.wgs84 = wgs84
             self.EphemerisRangeError = EphemerisRangeError
@@ -295,16 +297,19 @@ class SkyfieldJPLProvider(BaseAstronomyProvider):
         Calculates exact local sunrise and sunset for observer coordinates and local date.
         """
         import zoneinfo
-        tz = zoneinfo.ZoneInfo(timezone_name)
+        try:
+            tz = zoneinfo.ZoneInfo(timezone_name)
+        except Exception:
+            import pytz
+            tz = pytz.timezone(timezone_name)
 
         t_start = self.ts.utc(local_date.year, local_date.month, local_date.day, 0, 0, 0)
         t_end = self.ts.utc(local_date.year, local_date.month, local_date.day, 23, 59, 59)
 
-        earth = self.eph["earth"]
-        observer = earth + self.wgs84.latlon(latitude, longitude, elevation_m=elevation)
+        observer = self.wgs84.latlon(latitude, longitude, elevation_m=elevation)
 
         sun = self.eph["sun"]
-        t_times, events = self.skyfield.almanac.find_discrete(t_start, t_end, self.skyfield.almanac.sunrise_sunset(self.eph, observer))
+        t_times, events = self.almanac.find_discrete(t_start, t_end, self.almanac.sunrise_sunset(self.eph, observer))
 
         sunrise_utc = None
         sunset_utc = None

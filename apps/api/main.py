@@ -11,6 +11,7 @@ from apps.api.engines.astronomy.provider import verify_de440s_kernel_status
 from apps.api.engines.astronomy.exceptions import CalculationError, KernelNotFoundError
 from apps.api.engines.vedic.exceptions import VedicEngineError, OutOfBoundaryError, TimezoneResolutionError
 from apps.api.engines.vedic.models import BirthInput
+from apps.api.engines.vedic.time_normalization import normalize_birth_time
 from apps.api.engines.canonical_evidence import CanonicalEvidencePipeline, CanonicalAstrologyEvidence
 from apps.api.engines.prediction_engine import PredictionEngine
 from apps.api.engines.svg_chart_engine import SVGChartEngine
@@ -263,7 +264,7 @@ def get_transit_snapshot(req: TransitRequest):
             if q_dt.tzinfo is None:
                 q_dt = q_dt.replace(tzinfo=timezone.utc)
 
-        snapshot = TransitEngine.calculate_transit_snapshot(master_ev.canonical_chart, query_datetime_utc=q_dt)
+        snapshot = TransitEngine.calculate_transit_snapshot(master_ev.canonical_chart, query_dt=q_dt)
         return snapshot.model_dump()
     except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
         raise AstrovisionValidationError(str(e))
@@ -288,13 +289,22 @@ def calculate_panchanga(req: TransitRequest):
             latitude=req.birth_input.latitude,
             longitude=req.birth_input.longitude
         )
-        q_dt = None
         if req.query_datetime_utc:
             q_dt = datetime.fromisoformat(req.query_datetime_utc)
             if q_dt.tzinfo is None:
                 q_dt = q_dt.replace(tzinfo=timezone.utc)
+        else:
+            time_norm = normalize_birth_time(b_inp)
+            q_dt = datetime.fromisoformat(time_norm.utc_datetime_iso)
 
-        res = PanchangaEngine.calculate_panchanga(b_inp, query_datetime_utc=q_dt)
+        res = PanchangaEngine.calculate_panchanga(
+            dt=q_dt,
+            latitude=b_inp.latitude,
+            longitude=b_inp.longitude,
+            elevation=b_inp.elevation_m,
+            location_name=b_inp.name,
+            timezone_str=b_inp.timezone_str
+        )
         return res.model_dump()
     except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
         raise AstrovisionValidationError(str(e))
@@ -319,14 +329,24 @@ def calculate_muhurta_suite(req: TransitRequest):
             latitude=req.birth_input.latitude,
             longitude=req.birth_input.longitude
         )
-        master_ev = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
-        q_dt = None
         if req.query_datetime_utc:
             q_dt = datetime.fromisoformat(req.query_datetime_utc)
             if q_dt.tzinfo is None:
                 q_dt = q_dt.replace(tzinfo=timezone.utc)
+        else:
+            time_norm = normalize_birth_time(b_inp)
+            q_dt = datetime.fromisoformat(time_norm.utc_datetime_iso)
 
-        res = MuhurtaEngine.evaluate_muhurta_suite(b_inp, master_ev.canonical_chart, query_datetime_utc=q_dt)
+        panchanga = PanchangaEngine.calculate_panchanga(
+            dt=q_dt,
+            latitude=b_inp.latitude,
+            longitude=b_inp.longitude,
+            elevation=b_inp.elevation_m,
+            location_name=b_inp.name,
+            timezone_str=b_inp.timezone_str
+        )
+
+        res = MuhurtaEngine.calculate_muhurta_suite(panchanga)
         return res.model_dump()
     except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
         raise AstrovisionValidationError(str(e))
@@ -384,7 +404,7 @@ def calculate_predictive_timing(req: TransitRequest):
             if q_dt.tzinfo is None:
                 q_dt = q_dt.replace(tzinfo=timezone.utc)
 
-        res = TimingEngine.evaluate_timing_suite(master_ev.canonical_chart, query_datetime_utc=q_dt)
+        res = TimingEngine.generate_timing_suite(master_ev.canonical_chart, query_dt=q_dt)
         return res.model_dump()
     except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
         raise AstrovisionValidationError(str(e))

@@ -217,8 +217,12 @@ class PanchangaEngine:
 
         try:
             target_zone = zoneinfo.ZoneInfo(tz_str)
-        except Exception as e:
-            raise ValueError(f"Invalid or unresolvable IANA timezone key '{tz_str}': {str(e)}")
+        except Exception:
+            try:
+                import pytz
+                target_zone = pytz.timezone(tz_str)
+            except Exception as e:
+                raise ValueError(f"Invalid or unresolvable IANA timezone key '{tz_str}': {str(e)}")
 
         utc_dt = dt.astimezone(timezone.utc)
 
@@ -421,7 +425,7 @@ class PanchangaEngine:
             "gulika_end": gulika_w.end_time_iso,
             "abhijit_start": abhijit_w.start_time_iso,
             "abhijit_end": abhijit_w.end_time_iso,
-            "astro_hash": astro_res.calculation_hash,
+            "astro_hash": astro_res.metadata.calculation_hash,
             "panchanga_ruleset_version": "2026.1_CANONICAL_PANCHANGA_V2"
         }
         p_hash = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
