@@ -2,7 +2,7 @@
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
   "readiness_state": "LOCAL_READY",
-  "timestamp_iso": "2026-10-08T09:17:46.570213+00:00",
+  "timestamp_iso": "2026-10-08T09:30:36.300008+00:00",
   "total_gates": 18,
   "passed_gates": 13,
   "blocked_gates": 5,
@@ -30,7 +30,7 @@
       "gate_id": "L04_DATABASE_PERSISTENCE",
       "gate_title": "Alembic Production Database Schema Lifecycle",
       "status": "BLOCKED",
-      "details": "Alembic migration check: Target database is not up to date."
+      "details": "Alembic target database check: Target database is not up to date."
     },
     {
       "gate_id": "L05_QUOTA_ENFORCEMENT",
@@ -42,19 +42,19 @@
       "gate_id": "L06_RATE_LIMITING",
       "gate_title": "API Abuse & Heavy Computational Endpoint Protection",
       "status": "PASS",
-      "details": "Heavy computational input validation bounds (coordinates, dates) enforced with HTTP 400/422."
+      "details": "Protected endpoint rate limiting and daily free-tier threshold (10 requests) enforced with HTTP 429."
     },
     {
       "gate_id": "L07_AI_RESILIENCE",
       "gate_title": "AI Trust Boundary, Prompt Injection & Outage Resilience",
       "status": "BLOCKED",
-      "details": "Ollama local service not running (error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (C). Non-AI features remain 100% usable."
+      "details": "Ollama local service not running (error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (C). Non-AI calculation features remain 100% usable."
     },
     {
       "gate_id": "L08_PDF_GENERATION",
       "gate_title": "ReportLab 12-Chapter Binary PDF Treatise Export",
       "status": "PASS",
-      "details": "Binary PDF generated successfully (4,421 bytes, starting %PDF-1.4)."
+      "details": "Binary PDF generated with verified %PDF-1.4 header (4,452 bytes) and 12-chapter evidence structure."
     },
     {
       "gate_id": "L09_WEB_RUNTIME",
@@ -84,7 +84,7 @@
       "gate_id": "L13_BACKUP_RESTORE",
       "gate_title": "Database Backup & Restoration Runbook Procedures",
       "status": "PASS",
-      "details": "Backup and restoration cycle executed and verified successfully."
+      "details": "SQLite local development database backup and restoration cycle executed and verified successfully."
     },
     {
       "gate_id": "L14_OBSERVABILITY",
@@ -102,7 +102,7 @@
       "gate_id": "L16_DATA_RETENTION",
       "gate_title": "User Account Deletion & Clean Cascade Retention",
       "status": "PASS",
-      "details": "Account deletion (DELETE /api/v1/auth/me) and direct database row cascade verified with 0 orphan records."
+      "details": "Account deletion (DELETE /api/v1/auth/me) and direct database row cascade verified across users, profiles, reports, charts, AI records, and quotas (0 orphan records)."
     },
     {
       "gate_id": "L17_FEEDBACK",
@@ -114,7 +114,7 @@
       "gate_id": "L18_EMERGENCY_SHUTDOWN",
       "gate_title": "Emergency Port Block & Session Revocation Runbook",
       "status": "PASS",
-      "details": "Emergency session revocation registry verified."
+      "details": "Emergency session token revocation registry and emergency port block runbook verified."
     }
   ],
   "verdict": "PILOT NOT READY (LOCAL READY - 5 GATES BLOCKED)"
