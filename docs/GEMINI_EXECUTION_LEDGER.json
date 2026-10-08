@@ -217,7 +217,7 @@
       ],
       "tests_passed": 13,
       "tests_failed": 0,
-      "commit_sha": "fc4a519cc611cf1ca4e8b2c1f3a3e44d8443ab98",
+      "commit_sha": "14f76781511998d6005ff5dc5e8788ee6fab873b",
       "notes": "Refined live-pilot smoke test: real 429 rate limit check, 12-chapter semantic PDF verification, direct DB multi-table account deletion cascade check, and exit code 2 on blocked state."
     }
   ]
