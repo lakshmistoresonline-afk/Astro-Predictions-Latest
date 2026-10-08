@@ -7,7 +7,7 @@ from alembic import context
 # Add project root to sys.path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from apps.api.db.database import Base, DATABASE_URL
+from apps.api.db.database import Base, get_database_url
 from apps.api.db.models import (
     UserModel,
     BirthProfileModel,
@@ -25,7 +25,7 @@ if config.config_file_name:
 target_metadata = Base.metadata
 
 def run_migrations_offline() -> None:
-    url = os.environ.get("DATABASE_URL", DATABASE_URL)
+    url = config.get_main_option("sqlalchemy.url") or os.environ.get("DATABASE_URL", get_database_url())
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -38,7 +38,8 @@ def run_migrations_offline() -> None:
 
 def run_migrations_online() -> None:
     configuration = config.get_section(config.config_ini_section) or {}
-    configuration["sqlalchemy.url"] = os.environ.get("DATABASE_URL", DATABASE_URL)
+    if "sqlalchemy.url" not in configuration or not configuration["sqlalchemy.url"]:
+        configuration["sqlalchemy.url"] = os.environ.get("DATABASE_URL", get_database_url())
 
     connectable = engine_from_config(
         configuration,

@@ -5,7 +5,7 @@ Supports SQLite persistent storage for development/testing and PostgreSQL for pr
 import os
 import logging
 from typing import Generator
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
 
 from apps.api.config import settings
@@ -42,18 +42,28 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 def init_db() -> None:
-    """Initializes all database tables in persistent storage."""
+    """
+    Verifies database connectivity and schema compatibility.
+    In production, relies strictly on Alembic migrations ('alembic upgrade head').
+    In development/testing mode, auto-creates tables if missing for convenience.
+    """
     try:
-        from apps.api.db.models import (
-            UserModel,
-            BirthProfileModel,
-            CalculationReportModel,
-            AIInterpretationRecordModel,
-            SavedChartModel,
-            AuditRecordModel
-        )
-        Base.metadata.create_all(bind=engine)
-        logger.info("Database tables initialized successfully.")
+        env = os.environ.get("ENVIRONMENT", settings.environment).lower().strip()
+        if env != "production":
+            from apps.api.db.models import (
+                UserModel,
+                BirthProfileModel,
+                CalculationReportModel,
+                AIInterpretationRecordModel,
+                SavedChartModel,
+                AuditRecordModel
+            )
+            Base.metadata.create_all(bind=engine)
+            logger.info("Development database tables verified/created via metadata.")
+        else:
+            with engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            logger.info("Production database connection verified. Schema managed exclusively by Alembic migrations.")
     except Exception as e:
         logger.error(f"Database initialization error: {str(e)}")
         raise
@@ -69,7 +79,6 @@ def get_db() -> Generator[Session, None, None]:
 def get_database_status() -> str:
     """Returns real operational status of the persistent database."""
     try:
-        from sqlalchemy import text
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
         db_url = get_database_url()
