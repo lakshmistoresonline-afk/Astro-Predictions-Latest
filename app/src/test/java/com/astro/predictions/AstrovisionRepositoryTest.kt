@@ -17,6 +17,28 @@ class FakeAstrovisionApiService(
     private val shouldThrowIoException: Boolean = false
 ) : AstrovisionApiService {
 
+    override suspend fun registerUser(request: UserRegisterRequest): TokenResponse {
+        if (shouldThrowIoException) throw IOException("Network offline")
+        if (shouldFailHttp != null) throw HttpException(Response.error<TokenResponse>(shouldFailHttp, "".toResponseBody(null)))
+        return TokenResponse("fake_jwt_token", "bearer", 24, "user_123", request.email, request.fullName)
+    }
+
+    override suspend fun loginUser(request: UserLoginRequest): TokenResponse {
+        if (shouldThrowIoException) throw IOException("Network offline")
+        if (shouldFailHttp != null) throw HttpException(Response.error<TokenResponse>(shouldFailHttp, "".toResponseBody(null)))
+        return TokenResponse("fake_jwt_token", "bearer", 24, "user_123", request.email, "Fake User")
+    }
+
+    override suspend fun logoutUser(): Map<String, Any> {
+        return mapOf("status" to "logged_out")
+    }
+
+    override suspend fun getMyProfile(): UserProfileResponse {
+        if (shouldThrowIoException) throw IOException("Network offline")
+        if (shouldFailHttp != null) throw HttpException(Response.error<UserProfileResponse>(shouldFailHttp, "".toResponseBody(null)))
+        return UserProfileResponse("user_123", "fake@astrovision.test", "Fake User", "2026-01-01T00:00:00Z")
+    }
+
     override suspend fun calculateBirthProfile(request: BirthProfileRequest): BirthProfileResponse {
         if (shouldThrowIoException) {
             throw IOException("Network offline")

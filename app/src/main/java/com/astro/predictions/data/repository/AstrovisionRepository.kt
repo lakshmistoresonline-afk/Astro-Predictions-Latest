@@ -50,6 +50,46 @@ class AstrovisionRepository(
         }
     }
 
+    suspend fun registerUser(request: UserRegisterRequest): Result<TokenResponse> {
+        return try {
+            val response = apiService.registerUser(request)
+            setAuthToken(response.accessToken)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure(handleNetworkException(e))
+        }
+    }
+
+    suspend fun loginUser(request: UserLoginRequest): Result<TokenResponse> {
+        return try {
+            val response = apiService.loginUser(request)
+            setAuthToken(response.accessToken)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure(handleNetworkException(e))
+        }
+    }
+
+    suspend fun logoutUser(): Result<Unit> {
+        return try {
+            apiService.logoutUser()
+            setAuthToken(null)
+            Result.success(Unit)
+        } catch (e: Exception) {
+            setAuthToken(null)
+            Result.success(Unit)
+        }
+    }
+
+    suspend fun getMyProfile(): Result<UserProfileResponse> {
+        return try {
+            val response = apiService.getMyProfile()
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure(handleNetworkException(e))
+        }
+    }
+
     suspend fun calculateBirthProfile(request: BirthProfileRequest): Result<BirthProfileResponse> {
         return try {
             val response = apiService.calculateBirthProfile(request)

@@ -7,6 +7,22 @@ import retrofit2.http.POST
 
 interface AstrovisionApiService {
 
+    @POST("api/v1/auth/register")
+    suspend fun registerUser(
+        @Body request: UserRegisterRequest
+    ): TokenResponse
+
+    @POST("api/v1/auth/login")
+    suspend fun loginUser(
+        @Body request: UserLoginRequest
+    ): TokenResponse
+
+    @POST("api/v1/auth/logout")
+    suspend fun logoutUser(): Map<String, Any>
+
+    @GET("api/v1/auth/me")
+    suspend fun getMyProfile(): UserProfileResponse
+
     @POST("api/v1/birth-profile")
     suspend fun calculateBirthProfile(
         @Body request: BirthProfileRequest

@@ -26,6 +26,34 @@ val PRESET_CITIES = listOf(
     CityPreset("Toronto", "Canada", 43.6532, -79.3832, "America/Toronto")
 )
 
+// --- Auth Models ---
+data class UserRegisterRequest(
+    val email: String,
+    val password: String,
+    @SerializedName("full_name") val fullName: String
+)
+
+data class UserLoginRequest(
+    val email: String,
+    val password: String
+)
+
+data class TokenResponse(
+    @SerializedName("access_token") val accessToken: String,
+    @SerializedName("token_type") val tokenType: String = "bearer",
+    @SerializedName("expires_in_hours") val expiresInHours: Int = 24,
+    @SerializedName("user_id") val userId: String,
+    val email: String,
+    @SerializedName("full_name") val fullName: String
+)
+
+data class UserProfileResponse(
+    val id: String,
+    val email: String,
+    @SerializedName("full_name") val fullName: String,
+    @SerializedName("created_at") val createdAt: String
+)
+
 // --- API Requests ---
 data class BirthProfileRequest(
     val name: String,
