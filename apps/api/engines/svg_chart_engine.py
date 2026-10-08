@@ -1,3 +1,4 @@
+import html
 import math
 from typing import Any
 
@@ -5,11 +6,12 @@ class SVGChartEngine:
     """
     SVGChartEngine generates publication-grade, breathtaking circular zodiac astrolabe charts
     and South Indian grid charts with gold/champagne-gold highlights matching elite design specs.
+    Enforces strict XML/HTML escaping on all dynamic string inputs to prevent XSS.
     """
 
     @staticmethod
     def generate_circular_zodiac_wheel(planetary_positions: dict, title: str = "NATAL ZODIAC WHEEL") -> str:
-        # Generate a sophisticated circular astrolabe chart in SVG
+        safe_title = html.escape(str(title))
         size = 460
         center = size / 2
         r_outer = 210
@@ -26,11 +28,10 @@ class SVGChartEngine:
 
           <!-- Title & Center watermark -->
           <text x="{center}" y="{center - 10}" fill="#F7F3EA" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="2">ASTRO PREDICTIONS</text>
-          <text x="{center}" y="{center + 10}" fill="#D6B36A" font-size="10" text-anchor="middle" letter-spacing="1">{title}</text>
+          <text x="{center}" y="{center + 10}" fill="#D6B36A" font-size="10" text-anchor="middle" letter-spacing="1">{safe_title}</text>
         '''.strip()
 
         # Draw 12 zodiac house/sign sectors (30 degrees each)
-        signs = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
         symbols = ["♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓"]
 
         for i in range(12):
@@ -61,14 +62,16 @@ class SVGChartEngine:
                 lon = data.get("geocentric_longitude", data.get("longitude", 0.0))
             else:
                 lon = 0.0
+
             p_rad = math.radians(lon)
-            # Position planet marker between inner and outer ring
             pr = r_inner + 25
             px = center + pr * math.cos(p_rad)
             py = center + pr * math.sin(p_rad)
 
+            safe_planet = html.escape(str(planet)[:2].upper())
+
             svg += f'<circle cx="{px}" cy="{py}" r="4" fill="#D6B36A"/>'
-            svg += f'<text x="{px}" y="{py - 6}" fill="#F7F3EA" font-size="9" font-weight="bold" text-anchor="middle">{planet[:2].upper()}</text>'
+            svg += f'<text x="{px}" y="{py - 6}" fill="#F7F3EA" font-size="9" font-weight="bold" text-anchor="middle">{safe_planet}</text>'
 
         svg += '</svg>'
         return svg
