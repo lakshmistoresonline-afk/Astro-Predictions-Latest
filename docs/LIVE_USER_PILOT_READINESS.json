@@ -2,7 +2,7 @@
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
   "readiness_state": "LOCAL_READY",
-  "timestamp_iso": "2026-10-08T08:48:08.079522+00:00",
+  "timestamp_iso": "2026-10-08T09:17:46.570213+00:00",
   "total_gates": 18,
   "passed_gates": 13,
   "blocked_gates": 5,
