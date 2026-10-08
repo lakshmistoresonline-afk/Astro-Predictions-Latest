@@ -209,16 +209,17 @@
       "status": "FIXED",
       "files_changed": [
         "scripts/live_pilot_smoke_test.py",
+        "apps/api/main.py",
         "docs/LIVE_USER_PILOT_READINESS.json",
         "docs/LIVE_USER_PILOT_READINESS.md"
       ],
       "tests_executed": [
         "python scripts/live_pilot_smoke_test.py"
       ],
-      "tests_passed": 13,
+      "tests_passed": 11,
       "tests_failed": 0,
       "commit_sha": "14f76781511998d6005ff5dc5e8788ee6fab873b",
-      "notes": "Refined live-pilot smoke test: real 429 rate limit check, 12-chapter semantic PDF verification, direct DB multi-table account deletion cascade check, and exit code 2 on blocked state."
+      "notes": "Refined live-pilot smoke test: real HTTP path 429 rate limit check, 12-chapter semantic PDF verification, direct DB multi-table account deletion cascade check, and exit code 2 on blocked state."
     }
   ]
 }

@@ -2,120 +2,138 @@
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
   "readiness_state": "LOCAL_READY",
-  "timestamp_iso": "2026-10-08T09:30:36.300008+00:00",
+  "timestamp_iso": "2026-10-08T12:08:32.110079+00:00",
   "total_gates": 18,
-  "passed_gates": 13,
-  "blocked_gates": 5,
+  "passed_gates": 11,
+  "blocked_gates": 7,
   "failed_gates": 0,
   "gate_details": [
     {
       "gate_id": "L01_LOCAL_PILOT_STARTUP",
       "gate_title": "Local Pilot Profile Startup & DE440s Kernel Status",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "API, Database, and DE440s Ephemeris kernel active and ready."
     },
     {
       "gate_id": "L02_AUTHENTICATION",
       "gate_title": "Real-User Registration, PBKDF2 Password Hashing & JWT Flow",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Real-user signup, PBKDF2 hashing, JWT issuance, and /me bootstrap verified."
     },
     {
       "gate_id": "L03_MULTI_USER_ISOLATION",
       "gate_title": "Multi-User IDOR Cross-User Access Prevention",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Cross-user IDOR access attempt blocked with 404 Not Found."
     },
     {
       "gate_id": "L04_DATABASE_PERSISTENCE",
       "gate_title": "Alembic Production Database Schema Lifecycle",
       "status": "BLOCKED",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Alembic target database check: Target database is not up to date."
     },
     {
       "gate_id": "L05_QUOTA_ENFORCEMENT",
       "gate_title": "Persistent Daily Free-Tier Quota Limits",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Daily free-tier limit of 10 charts enforced with HTTP 429."
     },
     {
       "gate_id": "L06_RATE_LIMITING",
       "gate_title": "API Abuse & Heavy Computational Endpoint Protection",
       "status": "PASS",
-      "details": "Protected endpoint rate limiting and daily free-tier threshold (10 requests) enforced with HTTP 429."
+      "execution_mode": "IN_PROCESS_TEST",
+      "details": "Protected HTTP API endpoint /api/v1/birth-profile rate limiting and daily threshold (10 requests) enforced with HTTP 429 Too Many Requests."
     },
     {
       "gate_id": "L07_AI_RESILIENCE",
       "gate_title": "AI Trust Boundary, Prompt Injection & Outage Resilience",
       "status": "BLOCKED",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Ollama local service not running (error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (C). Non-AI calculation features remain 100% usable."
     },
     {
       "gate_id": "L08_PDF_GENERATION",
       "gate_title": "ReportLab 12-Chapter Binary PDF Treatise Export",
       "status": "PASS",
-      "details": "Binary PDF generated with verified %PDF-1.4 header (4,452 bytes) and 12-chapter evidence structure."
+      "execution_mode": "IN_PROCESS_TEST",
+      "details": "Binary PDF generated with verified %PDF-1.4 header (4,452 bytes), native birth details, and 12-chapter evidence structure."
     },
     {
       "gate_id": "L09_WEB_RUNTIME",
       "gate_title": "Next.js Web Client Contract Synchronization",
       "status": "BLOCKED",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Next.js Web client API service and contracts verified; Web dev server not currently running on port 3000."
     },
     {
       "gate_id": "L10_ANDROID_RUNTIME",
       "gate_title": "Android Retrofit API & ViewModel Integration",
       "status": "BLOCKED",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Android build verified; physical hardware device not currently connected via ADB."
     },
     {
       "gate_id": "L11_LAN_ACCESS",
       "gate_title": "Configurable Host Binding & CORS Origin Validation",
       "status": "BLOCKED",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "CORS origins configured explicitly: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://astrovision.io']. Second LAN device test pending."
     },
     {
       "gate_id": "L12_ERROR_HANDLING",
       "gate_title": "Structured API Error Response & Zero Stack Trace Exposure",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Structured API error shape returned with zero stack-trace exposure."
     },
     {
       "gate_id": "L13_BACKUP_RESTORE",
       "gate_title": "Database Backup & Restoration Runbook Procedures",
-      "status": "PASS",
-      "details": "SQLite local development database backup and restoration cycle executed and verified successfully."
+      "status": "BLOCKED",
+      "execution_mode": "IN_PROCESS_TEST",
+      "details": "SQLite development database active; PostgreSQL production backup/restore requires active PostgreSQL service container."
     },
     {
       "gate_id": "L14_OBSERVABILITY",
       "gate_title": "Health, Readiness & Administrative Observability",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Health and administrative observability endpoints verified."
     },
     {
       "gate_id": "L15_SECURITY",
       "gate_title": "Secret Scanner & Constant-Time Security Verification",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Secret scanner verified 0 hardcoded credentials or private keys."
     },
     {
       "gate_id": "L16_DATA_RETENTION",
       "gate_title": "User Account Deletion & Clean Cascade Retention",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "Account deletion (DELETE /api/v1/auth/me) and direct database row cascade verified across users, profiles, reports, charts, AI records, and quotas (0 orphan records)."
     },
     {
       "gate_id": "L17_FEEDBACK",
       "gate_title": "User Feedback & Calculation Correction Reporting Flow",
       "status": "PASS",
+      "execution_mode": "IN_PROCESS_TEST",
       "details": "User feedback and calculation discrepancy reporting flow verified."
     },
     {
       "gate_id": "L18_EMERGENCY_SHUTDOWN",
       "gate_title": "Emergency Port Block & Session Revocation Runbook",
-      "status": "PASS",
-      "details": "Emergency session token revocation registry and emergency port block runbook verified."
+      "status": "BLOCKED",
+      "execution_mode": "IN_PROCESS_TEST",
+      "details": "Session revocation verified; emergency port-block runtime not executed."
     }
   ],
-  "verdict": "PILOT NOT READY (LOCAL READY - 5 GATES BLOCKED)"
+  "verdict": "PILOT NOT READY (LOCAL READY - 7 GATES BLOCKED)"
 }

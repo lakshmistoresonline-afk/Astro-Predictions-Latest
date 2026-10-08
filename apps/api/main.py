@@ -1,9 +1,10 @@
 import logging
 from datetime import datetime, timezone
-from fastapi import FastAPI, Request, Response, HTTPException, status
+from fastapi import FastAPI, Request, Response, HTTPException, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
+from sqlalchemy.orm import Session
 
 from apps.api.config import settings, validate_and_init_secrets
 from apps.api.middleware.correlation import CorrelationIdMiddleware
@@ -27,12 +28,15 @@ from apps.api.engines.jaimini.models import JaiminiSuiteResult
 from apps.api.engines.timing.engine import TimingEngine
 from apps.api.engines.timing.models import TimingSuiteResult
 from apps.api.services.ai_service import AIService
+from apps.api.services.quota_service import QuotaGovernanceService
 from apps.api.routers.admin_export import router as admin_export_router
 from apps.api.routers.persistence import router as persistence_router
 from apps.api.routers.auth import router as auth_router
 from apps.api.routers.geocoding import router as geocoding_router
 from apps.api.routers.feedback import router as feedback_router
-from apps.api.db.database import init_db, get_database_status
+from apps.api.db.database import init_db, get_db, get_database_status
+from apps.api.db.models import UserModel
+from apps.api.db.auth import get_optional_current_user
 from apps.api.exceptions import (
     AstrovisionException,
     AstrovisionValidationError,
@@ -195,8 +199,15 @@ class TransitRequest(BaseModel):
     query_datetime_utc: Optional[str] = None
 
 @app.post("/api/v1/birth-profile")
-def calculate_birth_profile(req: BirthProfileRequest):
+def calculate_birth_profile(
+    req: BirthProfileRequest,
+    current_user: Optional[UserModel] = Depends(get_optional_current_user),
+    db: Session = Depends(get_db)
+):
     try:
+        user_ident = current_user.id if current_user else "anonymous_client"
+        QuotaGovernanceService.check_and_increment_chart_quota(db, user_ident)
+
         b_inp = BirthInput(
             name=req.name,
             year=req.year,
@@ -239,6 +250,8 @@ def calculate_birth_profile(req: BirthProfileRequest):
     except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
         raise AstrovisionValidationError(str(e))
     except AstrovisionException:
+        raise
+    except HTTPException:
         raise
     except Exception as e:
         logger.exception("Error in calculate_birth_profile")
