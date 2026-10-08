@@ -143,3 +143,23 @@ def get_my_profile(current_user: UserModel = Depends(get_current_user)):
         full_name=current_user.full_name,
         created_at=current_user.created_at.isoformat()
     )
+
+@router.delete("/me", status_code=status.HTTP_200_OK)
+def delete_my_account(
+    db: Session = Depends(get_db),
+    current_user: UserModel = Depends(get_current_user)
+):
+    """
+    Deletes the authenticated user's account and all associated private resources
+    (birth profiles, saved charts, reports, AI records, quota logs) cleanly.
+    """
+    user_id = current_user.id
+    email = current_user.email
+
+    from apps.api.db.models import UserQuotaModel
+    db.query(UserQuotaModel).filter(UserQuotaModel.identifier == user_id).delete(synchronize_session=False)
+
+    db.delete(current_user)
+    db.commit()
+
+    return {"status": "success", "message": f"Account '{email}' and all associated private data permanently deleted."}
