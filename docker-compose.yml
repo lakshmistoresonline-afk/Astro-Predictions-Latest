@@ -18,7 +18,7 @@ services:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
       - AI_MODEL_GENERATION=${AI_MODEL_GENERATION:-gemma4}
       - AI_MODEL_VALIDATION=${AI_MODEL_VALIDATION:-qwen3.5}
-      - DATABASE_URL=postgresql://astro_user:astro_password@postgres:5432/astrovision_db
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-astro_user}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-astrovision_db}
     depends_on:
       - postgres
       - ollama
@@ -28,9 +28,9 @@ services:
     container_name: astrovision-postgres
     restart: always
     environment:
-      - POSTGRES_USER=astro_user
-      - POSTGRES_PASSWORD=astro_password
-      - POSTGRES_DB=astrovision_db
+      - POSTGRES_USER=${POSTGRES_USER:-astro_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB:-astrovision_db}
     ports:
       - "5432:5432"
     volumes:
