@@ -28,6 +28,21 @@ class UserModel(Base):
     calculation_reports = relationship("CalculationReportModel", back_populates="owner", cascade="all, delete-orphan")
     saved_charts = relationship("SavedChartModel", back_populates="owner", cascade="all, delete-orphan")
 
+class UserQuotaModel(Base):
+    __tablename__ = "user_quotas"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    identifier = Column(String(255), nullable=False, index=True) # User ID or IP address
+    usage_date = Column(String(10), nullable=False, index=True) # YYYY-MM-DD UTC
+    charts_calculated = Column(Integer, default=0, nullable=False)
+    ai_reports_generated = Column(Integer, default=0, nullable=False)
+    ai_messages_sent = Column(Integer, default=0, nullable=False)
+    updated_at = Column(DateTime, default=utc_now, nullable=False)
+
+    __table_args__ = (
+        Index("ix_user_quotas_ident_date", "identifier", "usage_date", unique=True),
+    )
+
 class BirthProfileModel(Base):
     __tablename__ = "birth_profiles"
 
