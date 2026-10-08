@@ -217,7 +217,7 @@
       ],
       "tests_passed": 17,
       "tests_failed": 0,
-      "commit_sha": "83040798e4c70ea9dff35a09fbbe523173d578b8",
+      "commit_sha": "28bb16c856704b6cac7aad1521f42fa4f14b83da",
       "notes": "Replaced hardcoded PASS statuses with real executable test functions across all 18 gates. 17 Passed, 1 Blocked (unconnected physical Android device), 0 Failed."
     }
   ]
