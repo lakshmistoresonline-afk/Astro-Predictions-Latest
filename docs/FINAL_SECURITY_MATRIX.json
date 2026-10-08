@@ -1,0 +1,61 @@
+{
+  "audit_version": "6.0.0",
+  "security_controls": [
+    {
+      "vector_id": "SEC_01",
+      "category": "Authentication Security",
+      "control": "Salted PBKDF2-HMAC-SHA256 password hashing with 100,000 iterations and 16-byte random salt",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_jwt_security_hardening.py"
+    },
+    {
+      "vector_id": "SEC_02",
+      "category": "Token Verification & Revocation",
+      "control": "HMAC-SHA256 JWT signature verification, alg/typ header validation, and token revocation registry",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_jwt_security_hardening.py"
+    },
+    {
+      "vector_id": "SEC_03",
+      "category": "IDOR Protection",
+      "control": "Server-side owner filter enforcement (Model.user_id == current_user.id) on all CRUD routes",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_persistence_idor.py"
+    },
+    {
+      "vector_id": "SEC_04",
+      "category": "Admin Authorization",
+      "control": "Constant-time X-Admin-Key / Bearer token validation for administrative routes",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_admin_security.py"
+    },
+    {
+      "vector_id": "SEC_05",
+      "category": "AI Boundary Defense",
+      "control": "Server-generated evidence injection into LLM system prompt; client prompt cannot override facts",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_ai_service.py"
+    },
+    {
+      "vector_id": "SEC_06",
+      "category": "Quota & Abuse Protection",
+      "control": "Persistent UTC daily usage limits (charts, AI reports, AI messages) with HTTP 429 enforcement",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_quota_governance.py"
+    },
+    {
+      "vector_id": "SEC_07",
+      "category": "Secret Leakage Prevention",
+      "control": "Automated secret scanner enforcing zero hardcoded API keys, JWT secrets, or passwords",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_secret_management.py"
+    },
+    {
+      "vector_id": "SEC_08",
+      "category": "Production Deployment Topology",
+      "control": "Production startup validation refusing local SQLite, default secrets, or localhost Ollama URL",
+      "status": "PASS",
+      "test_file": "apps/api/tests/test_secret_management.py"
+    }
+  ]
+}

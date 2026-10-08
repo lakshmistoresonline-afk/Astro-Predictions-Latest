@@ -1,0 +1,270 @@
+{
+  "contract_version": "6.0.0",
+  "base_path": "/api/v1",
+  "endpoints": [
+    {
+      "route": "/health",
+      "method": "GET",
+      "auth_scope": "public",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "HealthCheckResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    },
+    {
+      "route": "/ready",
+      "method": "GET",
+      "auth_scope": "public",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "ReadyCheckResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    },
+    {
+      "route": "/version",
+      "method": "GET",
+      "auth_scope": "public",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "VersionResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    },
+    {
+      "route": "/api/v1/auth/register",
+      "method": "POST",
+      "auth_scope": "public",
+      "pydantic_request_model": "UserRegisterRequest",
+      "pydantic_response_model": "TokenResponse",
+      "web_typescript_type": "TokenResponse",
+      "android_kotlin_model": "TokenResponse"
+    },
+    {
+      "route": "/api/v1/auth/login",
+      "method": "POST",
+      "auth_scope": "public",
+      "pydantic_request_model": "UserLoginRequest",
+      "pydantic_response_model": "TokenResponse",
+      "web_typescript_type": "TokenResponse",
+      "android_kotlin_model": "TokenResponse"
+    },
+    {
+      "route": "/api/v1/auth/logout",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "LogoutResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    },
+    {
+      "route": "/api/v1/auth/me",
+      "method": "GET",
+      "auth_scope": "authenticated_user",
+      "pydantic_response_model": "UserProfileResponse",
+      "web_typescript_type": "UserProfileResponse",
+      "android_kotlin_model": "UserProfileResponse"
+    },
+    {
+      "route": "/api/v1/birth-profile",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "BirthProfileRequest",
+      "pydantic_response_model": "BirthProfileResponse",
+      "web_typescript_type": "BirthProfileResponse",
+      "android_kotlin_model": "BirthProfileResponse"
+    },
+    {
+      "route": "/api/v1/transits",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "TransitRequest",
+      "pydantic_response_model": "TransitSnapshot",
+      "web_typescript_type": "TransitSnapshot",
+      "android_kotlin_model": "TransitSnapshot"
+    },
+    {
+      "route": "/api/v1/panchanga",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "TransitRequest",
+      "pydantic_response_model": "PanchangaResult",
+      "web_typescript_type": "PanchangaResult",
+      "android_kotlin_model": "PanchangaResult"
+    },
+    {
+      "route": "/api/v1/muhurta",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "TransitRequest",
+      "pydantic_response_model": "MuhurtaSuiteResult",
+      "web_typescript_type": "MuhurtaSuiteResult",
+      "android_kotlin_model": "MuhurtaSuiteResult"
+    },
+    {
+      "route": "/api/v1/jaimini",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "BirthProfileRequest",
+      "pydantic_response_model": "JaiminiSuiteResult",
+      "web_typescript_type": "JaiminiSuiteResult",
+      "android_kotlin_model": "JaiminiSuiteResult"
+    },
+    {
+      "route": "/api/v1/timing-windows",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "TransitRequest",
+      "pydantic_response_model": "TimingSuiteResult",
+      "web_typescript_type": "TimingSuiteResult",
+      "android_kotlin_model": "TimingSuiteResult"
+    },
+    {
+      "route": "/api/v1/interpret-evidence",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "AIInterpretationApiRequest",
+      "pydantic_response_model": "AIInterpretationResponse",
+      "web_typescript_type": "AIInterpretationResponse",
+      "android_kotlin_model": "AIInterpretationResponse"
+    },
+    {
+      "route": "/api/v1/compatibility",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "CompatibilityRequest",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "CompatibilityResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    },
+    {
+      "route": "/api/v1/rectification",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "RectificationApiRequest",
+      "pydantic_response_model": "RectificationSuiteResult",
+      "web_typescript_type": "RectificationSuiteResult",
+      "android_kotlin_model": "RectificationSuiteResult"
+    },
+    {
+      "route": "/api/v1/export/pdf",
+      "method": "POST",
+      "auth_scope": "authenticated_user",
+      "pydantic_request_model": "ExportPDFRequest",
+      "pydantic_response_model": "Response (application/pdf)",
+      "web_typescript_type": "Blob",
+      "android_kotlin_model": "ResponseBody"
+    },
+    {
+      "route": "/api/v1/location/search",
+      "method": "GET",
+      "auth_scope": "public",
+      "pydantic_response_model": "List[LocationSearchItem]",
+      "web_typescript_type": "LocationSearchItem[]",
+      "android_kotlin_model": "List<LocationSearchItem>"
+    },
+    {
+      "route": "/api/v1/location/validate",
+      "method": "POST",
+      "auth_scope": "public",
+      "pydantic_request_model": "LocationValidateRequest",
+      "pydantic_response_model": "LocationValidateResponse",
+      "web_typescript_type": "LocationValidateResponse",
+      "android_kotlin_model": "LocationValidateResponse"
+    },
+    {
+      "route": "/api/v1/profiles",
+      "method": "POST",
+      "auth_scope": "owner_only",
+      "pydantic_request_model": "BirthProfileCreateRequest",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "SavedProfile",
+      "android_kotlin_model": "SavedProfile"
+    },
+    {
+      "route": "/api/v1/profiles",
+      "method": "GET",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "List[Dict[str, Any]]",
+      "web_typescript_type": "SavedProfile[]",
+      "android_kotlin_model": "List<SavedProfile>"
+    },
+    {
+      "route": "/api/v1/profiles/{id}",
+      "method": "GET",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "SavedProfile",
+      "android_kotlin_model": "SavedProfile"
+    },
+    {
+      "route": "/api/v1/profiles/{id}",
+      "method": "PUT",
+      "auth_scope": "owner_only",
+      "pydantic_request_model": "BirthProfileCreateRequest",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "SavedProfile",
+      "android_kotlin_model": "SavedProfile"
+    },
+    {
+      "route": "/api/v1/profiles/{id}",
+      "method": "DELETE",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "DeleteResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    },
+    {
+      "route": "/api/v1/reports",
+      "method": "POST",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "SavedReport",
+      "android_kotlin_model": "SavedReport"
+    },
+    {
+      "route": "/api/v1/reports/{id}",
+      "method": "GET",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "SavedReportDetails",
+      "android_kotlin_model": "SavedReportDetails"
+    },
+    {
+      "route": "/api/v1/reports/{id}/pdf",
+      "method": "GET",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "Response (application/pdf)",
+      "web_typescript_type": "Blob",
+      "android_kotlin_model": "ResponseBody"
+    },
+    {
+      "route": "/api/v1/saved-charts",
+      "method": "POST",
+      "auth_scope": "owner_only",
+      "pydantic_request_model": "SavedChartCreateRequest",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "SavedChart",
+      "android_kotlin_model": "SavedChart"
+    },
+    {
+      "route": "/api/v1/saved-charts",
+      "method": "GET",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "List[Dict[str, Any]]",
+      "web_typescript_type": "SavedChart[]",
+      "android_kotlin_model": "List<SavedChart>"
+    },
+    {
+      "route": "/api/v1/saved-charts/{id}",
+      "method": "DELETE",
+      "auth_scope": "owner_only",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "DeleteResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    },
+    {
+      "route": "/api/v1/admin/stats",
+      "method": "GET",
+      "auth_scope": "admin_only",
+      "pydantic_response_model": "Dict[str, Any]",
+      "web_typescript_type": "AdminStatsResponse",
+      "android_kotlin_model": "Map<String, Any>"
+    }
+  ]
+}
