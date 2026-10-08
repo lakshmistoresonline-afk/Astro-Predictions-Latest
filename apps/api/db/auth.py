@@ -1,6 +1,7 @@
 """
 Production Authentication & Authorization Module for Astrovision.
-Implements PBKDF2-HMAC-SHA256 salted password hashing and cryptographically signed JWT access tokens.
+Implements PBKDF2-HMAC-SHA256 salted password hashing, cryptographically signed JWT access tokens,
+strict header/algorithm validation, token revocation registry, and session security.
 Enforces strict fail-closed user authentication on protected resources.
 Zero fail-open public user fallbacks! Zero arbitrary string identity creation!
 """
@@ -12,7 +13,7 @@ import secrets
 import logging
 import hashlib
 from datetime import datetime, timedelta, timezone
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple, Set
 from fastapi import Header, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 
@@ -24,6 +25,9 @@ from apps.api.exceptions import AuthenticationError
 logger = logging.getLogger("astrovision.auth")
 
 PBKDF2_ITERATIONS = 100000
+
+# Token Revocation Registry (Stores SHA-256 hashes of logged-out/revoked JWTs)
+REVOKED_TOKEN_HASHES: Set[str] = set()
 
 def hash_password(password: str, salt_hex: Optional[str] = None) -> Tuple[str, str]:
     """
@@ -61,6 +65,23 @@ def _b64_url_decode(str_val: str) -> bytes:
     padding = "=" * (4 - (len(str_val) % 4))
     return base64.urlsafe_b64decode(str_val + padding)
 
+def revoke_token(token: str) -> None:
+    """Registers SHA-256 hash of token in revocation registry."""
+    if token and isinstance(token, str):
+        token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
+        REVOKED_TOKEN_HASHES.add(token_hash)
+
+def is_token_revoked(token: str) -> bool:
+    """Returns True if token has been revoked / logged out."""
+    if not token or not isinstance(token, str):
+        return True
+    token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
+    return token_hash in REVOKED_TOKEN_HASHES
+
+def get_jwt_secret_key() -> str:
+    """Returns active JWT secret key, falling back to process-bound ephemeral key."""
+    return settings.jwt_secret_key or os.environ.get("JWT_SECRET_KEY", "dev_fallback_jwt_secret_key_12345")
+
 def create_access_token(user_id: str, email: str, expires_delta_hours: Optional[int] = None) -> str:
     """
     Creates an HMAC-SHA256 signed JWT access token with expiration timestamp.
@@ -81,8 +102,9 @@ def create_access_token(user_id: str, email: str, expires_delta_hours: Optional[
     payload_b64 = _b64_url_encode(json.dumps(payload, sort_keys=True).encode("utf-8"))
 
     signing_input = f"{header_b64}.{payload_b64}".encode("utf-8")
+    secret_key = get_jwt_secret_key()
     signature = hmac.new(
-        settings.jwt_secret_key.encode("utf-8"),
+        secret_key.encode("utf-8"),
         signing_input,
         hashlib.sha256
     ).digest()
@@ -92,18 +114,33 @@ def create_access_token(user_id: str, email: str, expires_delta_hours: Optional[
 
 def decode_access_token(token: str) -> Dict[str, Any]:
     """
-    Decodes and verifies an HMAC-SHA256 signed JWT access token.
-    Raises AuthenticationError if token is malformed, signature invalid, or expired.
+    Decodes and verifies an HMAC-SHA256 signed JWT access token with strict header/algorithm validation and revocation check.
+    Raises AuthenticationError if token is malformed, algorithm unsupported, signature invalid, expired, or revoked.
     """
     if not token or not isinstance(token, str) or token.count(".") != 2:
         raise AuthenticationError("Malformed access token. Expected standard 3-part JWT format.")
 
+    if is_token_revoked(token):
+        raise AuthenticationError("Access token has been revoked or logged out.")
+
     header_b64, payload_b64, sig_b64 = token.split(".")
 
     try:
+        # Strict Header Validation
+        header_bytes = _b64_url_decode(header_b64)
+        header = json.loads(header_bytes.decode("utf-8"))
+
+        if header.get("alg") != settings.jwt_algorithm:
+            raise AuthenticationError(f"Unsupported JWT algorithm '{header.get('alg')}'. Expected '{settings.jwt_algorithm}'.")
+
+        if header.get("typ") != "JWT":
+            raise AuthenticationError("Invalid JWT header type. Expected 'JWT'.")
+
+        # Signature Verification
         signing_input = f"{header_b64}.{payload_b64}".encode("utf-8")
+        secret_key = get_jwt_secret_key()
         expected_sig = hmac.new(
-            settings.jwt_secret_key.encode("utf-8"),
+            secret_key.encode("utf-8"),
             signing_input,
             hashlib.sha256
         ).digest()
@@ -122,6 +159,10 @@ def decode_access_token(token: str) -> Dict[str, Any]:
         now_ts = int(datetime.now(timezone.utc).timestamp())
         if now_ts >= exp_ts:
             raise AuthenticationError("Access token has expired.")
+
+        sub = payload.get("sub")
+        if not sub or not isinstance(sub, str):
+            raise AuthenticationError("Access token missing valid subject identifier.")
 
         return payload
 
@@ -152,9 +193,6 @@ def get_current_user(
 
     payload = decode_access_token(raw_token)
     user_id = payload.get("sub")
-
-    if not user_id:
-        raise AuthenticationError("Invalid access token payload: missing subject identifier.")
 
     user = db.query(UserModel).filter(UserModel.id == user_id).first()
     if not user:

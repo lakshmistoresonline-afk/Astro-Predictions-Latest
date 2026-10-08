@@ -1,10 +1,11 @@
 """
-User Registration, Login, and Authentication Router for Astrovision.
-Exposes user signup, login token issuance, and authenticated user context routes.
+User Registration, Login, Logout, and Authentication Router for Astrovision.
+Exposes user signup, login token issuance, logout session revocation, and authenticated user profile routes.
 """
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, Header, status
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.orm import Session
+from typing import Optional
 
 from apps.api.config import settings
 from apps.api.db.database import get_db
@@ -13,6 +14,7 @@ from apps.api.db.auth import (
     hash_password,
     verify_password,
     create_access_token,
+    revoke_token,
     get_current_user
 )
 from apps.api.exceptions import (
@@ -119,6 +121,18 @@ def login_user(req: UserLoginRequest, db: Session = Depends(get_db)):
         email=user.email,
         full_name=user.full_name
     )
+
+@router.post("/logout")
+def logout_user(
+    authorization: Optional[str] = Header(None),
+    current_user: UserModel = Depends(get_current_user)
+):
+    """Revokes active Bearer JWT token session and registers token in revocation registry."""
+    if authorization and authorization.startswith("Bearer "):
+        token = authorization[7:].strip()
+        revoke_token(token)
+
+    return {"status": "logged_out", "message": "Successfully logged out and session token revoked."}
 
 @router.get("/me", response_model=UserProfileResponse)
 def get_my_profile(current_user: UserModel = Depends(get_current_user)):
