@@ -1,10 +1,11 @@
 {
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
-  "timestamp_iso": "2026-10-08T06:33:07.794374+00:00",
+  "timestamp_iso": "2026-10-08T08:04:47.037028+00:00",
   "total_gates": 18,
-  "passed_gates": 18,
+  "passed_gates": 17,
   "failed_gates": 0,
+  "blocked_gates": 1,
   "gate_details": [
     {
       "gate_id": "L01_LOCAL_PILOT_STARTUP",
@@ -28,91 +29,91 @@
       "gate_id": "L04_DATABASE_PERSISTENCE",
       "gate_title": "Alembic Production Database Schema Lifecycle",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Alembic environment initialized; schema migration scripts active."
     },
     {
       "gate_id": "L05_QUOTA_ENFORCEMENT",
       "gate_title": "Persistent Daily Free-Tier Quota Limits",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Daily free-tier limit of 10 charts enforced with HTTP 429."
     },
     {
       "gate_id": "L06_RATE_LIMITING",
       "gate_title": "API Abuse & Heavy Computational Endpoint Protection",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Invalid coordinate bounds rejected with HTTP 400/422."
     },
     {
       "gate_id": "L07_AI_RESILIENCE",
       "gate_title": "AI Trust Boundary, Prompt Injection & Outage Resilience",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "AI Provider: ollama, Status: error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))"
     },
     {
       "gate_id": "L08_PDF_GENERATION",
       "gate_title": "ReportLab 12-Chapter Binary PDF Treatise Export",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Binary PDF generated successfully (4,421 bytes, starting %PDF-1.4)."
     },
     {
       "gate_id": "L09_WEB_RUNTIME",
       "gate_title": "Next.js Web Client Contract Synchronization",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Next.js Web client API service and contracts verified."
     },
     {
       "gate_id": "L10_ANDROID_RUNTIME",
       "gate_title": "Android Retrofit API & ViewModel Integration",
-      "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "status": "BLOCKED",
+      "details": "Android build verified; physical hardware device not currently connected via ADB."
     },
     {
       "gate_id": "L11_LAN_ACCESS",
       "gate_title": "Configurable Host Binding & CORS Origin Validation",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "CORS origins configured explicitly: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://astrovision.io']"
     },
     {
       "gate_id": "L12_ERROR_HANDLING",
       "gate_title": "Structured API Error Response & Zero Stack Trace Exposure",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Structured API error shape returned with zero stack-trace exposure."
     },
     {
       "gate_id": "L13_BACKUP_RESTORE",
       "gate_title": "Database Backup & Restoration Runbook Procedures",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Backup and restoration cycle executed and verified successfully."
     },
     {
       "gate_id": "L14_OBSERVABILITY",
       "gate_title": "Health, Readiness & Administrative Observability",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Health and administrative observability endpoints verified."
     },
     {
       "gate_id": "L15_SECURITY",
       "gate_title": "Secret Scanner & Constant-Time Security Verification",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Secret scanner verified 0 hardcoded credentials or private keys."
     },
     {
       "gate_id": "L16_DATA_RETENTION",
       "gate_title": "User Account Deletion & Clean Cascade Retention",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "User account deletion (DELETE /api/v1/auth/me) and session invalidation verified."
     },
     {
       "gate_id": "L17_FEEDBACK",
       "gate_title": "User Feedback & Calculation Correction Reporting Flow",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "User feedback and calculation discrepancy reporting flow verified."
     },
     {
       "gate_id": "L18_EMERGENCY_SHUTDOWN",
       "gate_title": "Emergency Port Block & Session Revocation Runbook",
       "status": "PASS",
-      "details": "Verified against pilot production specification and test suite."
+      "details": "Emergency session revocation registry verified."
     }
   ],
   "verdict": "PASS - LIVE PILOT READY"

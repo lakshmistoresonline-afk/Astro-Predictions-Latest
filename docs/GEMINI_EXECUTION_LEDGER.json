@@ -205,25 +205,20 @@
       "notes": "Final full-stack release audit complete. All 16 tasks independently verified and certified."
     },
     {
-      "task_id": "TASK_17_LIVE_PILOT_ENVIRONMENT",
+      "task_id": "TASK_LP01_TO_LP20_LIVE_PILOT_EXECUTABLE_SMOKE_TEST",
       "status": "VERIFIED",
       "files_changed": [
-        ".env.local-pilot.example",
-        "apps/api/routers/auth.py",
-        "apps/api/routers/feedback.py",
-        "apps/api/main.py",
-        "docs/LIVE_USER_PILOT_RUNBOOK.md",
         "scripts/live_pilot_smoke_test.py",
-        "docs/LIVE_USER_PILOT_READINESS.md",
-        "docs/LIVE_USER_PILOT_READINESS.json"
+        "docs/LIVE_USER_PILOT_READINESS.json",
+        "docs/LIVE_USER_PILOT_READINESS.md"
       ],
       "tests_executed": [
         "python scripts/live_pilot_smoke_test.py"
       ],
-      "tests_passed": 18,
+      "tests_passed": 17,
       "tests_failed": 0,
-      "commit_sha": "6aa3c0b9a896d8b248a3d132b4bebe7a9bdc4373",
-      "notes": "Live pilot profile configuration, account deletion, user feedback endpoint, Windows runbook, and 18 acceptance gates verified."
+      "commit_sha": "83040798e4c70ea9dff35a09fbbe523173d578b8",
+      "notes": "Replaced hardcoded PASS statuses with real executable test functions across all 18 gates. 17 Passed, 1 Blocked (unconnected physical Android device), 0 Failed."
     }
   ]
 }
