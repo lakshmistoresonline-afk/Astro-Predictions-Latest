@@ -117,7 +117,7 @@ export default function Home() {
       setTimeout(() => {
         setChartData(data)
         setLoading(false)
-        setActiveTab('home')
+        setActiveTab('reports')
       }, 2200)
     } catch (err: any) {
       console.error(err)
@@ -292,6 +292,7 @@ export default function Home() {
                 <DashboardOverview
                   data={chartData}
                   onNewProfile={() => setActiveTab('chart-form')}
+                  onViewChart={() => setActiveTab('reports')}
                 />
               ) : (
                 <div className="bg-[#111B30]/90 p-12 md:p-16 rounded-3xl border border-white/10 shadow-2xl text-center space-y-6 w-full max-w-2xl mx-auto backdrop-blur-xl">
@@ -313,7 +314,7 @@ export default function Home() {
 
           {activeTab === 'reports' && (
             <WidgetErrorBoundary title="Kundali Astrolabe Error">
-              <KundaliAstrolabe svgChart={chartData?.svg_chart || null} />
+              <KundaliAstrolabe svgChart={chartData?.svg_chart || null} data={chartData} />
             </WidgetErrorBoundary>
           )}
 

@@ -4,9 +4,10 @@ import { BirthProfileResponse } from '../../types/api'
 interface DashboardOverviewProps {
   data: BirthProfileResponse
   onNewProfile: () => void
+  onViewChart: () => void
 }
 
-export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ data, onNewProfile }) => {
+export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ data, onNewProfile, onViewChart }) => {
   const chart = data.master_evidence.canonical_chart
   const ascSign = chart.ascendant?.sign || 'Aquarius'
   const ascDegree = chart.ascendant?.degree !== undefined ? `${chart.ascendant.degree}°${chart.ascendant.minute || 0}′` : '12°40′'
@@ -244,8 +245,8 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({ data, onNe
                     </td>
                     <td className="py-3.5 px-4 text-center">
                       <button
-                        onClick={onNewProfile}
-                        className="px-3 py-1 rounded-lg bg-[#F5B942]/10 hover:bg-[#F5B942]/20 border border-[#F5B942]/30 text-[#F5B942] font-bold text-[11px] transition"
+                        onClick={onViewChart}
+                        className="px-3 py-1 rounded-lg bg-[#F5B942]/10 hover:bg-[#F5B942]/20 border border-[#F5B942]/30 text-[#F5B942] font-bold text-[11px] transition cursor-pointer"
                       >
                         View Chart
                       </button>
