@@ -1,6 +1,7 @@
 """
 Test Suite for Structured API Error Handling, HTTP Status Code Mapping, and Request Correlation IDs.
 """
+import os
 import pytest
 from fastapi.testclient import TestClient
 from apps.api.main import app
@@ -68,6 +69,7 @@ def test_admin_authentication_unauthorized_401():
 
 def test_admin_authorization_forbidden_403():
     """Invalid admin key must return HTTP 403 Forbidden."""
+    os.environ["ADMIN_API_KEY"] = "valid_admin_secret_key_12345"
     response = client.get("/api/v1/admin/stats", headers={"X-Admin-Key": "wrong_key", "X-Request-ID": "req_auth_002"})
     assert response.status_code == 403
     data = response.json()
@@ -77,7 +79,13 @@ def test_admin_authorization_forbidden_403():
 
 def test_resource_not_found_404():
     """Non-existent birth profile ID query must return HTTP 404 Not Found."""
-    response = client.get("/api/v1/profiles/non_existent_profile_id_999", headers={"X-User-Token": "test_user_01", "X-Request-ID": "req_404_001"})
+    reg = client.post("/api/v1/auth/register", json={"email": "notfound_user@test.com", "password": "Password123!", "full_name": "NF User"})
+    if reg.status_code == 201:
+        tok = reg.json()["access_token"]
+    else:
+        tok = client.post("/api/v1/auth/login", json={"email": "notfound_user@test.com", "password": "Password123!"}).json()["access_token"]
+
+    response = client.get("/api/v1/profiles/non_existent_profile_id_999", headers={"Authorization": f"Bearer {tok}", "X-Request-ID": "req_404_001"})
     assert response.status_code == 404
     data = response.json()
 

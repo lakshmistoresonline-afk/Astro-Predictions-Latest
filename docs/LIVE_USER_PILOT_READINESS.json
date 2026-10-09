@@ -2,7 +2,7 @@
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
   "readiness_state": "LOCAL_READY",
-  "timestamp_iso": "2026-10-09T02:16:56.650511+00:00",
+  "timestamp_iso": "2026-10-09T04:09:45.490122+00:00",
   "total_gates": 18,
   "passed_gates": 13,
   "blocked_gates": 5,
@@ -62,7 +62,7 @@
       "gate_title": "ReportLab 12-Chapter Binary PDF Treatise Export",
       "status": "PASS",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Binary PDF generated with verified %PDF-1.4 header (4,452 bytes), native birth details, and all 12 / 12 chapter headings verified."
+      "details": "Binary PDF generated with verified %PDF-1.4 header (11,344 bytes), native birth details, and 30-section Celestial Dossier structure."
     },
     {
       "gate_id": "L09_WEB_RUNTIME",

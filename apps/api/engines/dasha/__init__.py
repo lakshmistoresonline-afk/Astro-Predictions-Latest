@@ -23,6 +23,8 @@ from apps.api.engines.dasha.calculator import (
 )
 from apps.api.engines.dasha.engine import AuthoritativeDashaEngine
 
+DASHA_ORDER = DASHA_SEQUENCE
+
 __all__ = [
     "DashaEngineError",
     "InvalidMoonStateError",
@@ -35,6 +37,7 @@ __all__ = [
     "FullVimshottariDashaResult",
     "DASHA_YEARS",
     "DASHA_SEQUENCE",
+    "DASHA_ORDER",
     "DAYS_PER_YEAR",
     "calculate_birth_nakshatra_info",
     "calculate_child_duration_days",

@@ -89,6 +89,7 @@ class ReportGeneratorEngine:
 
         return {
             "name": b_inp.name,
+            "metadata": {"native_name": b_inp.name},
             "birth_date": f"{b_inp.year}-{b_inp.month:02d}-{b_inp.day:02d}",
             "birth_time": f"{b_inp.hour:02d}:{b_inp.minute:02d}:{b_inp.second:02d}",
             "timezone": b_inp.timezone_str,
@@ -96,9 +97,14 @@ class ReportGeneratorEngine:
             "canonical_chart": canonical_chart.model_dump(),
             "master_evidence_hash": master_evidence.master_evidence_hash,
             "planetary_positions": planetary_positions,
+            "chapter_3_planetary_positions": {"data": planetary_positions},
             "vargas": vargas_data,
             "dashas": master_evidence.dasha_suite.model_dump(),
             "shadbala": master_evidence.shadbala.model_dump(),
             "ashtakavarga": master_evidence.ashtakavarga.model_dump(),
-            "predictions": predictions.model_dump()
+            "predictions": predictions.model_dump(),
+            "chapter_12_audit_trail": {
+                "master_evidence_hash": master_evidence.master_evidence_hash,
+                "calculation_hash": master_evidence.natal_calculation_hash
+            }
         }

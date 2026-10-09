@@ -19,6 +19,13 @@ SAMPLE_EVIDENCE = {
     }
 }
 
+@pytest.fixture(autouse=True)
+def set_ollama_provider():
+    orig = settings.ai_provider
+    settings.ai_provider = "ollama"
+    yield
+    settings.ai_provider = orig
+
 def test_structured_validation_pass():
     """Structured JSON response {"status": "PASS"} must be parsed into a PASS ValidationResult."""
     val_json = {

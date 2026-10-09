@@ -178,6 +178,7 @@ def version_info():
     return {
         "app_name": settings.app_name,
         "version": "6.0.0",
+        "engine_version": "6.0.0-Celestial-Astrolabe",
         "calculation_mode": "Zero-Trust Live Calculation",
         "ephemeris_kernel": "de440s.bsp",
         "ayanamsha": "Lahiri (Chitra Paksha)"
@@ -443,9 +444,19 @@ def calculate_predictive_timing(req: TransitRequest):
         logger.exception("Error in calculate_predictive_timing")
         raise CalculationEngineError("Predictive timing evaluation failed.")
 
+SUPPORTED_DOMAINS = {
+    "CAREER", "FINANCE", "BUSINESS", "MARRIAGE", "RELATIONSHIP", "EDUCATION",
+    "FAMILY", "CHILDREN", "PROPERTY", "TRAVEL", "RELOCATION", "SPIRITUALITY",
+    "PERSONAL_DEVELOPMENT", "WELLBEING"
+}
+
 @app.post("/api/v1/interpret-evidence")
 def interpret_evidence_ai(req: AIInterpretationApiRequest):
     try:
+        domain = (req.domain or "CAREER").upper().strip()
+        if domain not in SUPPORTED_DOMAINS:
+            raise AstrovisionValidationError(f"Unsupported domain '{req.domain}'. Must be one of: {', '.join(sorted(SUPPORTED_DOMAINS))}")
+
         bi_dict = req.birth_input
         b_inp = BirthInput(
             name=str(bi_dict.get("name", "Native")),

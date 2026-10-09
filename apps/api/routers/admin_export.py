@@ -160,7 +160,40 @@ def export_pdf(
         return Response(
             content=pdf_bytes,
             media_type="application/pdf",
-            headers={"Content-Disposition": 'attachment; filename="astrovision_report.pdf"'}
+            headers={"Content-Disposition": f'attachment; filename="{req.name.replace(" ", "_")}_Celestial_Dossier.pdf"'}
         )
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"PDF Report generation failed: {str(e)}")
+
+@router.post("/export/gold-standard-json")
+def export_gold_standard_json(
+    req: ExportPDFRequest,
+    current_user: UserModel = Depends(get_current_user)
+):
+    """
+    Authenticated Route: Computes and exports complete Gold Standard JSON payload
+    matching Subramanian_TS_TRUE_MAXIMUM_Gold_Standard.json schema dynamically for any native.
+    """
+    try:
+        from apps.api.engines.canonical_evidence import CanonicalEvidencePipeline
+        from apps.api.engines.prediction_engine import PredictionEngine
+        from apps.api.engines.treatise_builder import MasterTreatiseBuilder
+
+        b_inp = BirthInput(
+            name=req.name,
+            year=req.year,
+            month=req.month,
+            day=req.day,
+            hour=req.hour,
+            minute=req.minute,
+            second=0,
+            timezone_str=req.timezone_str,
+            latitude=req.latitude,
+            longitude=req.longitude
+        )
+        master_evidence = CanonicalEvidencePipeline.generate_canonical_evidence(b_inp)
+        predictions = PredictionEngine.generate_all_predictions(master_evidence)
+        dossier = MasterTreatiseBuilder.build_celestial_dossier(master_evidence, predictions)
+        return dossier
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Gold Standard JSON export failed: {str(e)}")

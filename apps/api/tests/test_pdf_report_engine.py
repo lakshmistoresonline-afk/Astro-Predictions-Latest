@@ -62,9 +62,9 @@ def test_pdf_report_engine_preserves_hashes_and_disclaimer():
     assert "NASA JPL DE440s" in html_out
 
 def test_pdf_report_engine_bytes_output():
-    """generate_pdf_report must return valid UTF-8 byte stream."""
+    """generate_pdf_report must return valid binary PDF byte stream starting with %PDF-."""
     bytes_out = PDFReportEngine.generate_pdf_report(SAMPLE_REPORT_DATA)
 
     assert isinstance(bytes_out, bytes)
     assert len(bytes_out) > 500
-    assert b"Chapter 1:" in bytes_out
+    assert bytes_out.startswith(b"%PDF-")

@@ -50,6 +50,10 @@ client = TestClient(app)
 def setup_env():
     validate_and_init_secrets()
     init_db()
+    orig_provider = settings.ai_provider
+    settings.ai_provider = "ollama"
+    yield
+    settings.ai_provider = orig_provider
 
 def get_auth_headers(email: str = "redteam_user@astrovision.test") -> dict:
     login_res = client.post("/api/v1/auth/login", json={"email": email, "password": "Password123!"})
