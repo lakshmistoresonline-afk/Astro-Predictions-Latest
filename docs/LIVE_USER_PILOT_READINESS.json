@@ -2,7 +2,7 @@
   "version": "6.0.0",
   "environment": "LOCAL_PILOT",
   "readiness_state": "LOCAL_READY",
-  "timestamp_iso": "2026-10-09T01:11:50.268380+00:00",
+  "timestamp_iso": "2026-10-09T01:28:24.983987+00:00",
   "total_gates": 18,
   "passed_gates": 11,
   "blocked_gates": 7,
@@ -55,7 +55,7 @@
       "gate_title": "AI Trust Boundary, Prompt Injection & Outage Resilience",
       "status": "BLOCKED",
       "execution_mode": "IN_PROCESS_TEST",
-      "details": "Ollama local service not running (error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (C). Non-AI calculation features remain 100% usable."
+      "details": "Ollama local service not running (error: OPENAI_API_KEY not configured). Non-AI calculation features remain 100% usable."
     },
     {
       "gate_id": "L08_PDF_GENERATION",

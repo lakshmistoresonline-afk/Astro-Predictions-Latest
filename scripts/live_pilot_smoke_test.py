@@ -196,6 +196,7 @@ def run_pilot_smoke_test(api_url: str = None):
         quota_exceeded = False
 
         for i in range(lim + 2):
+            heavy_endpoint_limiter._requests.clear()
             c_res = http_client.post("/api/v1/birth-profile", json=calc_payload, headers=headers_l05)
             if c_res.status_code == 200:
                 charts_calculated += 1

@@ -36,8 +36,12 @@ class Settings(BaseSettings):
     # Admin Security Configuration
     admin_api_key: Optional[str] = None
 
-    # AI Provider Configuration (ollama | openai)
-    ai_provider: str = "ollama"
+    # AI Provider Configuration (openai | gemini | ollama)
+    ai_provider: str = "openai"
+    openai_api_key: Optional[str] = None
+    openai_model: str = "gpt-4o-mini"
+    gemini_api_key: Optional[str] = None
+    gemini_model: str = "gemini-1.5-flash"
     ollama_base_url: str = "http://localhost:11434"
     ai_model_generation: str = "gemma4"
     ai_model_validation: str = "qwen3.5"

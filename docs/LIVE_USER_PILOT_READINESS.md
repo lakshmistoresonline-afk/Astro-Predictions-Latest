@@ -2,7 +2,7 @@
 
 - **Environment**: `LOCAL_PILOT`
 - **Readiness State**: `LOCAL_READY`
-- **Timestamp**: `2026-10-09T01:11:50.268380+00:00`
+- **Timestamp**: `2026-10-09T01:28:24.983987+00:00`
 - **Overall Pilot Verdict**: **PILOT NOT READY (LOCAL READY - 7 GATES BLOCKED)**
 - **Total Pilot Gates**: `18`
 - **Passed Gates**: `11`
@@ -19,7 +19,7 @@
 | `L04_DATABASE_PERSISTENCE` | Alembic Production Database Schema Lifecycle | **BLOCKED** | Alembic target database check: Target database is not up to date. |
 | `L05_QUOTA_ENFORCEMENT` | Persistent Daily Free-Tier Quota Limits | **PASS** | Daily free-tier quota limit of 10 charts enforced on HTTP API endpoint /api/v1/birth-profile with HTTP 429 QUOTA_EXCEEDED. |
 | `L06_RATE_LIMITING` | API Abuse & Heavy Computational Endpoint Protection | **PASS** | Sliding-window request-frequency rate limiter enforced on protected endpoint (5 requests allowed before HTTP 429 RATE_LIMIT_EXCEEDED with Retry-After: 10s). |
-| `L07_AI_RESILIENCE` | AI Trust Boundary, Prompt Injection & Outage Resilience | **BLOCKED** | Ollama local service not running (error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (C). Non-AI calculation features remain 100% usable. |
+| `L07_AI_RESILIENCE` | AI Trust Boundary, Prompt Injection & Outage Resilience | **BLOCKED** | Ollama local service not running (error: OPENAI_API_KEY not configured). Non-AI calculation features remain 100% usable. |
 | `L08_PDF_GENERATION` | ReportLab 12-Chapter Binary PDF Treatise Export | **PASS** | Binary PDF generated with verified %PDF-1.4 header (4,452 bytes), native birth details, and all 12 / 12 chapter headings verified. |
 | `L09_WEB_RUNTIME` | Next.js Web Client Contract Synchronization | **BLOCKED** | Next.js Web client API service and contracts verified; Web dev server not currently running on port 3000. |
 | `L10_ANDROID_RUNTIME` | Android Retrofit API & ViewModel Integration | **BLOCKED** | Android build verified; physical hardware device not currently connected via ADB. |

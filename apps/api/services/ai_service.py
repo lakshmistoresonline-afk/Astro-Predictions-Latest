@@ -3,7 +3,7 @@ Authoritative AI Service for Astrovision.
 Section 16..20 Compliance:
 - Trust Boundary: CLIENT -> SERVER -> CANONICAL EVIDENCE -> AI INTERPRETATION.
 - Server owns all evidence generation. Client prompt cannot override, replace, or alter factual astrology evidence.
-- Explicit AI Provider Policy: Respects settings.ai_provider ('ollama' | 'openai') with ZERO silent switching!
+- Explicit AI Provider Policy: Respects settings.ai_provider ('openai' | 'gemini' | 'ollama') with ZERO silent switching!
 - Timeout, retry, and circuit-breaker behavior (settings.ai_request_timeout_seconds, settings.ai_max_retries).
 - Structured Semantic Validation Engine: Parses structured JSON validation output (status, unsupported_claims, evidence_conflicts, invented_dates, invented_planets, confidence).
 - Bounded Confidence Clamping: Bounds confidence strictly to [0.0, 1.0].
@@ -38,6 +38,7 @@ class AIService:
     """
     AIService manages AI interpretation synthesis over CanonicalAstrologyEvidence.
     Enforces strict non-calculative prompts, structured semantic validation, and multi-pass repair.
+    Supports OpenAI (ChatGPT), Google Gemini, and Ollama providers cleanly.
     """
 
     SYSTEM_PROMPT = (
@@ -75,7 +76,7 @@ class AIService:
         provider = settings.ai_provider.lower().strip()
 
         if provider == "openai":
-            api_key = os.environ.get("OPENAI_API_KEY")
+            api_key = os.environ.get("OPENAI_API_KEY") or settings.openai_api_key
             if not api_key:
                 return {
                     "ai_provider": "openai",
@@ -87,7 +88,26 @@ class AIService:
             return {
                 "ai_provider": "openai",
                 "ai_provider_status": "openai_configured",
-                "generation_model": os.environ.get("OPENAI_MODEL", "gpt-4o-mini"),
+                "generation_model": os.environ.get("OPENAI_MODEL", settings.openai_model),
+                "generation_model_status": "available",
+                "validation_model_status": "available",
+                "is_healthy": True
+            }
+
+        if provider == "gemini":
+            api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or settings.gemini_api_key
+            if not api_key:
+                return {
+                    "ai_provider": "gemini",
+                    "ai_provider_status": "error: GEMINI_API_KEY not configured",
+                    "generation_model_status": "error: unconfigured",
+                    "validation_model_status": "error: unconfigured",
+                    "is_healthy": False
+                }
+            return {
+                "ai_provider": "gemini",
+                "ai_provider_status": "gemini_configured",
+                "generation_model": os.environ.get("GEMINI_MODEL", settings.gemini_model),
                 "generation_model_status": "available",
                 "validation_model_status": "available",
                 "is_healthy": True
@@ -170,8 +190,8 @@ class AIService:
 
     @classmethod
     def _execute_openai_request(cls, prompt_text: str, model_name: str) -> Optional[str]:
-        """Executes a POST request to OpenAI API with retries and timeouts."""
-        api_key = os.environ.get("OPENAI_API_KEY")
+        """Executes a POST request to OpenAI API (ChatGPT) with retries and timeouts."""
+        api_key = os.environ.get("OPENAI_API_KEY") or settings.openai_api_key
         if not api_key:
             logger.error("OpenAI provider configured (ai_provider='openai'), but OPENAI_API_KEY is not set.")
             return None
@@ -211,6 +231,47 @@ class AIService:
         return None
 
     @classmethod
+    def _execute_gemini_request(cls, prompt_text: str, model_name: str) -> Optional[str]:
+        """Executes a POST request to Google Gemini API with retries and timeouts."""
+        api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or settings.gemini_api_key
+        if not api_key:
+            logger.error("Gemini provider configured (ai_provider='gemini'), but GEMINI_API_KEY is not set.")
+            return None
+
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+        payload = {
+            "contents": [
+                {
+                    "parts": [
+                        {"text": prompt_text}
+                    ]
+                }
+            ]
+        }
+
+        timeout = settings.ai_request_timeout_seconds
+        max_retries = max(1, settings.ai_max_retries)
+
+        for attempt in range(1, max_retries + 1):
+            try:
+                response = requests.post(url, json=payload, timeout=timeout)
+                if response.status_code == 200:
+                    data = response.json()
+                    candidates = data.get("candidates", [])
+                    if candidates:
+                        parts = candidates[0].get("content", {}).get("parts", [])
+                        if parts and "text" in parts[0]:
+                            return parts[0]["text"].strip()
+                    logger.warning(f"Gemini provider returned empty response on attempt {attempt}.")
+                    return None
+                else:
+                    logger.warning(f"Gemini provider HTTP {response.status_code} on attempt {attempt}.")
+            except Exception as e:
+                logger.warning(f"Gemini provider connection error on attempt {attempt}/{max_retries}: {str(e)}")
+
+        return None
+
+    @classmethod
     def generate_interpretation(
         cls,
         prompt: str,
@@ -224,8 +285,11 @@ class AIService:
         provider = settings.ai_provider.lower().strip()
 
         if provider == "openai":
-            model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+            model = os.environ.get("OPENAI_MODEL", settings.openai_model)
             return cls._execute_openai_request(formatted_prompt, model)
+        elif provider == "gemini":
+            model = os.environ.get("GEMINI_MODEL", settings.gemini_model)
+            return cls._execute_gemini_request(formatted_prompt, model)
         else:
             model = settings.ai_model_generation
             return cls._execute_ollama_request(formatted_prompt, model)
@@ -259,23 +323,26 @@ class AIService:
 
         prompt_text = (
             f"{cls.VALIDATOR_SYSTEM_PROMPT}\n\n"
-            f"Source Evidence:\n{json.dumps(source_evidence, indent=2)}\n\n"
-            f"Generated Interpretation Text to Validate:\n{generated_text}"
+            f"SOURCE EVIDENCE PAYLOAD:\n{json.dumps(source_evidence, indent=2)}\n\n"
+            f"GENERATED INTERPRETATION TEXT TO VALIDATE:\n{generated_text}"
         )
 
         provider = settings.ai_provider.lower().strip()
         if provider == "openai":
-            model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
-            raw_res = cls._execute_openai_request(prompt_text, model)
+            val_model = os.environ.get("OPENAI_MODEL", settings.openai_model)
+            raw_res = cls._execute_openai_request(prompt_text, val_model)
+        elif provider == "gemini":
+            val_model = os.environ.get("GEMINI_MODEL", settings.gemini_model)
+            raw_res = cls._execute_gemini_request(prompt_text, val_model)
         else:
-            model = settings.ai_model_validation
-            raw_res = cls._execute_ollama_request(prompt_text, model)
+            val_model = settings.ai_model_validation
+            raw_res = cls._execute_ollama_request(prompt_text, val_model)
 
         if not raw_res:
             return ValidationResult(status="NOT_VALIDATED", confidence=0.0)
 
         try:
-            clean_json = raw_res
+            clean_json = raw_res.strip()
             if "```json" in clean_json:
                 clean_json = clean_json.split("```json")[1].split("```")[0].strip()
             elif "```" in clean_json:
@@ -342,14 +409,21 @@ class AIService:
         generation -> validation -> repair -> validation -> final output.
         """
         provider = settings.ai_provider.lower().strip()
-        gen_model = settings.ai_model_generation if provider == "ollama" else os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
-        val_model = settings.ai_model_validation if provider == "ollama" else os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+        if provider == "openai":
+            gen_model = os.environ.get("OPENAI_MODEL", settings.openai_model)
+            val_model = os.environ.get("OPENAI_MODEL", settings.openai_model)
+        elif provider == "gemini":
+            gen_model = os.environ.get("GEMINI_MODEL", settings.gemini_model)
+            val_model = os.environ.get("GEMINI_MODEL", settings.gemini_model)
+        else:
+            gen_model = settings.ai_model_generation
+            val_model = settings.ai_model_validation
 
         raw_text = cls.generate_interpretation(prompt, evidence)
         if not raw_text:
             return {
                 "domain": domain,
-                "interpretation": "AI interpretation service unavailable (Provider error or empty response). Displaying deterministic astrological evidence.",
+                "interpretation": f"AI interpretation service ({provider}) unavailable or API key not set. Displaying deterministic astrological evidence.",
                 "provider": provider,
                 "generation_model": gen_model,
                 "validation_model": val_model,
