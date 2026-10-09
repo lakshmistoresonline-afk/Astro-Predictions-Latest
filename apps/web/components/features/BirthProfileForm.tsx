@@ -52,39 +52,44 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
+  // Popular quick selection cities
+  const quickCities = [
+    'Palakkad', 'New Delhi', 'Mumbai', 'Bengaluru', 'Chennai', 'Kochi', 'London', 'New York', 'Dubai'
+  ]
+
   const filteredCities = PRESET_CITIES.filter(c =>
     c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     c.country.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  const handleYearInput = (val: string) => {
-    if (val === '') { setYear(1995); return }
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setYear(Math.min(2150, Math.max(1850, num)))
+  // Synchronized HTML Date Picker YYYY-MM-DD
+  const datePickerValue = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+
+  const handleDatePickerChange = (val: string) => {
+    if (!val) return
+    const parts = val.split('-')
+    if (parts.length === 3) {
+      const y = parseInt(parts[0], 10)
+      const m = parseInt(parts[1], 10)
+      const d = parseInt(parts[2], 10)
+      if (!isNaN(y) && y >= 1850 && y <= 2150) setYear(y)
+      if (!isNaN(m) && m >= 1 && m <= 12) setMonth(m)
+      if (!isNaN(d) && d >= 1 && d <= 31) setDay(d)
+    }
   }
 
-  const handleMonthInput = (val: string) => {
-    if (val === '') { setMonth(1); return }
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setMonth(Math.min(12, Math.max(1, num)))
-  }
+  // Synchronized HTML Time Picker HH:MM
+  const timePickerValue = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
 
-  const handleDayInput = (val: string) => {
-    if (val === '') { setDay(1); return }
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setDay(Math.min(31, Math.max(1, num)))
-  }
-
-  const handleHourInput = (val: string) => {
-    if (val === '') { setHour(12); return }
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setHour(Math.min(23, Math.max(0, num)))
-  }
-
-  const handleMinuteInput = (val: string) => {
-    if (val === '') { setMinute(0); return }
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setMinute(Math.min(59, Math.max(0, num)))
+  const handleTimePickerChange = (val: string) => {
+    if (!val) return
+    const parts = val.split(':')
+    if (parts.length >= 2) {
+      const h = parseInt(parts[0], 10)
+      const m = parseInt(parts[1], 10)
+      if (!isNaN(h) && h >= 0 && h <= 23) setHour(h)
+      if (!isNaN(m) && m >= 0 && m <= 59) setMinute(m)
+    }
   }
 
   const handleReset = () => {
@@ -149,90 +154,78 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
               />
             </div>
 
-            {/* Date & Time Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 font-mono">
-              {/* Date Inputs */}
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-2">
-                  Date of Birth
+            {/* Date & Time Section */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Easy Calendar Date Picker */}
+              <div className="space-y-2">
+                <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8]">
+                  Date of Birth <span className="text-[#F5B942]">*</span>
                 </label>
-                <div className="grid grid-cols-3 gap-2">
-                  <input
-                    type="number"
-                    min={1850}
-                    max={2150}
-                    value={year}
-                    onChange={e => handleYearInput(e.target.value)}
-                    placeholder="YYYY"
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min={1}
-                    max={12}
-                    value={month}
-                    onChange={e => handleMonthInput(e.target.value)}
-                    placeholder="MM"
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min={1}
-                    max={31}
-                    value={day}
-                    onChange={e => handleDayInput(e.target.value)}
-                    placeholder="DD"
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
-                    required
-                  />
-                </div>
+                <input
+                  type="date"
+                  value={datePickerValue}
+                  onChange={e => handleDatePickerChange(e.target.value)}
+                  className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none font-mono text-sm cursor-pointer"
+                  required
+                />
+                <p className="text-[11px] text-[#94A3B8] font-mono">
+                  Selected: <strong className="text-[#F5B942]">{day} / {month} / {year}</strong>
+                </p>
               </div>
 
-              {/* Time Inputs */}
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-2">
-                  Time of Birth (24-hour)
+              {/* Easy Time Picker (24-Hour Format) */}
+              <div className="space-y-2">
+                <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8]">
+                  Time of Birth (24-Hour Format) <span className="text-[#F5B942]">*</span>
                 </label>
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    type="number"
-                    min={0}
-                    max={23}
-                    value={hour}
-                    onChange={e => handleHourInput(e.target.value)}
-                    placeholder="HH (0-23)"
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
-                    required
-                  />
-                  <input
-                    type="number"
-                    min={0}
-                    max={59}
-                    value={minute}
-                    onChange={e => handleMinuteInput(e.target.value)}
-                    placeholder="MM (0-59)"
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
-                    required
-                  />
-                </div>
+                <input
+                  type="time"
+                  value={timePickerValue}
+                  onChange={e => handleTimePickerChange(e.target.value)}
+                  className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none font-mono text-sm cursor-pointer"
+                  required
+                />
+                <p className="text-[11px] text-[#94A3B8] font-mono">
+                  Selected: <strong className="text-[#F5B942]">{String(hour).padStart(2, '0')}:{String(minute).padStart(2, '0')} (24h)</strong>
+                </p>
               </div>
             </div>
 
             {/* Location Selector */}
             <div className="space-y-3 font-mono">
               <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                Birth Location Search
+                Select Birth Location
               </label>
+
+              {/* Quick City Preset Chips */}
+              <div className="flex flex-wrap items-center gap-2 pb-1">
+                <span className="text-[11px] text-[#94A3B8] mr-1">Quick Select:</span>
+                {quickCities.map(city => (
+                  <button
+                    key={city}
+                    type="button"
+                    onClick={() => handleCityChange(city)}
+                    className={`px-3 py-1 rounded-xl text-xs transition border ${
+                      selectedCity === city
+                        ? 'bg-[#F5B942]/20 border-[#F5B942] text-[#F5B942] font-bold'
+                        : 'bg-[#070D1B] border-white/10 text-[#94A3B8] hover:text-[#E8EDF7] hover:border-white/20'
+                    }`}
+                  >
+                    {city}
+                  </button>
+                ))}
+              </div>
+
+              {/* Search Filter Box */}
               <input
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Filter city e.g. New Delhi, Mumbai, London, Tokyo..."
+                placeholder="Filter city list e.g. New Delhi, Mumbai, London, Tokyo..."
                 className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] placeholder-[#94A3B8] focus:border-[#F5B942] outline-none transition text-xs mb-2"
               />
 
+              {/* City Dropdown */}
               <select
                 value={selectedCity}
                 onChange={e => handleCityChange(e.target.value)}
@@ -355,7 +348,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 chartStyle === 'north' ? 'bg-[#F5B942]/20 text-[#F5B942] border border-[#F5B942]/40' : 'text-[#94A3B8] hover:text-white'
               }`}
             >
-              North Indian (Rashi)
+              North Indian (Rāśi)
             </button>
             <button
               type="button"
