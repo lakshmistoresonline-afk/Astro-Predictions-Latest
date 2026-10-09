@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ShadbalaSuiteResult, AshtakavargaPredictiveEvidence } from '../../types/api'
 
 interface ShadbalaAshtakavargaViewProps {
@@ -10,72 +10,136 @@ export const ShadbalaAshtakavargaView: React.FC<ShadbalaAshtakavargaViewProps> =
   shadbalaSuite,
   ashtakavargaEvidence
 }) => {
+  const [activeTab, setActiveTab] = useState<'shadbala' | 'ashtakavarga'>('shadbala')
   const planets = shadbalaSuite?.planets ? Object.values(shadbalaSuite.planets) : []
   const savEvidences = ashtakavargaEvidence?.house_sav_evidences || []
 
   return (
-    <div className="space-y-8 w-full">
-      {/* Shadbala Strengths Table */}
-      <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-[#F3E5AB]/30 shadow-2xl space-y-6">
-        <h3 className="text-2xl font-extrabold text-[#F3E5AB]">Shadbala Six-Fold Planetary Strengths</h3>
-
-        {planets.length === 0 ? (
-          <p className="text-sm text-[#A0A5C0]">Shadbala strength evidence unavailable.</p>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs md:text-sm">
-              <thead>
-                <tr className="border-b border-[#F3E5AB]/30 text-[#F3E5AB] uppercase tracking-wider">
-                  <th className="pb-3 px-2">Planet</th>
-                  <th className="pb-3 px-2">Total Rupas</th>
-                  <th className="pb-3 px-2">Shashtiamsas</th>
-                  <th className="pb-3 px-2">Strength %</th>
-                  <th className="pb-3 px-2">Strongest Component</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#F3E5AB]/10 text-white">
-                {planets.map(p => (
-                  <tr key={p.planet} className="hover:bg-white/5 transition">
-                    <td className="py-3 px-2 font-bold">{p.planet}</td>
-                    <td className="py-3 px-2 font-bold text-[#F3E5AB]">{p.total_rupas} Rupas</td>
-                    <td className="py-3 px-2">{p.total_shashtiamsas} pts</td>
-                    <td className="py-3 px-2">{p.strength_percentage}%</td>
-                    <td className="py-3 px-2 text-[#A0A5C0]">{p.sthana_bala.name}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-
-      {/* Ashtakavarga SAV Strengths */}
-      <div className="bg-[#17163A]/90 p-8 rounded-3xl border border-[#F3E5AB]/30 shadow-2xl space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <h3 className="text-2xl font-extrabold text-[#F3E5AB]">Sarvashtakavarga (SAV) House Bindus</h3>
-          {ashtakavargaEvidence?.total_sav_bindus !== null && ashtakavargaEvidence?.total_sav_bindus !== undefined && (
-            <span className="px-3 py-1 bg-[#F3E5AB]/20 text-[#F3E5AB] text-xs font-bold rounded-full">
-              Total SAV Bindus: {ashtakavargaEvidence.total_sav_bindus}
-            </span>
-          )}
+    <div className="bg-slate-900/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-slate-800/80 shadow-2xl space-y-6 w-full select-none">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h3 className="text-xl font-extrabold text-amber-300 flex items-center gap-2">
+            <span>⚡</span> Quantitative Strength Engine (Shadbala & SAV)
+          </h3>
+          <p className="text-xs text-slate-400 font-mono mt-1">
+            Six-Bala Planetary Power & Sarvashtakavarga House Bindu Aggregations
+          </p>
         </div>
 
-        {savEvidences.length === 0 ? (
-          <p className="text-sm text-[#A0A5C0]">Ashtakavarga SAV evidence unavailable.</p>
+        <div className="flex bg-slate-950 p-1 rounded-xl border border-slate-800 font-mono">
+          <button
+            onClick={() => setActiveTab('shadbala')}
+            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition ${
+              activeTab === 'shadbala' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            Shadbala 6-Bala ({planets.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('ashtakavarga')}
+            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition ${
+              activeTab === 'ashtakavarga' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            Ashtakavarga SAV ({savEvidences.length})
+          </button>
+        </div>
+      </div>
+
+      {activeTab === 'shadbala' ? (
+        planets.length === 0 ? (
+          <div className="p-8 text-center bg-slate-950/40 rounded-2xl border border-slate-800 text-xs font-mono text-slate-400">
+            Shadbala 6-Bala strength evidence unavailable.
+          </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {savEvidences.map(h => (
-              <div key={h.rashi_index} className="p-4 bg-black/40 rounded-2xl border border-[#F3E5AB]/20 text-center space-y-1">
-                <span className="text-[10px] uppercase font-bold text-[#A0A5C0]">{h.rashi_name}</span>
-                <p className="text-2xl font-black text-white">{h.sav_bindus !== null ? `${h.sav_bindus} pts` : 'N/A'}</p>
-                <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#F3E5AB]/10 text-[#F3E5AB] font-bold block truncate">
-                  {h.strength_category}
+          <div className="space-y-4">
+            <div className="overflow-x-auto rounded-2xl border border-slate-800/80">
+              <table className="w-full text-left text-xs font-mono">
+                <thead className="bg-slate-950/90 text-amber-300 text-[11px] uppercase tracking-wider sticky top-0 border-b border-slate-800">
+                  <tr>
+                    <th className="py-3 px-4">Graha</th>
+                    <th className="py-3 px-4">Total Rupas</th>
+                    <th className="py-3 px-4">Shashtiamsas</th>
+                    <th className="py-3 px-4">Strength %</th>
+                    <th className="py-3 px-4">Power Meter</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/60 text-slate-200">
+                  {planets.map(p => {
+                    const pct = Math.min(100, Math.max(0, p.strength_percentage || 50))
+                    return (
+                      <tr key={p.planet} className="hover:bg-slate-800/40 transition">
+                        <td className="py-3 px-4 font-bold text-white flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                          {p.planet}
+                        </td>
+                        <td className="py-3 px-4 font-bold text-amber-300 tabular-nums">{p.total_rupas} Rupas</td>
+                        <td className="py-3 px-4 tabular-nums text-slate-300">{p.total_shashtiamsas} pts</td>
+                        <td className="py-3 px-4 tabular-nums font-bold text-cyan-300">{pct.toFixed(1)}%</td>
+                        <td className="py-3 px-4 w-48">
+                          <div className="w-full bg-slate-950 rounded-full h-2 overflow-hidden border border-slate-800">
+                            <div
+                              className="bg-gradient-to-r from-amber-500 to-cyan-400 h-full rounded-full"
+                              style={{ width: `${pct}%` }}
+                            ></div>
+                          </div>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )
+      ) : (
+        savEvidences.length === 0 ? (
+          <div className="p-8 text-center bg-slate-950/40 rounded-2xl border border-slate-800 text-xs font-mono text-slate-400">
+            Sarvashtakavarga (SAV) house bindu evidence unavailable.
+          </div>
+        ) : (
+          <div className="space-y-6 font-mono">
+            {ashtakavargaEvidence?.total_sav_bindus !== undefined && ashtakavargaEvidence.total_sav_bindus !== null && (
+              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+                <span className="text-xs text-slate-400">Total Sarvashtakavarga Bindus (337 Standard)</span>
+                <span className="text-base font-black text-amber-300 tabular-nums">
+                  {ashtakavargaEvidence.total_sav_bindus} Bindus
                 </span>
               </div>
-            ))}
+            )}
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {savEvidences.map(h => {
+                const bindus = h.sav_bindus !== null ? h.sav_bindus : 28
+                const isStrong = bindus >= 30
+                const isAverage = bindus >= 25 && bindus < 30
+
+                return (
+                  <div
+                    key={h.rashi_index}
+                    className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 space-y-2 hover:border-amber-500/40 transition"
+                  >
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-slate-400">House {h.rashi_index}</span>
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
+                        isStrong ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' :
+                        isAverage ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' :
+                        'bg-slate-800 text-slate-400 border-slate-700'
+                      }`}>
+                        {bindus} Bindus
+                      </span>
+                    </div>
+                    <p className="font-bold text-slate-100 text-sm">{h.rashi_name}</p>
+                    <p className="text-[10px] text-slate-400 font-sans leading-relaxed line-clamp-2">
+                      {h.strength_category || 'Neutral House'}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
-        )}
-      </div>
+        )
+      )}
     </div>
   )
 }

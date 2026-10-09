@@ -7,23 +7,30 @@ interface ErrorStateProps {
 }
 
 export const ErrorState: React.FC<ErrorStateProps> = ({
-  title = 'Calculation Error',
+  title = 'Calculation Exception',
   message,
   onRetry
 }) => {
   return (
-    <div className="bg-rose-950/80 border border-rose-500/50 p-6 rounded-2xl text-rose-200 space-y-3 max-w-2xl mx-auto shadow-2xl">
-      <h4 className="font-bold text-lg text-rose-100 flex items-center gap-2">
-        <span>⚠</span> {title}
-      </h4>
-      <p className="text-sm leading-relaxed">{message}</p>
+    <div className="bg-rose-950/40 border border-rose-500/40 p-6 rounded-2xl text-rose-200 space-y-3 max-w-2xl mx-auto backdrop-blur-md shadow-2xl">
+      <div className="flex items-center gap-3">
+        <div className="w-9 h-9 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 font-bold shrink-0">
+          !
+        </div>
+        <div>
+          <h4 className="font-bold text-base text-rose-100">{title}</h4>
+          <p className="text-xs font-mono text-rose-300/80 leading-relaxed mt-1">{message}</p>
+        </div>
+      </div>
       {onRetry && (
-        <button
-          onClick={onRetry}
-          className="mt-2 bg-rose-500/30 hover:bg-rose-500/40 text-rose-100 font-bold px-4 py-2 rounded-xl text-xs transition"
-        >
-          Retry Request →
-        </button>
+        <div className="pt-2 flex justify-end">
+          <button
+            onClick={onRetry}
+            className="bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-100 font-semibold px-4 py-2 rounded-xl text-xs transition duration-150 flex items-center gap-2"
+          >
+            <span>↻</span> Retry Operation
+          </button>
+        </div>
       )}
     </div>
   )
