@@ -554,10 +554,22 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
               </div>
             </div>
 
-            <div className="pt-2 flex justify-end gap-3 font-mono">
+            <div className="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(`${activeModalData.title}\n\n${activeModalData.synthesis}`)
+                    alert('Prediction analysis copied to clipboard!')
+                  }}
+                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>📋</span> Copy Analysis
+                </button>
+              </div>
+
               <button
                 onClick={() => setSelectedModalDomain(null)}
-                className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition"
+                className="px-5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-bold transition cursor-pointer"
               >
                 Close Report
               </button>

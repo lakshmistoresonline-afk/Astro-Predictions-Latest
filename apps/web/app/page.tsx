@@ -43,6 +43,7 @@ export default function Home() {
   const [utcClock, setUtcClock] = useState<string>('')
   const [globalSearch, setGlobalSearch] = useState<string>('')
   const [showCommandPalette, setShowCommandPalette] = useState(false)
+  const [showProfileDrawer, setShowProfileDrawer] = useState(false)
 
   // Form state
   const [name, setName] = useState('')
@@ -249,12 +250,15 @@ export default function Home() {
               Live Ephemeris: <strong className="text-[#E8EDF7]">JPL DE440s</strong> <span className="tabular-nums text-[#F5B942]">{utcClock}</span>
             </span>
 
-            {/* User Profile Avatar */}
-            <div className="flex items-center gap-2 bg-[#070D1B]/80 p-1.5 pr-3 rounded-full border border-white/10">
+            {/* User Profile Avatar Trigger */}
+            <div
+              onClick={() => setShowProfileDrawer(true)}
+              className="flex items-center gap-2 bg-[#070D1B]/80 hover:bg-slate-900 p-1.5 pr-3 rounded-full border border-white/10 cursor-pointer transition"
+            >
               <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#F5B942] to-amber-600 text-[#070D1B] font-black text-xs flex items-center justify-center">
                 AK
               </div>
-              <span className="text-xs font-mono font-semibold text-[#E8EDF7] hidden sm:inline-block">Astro Seeker</span>
+              <span className="text-xs font-mono font-semibold text-[#E8EDF7] hidden sm:inline-block">Astro Seeker ▾</span>
             </div>
 
             {/* Mobile Navigation Dropdown */}
@@ -269,6 +273,68 @@ export default function Home() {
             </select>
           </div>
         </header>
+
+        {/* Saved Profiles Manager Slide-Over Drawer */}
+        {showProfileDrawer && (
+          <div className="fixed inset-0 bg-[#070D1B]/80 backdrop-blur-xl z-50 flex justify-end font-mono select-none">
+            <div className="bg-[#111B30] border-l border-[#F5B942]/30 w-full max-w-md h-full p-6 space-y-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#F5B942] to-amber-600 text-[#070D1B] font-black text-sm flex items-center justify-center">
+                      AK
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-[#E8EDF7] text-sm">Astro Seeker Account</h3>
+                      <p className="text-[10px] text-[#94A3B8]">Authenticated Profile Session</p>
+                    </div>
+                  </div>
+                  <button onClick={() => setShowProfileDrawer(false)} className="text-xs text-[#94A3B8] hover:text-white">✕</button>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="font-bold text-[#F5B942] uppercase tracking-wider">Active Natal Profile</span>
+                    <span className="text-[10px] text-[#34D399] font-bold">● DE440s Loaded</span>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-[#070D1B] border border-[#F5B942]/30 space-y-2">
+                    <p className="font-bold text-sm text-[#E8EDF7]">{name || 'Subramanian T S'}</p>
+                    <p className="text-xs text-[#94A3B8] tabular-nums">
+                      {year}-{String(month).padStart(2, '0')}-{String(day).padStart(2, '0')} • {String(hour).padStart(2, '0')}:{String(minute).padStart(2, '0')}
+                    </p>
+                    <p className="text-xs text-[#94A3B8]">{placeName}, {country}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 space-y-2">
+                  <button
+                    onClick={() => {
+                      setActiveTab('chart-form')
+                      setShowProfileDrawer(false)
+                    }}
+                    className="w-full py-3 px-4 rounded-xl bg-[#F5B942]/10 hover:bg-[#F5B942]/20 border border-[#F5B942]/30 text-[#F5B942] font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>📝</span> Edit / Enter New Birth Particulars
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveTab('predictions')
+                      setShowProfileDrawer(false)
+                    }}
+                    className="w-full py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>🎯</span> Open 14 Domain Predictions Engine
+                  </button>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 text-center text-xs text-[#94A3B8]">
+                Astrovision Session Token Active
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Command Palette Modal */}
         {showCommandPalette && (
