@@ -293,6 +293,7 @@ export default function Home() {
                   data={chartData}
                   onNewProfile={() => setActiveTab('chart-form')}
                   onViewChart={() => setActiveTab('reports')}
+                  onViewPredictions={() => setActiveTab('predictions')}
                 />
               ) : (
                 <div className="bg-[#111B30]/90 p-12 md:p-16 rounded-3xl border border-white/10 shadow-2xl text-center space-y-6 w-full max-w-2xl mx-auto backdrop-blur-xl">
