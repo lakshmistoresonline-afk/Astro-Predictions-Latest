@@ -19,6 +19,9 @@ import { JaiminiView } from '../components/features/JaiminiView'
 import { PanchangaMuhurtaView } from '../components/features/PanchangaMuhurtaView'
 import { PredictionsView } from '../components/features/PredictionsView'
 import { AiInterpretationView } from '../components/features/AiInterpretationView'
+import { CompatibilityView } from '../components/features/CompatibilityView'
+import { RectificationView } from '../components/features/RectificationView'
+import { DigestView } from '../components/features/DigestView'
 
 type NavigationTab =
   | 'home'
@@ -32,6 +35,9 @@ type NavigationTab =
   | 'strength'
   | 'jaimini'
   | 'panchanga'
+  | 'compatibility'
+  | 'rectification'
+  | 'digest'
   | 'ai'
 
 export default function Home() {
@@ -157,6 +163,9 @@ export default function Home() {
     { id: 'strength', label: 'Shadbala & SAV', icon: '📊' },
     { id: 'jaimini', label: 'Jaimini', icon: '📜' },
     { id: 'panchanga', label: 'Panchanga & Muhurta', icon: '☀️' },
+    { id: 'compatibility', label: '36-Pt Compatibility', icon: '💖' },
+    { id: 'rectification', label: 'Time Rectification', icon: '🔍' },
+    { id: 'digest', label: 'Weekly Transit Digest', icon: '📫' },
     { id: 'predictions', label: 'Domain Predictions', icon: '🎯' },
     { id: 'ai', label: 'AI Evidence Synthesis', icon: '🤖' },
   ]
@@ -498,6 +507,24 @@ export default function Home() {
                 panchanga={masterEv?.panchanga}
                 muhurtaSuite={masterEv?.muhurta_suite}
               />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'compatibility' && (
+            <WidgetErrorBoundary title="Compatibility View Error">
+              <CompatibilityView />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'rectification' && (
+            <WidgetErrorBoundary title="Rectification View Error">
+              <RectificationView />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'digest' && (
+            <WidgetErrorBoundary title="Digest View Error">
+              <DigestView />
             </WidgetErrorBoundary>
           )}
 
