@@ -22,7 +22,7 @@ export const ShadbalaAshtakavargaView: React.FC<ShadbalaAshtakavargaViewProps> =
             <span>⚡</span> Quantitative Strength Engine (Shadbala & SAV)
           </h3>
           <p className="text-xs text-slate-400 font-mono mt-1">
-            Six-Bala Planetary Power & Sarvashtakavarga House Bindu Aggregations
+            Six-Bala Planetary Power & Sarvashtakavarga House Bindu Heatmap
           </p>
         </div>
 
@@ -108,6 +108,23 @@ export const ShadbalaAshtakavargaView: React.FC<ShadbalaAshtakavargaViewProps> =
               </div>
             )}
 
+            {/* SAV Heatmap Ratings Summary Bar */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between text-emerald-300">
+                <span>Strong Energy (30+ Bindus)</span>
+                <span className="font-bold">Favorable Growth</span>
+              </div>
+              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between text-amber-300">
+                <span>Balanced Energy (25–29)</span>
+                <span className="font-bold">Stable Base</span>
+              </div>
+              <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-between text-slate-300">
+                <span>Caution (&lt; 25 Bindus)</span>
+                <span className="font-bold">Discipline Area</span>
+              </div>
+            </div>
+
+            {/* 12 House Heatmap Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {savEvidences.map(h => {
                 const bindus = h.sav_bindus !== null ? h.sav_bindus : 28
@@ -117,13 +134,19 @@ export const ShadbalaAshtakavargaView: React.FC<ShadbalaAshtakavargaViewProps> =
                 return (
                   <div
                     key={h.rashi_index}
-                    className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 space-y-2 hover:border-amber-500/40 transition"
+                    className={`p-4 rounded-2xl border space-y-2 transition shadow-md ${
+                      isStrong
+                        ? 'bg-emerald-950/20 border-emerald-500/40 text-emerald-100'
+                        : isAverage
+                        ? 'bg-amber-950/20 border-amber-500/40 text-amber-100'
+                        : 'bg-slate-950/60 border-slate-800/80 text-slate-300'
+                    }`}
                   >
                     <div className="flex justify-between items-center text-xs">
                       <span className="text-slate-400">House {h.rashi_index}</span>
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
-                        isStrong ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' :
-                        isAverage ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' :
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
+                        isStrong ? 'bg-emerald-500/30 text-emerald-300 border-emerald-500/50' :
+                        isAverage ? 'bg-amber-500/30 text-amber-300 border-amber-500/50' :
                         'bg-slate-800 text-slate-400 border-slate-700'
                       }`}>
                         {bindus} Bindus

@@ -42,6 +42,7 @@ export default function Home() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [utcClock, setUtcClock] = useState<string>('')
   const [globalSearch, setGlobalSearch] = useState<string>('')
+  const [showCommandPalette, setShowCommandPalette] = useState(false)
 
   // Form state
   const [name, setName] = useState('')
@@ -66,7 +67,18 @@ export default function Home() {
       setUtcClock(new Date().toUTCString().slice(17, 25) + ' UTC')
     }, 1000)
     setUtcClock(new Date().toUTCString().slice(17, 25) + ' UTC')
-    return () => clearInterval(timer)
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        setShowCommandPalette(prev => !prev)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      clearInterval(timer)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
   }, [])
 
   const handleCityChange = (cityName: string) => {
@@ -154,6 +166,10 @@ export default function Home() {
     loadingStep === 3 ? 'Evaluating 16 Parashari Vargas, Vimshottari Dashas & Yogas...' :
     'Synthesizing Canonical Astrology Evidence Package...'
 
+  const filteredLinks = sidebarLinks.filter(l =>
+    l.label.toLowerCase().includes(globalSearch.toLowerCase())
+  )
+
   return (
     <div className="min-h-screen bg-[#070D1B] text-[#E8EDF7] flex flex-col md:flex-row selection:bg-[#F5B942] selection:text-[#070D1B] relative overflow-x-hidden font-sans w-full">
       {/* Sidebar Navigation */}
@@ -178,7 +194,7 @@ export default function Home() {
                 <button
                   key={link.id}
                   onClick={() => setActiveTab(link.id)}
-                  className={`w-full text-left px-3.5 py-2.5 rounded-xl transition duration-150 font-mono text-xs flex items-center gap-3 ${
+                  className={`w-full text-left px-3.5 py-2.5 rounded-xl transition duration-150 font-mono text-xs flex items-center gap-3 cursor-pointer ${
                     isActive
                       ? 'bg-[#F5B942]/15 text-[#F5B942] border border-[#F5B942]/40 shadow-lg shadow-[#F5B942]/5 font-bold'
                       : 'text-[#94A3B8] hover:text-[#E8EDF7] hover:bg-white/5'
@@ -213,16 +229,16 @@ export default function Home() {
               <span className="font-extrabold text-[#F5B942] text-sm font-serif-heading">Astrovision</span>
             </div>
 
-            {/* Global Search Input */}
-            <div className="relative w-full max-w-md hidden sm:block">
-              <input
-                type="text"
-                value={globalSearch}
-                onChange={e => setGlobalSearch(e.target.value)}
-                placeholder="Search profiles, reports, features... (Ctrl+K)"
-                className="w-full bg-[#070D1B]/80 border border-white/10 rounded-xl px-3.5 py-1.5 text-xs text-[#E8EDF7] placeholder-[#94A3B8] focus:border-[#F5B942]/60 outline-none font-mono"
-              />
-              <span className="absolute right-3 top-2 text-[10px] font-mono text-[#94A3B8] border border-white/10 px-1.5 py-0.5 rounded bg-white/5">Ctrl K</span>
+            {/* Global Search Input Button */}
+            <div
+              onClick={() => setShowCommandPalette(true)}
+              className="relative w-full max-w-md hidden sm:flex items-center justify-between bg-[#070D1B]/80 border border-white/10 hover:border-[#F5B942]/50 rounded-xl px-3.5 py-2 text-xs text-[#94A3B8] cursor-pointer transition font-mono"
+            >
+              <div className="flex items-center gap-2">
+                <span>🔍</span>
+                <span>Search profiles, reports, features...</span>
+              </div>
+              <span className="text-[10px] text-[#94A3B8] border border-white/10 px-1.5 py-0.5 rounded bg-white/5">Ctrl K</span>
             </div>
           </div>
 
@@ -253,6 +269,54 @@ export default function Home() {
             </select>
           </div>
         </header>
+
+        {/* Command Palette Modal */}
+        {showCommandPalette && (
+          <div className="fixed inset-0 bg-[#070D1B]/80 backdrop-blur-xl z-50 flex items-start justify-center pt-20 p-4 font-mono select-none">
+            <div className="bg-[#111B30] border border-[#F5B942]/40 rounded-3xl max-w-xl w-full p-6 space-y-4 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex items-center gap-2 text-xs text-[#F5B942]">
+                  <span>🔍</span>
+                  <span className="font-bold">Astrovision Command Palette</span>
+                </div>
+                <button
+                  onClick={() => setShowCommandPalette(false)}
+                  className="text-xs text-[#94A3B8] hover:text-white"
+                >
+                  ESC ✕
+                </button>
+              </div>
+
+              <input
+                type="text"
+                value={globalSearch}
+                onChange={e => setGlobalSearch(e.target.value)}
+                placeholder="Type module or feature name..."
+                className="w-full bg-[#070D1B] border border-white/10 rounded-xl p-3 text-xs text-[#E8EDF7] placeholder-[#94A3B8] focus:border-[#F5B942] outline-none"
+                autoFocus
+              />
+
+              <div className="space-y-1 max-h-64 overflow-y-auto">
+                {filteredLinks.map(link => (
+                  <div
+                    key={link.id}
+                    onClick={() => {
+                      setActiveTab(link.id)
+                      setShowCommandPalette(false)
+                    }}
+                    className="p-3 rounded-xl hover:bg-white/5 transition flex items-center justify-between cursor-pointer text-xs"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>{link.icon}</span>
+                      <span className="font-bold text-[#E8EDF7]">{link.label}</span>
+                    </div>
+                    <span className="text-[10px] text-[#94A3B8]">Jump →</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Loading Overlay */}
         {loading && <LoadingState stepMessage={loadingStepMessage} />}
@@ -304,7 +368,7 @@ export default function Home() {
                   </p>
                   <button
                     onClick={() => setActiveTab('chart-form')}
-                    className="bg-gradient-to-r from-[#F5B942] to-[#E5A832] hover:from-[#E5A832] hover:to-[#F5B942] text-[#070D1B] font-black px-8 py-3.5 rounded-2xl shadow-xl shadow-[#F5B942]/20 text-xs uppercase tracking-wider transition duration-150"
+                    className="bg-gradient-to-r from-[#F5B942] to-[#E5A832] hover:from-[#E5A832] hover:to-[#F5B942] text-[#070D1B] font-black px-8 py-3.5 rounded-2xl shadow-xl shadow-[#F5B942]/20 text-xs uppercase tracking-wider transition duration-150 cursor-pointer"
                   >
                     Enter Birth Details →
                   </button>
