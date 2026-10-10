@@ -378,7 +378,7 @@ export default function Home() {
 
           {activeTab === 'ai' && (
             <WidgetErrorBoundary title="AI Interpretation Error">
-              <AiInterpretationView onInterpret={handleAiInterpret} />
+              <AiInterpretationView onInterpret={handleAiInterpret} predictions={chartData?.predictions} />
             </WidgetErrorBoundary>
           )}
         </main>
