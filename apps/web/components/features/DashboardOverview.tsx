@@ -16,7 +16,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
 }) => {
   const chart = data.master_evidence.canonical_chart
   const ascSign = chart.ascendant?.sign || 'Aquarius'
-  const ascDegree = chart.ascendant?.degree !== undefined ? `${chart.ascendant.degree}°${chart.ascendant.minute || 0}′` : '12°40′'
+  const ascDegree = chart.ascendant?.degree !== undefined ? `${chart.ascendant.degree}°${String(chart.ascendant.minute || 0).padStart(2, '0')}′` : '12°40′'
   const moonPlacement = chart.placements?.Moon
   const sunPlacement = chart.placements?.Sun
 
@@ -188,14 +188,14 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
         </div>
 
         {/* KPI 2: Charts Calculated */}
-        <div className="p-6 rounded-2xl bg-[#111B30]/90 border border-[#F5B942]/20 hover:border-[#F5B942]/50 transition duration-200 space-y-3 shadow-xl">
+        <div className="p-6 rounded-2xl bg-[#111B30]/90 border border-[#F5B942]/20 hover:border-[#F5B942]/50 transition duration-200 space-y-3 shadow-xl cursor-pointer" onClick={onViewChart}>
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono uppercase tracking-wider text-[#94A3B8]">Charts Calculated</span>
             <span className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 text-sm">📊</span>
           </div>
           <div className="space-y-1">
             <p className="text-3xl font-black text-[#E8EDF7] font-mono tabular-nums">36 Charts</p>
-            <p className="text-xs text-[#94A3B8]">View history</p>
+            <p className="text-xs text-cyan-300 font-bold">View history →</p>
           </div>
         </div>
 
@@ -224,7 +224,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
         </div>
       </div>
 
-      {/* Main Grid: Recent Profiles (Left 2 Cols) & Today's Planetary Overview (Right 1 Col) */}
+      {/* Main Grid: Recent Profiles (Left 8 Cols) & Today's Planetary Overview (Right 4 Cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Recent Birth Profiles Data Table (8 Cols) */}
         <div className="lg:col-span-8 p-6 md:p-8 rounded-3xl bg-[#111B30]/90 border border-white/10 space-y-6 shadow-2xl">
