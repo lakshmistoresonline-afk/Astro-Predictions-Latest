@@ -233,6 +233,18 @@ export const AiInterpretationView: React.FC<AiInterpretationViewProps> = ({ onIn
             </div>
           </div>
 
+          {/* Engine Status Notice Pill */}
+          {!result?.interpretation && (
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center gap-3 text-xs font-mono text-slate-300">
+              <span className="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-[10px] shrink-0">
+                ✦ Rule-Based Engine Active
+              </span>
+              <span className="text-slate-400 text-[11px] font-sans">
+                Displaying 100% deterministic astrological evidence & traditional Parashari synthesis.
+              </span>
+            </div>
+          )}
+
           <p className="text-sm font-sans text-slate-200 leading-relaxed whitespace-pre-wrap">
             {result?.interpretation || (
               `This ${selectedDomain.toLowerCase()} analysis is computed based on your canonical birth chart and planetary positions. ` +

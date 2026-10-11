@@ -145,6 +145,20 @@ class CanonicalEvidencePipeline:
         timing_suite = TimingEngine.generate_timing_suite(canonical_chart, query_dt)
         temporal_hash = None
 
+        # Panchanga & Muhurta Suite (Computed at query_dt or birth_utc_dt if query_dt is None)
+        eval_dt = query_dt if query_dt else birth_utc_dt
+
+        panchanga = PanchangaEngine.calculate_panchanga(
+            dt=eval_dt,
+            latitude=birth_input.latitude,
+            longitude=birth_input.longitude,
+            location_name=birth_input.name,
+            timezone_str=birth_input.timezone_str,
+            astronomy_provider=astronomy_provider
+        )
+
+        muhurta_suite = MuhurtaEngine.evaluate_all_activities(panchanga=panchanga)
+
         if query_dt:
             # Active Dasha hierarchy at query_dt
             query_dasha_suite = AuthoritativeDashaEngine.calculate_dasha_suite(canonical_chart, query_dt)
@@ -163,16 +177,6 @@ class CanonicalEvidencePipeline:
                 astronomy_provider=astronomy_provider,
                 active_dasha_lords=active_lords
             )
-
-            panchanga = PanchangaEngine.calculate_panchanga(
-                dt=query_dt,
-                latitude=birth_input.latitude,
-                longitude=birth_input.longitude,
-                location_name=birth_input.name,
-                astronomy_provider=astronomy_provider
-            )
-
-            muhurta_suite = MuhurtaEngine.evaluate_all_activities(panchanga=panchanga)
 
             temp_payload = {
                 "natal_hash": natal_hash,
