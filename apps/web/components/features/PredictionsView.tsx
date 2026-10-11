@@ -558,6 +558,20 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => {
+                    const text = `${activeModalData.title}\n\n${activeModalData.synthesis}\n\nKey Indications:\n- ${activeModalData.indications.join('\n- ')}\n\nSupporting Factors:\n- ${activeModalData.factors.join('\n- ')}`
+                    const blob = new Blob([text], { type: 'text/plain' })
+                    const url = URL.createObjectURL(blob)
+                    const a = document.createElement('a')
+                    a.href = url
+                    a.download = `${selectedModalDomain}_Domain_Prediction_Report.txt`
+                    a.click()
+                  }}
+                  className="px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-bold transition flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>📄</span> Export Domain Report
+                </button>
+                <button
+                  onClick={() => {
                     navigator.clipboard.writeText(`${activeModalData.title}\n\n${activeModalData.synthesis}`)
                     alert('Prediction analysis copied to clipboard!')
                   }}
@@ -569,7 +583,7 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
 
               <button
                 onClick={() => setSelectedModalDomain(null)}
-                className="px-5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-bold transition cursor-pointer"
+                className="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition cursor-pointer"
               >
                 Close Report
               </button>
