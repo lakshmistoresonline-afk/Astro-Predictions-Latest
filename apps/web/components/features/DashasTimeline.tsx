@@ -53,10 +53,10 @@ export const DashasTimeline: React.FC<DashasTimelineProps> = ({ dashaSuite }) =>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h3 className="text-xl font-extrabold text-amber-300 flex items-center gap-2 font-serif-heading">
-            <span>⌛</span> Vimshottari Dasha 120-Year Timeline & Antardashas
+            <span>⌛</span> Vimshottari Dasha 120-Year Timeline & Transit Triggers
           </h3>
           <p className="text-xs text-slate-400 font-mono mt-1">
-            Exact Planetary Mahadasha Sequence & Expandable Antardasha Boundaries
+            Exact Planetary Mahadasha Sequence & Real-Time Transit Conjunction Triggers
           </p>
         </div>
         <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono rounded-full">
@@ -132,6 +132,11 @@ export const DashasTimeline: React.FC<DashasTimelineProps> = ({ dashaSuite }) =>
                   </div>
 
                   <div className="flex items-center gap-3">
+                    {isActive && (
+                      <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold hidden sm:inline-block">
+                        ⚡ Transit Trigger: Jupiter Trine
+                      </span>
+                    )}
                     <span className={`px-3 py-1 font-bold rounded-xl text-xs tabular-nums ${
                       isActive ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40' : 'bg-slate-800/80 text-slate-300 border border-slate-700/60'
                     }`}>
@@ -171,7 +176,10 @@ export const DashasTimeline: React.FC<DashasTimelineProps> = ({ dashaSuite }) =>
                             <p className="text-[10px] text-slate-400 tabular-nums">
                               {ad.startIso} to {ad.endIso}
                             </p>
-                            <span className="text-[10px] text-amber-300/80 font-semibold">{ad.durationYrs} Yrs</span>
+                            <div className="flex items-center justify-between text-[10px] pt-1">
+                              <span className="text-amber-300/80 font-semibold">{ad.durationYrs} Yrs</span>
+                              {isSubActive && <span className="text-cyan-300">Transit: Jupiter 5th</span>}
+                            </div>
                           </div>
                         )
                       })}
