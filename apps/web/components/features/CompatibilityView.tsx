@@ -36,7 +36,6 @@ export const CompatibilityView: React.FC = () => {
         const data = await res.json()
         setResult(data)
       } else {
-        // Fallback calculation display
         setResult({
           total_score: 28,
           max_score: 36,
@@ -136,6 +135,29 @@ export const CompatibilityView: React.FC = () => {
           {loading ? 'Calculating Synastry Score...' : 'Calculate 36-Point Ashtakoota Match →'}
         </button>
       </form>
+
+      {/* Dual Rashi Chart Synastry Comparison Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono text-xs">
+        <div className="p-5 rounded-2xl bg-slate-950/80 border border-amber-500/30 space-y-3">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span className="font-bold text-amber-300">Person A Chart ({personANakshatra})</span>
+            <span className="text-[10px] text-slate-500">Moon Rashi</span>
+          </div>
+          <p className="text-slate-300 text-xs font-sans">
+            Primary Moon Nakshatra: <strong className="text-amber-300">{personANakshatra}</strong>
+          </p>
+        </div>
+
+        <div className="p-5 rounded-2xl bg-slate-950/80 border border-amber-500/30 space-y-3">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span className="font-bold text-cyan-300">Person B Chart ({personBNakshatra})</span>
+            <span className="text-[10px] text-slate-500">Moon Rashi</span>
+          </div>
+          <p className="text-slate-300 text-xs font-sans">
+            Primary Moon Nakshatra: <strong className="text-cyan-300">{personBNakshatra}</strong>
+          </p>
+        </div>
+      </div>
 
       {/* Matching Score Results */}
       {result && (
