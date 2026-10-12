@@ -145,8 +145,12 @@ class CanonicalEvidencePipeline:
         timing_suite = TimingEngine.generate_timing_suite(canonical_chart, query_dt)
         temporal_hash = None
 
-        # Panchanga & Muhurta Suite (Computed at query_dt or birth_utc_dt if query_dt is None)
-        eval_dt = query_dt if query_dt else birth_utc_dt
+        # Panchanga & Muhurta Suite (Computed at query_dt or birth_utc_dt in observer local timezone)
+        try:
+            local_tz = zoneinfo.ZoneInfo(birth_input.timezone_str)
+            eval_dt = (query_dt if query_dt else birth_utc_dt).astimezone(local_tz)
+        except Exception:
+            eval_dt = query_dt if query_dt else birth_utc_dt
 
         panchanga = PanchangaEngine.calculate_panchanga(
             dt=eval_dt,

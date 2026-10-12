@@ -272,7 +272,8 @@ class PanchangaEngine:
         )
 
         # 3. Vara Calculation (Derived from local civil date at observer location!)
-        local_weekday_idx = dt.weekday() # 0=Monday..6=Sunday
+        local_dt = dt.astimezone(target_zone)
+        local_weekday_idx = local_dt.weekday() # 0=Monday..6=Sunday
         sun_weekday_idx = (local_weekday_idx + 1) % 7 # 0=Sunday..6=Saturday
         vara_tuple = VARA_MAP[sun_weekday_idx]
 
@@ -349,6 +350,9 @@ class PanchangaEngine:
 
         if not sr_dt_utc or not ss_dt_utc:
             raise ValueError(f"Astronomical sunrise/sunset calculation failed for observer at ({latitude}, {longitude}) on local date {dt.date()} in timezone '{tz_str}'. Fail closed: zero fallbacks permitted.")
+
+        if ss_dt_utc < sr_dt_utc:
+            ss_dt_utc += timedelta(days=1)
 
         daylight_sec = (ss_dt_utc - sr_dt_utc).total_seconds()
         if daylight_sec <= 0:
