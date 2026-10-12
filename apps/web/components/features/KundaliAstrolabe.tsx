@@ -21,8 +21,24 @@ const HOUSE_TITLES: Record<number, { title: string; Sanskrit: string; significat
   12: { title: "House 12 — Vyaya Bhava", Sanskrit: "Vyaya Bhava", significations: "Moksha, Expenditure, Foreign Residence, Isolation, Rejuvenation" }
 }
 
+const SOUTH_INDIAN_BOXES = [
+  { signIdx: 12, name: "Pisces", short: "Pi" },
+  { signIdx: 1,  name: "Aries", short: "Ar" },
+  { signIdx: 2,  name: "Taurus", short: "Ta" },
+  { signIdx: 3,  name: "Gemini", short: "Ge" },
+  { signIdx: 11, name: "Aquarius", short: "Aq" },
+  { signIdx: 4,  name: "Cancer", short: "Ca" },
+  { signIdx: 10, name: "Capricorn", short: "Cp" },
+  { signIdx: 5,  name: "Leo", short: "Le" },
+  { signIdx: 9,  name: "Sagittarius", short: "Sg" },
+  { signIdx: 8,  name: "Scorpio", short: "Sc" },
+  { signIdx: 7,  name: "Libra", short: "Li" },
+  { signIdx: 6,  name: "Virgo", short: "Vi" }
+]
+
 export const KundaliAstrolabe: React.FC<KundaliAstrolabeProps> = ({ svgChart, data }) => {
   const [selectedHouse, setSelectedHouse] = useState<number | null>(1)
+  const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
 
   const chart = data?.master_evidence?.canonical_chart
   const name = data?.birth_input?.name || 'Native'
@@ -43,12 +59,53 @@ export const KundaliAstrolabe: React.FC<KundaliAstrolabeProps> = ({ svgChart, da
     })
   }
 
+  // Get occupants for a fixed sign_index (1..12) for South Indian Chart
+  const getSignOccupants = (signIdx: number) => {
+    const list: string[] = []
+    if (ascSignIdx === signIdx) list.push("As")
+    placements.forEach(p => {
+      if (p.rashi?.sign_index === signIdx) {
+        const glyph = p.body_name.slice(0, 2)
+        if (p.retrograde) list.push(`${glyph}(R)`)
+        else list.push(glyph)
+      }
+    })
+    return list
+  }
+
   const selectedHouseInfo = selectedHouse ? HOUSE_TITLES[selectedHouse] : null
   const selectedSignIdx = selectedHouse ? (ascSignIdx + selectedHouse - 2) % 12 + 1 : 1
   const selectedOccupants = selectedHouse ? getHouseOccupants(selectedHouse) : []
 
   const RASHI_NAMES = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
   const selectedSignName = RASHI_NAMES[selectedSignIdx - 1]
+
+  const handleExportPdf = () => {
+    if (!data?.birth_input) {
+      alert('Please calculate a birth profile first.')
+      return
+    }
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const savedToken = sessionStorage.getItem('astro_jwt_token')
+
+    fetch(`${API_BASE}/api/v1/export/pdf`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(savedToken ? { 'Authorization': `Bearer ${savedToken}` } : {})
+      },
+      body: JSON.stringify(data.birth_input)
+    })
+      .then(res => res.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${data.birth_input.name.replace(/\s+/g, '_')}_Celestial_Dossier.pdf`
+        a.click()
+      })
+      .catch(() => alert('PDF export failed. Please ensure server is active.'))
+  }
 
   return (
     <div className="bg-slate-900/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-slate-800/80 shadow-2xl space-y-6 w-full select-none">
@@ -59,7 +116,7 @@ export const KundaliAstrolabe: React.FC<KundaliAstrolabeProps> = ({ svgChart, da
             Canonical Rashi Chart
           </span>
           <h2 className="text-2xl md:text-3xl font-black text-slate-100 tracking-wide mt-1.5 font-serif-heading">
-            Birth Chart — Rāśi (North Indian Style)
+            Birth Chart — {chartStyle === 'north' ? 'Rāśi (North Indian Style)' : 'Rāśi (South Indian Grid Style)'}
           </h2>
           {data && (
             <p className="text-xs text-slate-400 font-mono mt-1">
@@ -69,44 +126,134 @@ export const KundaliAstrolabe: React.FC<KundaliAstrolabeProps> = ({ svgChart, da
         </div>
 
         <div className="flex items-center gap-3 font-mono">
+          <button
+            onClick={handleExportPdf}
+            className="px-4 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-xs transition cursor-pointer flex items-center gap-1.5"
+          >
+            <span>📄</span> Export PDF
+          </button>
           <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            JPL DE440s Validated
+            DE440s Validated
           </span>
         </div>
       </div>
 
-      {/* House Selector Quick Bar */}
-      <div className="flex flex-wrap items-center gap-1.5 bg-slate-950 p-2 rounded-2xl border border-slate-800/80 font-mono text-xs">
-        <span className="text-slate-500 text-[11px] px-2 font-bold uppercase">Click House:</span>
-        {Array.from({ length: 12 }, (_, i) => i + 1).map(h => (
+      {/* Style Toggle & House Selector Quick Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-950 p-2 rounded-2xl border border-slate-800/80 font-mono text-xs">
+        <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
           <button
-            key={h}
-            onClick={() => setSelectedHouse(h)}
-            className={`px-3 py-1.5 rounded-xl font-bold transition cursor-pointer ${
-              selectedHouse === h
-                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50 shadow-md'
-                : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900'
+            onClick={() => setChartStyle('north')}
+            className={`px-3 py-1 rounded-lg font-bold transition cursor-pointer ${
+              chartStyle === 'north' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'text-slate-400 hover:text-white'
             }`}
           >
-            H{h}
+            North Indian (Diamond)
           </button>
-        ))}
+          <button
+            onClick={() => setChartStyle('south')}
+            className={`px-3 py-1 rounded-lg font-bold transition cursor-pointer ${
+              chartStyle === 'south' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            South Indian (Grid)
+          </button>
+        </div>
+
+        <div className="flex items-center gap-1 overflow-x-auto">
+          <span className="text-slate-500 text-[11px] px-2 font-bold uppercase shrink-0">Click House:</span>
+          {Array.from({ length: 12 }, (_, i) => i + 1).map(h => (
+            <button
+              key={h}
+              onClick={() => setSelectedHouse(h)}
+              className={`px-2.5 py-1 rounded-lg font-bold transition cursor-pointer shrink-0 ${
+                selectedHouse === h
+                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50 shadow-md'
+                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900'
+              }`}
+            >
+              H{h}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Main Chart Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: SVG Astrolabe Chart (7 Cols) */}
         <div className="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800/80 flex flex-col items-center justify-center min-h-[380px] shadow-inner relative">
-          {svgChart ? (
-            <div
-              dangerouslySetInnerHTML={{ __html: svgChart }}
-              className="w-full max-w-[420px] aspect-square flex justify-center items-center overflow-hidden"
-            />
+          {chartStyle === 'north' ? (
+            svgChart ? (
+              <div
+                dangerouslySetInnerHTML={{ __html: svgChart }}
+                className="w-full max-w-[420px] aspect-square flex justify-center items-center overflow-hidden"
+              />
+            ) : (
+              <div className="text-center space-y-3 p-8">
+                <span className="text-3xl text-amber-400">🌌</span>
+                <p className="text-xs font-mono text-slate-400">Kundali SVG Chart Unavailable. Please calculate a birth profile first.</p>
+              </div>
+            )
           ) : (
-            <div className="text-center space-y-3 p-8">
-              <span className="text-3xl text-amber-400">🌌</span>
-              <p className="text-xs font-mono text-slate-400">Kundali SVG Chart Unavailable. Please calculate a birth profile first.</p>
+            /* South Indian Fixed Grid Chart */
+            <div className="w-full max-w-[420px] aspect-square bg-[#070D1B] border-2 border-amber-500/30 rounded-2xl p-2 grid grid-cols-4 grid-rows-4 gap-1 font-mono text-xs shadow-2xl relative">
+              {/* Outer 12 Boxes */}
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Pi</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(12).join(' ') || '—'}</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Ar</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(1).join(' ') || '—'}</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Ta</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(2).join(' ') || '—'}</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Ge</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(3).join(' ') || '—'}</span>
+              </div>
+
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Aq</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(11).join(' ') || '—'}</span>
+              </div>
+              {/* Center Watermark Box (2x2) */}
+              <div className="col-span-2 row-span-2 bg-[#070D1B] border border-amber-500/20 rounded-xl flex flex-col items-center justify-center p-2 text-center">
+                <span className="text-amber-400 text-base font-black font-serif-heading">ASTROVISION</span>
+                <span className="text-[10px] text-slate-400">South Indian Grid</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Ca</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(4).join(' ') || '—'}</span>
+              </div>
+
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Cp</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(10).join(' ') || '—'}</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Le</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(5).join(' ') || '—'}</span>
+              </div>
+
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Sg</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(9).join(' ') || '—'}</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Sc</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(8).join(' ') || '—'}</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Li</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(7).join(' ') || '—'}</span>
+              </div>
+              <div className="p-2 border border-slate-800 rounded-xl bg-slate-900/60 flex flex-col justify-between">
+                <span className="text-[10px] text-amber-400 font-bold">Vi</span>
+                <span className="text-xs font-bold text-slate-100">{getSignOccupants(6).join(' ') || '—'}</span>
+              </div>
             </div>
           )}
         </div>
