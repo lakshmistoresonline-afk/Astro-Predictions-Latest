@@ -22,6 +22,8 @@ import { AiInterpretationView } from '../components/features/AiInterpretationVie
 import { CompatibilityView } from '../components/features/CompatibilityView'
 import { RectificationView } from '../components/features/RectificationView'
 import { DigestView } from '../components/features/DigestView'
+import { TransitScrubberView } from '../components/features/TransitScrubberView'
+import { TRANSLATIONS, SupportedLanguage } from '../types/i18n'
 
 type NavigationTab =
   | 'home'
@@ -38,6 +40,7 @@ type NavigationTab =
   | 'compatibility'
   | 'rectification'
   | 'digest'
+  | 'scrubber'
   | 'ai'
 
 export default function Home() {
@@ -50,6 +53,7 @@ export default function Home() {
   const [globalSearch, setGlobalSearch] = useState<string>('')
   const [showCommandPalette, setShowCommandPalette] = useState(false)
   const [showProfileDrawer, setShowProfileDrawer] = useState(false)
+  const [lang, setLang] = useState<SupportedLanguage>('en')
 
   // Form state
   const [name, setName] = useState('')
@@ -68,6 +72,8 @@ export default function Home() {
   const [timezoneStr, setTimezoneStr] = useState(PRESET_CITIES[0].tz)
 
   const [zodiacSystem, setZodiacSystem] = useState('sidereal')
+
+  const t = TRANSLATIONS[lang]
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -153,21 +159,22 @@ export default function Home() {
   const masterEv = chartData?.master_evidence
 
   const sidebarLinks: { id: NavigationTab; label: string; icon: string }[] = [
-    { id: 'home', label: 'Overview', icon: '⚡' },
-    { id: 'chart-form', label: 'Birth Profile', icon: '📝' },
-    { id: 'reports', label: 'Kundli & Astrology', icon: '🌌' },
-    { id: 'planets', label: 'Planetary Positions', icon: '🪐' },
-    { id: 'vargas', label: '16 Vargas', icon: '❖' },
-    { id: 'dashas', label: 'Vimshottari Dasha', icon: '⌛' },
-    { id: 'yogas', label: 'Yogas & Doshas', icon: '⚖' },
-    { id: 'strength', label: 'Shadbala & SAV', icon: '📊' },
-    { id: 'jaimini', label: 'Jaimini', icon: '📜' },
-    { id: 'panchanga', label: 'Panchanga & Muhurta', icon: '☀️' },
-    { id: 'compatibility', label: '36-Pt Compatibility', icon: '💖' },
-    { id: 'rectification', label: 'Time Rectification', icon: '🔍' },
-    { id: 'digest', label: 'Weekly Transit Digest', icon: '📫' },
-    { id: 'predictions', label: 'Domain Predictions', icon: '🎯' },
-    { id: 'ai', label: 'AI Evidence Synthesis', icon: '🤖' },
+    { id: 'home', label: t.ui.dashboard, icon: '⚡' },
+    { id: 'chart-form', label: t.ui.birth_profile, icon: '📝' },
+    { id: 'reports', label: t.ui.kundli, icon: '🌌' },
+    { id: 'planets', label: t.ui.planets, icon: '🪐' },
+    { id: 'vargas', label: t.ui.vargas, icon: '❖' },
+    { id: 'dashas', label: t.ui.dashas, icon: '⌛' },
+    { id: 'yogas', label: t.ui.yogas, icon: '⚖' },
+    { id: 'strength', label: t.ui.strength, icon: '📊' },
+    { id: 'jaimini', label: t.ui.jaimini, icon: '📜' },
+    { id: 'panchanga', label: t.ui.panchanga, icon: '☀️' },
+    { id: 'compatibility', label: t.ui.compatibility, icon: '💖' },
+    { id: 'rectification', label: t.ui.rectification, icon: '🔍' },
+    { id: 'digest', label: t.ui.digest, icon: '📫' },
+    { id: 'scrubber', label: 'Transit Scrubber', icon: '📅' },
+    { id: 'predictions', label: t.ui.predictions, icon: '🎯' },
+    { id: 'ai', label: t.ui.ai, icon: '🤖' },
   ]
 
   const loadingStepMessage =
@@ -191,7 +198,7 @@ export default function Home() {
               ✦
             </div>
             <div>
-              <h1 className="text-xl font-black text-[#F5B942] tracking-wider font-serif-heading">Astrovision</h1>
+              <h1 className="text-xl font-black text-[#F5B942] tracking-wider font-serif-heading">{t.ui.app_title}</h1>
               <p className="text-[9px] text-[#94A3B8] uppercase tracking-widest font-mono font-semibold">NASA DE440s Ephemeris</p>
             </div>
           </div>
@@ -253,6 +260,17 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
+            {/* Multi-Language Selector */}
+            <select
+              value={lang}
+              onChange={e => setLang(e.target.value as SupportedLanguage)}
+              className="bg-[#070D1B] border border-white/15 rounded-xl px-3 py-1 text-xs text-[#F5B942] font-mono cursor-pointer outline-none"
+            >
+              <option value="en">English</option>
+              <option value="hi">हिंदी (Hindi)</option>
+              <option value="sa">संस्कृतम् (Sanskrit)</option>
+            </select>
+
             {/* Live Ephemeris Badge */}
             <span className="hidden lg:inline-flex items-center gap-2 text-xs font-mono text-[#94A3B8] bg-[#070D1B]/80 px-3 py-1 rounded-full border border-white/10">
               <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]"></span>
@@ -525,6 +543,12 @@ export default function Home() {
           {activeTab === 'digest' && (
             <WidgetErrorBoundary title="Digest View Error">
               <DigestView />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'scrubber' && (
+            <WidgetErrorBoundary title="Transit Scrubber Error">
+              <TransitScrubberView />
             </WidgetErrorBoundary>
           )}
 
