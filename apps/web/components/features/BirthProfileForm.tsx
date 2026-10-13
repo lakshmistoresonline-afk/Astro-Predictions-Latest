@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PRESET_CITIES } from '../../types/api'
-import { searchLocation } from '../../services/apiClient'
+import { CASCADING_LOCATIONS, CountryItem, StateItem, DistrictCityItem } from '../../types/locationData'
 
 interface BirthProfileFormProps {
   name: string
@@ -49,125 +48,109 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   onSubmit
 }) => {
   const [showAdvanced, setShowAdvanced] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<any[]>([])
-  const [searching, setSearching] = useState(false)
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
-  // Direct plain text inputs matching YYYY-MM-DD and HH:MM 24h formats
-  const [dateText, setDateText] = useState(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`)
-  const [timeText, setTimeText] = useState(`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`)
+  // 3-Tier Cascading Location State
+  const [selectedCountryName, setSelectedCountryName] = useState('India')
+  const [selectedStateName, setSelectedStateName] = useState('Kerala')
+  const [selectedDistrictName, setSelectedDistrictName] = useState('Palakkad')
 
-  useEffect(() => {
-    setDateText(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`)
-  }, [year, month, day])
+  // Derive active Country object
+  const activeCountry = CASCADING_LOCATIONS.find(c => c.country_name === selectedCountryName) || CASCADING_LOCATIONS[0]
+  // Derive active State object
+  const activeState = activeCountry.states.find(s => s.state_name === selectedStateName) || activeCountry.states[0]
+  // Active Districts list
+  const activeDistricts = activeState ? activeState.districts : []
 
-  useEffect(() => {
-    setTimeText(`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`)
-  }, [hour, minute])
-
-  // Dynamic Location Search Debouncer
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setSearchResults([])
-      return
-    }
-
-    const timer = setTimeout(async () => {
-      setSearching(true)
-      try {
-        const results = await searchLocation(searchQuery)
-        setSearchResults(results)
-      } catch (err) {
-        setSearchResults([])
-      } finally {
-        setSearching(false)
+  // Sync cascading selections to parent form state
+  const handleCountrySelect = (cName: string) => {
+    setSelectedCountryName(cName)
+    const foundC = CASCADING_LOCATIONS.find(c => c.country_name === cName) || CASCADING_LOCATIONS[0]
+    const firstState = foundC.states[0]
+    if (firstState) {
+      setSelectedStateName(firstState.state_name)
+      const firstDistrict = firstState.districts[0]
+      if (firstDistrict) {
+        setSelectedDistrictName(firstDistrict.district)
+        setPlaceName(`${firstDistrict.district}, ${firstState.state_name}`)
+        setCountry(foundC.country_name)
+        setLatitude(firstDistrict.latitude)
+        setLongitude(firstDistrict.longitude)
+        setTimezoneStr(firstDistrict.timezone_str)
       }
-    }, 300)
+    }
+  }
 
-    return () => clearTimeout(timer)
-  }, [searchQuery])
+  const handleStateSelect = (sName: string) => {
+    setSelectedStateName(sName)
+    const foundS = activeCountry.states.find(s => s.state_name === sName)
+    if (foundS && foundS.districts[0]) {
+      const firstDistrict = foundS.districts[0]
+      setSelectedDistrictName(firstDistrict.district)
+      setPlaceName(`${firstDistrict.district}, ${foundS.state_name}`)
+      setCountry(activeCountry.country_name)
+      setLatitude(firstDistrict.latitude)
+      setLongitude(firstDistrict.longitude)
+      setTimezoneStr(firstDistrict.timezone_str)
+    }
+  }
 
-  // Popular quick selection cities
-  const quickCities = [
-    'Palakkad', 'New Delhi', 'Mumbai', 'Bengaluru', 'Chennai', 'Kochi', 'London', 'New York', 'Dubai'
-  ]
+  const handleDistrictSelect = (dName: string) => {
+    setSelectedDistrictName(dName)
+    const foundD = activeDistricts.find(d => d.district === dName)
+    if (foundD) {
+      setPlaceName(`${foundD.district}, ${activeState.state_name}`)
+      setCountry(activeCountry.country_name)
+      setLatitude(foundD.latitude)
+      setLongitude(foundD.longitude)
+      setTimezoneStr(foundD.timezone_str)
+    }
+  }
 
-  const filteredCities = PRESET_CITIES.filter(c =>
-    c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    c.country.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  // Date handlers
+  const handleYearChange = (val: string) => {
+    if (val === '') return
+    const num = parseInt(val, 10)
+    if (!isNaN(num)) setYear(Math.min(2150, Math.max(1850, num)))
+  }
 
-  // Flexible Date Parser (supports YYYY-MM-DD, DD/MM/YYYY, DD-MM-YYYY, MM/DD/YYYY)
-  const parseAndSetDate = (val: string) => {
-    setDateText(val)
-    const clean = val.trim().replace(/\//g, '-')
-    const parts = clean.split('-')
+  const handleMonthChange = (val: string) => {
+    if (val === '') return
+    const num = parseInt(val, 10)
+    if (!isNaN(num)) setMonth(Math.min(12, Math.max(1, num)))
+  }
 
+  const handleDayChange = (val: string) => {
+    if (val === '') return
+    const num = parseInt(val, 10)
+    if (!isNaN(num)) setDay(Math.min(31, Math.max(1, num)))
+  }
+
+  // Time handlers
+  const handleHourChange = (val: string) => {
+    if (val === '') return
+    const num = parseInt(val, 10)
+    if (!isNaN(num)) setHour(Math.min(23, Math.max(0, num)))
+  }
+
+  const handleMinuteChange = (val: string) => {
+    if (val === '') return
+    const num = parseInt(val, 10)
+    if (!isNaN(num)) setMinute(Math.min(59, Math.max(0, num)))
+  }
+
+  const handleCalendarPickerChange = (val: string) => {
+    if (!val) return
+    const parts = val.split('-')
     if (parts.length === 3) {
-      const p1 = parseInt(parts[0], 10)
-      const p2 = parseInt(parts[1], 10)
-      const p3 = parseInt(parts[2], 10)
-
-      if (isNaN(p1) || isNaN(p2) || isNaN(p3)) return
-
-      // Case 1: YYYY-MM-DD
-      if (p1 >= 1850 && p1 <= 2150) {
-        setYear(p1)
-        if (p2 >= 1 && p2 <= 12) setMonth(p2)
-        if (p3 >= 1 && p3 <= 31) setDay(p3)
-      }
-      // Case 2: DD-MM-YYYY or MM-DD-YYYY
-      else if (p3 >= 1850 && p3 <= 2150) {
-        setYear(p3)
-        if (p1 > 12) {
-          setDay(p1)
-          if (p2 >= 1 && p2 <= 12) setMonth(p2)
-        } else if (p2 > 12) {
-          setMonth(p1)
-          setDay(p2)
-        } else {
-          setDay(p1)
-          setMonth(p2)
-        }
-      }
-    }
-  }
-
-  // Flexible Time Parser (supports 24h 16:30, 12h 4:30 PM, 12:00 AM)
-  const parseAndSetTime = (val: string) => {
-    setTimeText(val)
-    const clean = val.trim().toUpperCase()
-
-    const isPM = clean.includes('PM')
-    const isAM = clean.includes('AM')
-
-    const numericPart = clean.replace(/AM|PM/g, '').trim()
-    const parts = numericPart.split(':')
-
-    if (parts.length >= 2) {
-      let h = parseInt(parts[0], 10)
+      const y = parseInt(parts[0], 10)
       const m = parseInt(parts[1], 10)
-
-      if (isNaN(h) || isNaN(m)) return
-
-      if (isPM && h < 12) h += 12
-      if (isAM && h === 12) h = 0
-
-      if (h >= 0 && h <= 23) setHour(h)
-      if (m >= 0 && m <= 59) setMinute(m)
+      const d = parseInt(parts[2], 10)
+      if (!isNaN(y) && y >= 1850 && y <= 2150) setYear(y)
+      if (!isNaN(m) && m >= 1 && m <= 12) setMonth(m)
+      if (!isNaN(d) && d >= 1 && d <= 31) setDay(d)
     }
-  }
-
-  const handleSelectLocationItem = (loc: any) => {
-    setPlaceName(loc.place_name)
-    setCountry(loc.country)
-    setLatitude(loc.latitude)
-    setLongitude(loc.longitude)
-    setTimezoneStr(loc.timezone_str)
-    setSearchQuery('')
-    setSearchResults([])
   }
 
   const handleReset = () => {
@@ -177,10 +160,10 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setDay(1)
     setHour(12)
     setMinute(0)
-    setDateText('1995-01-01')
-    setTimeText('12:00')
-    handleCityChange(PRESET_CITIES[0].name)
+    handleCountrySelect('India')
   }
+
+  const datePickerValue = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
 
   return (
     <div className="w-full max-w-[1500px] mx-auto space-y-6">
@@ -234,131 +217,158 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
               />
             </div>
 
-            {/* Date & Time Section */}
+            {/* Date & Time Grid Section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-              {/* Flexible Date Input */}
+              {/* 3-Box Labeled Numerical Date Grid */}
               <div className="space-y-2">
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                  Date of Birth <span className="text-[#F5B942]">*</span>
-                </label>
-                <div className="relative flex items-center">
-                  <input
-                    type="text"
-                    value={dateText}
-                    onChange={e => parseAndSetDate(e.target.value)}
-                    placeholder="YYYY-MM-DD or DD/MM/YYYY"
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-sm font-mono tracking-wider"
-                    required
-                  />
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
+                    Date of Birth <span className="text-[#F5B942]">*</span>
+                  </label>
                   <input
                     type="date"
-                    value={`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`}
-                    onChange={e => parseAndSetDate(e.target.value)}
-                    className="absolute right-3 opacity-30 hover:opacity-100 cursor-pointer w-6 h-6"
-                    title="Select Date from Calendar"
+                    value={datePickerValue}
+                    onChange={e => handleCalendarPickerChange(e.target.value)}
+                    className="opacity-60 hover:opacity-100 cursor-pointer w-5 h-5 bg-transparent"
+                    title="Select Date from Calendar Picker"
                   />
                 </div>
-                <p className="text-[11px] text-[#94A3B8]">
-                  Parsed Date: <strong className="text-[#F5B942]">{day} / {month} / {year}</strong>
-                </p>
+                <div className="grid grid-cols-3 gap-2">
+                  <div>
+                    <span className="text-[10px] text-[#94A3B8] block mb-1">Year (YYYY)</span>
+                    <input
+                      type="number"
+                      min={1850}
+                      max={2150}
+                      value={year}
+                      onChange={e => handleYearChange(e.target.value)}
+                      placeholder="YYYY"
+                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-[#94A3B8] block mb-1">Month (MM)</span>
+                    <input
+                      type="number"
+                      min={1}
+                      max={12}
+                      value={month}
+                      onChange={e => handleMonthChange(e.target.value)}
+                      placeholder="MM"
+                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-[#94A3B8] block mb-1">Day (DD)</span>
+                    <input
+                      type="number"
+                      min={1}
+                      max={31}
+                      value={day}
+                      onChange={e => handleDayChange(e.target.value)}
+                      placeholder="DD"
+                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
 
-              {/* Flexible Time Input (Supports 24h or 12h AM/PM) */}
+              {/* 2-Box Labeled Numerical Time Grid */}
               <div className="space-y-2">
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                  Time of Birth <span className="text-[#F5B942]">*</span>
+                  Time of Birth (24-Hour) <span className="text-[#F5B942]">*</span>
                 </label>
-                <div className="relative flex items-center">
-                  <input
-                    type="text"
-                    value={timeText}
-                    onChange={e => parseAndSetTime(e.target.value)}
-                    placeholder="HH:MM (e.g. 16:30 or 4:30 PM)"
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-sm font-mono tracking-wider"
-                    required
-                  />
-                  <input
-                    type="time"
-                    value={`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`}
-                    onChange={e => parseAndSetTime(e.target.value)}
-                    className="absolute right-3 opacity-30 hover:opacity-100 cursor-pointer w-6 h-6"
-                    title="Select Time"
-                  />
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <span className="text-[10px] text-[#94A3B8] block mb-1">Hour (HH 0-23)</span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={23}
+                      value={hour}
+                      onChange={e => handleHourChange(e.target.value)}
+                      placeholder="HH"
+                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-[#94A3B8] block mb-1">Minute (MM 0-59)</span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={59}
+                      value={minute}
+                      onChange={e => handleMinuteChange(e.target.value)}
+                      placeholder="MM"
+                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      required
+                    />
+                  </div>
                 </div>
-                <p className="text-[11px] text-[#94A3B8]">
-                  Parsed Time: <strong className="text-[#F5B942]">{String(hour).padStart(2, '0')}:{String(minute).padStart(2, '0')} (24h)</strong>
-                </p>
               </div>
             </div>
 
-            {/* Dynamic Location Search (Country, State, District/City) */}
-            <div className="space-y-3 font-mono relative">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                Select Birth Location (Search Country, State, District/City)
-              </label>
+            {/* 3-Tier Cascading Dropdown Location System */}
+            <div className="space-y-4 font-mono">
+              <span className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
+                Hierarchical Location Selection <span className="text-[#F5B942]">*</span>
+              </span>
 
-              {/* Quick City Preset Chips */}
-              <div className="flex flex-wrap items-center gap-2 pb-1">
-                <span className="text-[11px] text-[#94A3B8] mr-1">Quick Select:</span>
-                {quickCities.map(city => (
-                  <button
-                    key={city}
-                    type="button"
-                    onClick={() => handleCityChange(city)}
-                    className={`px-3 py-1 rounded-xl text-xs transition border ${
-                      selectedCity === city
-                        ? 'bg-[#F5B942]/20 border-[#F5B942] text-[#F5B942] font-bold'
-                        : 'bg-[#070D1B] border-white/10 text-[#94A3B8] hover:text-[#E8EDF7] hover:border-white/20'
-                    }`}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Tier 1: Country Dropdown */}
+                <div>
+                  <label className="block text-[11px] text-[#94A3B8] mb-1">1. Select Country</label>
+                  <select
+                    value={selectedCountryName}
+                    onChange={e => handleCountrySelect(e.target.value)}
+                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl p-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs font-semibold cursor-pointer"
                   >
-                    {city}
-                  </button>
-                ))}
+                    {CASCADING_LOCATIONS.map(c => (
+                      <option key={c.country_name} value={c.country_name} className="bg-[#070D1B] text-[#E8EDF7]">
+                        {c.country_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Tier 2: State / Region Dropdown */}
+                <div>
+                  <label className="block text-[11px] text-[#94A3B8] mb-1">2. Select State / Region</label>
+                  <select
+                    value={selectedStateName}
+                    onChange={e => handleStateSelect(e.target.value)}
+                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl p-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs font-semibold cursor-pointer"
+                  >
+                    {activeCountry.states.map(s => (
+                      <option key={s.state_name} value={s.state_name} className="bg-[#070D1B] text-[#E8EDF7]">
+                        {s.state_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Tier 3: District / City Dropdown */}
+                <div>
+                  <label className="block text-[11px] text-[#94A3B8] mb-1">3. Select District / City</label>
+                  <select
+                    value={selectedDistrictName}
+                    onChange={e => handleDistrictSelect(e.target.value)}
+                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl p-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs font-semibold cursor-pointer"
+                  >
+                    {activeDistricts.map(d => (
+                      <option key={d.district} value={d.district} className="bg-[#070D1B] text-[#E8EDF7]">
+                        {d.district}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
-              {/* Dynamic Search Filter Input */}
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Search place name e.g. Palakkad, Kerala, London, Tokyo..."
-                className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] placeholder-[#94A3B8] focus:border-[#F5B942] outline-none transition text-xs mb-1"
-              />
-
-              {/* Dynamic Live Geocoding Search Results Dropdown */}
-              {searchResults.length > 0 && (
-                <div className="absolute z-50 left-0 right-0 bg-[#070D1B] border border-[#F5B942]/40 rounded-2xl max-h-48 overflow-y-auto shadow-2xl space-y-1 p-2">
-                  <span className="text-[10px] text-[#F5B942] font-bold uppercase px-3 pt-1 block">Live Geocoding Results ({searchResults.length})</span>
-                  {searchResults.map((loc, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => handleSelectLocationItem(loc)}
-                      className="p-3 rounded-xl hover:bg-white/10 transition cursor-pointer flex justify-between items-center text-xs"
-                    >
-                      <div>
-                        <p className="font-bold text-[#E8EDF7]">{loc.place_name}, {loc.country}</p>
-                        <p className="text-[10px] text-[#94A3B8]">{loc.timezone_str}</p>
-                      </div>
-                      <span className="text-[10px] text-[#34D399] font-bold">{loc.latitude.toFixed(2)}°N, {loc.longitude.toFixed(2)}°E</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* City Dropdown Fallback */}
-              <select
-                value={selectedCity}
-                onChange={e => handleCityChange(e.target.value)}
-                className="w-full bg-[#070D1B] border border-white/15 rounded-2xl p-3.5 text-[#E8EDF7] focus:border-[#F5B942] outline-none transition text-xs font-semibold cursor-pointer"
-              >
-                {filteredCities.map(c => (
-                  <option key={c.name} value={c.name} className="bg-[#070D1B] text-[#E8EDF7]">
-                    {c.name}, {c.country} ({c.tz})
-                  </option>
-                ))}
-              </select>
-
-              {/* Selected Location Summary Card */}
+              {/* Selected Location Confirmation Summary Card */}
               <div className="p-4 rounded-2xl bg-[#070D1B]/80 border border-white/10 flex items-center justify-between text-xs font-mono text-[#E8EDF7]">
                 <div className="flex items-center gap-3">
                   <span className="text-base text-[#F5B942]">📍</span>
