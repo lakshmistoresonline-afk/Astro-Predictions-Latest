@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PRESET_CITIES } from '../../types/api'
 
 interface BirthProfileFormProps {
@@ -52,6 +52,18 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
+  // Direct plain text inputs matching YYYY-MM-DD and HH:MM 24h formats
+  const [dateText, setDateText] = useState(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`)
+  const [timeText, setTimeText] = useState(`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`)
+
+  useEffect(() => {
+    setDateText(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`)
+  }, [year, month, day])
+
+  useEffect(() => {
+    setTimeText(`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`)
+  }, [hour, minute])
+
   // Popular quick selection cities
   const quickCities = [
     'Palakkad', 'New Delhi', 'Mumbai', 'Bengaluru', 'Chennai', 'Kochi', 'London', 'New York', 'Dubai'
@@ -62,12 +74,9 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     c.country.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  // Synchronized HTML Date Picker YYYY-MM-DD
-  const datePickerValue = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-
-  const handleDateStringInput = (val: string) => {
-    if (!val) return
-    const parts = val.split('-')
+  const handleDateTextChange = (val: string) => {
+    setDateText(val)
+    const parts = val.trim().split('-')
     if (parts.length === 3) {
       const y = parseInt(parts[0], 10)
       const m = parseInt(parts[1], 10)
@@ -78,12 +87,9 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     }
   }
 
-  // Synchronized HTML Time Picker HH:MM
-  const timePickerValue = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
-
-  const handleTimeStringInput = (val: string) => {
-    if (!val) return
-    const parts = val.split(':')
+  const handleTimeTextChange = (val: string) => {
+    setTimeText(val)
+    const parts = val.trim().split(':')
     if (parts.length >= 2) {
       const h = parseInt(parts[0], 10)
       const m = parseInt(parts[1], 10)
@@ -99,6 +105,8 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setDay(1)
     setHour(12)
     setMinute(0)
+    setDateText('1995-01-01')
+    setTimeText('12:00')
     handleCityChange(PRESET_CITIES[0].name)
   }
 
@@ -155,38 +163,58 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
             </div>
 
             {/* Date & Time Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Date Input with Format Guidance */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
+              {/* Direct Plain Text Date Input matching YYYY-MM-DD */}
               <div className="space-y-2">
-                <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8]">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
                   Date of Birth (YYYY-MM-DD) <span className="text-[#F5B942]">*</span>
                 </label>
-                <input
-                  type="date"
-                  value={datePickerValue}
-                  onChange={e => handleDateStringInput(e.target.value)}
-                  className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none font-mono text-sm cursor-pointer"
-                  required
-                />
-                <p className="text-[11px] text-[#94A3B8] font-mono">
-                  Format: <strong className="text-[#F5B942]">YYYY-MM-DD</strong> (e.g., {datePickerValue})
+                <div className="relative flex items-center">
+                  <input
+                    type="text"
+                    value={dateText}
+                    onChange={e => handleDateTextChange(e.target.value)}
+                    placeholder="YYYY-MM-DD (e.g. 1995-08-15)"
+                    className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-sm font-mono tracking-wider"
+                    required
+                  />
+                  <input
+                    type="date"
+                    value={`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`}
+                    onChange={e => handleDateTextChange(e.target.value)}
+                    className="absolute right-3 opacity-30 hover:opacity-100 cursor-pointer w-6 h-6"
+                    title="Select Date from Calendar"
+                  />
+                </div>
+                <p className="text-[11px] text-[#94A3B8]">
+                  Format: <strong className="text-[#F5B942]">YYYY-MM-DD</strong> (e.g., 1995-08-15)
                 </p>
               </div>
 
-              {/* Time Input (24-Hour Format) */}
+              {/* Direct Plain Text Time Input matching HH:MM 24-Hour */}
               <div className="space-y-2">
-                <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8]">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
                   Time of Birth (HH:MM 24-Hour) <span className="text-[#F5B942]">*</span>
                 </label>
-                <input
-                  type="time"
-                  value={timePickerValue}
-                  onChange={e => handleTimeStringInput(e.target.value)}
-                  className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none font-mono text-sm cursor-pointer"
-                  required
-                />
-                <p className="text-[11px] text-[#94A3B8] font-mono">
-                  Format: <strong className="text-[#F5B942]">HH:MM 24h</strong> (e.g., {timePickerValue})
+                <div className="relative flex items-center">
+                  <input
+                    type="text"
+                    value={timeText}
+                    onChange={e => handleTimeTextChange(e.target.value)}
+                    placeholder="HH:MM (e.g. 16:30)"
+                    className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-sm font-mono tracking-wider"
+                    required
+                  />
+                  <input
+                    type="time"
+                    value={`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`}
+                    onChange={e => handleTimeTextChange(e.target.value)}
+                    className="absolute right-3 opacity-30 hover:opacity-100 cursor-pointer w-6 h-6"
+                    title="Select Time"
+                  />
+                </div>
+                <p className="text-[11px] text-[#94A3B8]">
+                  Format: <strong className="text-[#F5B942]">HH:MM 24h</strong> (e.g., 16:30 for 4:30 PM)
                 </p>
               </div>
             </div>
