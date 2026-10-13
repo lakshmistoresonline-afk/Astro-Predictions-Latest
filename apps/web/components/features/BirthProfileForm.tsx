@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { PRESET_CITIES } from '../../types/api'
+import { searchLocation } from '../../services/apiClient'
 
 interface BirthProfileFormProps {
   name: string
@@ -49,6 +50,8 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
 }) => {
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<any[]>([])
+  const [searching, setSearching] = useState(false)
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
@@ -64,6 +67,28 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setTimeText(`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`)
   }, [hour, minute])
 
+  // Dynamic Location Search Debouncer
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([])
+      return
+    }
+
+    const timer = setTimeout(async () => {
+      setSearching(true)
+      try {
+        const results = await searchLocation(searchQuery)
+        setSearchResults(results)
+      } catch (err) {
+        setSearchResults([])
+      } finally {
+        setSearching(false)
+      }
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [searchQuery])
+
   // Popular quick selection cities
   const quickCities = [
     'Palakkad', 'New Delhi', 'Mumbai', 'Bengaluru', 'Chennai', 'Kochi', 'London', 'New York', 'Dubai'
@@ -74,28 +99,75 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     c.country.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  const handleDateTextChange = (val: string) => {
+  // Flexible Date Parser (supports YYYY-MM-DD, DD/MM/YYYY, DD-MM-YYYY, MM/DD/YYYY)
+  const parseAndSetDate = (val: string) => {
     setDateText(val)
-    const parts = val.trim().split('-')
+    const clean = val.trim().replace(/\//g, '-')
+    const parts = clean.split('-')
+
     if (parts.length === 3) {
-      const y = parseInt(parts[0], 10)
-      const m = parseInt(parts[1], 10)
-      const d = parseInt(parts[2], 10)
-      if (!isNaN(y) && y >= 1850 && y <= 2150) setYear(y)
-      if (!isNaN(m) && m >= 1 && m <= 12) setMonth(m)
-      if (!isNaN(d) && d >= 1 && d <= 31) setDay(d)
+      const p1 = parseInt(parts[0], 10)
+      const p2 = parseInt(parts[1], 10)
+      const p3 = parseInt(parts[2], 10)
+
+      if (isNaN(p1) || isNaN(p2) || isNaN(p3)) return
+
+      // Case 1: YYYY-MM-DD
+      if (p1 >= 1850 && p1 <= 2150) {
+        setYear(p1)
+        if (p2 >= 1 && p2 <= 12) setMonth(p2)
+        if (p3 >= 1 && p3 <= 31) setDay(p3)
+      }
+      // Case 2: DD-MM-YYYY or MM-DD-YYYY
+      else if (p3 >= 1850 && p3 <= 2150) {
+        setYear(p3)
+        if (p1 > 12) {
+          setDay(p1)
+          if (p2 >= 1 && p2 <= 12) setMonth(p2)
+        } else if (p2 > 12) {
+          setMonth(p1)
+          setDay(p2)
+        } else {
+          setDay(p1)
+          setMonth(p2)
+        }
+      }
     }
   }
 
-  const handleTimeTextChange = (val: string) => {
+  // Flexible Time Parser (supports 24h 16:30, 12h 4:30 PM, 12:00 AM)
+  const parseAndSetTime = (val: string) => {
     setTimeText(val)
-    const parts = val.trim().split(':')
+    const clean = val.trim().toUpperCase()
+
+    const isPM = clean.includes('PM')
+    const isAM = clean.includes('AM')
+
+    const numericPart = clean.replace(/AM|PM/g, '').trim()
+    const parts = numericPart.split(':')
+
     if (parts.length >= 2) {
-      const h = parseInt(parts[0], 10)
+      let h = parseInt(parts[0], 10)
       const m = parseInt(parts[1], 10)
-      if (!isNaN(h) && h >= 0 && h <= 23) setHour(h)
-      if (!isNaN(m) && m >= 0 && m <= 59) setMinute(m)
+
+      if (isNaN(h) || isNaN(m)) return
+
+      if (isPM && h < 12) h += 12
+      if (isAM && h === 12) h = 0
+
+      if (h >= 0 && h <= 23) setHour(h)
+      if (m >= 0 && m <= 59) setMinute(m)
     }
+  }
+
+  const handleSelectLocationItem = (loc: any) => {
+    setPlaceName(loc.place_name)
+    setCountry(loc.country)
+    setLatitude(loc.latitude)
+    setLongitude(loc.longitude)
+    setTimezoneStr(loc.timezone_str)
+    setSearchQuery('')
+    setSearchResults([])
   }
 
   const handleReset = () => {
@@ -164,63 +236,63 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
 
             {/* Date & Time Section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-              {/* Direct Plain Text Date Input matching YYYY-MM-DD */}
+              {/* Flexible Date Input */}
               <div className="space-y-2">
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                  Date of Birth (YYYY-MM-DD) <span className="text-[#F5B942]">*</span>
+                  Date of Birth <span className="text-[#F5B942]">*</span>
                 </label>
                 <div className="relative flex items-center">
                   <input
                     type="text"
                     value={dateText}
-                    onChange={e => handleDateTextChange(e.target.value)}
-                    placeholder="YYYY-MM-DD (e.g. 1995-08-15)"
+                    onChange={e => parseAndSetDate(e.target.value)}
+                    placeholder="YYYY-MM-DD or DD/MM/YYYY"
                     className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-sm font-mono tracking-wider"
                     required
                   />
                   <input
                     type="date"
                     value={`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`}
-                    onChange={e => handleDateTextChange(e.target.value)}
+                    onChange={e => parseAndSetDate(e.target.value)}
                     className="absolute right-3 opacity-30 hover:opacity-100 cursor-pointer w-6 h-6"
                     title="Select Date from Calendar"
                   />
                 </div>
                 <p className="text-[11px] text-[#94A3B8]">
-                  Format: <strong className="text-[#F5B942]">YYYY-MM-DD</strong> (e.g., 1995-08-15)
+                  Parsed Date: <strong className="text-[#F5B942]">{day} / {month} / {year}</strong>
                 </p>
               </div>
 
-              {/* Direct Plain Text Time Input matching HH:MM 24-Hour */}
+              {/* Flexible Time Input (Supports 24h or 12h AM/PM) */}
               <div className="space-y-2">
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                  Time of Birth (HH:MM 24-Hour) <span className="text-[#F5B942]">*</span>
+                  Time of Birth <span className="text-[#F5B942]">*</span>
                 </label>
                 <div className="relative flex items-center">
                   <input
                     type="text"
                     value={timeText}
-                    onChange={e => handleTimeTextChange(e.target.value)}
-                    placeholder="HH:MM (e.g. 16:30)"
+                    onChange={e => parseAndSetTime(e.target.value)}
+                    placeholder="HH:MM (e.g. 16:30 or 4:30 PM)"
                     className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-sm font-mono tracking-wider"
                     required
                   />
                   <input
                     type="time"
                     value={`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`}
-                    onChange={e => handleTimeTextChange(e.target.value)}
+                    onChange={e => parseAndSetTime(e.target.value)}
                     className="absolute right-3 opacity-30 hover:opacity-100 cursor-pointer w-6 h-6"
                     title="Select Time"
                   />
                 </div>
                 <p className="text-[11px] text-[#94A3B8]">
-                  Format: <strong className="text-[#F5B942]">HH:MM 24h</strong> (e.g., 16:30 for 4:30 PM)
+                  Parsed Time: <strong className="text-[#F5B942]">{String(hour).padStart(2, '0')}:{String(minute).padStart(2, '0')} (24h)</strong>
                 </p>
               </div>
             </div>
 
             {/* Dynamic Location Search (Country, State, District/City) */}
-            <div className="space-y-3 font-mono">
+            <div className="space-y-3 font-mono relative">
               <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
                 Select Birth Location (Search Country, State, District/City)
               </label>
@@ -244,16 +316,36 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 ))}
               </div>
 
-              {/* Search Filter Box */}
+              {/* Dynamic Search Filter Input */}
               <input
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Search location e.g. Country, State, District or City..."
-                className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] placeholder-[#94A3B8] focus:border-[#F5B942] outline-none transition text-xs mb-2"
+                placeholder="Search place name e.g. Palakkad, Kerala, London, Tokyo..."
+                className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] placeholder-[#94A3B8] focus:border-[#F5B942] outline-none transition text-xs mb-1"
               />
 
-              {/* City Dropdown */}
+              {/* Dynamic Live Geocoding Search Results Dropdown */}
+              {searchResults.length > 0 && (
+                <div className="absolute z-50 left-0 right-0 bg-[#070D1B] border border-[#F5B942]/40 rounded-2xl max-h-48 overflow-y-auto shadow-2xl space-y-1 p-2">
+                  <span className="text-[10px] text-[#F5B942] font-bold uppercase px-3 pt-1 block">Live Geocoding Results ({searchResults.length})</span>
+                  {searchResults.map((loc, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => handleSelectLocationItem(loc)}
+                      className="p-3 rounded-xl hover:bg-white/10 transition cursor-pointer flex justify-between items-center text-xs"
+                    >
+                      <div>
+                        <p className="font-bold text-[#E8EDF7]">{loc.place_name}, {loc.country}</p>
+                        <p className="text-[10px] text-[#94A3B8]">{loc.timezone_str}</p>
+                      </div>
+                      <span className="text-[10px] text-[#34D399] font-bold">{loc.latitude.toFixed(2)}°N, {loc.longitude.toFixed(2)}°E</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* City Dropdown Fallback */}
               <select
                 value={selectedCity}
                 onChange={e => handleCityChange(e.target.value)}

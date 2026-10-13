@@ -127,6 +127,17 @@ export async function calculateBirthProfile(
   return res.json()
 }
 
+export async function searchLocation(query: string): Promise<any[]> {
+  if (!query || !query.trim()) return []
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/location/search?query=${encodeURIComponent(query.trim())}`)
+    if (!res.ok) return []
+    return await res.json()
+  } catch (err) {
+    return []
+  }
+}
+
 export async function interpretEvidenceAi(
   birthInput: BirthProfileRequest,
   domain: string,
