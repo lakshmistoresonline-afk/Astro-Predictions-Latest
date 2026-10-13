@@ -65,7 +65,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   // Synchronized HTML Date Picker YYYY-MM-DD
   const datePickerValue = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
 
-  const handleDatePickerChange = (val: string) => {
+  const handleDateStringInput = (val: string) => {
     if (!val) return
     const parts = val.split('-')
     if (parts.length === 3) {
@@ -81,7 +81,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   // Synchronized HTML Time Picker HH:MM
   const timePickerValue = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
 
-  const handleTimePickerChange = (val: string) => {
+  const handleTimeStringInput = (val: string) => {
     if (!val) return
     const parts = val.split(':')
     if (parts.length >= 2) {
@@ -148,7 +148,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 type="text"
                 value={name}
                 onChange={e => setName(e.target.value)}
-                placeholder="e.g. Subramanian T S"
+                placeholder="Enter full birth name..."
                 className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-sans"
                 required
               />
@@ -156,45 +156,45 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
 
             {/* Date & Time Section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Easy Calendar Date Picker */}
+              {/* Date Input with Format Guidance */}
               <div className="space-y-2">
                 <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8]">
-                  Date of Birth <span className="text-[#F5B942]">*</span>
+                  Date of Birth (YYYY-MM-DD) <span className="text-[#F5B942]">*</span>
                 </label>
                 <input
                   type="date"
                   value={datePickerValue}
-                  onChange={e => handleDatePickerChange(e.target.value)}
+                  onChange={e => handleDateStringInput(e.target.value)}
                   className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none font-mono text-sm cursor-pointer"
                   required
                 />
                 <p className="text-[11px] text-[#94A3B8] font-mono">
-                  Selected: <strong className="text-[#F5B942]">{day} / {month} / {year}</strong>
+                  Format: <strong className="text-[#F5B942]">YYYY-MM-DD</strong> (e.g., {datePickerValue})
                 </p>
               </div>
 
-              {/* Easy Time Picker (24-Hour Format) */}
+              {/* Time Input (24-Hour Format) */}
               <div className="space-y-2">
                 <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8]">
-                  Time of Birth (24-Hour Format) <span className="text-[#F5B942]">*</span>
+                  Time of Birth (HH:MM 24-Hour) <span className="text-[#F5B942]">*</span>
                 </label>
                 <input
                   type="time"
                   value={timePickerValue}
-                  onChange={e => handleTimePickerChange(e.target.value)}
+                  onChange={e => handleTimeStringInput(e.target.value)}
                   className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none font-mono text-sm cursor-pointer"
                   required
                 />
                 <p className="text-[11px] text-[#94A3B8] font-mono">
-                  Selected: <strong className="text-[#F5B942]">{String(hour).padStart(2, '0')}:{String(minute).padStart(2, '0')} (24h)</strong>
+                  Format: <strong className="text-[#F5B942]">HH:MM 24h</strong> (e.g., {timePickerValue})
                 </p>
               </div>
             </div>
 
-            {/* Location Selector */}
+            {/* Dynamic Location Search (Country, State, District/City) */}
             <div className="space-y-3 font-mono">
               <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                Select Birth Location
+                Select Birth Location (Search Country, State, District/City)
               </label>
 
               {/* Quick City Preset Chips */}
@@ -221,7 +221,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Filter city list e.g. New Delhi, Mumbai, London, Tokyo..."
+                placeholder="Search location e.g. Country, State, District or City..."
                 className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3 text-[#E8EDF7] placeholder-[#94A3B8] focus:border-[#F5B942] outline-none transition text-xs mb-2"
               />
 
