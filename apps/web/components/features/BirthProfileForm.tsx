@@ -51,18 +51,12 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
-  // Local string state to allow full backspace & deletion
-  const [yearStr, setYearStr] = useState<string>(String(year))
-  const [monthStr, setMonthStr] = useState<string>(String(month))
-  const [dayStr, setDayStr] = useState<string>(String(day))
-  const [hourStr, setHourStr] = useState<string>(String(hour))
-  const [minuteStr, setMinuteStr] = useState<string>(String(minute))
-
-  useEffect(() => { setYearStr(String(year)) }, [year])
-  useEffect(() => { setMonthStr(String(month)) }, [month])
-  useEffect(() => { setDayStr(String(day)) }, [day])
-  useEffect(() => { setHourStr(String(hour)) }, [hour])
-  useEffect(() => { setMinuteStr(String(minute)) }, [minute])
+  // Clean empty-string state allowing full backspace & custom typing
+  const [yearStr, setYearStr] = useState<string>(year ? String(year) : '')
+  const [monthStr, setMonthStr] = useState<string>(month ? String(month) : '')
+  const [dayStr, setDayStr] = useState<string>(day ? String(day) : '')
+  const [hourStr, setHourStr] = useState<string>(hour !== undefined ? String(hour) : '')
+  const [minuteStr, setMinuteStr] = useState<string>(minute !== undefined ? String(minute) : '')
 
   // 3-Tier Cascading Location State
   const [selectedCountryName, setSelectedCountryName] = useState('India')
@@ -126,14 +120,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setYearStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num) && num >= 1850 && num <= 2150) setYear(num)
+    if (!isNaN(num)) setYear(num)
   }
 
   const handleYearBlur = () => {
-    if (yearStr === '') { setYearStr(String(year)); return }
+    if (yearStr === '') return
     const num = parseInt(yearStr, 10)
-    if (isNaN(num) || num < 1850 || num > 2150) {
-      const clamped = Math.min(2150, Math.max(1850, isNaN(num) ? 1995 : num))
+    if (!isNaN(num)) {
+      const clamped = Math.min(2150, Math.max(1850, num))
       setYear(clamped)
       setYearStr(String(clamped))
     }
@@ -143,14 +137,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setMonthStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num) && num >= 1 && num <= 12) setMonth(num)
+    if (!isNaN(num)) setMonth(num)
   }
 
   const handleMonthBlur = () => {
-    if (monthStr === '') { setMonthStr(String(month)); return }
+    if (monthStr === '') return
     const num = parseInt(monthStr, 10)
-    if (isNaN(num) || num < 1 || num > 12) {
-      const clamped = Math.min(12, Math.max(1, isNaN(num) ? 1 : num))
+    if (!isNaN(num)) {
+      const clamped = Math.min(12, Math.max(1, num))
       setMonth(clamped)
       setMonthStr(String(clamped))
     }
@@ -160,14 +154,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setDayStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num) && num >= 1 && num <= 31) setDay(num)
+    if (!isNaN(num)) setDay(num)
   }
 
   const handleDayBlur = () => {
-    if (dayStr === '') { setDayStr(String(day)); return }
+    if (dayStr === '') return
     const num = parseInt(dayStr, 10)
-    if (isNaN(num) || num < 1 || num > 31) {
-      const clamped = Math.min(31, Math.max(1, isNaN(num) ? 1 : num))
+    if (!isNaN(num)) {
+      const clamped = Math.min(31, Math.max(1, num))
       setDay(clamped)
       setDayStr(String(clamped))
     }
@@ -178,14 +172,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setHourStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num) && num >= 0 && num <= 23) setHour(num)
+    if (!isNaN(num)) setHour(num)
   }
 
   const handleHourBlur = () => {
-    if (hourStr === '') { setHourStr(String(hour)); return }
+    if (hourStr === '') return
     const num = parseInt(hourStr, 10)
-    if (isNaN(num) || num < 0 || num > 23) {
-      const clamped = Math.min(23, Math.max(0, isNaN(num) ? 12 : num))
+    if (!isNaN(num)) {
+      const clamped = Math.min(23, Math.max(0, num))
       setHour(clamped)
       setHourStr(String(clamped))
     }
@@ -195,14 +189,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setMinuteStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num) && num >= 0 && num <= 59) setMinute(num)
+    if (!isNaN(num)) setMinute(num)
   }
 
   const handleMinuteBlur = () => {
-    if (minuteStr === '') { setMinuteStr(String(minute)); return }
+    if (minuteStr === '') return
     const num = parseInt(minuteStr, 10)
-    if (isNaN(num) || num < 0 || num > 59) {
-      const clamped = Math.min(59, Math.max(0, isNaN(num) ? 0 : num))
+    if (!isNaN(num)) {
+      const clamped = Math.min(59, Math.max(0, num))
       setMinute(clamped)
       setMinuteStr(String(clamped))
     }
@@ -215,28 +209,32 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
       const y = parseInt(parts[0], 10)
       const m = parseInt(parts[1], 10)
       const d = parseInt(parts[2], 10)
-      if (!isNaN(y) && y >= 1850 && y <= 2150) setYear(y)
-      if (!isNaN(m) && m >= 1 && m <= 12) setMonth(m)
-      if (!isNaN(d) && d >= 1 && d <= 31) setDay(d)
+      if (!isNaN(y) && y >= 1850 && y <= 2150) { setYear(y); setYearStr(String(y)); }
+      if (!isNaN(m) && m >= 1 && m <= 12) { setMonth(m); setMonthStr(String(m)); }
+      if (!isNaN(d) && d >= 1 && d <= 31) { setDay(d); setDayStr(String(d)); }
     }
   }
 
   const handleReset = () => {
     setName('')
-    setYear(1995)
-    setMonth(1)
-    setDay(1)
-    setHour(12)
-    setMinute(0)
-    setYearStr('1995')
-    setMonthStr('1')
-    setDayStr('1')
-    setHourStr('12')
-    setMinuteStr('0')
+    setYearStr('')
+    setMonthStr('')
+    setDayStr('')
+    setHourStr('')
+    setMinuteStr('')
     handleCountrySelect('India')
   }
 
-  const datePickerValue = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!yearStr || !monthStr || !dayStr || hourStr === '' || minuteStr === '') {
+      alert('Please fill out complete Date and Time parameters.')
+      return
+    }
+    onSubmit(e)
+  }
+
+  const datePickerValue = (year && month && day) ? `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}` : ''
 
   return (
     <div className="w-full max-w-[1500px] mx-auto space-y-6">
@@ -274,7 +272,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
             </p>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-6">
+          <form onSubmit={handleFormSubmit} className="space-y-6">
             {/* Full Name */}
             <div>
               <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8] mb-2">
