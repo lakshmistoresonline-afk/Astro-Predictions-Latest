@@ -49,7 +49,7 @@ export default function Home() {
   const [loadingStep, setLoadingStep] = useState(0)
   const [chartData, setChartData] = useState<BirthProfileResponse | null>(null)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
-  const [utcClock, setUtcClock] = useState<string>('')
+  const [istClock, setIstClock] = useState<string>('')
   const [globalSearch, setGlobalSearch] = useState<string>('')
   const [showCommandPalette, setShowCommandPalette] = useState(false)
   const [showProfileDrawer, setShowProfileDrawer] = useState(false)
@@ -76,10 +76,13 @@ export default function Home() {
   const t = TRANSLATIONS[lang]
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setUtcClock(new Date().toUTCString().slice(17, 25) + ' UTC')
-    }, 1000)
-    setUtcClock(new Date().toUTCString().slice(17, 25) + ' UTC')
+    const updateIstClock = () => {
+      const now = new Date()
+      const timeStr = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false })
+      setIstClock(`${timeStr} IST`)
+    }
+    const timer = setInterval(updateIstClock, 1000)
+    updateIstClock()
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -274,7 +277,7 @@ export default function Home() {
             {/* Live Ephemeris Badge */}
             <span className="hidden lg:inline-flex items-center gap-2 text-xs font-mono text-[#94A3B8] bg-[#070D1B]/80 px-3 py-1 rounded-full border border-white/10">
               <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]"></span>
-              Live Ephemeris: <strong className="text-[#E8EDF7]">JPL DE440s</strong> <span className="tabular-nums text-[#F5B942]">{utcClock}</span>
+              Live Ephemeris: <strong className="text-[#E8EDF7]">JPL DE440s</strong> <span className="tabular-nums text-[#F5B942]">{istClock}</span>
             </span>
 
             {/* User Profile Avatar Trigger */}

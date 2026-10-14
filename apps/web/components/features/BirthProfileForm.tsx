@@ -235,14 +235,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] block mb-1">Year (YYYY)</span>
+                    <span className="text-[10px] text-[#94A3B8] block mb-1">Day (DD)</span>
                     <input
                       type="number"
-                      min={1850}
-                      max={2150}
-                      value={year}
-                      onChange={e => handleYearChange(e.target.value)}
-                      placeholder="YYYY"
+                      min={1}
+                      max={31}
+                      value={day}
+                      onChange={e => handleDayChange(e.target.value)}
+                      placeholder="DD"
                       className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
                       required
                     />
@@ -261,14 +261,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] block mb-1">Day (DD)</span>
+                    <span className="text-[10px] text-[#94A3B8] block mb-1">Year (YYYY)</span>
                     <input
                       type="number"
-                      min={1}
-                      max={31}
-                      value={day}
-                      onChange={e => handleDayChange(e.target.value)}
-                      placeholder="DD"
+                      min={1850}
+                      max={2150}
+                      value={year}
+                      onChange={e => handleYearChange(e.target.value)}
+                      placeholder="YYYY"
                       className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
                       required
                     />
