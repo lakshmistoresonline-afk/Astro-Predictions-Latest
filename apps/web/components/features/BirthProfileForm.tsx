@@ -51,6 +51,19 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
+  // Local string state to allow full backspace & deletion
+  const [yearStr, setYearStr] = useState<string>(String(year))
+  const [monthStr, setMonthStr] = useState<string>(String(month))
+  const [dayStr, setDayStr] = useState<string>(String(day))
+  const [hourStr, setHourStr] = useState<string>(String(hour))
+  const [minuteStr, setMinuteStr] = useState<string>(String(minute))
+
+  useEffect(() => { setYearStr(String(year)) }, [year])
+  useEffect(() => { setMonthStr(String(month)) }, [month])
+  useEffect(() => { setDayStr(String(day)) }, [day])
+  useEffect(() => { setHourStr(String(hour)) }, [hour])
+  useEffect(() => { setMinuteStr(String(minute)) }, [minute])
+
   // 3-Tier Cascading Location State
   const [selectedCountryName, setSelectedCountryName] = useState('India')
   const [selectedStateName, setSelectedStateName] = useState('Kerala')
@@ -108,36 +121,91 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     }
   }
 
-  // Date handlers
-  const handleYearChange = (val: string) => {
+  // Smooth Date Input Handlers
+  const handleYearInput = (val: string) => {
+    setYearStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num)) setYear(Math.min(2150, Math.max(1850, num)))
+    if (!isNaN(num) && num >= 1850 && num <= 2150) setYear(num)
   }
 
-  const handleMonthChange = (val: string) => {
-    if (val === '') return
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setMonth(Math.min(12, Math.max(1, num)))
+  const handleYearBlur = () => {
+    if (yearStr === '') { setYearStr(String(year)); return }
+    const num = parseInt(yearStr, 10)
+    if (isNaN(num) || num < 1850 || num > 2150) {
+      const clamped = Math.min(2150, Math.max(1850, isNaN(num) ? 1995 : num))
+      setYear(clamped)
+      setYearStr(String(clamped))
+    }
   }
 
-  const handleDayChange = (val: string) => {
+  const handleMonthInput = (val: string) => {
+    setMonthStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num)) setDay(Math.min(31, Math.max(1, num)))
+    if (!isNaN(num) && num >= 1 && num <= 12) setMonth(num)
   }
 
-  // Time handlers
-  const handleHourChange = (val: string) => {
-    if (val === '') return
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setHour(Math.min(23, Math.max(0, num)))
+  const handleMonthBlur = () => {
+    if (monthStr === '') { setMonthStr(String(month)); return }
+    const num = parseInt(monthStr, 10)
+    if (isNaN(num) || num < 1 || num > 12) {
+      const clamped = Math.min(12, Math.max(1, isNaN(num) ? 1 : num))
+      setMonth(clamped)
+      setMonthStr(String(clamped))
+    }
   }
 
-  const handleMinuteChange = (val: string) => {
+  const handleDayInput = (val: string) => {
+    setDayStr(val)
     if (val === '') return
     const num = parseInt(val, 10)
-    if (!isNaN(num)) setMinute(Math.min(59, Math.max(0, num)))
+    if (!isNaN(num) && num >= 1 && num <= 31) setDay(num)
+  }
+
+  const handleDayBlur = () => {
+    if (dayStr === '') { setDayStr(String(day)); return }
+    const num = parseInt(dayStr, 10)
+    if (isNaN(num) || num < 1 || num > 31) {
+      const clamped = Math.min(31, Math.max(1, isNaN(num) ? 1 : num))
+      setDay(clamped)
+      setDayStr(String(clamped))
+    }
+  }
+
+  // Smooth Time Input Handlers
+  const handleHourInput = (val: string) => {
+    setHourStr(val)
+    if (val === '') return
+    const num = parseInt(val, 10)
+    if (!isNaN(num) && num >= 0 && num <= 23) setHour(num)
+  }
+
+  const handleHourBlur = () => {
+    if (hourStr === '') { setHourStr(String(hour)); return }
+    const num = parseInt(hourStr, 10)
+    if (isNaN(num) || num < 0 || num > 23) {
+      const clamped = Math.min(23, Math.max(0, isNaN(num) ? 12 : num))
+      setHour(clamped)
+      setHourStr(String(clamped))
+    }
+  }
+
+  const handleMinuteInput = (val: string) => {
+    setMinuteStr(val)
+    if (val === '') return
+    const num = parseInt(val, 10)
+    if (!isNaN(num) && num >= 0 && num <= 59) setMinute(num)
+  }
+
+  const handleMinuteBlur = () => {
+    if (minuteStr === '') { setMinuteStr(String(minute)); return }
+    const num = parseInt(minuteStr, 10)
+    if (isNaN(num) || num < 0 || num > 59) {
+      const clamped = Math.min(59, Math.max(0, isNaN(num) ? 0 : num))
+      setMinute(clamped)
+      setMinuteStr(String(clamped))
+    }
   }
 
   const handleCalendarPickerChange = (val: string) => {
@@ -160,6 +228,11 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setDay(1)
     setHour(12)
     setMinute(0)
+    setYearStr('1995')
+    setMonthStr('1')
+    setDayStr('1')
+    setHourStr('12')
+    setMinuteStr('0')
     handleCountrySelect('India')
   }
 
@@ -217,13 +290,13 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
               />
             </div>
 
-            {/* Date & Time Grid Section */}
+            {/* Date & Time Grid Section (Indian Order: DD / MM / YYYY) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-              {/* 3-Box Labeled Numerical Date Grid */}
+              {/* 3-Box Labeled Numerical Date Grid in DD / MM / YYYY Indian Order */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                    Date of Birth <span className="text-[#F5B942]">*</span>
+                    Date of Birth (DD / MM / YYYY) <span className="text-[#F5B942]">*</span>
                   </label>
                   <input
                     type="date"
@@ -237,11 +310,11 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                   <div>
                     <span className="text-[10px] text-[#94A3B8] block mb-1">Day (DD)</span>
                     <input
-                      type="number"
-                      min={1}
-                      max={31}
-                      value={day}
-                      onChange={e => handleDayChange(e.target.value)}
+                      type="text"
+                      inputMode="numeric"
+                      value={dayStr}
+                      onChange={e => handleDayInput(e.target.value)}
+                      onBlur={handleDayBlur}
                       placeholder="DD"
                       className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
                       required
@@ -250,11 +323,11 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                   <div>
                     <span className="text-[10px] text-[#94A3B8] block mb-1">Month (MM)</span>
                     <input
-                      type="number"
-                      min={1}
-                      max={12}
-                      value={month}
-                      onChange={e => handleMonthChange(e.target.value)}
+                      type="text"
+                      inputMode="numeric"
+                      value={monthStr}
+                      onChange={e => handleMonthInput(e.target.value)}
+                      onBlur={handleMonthBlur}
                       placeholder="MM"
                       className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
                       required
@@ -263,11 +336,11 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                   <div>
                     <span className="text-[10px] text-[#94A3B8] block mb-1">Year (YYYY)</span>
                     <input
-                      type="number"
-                      min={1850}
-                      max={2150}
-                      value={year}
-                      onChange={e => handleYearChange(e.target.value)}
+                      type="text"
+                      inputMode="numeric"
+                      value={yearStr}
+                      onChange={e => handleYearInput(e.target.value)}
+                      onBlur={handleYearBlur}
                       placeholder="YYYY"
                       className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
                       required
@@ -279,17 +352,17 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
               {/* 2-Box Labeled Numerical Time Grid */}
               <div className="space-y-2">
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
-                  Time of Birth (24-Hour) <span className="text-[#F5B942]">*</span>
+                  Time of Birth (24-Hour IST) <span className="text-[#F5B942]">*</span>
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <span className="text-[10px] text-[#94A3B8] block mb-1">Hour (HH 0-23)</span>
                     <input
-                      type="number"
-                      min={0}
-                      max={23}
-                      value={hour}
-                      onChange={e => handleHourChange(e.target.value)}
+                      type="text"
+                      inputMode="numeric"
+                      value={hourStr}
+                      onChange={e => handleHourInput(e.target.value)}
+                      onBlur={handleHourBlur}
                       placeholder="HH"
                       className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
                       required
@@ -298,11 +371,11 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                   <div>
                     <span className="text-[10px] text-[#94A3B8] block mb-1">Minute (MM 0-59)</span>
                     <input
-                      type="number"
-                      min={0}
-                      max={59}
-                      value={minute}
-                      onChange={e => handleMinuteChange(e.target.value)}
+                      type="text"
+                      inputMode="numeric"
+                      value={minuteStr}
+                      onChange={e => handleMinuteInput(e.target.value)}
+                      onBlur={handleMinuteBlur}
                       placeholder="MM"
                       className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
                       required
