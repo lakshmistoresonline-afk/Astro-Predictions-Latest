@@ -5,7 +5,13 @@ Section 5 & 7 Compliance: Centralized get_house_from_lagna and get_relative_hous
 """
 from typing import List, Optional, Any
 from apps.api.engines.vedic.models import WholeSignHouse, RashiPosition
-from apps.api.engines.vedic.rashi import ZODIAC_SIGNS
+from apps.api.engines.vedic.rashi import ZODIAC_SIGNS, RASHI_LORDS
+
+ZODIAC_SANSKRIT_NAMES = [
+    "Mesha", "Vrishabha", "Mithuna", "Karka",
+    "Simha", "Kanya", "Tula", "Vrishchika",
+    "Dhanu", "Makara", "Kumbha", "Meena"
+]
 
 def get_house_from_lagna(planet_rashi_index: int, lagna_rashi_index: int) -> int:
     """
@@ -39,12 +45,17 @@ def generate_whole_sign_houses(
     for house_num in range(1, 13):
         current_sign_idx = (asc_sign_idx + house_num - 1) % 12
         sign_name = ZODIAC_SIGNS[current_sign_idx]
+        sanskrit_name = ZODIAC_SANSKRIT_NAMES[current_sign_idx]
+        lord = RASHI_LORDS[current_sign_idx + 1]
         start_lon = current_sign_idx * 30.0
         end_lon = (current_sign_idx + 1) * 30.0
 
         houses.append(WholeSignHouse(
             house_number=house_num,
             sign=sign_name,
+            sign_name=sign_name,
+            sanskrit_name=sanskrit_name,
+            lord_planet=lord,
             sign_index=current_sign_idx + 1,
             start_longitude=round(start_lon, 6),
             end_longitude=round(end_lon, 6)
