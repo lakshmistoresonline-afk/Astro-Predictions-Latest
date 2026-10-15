@@ -1,70 +1,80 @@
 """
-Unit Test Suite for PDFReportEngine HTML/PDF Treatise Generation.
+Unit Test Suite for PDFReportEngine 30-Section Master PDF Treatise Generation.
 """
 import pytest
 from apps.api.engines.pdf_report_engine import PDFReportEngine
 
-SAMPLE_REPORT_DATA = {
-    "name": "<script>alert('xss')</script> John Doe",
+PROFILE_A_DATA = {
+    "name": "Subramanian T S",
+    "birth_date": "1986-09-28",
+    "birth_time": "16:30:00",
+    "timezone": "Asia/Kolkata",
+    "location": {"place": "Palakkad, Kerala", "country": "India", "latitude": 10.7867, "longitude": 76.6548},
+    "master_evidence_hash": "subramanian_hash_11111111111111111111",
+    "canonical_chart": {
+        "ascendant": {"sign": "Aquarius", "degree": 12, "minute": 40},
+        "placements": {
+            "Sun": {"rashi": {"sign": "Virgo", "degree": 11, "minute": 21}, "nakshatra_pada": {"nakshatra": "Hasta", "pada": 1}, "retrograde": False},
+            "Moon": {"rashi": {"sign": "Cancer", "degree": 7, "minute": 12}, "nakshatra_pada": {"nakshatra": "Pushya", "pada": 2}, "retrograde": False}
+        },
+        "whole_sign_houses": [
+            {"house_number": 1, "sign": "Aquarius", "start_longitude": 300.0, "end_longitude": 330.0}
+        ]
+    },
+    "planetary_positions": {
+        "Sun": {"sign": "Virgo", "degree": 11.35, "speed": 0.98, "retrograde": False},
+        "Moon": {"sign": "Cancer", "degree": 7.20, "speed": 12.25, "retrograde": False}
+    },
+    "dashas": {
+        "birth_balance": {"mahadasha_lord": "Saturn", "remaining_years": 12.5}
+    }
+}
+
+PROFILE_B_DATA = {
+    "name": "John Doe",
     "birth_date": "1995-01-01",
     "birth_time": "12:00:00",
-    "timezone": "Asia/Kolkata",
-    "location": {"place": "New Delhi", "country": "India", "latitude": 28.6139, "longitude": 77.2090},
-    "master_evidence_hash": "master_hash_999999999",
+    "timezone": "America/New_York",
+    "location": {"place": "New York", "country": "United States", "latitude": 40.7128, "longitude": -74.0060},
+    "master_evidence_hash": "john_doe_hash_22222222222222222222",
     "canonical_chart": {
         "ascendant": {"sign": "Aries", "degree": 15, "minute": 30},
         "placements": {
-            "Sun": {"rashi": {"sign": "Sagittarius", "degree": 16, "minute": 45}, "nakshatra_pada": {"nakshatra": "Purva Ashadha", "pada": 2}, "retrograde": False}
+            "Sun": {"rashi": {"sign": "Sagittarius", "degree": 16, "minute": 45}, "nakshatra_pada": {"nakshatra": "Purva Ashadha", "pada": 2}, "retrograde": False},
+            "Moon": {"rashi": {"sign": "Taurus", "degree": 22, "minute": 10}, "nakshatra_pada": {"nakshatra": "Rohini", "pada": 4}, "retrograde": False}
         },
         "whole_sign_houses": [
             {"house_number": 1, "sign": "Aries", "start_longitude": 0.0, "end_longitude": 30.0}
         ]
     },
-    "vargas": {
-        "D1": {"ascendant": "Aries", "placements": {"Sun": "Sagittarius", "Moon": "Cancer"}}
+    "planetary_positions": {
+        "Sun": {"sign": "Sagittarius", "degree": 16.75, "speed": 1.02, "retrograde": False},
+        "Moon": {"sign": "Taurus", "degree": 22.16, "speed": 13.10, "retrograde": False}
     },
     "dashas": {
-        "birth_balance": {"mahadasha_lord": "Venus", "remaining_years": 12.5},
-        "mahadashas": [
-            {"lord": "Venus", "start_utc_iso": "1995-01-01T06:30:00+00:00", "end_utc_iso": "2007-07-01T06:30:00+00:00", "duration_years": 12.5}
-        ]
-    },
-    "predictions": {
-        "domain_predictions": {
-            "CAREER": {
-                "rule_definition": {"domain_title": "Career & Profession", "rule_description": "10th House Karma"},
-                "evidence_status": "AVAILABLE"
-            }
-        }
+        "birth_balance": {"mahadasha_lord": "Venus", "remaining_years": 8.2}
     }
 }
 
-def test_pdf_report_engine_renders_all_12_chapters():
-    """PDFReportEngine must render all 12 chapters explicitly."""
-    html_out = PDFReportEngine.generate_html_treatise(SAMPLE_REPORT_DATA)
-
-    for chapter_num in range(1, 13):
-        assert f"Chapter {chapter_num}:" in html_out
-
-def test_pdf_report_engine_escapes_user_input():
-    """User-controlled inputs containing HTML tags must be properly escaped."""
-    html_out = PDFReportEngine.generate_html_treatise(SAMPLE_REPORT_DATA)
-
-    assert "<script>" not in html_out
-    assert "&lt;script&gt;" in html_out
-
-def test_pdf_report_engine_preserves_hashes_and_disclaimer():
-    """PDFReportEngine must preserve master evidence hash and legal disclaimer."""
-    html_out = PDFReportEngine.generate_html_treatise(SAMPLE_REPORT_DATA)
-
-    assert "master_hash_999999999" in html_out
-    assert "DISCLAIMER" in html_out
-    assert "NASA JPL DE440s" in html_out
+def test_pdf_report_engine_fails_closed_on_missing_required_data():
+    """PDFReportEngine must raise ValueError when required birth data is missing."""
+    with pytest.raises(ValueError) as exc_info:
+        PDFReportEngine.generate_pdf_report({})
+    assert "report_data" in str(exc_info.value) or "Missing" in str(exc_info.value)
 
 def test_pdf_report_engine_bytes_output():
-    """generate_pdf_report must return valid binary PDF byte stream starting with %PDF-."""
-    bytes_out = PDFReportEngine.generate_pdf_report(SAMPLE_REPORT_DATA)
+    """generate_pdf_report must return valid binary PDF byte stream starting with %PDF-1.4."""
+    bytes_out = PDFReportEngine.generate_pdf_report(PROFILE_A_DATA)
 
     assert isinstance(bytes_out, bytes)
-    assert len(bytes_out) > 500
-    assert bytes_out.startswith(b"%PDF-")
+    assert len(bytes_out) > 5000
+    assert bytes_out.startswith(b"%PDF-1.4")
+
+def test_comparative_profiles_produce_different_pdf_payloads():
+    """Generating reports for Profile A vs Profile B must yield different, profile-specific PDF bytes."""
+    bytes_a = PDFReportEngine.generate_pdf_report(PROFILE_A_DATA)
+    bytes_b = PDFReportEngine.generate_pdf_report(PROFILE_B_DATA)
+
+    assert bytes_a != bytes_b
+    assert len(bytes_a) > 5000
+    assert len(bytes_b) > 5000

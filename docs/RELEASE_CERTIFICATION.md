@@ -1,9 +1,9 @@
 # Astrovision Version 6.0.0 Release Certification Report
 
-- **Commit SHA**: `c341ff7deaa3da58f8e97983cb1054d4726f67b9`
-- **Timestamp**: `2026-10-15T12:42:43.115740+00:00`
+- **Commit SHA**: `0cf73a7e7715b085cf9d17ce648336a0cb85c3d4`
+- **Timestamp**: `2026-10-15T15:33:01.467155+00:00`
 - **Overall Certification Verdict**: **PASS - PRODUCTION READY**
-- **Total Executed Tests**: `140`
+- **Total Executed Tests**: `139`
 - **Total Gates Evaluated**: `26`
 - **Passed Gates**: `26`
 - **Failed Gates**: `0`
@@ -36,5 +36,5 @@
 | `G22_PERSISTENCE` | SQLAlchemy Persistent Relational Models & CRUD | **PASS** | 7 | Pytest executed successfully (7 tests passed) |
 | `G23_IDOR_CONTROLS` | Server-Enforced User Ownership & IDOR Security | **PASS** | 7 | Pytest executed successfully (7 tests passed) |
 | `G24_API_CONTRACTS` | Versioned /api/v1 OpenAPI & Error Shapes | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
-| `G25_PDF_EXPORT` | 12-Chapter HTML/PDF Report Treatise Export | **PASS** | 7 | Pytest executed successfully (7 tests passed) |
+| `G25_PDF_EXPORT` | 12-Chapter HTML/PDF Report Treatise Export | **PASS** | 6 | Pytest executed successfully (6 tests passed) |
 | `G26_ADMIN_SECURITY` | Server-Side Admin Key Authentication | **PASS** | 7 | Pytest executed successfully (7 tests passed) |
