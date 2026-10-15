@@ -27,10 +27,19 @@ CLASSICAL_PLANETS = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Satu
 def _get_house_lords(canonical_chart: CanonicalVedicChart) -> Dict[int, str]:
     """Returns mapping of 1-based House Number (1..12) to its ruling planet name."""
     lords: Dict[int, str] = {}
-    for house in canonical_chart.whole_sign_houses:
-        sign_idx = house.sign_index
-        ruler = SIGN_RULERS[sign_idx]
-        lords[house.house_number] = ruler
+    asc_sign_idx = canonical_chart.ascendant.sign_index
+    if canonical_chart.whole_sign_houses:
+        for house in canonical_chart.whole_sign_houses:
+            h_num = house.get("house_number") if isinstance(house, dict) else getattr(house, "house_number", None)
+            s_idx = house.get("sign_index") if isinstance(house, dict) else getattr(house, "sign_index", None)
+            if h_num and s_idx:
+                lords[h_num] = SIGN_RULERS[s_idx]
+
+    if len(lords) < 12:
+        for h in range(1, 13):
+            s_idx = (asc_sign_idx + h - 2) % 12 + 1
+            lords[h] = SIGN_RULERS[s_idx]
+
     return lords
 
 def _get_planet_house_map(canonical_chart: CanonicalVedicChart) -> Dict[str, int]:

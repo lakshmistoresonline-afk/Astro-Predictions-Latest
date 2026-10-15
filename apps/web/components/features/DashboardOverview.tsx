@@ -76,21 +76,17 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
       .catch(() => alert('JSON export failed. Please ensure server is active.'))
   }
 
-  // Recent profiles list backed by active calculation data
-  const recentProfiles = [
+  // Real active profile from backend calculation payload
+  const recentProfiles = birthInput?.name ? [
     {
-      name: birthInput.name || 'Subramanian T S',
+      name: birthInput.name,
       date: `${String(birthInput.day).padStart(2, '0')}/${String(birthInput.month).padStart(2, '0')}/${birthInput.year}`,
       time: `${String(birthInput.hour).padStart(2, '0')}:${String(birthInput.minute).padStart(2, '0')} IST`,
       location: `${birthInput.place_name}, ${birthInput.country}`,
-      initials: birthInput.name ? birthInput.name.split(' ').map(n => n[0]).join('').slice(0, 2) : 'ST',
+      initials: birthInput.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
       color: 'bg-gradient-to-tr from-[#F5B942] to-amber-600'
-    },
-    { name: 'Arjun Sharma', date: '15/08/1995', time: '12:00 IST', location: 'New Delhi, India', initials: 'AS', color: 'bg-purple-600' },
-    { name: 'Priya Mehta', date: '22/03/1990', time: '18:30 IST', location: 'Mumbai, India', initials: 'PM', color: 'bg-[#F5B942] text-[#070D1B]' },
-    { name: 'Rahul Verma', date: '10/01/1985', time: '14:15 IST', location: 'Bengaluru, India', initials: 'RV', color: 'bg-cyan-600' },
-    { name: 'Test Profile', date: '03/12/2000', time: '06:15 IST', location: 'Kolkata, India', initials: 'TP', color: 'bg-emerald-600' }
-  ]
+    }
+  ] : []
 
   const liveTransits = [
     { planet: '♃ Jupiter', sign: 'Taurus', house: '4th House', status: 'Favorable Period', color: 'text-emerald-400' },

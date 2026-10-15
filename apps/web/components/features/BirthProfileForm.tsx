@@ -51,17 +51,32 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
-  // Clean empty-string state allowing full backspace & custom typing
-  const [yearStr, setYearStr] = useState<string>(year ? String(year) : '')
-  const [monthStr, setMonthStr] = useState<string>(month ? String(month) : '')
-  const [dayStr, setDayStr] = useState<string>(day ? String(day) : '')
-  const [hourStr, setHourStr] = useState<string>(hour !== undefined ? String(hour) : '')
-  const [minuteStr, setMinuteStr] = useState<string>(minute !== undefined ? String(minute) : '')
+  // Local string state to allow full backspace & custom typing
+  const [yearStr, setYearStr] = useState<string>(year ? String(year) : '1995')
+  const [monthStr, setMonthStr] = useState<string>(month ? String(month) : '1')
+  const [dayStr, setDayStr] = useState<string>(day ? String(day) : '1')
+  const [hourStr, setHourStr] = useState<string>(hour !== undefined ? String(hour) : '12')
+  const [minuteStr, setMinuteStr] = useState<string>(minute !== undefined ? String(minute) : '0')
 
   // 3-Tier Cascading Location State
   const [selectedCountryName, setSelectedCountryName] = useState('India')
   const [selectedStateName, setSelectedStateName] = useState('Kerala')
   const [selectedDistrictName, setSelectedDistrictName] = useState('Palakkad')
+
+  // Initialize and synchronize location state on component mount
+  useEffect(() => {
+    const foundC = CASCADING_LOCATIONS.find(c => c.country_name === selectedCountryName) || CASCADING_LOCATIONS[0]
+    const foundS = foundC.states.find(s => s.state_name === selectedStateName) || foundC.states[0]
+    const foundD = foundS.districts.find(d => d.district === selectedDistrictName) || foundS.districts[0]
+
+    if (foundD) {
+      setPlaceName(`${foundD.district}, ${foundS.state_name}`)
+      setCountry(foundC.country_name)
+      setLatitude(foundD.latitude)
+      setLongitude(foundD.longitude)
+      setTimezoneStr(foundD.timezone_str)
+    }
+  }, [])
 
   // Derive active Country object
   const activeCountry = CASCADING_LOCATIONS.find(c => c.country_name === selectedCountryName) || CASCADING_LOCATIONS[0]
@@ -114,6 +129,35 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
       setTimezoneStr(foundD.timezone_str)
     }
   }
+
+  // Real Gregorian Date Validation helper
+  const getMaxDaysInMonth = (y: number, m: number): number => {
+    if (m === 2) {
+      const isLeap = (y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0)
+      return isLeap ? 29 : 28
+    }
+    if ([4, 6, 9, 11].includes(m)) return 30
+    return 31
+  }
+
+  const validateCurrentDate = (): string | null => {
+    if (!yearStr || !monthStr || !dayStr) return null
+    const y = parseInt(yearStr, 10)
+    const m = parseInt(monthStr, 10)
+    const d = parseInt(dayStr, 10)
+
+    if (isNaN(y) || isNaN(m) || isNaN(d)) return "Invalid numeric date entry."
+    if (y < 1850 || y > 2150) return `Birth year (${y}) is outside supported ephemeris horizon [1850, 2150].`
+    if (m < 1 || m > 12) return `Birth month (${m}) is outside valid range [1, 12].`
+
+    const maxDays = getMaxDaysInMonth(y, m)
+    if (d < 1 || d > maxDays) {
+      return `Invalid birth date: day ${d} does not exist in month ${m} for year ${y} (max days in month: ${maxDays}).`
+    }
+    return null
+  }
+
+  const dateError = validateCurrentDate()
 
   // Smooth Date Input Handlers
   const handleYearInput = (val: string) => {
@@ -217,16 +261,25 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
 
   const handleReset = () => {
     setName('')
-    setYearStr('')
-    setMonthStr('')
-    setDayStr('')
-    setHourStr('')
-    setMinuteStr('')
+    setYear(1995)
+    setMonth(1)
+    setDay(1)
+    setHour(12)
+    setMinute(0)
+    setYearStr('1995')
+    setMonthStr('1')
+    setDayStr('1')
+    setHourStr('12')
+    setMinuteStr('0')
     handleCountrySelect('India')
   }
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (dateError) {
+      alert(dateError)
+      return
+    }
     if (!yearStr || !monthStr || !dayStr || hourStr === '' || minuteStr === '') {
       alert('Please fill out complete Date and Time parameters.')
       return
@@ -288,6 +341,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
               />
             </div>
 
+            {/* Inline Gregorian Date Error Banner */}
+            {dateError && (
+              <div className="p-3.5 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-200 text-xs font-mono flex items-center gap-2">
+                <span className="text-sm">⚠️</span>
+                <span>{dateError}</span>
+              </div>
+            )}
+
             {/* Date & Time Grid Section (Indian Order: DD / MM / YYYY) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
               {/* 3-Box Labeled Numerical Date Grid in DD / MM / YYYY Indian Order */}
@@ -314,7 +375,9 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleDayInput(e.target.value)}
                       onBlur={handleDayBlur}
                       placeholder="DD"
-                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      className={`w-full bg-[#070D1B] border rounded-xl px-3 py-3 text-[#E8EDF7] outline-none text-xs tabular-nums font-bold text-center ${
+                        dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
+                      }`}
                       required
                     />
                   </div>
@@ -327,7 +390,9 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleMonthInput(e.target.value)}
                       onBlur={handleMonthBlur}
                       placeholder="MM"
-                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      className={`w-full bg-[#070D1B] border rounded-xl px-3 py-3 text-[#E8EDF7] outline-none text-xs tabular-nums font-bold text-center ${
+                        dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
+                      }`}
                       required
                     />
                   </div>
@@ -340,7 +405,9 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleYearInput(e.target.value)}
                       onBlur={handleYearBlur}
                       placeholder="YYYY"
-                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      className={`w-full bg-[#070D1B] border rounded-xl px-3 py-3 text-[#E8EDF7] outline-none text-xs tabular-nums font-bold text-center ${
+                        dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
+                      }`}
                       required
                     />
                   </div>
@@ -514,14 +581,19 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
             <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
               <button
                 type="submit"
-                className="w-full sm:flex-1 bg-gradient-to-r from-[#F5B942] via-amber-400 to-[#E5A832] hover:from-amber-300 hover:to-[#F5B942] text-[#070D1B] font-black py-4 rounded-2xl shadow-xl shadow-[#F5B942]/20 text-xs font-mono uppercase tracking-wider transition duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                disabled={!!dateError || !name.trim()}
+                className={`w-full sm:flex-1 py-4 rounded-2xl text-xs font-mono uppercase tracking-wider transition duration-200 flex items-center justify-center gap-2 ${
+                  dateError || !name.trim()
+                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                    : 'bg-gradient-to-r from-[#F5B942] via-amber-400 to-[#E5A832] hover:from-amber-300 hover:to-[#F5B942] text-[#070D1B] font-black shadow-xl shadow-[#F5B942]/20 cursor-pointer'
+                }`}
               >
                 <span>✦</span> Calculate Canonical Chart →
               </button>
               <button
                 type="button"
                 onClick={handleReset}
-                className="text-xs font-mono text-[#94A3B8] hover:text-[#E8EDF7] py-2 px-4 underline"
+                className="text-xs font-mono text-[#94A3B8] hover:text-[#E8EDF7] py-2 px-4 underline cursor-pointer"
               >
                 Clear form
               </button>

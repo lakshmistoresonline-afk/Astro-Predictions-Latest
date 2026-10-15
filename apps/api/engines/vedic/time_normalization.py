@@ -70,30 +70,30 @@ def normalize_birth_time(input_data: BirthInput) -> TimeNormalization:
             f"maximum supported boundary of {MAX_SUPPORTED_YEAR}-01-22."
         )
 
-    # Timezone resolution using zoneinfo.ZoneInfo with pytz.localize fallback for Windows tzdata
+    # 1. Naive Gregorian Date/Time Validation (BEFORE timezone resolution!)
     try:
-        tz = zoneinfo.ZoneInfo(input_data.timezone_str)
-        dt_local = datetime(
+        naive_dt = datetime(
             input_data.year,
             input_data.month,
             input_data.day,
             input_data.hour,
             input_data.minute,
-            input_data.second,
-            tzinfo=tz
+            input_data.second
         )
+    except ValueError as ve:
+        raise ValueError(
+            f"Invalid birth date/time parameters: {str(ve)} "
+            f"(Year: {input_data.year}, Month: {input_data.month}, Day: {input_data.day})."
+        )
+
+    # Timezone resolution using zoneinfo.ZoneInfo with pytz.localize fallback for Windows tzdata
+    try:
+        tz = zoneinfo.ZoneInfo(input_data.timezone_str)
+        dt_local = naive_dt.replace(tzinfo=tz)
     except Exception:
         try:
             import pytz
             tz_pytz = pytz.timezone(input_data.timezone_str)
-            naive_dt = datetime(
-                input_data.year,
-                input_data.month,
-                input_data.day,
-                input_data.hour,
-                input_data.minute,
-                input_data.second
-            )
             dt_local = tz_pytz.localize(naive_dt)
         except Exception as e:
             raise TimezoneResolutionError(f"Failed to resolve IANA timezone '{input_data.timezone_str}': {str(e)}")
@@ -126,5 +126,5 @@ def normalize_birth_time(input_data: BirthInput) -> TimeNormalization:
         utc_offset_hours=round(utc_offset_hrs, 4),
         julian_day_utc=round(jd_utc, 8),
         julian_day_tt=round(jd_tt, 8),
-        time_scale="UTC / TT"
+        delta_t_seconds=round(delta_t_sec, 4)
     )

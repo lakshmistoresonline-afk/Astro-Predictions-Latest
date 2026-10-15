@@ -6,33 +6,27 @@ interface ShadbalaAshtakavargaViewProps {
   ashtakavargaEvidence?: AshtakavargaPredictiveEvidence
 }
 
+type StrengthTab = 'shadbala' | 'ashtakavarga' | 'bav'
+
 export const ShadbalaAshtakavargaView: React.FC<ShadbalaAshtakavargaViewProps> = ({
   shadbalaSuite,
   ashtakavargaEvidence
 }) => {
-  const [activeTab, setActiveTab] = useState<'shadbala' | 'ashtakavarga' | 'bav'>('shadbala')
+  const [activeTab, setActiveTab] = useState<StrengthTab>('shadbala')
   const planets = shadbalaSuite?.planets ? Object.values(shadbalaSuite.planets) : []
   const savEvidences = ashtakavargaEvidence?.house_sav_evidences || []
 
   const RASHI_NAMES = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
   const BAV_PLANETS = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"]
 
-  // Mock BAV bindu values for 7 planets across 12 signs [0..8 bindus]
-  const BAV_MATRIX: Record<string, number[]> = {
-    Sun:     [4, 5, 3, 4, 6, 5, 3, 4, 5, 4, 3, 2],
-    Moon:    [5, 4, 3, 6, 4, 5, 4, 3, 5, 6, 4, 3],
-    Mars:    [3, 4, 2, 5, 4, 3, 4, 5, 3, 6, 2, 3],
-    Mercury: [5, 6, 4, 5, 4, 6, 5, 4, 3, 5, 4, 3],
-    Jupiter: [6, 5, 4, 6, 5, 4, 5, 6, 4, 3, 5, 3],
-    Venus:   [4, 6, 5, 4, 3, 5, 6, 4, 5, 4, 3, 3],
-    Saturn:  [3, 4, 3, 4, 3, 4, 5, 4, 3, 5, 3, 2]
-  }
+  const ev: any = ashtakavargaEvidence
+  const bavMatrix = ev?.bav_matrices
 
   return (
     <div className="bg-slate-900/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-slate-800/80 shadow-2xl space-y-6 w-full select-none">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h3 className="text-xl font-extrabold text-amber-300 flex items-center gap-2">
+          <h3 className="text-xl font-extrabold text-amber-300 flex items-center gap-2 font-serif-heading">
             <span>⚡</span> Quantitative Strength Engine (Shadbala, BAV & SAV)
           </h3>
           <p className="text-xs text-slate-400 font-mono mt-1">
@@ -134,20 +128,26 @@ export const ShadbalaAshtakavargaView: React.FC<ShadbalaAshtakavargaViewProps> =
               </thead>
               <tbody className="divide-y divide-slate-800/60 text-slate-200">
                 {BAV_PLANETS.map(p => {
-                  const binduRow = BAV_MATRIX[p] || [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+                  const binduRow = bavMatrix?.[p] || bavMatrix?.[p.toLowerCase()]
                   return (
                     <tr key={p} className="hover:bg-slate-800/40">
                       <td className="py-3 px-4 font-bold text-slate-100">{p}</td>
-                      {binduRow.map((b, idx) => (
-                        <td
-                          key={idx}
-                          className={`py-3 px-2 text-center border-l border-slate-800/60 tabular-nums font-bold ${
-                            b >= 5 ? 'text-emerald-300 bg-emerald-500/10' : b >= 3 ? 'text-amber-300' : 'text-slate-500'
-                          }`}
-                        >
-                          {b}
+                      {binduRow ? (
+                        binduRow.map((b: number, idx: number) => (
+                          <td
+                            key={idx}
+                            className={`py-3 px-2 text-center border-l border-slate-800/60 tabular-nums font-bold ${
+                              b >= 5 ? 'text-emerald-300 bg-emerald-500/10' : b >= 3 ? 'text-amber-300' : 'text-slate-500'
+                            }`}
+                          >
+                            {b}
+                          </td>
+                        ))
+                      ) : (
+                        <td colSpan={12} className="py-3 px-4 text-center text-slate-500 italic font-mono">
+                          Detailed BAV matrix available in Sarvashtakavarga SAV view
                         </td>
-                      ))}
+                      )}
                     </tr>
                   )
                 })}
