@@ -43,6 +43,8 @@ class Settings(BaseSettings):
     gemini_api_key: Optional[str] = None
     gemini_model: str = "gemini-1.5-flash"
     ollama_base_url: str = "http://localhost:11434"
+    ollama_cloud_key: Optional[str] = None
+    groq_api_key: Optional[str] = None
     ai_model_generation: str = "gemma4"
     ai_model_validation: str = "qwen3.5"
     ai_request_timeout_seconds: float = 20.0
@@ -58,6 +60,8 @@ class Settings(BaseSettings):
         return [origin.strip() for origin in self.cors_allowed_origins.split(",") if origin.strip()]
 
     class Config:
+        env_file = ".env"
+        extra = "ignore"
         env_file = ".env"
         extra = "ignore"
 

@@ -153,7 +153,7 @@ class AIService:
     @classmethod
     def _execute_ollama_cloud_request(cls, prompt_text: str, model_name: str = "gpt-oss:20b") -> Optional[str]:
         """Executes a POST request to Ollama Cloud API (https://ollama.com/api/chat) with retries and timeouts."""
-        ollama_key = os.environ.get("OLLAMA_CLOUD_KEY") or os.environ.get("OLLAMA_API_KEY")
+        ollama_key = os.environ.get("OLLAMA_CLOUD_KEY") or os.environ.get("OLLAMA_API_KEY") or getattr(settings, "ollama_cloud_key", None)
         if not ollama_key:
             return None
 
@@ -190,7 +190,7 @@ class AIService:
     @classmethod
     def _execute_groq_request(cls, prompt_text: str, model_name: str = "openai/gpt-oss-20b") -> Optional[str]:
         """Executes a POST request to Groq Cloud API with retries and timeouts."""
-        groq_key = os.environ.get("GROQ_API_KEY")
+        groq_key = os.environ.get("GROQ_API_KEY") or getattr(settings, "groq_api_key", None)
         if not groq_key:
             return None
 
