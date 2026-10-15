@@ -40,7 +40,7 @@ RELEASE_GATES = [
     ("G22_PERSISTENCE", "SQLAlchemy Persistent Relational Models & CRUD", "apps/api/tests/test_persistence_idor.py"),
     ("G23_IDOR_CONTROLS", "Server-Enforced User Ownership & IDOR Security", "apps/api/tests/test_persistence_idor.py"),
     ("G24_API_CONTRACTS", "Versioned /api/v1 OpenAPI & Error Shapes", "apps/api/tests/test_api_contract.py"),
-    ("G25_PDF_EXPORT", "12-Chapter HTML/PDF Report Treatise Export", "apps/api/tests/test_pdf_report_engine.py"),
+    ("G25_PDF_EXPORT", "12-Chapter HTML/PDF Report Treatise Export", ["apps/api/tests/test_pdf_report_engine.py", "apps/api/tests/test_golden_reference_report.py"]),
     ("G26_ADMIN_SECURITY", "Server-Side Admin Key Authentication", "apps/api/tests/test_admin_security.py"),
 ]
 
