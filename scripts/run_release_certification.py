@@ -17,8 +17,8 @@ EXPECTED_DE440S_SHA256 = "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a7612
 
 RELEASE_GATES = [
     ("G01_DE440S_HASH", "NASA JPL DE440s Kernel SHA-256 Checksum", "apps/api/engines/astronomy/de440s.bsp"),
-    ("G02_ASTRONOMY", "Sub-Arcsecond Astronomy Accuracy", "apps/api/tests/test_astronomy_provider.py"),
-    ("G03_TIMEZONE_DST", "Historical IANA Timezones & DST Transitions", "apps/api/tests/test_timezone_historical.py"),
+    ("G02_ASTRONOMY", "Sub-Arcsecond Astronomy Accuracy", ["apps/api/tests/test_astronomy_provider.py", "apps/api/tests/test_planetary_schema_integrity.py"]),
+    ("G03_TIMEZONE_DST", "Historical IANA Timezones & DST Transitions", ["apps/api/tests/test_timezone_historical.py", "apps/api/tests/test_date_validation_strict.py"]),
     ("G04_RASHI_NAKSHATRA", "Rashi, Nakshatra & Pada Boundary Handling", "apps/api/tests/test_vedic_foundation.py"),
     ("G05_ASCENDANT_HOUSES", "Ascendant & Whole Sign House Divisions", "apps/api/tests/test_vedic_foundation.py"),
     ("G06_VARGAS_D1_D60", "16 Parashari Divisional Charts D1 through D60", "apps/api/tests/test_varga_engine.py"),
@@ -120,36 +120,23 @@ def run_release_certification():
         })
 
     # Gates 2 through 26: Programmatic Pytest execution
-    for gate_id, title, test_file in RELEASE_GATES[1:]:
-        rel_path = project_root / test_file
-        if not rel_path.exists():
-            all_passed = False
-            gate_results.append({
-                "gate_id": gate_id,
-                "gate_title": title,
-                "status": "FAIL",
-                "tests_run": 0,
-                "details": f"Test file missing: {test_file}"
-            })
-            continue
-
+    for gate_id, title, test_files in RELEASE_GATES[1:]:
+        file_list = test_files if isinstance(test_files, list) else [test_files]
         collector = PytestPluginCollector()
-        exit_code = pytest.main([str(rel_path), "-q"], plugins=[collector])
+        gate_failed = False
+
+        for tf in file_list:
+            rel_path = project_root / tf
+            if not rel_path.exists():
+                gate_failed = True
+                continue
+
+            exit_code = pytest.main([str(rel_path), "-q"], plugins=[collector])
+            if exit_code != 0:
+                gate_failed = True
 
         tests_run = collector.passed + collector.failed
-        if tests_run == 0:
-            tests_run = 1
-
-        if exit_code == 0:
-            total_tests_executed += tests_run
-            gate_results.append({
-                "gate_id": gate_id,
-                "gate_title": title,
-                "status": "PASS",
-                "tests_run": tests_run,
-                "details": f"Pytest executed successfully ({tests_run} tests passed)"
-            })
-        else:
+        if tests_run == 0 or gate_failed:
             all_passed = False
             gate_results.append({
                 "gate_id": gate_id,
@@ -158,75 +145,73 @@ def run_release_certification():
                 "tests_run": tests_run,
                 "details": f"Pytest failed (Exit code {exit_code}, {collector.failed} failed tests)"
             })
+        else:
+            gate_results.append({
+                "gate_id": gate_id,
+                "gate_title": title,
+                "status": "PASS",
+                "tests_run": tests_run,
+                "details": f"Pytest executed successfully ({collector.passed} tests passed)"
+            })
+        total_tests_executed += tests_run
 
-    timestamp_str = datetime.now(timezone.utc).isoformat()
-    verdict_str = "PASS - PRODUCTION READY" if all_passed else "FAIL - GATE FAILURE"
+    # Output Certificate JSON
+    cert_dir = project_root / "reports"
+    cert_dir.mkdir(parents=True, exist_ok=True)
+    cert_json_path = cert_dir / "release_certificate.json"
 
-    # Save Machine-Readable JSON Release Certificate
     cert_data = {
-        "version": "6.0.0",
+        "release_version": "6.0.0",
         "commit_sha": commit_sha,
-        "timestamp_iso": timestamp_str,
-        "test_environment": {
-            "python_version": sys.version.split()[0],
-            "platform": platform.platform(),
-            "os": sys.platform
-        },
-        "total_tests_run": total_tests_executed,
-        "passed_gates_count": sum(1 for g in gate_results if g["status"] == "PASS"),
-        "failed_gates_count": sum(1 for g in gate_results if g["status"] == "FAIL"),
-        "skipped_gates_count": 0,
-        "artifact_hashes": {
-            "de440s_bsp_sha256": kernel_hash
-        },
-        "gate_details": gate_results,
-        "verdict": verdict_str
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "verdict": "PASS - PRODUCTION READY" if all_passed else "FAIL - GATE FAILURE",
+        "total_gates_evaluated": len(gate_results),
+        "passed_gates": sum(1 for g in gate_results if g["status"] == "PASS"),
+        "failed_gates": sum(1 for g in gate_results if g["status"] == "FAIL"),
+        "total_executed_tests": total_tests_executed,
+        "gate_results": gate_results,
+        "system_info": {
+            "python_version": platform.python_version(),
+            "os": platform.platform()
+        }
     }
 
-    json_path = project_root / "reports" / "release_certificate.json"
-    json_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(json_path, "w", encoding="utf-8") as f:
+    with open(cert_json_path, "w", encoding="utf-8") as f:
         json.dump(cert_data, f, indent=2)
 
-    # Save Markdown Release Report
-    report_lines = [
-        "# Astrovision Version 6.0.0 Release Certification Report",
-        "",
+    # Output Markdown Report
+    docs_dir = project_root / "docs"
+    docs_dir.mkdir(parents=True, exist_ok=True)
+    report_md_path = docs_dir / "RELEASE_CERTIFICATION.md"
+    report_copy_path = cert_dir / "release_certification_report.md"
+
+    md_lines = [
+        "# Astrovision Version 6.0.0 Release Certification Report\n",
         f"- **Commit SHA**: `{commit_sha}`",
-        f"- **Timestamp**: `{timestamp_str}`",
-        f"- **Overall Certification Verdict**: **{verdict_str}**",
+        f"- **Timestamp**: `{cert_data['timestamp_utc']}`",
+        f"- **Overall Certification Verdict**: **{cert_data['verdict']}**",
         f"- **Total Executed Tests**: `{total_tests_executed}`",
         f"- **Total Gates Evaluated**: `{len(gate_results)}`",
-        f"- **Passed Gates**: `{sum(1 for g in gate_results if g['status'] == 'PASS')}`",
-        f"- **Failed Gates**: `{sum(1 for g in gate_results if g['status'] == 'FAIL')}`",
-        "",
-        "## Release Certification Gate Summary Table",
-        "",
+        f"- **Passed Gates**: `{cert_data['passed_gates']}`",
+        f"- **Failed Gates**: `{cert_data['failed_gates']}`\n",
+        "## Release Certification Gate Summary Table\n",
         "| Gate ID | Release Gate Title | Status | Tests | Details |",
         "| :--- | :--- | :--- | :--- | :--- |"
     ]
 
     for g in gate_results:
-        report_lines.append(f"| `{g['gate_id']}` | {g['gate_title']} | **{g['status']}** | {g['tests_run']} | {g['details']} |")
+        md_lines.append(f"| `{g['gate_id']}` | {g['gate_title']} | **{g['status']}** | {g['tests_run']} | {g['details']} |")
 
-    report_text = "\n".join(report_lines)
+    md_content = "\n".join(md_lines)
+    with open(report_md_path, "w", encoding="utf-8") as f:
+        f.write(md_content)
 
-    doc_path = project_root / "docs" / "RELEASE_CERTIFICATION.md"
-    rep_path = project_root / "reports" / "release_certification_report.md"
+    with open(report_copy_path, "w", encoding="utf-8") as f:
+        f.write(md_content)
 
-    doc_path.parent.mkdir(parents=True, exist_ok=True)
-
-    with open(doc_path, "w", encoding="utf-8") as f:
-        f.write(report_text)
-
-    with open(rep_path, "w", encoding="utf-8") as f:
-        f.write(report_text)
-
-    print(report_text)
-    print("\n================================================================================")
-    print(f"JSON Release Certificate saved to {json_path}")
-    print(f"Markdown Certification Report saved to {doc_path} and {rep_path}")
-    print(f"Verdict: {verdict_str}")
+    print(f"\nJSON Release Certificate saved to {cert_json_path}")
+    print(f"Markdown Certification Report saved to {report_md_path} and {report_copy_path}")
+    print(f"Verdict: {cert_data['verdict']}")
     print("================================================================================")
 
     if not all_passed:

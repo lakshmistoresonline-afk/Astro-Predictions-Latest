@@ -1,9 +1,9 @@
 # Astrovision Version 6.0.0 Release Certification Report
 
-- **Commit SHA**: `3392c8513d58279cb9b10c34af074cfe060d3552`
-- **Timestamp**: `2026-10-15T04:59:14.965750+00:00`
+- **Commit SHA**: `0a4df7a3a1f58a9d1e6f0ee9674a3d93c09e1f30`
+- **Timestamp**: `2026-10-15T11:26:41.219436+00:00`
 - **Overall Certification Verdict**: **PASS - PRODUCTION READY**
-- **Total Executed Tests**: `126`
+- **Total Executed Tests**: `137`
 - **Total Gates Evaluated**: `26`
 - **Passed Gates**: `26`
 - **Failed Gates**: `0`
@@ -13,8 +13,8 @@
 | Gate ID | Release Gate Title | Status | Tests | Details |
 | :--- | :--- | :--- | :--- | :--- |
 | `G01_DE440S_HASH` | NASA JPL DE440s Kernel SHA-256 Checksum | **PASS** | 1 | DE440s kernel verified (32,726,016 bytes, SHA-256: c1c7feeab882263f...) |
-| `G02_ASTRONOMY` | Sub-Arcsecond Astronomy Accuracy | **PASS** | 9 | Pytest executed successfully (9 tests passed) |
-| `G03_TIMEZONE_DST` | Historical IANA Timezones & DST Transitions | **PASS** | 5 | Pytest executed successfully (5 tests passed) |
+| `G02_ASTRONOMY` | Sub-Arcsecond Astronomy Accuracy | **PASS** | 15 | Pytest executed successfully (15 tests passed) |
+| `G03_TIMEZONE_DST` | Historical IANA Timezones & DST Transitions | **PASS** | 10 | Pytest executed successfully (10 tests passed) |
 | `G04_RASHI_NAKSHATRA` | Rashi, Nakshatra & Pada Boundary Handling | **PASS** | 8 | Pytest executed successfully (8 tests passed) |
 | `G05_ASCENDANT_HOUSES` | Ascendant & Whole Sign House Divisions | **PASS** | 8 | Pytest executed successfully (8 tests passed) |
 | `G06_VARGAS_D1_D60` | 16 Parashari Divisional Charts D1 through D60 | **PASS** | 8 | Pytest executed successfully (8 tests passed) |

@@ -33,6 +33,7 @@ def calculate_nakshatra_pada(sidereal_longitude_deg: float) -> NakshatraPada:
 
     return NakshatraPada(
         nakshatra=nak_name,
+        nakshatra_number=nak_idx + 1,
         nakshatra_index=nak_idx + 1,
         absolute_start_deg=round(start_deg, 6),
         absolute_end_deg=round(end_deg, 6),

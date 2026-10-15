@@ -10,6 +10,25 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import Any, Dict, List, Optional
 from apps.api.engines.vedic.exceptions import OutOfBoundaryError
 
+# Authoritative 27 Nakshatra Lords Mapping (1-based index)
+NAKSHATRA_LORDS_MAP = [
+    "Ketu", "Venus", "Sun", "Moon", "Mars", "Rahu", "Jupiter", "Saturn", "Mercury", # 1..9
+    "Ketu", "Venus", "Sun", "Moon", "Mars", "Rahu", "Jupiter", "Saturn", "Mercury", # 10..18
+    "Ketu", "Venus", "Sun", "Moon", "Mars", "Rahu", "Jupiter", "Saturn", "Mercury"  # 19..27
+]
+
+ZODIAC_SANSKRIT_NAMES = [
+    "Mesha", "Vrishabha", "Mithuna", "Karka",
+    "Simha", "Kanya", "Tula", "Vrishchika",
+    "Dhanu", "Makara", "Kumbha", "Meena"
+]
+
+RASHI_LORDS_MAP = {
+    1: "Mars", 2: "Venus", 3: "Mercury", 4: "Moon",
+    5: "Sun", 6: "Mercury", 7: "Venus", 8: "Mars",
+    9: "Jupiter", 10: "Saturn", 11: "Saturn", 12: "Jupiter"
+}
+
 class BirthInput(BaseModel):
     """Validated Canonical Birth Input."""
     name: str = Field(description="Full birth name")
@@ -130,11 +149,18 @@ class RashiInfo(BaseModel):
     """Vedic Rashi (Zodiac Sign) Placement Info."""
     sign_index: int = Field(description="1-based Rashi index (1=Aries ... 12=Pisces)")
     sign: str = Field(description="English Rashi name (e.g. 'Aries')")
-    sanskrit_name: Optional[str] = Field(default="Mesha", description="Sanskrit Rashi name (e.g. 'Mesha')")
+    sanskrit_name: Optional[str] = Field(default=None, description="Sanskrit Rashi name (e.g. 'Mesha')")
     degree: int = Field(description="Degree within Rashi [0..29]")
     minute: int = Field(description="Minute within Rashi [0..59]")
     second: float = Field(default=0.0, description="Second within Rashi")
     absolute_longitude: float = Field(description="Total sidereal longitude in degrees [0.0..360.0)")
+
+    @model_validator(mode="after")
+    def populate_sanskrit_name(self) -> "RashiInfo":
+        if not self.sanskrit_name or self.sanskrit_name == "Mesha":
+            if 1 <= self.sign_index <= 12:
+                self.sanskrit_name = ZODIAC_SANSKRIT_NAMES[self.sign_index - 1]
+        return self
 
 class NakshatraPadaInfo(BaseModel):
     """Vedic Nakshatra & Pada Placement Info."""
@@ -142,37 +168,43 @@ class NakshatraPadaInfo(BaseModel):
     nakshatra_index: Optional[int] = Field(default=1, description="1-based Nakshatra index [1..27]")
     nakshatra: str = Field(description="Nakshatra name (e.g. 'Ashwini')")
     pada: int = Field(description="Nakshatra Pada [1..4]")
-    ruling_planet: Optional[str] = Field(default="Ketu", description="Vimshottari Nakshatra lord (e.g. 'Ketu')")
+    ruling_planet: Optional[str] = Field(default=None, description="Vimshottari Nakshatra lord (e.g. 'Ketu')")
+    absolute_start_deg: Optional[float] = Field(default=None, description="Start longitude of Nakshatra")
+    absolute_end_deg: Optional[float] = Field(default=None, description="End longitude of Nakshatra")
+    degree_within_nakshatra: Optional[float] = Field(default=None, description="Elapsed degrees in Nakshatra")
 
     @model_validator(mode="after")
-    def sync_nakshatra_index(self) -> "NakshatraPadaInfo":
-        if self.nakshatra_index is not None and (self.nakshatra_number is None or self.nakshatra_number == 1):
-            self.nakshatra_number = self.nakshatra_index
-        elif self.nakshatra_number is not None and (self.nakshatra_index is None or self.nakshatra_index == 1):
-            self.nakshatra_index = self.nakshatra_number
+    def sync_nakshatra_info(self) -> "NakshatraPadaInfo":
+        num = self.nakshatra_number or self.nakshatra_index or 1
+        self.nakshatra_number = num
+        self.nakshatra_index = num
+
+        if not self.ruling_planet or self.ruling_planet == "Ketu":
+            if 1 <= num <= 27:
+                self.ruling_planet = NAKSHATRA_LORDS_MAP[num - 1]
         return self
 
 class PlanetaryVedicPlacement(BaseModel):
     """Complete Vedic Placement Info for a Planet or Ascendant."""
     body_name: str
     sidereal_longitude: float
-    speed_deg_per_day: Optional[float] = Field(default=1.0, description="Daily velocity in degrees per day")
+    geocentric_tropical_lon: Optional[float] = Field(default=None, description="Tropical geocentric ecliptic longitude in degrees")
+    geocentric_latitude: Optional[float] = Field(default=None, description="Geocentric ecliptic latitude in degrees")
+    distance_au: Optional[float] = Field(default=None, description="Distance from Earth in Astronomical Units")
+    speed_deg_per_day: Optional[float] = Field(default=None, description="Daily velocity in degrees per day")
+    velocity_deg_day: Optional[float] = Field(default=None, description="Daily velocity in degrees per day")
     retrograde: bool = False
     rashi: RashiInfo
     nakshatra_pada: NakshatraPadaInfo
     combust: bool = False
 
-    @property
-    def velocity_deg_day(self) -> float:
-        return self.speed_deg_per_day if self.speed_deg_per_day is not None else 1.0
-
-    @property
-    def geocentric_latitude(self) -> float:
-        return 0.0
-
-    @property
-    def geocentric_longitude(self) -> float:
-        return self.sidereal_longitude
+    @model_validator(mode="after")
+    def sync_velocity(self) -> "PlanetaryVedicPlacement":
+        if self.speed_deg_per_day is None and self.velocity_deg_day is not None:
+            self.speed_deg_per_day = self.velocity_deg_day
+        elif self.velocity_deg_day is None and self.speed_deg_per_day is not None:
+            self.velocity_deg_day = self.speed_deg_per_day
+        return self
 
 class HouseCuspInfo(BaseModel):
     """Whole Sign House Cusp Info."""
@@ -180,15 +212,28 @@ class HouseCuspInfo(BaseModel):
     sign_index: int = Field(description="1-based Rashi index occupying house [1..12]")
     sign: Optional[str] = Field(default=None, description="Sign name")
     sign_name: Optional[str] = Field(default=None, description="Sign name")
-    sanskrit_name: Optional[str] = Field(default="Kumbha", description="Sanskrit sign name")
-    lord_planet: Optional[str] = Field(default="Saturn", description="House lord planet")
+    sanskrit_name: Optional[str] = Field(default=None, description="Sanskrit sign name")
+    lord_planet: Optional[str] = Field(default=None, description="House lord planet")
+    start_longitude: Optional[float] = Field(default=None, description="House start longitude")
+    end_longitude: Optional[float] = Field(default=None, description="House end longitude")
 
     @model_validator(mode="after")
-    def sync_sign_names(self) -> "HouseCuspInfo":
-        if not self.sign_name and self.sign:
-            self.sign_name = self.sign
-        elif not self.sign and self.sign_name:
-            self.sign = self.sign_name
+    def sync_house_info(self) -> "HouseCuspInfo":
+        zodiac_signs = [
+            "Aries", "Taurus", "Gemini", "Cancer",
+            "Leo", "Virgo", "Libra", "Scorpio",
+            "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+        ]
+        s_idx = self.sign_index
+        if 1 <= s_idx <= 12:
+            if not self.sign_name:
+                self.sign_name = zodiac_signs[s_idx - 1]
+            if not self.sign:
+                self.sign = self.sign_name
+            if not self.sanskrit_name:
+                self.sanskrit_name = ZODIAC_SANSKRIT_NAMES[s_idx - 1]
+            if not self.lord_planet:
+                self.lord_planet = RASHI_LORDS_MAP[s_idx]
         return self
 
 class CanonicalVedicChart(BaseModel):
@@ -198,12 +243,18 @@ class CanonicalVedicChart(BaseModel):
     time_normalization: TimeNormalization
     ascendant: RashiInfo
     mc: Optional[RashiInfo] = None
+    ayanamsha_mode: str = Field(default="Lahiri")
     ayanamsha_name: str = Field(default="Lahiri")
     ayanamsha_value_deg: float = Field(default=23.671877)
     placements: Dict[str, PlanetaryVedicPlacement]
     houses: Optional[List[Any]] = Field(default_factory=list)
     whole_sign_houses: Optional[List[Any]] = Field(default_factory=list)
     calculation_hash: str
+    metadata: Dict[str, Any] = Field(default_factory=dict)
+
+    @property
+    def get_whole_sign_houses(self) -> List[Any]:
+        return self.houses or self.whole_sign_houses or []
 
     @model_validator(mode="after")
     def sync_chart_aliases(self) -> "CanonicalVedicChart":

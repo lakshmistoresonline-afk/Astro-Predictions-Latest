@@ -1,20 +1,13 @@
 {
-  "version": "6.0.0",
-  "commit_sha": "3392c8513d58279cb9b10c34af074cfe060d3552",
-  "timestamp_iso": "2026-10-15T04:59:14.965750+00:00",
-  "test_environment": {
-    "python_version": "3.13.0",
-    "platform": "Windows-10-10.0.16299-SP0",
-    "os": "win32"
-  },
-  "total_tests_run": 126,
-  "passed_gates_count": 26,
-  "failed_gates_count": 0,
-  "skipped_gates_count": 0,
-  "artifact_hashes": {
-    "de440s_bsp_sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2"
-  },
-  "gate_details": [
+  "release_version": "6.0.0",
+  "commit_sha": "0a4df7a3a1f58a9d1e6f0ee9674a3d93c09e1f30",
+  "timestamp_utc": "2026-10-15T11:26:41.219436+00:00",
+  "verdict": "PASS - PRODUCTION READY",
+  "total_gates_evaluated": 26,
+  "passed_gates": 26,
+  "failed_gates": 0,
+  "total_executed_tests": 137,
+  "gate_results": [
     {
       "gate_id": "G01_DE440S_HASH",
       "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
@@ -26,15 +19,15 @@
       "gate_id": "G02_ASTRONOMY",
       "gate_title": "Sub-Arcsecond Astronomy Accuracy",
       "status": "PASS",
-      "tests_run": 9,
-      "details": "Pytest executed successfully (9 tests passed)"
+      "tests_run": 15,
+      "details": "Pytest executed successfully (15 tests passed)"
     },
     {
       "gate_id": "G03_TIMEZONE_DST",
       "gate_title": "Historical IANA Timezones & DST Transitions",
       "status": "PASS",
-      "tests_run": 5,
-      "details": "Pytest executed successfully (5 tests passed)"
+      "tests_run": 10,
+      "details": "Pytest executed successfully (10 tests passed)"
     },
     {
       "gate_id": "G04_RASHI_NAKSHATRA",
@@ -198,5 +191,8 @@
       "details": "Pytest executed successfully (7 tests passed)"
     }
   ],
-  "verdict": "PASS - PRODUCTION READY"
+  "system_info": {
+    "python_version": "3.13.0",
+    "os": "Windows-10-10.0.16299-SP0"
+  }
 }
