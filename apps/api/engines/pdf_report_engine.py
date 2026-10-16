@@ -283,42 +283,48 @@ class PDFReportEngine:
                 story.append(Spacer(1, 15))
 
                 # --- 30 CANONICAL SECTIONS ---
-                sections_list = [
-                    ("1. Calculation Standard & Reproducibility", f"High-precision time normalization for {html.escape(native_name)} with Espenak & Meeus Delta-T polynomials and NASA JPL DE440s sub-arcsecond planetary longitudes."),
-                    ("2. Verified Planetary Ledger", f"Complete 9-planet sidereal positions for {html.escape(native_name)}: Ascendant ({asc_sign}), Sun ({sun_rashi}), Moon ({moon_rashi}), and planetary motions."),
-                    ("3. Rashi (D1) Architecture", f"Whole Sign house divisions starting from {asc_sign} Lagna across all 12 Bhavas."),
-                    ("4. Lagna and Personality Framework", f"Physical constitution and vitality governed by {asc_sign} Ascendant."),
-                    ("5. Planet-by-Planet Interpretation", f"Individual analysis for Sun in {sun_rashi}, Moon in {moon_rashi}, and planets across all houses."),
-                    ("6. House-by-House Analysis", f"Detailed evaluation of Houses 1 through 12 starting from {asc_sign} Lagna."),
-                    ("7. Classical Aspect Matrix", "Geocentric planetary aspects, orb angles, and special Parashari aspect geometry."),
-                    ("8. Yoga Audit", "Audit of structural classical Yogas, Raja/Dhana combinations, and cancellation rules."),
-                    ("9. Nakshatra Matrix", f"Janma Nakshatra is {nak_name} (Pada {nak_pada}), reinforcing core personality themes."),
-                    ("10. Divisional Chart Overview", "16 Parashari divisional charts (D1, D9 Navamsha, D3, D7, D12, D10, D24, D60)."),
-                    ("11. Vimshottari Dasha Calculation", f"120-year Vimshottari Dasha timeline hierarchy starting from birth balance lord {bal_lord}."),
-                    ("12. Active Mahadasha Deep Dive", f"Detailed breakdown for active {bal_lord} Mahadasha and Antardasha sub-periods."),
-                    ("13. Current Transit Snapshot", "Query date planetary transits and aspect contacts relative to natal Lagna."),
-                    ("14. Career & Professional Destiny", "10th house Karma bhava, D10 Dashamsha, Saturn, and Mercury career vectors."),
-                    ("15. Wealth, Income & Asset Strategy", "2nd Dhana and 11th Labha houses, D2 Hora, and Dhana Yogas in Indian Rupees (₹)."),
-                    ("16. Business & Entrepreneurship", "7th Kalatra, 10th Karma, and commercial enterprise partnerships."),
-                    ("17. Relationships & Marriage", "7th house, Venus, and D9 Navamsha marital dharma."),
-                    ("18. Education, Intelligence & Research", "4th schooling, 5th intellect, and 9th higher learning houses with D24."),
-                    ("19. Foreign Travel, Relocation & Global Work", "9th pilgrimage and 12th foreign residence houses."),
-                    ("20. Home, Property & Vehicles", "4th house, D4 Chaturthamsha, Mars, and Saturn property assets."),
-                    ("21. Health & Lifestyle - Traditional, Non-Medical", "1st vitality, 6th immunity, and 8th longevity bhava analysis (Non-Medical Disclaimer)."),
-                    ("22. Spiritual & Philosophical Themes", "9th Dharma, 12th Moksha, and D20 Vimshamsha spiritual sadhana."),
-                    ("23. Risk Register - Where the Chart Asks for Discipline", "Risk area factors, vulnerable houses, and traditional mitigations."),
-                    ("24. 2026-2030 Strategic Astrology Timeline", "5-year strategic window predictions and timing convergence."),
-                    ("25. 2031-2044 Strategic Astrology Timeline", "Long-range strategic window predictions and timing convergence."),
-                    ("26. Traditional Remedial Framework", "Optional traditional practices, mantras, service, and gemstone dignities."),
-                    ("27. Application Benchmark Specification", f"Calculation benchmark parameters and SHA-256 evidence hash: {master_hash[:16]}..."),
-                    ("28. Validation Checklist", "Deterministic verification checklist for astronomical calculations."),
-                    ("29. Interpretation Confidence Framework", "Confidence Classes A-D categorizing facts vs traditional insights."),
-                    ("30. Final Integrated Reading", f"High-level synthesis summary uniting all chart factors for {html.escape(native_name)}.")
-                ]
+                treatise = report_data.get("treatise", {})
+                sections_list = treatise.get("sections_list", [])
 
-                for sec_title, sec_body in sections_list:
-                    story.append(Paragraph(sec_title, sec_heading))
-                    story.append(Paragraph(sec_body, body_style))
+                if not sections_list:
+                    sections_list = [
+                        {"title": "1. Calculation Standard & Reproducibility", "content": f"High-precision time normalization for {native_name} with Espenak & Meeus Delta-T polynomials and NASA JPL DE440s sub-arcsecond planetary longitudes."},
+                        {"title": "2. Verified Planetary Ledger", "content": f"Complete 9-planet sidereal positions for {native_name}: Ascendant ({asc_sign}), Sun ({sun_rashi}), Moon ({moon_rashi}), and planetary motions."},
+                        {"title": "3. Rashi (D1) Architecture", "content": f"Whole Sign house divisions starting from {asc_sign} Lagna across all 12 Bhavas."},
+                        {"title": "4. Lagna and Personality Framework", "content": f"Physical constitution and vitality governed by {asc_sign} Ascendant."},
+                        {"title": "5. Planet-by-Planet Interpretation", "content": f"Individual analysis for Sun in {sun_rashi}, Moon in {moon_rashi}, and planets across all houses."},
+                        {"title": "6. House-by-House Analysis", "content": f"Detailed evaluation of Houses 1 through 12 starting from {asc_sign} Lagna."},
+                        {"title": "7. Classical Aspect Matrix", "content": "Geocentric planetary aspects, orb angles, and special Parashari aspect geometry."},
+                        {"title": "8. Yoga Audit", "content": "Audit of structural classical Yogas, Raja/Dhana combinations, and cancellation rules."},
+                        {"title": "9. Nakshatra Matrix", "content": f"Janma Nakshatra is {nak_name} (Pada {nak_pada}), reinforcing core personality themes."},
+                        {"title": "10. Divisional Chart Overview", "content": "16 Parashari divisional charts (D1, D9 Navamsha, D3, D7, D12, D10, D24, D60)."},
+                        {"title": "11. Vimshottari Dasha Calculation", "content": f"120-year Vimshottari Dasha timeline hierarchy starting from birth balance lord {bal_lord}."},
+                        {"title": "12. Active Mahadasha Deep Dive", "content": f"Detailed breakdown for active {bal_lord} Mahadasha and Antardasha sub-periods."},
+                        {"title": "13. Current Transit Snapshot", "content": "Query date planetary transits and aspect contacts relative to natal Lagna."},
+                        {"title": "14. Career & Professional Destiny", "content": "10th house Karma bhava, D10 Dashamsha, Saturn, and Mercury career vectors."},
+                        {"title": "15. Wealth, Income & Asset Strategy", "content": "2nd Dhana and 11th Labha houses, D2 Hora, and Dhana Yogas in Indian Rupees (₹)."},
+                        {"title": "16. Business & Entrepreneurship", "content": "7th Kalatra, 10th Karma, and commercial enterprise partnerships."},
+                        {"title": "17. Relationships & Marriage", "content": "7th house, Venus, and D9 Navamsha marital dharma."},
+                        {"title": "18. Education, Intelligence & Research", "content": "4th schooling, 5th intellect, and 9th higher learning houses with D24."},
+                        {"title": "19. Foreign Travel, Relocation & Global Work", "content": "9th pilgrimage and 12th foreign residence houses."},
+                        {"title": "20. Home, Property & Vehicles", "content": "4th house, D4 Chaturthamsha, Mars, and Saturn property assets."},
+                        {"title": "21. Health & Lifestyle - Traditional, Non-Medical", "content": "1st vitality, 6th immunity, and 8th longevity bhava analysis (Non-Medical Disclaimer)."},
+                        {"title": "22. Spiritual & Philosophical Themes", "content": "9th Dharma, 12th Moksha, and D20 Vimshamsha spiritual sadhana."},
+                        {"title": "23. Risk Register - Where the Chart Asks for Discipline", "content": "Risk area factors, vulnerable houses, and traditional mitigations."},
+                        {"title": "24. 2026-2030 Strategic Astrology Timeline", "content": "5-year strategic window predictions and timing convergence."},
+                        {"title": "25. 2031-2044 Strategic Astrology Timeline", "content": "Long-range strategic window predictions and timing convergence."},
+                        {"title": "26. Traditional Remedial Framework", "content": "Optional traditional practices, mantras, service, and gemstone dignities."},
+                        {"title": "27. Application Benchmark Specification", "content": f"Calculation benchmark parameters and SHA-256 evidence hash: {master_hash[:16]}..."},
+                        {"title": "28. Validation Checklist", "content": "Deterministic verification checklist for astronomical calculations."},
+                        {"title": "29. Interpretation Confidence Framework", "content": "Confidence Classes A-D categorizing facts vs traditional insights."},
+                        {"title": "30. Final Integrated Reading", "content": f"High-level synthesis summary uniting all chart factors for {native_name}."}
+                    ]
+
+                for sec in sections_list:
+                    s_title = str(sec.get("title", ""))
+                    s_body = str(sec.get("content", ""))
+                    story.append(Paragraph(html.escape(s_title), sec_heading))
+                    story.append(Paragraph(html.escape(s_body), body_style))
                     story.append(Spacer(1, 10))
 
                 # --- APPENDICES A-D ---

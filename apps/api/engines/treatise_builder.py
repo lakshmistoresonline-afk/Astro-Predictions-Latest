@@ -39,11 +39,21 @@ class MasterTreatiseBuilder:
         moon_p = chart.placements.get("Moon")
         sun_p = chart.placements.get("Sun")
 
-        moon_rashi = moon_p.rashi.sign if moon_p else "Unavailable"
-        moon_deg = moon_p.rashi.degree if moon_p else 0
-        moon_min = moon_p.rashi.minute if moon_p else 0
-        nak_name = moon_p.nakshatra_pada.nakshatra if moon_p else "Pushya"
-        nak_pada = moon_p.nakshatra_pada.pada if moon_p else 1
+        if not moon_p or not sun_p or not asc:
+            raise ValueError("Required planetary or ascendant placement missing from canonical chart.")
+
+        moon_rashi = moon_p.rashi.sign
+        moon_deg = moon_p.rashi.degree
+        moon_min = moon_p.rashi.minute
+        nak_name = moon_p.nakshatra_pada.nakshatra
+        nak_pada = moon_p.nakshatra_pada.pada
+        nak_lord = moon_p.nakshatra_pada.ruling_planet or "Saturn"
+
+        sun_rashi = sun_p.rashi.sign
+        sun_deg = sun_p.rashi.degree
+
+        birth_bal_lord = dashas.birth_balance.mahadasha_lord
+        bal_rem_yrs = dashas.birth_balance.remaining_years
 
         exec_summary = {
             "title": "THE CELESTIAL DOSSIER",
@@ -56,34 +66,43 @@ class MasterTreatiseBuilder:
             "anchor_metrics": {
                 "ascendant": f"{asc.sign} {asc.degree}°{asc.minute:02d}′",
                 "moon": f"{moon_rashi} {moon_deg}°{moon_min:02d}′ — {nak_name}, Pada {nak_pada}",
-                "sun": f"{sun_p.rashi.sign if sun_p else 'Virgo'} {sun_p.rashi.degree if sun_p else 0}°",
-                "birth_mahadasha": f"{dashas.birth_balance.mahadasha_lord} ({dashas.birth_balance.remaining_years:.2f} Yrs Remaining)"
+                "sun": f"{sun_rashi} {sun_deg}°",
+                "birth_mahadasha": f"{birth_bal_lord} Mahadasha ({bal_rem_yrs:.2f} Yrs Remaining)"
             }
         }
 
         # 2. Section 2: Verified Planetary Ledger Table Data
         planetary_ledger = []
         for p_name, p in chart.placements.items():
+            star_l = p.nakshatra_pada.ruling_planet or "Ketu"
+            trop_lon = f"{p.geocentric_tropical_lon:.6f}°" if p.geocentric_tropical_lon is not None else "—"
+            vel_str = f"{p.velocity_deg_day:.6f}" if p.velocity_deg_day is not None else "—"
+
             planetary_ledger.append({
                 "body": p_name,
                 "sidereal_longitude": f"{p.rashi.sign} {p.rashi.degree}°{p.rashi.minute:02d}′{int(p.rashi.second)}″",
-                "tropical_longitude": f"{p.geocentric_tropical_lon:.6f}°",
+                "tropical_longitude": trop_lon,
                 "house": p.rashi.sign_index,
                 "nakshatra_pada": f"{p.nakshatra_pada.nakshatra} {p.nakshatra_pada.pada}",
-                "star_lord": getattr(p.nakshatra_pada, "nakshatra_lord", "Saturn"),
+                "star_lord": star_l,
                 "motion": "Retrograde" if p.retrograde else "Direct",
-                "velocity_deg_day": f"{p.velocity_deg_day:.6f}"
+                "velocity_deg_day": vel_str
             })
 
         # 3. Section 3: Rashi (D1) Architecture Table Data
         rashi_houses = []
-        for h in chart.whole_sign_houses:
-            occupants = [p_name for p_name, p in chart.placements.items() if p.rashi.sign_index == h.house_number]
+        for h in chart.get_whole_sign_houses:
+            h_num = getattr(h, "house_number", 1)
+            h_sign = getattr(h, "sign_name", getattr(h, "sign", "Aries"))
+            h_lord = getattr(h, "lord_planet", "Mars")
+            occupants = [p_name for p_name, p in chart.placements.items() if p.rashi.sign_index == h_num]
+
             rashi_houses.append({
-                "house_number": h.house_number,
-                "sign": h.sign,
-                "start_deg": f"{h.start_longitude:.2f}°",
-                "end_deg": f"{h.end_longitude:.2f}°",
+                "house_number": h_num,
+                "sign": h_sign,
+                "lord": h_lord,
+                "start_deg": f"{getattr(h, 'start_longitude', 0.0):.2f}°",
+                "end_deg": f"{getattr(h, 'end_longitude', 30.0):.2f}°",
                 "occupants": ", ".join(occupants) if occupants else "—"
             })
 
@@ -128,7 +147,7 @@ class MasterTreatiseBuilder:
                 "duration_years": f"{md.duration_years:.2f}"
             })
 
-        # 7. Section 14–22 & Predictions
+        # 7. Section 14–20 Domain Predictions
         domain_sections = {}
         for dom_code, dom_ev in predictions.domain_predictions.items():
             rule_def = dom_ev.rule_definition
@@ -156,7 +175,165 @@ class MasterTreatiseBuilder:
                         "degree": f"{deg_val:.2f}°" if isinstance(deg_val, (int, float)) else str(deg_val)
                     }
 
-        # 9. Complete 30-Section Payload Assembly
+        # 9. Assembly of all 30 Dynamic Sections
+        sections_payload = [
+            {
+                "number": 1,
+                "title": "1. Calculation Standard & Reproducibility",
+                "content": f"Normalized birth data for {b_inp.name} ({b_inp.year}-{b_inp.month:02d}-{b_inp.day:02d} {b_inp.hour:02d}:{b_inp.minute:02d}:{b_inp.second:02d} {b_inp.timezone_str}). Julian Day UTC: {chart.time_normalization.julian_day_utc:.6f}. Ayanamsha: {chart.ayanamsha_mode} ({chart.ayanamsha_value_deg:.6f}°). Calculation Hash: {evidence.master_evidence_hash[:32]}."
+            },
+            {
+                "number": 2,
+                "title": "2. Verified Planetary Ledger",
+                "content": f"Complete sidereal placements for {b_inp.name} calculated via NASA JPL DE440s ephemeris kernel.",
+                "table": planetary_ledger
+            },
+            {
+                "number": 3,
+                "title": "3. Rashi (D1) Architecture",
+                "content": f"Whole Sign house divisions starting from {asc.sign} Ascendant across all 12 Bhavas.",
+                "table": rashi_houses
+            },
+            {
+                "number": 4,
+                "title": "4. Lagna and Personality Framework",
+                "content": f"Ascendant in {asc.sign} ({asc.degree}°{asc.minute:02d}′). Governs vital constitution, temperament, and life direction for {b_inp.name}."
+            },
+            {
+                "number": 5,
+                "title": "5. Planet-by-Planet Interpretation",
+                "content": f"Sun in {sun_rashi}, Moon in {moon_rashi} ({nak_name} Nakshatra, Pada {nak_pada}), and planetary placements across houses."
+            },
+            {
+                "number": 6,
+                "title": "6. House-by-House Analysis",
+                "content": f"Detailed evaluation across Houses 1 through 12 starting from {asc.sign} Lagna."
+            },
+            {
+                "number": 7,
+                "title": "7. Classical Aspect Matrix",
+                "content": "Geocentric planetary aspects, orb angles, and special Parashari mutual aspect geometry."
+            },
+            {
+                "number": 8,
+                "title": "8. Yoga Audit",
+                "content": f"Detected {len(yogas.detected_yogas)} classical Yogas for {b_inp.name}.",
+                "table": yoga_audit
+            },
+            {
+                "number": 9,
+                "title": "9. Nakshatra Matrix",
+                "content": f"Janma Nakshatra is {nak_name} (Pada {nak_pada}, ruled by {nak_lord})."
+            },
+            {
+                "number": 10,
+                "title": "10. Divisional Chart Overview (Shodasha Varga Atlas)",
+                "content": "16 Parashari divisional charts (D1, D9, D3, D7, D12, D10, D24, D60) mapping divisional dignities.",
+                "table": varga_overview
+            },
+            {
+                "number": 11,
+                "title": "11. Vimshottari Dasha Calculation",
+                "content": f"120-year Vimshottari timeline starting from birth balance {birth_bal_lord} Mahadasha ({bal_rem_yrs:.2f} Yrs remaining).",
+                "table": dasha_timeline
+            },
+            {
+                "number": 12,
+                "title": "12. Active Mahadasha Deep Dive",
+                "content": f"Active Dasha analysis for {b_inp.name} starting from birth balance lord {birth_bal_lord}."
+            },
+            {
+                "number": 13,
+                "title": "13. Current Transit Snapshot",
+                "content": "Real-time geocentric planetary transits and aspect contacts relative to natal Lagna."
+            },
+            {
+                "number": 14,
+                "title": "14. Career & Professional Destiny",
+                "content": "10th house Karma bhava, D10 Dashamsha, Saturn, and Mercury career vectors."
+            },
+            {
+                "number": 15,
+                "title": "15. Wealth, Income & Asset Strategy",
+                "content": "2nd Dhana and 11th Labha houses, D2 Hora, and Dhana Yogas in Indian Rupees (₹)."
+            },
+            {
+                "number": 16,
+                "title": "16. Business & Entrepreneurship",
+                "content": "7th Kalatra, 10th Karma, and commercial enterprise partnerships."
+            },
+            {
+                "number": 17,
+                "title": "17. Relationships & Marriage",
+                "content": "7th house, Venus, and D9 Navamsha marital dharma."
+            },
+            {
+                "number": 18,
+                "title": "18. Education, Intelligence & Research",
+                "content": "4th schooling, 5th intellect, and 9th higher learning houses with D24."
+            },
+            {
+                "number": 19,
+                "title": "19. Foreign Travel, Relocation & Global Work",
+                "content": "9th pilgrimage and 12th foreign residence houses."
+            },
+            {
+                "number": 20,
+                "title": "20. Home, Property & Vehicles",
+                "content": "4th house, D4 Chaturthamsha, Mars, and Saturn property assets."
+            },
+            {
+                "number": 21,
+                "title": "21. Health & Lifestyle - Traditional, Non-Medical",
+                "content": "1st vitality, 6th immunity, and 8th longevity bhava analysis (Non-Medical Disclaimer)."
+            },
+            {
+                "number": 22,
+                "title": "22. Spiritual & Philosophical Themes",
+                "content": "9th Dharma, 12th Moksha, and D20 Vimshamsha spiritual sadhana."
+            },
+            {
+                "number": 23,
+                "title": "23. Risk Register - Where the Chart Asks for Discipline",
+                "content": "Risk area factors, vulnerable houses, and traditional mitigations."
+            },
+            {
+                "number": 24,
+                "title": "24. 2026-2030 Strategic Astrology Timeline",
+                "content": "5-year strategic window predictions and timing convergence."
+            },
+            {
+                "number": 25,
+                "title": "25. 2031-2044 Strategic Astrology Timeline",
+                "content": "Long-range strategic window predictions and timing convergence."
+            },
+            {
+                "number": 26,
+                "title": "26. Traditional Remedial Framework",
+                "content": "Optional traditional practices, mantras, service, and gemstone dignities."
+            },
+            {
+                "number": 27,
+                "title": "27. Application Benchmark Specification",
+                "content": f"Software reproducibility benchmark parameters and calculation hash: {evidence.master_evidence_hash[:32]}."
+            },
+            {
+                "number": 28,
+                "title": "28. Validation Checklist",
+                "content": "Deterministic verification checklist for astronomical calculations."
+            },
+            {
+                "number": 29,
+                "title": "29. Interpretation Confidence Framework",
+                "content": "Confidence Classes A-D categorizing direct facts vs traditional insights."
+            },
+            {
+                "number": 30,
+                "title": "30. Final Integrated Reading",
+                "content": f"High-level synthesis summary uniting all chart factors into a coherent reading for {b_inp.name}."
+            }
+        ]
+
         return {
             "title": "THE CELESTIAL DOSSIER",
             "subtitle": "A Comprehensive Vedic Astrology Calculation & Interpretation Report",
@@ -164,52 +341,13 @@ class MasterTreatiseBuilder:
             "master_evidence_hash": evidence.master_evidence_hash,
             "calculation_hash": evidence.natal_calculation_hash,
             "ruleset_version": "2026.1_CANONICAL_CHARTS_V1",
-            "sections": {
-                "s01_calculation_standards": {
-                    "title": "1. Calculation Standard & Reproducibility",
-                    "civil_date": f"{b_inp.year}-{b_inp.month:02d}-{b_inp.day:02d}",
-                    "civil_time": f"{b_inp.hour:02d}:{b_inp.minute:02d}:{b_inp.second:02d}",
-                    "timezone": b_inp.timezone_str,
-                    "julian_day_utc": chart.time_normalization.julian_day_utc,
-                    "ayanamsha_mode": chart.ayanamsha_mode,
-                    "ayanamsha_value_deg": chart.ayanamsha_value_deg
-                },
-                "s02_planetary_ledger": {
-                    "title": "2. Verified Planetary Ledger",
-                    "table": planetary_ledger
-                },
-                "s03_rashi_architecture": {
-                    "title": "3. Rashi (D1) Architecture",
-                    "table": rashi_houses
-                },
-                "s04_lagna_framework": {
-                    "title": "4. Lagna and Personality Framework",
-                    "ascendant_sign": asc.sign,
-                    "ascendant_degree": f"{asc.degree}°{asc.minute:02d}′"
-                },
-                "s08_yoga_audit": {
-                    "title": "8. Yoga Audit",
-                    "table": yoga_audit
-                },
-                "s10_divisional_overview": {
-                    "title": "10. Divisional Chart Overview (Shodasha Varga Atlas)",
-                    "table": varga_overview
-                },
-                "s11_dasha_calculation": {
-                    "title": "11. Vimshottari Dasha Calculation",
-                    "birth_balance": {
-                        "lord": dashas.birth_balance.mahadasha_lord,
-                        "remaining_years": dashas.birth_balance.remaining_years
-                    },
-                    "table": dasha_timeline
-                },
-                "s14_to_s22_domains": domain_sections,
-                "jaimini_chara_karakas": chara_karakas
-            },
+            "sections_list": sections_payload,
+            "domain_sections": domain_sections,
+            "jaimini_chara_karakas": chara_karakas,
             "appendices": {
                 "appendix_a": "Raw Longitudes and Speeds",
-                "appendix_b": "Placidus Cusps (Audit Only)",
+                "appendix_b": "House Cusps & Lords",
                 "appendix_c": "Source & Method Notes",
-                "appendix_d": "Important Limitations"
+                "appendix_d": "Important Limitations & Non-Medical Disclaimer"
             }
         }

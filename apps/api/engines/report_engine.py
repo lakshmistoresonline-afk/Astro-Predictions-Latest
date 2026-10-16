@@ -14,6 +14,7 @@ from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
 from apps.api.engines.canonical_evidence import CanonicalEvidencePipeline, CanonicalAstrologyEvidence
 from apps.api.engines.prediction_engine import PredictionEngine
 from apps.api.engines.varga.engine import ALL_SUPPORTED_DIVISIONS
+from apps.api.engines.treatise_builder import MasterTreatiseBuilder
 
 class ReportGeneratorEngine:
     """
@@ -106,5 +107,6 @@ class ReportGeneratorEngine:
             "chapter_12_audit_trail": {
                 "master_evidence_hash": master_evidence.master_evidence_hash,
                 "calculation_hash": master_evidence.natal_calculation_hash
-            }
+            },
+            "treatise": MasterTreatiseBuilder.build_celestial_dossier(master_evidence, predictions)
         }

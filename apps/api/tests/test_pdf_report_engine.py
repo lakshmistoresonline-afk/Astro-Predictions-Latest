@@ -3,6 +3,7 @@ Unit Test Suite for PDFReportEngine 30-Section Master PDF Treatise Generation.
 """
 import pytest
 from apps.api.engines.pdf_report_engine import PDFReportEngine
+from apps.api.engines.report_engine import ReportGeneratorEngine
 
 PROFILE_A_DATA = {
     "name": "Subramanian T S",
@@ -78,3 +79,20 @@ def test_comparative_profiles_produce_different_pdf_payloads():
     assert bytes_a != bytes_b
     assert len(bytes_a) > 5000
     assert len(bytes_b) > 5000
+
+def test_pdf_report_engine_renders_all_30_sections():
+    """ReportGeneratorEngine must assemble all 30 sections in the treatise dictionary."""
+    report_dict = ReportGeneratorEngine.generate_comprehensive_report(
+        name="John Doe",
+        year=1995, month=1, day=1,
+        hour=12, minute=0,
+        latitude=28.6139, longitude=77.2090,
+        place_name="New Delhi", country="India",
+        timezone_str="Asia/Kolkata"
+    )
+
+    assert "treatise" in report_dict
+    sections = report_dict["treatise"].get("sections_list", [])
+    assert len(sections) == 30
+    assert sections[0]["title"].startswith("1. Calculation Standard")
+    assert sections[29]["title"].startswith("30. Final Integrated Reading")
