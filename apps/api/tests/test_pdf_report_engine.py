@@ -1,7 +1,9 @@
 """
-Unit Test Suite for PDFReportEngine 30-Section Master PDF Treatise Generation.
+Unit Test Suite for PDFReportEngine 30-Section Master PDF Treatise Generation with PDF Text Extraction.
 """
+import io
 import pytest
+import pypdf
 from apps.api.engines.pdf_report_engine import PDFReportEngine
 from apps.api.engines.report_engine import ReportGeneratorEngine
 
@@ -63,24 +65,51 @@ def test_pdf_report_engine_fails_closed_on_missing_required_data():
         PDFReportEngine.generate_pdf_report({})
     assert "report_data" in str(exc_info.value) or "Missing" in str(exc_info.value)
 
-def test_pdf_report_engine_bytes_output():
-    """generate_pdf_report must return valid binary PDF byte stream starting with %PDF-1.4."""
-    bytes_out = PDFReportEngine.generate_pdf_report(PROFILE_A_DATA)
+def test_pdf_report_engine_bytes_and_extracted_text_content():
+    """generate_pdf_report must return valid PDF bytes and render all 30 sections & Appendices A-D in extracted PDF text."""
+    pdf_bytes = PDFReportEngine.generate_pdf_report(PROFILE_A_DATA)
 
-    assert isinstance(bytes_out, bytes)
-    assert len(bytes_out) > 5000
-    assert bytes_out.startswith(b"%PDF-1.4")
+    assert isinstance(pdf_bytes, bytes)
+    assert len(pdf_bytes) > 5000
+    assert pdf_bytes.startswith(b"%PDF-1.4")
 
-def test_comparative_profiles_produce_different_pdf_payloads():
-    """Generating reports for Profile A vs Profile B must yield different, profile-specific PDF bytes."""
-    bytes_a = PDFReportEngine.generate_pdf_report(PROFILE_A_DATA)
-    bytes_b = PDFReportEngine.generate_pdf_report(PROFILE_B_DATA)
+    # Extract PDF text using pypdf
+    reader = pypdf.PdfReader(io.BytesIO(pdf_bytes))
+    full_text = ""
+    for page in reader.pages:
+        full_text += page.extract_text() + "\n"
 
-    assert bytes_a != bytes_b
-    assert len(bytes_a) > 5000
-    assert len(bytes_b) > 5000
+    # Verify Native Name, Birth Date, and Hashes in PDF
+    assert "SUBRAMANIAN T S" in full_text
+    assert "1986-09-28" in full_text
+    assert "Palakkad" in full_text
 
-def test_pdf_report_engine_renders_all_30_sections():
+    # Verify 30 Section Headings in Extracted PDF Text
+    for sec_num in range(1, 31):
+        assert f"{sec_num}. " in full_text
+
+    # Verify Appendices A-D in Extracted PDF Text
+    assert "Appendix A - Raw Longitudes" in full_text
+    assert "Appendix B - House Cusps" in full_text
+    assert "Appendix C - Source & Method Notes" in full_text
+    assert "Appendix D - Important Limitations" in full_text
+
+def test_comparative_profiles_produce_different_pdf_extracted_text():
+    """Generating reports for Profile A vs Profile B must yield different, profile-specific extracted PDF text."""
+    pdf_a = PDFReportEngine.generate_pdf_report(PROFILE_A_DATA)
+    pdf_b = PDFReportEngine.generate_pdf_report(PROFILE_B_DATA)
+
+    assert pdf_a != pdf_b
+
+    text_a = "".join(page.extract_text() for page in pypdf.PdfReader(io.BytesIO(pdf_a)).pages)
+    text_b = "".join(page.extract_text() for page in pypdf.PdfReader(io.BytesIO(pdf_b)).pages)
+
+    assert "SUBRAMANIAN T S" in text_a
+    assert "JOHN DOE" in text_b
+    assert "Aquarius" in text_a
+    assert "Aries" in text_b
+
+def test_pdf_report_engine_renders_all_30_sections_from_report_generator():
     """ReportGeneratorEngine must assemble all 30 sections in the treatise dictionary."""
     report_dict = ReportGeneratorEngine.generate_comprehensive_report(
         name="John Doe",
