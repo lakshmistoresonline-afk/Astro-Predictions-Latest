@@ -6,8 +6,13 @@ import pytest
 from fastapi.testclient import TestClient
 from apps.api.main import app
 from apps.api.config import settings
+from apps.api.db.database import init_db
 
 client = TestClient(app)
+
+@pytest.fixture(autouse=True)
+def setup_db():
+    init_db()
 
 def test_request_correlation_id_middleware_attaches_header():
     """X-Request-ID header must be returned on every response."""
@@ -23,8 +28,19 @@ def test_custom_request_correlation_id_preserved():
     assert response.status_code == 200
     assert response.headers["X-Request-ID"] == custom_id
 
+def get_user_token(email: str = "err_test_user@astrovision.test") -> str:
+    res = client.post("/api/v1/auth/register", json={
+        "email": email, "password": "Password123!", "full_name": "Error Test User"
+    })
+    if res.status_code == 201:
+        return res.json()["access_token"]
+    login = client.post("/api/v1/auth/login", json={"email": email, "password": "Password123!"})
+    return login.json()["access_token"]
+
 def test_validation_error_http_400():
     """Invalid timezone string must return HTTP 400 with VALIDATION_ERROR or TIMEZONE_ERROR code."""
+    token = get_user_token("val_err_001@astrovision.test")
+    headers = {"X-Request-ID": "req_val_001", "Authorization": f"Bearer {token}"}
     payload = {
         "name": "Jane",
         "year": 1995, "month": 1, "day": 1,
@@ -33,7 +49,7 @@ def test_validation_error_http_400():
         "latitude": 28.6139, "longitude": 77.2090,
         "place_name": "New Delhi", "country": "India"
     }
-    response = client.post("/api/v1/birth-profile", json=payload, headers={"X-Request-ID": "req_val_001"})
+    response = client.post("/api/v1/birth-profile", json=payload, headers=headers)
     assert response.status_code == 400
     data = response.json()
 
@@ -44,6 +60,8 @@ def test_validation_error_http_400():
 
 def test_out_of_range_coordinate_validation_error():
     """Latitude out of range [-90, 90] must return HTTP 400 validation error."""
+    token = get_user_token("val_err_002@astrovision.test")
+    headers = {"Authorization": f"Bearer {token}"}
     payload = {
         "name": "Jane",
         "year": 1995, "month": 1, "day": 1,
@@ -52,7 +70,7 @@ def test_out_of_range_coordinate_validation_error():
         "latitude": 195.0, "longitude": 77.2090,
         "place_name": "Invalid", "country": "India"
     }
-    response = client.post("/api/v1/birth-profile", json=payload)
+    response = client.post("/api/v1/birth-profile", json=payload, headers=headers)
     assert response.status_code == 400
     data = response.json()
     assert data["error_code"] in ["VALIDATION_ERROR", "HTTP_ERROR_400"]
