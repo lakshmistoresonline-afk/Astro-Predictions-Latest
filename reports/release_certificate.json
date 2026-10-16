@@ -1,12 +1,12 @@
 {
   "release_version": "6.0.0",
-  "commit_sha": "f0e16078e3b8367d9ccdd365af7b880612eb42f2",
-  "timestamp_utc": "2026-10-16T03:21:16.345944+00:00",
+  "commit_sha": "6c5c35866f7572b68f9a008b06657718aea3f0df",
+  "timestamp_utc": "2026-10-16T03:52:12.097480+00:00",
   "verdict": "PASS - PRODUCTION READY",
   "total_gates_evaluated": 26,
   "passed_gates": 26,
   "failed_gates": 0,
-  "total_executed_tests": 140,
+  "total_executed_tests": 141,
   "gate_results": [
     {
       "gate_id": "G01_DE440S_HASH",
@@ -180,8 +180,8 @@
       "gate_id": "G25_PDF_EXPORT",
       "gate_title": "12-Chapter HTML/PDF Report Treatise Export",
       "status": "PASS",
-      "tests_run": 7,
-      "details": "Pytest executed successfully (7 tests passed)"
+      "tests_run": 8,
+      "details": "Pytest executed successfully (8 tests passed)"
     },
     {
       "gate_id": "G26_ADMIN_SECURITY",

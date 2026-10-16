@@ -8,6 +8,7 @@ from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
 from apps.api.engines.canonical_evidence import CanonicalEvidencePipeline
 from apps.api.engines.report_engine import ReportGeneratorEngine
 from apps.api.engines.pdf_report_engine import PDFReportEngine
+from apps.api.engines.dasha.engine import AuthoritativeDashaEngine
 
 @pytest.fixture
 def subramanian_birth_input() -> BirthInput:
@@ -46,6 +47,14 @@ def test_subramanian_golden_chart_anchors(subramanian_birth_input):
     # 5. Whole Sign Houses
     assert len(chart.get_whole_sign_houses) == 12
     assert chart.get_whole_sign_houses[0].sign == "Aquarius"
+
+def test_subramanian_dasha_calculation_exactness(subramanian_birth_input):
+    """Verifies exact Dasha birth balance calculation for Subramanian T S (Saturn Mahadasha balance 13.48 years)."""
+    chart = build_canonical_vedic_chart(subramanian_birth_input)
+    dasha_suite = AuthoritativeDashaEngine.calculate_dasha_suite(chart)
+
+    assert dasha_suite.birth_balance.mahadasha_lord == "Saturn"
+    assert 13.40 <= dasha_suite.birth_balance.remaining_years <= 13.55
 
 def test_subramanian_master_evidence_pipeline(subramanian_birth_input):
     """Verifies canonical evidence pipeline generates immutable calculation hashes."""
