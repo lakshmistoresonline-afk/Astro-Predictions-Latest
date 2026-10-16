@@ -10,8 +10,8 @@ def test_dasha_calculation():
         latitude=28.6139,
         longitude=77.2090,
         timezone_str="Asia/Kolkata",
-        moon_nakshatra="Rohini",
-        nakshatra_pada=1
+        moon_nakshatra="Uttara Ashadha",
+        nakshatra_pada=2
     )
     assert "current_mahadasha" in dasha
     assert "mahadasha_periods" in dasha

@@ -81,6 +81,15 @@ def evaluate_manglik_dosha(canonical_chart: CanonicalVedicChart) -> DoshaResult:
             evidence_details={"mars_sign_index": mars_sign_idx}
         ))
 
+    # Exception 1b: Mars in Cancer (debilitated sign) cancels Manglik Dosha
+    if mars_sign_idx == 4:
+        cancellation_evs.append(DoshaConditionEvidence(
+            condition_id="mars_debilitation_cancellation",
+            condition_description="Mars in Cancer (debilitated) cancels Kuja/Manglik Dosha",
+            status=True,
+            evidence_details={"mars_sign_index": 4}
+        ))
+
     # Exception 2: Jupiter aspect or conjunction on Mars (Explicit 1..12 Whole Sign house numbers from Lagna)
     jup_p = canonical_chart.placements.get("Jupiter")
     jup_cancels = False

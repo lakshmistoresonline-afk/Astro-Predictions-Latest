@@ -9,6 +9,11 @@ from apps.api.main import app
 from apps.api.engines.vedic.models import BirthInput
 from apps.api.engines.vedic.exceptions import OutOfBoundaryError
 from apps.api.engines.vedic.time_normalization import normalize_birth_time
+from apps.api.db.database import init_db
+
+@pytest.fixture(autouse=True)
+def setup_db():
+    init_db()
 
 client = TestClient(app)
 
@@ -82,6 +87,14 @@ def test_ephemeris_horizon_boundary_validation():
 
 def test_api_endpoint_invalid_date_http_400():
     """API endpoint /api/v1/birth-profile must return HTTP 400 for invalid dates."""
+    reg = client.post("/api/v1/auth/register", json={
+        "email": "invalid_date_user@astrovision.test",
+        "password": "Password123!",
+        "full_name": "Date User"
+    })
+    token = reg.json().get("access_token") if reg.status_code == 201 else client.post("/api/v1/auth/login", json={"email": "invalid_date_user@astrovision.test", "password": "Password123!"}).json()["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+
     payload = {
         "name": "Invalid Date Test",
         "year": 1995, "month": 2, "day": 31,
@@ -90,7 +103,7 @@ def test_api_endpoint_invalid_date_http_400():
         "latitude": 28.6139, "longitude": 77.2090,
         "place_name": "New Delhi", "country": "India"
     }
-    response = client.post("/api/v1/birth-profile", json=payload)
+    response = client.post("/api/v1/birth-profile", json=payload, headers=headers)
     assert response.status_code == 400
     data = response.json()
     assert "detail" in data

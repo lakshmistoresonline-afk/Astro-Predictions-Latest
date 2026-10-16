@@ -1,12 +1,18 @@
 """
 Authorization Matrix Test Suite for Public, Authenticated User, Owner-Only, and Admin-Only Scopes.
 """
+import uuid
 import pytest
 from fastapi.testclient import TestClient
 from apps.api.main import app
 from apps.api.config import settings
+from apps.api.db.database import init_db
 
 client = TestClient(app)
+
+@pytest.fixture(autouse=True)
+def setup_db():
+    init_db()
 
 # Helper to register user and obtain Bearer JWT token
 def get_auth_token(email: str, name: str) -> str:
@@ -15,7 +21,13 @@ def get_auth_token(email: str, name: str) -> str:
         "password": "SecurePassword123!",
         "full_name": name
     })
-    return res.json()["access_token"]
+    if res.status_code == 201:
+        return res.json()["access_token"]
+    login = client.post("/api/v1/auth/login", json={
+        "email": email,
+        "password": "SecurePassword123!"
+    })
+    return login.json()["access_token"]
 
 def test_public_scope_endpoints_accessible():
     """Public scope routes (/health, /ready, /version, /register, /login) must be accessible without auth."""
@@ -34,7 +46,8 @@ def test_authenticated_user_scope_unauthenticated_fails_401():
 
 def test_authenticated_user_scope_authenticated_succeeds():
     """Authenticated user scope endpoints succeed when valid Bearer JWT token is supplied."""
-    token = get_auth_token("auth_scope_user@astrovision.test", "Scope User")
+    email = f"auth_scope_{uuid.uuid4()}@astrovision.test"
+    token = get_auth_token(email, "Scope User")
     headers = {"Authorization": f"Bearer {token}"}
 
     res_me = client.get("/api/v1/auth/me", headers=headers)
@@ -48,8 +61,11 @@ def test_authenticated_user_scope_authenticated_succeeds():
 
 def test_owner_only_scope_idor_protection():
     """Owner-only scope endpoints must enforce server-side user ownership (User B cannot access User A resources)."""
-    token_a = get_auth_token("owner_a@astrovision.test", "Owner A")
-    token_b = get_auth_token("owner_b@astrovision.test", "Owner B")
+    email_a = f"owner_a_{uuid.uuid4()}@astrovision.test"
+    email_b = f"owner_b_{uuid.uuid4()}@astrovision.test"
+
+    token_a = get_auth_token(email_a, "Owner A")
+    token_b = get_auth_token(email_b, "Owner B")
 
     headers_a = {"Authorization": f"Bearer {token_a}"}
     headers_b = {"Authorization": f"Bearer {token_b}"}

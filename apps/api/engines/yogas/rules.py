@@ -174,20 +174,31 @@ def evaluate_gaja_kesari(canonical_chart: CanonicalVedicChart) -> YogaResult:
     jup_house_asc = get_house_from_lagna(jup_sign_idx, asc_sign_idx)
     moon_house_asc = get_house_from_lagna(moon_sign_idx, asc_sign_idx)
 
+    is_debilitated = (jup_sign_idx == 10)  # Capricorn is debilitation sign for Jupiter
+    is_active = is_kendra_from_moon and not is_debilitated
+
     return YogaResult(
         rule_id="YOGA_GAJA_KESARI",
         name="Gaja Kesari Yoga",
         sanskrit_name="Gajakesari Yoga",
         category="Auspicious",
-        status="DETECTED" if is_kendra_from_moon else "NOT_DETECTED",
-        conditions=[RuleConditionEvidence(
-            condition_id="jup_kendra_from_moon",
-            condition_description="Jupiter in Kendra (1st, 4th, 7th, 10th house) from Moon",
-            status=is_kendra_from_moon,
-            evidence_details={"jup_house_from_moon": jup_house_from_moon}
-        )],
-        participating_planets=["Jupiter", "Moon"] if is_kendra_from_moon else [],
-        participating_houses=[jup_house_asc, moon_house_asc] if is_kendra_from_moon else []
+        status="DETECTED" if is_active else "NOT_DETECTED",
+        conditions=[
+            RuleConditionEvidence(
+                condition_id="jup_kendra_from_moon",
+                condition_description="Jupiter in Kendra (1st, 4th, 7th, 10th house) from Moon",
+                status=is_kendra_from_moon,
+                evidence_details={"jup_house_from_moon": jup_house_from_moon}
+            ),
+            RuleConditionEvidence(
+                condition_id="jup_not_debilitated",
+                condition_description="Jupiter is not debilitated in Capricorn",
+                status=not is_debilitated,
+                evidence_details={"jup_sign_index": jup_sign_idx}
+            )
+        ],
+        participating_planets=["Jupiter", "Moon"] if is_active else [],
+        participating_houses=[jup_house_asc, moon_house_asc] if is_active else []
     )
 
 # 3. Budha Aditya Yoga

@@ -1,17 +1,26 @@
 """
 Integration Test Suite for Complete Authenticated Persistence Lifecycle, Saved Charts & Reports, and IDOR Isolation.
 """
+import uuid
 import pytest
 from fastapi.testclient import TestClient
 from apps.api.main import app
+from apps.api.db.database import init_db
 
 client = TestClient(app)
 
+@pytest.fixture(autouse=True)
+def setup_db():
+    init_db()
+
 def test_complete_persistence_lifecycle():
     """Verifies complete end-to-end user lifecycle across registration, profiles, reports, saved charts, PDF export, and IDOR isolation."""
+    email_a = f"lifecycle_a_{uuid.uuid4()}@astrovision.test"
+    email_b = f"lifecycle_b_{uuid.uuid4()}@astrovision.test"
+
     # Step 1: Register User A and User B
     res_a = client.post("/api/v1/auth/register", json={
-        "email": "lifecycle_a@astrovision.test",
+        "email": email_a,
         "password": "Password123!",
         "full_name": "User Alpha"
     }).json()
@@ -19,7 +28,7 @@ def test_complete_persistence_lifecycle():
     headers_a = {"Authorization": f"Bearer {token_a}"}
 
     res_b = client.post("/api/v1/auth/register", json={
-        "email": "lifecycle_b@astrovision.test",
+        "email": email_b,
         "password": "Password123!",
         "full_name": "User Beta"
     }).json()
