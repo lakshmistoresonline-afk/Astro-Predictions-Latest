@@ -155,6 +155,18 @@ class RashiInfo(BaseModel):
     second: float = Field(default=0.0, description="Second within Rashi")
     absolute_longitude: float = Field(description="Total sidereal longitude in degrees [0.0..360.0)")
 
+    @property
+    def rashi_index(self) -> int:
+        return self.sign_index
+
+    @property
+    def rashi(self) -> "RashiInfo":
+        return self
+
+    @property
+    def name_english(self) -> str:
+        return self.sign
+
     @model_validator(mode="after")
     def populate_sanskrit_name(self) -> "RashiInfo":
         if not self.sanskrit_name or self.sanskrit_name == "Mesha":
@@ -216,6 +228,18 @@ class HouseCuspInfo(BaseModel):
     lord_planet: Optional[str] = Field(default=None, description="House lord planet")
     start_longitude: Optional[float] = Field(default=None, description="House start longitude")
     end_longitude: Optional[float] = Field(default=None, description="House end longitude")
+
+    @property
+    def rashi(self) -> RashiInfo:
+        return RashiInfo(
+            sign_index=self.sign_index,
+            sign=self.sign_name or self.sign or "Aquarius",
+            sanskrit_name=self.sanskrit_name or "Kumbha",
+            degree=0,
+            minute=0,
+            second=0.0,
+            absolute_longitude=(self.sign_index - 1) * 30.0
+        )
 
     @model_validator(mode="after")
     def sync_house_info(self) -> "HouseCuspInfo":

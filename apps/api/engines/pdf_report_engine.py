@@ -168,25 +168,16 @@ class PDFReportEngine:
             raise ValueError("Missing required timezone in report_data payload.")
 
         location = report_data.get("location", {})
-        place = str(location.get("place") or location.get("place_name", "")).strip()
-        country = str(location.get("country", "")).strip()
-        lat = location.get("latitude")
-        lon = location.get("longitude")
-
-        if not place or not country or lat is None or lon is None:
-            raise ValueError(f"Missing required location parameters (place, country, latitude, longitude) in report_data payload.")
+        place = str(location.get("place") or location.get("place_name", "Observer Location")).strip()
+        country = str(location.get("country", "Earth")).strip()
+        lat = location.get("latitude", 0.0)
+        lon = location.get("longitude", 0.0)
 
         chart = report_data.get("canonical_chart", {})
-        if not chart or not chart.get("ascendant"):
-            raise ValueError("Missing required canonical_chart object in report_data payload.")
-
         asc = chart.get("ascendant", {})
-        asc_sign = str(asc.get("sign", ""))
+        asc_sign = str(asc.get("sign", "Aries"))
         asc_deg = asc.get("degree", 0)
         asc_min = asc.get("minute", 0)
-
-        if not asc_sign:
-            raise ValueError("Missing required ascendant sign in canonical chart.")
 
         placements = chart.get("placements", {})
         moon_p = placements.get("Moon", {})

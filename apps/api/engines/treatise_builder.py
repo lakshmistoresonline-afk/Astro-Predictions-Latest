@@ -185,7 +185,7 @@ class MasterTreatiseBuilder:
             {
                 "number": 2,
                 "title": "2. Verified Planetary Ledger",
-                "content": f"Complete sidereal placements for {b_inp.name} calculated via NASA JPL DE440s ephemeris kernel.",
+                "content": f"Complete 9-planet sidereal positions for {b_inp.name} calculated via NASA JPL DE440s ephemeris kernel.",
                 "table": planetary_ledger
             },
             {
@@ -334,6 +334,48 @@ class MasterTreatiseBuilder:
             }
         ]
 
+        sections_dict = {
+            "s01_calculation_standards": {
+                "title": "1. Calculation Standard & Reproducibility",
+                "civil_date": f"{b_inp.year}-{b_inp.month:02d}-{b_inp.day:02d}",
+                "civil_time": f"{b_inp.hour:02d}:{b_inp.minute:02d}:{b_inp.second:02d}",
+                "timezone": b_inp.timezone_str,
+                "julian_day_utc": chart.time_normalization.julian_day_utc,
+                "ayanamsha_mode": chart.ayanamsha_mode,
+                "ayanamsha_value_deg": chart.ayanamsha_value_deg
+            },
+            "s02_planetary_ledger": {
+                "title": "2. Verified Planetary Ledger",
+                "table": planetary_ledger
+            },
+            "s03_rashi_architecture": {
+                "title": "3. Rashi (D1) Architecture",
+                "table": rashi_houses
+            },
+            "s04_lagna_framework": {
+                "title": "4. Lagna and Personality Framework",
+                "ascendant_sign": asc.sign,
+                "ascendant_degree": f"{asc.degree}°{asc.minute:02d}′"
+            },
+            "s08_yoga_audit": {
+                "title": "8. Yoga Audit",
+                "table": yoga_audit
+            },
+            "s10_divisional_overview": {
+                "title": "10. Divisional Chart Overview (Shodasha Varga Atlas)",
+                "table": varga_overview
+            },
+            "s11_dasha_calculation": {
+                "title": "11. Vimshottari Dasha Calculation",
+                "birth_balance": {
+                    "lord": dashas.birth_balance.mahadasha_lord,
+                    "remaining_years": dashas.birth_balance.remaining_years
+                },
+                "table": dasha_timeline
+            },
+            "s14_to_s22_domains": domain_sections
+        }
+
         return {
             "title": "THE CELESTIAL DOSSIER",
             "subtitle": "A Comprehensive Vedic Astrology Calculation & Interpretation Report",
@@ -341,6 +383,7 @@ class MasterTreatiseBuilder:
             "master_evidence_hash": evidence.master_evidence_hash,
             "calculation_hash": evidence.natal_calculation_hash,
             "ruleset_version": "2026.1_CANONICAL_CHARTS_V1",
+            "sections": sections_dict,
             "sections_list": sections_payload,
             "domain_sections": domain_sections,
             "jaimini_chara_karakas": chara_karakas,
