@@ -1,7 +1,7 @@
 {
   "release_version": "6.0.0",
-  "commit_sha": "a57dce4b3b3a864c9e393654b69e6122035aeeea",
-  "timestamp_utc": "2026-10-16T04:57:32.589045+00:00",
+  "commit_sha": "f70f995d5597f64e2bf88af187f11e108d84277d",
+  "timestamp_utc": "2026-10-16T05:50:44.491319+00:00",
   "verdict": "PASS - PRODUCTION READY",
   "total_gates_evaluated": 26,
   "passed_gates": 26,
@@ -178,7 +178,7 @@
     },
     {
       "gate_id": "G25_PDF_EXPORT",
-      "gate_title": "12-Chapter HTML/PDF Report Treatise Export",
+      "gate_title": "30-Section Master Celestial Dossier Treatise PDF Report",
       "status": "PASS",
       "tests_run": 8,
       "details": "Pytest executed successfully (8 tests passed)"
