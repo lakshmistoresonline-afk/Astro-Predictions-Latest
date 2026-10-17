@@ -1,9 +1,9 @@
 # Astrovision Version 6.0.0 Release Certification Report
 
-- **Commit SHA**: `5ffcfe84f02bb93c7ea8c558d95aa9771bdb0dbc`
-- **Timestamp**: `2026-10-17T13:23:43.793691+00:00`
+- **Commit SHA**: `23a92053541b7ee4c08b86883d8e0b3a8e97269f`
+- **Timestamp**: `2026-10-17T17:37:06.125660+00:00`
 - **Overall Certification Verdict**: **PASS - PRODUCTION READY**
-- **Total Executed Tests**: `141`
+- **Total Executed Tests**: `136`
 - **Total Gates Evaluated**: `26`
 - **Passed Gates**: `26`
 - **Failed Gates**: `0`
@@ -23,14 +23,14 @@
 | `G09_CLASSICAL_DOSHAS` | Parashari Doshas & Structured Cancellations | **PASS** | 2 | Pytest executed successfully (2 tests passed) |
 | `G10_SHADBALA` | Shadbala 6-Bala Strengths & Subcomponents | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G11_ASHTAKAVARGA` | Ashtakavarga BAV & Dynamic SAV Bindu Matrix | **PASS** | 2 | Pytest executed successfully (2 tests passed) |
-| `G12_JAIMINI_SUTRAS` | Jaimini Chara Karakas, Arudha Lagna & Karakamsha | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
-| `G13_TRANSITS` | Geocentric Planetary Transits & Aspect Contacts | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
+| `G12_JAIMINI_SUTRAS` | Jaimini Chara Karakas, Arudha Lagna & Karakamsha | **PASS** | 4 | Pytest executed successfully (4 tests passed) |
+| `G13_TRANSITS` | Geocentric Planetary Transits & Aspect Contacts | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
 | `G14_PANCHANGA` | Panchanga Elements & Local Solar Day Timing | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G15_MUHURTA` | Activity Suitability & Rule Precedence | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G16_PREDICTIVE_TIMING` | Convergent Domain Timing Windows | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
-| `G17_RECTIFICATION` | Event-Date Driven Birth Time Rectification | **PASS** | 7 | Pytest executed successfully (7 tests passed) |
+| `G17_RECTIFICATION` | Event-Date Driven Birth Time Rectification | **PASS** | 5 | Pytest executed successfully (5 tests passed) |
 | `G18_COMPATIBILITY` | Vedic Ashtakoota 36-Point Compatibility | **PASS** | 6 | Pytest executed successfully (6 tests passed) |
-| `G19_PREDICTION_EVIDENCE` | 14 Domain Prediction Evidence Synthesis | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
+| `G19_PREDICTION_EVIDENCE` | 14 Domain Prediction Evidence Synthesis | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
 | `G20_AI_TRUST_BOUNDARY` | Server-Owned Evidence AI Boundary Defense | **PASS** | 5 | Pytest executed successfully (5 tests passed) |
 | `G21_AI_VALIDATION` | Structured Semantic Validation & Repair Pipeline | **PASS** | 5 | Pytest executed successfully (5 tests passed) |
 | `G22_PERSISTENCE` | SQLAlchemy Persistent Relational Models & CRUD | **PASS** | 7 | Pytest executed successfully (7 tests passed) |

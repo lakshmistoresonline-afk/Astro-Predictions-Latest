@@ -1,12 +1,12 @@
 {
   "release_version": "6.0.0",
-  "commit_sha": "5ffcfe84f02bb93c7ea8c558d95aa9771bdb0dbc",
-  "timestamp_utc": "2026-10-17T13:23:43.793691+00:00",
+  "commit_sha": "23a92053541b7ee4c08b86883d8e0b3a8e97269f",
+  "timestamp_utc": "2026-10-17T17:37:06.125660+00:00",
   "verdict": "PASS - PRODUCTION READY",
   "total_gates_evaluated": 26,
   "passed_gates": 26,
   "failed_gates": 0,
-  "total_executed_tests": 141,
+  "total_executed_tests": 136,
   "gate_results": [
     {
       "gate_id": "G01_DE440S_HASH",
@@ -89,15 +89,15 @@
       "gate_id": "G12_JAIMINI_SUTRAS",
       "gate_title": "Jaimini Chara Karakas, Arudha Lagna & Karakamsha",
       "status": "PASS",
-      "tests_run": 3,
-      "details": "Pytest executed successfully (3 tests passed)"
+      "tests_run": 4,
+      "details": "Pytest executed successfully (4 tests passed)"
     },
     {
       "gate_id": "G13_TRANSITS",
       "gate_title": "Geocentric Planetary Transits & Aspect Contacts",
       "status": "PASS",
-      "tests_run": 3,
-      "details": "Pytest executed successfully (3 tests passed)"
+      "tests_run": 1,
+      "details": "Pytest executed successfully (1 tests passed)"
     },
     {
       "gate_id": "G14_PANCHANGA",
@@ -124,8 +124,8 @@
       "gate_id": "G17_RECTIFICATION",
       "gate_title": "Event-Date Driven Birth Time Rectification",
       "status": "PASS",
-      "tests_run": 7,
-      "details": "Pytest executed successfully (7 tests passed)"
+      "tests_run": 5,
+      "details": "Pytest executed successfully (5 tests passed)"
     },
     {
       "gate_id": "G18_COMPATIBILITY",
@@ -138,8 +138,8 @@
       "gate_id": "G19_PREDICTION_EVIDENCE",
       "gate_title": "14 Domain Prediction Evidence Synthesis",
       "status": "PASS",
-      "tests_run": 3,
-      "details": "Pytest executed successfully (3 tests passed)"
+      "tests_run": 1,
+      "details": "Pytest executed successfully (1 tests passed)"
     },
     {
       "gate_id": "G20_AI_TRUST_BOUNDARY",
