@@ -1,0 +1,56 @@
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+........................................................................ [ 82%]
+..............................................                           [100%]
+============================== warnings summary ===============================
+C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+apps\api\config.py:21
+  D:\Astro-Predictions-Latest\apps\api\config.py:21: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Settings(BaseSettings):
+
+apps\api\main.py:75
+  D:\Astro-Predictions-Latest\apps\api\main.py:75: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @app.on_event("startup")
+
+C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4681
+  C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4681: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    return self.router.on_event(event_type)  # ty: ignore[deprecated]
+
+scripts\live_pilot_smoke_test.py:61
+  D:\Astro-Predictions-Latest\scripts\live_pilot_smoke_test.py:61: PytestCollectionWarning: cannot collect test class 'TestHTTPClient' because it has a __init__ constructor (from: scripts/live_pilot_smoke_test.py)
+    class TestHTTPClient:
+
+apps/api/tests/test_admin_security.py: 5 warnings
+apps/api/tests/test_api_contract.py: 2 warnings
+apps/api/tests/test_full_user_journey.py: 9 warnings
+apps/api/tests/test_gold_standard_export.py: 3 warnings
+apps/api/tests/test_golden_reference_report.py: 2 warnings
+apps/api/tests/test_pdf_report_engine.py: 1 warning
+apps/api/tests/test_persistence_idor.py: 2 warnings
+apps/api/tests/test_persistence_lifecycle.py: 2 warnings
+apps/api/tests/test_personalization.py: 2 warnings
+apps/api/tests/test_prediction_evidence.py: 1 warning
+apps/api/tests/test_red_team_audit.py: 4 warnings
+apps/api/tests/test_reference_chart.py: 1 warning
+apps/api/tests/test_timezone_historical.py: 4 warnings
+apps/api/tests/test_treatise_builder.py: 1 warning
+  C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\skyfield\searchlib.py:224: DeprecationWarning: Setting the dtype on a NumPy array has been deprecated in NumPy 2.5.
+  Instead of changing the dtype on an array x, create a new array with x.view(new_dtype)
+    y.dtype = int8
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+262 passed, 44 warnings in 546.74s (0:09:06)
+EXIT_CODE=0 
