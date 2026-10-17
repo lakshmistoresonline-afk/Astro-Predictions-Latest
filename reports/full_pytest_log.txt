@@ -53,4 +53,3 @@ apps/api/tests/test_treatise_builder.py: 1 warning
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 262 passed, 44 warnings in 546.74s (0:09:06)
-EXIT_CODE=0 
