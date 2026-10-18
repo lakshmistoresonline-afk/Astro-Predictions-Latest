@@ -1,9 +1,9 @@
 # Astrovision Production Readiness & Full-Stack Audit Report
 
 - **Repository**: `D:\Astro-Predictions-Latest`
-- **Application Code Baseline SHA**: `50f62f59bafeaafec3c6cf4a7c37ddf8553c80a2`
-- **Audit Publication SHA**: `32ff971e83e909b0904908d6a4a9434e4256ade3`
-- **Audit Timestamp**: `2026-10-17T03:30:00+00:00`
+- **Application Code Baseline SHA**: `1b427b07d2fc8ffb808cf0e1645fc99ff30e0f4a`
+- **Previous Artifact Commit SHA**: `fa28ff2e910e7f04e4c597786ca4ab041def1b50`
+- **Audit Timestamp**: `2026-10-17T04:00:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
 ---
@@ -65,7 +65,7 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 - **Moon Sidereal Longitude**: $97.205167^\circ$ ($07^\circ 12' 18.6''$ Cancer).
 - **Nakshatra**: Pushya (8th Nakshatra, span $93^\circ 20' 00''$ to $106^\circ 40' 00''$, total span $13.333333^\circ$).
 - **Elapsed Pushya Span**: $97.205167^\circ - 93.333333^\circ = 3.871834^\circ$.
-- **Remaining Pushya Span**: $13.333333^\circ - 3.871834^\circ = 9.461500^\circ$.
+- **Remaining Pushya Span**: $13.333333^\circ - 97.205167^\circ = 9.461500^\circ$.
 - **Remaining Fraction**: $9.461500 / 13.333333 = 0.7096125$ ($70.96125\%$).
 - **Saturn Mahadasha Total Span**: $19.0$ years.
 - **Exact Birth Balance Calculation**: $19.0 \times 0.7096125 = \mathbf{13.4826\text{ years}}$ ($13\text{ years } 5\text{ months } 24\text{ days}$).
@@ -75,8 +75,8 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 
 ## 4. Commit SHA Semantics & History Definitions
 
-- **`application_code_baseline` (`50f62f59bafeaafec3c6cf4a7c37ddf8553c80a2`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`audit_publication_commit` (`32ff971e83e909b0904908d6a4a9434e4256ade3`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
+- **`application_code_baseline` (`1b427b07d2fc8ffb808cf0e1645fc99ff30e0f4a`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
+- **`audit_report_publication_commit` (`fa28ff2e910e7f04e4c597786ca4ab041def1b50`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
 
 ---
 
@@ -86,4 +86,4 @@ The Astrovision repository is **IMPLEMENTED, TESTED, AND PRODUCTION READY**.
 - **Tracked Inventory Document**: [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md)
 - **Release Certification**: 26 / 26 Gates Passed (**100% GREEN**).
 - **Web Production Build**: Next.js 14 Build Clean (0 compilation errors).
-- **Git Synchronization**: Local `main` equal to remote `origin/main` (`32ff971e83e909b0904908d6a4a9434e4256ade3`) with clean working tree.
+- **Git Synchronization**: Local `main` equal to remote `origin/main` (`fa28ff2e910e7f04e4c597786ca4ab041def1b50`) with clean working tree.
