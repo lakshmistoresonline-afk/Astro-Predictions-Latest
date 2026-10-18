@@ -28,7 +28,7 @@ RELEASE_GATES = [
     ("G10_SHADBALA", "Shadbala 6-Bala Strengths & Subcomponents", "apps/api/tests/oracles/phase_2e_shadbala/test_shadbala_oracle.py"),
     ("G11_ASHTAKAVARGA", "Ashtakavarga BAV & Dynamic SAV Bindu Matrix", "apps/api/tests/oracles/phase_2e_ashtakavarga/test_ashtakavarga_oracle.py"),
     ("G12_JAIMINI_SUTRAS", "Jaimini Chara Karakas, Arudha Lagna & Karakamsha", ["apps/api/tests/test_reference_chart.py", "apps/api/tests/test_api_contract.py"]),
-    ("G13_TRANSITS", "Geocentric Planetary Transits & Aspect Contacts", "apps/api/tests/test_full_user_journey.py"),
+    ("G13_TRANSITS", "Geocentric Planetary Transits & Aspect Contacts", "apps/api/tests/test_api_contract.py"),
     ("G14_PANCHANGA", "Panchanga Elements & Local Solar Day Timing", "apps/api/tests/test_api_contract.py"),
     ("G15_MUHURTA", "Activity Suitability & Rule Precedence", "apps/api/tests/test_api_contract.py"),
     ("G16_PREDICTIVE_TIMING", "Convergent Domain Timing Windows", "apps/api/tests/test_api_contract.py"),

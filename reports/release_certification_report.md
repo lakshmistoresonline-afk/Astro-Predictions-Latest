@@ -1,9 +1,9 @@
 # Astrovision Version 6.0.0 Release Certification Report
 
-- **Commit SHA**: `1b427b07d2fc8ffb808cf0e1645fc99ff30e0f4a`
-- **Timestamp**: `2026-10-17T17:48:04.324844+00:00`
+- **Commit SHA**: `56bcd179f98e2f90add6c62e8dc62ae428ac290f`
+- **Timestamp**: `2026-10-18T03:57:01.705181+00:00`
 - **Overall Certification Verdict**: **PASS - PRODUCTION READY**
-- **Total Executed Tests**: `136`
+- **Total Executed Tests**: `138`
 - **Total Gates Evaluated**: `26`
 - **Passed Gates**: `26`
 - **Failed Gates**: `0`
@@ -24,7 +24,7 @@
 | `G10_SHADBALA` | Shadbala 6-Bala Strengths & Subcomponents | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G11_ASHTAKAVARGA` | Ashtakavarga BAV & Dynamic SAV Bindu Matrix | **PASS** | 2 | Pytest executed successfully (2 tests passed) |
 | `G12_JAIMINI_SUTRAS` | Jaimini Chara Karakas, Arudha Lagna & Karakamsha | **PASS** | 4 | Pytest executed successfully (4 tests passed) |
-| `G13_TRANSITS` | Geocentric Planetary Transits & Aspect Contacts | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
+| `G13_TRANSITS` | Geocentric Planetary Transits & Aspect Contacts | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G14_PANCHANGA` | Panchanga Elements & Local Solar Day Timing | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G15_MUHURTA` | Activity Suitability & Rule Precedence | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G16_PREDICTIVE_TIMING` | Convergent Domain Timing Windows | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
