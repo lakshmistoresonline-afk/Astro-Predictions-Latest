@@ -35,24 +35,13 @@ def test_jaimini_chara_karakas_and_arudhas():
     assert jaimini_res.atmakaraka_planet == "Mercury"
 
     # 2. Verify Arudha Lagna (AL) & Upapada Lagna (UL)
-    assert 1 <= jaimini_res.arudha_lagna_rashi_index <= 12
-    assert jaimini_res.arudha_lagna_rashi_name in [
-        "Aries", "Taurus", "Gemini", "Cancer",
-        "Leo", "Virgo", "Libra", "Scorpio",
-        "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-    ]
-    assert 1 <= jaimini_res.upapada_lagna_rashi_index <= 12
-    assert jaimini_res.upapada_lagna_rashi_name in [
-        "Aries", "Taurus", "Gemini", "Cancer",
-        "Leo", "Virgo", "Libra", "Scorpio",
-        "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-    ]
+    assert jaimini_res.arudha_lagna_rashi_index == 4
+    assert jaimini_res.arudha_lagna_rashi_name == "Cancer"
+
+    assert jaimini_res.upapada_lagna_rashi_index == 5
+    assert jaimini_res.upapada_lagna_rashi_name == "Leo"
 
     # 3. Verify Karakamsha
-    assert 1 <= jaimini_res.karakamsha_rashi_index <= 12
-    assert jaimini_res.karakamsha_rashi_name in [
-        "Aries", "Taurus", "Gemini", "Cancer",
-        "Leo", "Virgo", "Libra", "Scorpio",
-        "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-    ]
+    assert jaimini_res.karakamsha_rashi_index == 6
+    assert jaimini_res.karakamsha_rashi_name == "Virgo"
     assert len(jaimini_res.calculation_hash) == 64

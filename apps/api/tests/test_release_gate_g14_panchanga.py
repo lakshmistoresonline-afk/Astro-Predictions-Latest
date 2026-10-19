@@ -20,11 +20,13 @@ def test_panchanga_elements_and_solar_day():
 
     assert p_res is not None
     # 1. Verify Tithi (1..30)
-    assert 1 <= p_res.tithi.tithi_number <= 30
-    assert "Paksha" in p_res.tithi.paksha
+    assert p_res.tithi.tithi_number == 28
+    assert p_res.tithi.tithi_name == "Trayodashi"
+    assert "Krishna" in p_res.tithi.paksha
 
     # 2. Verify Vara (Local solar day weekday)
-    assert p_res.vara.day_name_english in ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    assert p_res.vara.day_name_english == "Thursday"
+    assert p_res.vara.day_name_sanskrit == "Guruwara"
 
     # 3. Verify Nakshatra
     assert isinstance(p_res.nakshatra_name, str) and len(p_res.nakshatra_name) >= 3

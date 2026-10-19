@@ -32,3 +32,7 @@ def test_planetary_transits_and_aspect_contacts():
         assert 0.0 <= p_info.sidereal_longitude < 360.0
         assert 1 <= p_info.rashi.sign_index <= 12
         assert 1 <= p_info.house_from_lagna <= 12
+
+    # Transiting Sun on 2026-10-08 in Virgo (sign_index 6)
+    assert placements["Sun"].rashi.sign == "Virgo"
+    assert placements["Sun"].rashi.sign_index == 6

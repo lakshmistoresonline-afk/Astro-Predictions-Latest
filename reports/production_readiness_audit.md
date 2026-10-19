@@ -1,9 +1,9 @@
 # Astrovision Production Readiness & Full-Stack Audit Report
 
 - **Repository**: `D:\Astro-Predictions-Latest`
-- **Application Code Baseline SHA**: `b6199b1a44fac55b06fa6ded4165a8a166bd9990`
-- **Published Artifact Commit SHA**: `b6199b1a44fac55b06fa6ded4165a8a166bd9990`
-- **Audit Timestamp**: `2026-10-17T05:45:00+00:00`
+- **Application Code Baseline SHA**: `5897b482af0e22a964999f30837939f4e310c8e7`
+- **Published Artifact Commit SHA**: `5897b482af0e22a964999f30837939f4e310c8e7`
+- **Audit Timestamp**: `2026-10-17T05:50:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
 ---
@@ -49,7 +49,7 @@
 
 ---
 
-## 3. Verified Golden Reference Dasha Recalculation
+## 3. Verified Golden Reference Dasha & Time-Scale Recalculation
 
 For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548° E):
 - **Local Time**: 16:30:00 IST (UTC+05:30) $\rightarrow$ **11:00:00 UTC** on 28 Sep 1986.
@@ -69,8 +69,8 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 
 ## 4. Commit SHA Semantics & History Definitions
 
-- **`application_code_baseline` (`b6199b1a44fac55b06fa6ded4165a8a166bd9990`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`published_artifact_commit_sha` (`b6199b1a44fac55b06fa6ded4165a8a166bd9990`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
+- **`application_code_baseline` (`5897b482af0e22a964999f30837939f4e310c8e7`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
+- **`published_artifact_commit_sha` (`5897b482af0e22a964999f30837939f4e310c8e7`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
 
 ---
 
@@ -80,4 +80,4 @@ The Astrovision repository is **IMPLEMENTED, TESTED, AND PRODUCTION READY**.
 - **Tracked Inventory Document**: [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md)
 - **Release Certification**: 26 / 26 Gates Passed (**100% GREEN**).
 - **Web Production Build**: Next.js 14 Build Clean (0 compilation errors).
-- **Git Synchronization**: Local `main` equal to remote `origin/main` (`b6199b1a44fac55b06fa6ded4165a8a166bd9990`) with clean working tree.
+- **Git Synchronization**: Local `main` equal to remote `origin/main` (`5897b482af0e22a964999f30837939f4e310c8e7`) with clean working tree.
