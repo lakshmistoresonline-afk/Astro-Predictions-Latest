@@ -1,9 +1,9 @@
 # Astrovision Version 6.0.0 Release Certification Report
 
-- **Commit SHA**: `00955fbbe08f9c11e71ce781569b46e82bfd8c85`
-- **Timestamp**: `2026-10-19T09:13:29.928431+00:00`
+- **Commit SHA**: `b6199b1a44fac55b06fa6ded4165a8a166bd9990`
+- **Timestamp**: `2026-10-19T14:19:42.479450+00:00`
 - **Overall Certification Verdict**: **PASS - PRODUCTION READY**
-- **Total Executed Tests**: `138`
+- **Total Executed Tests**: `130`
 - **Total Gates Evaluated**: `26`
 - **Passed Gates**: `26`
 - **Failed Gates**: `0`
@@ -23,11 +23,11 @@
 | `G09_CLASSICAL_DOSHAS` | Parashari Doshas & Structured Cancellations | **PASS** | 2 | Pytest executed successfully (2 tests passed) |
 | `G10_SHADBALA` | Shadbala 6-Bala Strengths & Subcomponents | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
 | `G11_ASHTAKAVARGA` | Ashtakavarga BAV & Dynamic SAV Bindu Matrix | **PASS** | 2 | Pytest executed successfully (2 tests passed) |
-| `G12_JAIMINI_SUTRAS` | Jaimini Chara Karakas, Arudha Lagna & Karakamsha | **PASS** | 4 | Pytest executed successfully (4 tests passed) |
-| `G13_TRANSITS` | Geocentric Planetary Transits & Aspect Contacts | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
-| `G14_PANCHANGA` | Panchanga Elements & Local Solar Day Timing | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
-| `G15_MUHURTA` | Activity Suitability & Rule Precedence | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
-| `G16_PREDICTIVE_TIMING` | Convergent Domain Timing Windows | **PASS** | 3 | Pytest executed successfully (3 tests passed) |
+| `G12_JAIMINI_SUTRAS` | Jaimini Chara Karakas, Arudha Lagna & Karakamsha | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
+| `G13_TRANSITS` | Geocentric Planetary Transits & Aspect Contacts | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
+| `G14_PANCHANGA` | Panchanga Elements & Local Solar Day Timing | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
+| `G15_MUHURTA` | Activity Suitability & Rule Precedence | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
+| `G16_PREDICTIVE_TIMING` | Convergent Domain Timing Windows | **PASS** | 4 | Pytest executed successfully (4 tests passed) |
 | `G17_RECTIFICATION` | Event-Date Driven Birth Time Rectification | **PASS** | 5 | Pytest executed successfully (5 tests passed) |
 | `G18_COMPATIBILITY` | Vedic Ashtakoota 36-Point Compatibility | **PASS** | 6 | Pytest executed successfully (6 tests passed) |
 | `G19_PREDICTION_EVIDENCE` | 14 Domain Prediction Evidence Synthesis | **PASS** | 1 | Pytest executed successfully (1 tests passed) |

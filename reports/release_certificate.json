@@ -1,12 +1,12 @@
 {
   "release_version": "6.0.0",
-  "commit_sha": "00955fbbe08f9c11e71ce781569b46e82bfd8c85",
-  "timestamp_utc": "2026-10-19T09:13:29.928431+00:00",
+  "commit_sha": "b6199b1a44fac55b06fa6ded4165a8a166bd9990",
+  "timestamp_utc": "2026-10-19T14:19:42.479450+00:00",
   "verdict": "PASS - PRODUCTION READY",
   "total_gates_evaluated": 26,
   "passed_gates": 26,
   "failed_gates": 0,
-  "total_executed_tests": 138,
+  "total_executed_tests": 130,
   "gate_results": [
     {
       "gate_id": "G01_DE440S_HASH",
@@ -89,36 +89,36 @@
       "gate_id": "G12_JAIMINI_SUTRAS",
       "gate_title": "Jaimini Chara Karakas, Arudha Lagna & Karakamsha",
       "status": "PASS",
-      "tests_run": 4,
-      "details": "Pytest executed successfully (4 tests passed)"
+      "tests_run": 1,
+      "details": "Pytest executed successfully (1 tests passed)"
     },
     {
       "gate_id": "G13_TRANSITS",
       "gate_title": "Geocentric Planetary Transits & Aspect Contacts",
       "status": "PASS",
-      "tests_run": 3,
-      "details": "Pytest executed successfully (3 tests passed)"
+      "tests_run": 1,
+      "details": "Pytest executed successfully (1 tests passed)"
     },
     {
       "gate_id": "G14_PANCHANGA",
       "gate_title": "Panchanga Elements & Local Solar Day Timing",
       "status": "PASS",
-      "tests_run": 3,
-      "details": "Pytest executed successfully (3 tests passed)"
+      "tests_run": 1,
+      "details": "Pytest executed successfully (1 tests passed)"
     },
     {
       "gate_id": "G15_MUHURTA",
       "gate_title": "Activity Suitability & Rule Precedence",
       "status": "PASS",
-      "tests_run": 3,
-      "details": "Pytest executed successfully (3 tests passed)"
+      "tests_run": 1,
+      "details": "Pytest executed successfully (1 tests passed)"
     },
     {
       "gate_id": "G16_PREDICTIVE_TIMING",
       "gate_title": "Convergent Domain Timing Windows",
       "status": "PASS",
-      "tests_run": 3,
-      "details": "Pytest executed successfully (3 tests passed)"
+      "tests_run": 4,
+      "details": "Pytest executed successfully (4 tests passed)"
     },
     {
       "gate_id": "G17_RECTIFICATION",

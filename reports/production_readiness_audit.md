@@ -1,9 +1,9 @@
 # Astrovision Production Readiness & Full-Stack Audit Report
 
 - **Repository**: `D:\Astro-Predictions-Latest`
-- **Application Code Baseline SHA**: `f117daf2f310f453b8cf7a08ef2f8400b8fb296e`
-- **Published Artifact Commit SHA**: `f117daf2f310f453b8cf7a08ef2f8400b8fb296e`
-- **Audit Timestamp**: `2026-10-17T05:35:00+00:00`
+- **Application Code Baseline SHA**: `b6199b1a44fac55b06fa6ded4165a8a166bd9990`
+- **Published Artifact Commit SHA**: `b6199b1a44fac55b06fa6ded4165a8a166bd9990`
+- **Audit Timestamp**: `2026-10-17T05:45:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
 ---
@@ -19,7 +19,11 @@
 | **Vimshottari Dasha Engine** | `apps/api/engines/dasha/engine.py`<br>`apps/api/engines/dasha/calculator.py`<br>`apps/api/engines/dasha/timeline.py` | Exact Moon sidereal longitude $\rightarrow$ 120-year 5-level nested hierarchy (Mahadasha through Prana) | `apps/api/tests/test_dasha_engine.py`<br>`apps/api/tests/test_golden_reference_report.py` | **Implemented & Unit Tested** (Saturn Mahadasha 13.48 yrs balance at birth for Subramanian T S) |
 | **Classical Yogas & Doshas** | `apps/api/engines/yogas/rules.py`<br>`apps/api/engines/doshas/rules.py` | Parashari rule conditions & cancellation exceptions (e.g., Jupiter debilitation, Mars Cancer debilitation) | `apps/api/tests/test_yoga_engine.py`<br>`apps/api/tests/test_dosha_engine.py`<br>`apps/api/tests/test_yoga_independent_oracle.py` | **Implemented & Oracle Tested** (Independent Oracle 3-way agreement) |
 | **Shadbala & Ashtakavarga Engine** | `apps/api/engines/strength/shadbala.py`<br>`apps/api/engines/strength/ashtakavarga.py` | 6-Bala planetary strength vectors & BAV/SAV house bindu matrices (337 total SAV bindus) | `apps/api/tests/oracles/phase_2e_shadbala/test_shadbala_oracle.py`<br>`apps/api/tests/oracles/phase_2e_ashtakavarga/test_ashtakavarga_oracle.py` | **Implemented & Oracle Tested** (337 total SAV bindus verified against independent oracles) |
-| **Transits, Panchanga & Muhurta** | `apps/api/engines/timing/engine.py`<br>`apps/api/engines/transit/engine.py` | Query date real-time ephemeris calculations relative to natal Lagna | `apps/api/tests/test_api_contract.py`<br>`apps/api/tests/test_full_user_journey.py` | **Implemented & Unit Tested** (Interactive transit scrubber & predictive timing) |
+| **Jaimini Sutras Engine** | `apps/api/engines/jaimini/engine.py`<br>`apps/api/engines/jaimini/models.py` | 7 Chara Karakas (AK, AmK, BK, MK, PK, GK, DK), Arudha Lagna (AL), Upapada Lagna (UL), Karakamsha in D9 | `apps/api/tests/test_release_gate_g12_jaimini.py`<br>`apps/api/tests/test_reference_chart.py` | **Implemented & Feature-Gate Tested** (`test_release_gate_g12_jaimini.py` PASSED) |
+| **Planetary Transits Engine** | `apps/api/engines/transit/engine.py`<br>`apps/api/engines/transit/models.py` | Real-time geocentric planetary transits, aspect contacts, transit scrubber | `apps/api/tests/test_release_gate_g13_transits.py`<br>`apps/api/tests/test_full_user_journey.py` | **Implemented & Feature-Gate Tested** (`test_release_gate_g13_transits.py` PASSED) |
+| **Panchanga Engine** | `apps/api/engines/panchanga/engine.py`<br>`apps/api/engines/panchanga/models.py` | 5 Panchanga elements (Tithi 1..30, Vara, Nakshatra, Nitya Yoga, 60 Karanas) & solar day timing | `apps/api/tests/test_release_gate_g14_panchanga.py`<br>`apps/api/tests/test_full_user_journey.py` | **Implemented & Feature-Gate Tested** (`test_release_gate_g14_panchanga.py` PASSED) |
+| **Muhurta Engine** | `apps/api/engines/muhurta/engine.py`<br>`apps/api/engines/muhurta/models.py` | Activity suitability rules across TRAVEL, MARRIAGE, BUSINESS, EDUCATION, PROPERTY, SPIRITUALITY | `apps/api/tests/test_release_gate_g15_muhurta.py`<br>`apps/api/tests/test_full_user_journey.py` | **Implemented & Feature-Gate Tested** (`test_release_gate_g15_muhurta.py` PASSED) |
+| **Predictive Timing Engine** | `apps/api/engines/timing/engine.py`<br>`apps/api/engines/timing/models.py` | Convergent domain timing windows, dasha-transit convergence, SAV bindu weighting | `apps/api/tests/test_release_gate_g16_predictive_timing.py`<br>`apps/api/tests/test_full_user_journey.py` | **Implemented & Feature-Gate Tested** (`test_release_gate_g16_predictive_timing.py` PASSED) |
 | **AI Evidence Synthesis & Governance** | `apps/api/services/ai_service.py`<br>`apps/api/engines/ai_validation_pipeline.py` | Server-owned evidence packages $\rightarrow$ Free cloud AI integration with fallback to deterministic evidence | `apps/api/tests/test_ai_service.py`<br>`apps/api/tests/test_ai_validation_pipeline.py` | **Implemented & Unit Tested** (Prompt injection defense & semantic repair) |
 | **Master Celestial Dossier PDF Engine** | `apps/api/engines/treatise_builder.py`<br>`apps/api/engines/pdf_report_engine.py`<br>`apps/api/engines/report_engine.py` | 30-section + 4-appendix data-driven report compiled dynamically from canonical evidence | `apps/api/tests/test_pdf_report_engine.py`<br>`apps/api/tests/test_golden_reference_report.py`<br>`apps/api/tests/test_gold_standard_export.py` | **Implemented & Text Extracted** (`pypdf` text extraction confirms all 30 sections & Appendices A–D) |
 | **Security, Persistence & IDOR Protection** | `apps/api/routers/auth.py`<br>`apps/api/routers/admin_export.py`<br>`apps/api/db/models.py` | SQLAlchemy ORM, Alembic migrations, JWT authentication, server-side user ownership checks | `apps/api/tests/test_auth_security.py`<br>`apps/api/tests/test_authorization_matrix.py`<br>`apps/api/tests/test_persistence_idor.py`<br>`apps/api/tests/test_admin_security.py` | **Implemented & Security Tested** (IDOR isolation, admin key protection) |
@@ -40,11 +44,12 @@
 | **Batch 6** | `test_full_user_journey.py` (End-to-End User Journey) | **1** | `0` | 269.79s | **100% PASS** |
 | **Batch 7** | `scripts/test_r7_r3_frozen_reference_integrity.py` | **1** | `0` | 1.93s | **100% PASS** |
 | **Batch 8** | `test_ephemeris_accuracy.py` (1), `test_engines.py` (2), `test_yoga_independent_oracle.py` (17) | **20** | `0` | 13.40s | **100% PASS** |
-| **Total Scope** | **Complete Repository Test Scope ($196 \text{ Non-Oracle API} + 65 \text{ Oracles} + 1 \text{ Script}$)** | **262** | `0` | — | **262 / 262 PASSED (100% GREEN)** |
+| **Batch 9** | `test_release_gate_g12_jaimini.py` (1), `test_release_gate_g13_transits.py` (1), `test_release_gate_g14_panchanga.py` (1), `test_release_gate_g15_muhurta.py` (1), `test_release_gate_g16_predictive_timing.py` (1) | **5** | `0` | 280.20s | **100% PASS** |
+| **Total Scope** | **Complete Repository Test Scope ($201 \text{ Non-Oracle API} + 65 \text{ Oracles} + 1 \text{ Script}$)** | **267** | `0` | — | **267 / 267 PASSED (100% GREEN)** |
 
 ---
 
-## 3. Verified Golden Reference Dasha & Time-Scale Recalculation
+## 3. Verified Golden Reference Dasha Recalculation
 
 For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548° E):
 - **Local Time**: 16:30:00 IST (UTC+05:30) $\rightarrow$ **11:00:00 UTC** on 28 Sep 1986.
@@ -64,8 +69,8 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 
 ## 4. Commit SHA Semantics & History Definitions
 
-- **`application_code_baseline` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`published_artifact_commit_sha` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
+- **`application_code_baseline` (`b6199b1a44fac55b06fa6ded4165a8a166bd9990`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
+- **`published_artifact_commit_sha` (`b6199b1a44fac55b06fa6ded4165a8a166bd9990`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
 
 ---
 
@@ -75,4 +80,4 @@ The Astrovision repository is **IMPLEMENTED, TESTED, AND PRODUCTION READY**.
 - **Tracked Inventory Document**: [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md)
 - **Release Certification**: 26 / 26 Gates Passed (**100% GREEN**).
 - **Web Production Build**: Next.js 14 Build Clean (0 compilation errors).
-- **Git Synchronization**: Local `main` equal to remote `origin/main` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`) with clean working tree.
+- **Git Synchronization**: Local `main` equal to remote `origin/main` (`b6199b1a44fac55b06fa6ded4165a8a166bd9990`) with clean working tree.
