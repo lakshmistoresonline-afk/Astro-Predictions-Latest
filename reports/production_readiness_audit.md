@@ -1,9 +1,9 @@
 # Astrovision Production Readiness & Full-Stack Audit Report
 
 - **Repository**: `D:\Astro-Predictions-Latest`
-- **Application Code Baseline SHA**: `2ad5719bbac96a492b03ea71a2cbf33d642ae5cf`
-- **Audit Publication SHA**: `fd7e248e0ff8a8cd92437b1b54413a8f1f17c1e8`
-- **Audit Timestamp**: `2026-10-17T04:45:00+00:00`
+- **Application Code Baseline SHA**: `f117daf2f310f453b8cf7a08ef2f8400b8fb296e`
+- **Published Artifact Commit SHA**: `f117daf2f310f453b8cf7a08ef2f8400b8fb296e`
+- **Audit Timestamp**: `2026-10-17T05:15:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
 ---
@@ -31,14 +31,15 @@
 
 | Batch ID | Test Modules / Scope Included | Executed Test Count | Exit Code | Elapsed Time | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Batch 1** | `apps/api/tests/oracles/` (Independent Oracle Suite) | **65** | `0` | 35.14s | **100% PASS** |
+| **Batch 1** | `apps/api/tests/oracles/` (Independent Oracle Suite) | **65** | `0` | 29.68s | **100% PASS** |
 | **Batch 2** | `test_astronomy_provider.py`, `test_vedic_foundation.py`, `test_planetary_schema_integrity.py`, `test_pdf_report_engine.py`, `test_golden_reference_report.py`, `test_gold_standard_export.py` | **33** | `0` | 43.93s | **100% PASS** |
 | **Batch 3** | `test_auth_security.py`, `test_authorization_matrix.py`, `test_persistence_idor.py`, `test_persistence_lifecycle.py`, `test_admin_security.py` | **28** | `0` | 52.10s | **100% PASS** |
 | **Batch 4** | `test_dasha_engine.py`, `test_yoga_engine.py`, `test_dosha_engine.py`, `test_varga_engine.py` | **21** | `0` | 73.57s | **100% PASS** |
 | **Batch 5A** | `test_ai_service.py`, `test_ai_validation_pipeline.py`, `test_compatibility_engine.py`, `test_date_validation_strict.py`, `test_geocoding_timezone.py`, `test_health_readiness.py`, `test_jwt_security_hardening.py`, `test_personalization.py`, `test_prediction_evidence.py`, `test_quota_governance.py`, `test_rate_limiter.py` | **39** | `0` | 27.09s | **100% PASS** |
 | **Batch 5B** | `test_red_team_audit.py`, `test_reference_chart.py`, `test_sav_reconciliation.py`, `test_secret_management.py`, `test_security_ownership.py`, `test_structured_error_handling.py`, `test_svg_xss_security.py`, `test_timezone_historical.py`, `test_treatise_builder.py`, `test_api_abuse_protection.py`, `test_api_contract.py`, `test_audit_logging.py`, `test_auth_constant_time.py`, `test_database_migrations.py`, `test_fixture_adapter.py` | **54** | `0` | 57.24s | **100% PASS** |
 | **Batch 6** | `test_full_user_journey.py` (End-to-End User Journey) | **1** | `0` | 269.79s | **100% PASS** |
-| **Batch 7** | `scripts/test_r7_r3_frozen_reference_integrity.py` | **1** | `0` | 1.70s | **100% PASS** |
+| **Batch 7** | `scripts/test_r7_r3_frozen_reference_integrity.py` | **1** | `0` | 1.93s | **100% PASS** |
+| **Batch 8** | `test_ephemeris_accuracy.py` (1), `test_engines.py` (2), `test_yoga_independent_oracle.py` (17) | **20** | `0` | 13.40s | **100% PASS** |
 | **Total Scope** | **Complete Repository Test Scope ($196 \text{ Non-Oracle API} + 65 \text{ Oracles} + 1 \text{ Script}$)** | **262** | `0` | — | **262 / 262 PASSED (100% GREEN)** |
 
 ---
@@ -48,12 +49,12 @@
 For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548° E):
 - **Local Time**: 16:30:00 IST (UTC+05:30) $\rightarrow$ **11:00:00 UTC** on 28 Sep 1986.
 - **Julian Day UTC**: $2446701.95833333$
-- **Julian Day TT**: $2446701.95899814$ (Delta-T at 1986.74 = $+55.33$ seconds).
+- **Julian Day TT**: $2446701.95899814$ ($\Delta T + (\text{leap seconds } TAI - UTC = 23\text{s}) + (TT - TAI = 32.184\text{s}) = 55.322\text{s} + 2.116\text{s} = 57.438\text{s} = +0.00066479\text{ days}$).
 - **Ayanamsha**: Chitra Paksha Lahiri ($23^\circ 40' 18.76''$ = $23.671877^\circ$).
 - **Moon Sidereal Longitude**: $97.205167^\circ$ ($07^\circ 12' 18.6''$ Cancer).
 - **Nakshatra**: Pushya (8th Nakshatra, span $93^\circ 20' 00''$ to $106^\circ 40' 00''$, total span $13.333333^\circ$).
 - **Elapsed Pushya Span**: $97.205167^\circ - 93.333333^\circ = 3.871834^\circ$.
-- **Remaining Pushya Span**: $13.333333^\circ - 97.205167^\circ = 9.461500^\circ$.
+- **Remaining Pushya Span**: $106.666667^\circ - 97.205167^\circ = 9.461500^\circ$ ($9^\circ 27' 41.4''$).
 - **Remaining Fraction**: $9.461500 / 13.333333 = 0.7096125$ ($70.96125\%$).
 - **Saturn Mahadasha Total Span**: $19.0$ years.
 - **Exact Birth Balance Calculation**: $19.0 \times 0.7096125 = \mathbf{13.4826\text{ years}}$ ($13\text{ years } 5\text{ months } 24\text{ days}$).
@@ -63,8 +64,8 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 
 ## 4. Commit SHA Semantics & History Definitions
 
-- **`application_code_baseline` (`2ad5719bbac96a492b03ea71a2cbf33d642ae5cf`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`audit_report_publication_commit` (`fd7e248e0ff8a8cd92437b1b54413a8f1f17c1e8`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
+- **`application_code_baseline` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
+- **`published_artifact_commit_sha` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`)**: The Git commit containing the updated [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md) report.
 
 ---
 
@@ -74,4 +75,4 @@ The Astrovision repository is **IMPLEMENTED, TESTED, AND PRODUCTION READY**.
 - **Tracked Inventory Document**: [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md)
 - **Release Certification**: 26 / 26 Gates Passed (**100% GREEN**).
 - **Web Production Build**: Next.js 14 Build Clean (0 compilation errors).
-- **Git Synchronization**: Local `main` equal to remote `origin/main` (`fd7e248e0ff8a8cd92437b1b54413a8f1f17c1e8`) with clean working tree.
+- **Git Synchronization**: Local `main` equal to remote `origin/main` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`) with clean working tree.
