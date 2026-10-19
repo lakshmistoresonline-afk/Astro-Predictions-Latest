@@ -3,7 +3,7 @@
 - **Repository**: `D:\Astro-Predictions-Latest`
 - **Application Code Baseline SHA**: `f117daf2f310f453b8cf7a08ef2f8400b8fb296e`
 - **Published Artifact Commit SHA**: `f117daf2f310f453b8cf7a08ef2f8400b8fb296e`
-- **Audit Timestamp**: `2026-10-17T05:30:00+00:00`
+- **Audit Timestamp**: `2026-10-17T05:35:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
 ---
@@ -54,7 +54,7 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 - **Moon Sidereal Longitude**: $97.205167^\circ$ ($07^\circ 12' 18.6''$ Cancer).
 - **Nakshatra**: Pushya (8th Nakshatra, span $93^\circ 20' 00''$ to $106^\circ 40' 00''$, total span $13.333333^\circ$).
 - **Elapsed Pushya Span**: $97.205167^\circ - 93.333333^\circ = 3.871834^\circ$.
-- **Remaining Pushya Span Equation**: $106.666667^\circ - 97.205167^\circ = 9.461500^\circ$ ($9^\circ 27' 41.4''$).
+- **Remaining Pushya Span Equation Text Fix**: $106.666667^\circ - 97.205167^\circ = 9.461500^\circ$ ($9^\circ 27' 41.4''$).
 - **Remaining Fraction**: $9.461500 / 13.333333 = 0.7096125$ ($70.96125\%$).
 - **Saturn Mahadasha Total Span**: $19.0$ years.
 - **Exact Birth Balance Calculation**: $19.0 \times 0.7096125 = \mathbf{13.4826\text{ years}}$ ($13\text{ years } 5\text{ months } 24\text{ days}$).
@@ -65,7 +65,7 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 ## 4. Commit SHA Semantics & History Definitions
 
 - **`application_code_baseline` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`published_artifact_commit_sha` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`)**: The Git commit containing the updated [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md) report.
+- **`published_artifact_commit_sha` (`f117daf2f310f453b8cf7a08ef2f8400b8fb296e`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
 
 ---
 
