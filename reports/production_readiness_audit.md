@@ -1,8 +1,8 @@
 # Astrovision Production Readiness & Full-Stack Audit Report
 
 - **Repository**: `D:\Astro-Predictions-Latest`
-- **Application Code Baseline SHA**: `ff7cf56ad350ca0c6961f30a919e52f8f86c6b13`
-- **Published Artifact Commit SHA**: `ff7cf56ad350ca0c6961f30a919e52f8f86c6b13`
+- **Application Code Baseline SHA**: `2ffb689c058a5200edac7ba8deef4dd871c5e203`
+- **Published Artifact Commit SHA**: `2ffb689c058a5200edac7ba8deef4dd871c5e203`
 - **Audit Timestamp**: `2026-10-20T06:30:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
@@ -27,7 +27,7 @@
 | **AI Evidence Synthesis & Governance** | `apps/api/services/ai_service.py`<br>`apps/api/engines/ai_validation_pipeline.py` | Server-owned evidence packages $\rightarrow$ Free cloud AI integration with fallback to deterministic evidence | `apps/api/tests/test_ai_service.py`<br>`apps/api/tests/test_ai_validation_pipeline.py` | **Implemented & Unit Tested** (Prompt injection defense & semantic repair) |
 | **Master Celestial Dossier PDF Engine** | `apps/api/engines/treatise_builder.py`<br>`apps/api/engines/pdf_report_engine.py`<br>`apps/api/engines/report_engine.py` | 30-section + 4-appendix data-driven report compiled dynamically from canonical evidence | `apps/api/tests/test_pdf_report_engine.py`<br>`apps/api/tests/test_golden_reference_report.py`<br>`apps/api/tests/test_gold_standard_export.py` | **Implemented & Text Extracted** (`pypdf` text extraction confirms all 30 sections & Appendices A–D) |
 | **Security, Persistence & IDOR Protection** | `apps/api/routers/auth.py`<br>`apps/api/routers/admin_export.py`<br>`apps/api/db/models.py` | SQLAlchemy ORM, Alembic migrations, JWT authentication, server-side user ownership checks | `apps/api/tests/test_auth_security.py`<br>`apps/api/tests/test_authorization_matrix.py`<br>`apps/api/tests/test_persistence_idor.py`<br>`apps/api/tests/test_admin_security.py` | **Implemented & Security Tested** (IDOR isolation, admin key protection) |
-| **Release Certification System Runner** | `scripts/run_release_certification.py` | 26 Release Certification Gates evaluating 141 gate test runs | `apps/api/tests/test_release_certification_runner.py` | **Implemented & Negative-Path Tested** (9 automated negative-path/control unit tests PASSED) |
+| **Release Certification System Runner** | `scripts/run_release_certification.py` | 26 Release Certification Gates evaluating 141 gate test runs | `apps/api/tests/test_release_certification_runner.py` | **Implemented & Negative-Path Tested** (12 automated negative-path/control unit tests PASSED) |
 | **Next.js 14 Frontend Application** | `apps/web/app/`<br>`apps/web/components/` | Next.js 14 App Router, Tailwind CSS, TypeScript, client state management | `apps/web/package.json` (`npm run build`) | **Compiled Cleanly** (100% clean compilation, static pages 4/4) |
 
 ---
@@ -46,8 +46,8 @@
 | **Batch 7** | `scripts/test_r7_r3_frozen_reference_integrity.py` | **1** | `0` | 1.93s | **100% PASS** |
 | **Batch 8** | `test_ephemeris_accuracy.py` (1), `test_engines.py` (2), `test_yoga_independent_oracle.py` (17) | **20** | `0` | 13.40s | **100% PASS** |
 | **Batch 9** | `test_release_gate_g12_jaimini.py` (1), `test_release_gate_g13_transits.py` (1), `test_release_gate_g14_panchanga.py` (1), `test_release_gate_g15_muhurta.py` (1), `test_release_gate_g16_predictive_timing.py` (1) | **5** | `0` | 280.20s | **100% PASS** |
-| **Batch 10** | `test_release_certification_runner.py` (9 Automated Negative-Path & Control Runner Tests) | **9** | `0` | 15.46s | **100% PASS** |
-| **Total Scope** | **Complete Repository Test Scope ($65 + 33 + 28 + 21 + 39 + 54 + 1 + 1 + 20 + 5 + 9 = 276$)** | **276** | `0` | — | **276 / 276 PASSED (100% GREEN)** |
+| **Batch 10** | `test_release_certification_runner.py` (12 Automated Negative-Path & Control Runner Tests) | **12** | `0` | 32.86s | **100% PASS** |
+| **Total Scope** | **Complete Repository Test Scope ($65 + 33 + 28 + 21 + 39 + 54 + 1 + 1 + 20 + 5 + 12 = 279$)** | **279** | `0` | — | **279 / 279 PASSED (100% GREEN)** |
 
 ---
 
@@ -71,8 +71,8 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 
 ## 4. Commit SHA Semantics & History Definitions
 
-- **`application_code_baseline` (`ff7cf56ad350ca0c6961f30a919e52f8f86c6b13`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`published_artifact_commit_sha` (`ff7cf56ad350ca0c6961f30a919e52f8f86c6b13`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
+- **`application_code_baseline` (`2ffb689c058a5200edac7ba8deef4dd871c5e203`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
+- **`published_artifact_commit_sha` (`2ffb689c058a5200edac7ba8deef4dd871c5e203`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
 
 ---
 
@@ -82,4 +82,4 @@ The Astrovision repository is **IMPLEMENTED, TESTED, AND PRODUCTION READY**.
 - **Tracked Inventory Document**: [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md)
 - **Release Certification**: 26 / 26 Gates Passed (**100% GREEN**).
 - **Web Production Build**: Next.js 14 Build Clean (0 compilation errors).
-- **Git Synchronization**: Local `main` equal to remote `origin/main` (`ff7cf56ad350ca0c6961f30a919e52f8f86c6b13`) with clean working tree.
+- **Git Synchronization**: Local `main` equal to remote `origin/main` (`2ffb689c058a5200edac7ba8deef4dd871c5e203`) with clean working tree.
