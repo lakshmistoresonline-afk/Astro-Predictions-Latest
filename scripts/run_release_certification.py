@@ -59,6 +59,8 @@ class PytestPluginCollector:
         self.passed = 0
         self.failed = 0
         self.skipped = 0
+        self.setup_errors = 0
+        self.teardown_errors = 0
 
     def pytest_runtest_logreport(self, report):
         if report.when == "call":
@@ -68,10 +70,22 @@ class PytestPluginCollector:
                 self.failed += 1
             elif report.skipped:
                 self.skipped += 1
-        elif report.when in ["setup", "teardown"] and report.failed:
-            self.failed += 1
+        elif report.when == "setup":
+            if report.failed:
+                self.setup_errors += 1
+                self.failed += 1
+            elif report.skipped:
+                self.skipped += 1
+        elif report.when == "teardown":
+            if report.failed:
+                self.teardown_errors += 1
+                self.failed += 1
 
-def run_release_certification(project_root: Optional[Path] = None, custom_gates: Optional[List] = None) -> Dict[str, Any]:
+def run_release_certification(
+    project_root: Optional[Path] = None,
+    custom_gates: Optional[List] = None,
+    output_dir: Optional[Path] = None
+) -> Dict[str, Any]:
     if project_root is None:
         project_root = Path(__file__).resolve().parent.parent
     os.chdir(project_root)
@@ -80,6 +94,7 @@ def run_release_certification(project_root: Optional[Path] = None, custom_gates:
         sys.path.insert(0, str(project_root))
 
     commit_sha = get_git_commit_sha(project_root)
+    is_custom_run = custom_gates is not None
     gates_to_run = custom_gates if custom_gates is not None else RELEASE_GATES
 
     print("================================================================================")
@@ -153,7 +168,7 @@ def run_release_certification(project_root: Optional[Path] = None, custom_gates:
                 last_exit_code = 2
 
         tests_run = collector.passed + collector.failed
-        if collector.skipped > 0:
+        if collector.skipped > 0 or collector.setup_errors > 0 or collector.teardown_errors > 0:
             gate_failed = True
 
         if tests_run == 0 or gate_failed:
@@ -175,16 +190,34 @@ def run_release_certification(project_root: Optional[Path] = None, custom_gates:
             })
         total_tests_executed += tests_run
 
-    # Output Certificate JSON
-    cert_dir = project_root / "reports"
+    # Determine Verdict
+    is_production_run = (not is_custom_run) and len(gate_results) == len(RELEASE_GATES)
+    if all_passed:
+        if is_production_run:
+            verdict = "PASS - PRODUCTION READY"
+        else:
+            verdict = "PASS - CUSTOM RUN"
+    else:
+        verdict = "FAIL - GATE FAILURE"
+
+    # Determine output directories
+    if output_dir:
+        cert_dir = output_dir / "reports"
+        docs_dir = output_dir / "docs"
+    else:
+        cert_dir = project_root / "reports"
+        docs_dir = project_root / "docs"
+
     cert_dir.mkdir(parents=True, exist_ok=True)
+    docs_dir.mkdir(parents=True, exist_ok=True)
+
     cert_json_path = cert_dir / "release_certificate.json"
 
     cert_data = {
         "release_version": "6.0.0",
         "commit_sha": commit_sha,
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        "verdict": "PASS - PRODUCTION READY" if all_passed else "FAIL - GATE FAILURE",
+        "verdict": verdict,
         "total_gates_evaluated": len(gate_results),
         "passed_gates": sum(1 for g in gate_results if g["status"] == "PASS"),
         "failed_gates": sum(1 for g in gate_results if g["status"] == "FAIL"),
@@ -199,9 +232,6 @@ def run_release_certification(project_root: Optional[Path] = None, custom_gates:
     with open(cert_json_path, "w", encoding="utf-8") as f:
         json.dump(cert_data, f, indent=2)
 
-    # Output Markdown Report
-    docs_dir = project_root / "docs"
-    docs_dir.mkdir(parents=True, exist_ok=True)
     report_md_path = docs_dir / "RELEASE_CERTIFICATION.md"
     report_copy_path = cert_dir / "release_certification_report.md"
 

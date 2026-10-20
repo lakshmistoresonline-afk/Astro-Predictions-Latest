@@ -1,8 +1,7 @@
 """
 Automated Negative-Path Test Suite for Release Certification System Runner.
 Proves that missing test paths, zero-test modules, failing assertions, collection errors,
-internal setup errors, and unapproved skips fail release certification closed.
-Includes positive control proving valid gates pass cleanly.
+internal setup errors, unapproved skips, and custom runs fail or isolate certification appropriately.
 """
 import pytest
 import shutil
@@ -14,52 +13,57 @@ def temp_runner_environment(tmp_path):
     """Creates an isolated project structure for runner testing."""
     test_dir = Path("apps/api/tests/_temp_runner_tests")
     test_dir.mkdir(parents=True, exist_ok=True)
-    yield test_dir
+    yield test_dir, tmp_path
     if test_dir.exists():
         shutil.rmtree(test_dir, ignore_errors=True)
 
 def test_missing_test_path_fails_gate(temp_runner_environment):
     """1. Proves that a nonexistent test file path causes certification gate failure."""
+    test_dir, out_dir = temp_runner_environment
     nonexistent = "apps/api/tests/_temp_runner_tests/nonexistent_file.py"
     custom_gates = [("G_TEST_MISSING", "Missing File Gate", nonexistent)]
-    res = run_release_certification(custom_gates=custom_gates)
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
     assert res["failed_gates"] == 1
     assert res["gate_results"][0]["status"] == "FAIL"
 
 def test_zero_collected_tests_fails_gate(temp_runner_environment):
     """2. Proves that a test file with zero test cases fails certification gate."""
-    empty_file = temp_runner_environment / "test_empty.py"
+    test_dir, out_dir = temp_runner_environment
+    empty_file = test_dir / "test_empty.py"
     empty_file.write_text("# Empty test file\n")
     rel_path = str(empty_file).replace("\\", "/")
     custom_gates = [("G_TEST_EMPTY", "Empty File Gate", rel_path)]
-    res = run_release_certification(custom_gates=custom_gates)
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
     assert res["gate_results"][0]["status"] == "FAIL"
 
 def test_failing_assertion_fails_gate(temp_runner_environment):
     """3. Proves that a failing assertion in a gate module causes certification gate failure."""
-    fail_file = temp_runner_environment / "test_failing.py"
+    test_dir, out_dir = temp_runner_environment
+    fail_file = test_dir / "test_failing.py"
     fail_file.write_text("def test_will_fail():\n    assert 1 == 2\n")
     rel_path = str(fail_file).replace("\\", "/")
     custom_gates = [("G_TEST_FAIL", "Failing Gate", rel_path)]
-    res = run_release_certification(custom_gates=custom_gates)
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
     assert res["gate_results"][0]["status"] == "FAIL"
 
 def test_collection_syntax_error_fails_gate(temp_runner_environment):
     """4. Proves that a syntax error during pytest collection causes certification gate failure."""
-    syntax_file = temp_runner_environment / "test_syntax.py"
+    test_dir, out_dir = temp_runner_environment
+    syntax_file = test_dir / "test_syntax.py"
     syntax_file.write_text("def test_broken_syntax(\n    assert True\n")
     rel_path = str(syntax_file).replace("\\", "/")
     custom_gates = [("G_TEST_SYNTAX", "Syntax Error Gate", rel_path)]
-    res = run_release_certification(custom_gates=custom_gates)
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
     assert res["gate_results"][0]["status"] == "FAIL"
 
 def test_fixture_setup_error_fails_gate(temp_runner_environment):
     """5. Proves that a fixture setup error in a gate module causes certification gate failure."""
-    fixture_file = temp_runner_environment / "test_fixture_err.py"
+    test_dir, out_dir = temp_runner_environment
+    fixture_file = test_dir / "test_fixture_err.py"
     fixture_file.write_text(
         "import pytest\n"
         "@pytest.fixture\n"
@@ -70,13 +74,14 @@ def test_fixture_setup_error_fails_gate(temp_runner_environment):
     )
     rel_path = str(fixture_file).replace("\\", "/")
     custom_gates = [("G_TEST_FIXTURE", "Fixture Error Gate", rel_path)]
-    res = run_release_certification(custom_gates=custom_gates)
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
     assert res["gate_results"][0]["status"] == "FAIL"
 
 def test_unapproved_skip_fails_gate(temp_runner_environment):
     """6. Proves that skipped tests are flagged and fail-closed for certification gate integrity."""
-    skip_file = temp_runner_environment / "test_skipped.py"
+    test_dir, out_dir = temp_runner_environment
+    skip_file = test_dir / "test_skipped.py"
     skip_file.write_text(
         "import pytest\n"
         "@pytest.mark.skip(reason='Unapproved Skip')\n"
@@ -85,18 +90,19 @@ def test_unapproved_skip_fails_gate(temp_runner_environment):
     )
     rel_path = str(skip_file).replace("\\", "/")
     custom_gates = [("G_TEST_SKIP", "Skipped Gate", rel_path)]
-    res = run_release_certification(custom_gates=custom_gates)
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
     assert res["gate_results"][0]["status"] == "FAIL"
 
-def test_positive_control_valid_gate_passes(temp_runner_environment):
-    """7. Positive Control: Proves that a valid test case passes certification gate cleanly."""
-    valid_file = temp_runner_environment / "test_valid.py"
+def test_custom_gate_run_does_not_issue_production_ready(temp_runner_environment):
+    """7. Proves that a custom gate or partial test run emits PASS - CUSTOM RUN instead of PRODUCTION READY."""
+    test_dir, out_dir = temp_runner_environment
+    valid_file = test_dir / "test_valid.py"
     valid_file.write_text("def test_valid_pass():\n    assert True\n")
     rel_path = str(valid_file).replace("\\", "/")
-    custom_gates = [("G_TEST_PASS", "Valid Gate Positive Control", rel_path)]
-    res = run_release_certification(custom_gates=custom_gates)
-    assert res["verdict"] == "PASS - PRODUCTION READY"
+    custom_gates = [("G_TEST_CUSTOM", "Custom Gate", rel_path)]
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
+    assert res["verdict"] == "PASS - CUSTOM RUN"
+    assert res["verdict"] != "PASS - PRODUCTION READY"
     assert res["passed_gates"] == 1
     assert res["failed_gates"] == 0
-    assert res["gate_results"][0]["status"] == "PASS"
