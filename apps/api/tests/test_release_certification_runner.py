@@ -143,3 +143,14 @@ def test_teardown_error_fails_gate(temp_runner_environment):
     res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
     assert res["gate_results"][0]["status"] == "FAIL"
+
+def test_output_dir_isolation_does_not_overwrite_real_artifacts(temp_runner_environment):
+    """10. Proves that passing output_dir isolates report generation to temp_path."""
+    test_dir, out_dir = temp_runner_environment
+    valid_file = test_dir / "test_isolated.py"
+    valid_file.write_text("def test_isolated_pass():\n    assert True\n")
+    rel_path = str(valid_file).replace("\\", "/")
+    custom_gates = [("G_TEST_ISO", "Isolated Output Gate", rel_path)]
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
+    assert (out_dir / "reports" / "release_certificate.json").exists()
+    assert (out_dir / "docs" / "RELEASE_CERTIFICATION.md").exists()
