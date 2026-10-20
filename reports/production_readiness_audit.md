@@ -55,7 +55,7 @@
 
 For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548° E):
 - **Local Time**: 16:30:00 IST (UTC+05:30) $\rightarrow$ **11:00:00 UTC** on 28 Sep 1986.
-- **Julian Day UTC**: $2446701.95833333$
+- **Julian Day UTC**: $JD_{UTC} = 2446701.95833333$.
 - **Julian Day TT**: $2446701.95897204$ (IERS standard formula: $TT - UTC = (TAI - UTC = 23\text{s}) + 32.184\text{s} = 55.184\text{ seconds} = +0.0006387037\text{ days}$).
 - **Ayanamsha**: Chitra Paksha Lahiri ($23^\circ 40' 18.76''$ = $23.671877^\circ$).
 - **Moon Sidereal Longitude**: $97.205167^\circ$ ($07^\circ 12' 18.6''$ Cancer).
