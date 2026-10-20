@@ -1,9 +1,9 @@
 # Astrovision Version 6.0.0 Release Certification Report
 
-- **Commit SHA**: `abbc575cd2f4d04933f2e21354173aaba6f8df8e`
-- **Timestamp**: `2026-10-20T03:54:56.541273+00:00`
+- **Commit SHA**: `834bc22002ea05be8cfa424cc20be992f60fa915`
+- **Timestamp**: `2026-10-20T04:34:03.428758+00:00`
 - **Overall Certification Verdict**: **PASS - PRODUCTION READY**
-- **Total Executed Tests**: `130`
+- **Total Executed Tests**: `127`
 - **Total Gates Evaluated**: `26`
 - **Passed Gates**: `26`
 - **Failed Gates**: `0`
@@ -27,7 +27,7 @@
 | `G13_TRANSITS` | Geocentric Planetary Transits & Aspect Contacts | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
 | `G14_PANCHANGA` | Panchanga Elements & Local Solar Day Timing | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
 | `G15_MUHURTA` | Activity Suitability & Rule Precedence | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
-| `G16_PREDICTIVE_TIMING` | Convergent Domain Timing Windows | **PASS** | 4 | Pytest executed successfully (4 tests passed) |
+| `G16_PREDICTIVE_TIMING` | Convergent Domain Timing Windows | **PASS** | 1 | Pytest executed successfully (1 tests passed) |
 | `G17_RECTIFICATION` | Event-Date Driven Birth Time Rectification | **PASS** | 5 | Pytest executed successfully (5 tests passed) |
 | `G18_COMPATIBILITY` | Vedic Ashtakoota 36-Point Compatibility | **PASS** | 6 | Pytest executed successfully (6 tests passed) |
 | `G19_PREDICTION_EVIDENCE` | 14 Domain Prediction Evidence Synthesis | **PASS** | 1 | Pytest executed successfully (1 tests passed) |

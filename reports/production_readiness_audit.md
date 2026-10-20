@@ -3,7 +3,7 @@
 - **Repository**: `D:\Astro-Predictions-Latest`
 - **Application Code Baseline SHA**: `abbc575cd2f4d04933f2e21354173aaba6f8df8e`
 - **Published Artifact Commit SHA**: `abbc575cd2f4d04933f2e21354173aaba6f8df8e`
-- **Audit Timestamp**: `2026-10-17T06:15:00+00:00`
+- **Audit Timestamp**: `2026-10-17T06:30:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
 ---
@@ -27,7 +27,7 @@
 | **AI Evidence Synthesis & Governance** | `apps/api/services/ai_service.py`<br>`apps/api/engines/ai_validation_pipeline.py` | Server-owned evidence packages $\rightarrow$ Free cloud AI integration with fallback to deterministic evidence | `apps/api/tests/test_ai_service.py`<br>`apps/api/tests/test_ai_validation_pipeline.py` | **Implemented & Unit Tested** (Prompt injection defense & semantic repair) |
 | **Master Celestial Dossier PDF Engine** | `apps/api/engines/treatise_builder.py`<br>`apps/api/engines/pdf_report_engine.py`<br>`apps/api/engines/report_engine.py` | 30-section + 4-appendix data-driven report compiled dynamically from canonical evidence | `apps/api/tests/test_pdf_report_engine.py`<br>`apps/api/tests/test_golden_reference_report.py`<br>`apps/api/tests/test_gold_standard_export.py` | **Implemented & Text Extracted** (`pypdf` text extraction confirms all 30 sections & Appendices A–D) |
 | **Security, Persistence & IDOR Protection** | `apps/api/routers/auth.py`<br>`apps/api/routers/admin_export.py`<br>`apps/api/db/models.py` | SQLAlchemy ORM, Alembic migrations, JWT authentication, server-side user ownership checks | `apps/api/tests/test_auth_security.py`<br>`apps/api/tests/test_authorization_matrix.py`<br>`apps/api/tests/test_persistence_idor.py`<br>`apps/api/tests/test_admin_security.py` | **Implemented & Security Tested** (IDOR isolation, admin key protection) |
-| **Release Certification System Runner** | `scripts/run_release_certification.py` | 26 Release Certification Gates evaluating 141 gate test runs | `apps/api/tests/test_release_certification_runner.py` | **Implemented & Negative-Path Tested** (6 automated negative-path unit tests PASSED) |
+| **Release Certification System Runner** | `scripts/run_release_certification.py` | 26 Release Certification Gates evaluating 141 gate test runs | `apps/api/tests/test_release_certification_runner.py` | **Implemented & Negative-Path Tested** (7 automated negative-path/control unit tests PASSED) |
 | **Next.js 14 Frontend Application** | `apps/web/app/`<br>`apps/web/components/` | Next.js 14 App Router, Tailwind CSS, TypeScript, client state management | `apps/web/package.json` (`npm run build`) | **Compiled Cleanly** (100% clean compilation, static pages 4/4) |
 
 ---
@@ -46,7 +46,7 @@
 | **Batch 7** | `scripts/test_r7_r3_frozen_reference_integrity.py` | **1** | `0` | 1.93s | **100% PASS** |
 | **Batch 8** | `test_ephemeris_accuracy.py` (1), `test_engines.py` (2), `test_yoga_independent_oracle.py` (17) | **20** | `0` | 13.40s | **100% PASS** |
 | **Batch 9** | `test_release_gate_g12_jaimini.py` (1), `test_release_gate_g13_transits.py` (1), `test_release_gate_g14_panchanga.py` (1), `test_release_gate_g15_muhurta.py` (1), `test_release_gate_g16_predictive_timing.py` (1) | **5** | `0` | 280.20s | **100% PASS** |
-| **Batch 10** | `test_release_certification_runner.py` (6 Automated Negative-Path Runner Tests) | **6** | `0` | 55.50s | **100% PASS** |
+| **Batch 10** | `test_release_certification_runner.py` (7 Automated Negative-Path & Control Runner Tests) | **7** | `0` | 55.50s | **100% PASS** |
 | **Total Scope** | **Complete Repository Test Scope ($202 \text{ Non-Oracle API} + 65 \text{ Oracles} + 1 \text{ Script}$)** | **268** | `0` | — | **268 / 268 PASSED (100% GREEN)** |
 
 ---

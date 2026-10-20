@@ -11,6 +11,7 @@ import platform
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Dict, List, Optional, Any, Union
 import pytest
 
 EXPECTED_DE440S_SHA256 = "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2"
@@ -31,7 +32,7 @@ RELEASE_GATES = [
     ("G13_TRANSITS", "Geocentric Planetary Transits & Aspect Contacts", "apps/api/tests/test_release_gate_g13_transits.py"),
     ("G14_PANCHANGA", "Panchanga Elements & Local Solar Day Timing", "apps/api/tests/test_release_gate_g14_panchanga.py"),
     ("G15_MUHURTA", "Activity Suitability & Rule Precedence", "apps/api/tests/test_release_gate_g15_muhurta.py"),
-    ("G16_PREDICTIVE_TIMING", "Convergent Domain Timing Windows", ["apps/api/tests/test_prediction_evidence.py", "apps/api/tests/test_api_contract.py"]),
+    ("G16_PREDICTIVE_TIMING", "Convergent Domain Timing Windows", "apps/api/tests/test_release_gate_g16_predictive_timing.py"),
     ("G17_RECTIFICATION", "Event-Date Driven Birth Time Rectification", "apps/api/tests/test_timezone_historical.py"),
     ("G18_COMPATIBILITY", "Vedic Ashtakoota 36-Point Compatibility", "apps/api/tests/test_compatibility_engine.py"),
     ("G19_PREDICTION_EVIDENCE", "14 Domain Prediction Evidence Synthesis", "apps/api/tests/test_prediction_evidence.py"),
@@ -57,6 +58,7 @@ class PytestPluginCollector:
     def __init__(self):
         self.passed = 0
         self.failed = 0
+        self.skipped = 0
 
     def pytest_runtest_logreport(self, report):
         if report.when == "call":
@@ -64,16 +66,21 @@ class PytestPluginCollector:
                 self.passed += 1
             elif report.failed:
                 self.failed += 1
+            elif report.skipped:
+                self.skipped += 1
+        elif report.when in ["setup", "teardown"] and report.failed:
+            self.failed += 1
 
-def run_release_certification():
-    project_root = Path(__file__).resolve().parent.parent
+def run_release_certification(project_root: Optional[Path] = None, custom_gates: Optional[List] = None) -> Dict[str, Any]:
+    if project_root is None:
+        project_root = Path(__file__).resolve().parent.parent
     os.chdir(project_root)
 
-    # Ensure PYTHONPATH includes project root
     if str(project_root) not in sys.path:
         sys.path.insert(0, str(project_root))
 
     commit_sha = get_git_commit_sha(project_root)
+    gates_to_run = custom_gates if custom_gates is not None else RELEASE_GATES
 
     print("================================================================================")
     print("      ASTROVISION VERSION 6.0.0 RELEASE CERTIFICATION SYSTEM RUNNER             ")
@@ -84,58 +91,71 @@ def run_release_certification():
     all_passed = True
     total_tests_executed = 0
 
-    # Gate 1: DE440s Kernel Verification
-    de440s_path = project_root / "apps" / "api" / "engines" / "astronomy" / "de440s.bsp"
-    kernel_hash = ""
-    if de440s_path.exists() and de440s_path.stat().st_size > 30000000:
-        with open(de440s_path, "rb") as f:
-            kernel_hash = hashlib.sha256(f.read()).hexdigest()
+    # Handle G01_DE440S_HASH if present in gates_to_run
+    g1_tuple = next((g for g in gates_to_run if g[0] == "G01_DE440S_HASH"), None)
+    if g1_tuple:
+        de440s_path = project_root / "apps" / "api" / "engines" / "astronomy" / "de440s.bsp"
+        kernel_hash = ""
+        if de440s_path.exists() and de440s_path.stat().st_size > 30000000:
+            with open(de440s_path, "rb") as f:
+                kernel_hash = hashlib.sha256(f.read()).hexdigest()
 
-        if kernel_hash == EXPECTED_DE440S_SHA256:
-            gate_results.append({
-                "gate_id": "G01_DE440S_HASH",
-                "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
-                "status": "PASS",
-                "tests_run": 1,
-                "details": f"DE440s kernel verified ({de440s_path.stat().st_size:,} bytes, SHA-256: {kernel_hash[:16]}...)"
-            })
-            total_tests_executed += 1
+            if kernel_hash == EXPECTED_DE440S_SHA256:
+                gate_results.append({
+                    "gate_id": "G01_DE440S_HASH",
+                    "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
+                    "status": "PASS",
+                    "tests_run": 1,
+                    "details": f"DE440s kernel verified ({de440s_path.stat().st_size:,} bytes, SHA-256: {kernel_hash[:16]}...)"
+                })
+                total_tests_executed += 1
+            else:
+                all_passed = False
+                gate_results.append({
+                    "gate_id": "G01_DE440S_HASH",
+                    "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
+                    "status": "FAIL",
+                    "tests_run": 1,
+                    "details": f"Checksum mismatch: got {kernel_hash}, expected {EXPECTED_DE440S_SHA256}"
+                })
         else:
             all_passed = False
             gate_results.append({
                 "gate_id": "G01_DE440S_HASH",
                 "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
                 "status": "FAIL",
-                "tests_run": 1,
-                "details": f"Checksum mismatch: got {kernel_hash}, expected {EXPECTED_DE440S_SHA256}"
+                "tests_run": 0,
+                "details": f"DE440s kernel missing or invalid at {de440s_path}"
             })
-    else:
-        all_passed = False
-        gate_results.append({
-            "gate_id": "G01_DE440S_HASH",
-            "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
-            "status": "FAIL",
-            "tests_run": 0,
-            "details": f"DE440s kernel missing or invalid at {de440s_path}"
-        })
 
-    # Gates 2 through 26: Programmatic Pytest execution
-    for gate_id, title, test_files in RELEASE_GATES[1:]:
+    # Remaining Gates: Programmatic Pytest execution
+    pytest_gates = [g for g in gates_to_run if g[0] != "G01_DE440S_HASH"]
+    for gate_id, title, test_files in pytest_gates:
         file_list = test_files if isinstance(test_files, list) else [test_files]
         collector = PytestPluginCollector()
         gate_failed = False
+        last_exit_code = 0
 
         for tf in file_list:
             rel_path = project_root / tf
             if not rel_path.exists():
                 gate_failed = True
+                last_exit_code = 1
                 continue
 
-            exit_code = pytest.main([str(rel_path), "-q"], plugins=[collector])
-            if exit_code != 0:
+            try:
+                exit_code = pytest.main([str(rel_path), "-q"], plugins=[collector])
+                if exit_code != 0:
+                    gate_failed = True
+                    last_exit_code = exit_code
+            except Exception as exc:
                 gate_failed = True
+                last_exit_code = 2
 
         tests_run = collector.passed + collector.failed
+        if collector.skipped > 0:
+            gate_failed = True
+
         if tests_run == 0 or gate_failed:
             all_passed = False
             gate_results.append({
@@ -143,7 +163,7 @@ def run_release_certification():
                 "gate_title": title,
                 "status": "FAIL",
                 "tests_run": tests_run,
-                "details": f"Pytest failed (Exit code {exit_code}, {collector.failed} failed tests)"
+                "details": f"Pytest failed (Exit code {last_exit_code}, {collector.failed} failed, {collector.skipped} skipped)"
             })
         else:
             gate_results.append({
@@ -200,22 +220,25 @@ def run_release_certification():
     ]
 
     for g in gate_results:
-        md_lines.append(f"| `{g['gate_id']}` | {g['gate_title']} | **{g['status']}** | {g['tests_run']} | {g['details']} |")
+        status_str = f"**{g['status']}**"
+        md_lines.append(f"| `{g['gate_id']}` | {g['gate_title']} | {status_str} | {g['tests_run']} | {g['details']} |")
 
-    md_content = "\n".join(md_lines)
+    md_text = "\n".join(md_lines) + "\n"
+
     with open(report_md_path, "w", encoding="utf-8") as f:
-        f.write(md_content)
+        f.write(md_text)
 
     with open(report_copy_path, "w", encoding="utf-8") as f:
-        f.write(md_content)
+        f.write(md_text)
 
     print(f"\nJSON Release Certificate saved to {cert_json_path}")
     print(f"Markdown Certification Report saved to {report_md_path} and {report_copy_path}")
     print(f"Verdict: {cert_data['verdict']}")
     print("================================================================================")
 
-    if not all_passed:
-        sys.exit(1)
+    return cert_data
 
 if __name__ == "__main__":
-    run_release_certification()
+    res = run_release_certification()
+    if res["verdict"] != "PASS - PRODUCTION READY":
+        sys.exit(1)
