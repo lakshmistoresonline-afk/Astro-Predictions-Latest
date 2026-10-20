@@ -31,7 +31,7 @@ RELEASE_GATES = [
     ("G13_TRANSITS", "Geocentric Planetary Transits & Aspect Contacts", "apps/api/tests/test_release_gate_g13_transits.py"),
     ("G14_PANCHANGA", "Panchanga Elements & Local Solar Day Timing", "apps/api/tests/test_release_gate_g14_panchanga.py"),
     ("G15_MUHURTA", "Activity Suitability & Rule Precedence", "apps/api/tests/test_release_gate_g15_muhurta.py"),
-    ("G16_PREDICTIVE_TIMING", "Convergent Domain Timing Windows", "apps/api/tests/test_release_gate_g16_predictive_timing.py"),
+    ("G16_PREDICTIVE_TIMING", "Convergent Domain Timing Windows", ["apps/api/tests/test_prediction_evidence.py", "apps/api/tests/test_api_contract.py"]),
     ("G17_RECTIFICATION", "Event-Date Driven Birth Time Rectification", "apps/api/tests/test_timezone_historical.py"),
     ("G18_COMPATIBILITY", "Vedic Ashtakoota 36-Point Compatibility", "apps/api/tests/test_compatibility_engine.py"),
     ("G19_PREDICTION_EVIDENCE", "14 Domain Prediction Evidence Synthesis", "apps/api/tests/test_prediction_evidence.py"),
