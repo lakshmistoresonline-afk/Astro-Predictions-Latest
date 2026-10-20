@@ -1,9 +1,9 @@
 # Astrovision Production Readiness & Full-Stack Audit Report
 
 - **Repository**: `D:\Astro-Predictions-Latest`
-- **Application Code Baseline SHA**: `28f11eb43db0dabe06b3cd3b7bdda8982d39c07c`
-- **Published Artifact Commit SHA**: `28f11eb43db0dabe06b3cd3b7bdda8982d39c07c`
-- **Audit Timestamp**: `2026-10-17T06:30:00+00:00`
+- **Application Code Baseline SHA**: `598c782d172fe650573ab4a91ea8e274ce6d6ea8`
+- **Published Artifact Commit SHA**: `598c782d172fe650573ab4a91ea8e274ce6d6ea8`
+- **Audit Timestamp**: `2026-10-20T06:30:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
 ---
@@ -47,11 +47,11 @@
 | **Batch 8** | `test_ephemeris_accuracy.py` (1), `test_engines.py` (2), `test_yoga_independent_oracle.py` (17) | **20** | `0` | 13.40s | **100% PASS** |
 | **Batch 9** | `test_release_gate_g12_jaimini.py` (1), `test_release_gate_g13_transits.py` (1), `test_release_gate_g14_panchanga.py` (1), `test_release_gate_g15_muhurta.py` (1), `test_release_gate_g16_predictive_timing.py` (1) | **5** | `0` | 280.20s | **100% PASS** |
 | **Batch 10** | `test_release_certification_runner.py` (7 Automated Negative-Path & Control Runner Tests) | **7** | `0` | 20.00s | **100% PASS** |
-| **Total Scope** | **Complete Repository Test Scope ($202 \text{ Non-Oracle API} + 65 \text{ Oracles} + 1 \text{ Script}$)** | **268** | `0` | — | **268 / 268 PASSED (100% GREEN)** |
+| **Total Scope** | **Complete Repository Test Scope ($65 + 33 + 28 + 21 + 39 + 54 + 1 + 1 + 20 + 5 + 7 = 274$)** | **274** | `0` | — | **274 / 274 PASSED (100% GREEN)** |
 
 ---
 
-## 3. Verified Golden Reference Dasha Recalculation
+## 3. Verified Golden Reference Dasha & Time-Scale Recalculation
 
 For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548° E):
 - **Local Time**: 16:30:00 IST (UTC+05:30) $\rightarrow$ **11:00:00 UTC** on 28 Sep 1986.
@@ -71,8 +71,8 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 
 ## 4. Commit SHA Semantics & History Definitions
 
-- **`application_code_baseline` (`28f11eb43db0dabe06b3cd3b7bdda8982d39c07c`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`published_artifact_commit_sha` (`28f11eb43db0dabe06b3cd3b7bdda8982d39c07c`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
+- **`application_code_baseline` (`598c782d172fe650573ab4a91ea8e274ce6d6ea8`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
+- **`published_artifact_commit_sha` (`598c782d172fe650573ab4a91ea8e274ce6d6ea8`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
 
 ---
 
@@ -82,4 +82,4 @@ The Astrovision repository is **IMPLEMENTED, TESTED, AND PRODUCTION READY**.
 - **Tracked Inventory Document**: [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md)
 - **Release Certification**: 26 / 26 Gates Passed (**100% GREEN**).
 - **Web Production Build**: Next.js 14 Build Clean (0 compilation errors).
-- **Git Synchronization**: Local `main` equal to remote `origin/main` (`28f11eb43db0dabe06b3cd3b7bdda8982d39c07c`) with clean working tree.
+- **Git Synchronization**: Local `main` equal to remote `origin/main` (`598c782d172fe650573ab4a91ea8e274ce6d6ea8`) with clean working tree.
