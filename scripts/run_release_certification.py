@@ -54,6 +54,15 @@ def get_git_commit_sha(root: Path) -> str:
         pass
     return "unknown_commit"
 
+def is_git_working_tree_clean(root: Path) -> bool:
+    try:
+        res = subprocess.run(["git", "status", "--porcelain=v1"], cwd=root, capture_output=True, text=True)
+        if res.returncode == 0:
+            return len(res.stdout.strip()) == 0
+    except Exception:
+        pass
+    return False
+
 class PytestPluginCollector:
     def __init__(self):
         self.passed = 0
@@ -84,7 +93,8 @@ class PytestPluginCollector:
 def run_release_certification(
     project_root: Optional[Path] = None,
     custom_gates: Optional[List] = None,
-    output_dir: Optional[Path] = None
+    output_dir: Optional[Path] = None,
+    allow_dirty_tree: bool = False
 ) -> Dict[str, Any]:
     if project_root is None:
         project_root = Path(__file__).resolve().parent.parent
@@ -94,12 +104,18 @@ def run_release_certification(
         sys.path.insert(0, str(project_root))
 
     commit_sha = get_git_commit_sha(project_root)
-    is_custom_run = custom_gates is not None
+    clean_tree = is_git_working_tree_clean(project_root)
+
+    canonical_ids = [g[0] for g in RELEASE_GATES]
     gates_to_run = custom_gates if custom_gates is not None else RELEASE_GATES
+    evaluated_ids = [g[0] for g in gates_to_run]
+
+    is_custom_run = (custom_gates is not None) or (evaluated_ids != canonical_ids)
 
     print("================================================================================")
     print("      ASTROVISION VERSION 6.0.0 RELEASE CERTIFICATION SYSTEM RUNNER             ")
     print(f"      Commit SHA: {commit_sha}")
+    print(f"      Working Tree Clean: {clean_tree}")
     print("================================================================================")
 
     gate_results = []
@@ -191,12 +207,11 @@ def run_release_certification(
         total_tests_executed += tests_run
 
     # Determine Verdict
-    is_production_run = (not is_custom_run) and len(gate_results) == len(RELEASE_GATES)
-    if all_passed:
-        if is_production_run:
-            verdict = "PASS - PRODUCTION READY"
-        else:
-            verdict = "PASS - CUSTOM RUN"
+    is_production_run = (not is_custom_run) and (len(gate_results) == len(RELEASE_GATES))
+    if all_passed and is_production_run and (clean_tree or allow_dirty_tree):
+        verdict = "PASS - PRODUCTION READY"
+    elif all_passed:
+        verdict = "PASS - CUSTOM RUN"
     else:
         verdict = "FAIL - GATE FAILURE"
 
@@ -216,6 +231,7 @@ def run_release_certification(
     cert_data = {
         "release_version": "6.0.0",
         "commit_sha": commit_sha,
+        "working_tree_clean": clean_tree,
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "verdict": verdict,
         "total_gates_evaluated": len(gate_results),
@@ -238,6 +254,7 @@ def run_release_certification(
     md_lines = [
         "# Astrovision Version 6.0.0 Release Certification Report\n",
         f"- **Commit SHA**: `{commit_sha}`",
+        f"- **Working Tree Clean**: `{clean_tree}`",
         f"- **Timestamp**: `{cert_data['timestamp_utc']}`",
         f"- **Overall Certification Verdict**: **{cert_data['verdict']}**",
         f"- **Total Executed Tests**: `{total_tests_executed}`",

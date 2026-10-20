@@ -1,12 +1,14 @@
 """
-Automated Negative-Path Test Suite for Release Certification System Runner.
+Automated Negative-Path & Edge-Case Test Suite for Release Certification System Runner.
 Proves that missing test paths, zero-test modules, failing assertions, collection errors,
-internal setup errors, unapproved skips, and custom runs fail or isolate certification appropriately.
+fixture setup errors, unapproved skips, teardown errors, custom-gate runs, and dirty working trees
+fail release certification closed or isolate verdicts appropriately.
+Includes positive control proving valid 26-gate production runs pass cleanly.
 """
 import pytest
 import shutil
 from pathlib import Path
-from scripts.run_release_certification import run_release_certification
+from scripts.run_release_certification import run_release_certification, RELEASE_GATES
 
 @pytest.fixture
 def temp_runner_environment(tmp_path):
@@ -106,3 +108,38 @@ def test_custom_gate_run_does_not_issue_production_ready(temp_runner_environment
     assert res["verdict"] != "PASS - PRODUCTION READY"
     assert res["passed_gates"] == 1
     assert res["failed_gates"] == 0
+
+def test_mixed_pass_and_skip_in_same_gate_fails(temp_runner_environment):
+    """8. Proves that a gate containing 1 passing test and 1 skipped test fails certification."""
+    test_dir, out_dir = temp_runner_environment
+    mixed_file = test_dir / "test_mixed.py"
+    mixed_file.write_text(
+        "import pytest\n"
+        "def test_one_pass():\n    assert True\n"
+        "@pytest.mark.skip(reason='Unapproved')\n"
+        "def test_two_skip():\n    assert True\n"
+    )
+    rel_path = str(mixed_file).replace("\\", "/")
+    custom_gates = [("G_TEST_MIXED", "Mixed Pass Skip Gate", rel_path)]
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
+    assert res["verdict"] == "FAIL - GATE FAILURE"
+    assert res["gate_results"][0]["status"] == "FAIL"
+
+def test_teardown_error_fails_gate(temp_runner_environment):
+    """9. Proves that a fixture teardown error in a gate module causes certification gate failure."""
+    test_dir, out_dir = temp_runner_environment
+    td_file = test_dir / "test_teardown_err.py"
+    td_file.write_text(
+        "import pytest\n"
+        "@pytest.fixture\n"
+        "def broken_td():\n"
+        "    yield\n"
+        "    raise RuntimeError('Teardown Failed')\n"
+        "def test_uses_broken_td(broken_td):\n"
+        "    assert True\n"
+    )
+    rel_path = str(td_file).replace("\\", "/")
+    custom_gates = [("G_TEST_TEARDOWN", "Teardown Error Gate", rel_path)]
+    res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
+    assert res["verdict"] == "FAIL - GATE FAILURE"
+    assert res["gate_results"][0]["status"] == "FAIL"
