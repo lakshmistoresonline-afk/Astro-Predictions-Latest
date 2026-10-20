@@ -3,7 +3,6 @@ Automated Negative-Path & Edge-Case Test Suite for Release Certification System 
 Proves that missing test paths, zero-test modules, failing assertions, collection errors,
 fixture setup errors, unapproved skips, teardown errors, custom-gate runs, and dirty working trees
 fail release certification closed or isolate verdicts appropriately.
-Includes positive control proving valid 26-gate production runs pass cleanly.
 """
 import pytest
 import shutil
@@ -154,3 +153,25 @@ def test_output_dir_isolation_does_not_overwrite_real_artifacts(temp_runner_envi
     res = run_release_certification(custom_gates=custom_gates, output_dir=out_dir)
     assert (out_dir / "reports" / "release_certificate.json").exists()
     assert (out_dir / "docs" / "RELEASE_CERTIFICATION.md").exists()
+
+def test_missing_canonical_gate_id_prevents_production_ready_verdict(temp_runner_environment):
+    """11. Proves that missing any canonical gate ID prevents PASS - PRODUCTION READY verdict."""
+    test_dir, out_dir = temp_runner_environment
+    valid_file = test_dir / "test_valid2.py"
+    valid_file.write_text("def test_pass():\n    assert True\n")
+    rel_path = str(valid_file).replace("\\", "/")
+    subset_gates = [("G01_DE440S_HASH", "Checksum", "de440s.bsp"), ("G02_ASTRONOMY", "Astronomy", rel_path)]
+    res = run_release_certification(custom_gates=subset_gates, output_dir=out_dir)
+    assert res["verdict"] == "PASS - CUSTOM RUN"
+    assert res["verdict"] != "PASS - PRODUCTION READY"
+
+def test_duplicate_canonical_gate_id_prevents_production_ready_verdict(temp_runner_environment):
+    """12. Proves that duplicating a canonical gate ID prevents PASS - PRODUCTION READY verdict."""
+    test_dir, out_dir = temp_runner_environment
+    valid_file = test_dir / "test_valid3.py"
+    valid_file.write_text("def test_pass():\n    assert True\n")
+    rel_path = str(valid_file).replace("\\", "/")
+    dup_gates = [("G02_ASTRONOMY", "Astronomy 1", rel_path), ("G02_ASTRONOMY", "Astronomy 2", rel_path)]
+    res = run_release_certification(custom_gates=dup_gates, output_dir=out_dir)
+    assert res["verdict"] == "PASS - CUSTOM RUN"
+    assert res["verdict"] != "PASS - PRODUCTION READY"
