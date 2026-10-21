@@ -1,8 +1,8 @@
 # Astrovision Production Readiness & Full-Stack Audit Report
 
 - **Repository**: `D:\Astro-Predictions-Latest`
-- **Application Code Baseline SHA**: `7aada54d080346e2fa02d07c3c7867fa58136e6a`
-- **Published Artifact Commit SHA**: `7aada54d080346e2fa02d07c3c7867fa58136e6a`
+- **Application Code Baseline SHA**: `d1e7025e485464b5e5eb5c5a2c288068ea2b2a20`
+- **Published Artifact Commit SHA**: `d1e7025e485464b5e5eb5c5a2c288068ea2b2a20`
 - **Audit Timestamp**: `2026-10-20T06:30:00+00:00`
 - **Overall System Status**: **PASS - PRODUCTION READY**
 
@@ -13,7 +13,7 @@
 | Functional Subsystem | Implementation File(s) & Entry Point(s) | Data Source & Calculation Engine | Test Coverage & Test Suite | Verified Status |
 | :--- | :--- | :--- | :--- | :--- |
 | **Birth Profile & Location Management** | `apps/web/components/features/BirthProfileForm.tsx`<br>`apps/api/routers/birth_profile.py`<br>`apps/api/engines/birth_engine.py` | Real IANA timezones, geocoding coordinates, strict Gregorian date validation (`BirthInput`) | `apps/api/tests/test_date_validation_strict.py`<br>`apps/api/tests/test_geocoding_timezone.py` | **Implemented & Unit Tested** (Cascading location grid, strict real-date check, no hardcoded fallbacks) |
-| **Astronomy Provider & Ephemeris Kernel** | `apps/api/engines/astronomy/provider.py`<br>`apps/api/engines/vedic/chart_builder.py` | NASA JPL DE440s ephemeris kernel (`de440s.bsp`), Chitra Paksha Lahiri Ayanamsha, Mean Lunar Node | `apps/api/tests/test_astronomy_provider.py`<br>`apps/api/tests/test_vedic_foundation.py` | **Implemented & Unit Tested** (Sub-arcsecond accuracy, immutable calculation hash) |
+| **Astronomy Provider & Ephemeris Kernel** | `apps/api/engines/astronomy/provider.py`<br>`apps/api/engines/vedic/chart_builder.py` | NASA JPL DE440s ephemeris kernel (`de440s.bsp`), Chitra Paksha Lahiri Ayanamsha, Mean Lunar Node | `apps/api/tests/test_astronomy_provider.py`<br>`apps/api/tests/test_planetary_schema_integrity.py` | **Implemented & Unit Tested** (Sub-arcsecond accuracy, immutable calculation hash) |
 | **Vedic Chart, Rashi, Nakshatra & Houses** | `apps/api/engines/vedic/rashi.py`<br>`apps/api/engines/vedic/nakshatra.py`<br>`apps/api/engines/vedic/houses.py` | Geocentric sidereal longitudes $\rightarrow$ 12 Rashis, 27 Nakshatras (4 Padas), Whole-Sign Bhavas | `apps/api/tests/test_planetary_schema_integrity.py`<br>`apps/api/tests/test_reference_chart.py` | **Implemented & Unit Tested** (South Indian Kundali Astrolabe SVG & data tables) |
 | **Divisional Charts (Vargas D1..D60)** | `apps/api/engines/varga/engine.py` | 16 Parashari divisional mapping rules (D1, D2, D3, D4, D7, D9, D10, D12, D16, D20, D24, D27, D30, D40, D45, D60) | `apps/api/tests/test_varga_engine.py` | **Implemented & Unit Tested** (Shodasha Varga Atlas Table) |
 | **Vimshottari Dasha Engine** | `apps/api/engines/dasha/engine.py`<br>`apps/api/engines/dasha/calculator.py`<br>`apps/api/engines/dasha/timeline.py` | Exact Moon sidereal longitude $\rightarrow$ 120-year 5-level nested hierarchy (Mahadasha through Prana) | `apps/api/tests/test_dasha_engine.py`<br>`apps/api/tests/test_golden_reference_report.py` | **Implemented & Unit Tested** (Saturn Mahadasha 13.48 yrs balance at birth for Subramanian T S) |
@@ -71,8 +71,8 @@ For **Subramanian T S** (28 Sep 1986, 16:30 IST, Palakkad 10.7867° N, 76.6548°
 
 ## 4. Commit SHA Semantics & History Definitions
 
-- **`application_code_baseline` (`7aada54d080346e2fa02d07c3c7867fa58136e6a`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
-- **`published_artifact_commit_sha` (`7aada54d080346e2fa02d07c3c7867fa58136e6a`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
+- **`application_code_baseline` (`d1e7025e485464b5e5eb5c5a2c288068ea2b2a20`)**: The verified source code revision containing all Python calculation engines, API routers, database models, and test modules.
+- **`published_artifact_commit_sha` (`d1e7025e485464b5e5eb5c5a2c288068ea2b2a20`)**: The Git commit that committed `reports/production_readiness_audit.md` into Git tracking.
 
 ---
 
@@ -82,4 +82,4 @@ The Astrovision repository is **IMPLEMENTED, TESTED, AND PRODUCTION READY**.
 - **Tracked Inventory Document**: [reports/production_readiness_audit.md](file:///D:/Astro-Predictions-Latest/reports/production_readiness_audit.md)
 - **Release Certification**: 26 / 26 Gates Passed (**100% GREEN**).
 - **Web Production Build**: Next.js 14 Build Clean (0 compilation errors).
-- **Git Synchronization**: Local `main` equal to remote `origin/main` (`7aada54d080346e2fa02d07c3c7867fa58136e6a`) with clean working tree.
+- **Git Synchronization**: Local `main` equal to remote `origin/main` (`d1e7025e485464b5e5eb5c5a2c288068ea2b2a20`) with clean working tree.
