@@ -108,16 +108,35 @@ def run_release_certification(
     canonical_ids = [g[0] for g in RELEASE_GATES]
     gates_to_run = custom_gates if custom_gates is not None else RELEASE_GATES
 
-    # Input validation on gates_to_run
+    # Strict input validation on custom_gates
     is_custom_run = custom_gates is not None
     is_malformed = False
+    malformed_reason = ""
+
     if is_custom_run:
-        if not isinstance(custom_gates, list):
+        if not isinstance(custom_gates, list) or len(custom_gates) == 0:
             is_malformed = True
+            malformed_reason = "Custom gates list is empty or not a list."
         else:
+            seen_ids = set()
             for g in custom_gates:
                 if not (isinstance(g, tuple) or isinstance(g, list)) or len(g) != 3:
                     is_malformed = True
+                    malformed_reason = f"Gate definition {g} is not a 3-tuple."
+                    break
+                g_id, g_title, g_paths = g
+                if not isinstance(g_id, str) or not g_id.strip():
+                    is_malformed = True
+                    malformed_reason = f"Gate ID in {g} is blank or invalid."
+                    break
+                if g_id in seen_ids:
+                    is_malformed = True
+                    malformed_reason = f"Duplicate gate ID '{g_id}' detected."
+                    break
+                seen_ids.add(g_id)
+                if not isinstance(g_title, str) or not g_title.strip():
+                    is_malformed = True
+                    malformed_reason = f"Gate title in {g} is blank or invalid."
                     break
 
     evaluated_ids = [g[0] for g in gates_to_run] if not is_malformed else []
@@ -141,7 +160,7 @@ def run_release_certification(
             "gate_title": "Custom Gate Definition Validation",
             "status": "FAIL",
             "tests_run": 0,
-            "details": "Custom gates argument is malformed or invalid."
+            "details": f"Validation failed: {malformed_reason}"
         })
 
     # Pre-flight check for production runs

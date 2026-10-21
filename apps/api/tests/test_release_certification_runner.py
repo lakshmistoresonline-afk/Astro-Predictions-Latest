@@ -163,32 +163,33 @@ def test_missing_canonical_gate_id_prevents_production_ready_verdict(temp_runner
     res = run_release_certification(custom_gates=subset_gates, output_dir=out_dir)
     assert res["verdict"] == "PASS - CUSTOM RUN"
 
-def test_duplicate_canonical_gate_id_prevents_production_ready_verdict(temp_runner_environment):
-    """12. Proves that duplicating a canonical gate ID prevents PASS - PRODUCTION READY verdict."""
+def test_duplicate_canonical_gate_id_fails_closed(temp_runner_environment):
+    """12. Proves that duplicating a gate ID in custom_gates fails certification closed."""
     test_dir, out_dir = temp_runner_environment
     valid_file = test_dir / "test_valid3.py"
     valid_file.write_text("def test_pass():\n    assert True\n")
     rel_path = str(valid_file).replace("\\", "/")
     dup_gates = [("G02_ASTRONOMY", "Astronomy 1", rel_path), ("G02_ASTRONOMY", "Astronomy 2", rel_path)]
     res = run_release_certification(custom_gates=dup_gates, output_dir=out_dir)
-    assert res["verdict"] == "PASS - CUSTOM RUN"
+    assert res["verdict"] == "FAIL - GATE FAILURE"
+
+def test_empty_custom_gates_fails_closed(temp_runner_environment):
+    """13. Proves that an empty custom gates list fails certification closed."""
+    test_dir, out_dir = temp_runner_environment
+    res = run_release_certification(custom_gates=[], output_dir=out_dir)
+    assert res["verdict"] == "FAIL - GATE FAILURE"
 
 def test_malformed_gate_tuple_fails_closed(temp_runner_environment):
-    """13. Proves that a malformed gate definition tuple fails certification closed."""
+    """14. Proves that a malformed gate definition tuple fails certification closed."""
     test_dir, out_dir = temp_runner_environment
     malformed_gates = [("G_MALFORMED", "Missing Path Spec")] # tuple of length 2 instead of 3
     res = run_release_certification(custom_gates=malformed_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
 
 def test_dirty_working_tree_prevents_production_ready_verdict(temp_runner_environment):
-    """14. Proves that a dirty working tree in a production certification attempt fails closed with FAIL - GATE FAILURE."""
+    """15. Proves that a dirty working tree in a production certification attempt fails closed with FAIL - GATE FAILURE."""
     test_dir, out_dir = temp_runner_environment
-    # In a production run (custom_gates=None), if is_git_working_tree_clean returns False, preflight check fails
     with patch("scripts.run_release_certification.is_git_working_tree_clean", return_value=False):
-        # Pass fast test files to avoid running slow real gates
-        fast_gates = list(RELEASE_GATES)
-        # Create dummy pass files for fast gates in runner test context
-        with patch("pytest.main", return_value=0):
-            res = run_release_certification(output_dir=out_dir)
-            assert res["verdict"] == "FAIL - GATE FAILURE"
-            assert any(g["gate_id"] == "G00_PREFLIGHT_GIT_CLEAN" for g in res["gate_results"])
+        res = run_release_certification(output_dir=out_dir)
+        assert res["verdict"] == "FAIL - GATE FAILURE"
+        assert any(g["gate_id"] == "G00_PREFLIGHT_GIT_CLEAN" for g in res["gate_results"])
