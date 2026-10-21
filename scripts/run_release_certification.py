@@ -93,8 +93,7 @@ class PytestPluginCollector:
 def run_release_certification(
     project_root: Optional[Path] = None,
     custom_gates: Optional[List] = None,
-    output_dir: Optional[Path] = None,
-    allow_dirty_tree: bool = False
+    output_dir: Optional[Path] = None
 ) -> Dict[str, Any]:
     if project_root is None:
         project_root = Path(__file__).resolve().parent.parent
@@ -108,9 +107,22 @@ def run_release_certification(
 
     canonical_ids = [g[0] for g in RELEASE_GATES]
     gates_to_run = custom_gates if custom_gates is not None else RELEASE_GATES
-    evaluated_ids = [g[0] for g in gates_to_run]
 
-    is_custom_run = (custom_gates is not None) or (evaluated_ids != canonical_ids)
+    # Input validation on gates_to_run
+    is_custom_run = custom_gates is not None
+    is_malformed = False
+    if is_custom_run:
+        if not isinstance(custom_gates, list):
+            is_malformed = True
+        else:
+            for g in custom_gates:
+                if not (isinstance(g, tuple) or isinstance(g, list)) or len(g) != 3:
+                    is_malformed = True
+                    break
+
+    evaluated_ids = [g[0] for g in gates_to_run] if not is_malformed else []
+    if evaluated_ids != canonical_ids:
+        is_custom_run = True
 
     print("================================================================================")
     print("      ASTROVISION VERSION 6.0.0 RELEASE CERTIFICATION SYSTEM RUNNER             ")
@@ -122,95 +134,117 @@ def run_release_certification(
     all_passed = True
     total_tests_executed = 0
 
-    # Handle G01_DE440S_HASH if present in gates_to_run
-    g1_tuple = next((g for g in gates_to_run if g[0] == "G01_DE440S_HASH"), None)
-    if g1_tuple:
-        de440s_path = project_root / "apps" / "api" / "engines" / "astronomy" / "de440s.bsp"
-        kernel_hash = ""
-        if de440s_path.exists() and de440s_path.stat().st_size > 30000000:
-            with open(de440s_path, "rb") as f:
-                kernel_hash = hashlib.sha256(f.read()).hexdigest()
+    if is_malformed:
+        all_passed = False
+        gate_results.append({
+            "gate_id": "G_MALFORMED_GATES",
+            "gate_title": "Custom Gate Definition Validation",
+            "status": "FAIL",
+            "tests_run": 0,
+            "details": "Custom gates argument is malformed or invalid."
+        })
 
-            if kernel_hash == EXPECTED_DE440S_SHA256:
-                gate_results.append({
-                    "gate_id": "G01_DE440S_HASH",
-                    "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
-                    "status": "PASS",
-                    "tests_run": 1,
-                    "details": f"DE440s kernel verified ({de440s_path.stat().st_size:,} bytes, SHA-256: {kernel_hash[:16]}...)"
-                })
-                total_tests_executed += 1
+    # Pre-flight check for production runs
+    if not is_custom_run and (not clean_tree or commit_sha == "unknown_commit"):
+        all_passed = False
+        gate_results.append({
+            "gate_id": "G00_PREFLIGHT_GIT_CLEAN",
+            "gate_title": "Git Working Tree Clean Preflight Check",
+            "status": "FAIL",
+            "tests_run": 0,
+            "details": f"Production certification requires clean working tree and valid commit SHA. (clean={clean_tree}, sha={commit_sha})"
+        })
+
+    # Handle G01_DE440S_HASH if present in gates_to_run
+    if not is_malformed:
+        g1_tuple = next((g for g in gates_to_run if g[0] == "G01_DE440S_HASH"), None)
+        if g1_tuple:
+            de440s_path = project_root / "apps" / "api" / "engines" / "astronomy" / "de440s.bsp"
+            kernel_hash = ""
+            if de440s_path.exists() and de440s_path.stat().st_size > 30000000:
+                with open(de440s_path, "rb") as f:
+                    kernel_hash = hashlib.sha256(f.read()).hexdigest()
+
+                if kernel_hash == EXPECTED_DE440S_SHA256:
+                    gate_results.append({
+                        "gate_id": "G01_DE440S_HASH",
+                        "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
+                        "status": "PASS",
+                        "tests_run": 1,
+                        "details": f"DE440s kernel verified ({de440s_path.stat().st_size:,} bytes, SHA-256: {kernel_hash[:16]}...)"
+                    })
+                    total_tests_executed += 1
+                else:
+                    all_passed = False
+                    gate_results.append({
+                        "gate_id": "G01_DE440S_HASH",
+                        "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
+                        "status": "FAIL",
+                        "tests_run": 1,
+                        "details": f"Checksum mismatch: got {kernel_hash}, expected {EXPECTED_DE440S_SHA256}"
+                    })
             else:
                 all_passed = False
                 gate_results.append({
                     "gate_id": "G01_DE440S_HASH",
                     "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
                     "status": "FAIL",
-                    "tests_run": 1,
-                    "details": f"Checksum mismatch: got {kernel_hash}, expected {EXPECTED_DE440S_SHA256}"
+                    "tests_run": 0,
+                    "details": f"DE440s kernel missing or invalid at {de440s_path}"
                 })
-        else:
-            all_passed = False
-            gate_results.append({
-                "gate_id": "G01_DE440S_HASH",
-                "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
-                "status": "FAIL",
-                "tests_run": 0,
-                "details": f"DE440s kernel missing or invalid at {de440s_path}"
-            })
 
-    # Remaining Gates: Programmatic Pytest execution
-    pytest_gates = [g for g in gates_to_run if g[0] != "G01_DE440S_HASH"]
-    for gate_id, title, test_files in pytest_gates:
-        file_list = test_files if isinstance(test_files, list) else [test_files]
-        collector = PytestPluginCollector()
-        gate_failed = False
-        last_exit_code = 0
+        # Remaining Gates: Programmatic Pytest execution
+        pytest_gates = [g for g in gates_to_run if g[0] != "G01_DE440S_HASH"]
+        for gate_id, title, test_files in pytest_gates:
+            file_list = test_files if isinstance(test_files, list) else [test_files]
+            collector = PytestPluginCollector()
+            gate_failed = False
+            last_exit_code = 0
 
-        for tf in file_list:
-            rel_path = project_root / tf
-            if not rel_path.exists():
-                gate_failed = True
-                last_exit_code = 1
-                continue
-
-            try:
-                exit_code = pytest.main([str(rel_path), "-q"], plugins=[collector])
-                if exit_code != 0:
+            for tf in file_list:
+                rel_path = project_root / tf
+                if not rel_path.exists():
                     gate_failed = True
-                    last_exit_code = exit_code
-            except Exception as exc:
+                    last_exit_code = 1
+                    continue
+
+                try:
+                    exit_code = pytest.main([str(rel_path), "-q"], plugins=[collector])
+                    if exit_code != 0:
+                        gate_failed = True
+                        last_exit_code = exit_code
+                except Exception as exc:
+                    gate_failed = True
+                    last_exit_code = 2
+
+            tests_run = collector.passed + collector.failed
+            if collector.skipped > 0 or collector.setup_errors > 0 or collector.teardown_errors > 0:
                 gate_failed = True
-                last_exit_code = 2
 
-        tests_run = collector.passed + collector.failed
-        if collector.skipped > 0 or collector.setup_errors > 0 or collector.teardown_errors > 0:
-            gate_failed = True
-
-        if tests_run == 0 or gate_failed:
-            all_passed = False
-            gate_results.append({
-                "gate_id": gate_id,
-                "gate_title": title,
-                "status": "FAIL",
-                "tests_run": tests_run,
-                "details": f"Pytest failed (Exit code {last_exit_code}, {collector.failed} failed, {collector.skipped} skipped)"
-            })
-        else:
-            gate_results.append({
-                "gate_id": gate_id,
-                "gate_title": title,
-                "status": "PASS",
-                "tests_run": tests_run,
-                "details": f"Pytest executed successfully ({collector.passed} tests passed)"
-            })
-        total_tests_executed += tests_run
+            if tests_run == 0 or gate_failed:
+                all_passed = False
+                gate_results.append({
+                    "gate_id": gate_id,
+                    "gate_title": title,
+                    "status": "FAIL",
+                    "tests_run": tests_run,
+                    "details": f"Pytest failed (Exit code {last_exit_code}, {collector.failed} failed, {collector.skipped} skipped)"
+                })
+            else:
+                gate_results.append({
+                    "gate_id": gate_id,
+                    "gate_title": title,
+                    "status": "PASS",
+                    "tests_run": tests_run,
+                    "details": f"Pytest executed successfully ({collector.passed} tests passed)"
+                })
+            total_tests_executed += tests_run
 
     # Determine Verdict
-    is_production_run = (not is_custom_run) and (len(gate_results) == len(RELEASE_GATES))
-    if all_passed and is_production_run and (clean_tree or allow_dirty_tree):
+    is_production_run = (not is_custom_run) and (evaluated_ids == canonical_ids)
+    if all_passed and is_production_run and clean_tree:
         verdict = "PASS - PRODUCTION READY"
-    elif all_passed:
+    elif all_passed and is_custom_run:
         verdict = "PASS - CUSTOM RUN"
     else:
         verdict = "FAIL - GATE FAILURE"
