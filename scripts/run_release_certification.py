@@ -163,7 +163,7 @@ def run_release_certification(
             "details": f"Validation failed: {malformed_reason}"
         })
 
-    # Pre-flight check for production runs
+    # Pre-flight check for production runs — SHORT-CIRCUIT if dirty working tree or invalid SHA
     if not is_custom_run and (not clean_tree or commit_sha == "unknown_commit"):
         all_passed = False
         gate_results.append({
@@ -174,8 +174,9 @@ def run_release_certification(
             "details": f"Production certification requires clean working tree and valid commit SHA. (clean={clean_tree}, sha={commit_sha})"
         })
 
-    # Handle G01_DE440S_HASH if present in gates_to_run
-    if not is_malformed:
+    # Execute gates only if pre-flight passed and not malformed
+    if not is_malformed and (is_custom_run or clean_tree):
+        # Handle G01_DE440S_HASH if present in gates_to_run
         g1_tuple = next((g for g in gates_to_run if g[0] == "G01_DE440S_HASH"), None)
         if g1_tuple:
             de440s_path = project_root / "apps" / "api" / "engines" / "astronomy" / "de440s.bsp"

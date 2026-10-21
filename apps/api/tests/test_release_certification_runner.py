@@ -186,11 +186,12 @@ def test_malformed_gate_tuple_fails_closed(temp_runner_environment):
     res = run_release_certification(custom_gates=malformed_gates, output_dir=out_dir)
     assert res["verdict"] == "FAIL - GATE FAILURE"
 
-def test_dirty_working_tree_prevents_production_ready_verdict(temp_runner_environment):
-    """15. Proves that a dirty working tree in a production certification attempt fails closed with FAIL - GATE FAILURE."""
+def test_dirty_working_tree_short_circuits_and_fails_closed(temp_runner_environment):
+    """15. Proves that a dirty working tree in a production certification attempt short-circuits preflight and fails closed without calling pytest.main."""
     test_dir, out_dir = temp_runner_environment
     with patch("scripts.run_release_certification.is_git_working_tree_clean", return_value=False):
-        with patch("pytest.main", return_value=0):
+        with patch("pytest.main") as mock_pytest:
             res = run_release_certification(output_dir=out_dir)
             assert res["verdict"] == "FAIL - GATE FAILURE"
             assert any(g["gate_id"] == "G00_PREFLIGHT_GIT_CLEAN" for g in res["gate_results"])
+            mock_pytest.assert_not_called()

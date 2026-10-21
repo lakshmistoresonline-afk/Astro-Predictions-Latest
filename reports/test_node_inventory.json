@@ -1,6 +1,6 @@
 {
   "repository": "Astrovision",
-  "generated_timestamp_utc": "2026-10-21T03:15:24.579689+00:00",
+  "generated_timestamp_utc": "2026-10-21T14:08:34.219534+00:00",
   "total_unique_node_ids": 282,
   "non_oracle_api_test_count": 216,
   "oracle_test_count": 65,
@@ -204,7 +204,7 @@
     "apps/api/tests/test_reference_chart.py::test_subramanian_ts_reference_chart",
     "apps/api/tests/test_release_certification_runner.py::test_collection_syntax_error_fails_gate",
     "apps/api/tests/test_release_certification_runner.py::test_custom_gate_run_does_not_issue_production_ready",
-    "apps/api/tests/test_release_certification_runner.py::test_dirty_working_tree_prevents_production_ready_verdict",
+    "apps/api/tests/test_release_certification_runner.py::test_dirty_working_tree_short_circuits_and_fails_closed",
     "apps/api/tests/test_release_certification_runner.py::test_duplicate_canonical_gate_id_fails_closed",
     "apps/api/tests/test_release_certification_runner.py::test_empty_custom_gates_fails_closed",
     "apps/api/tests/test_release_certification_runner.py::test_failing_assertion_fails_gate",
