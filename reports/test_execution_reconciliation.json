@@ -1,0 +1,1989 @@
+{
+  "repository": "Astrovision",
+  "timestamp_utc": "2026-10-22T14:22:34.248445+00:00",
+  "total_inventory_unique_node_ids": 282,
+  "total_executed_unique_node_ids": 282,
+  "summary": {
+    "passed": 282,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "reconciliation_verdict": "MATCH_100_PERCENT_PASSED"
+  },
+  "executed_nodes": {
+    "apps.api.tests.oracles.phase_2d_r4.test_independence.test_oracle_independence": {
+      "file": "",
+      "name": "test_oracle_independence",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.014
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_budha_aditya_oracle_positive": {
+      "file": "",
+      "name": "test_budha_aditya_oracle_positive",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.042
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_budha_aditya_oracle_negative_orb": {
+      "file": "",
+      "name": "test_budha_aditya_oracle_negative_orb",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_budha_aditya_oracle_indeterminate": {
+      "file": "",
+      "name": "test_budha_aditya_oracle_indeterminate",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_gaja_kesari_oracle_positive": {
+      "file": "",
+      "name": "test_gaja_kesari_oracle_positive",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_gaja_kesari_oracle_debilitation": {
+      "file": "",
+      "name": "test_gaja_kesari_oracle_debilitation",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_ruchaka_oracle_positive": {
+      "file": "",
+      "name": "test_ruchaka_oracle_positive",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_ruchaka_oracle_negative_house": {
+      "file": "",
+      "name": "test_ruchaka_oracle_negative_house",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_manglik_oracle_positive": {
+      "file": "",
+      "name": "test_manglik_oracle_positive",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.006
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_manglik_oracle_cancellation_exalt": {
+      "file": "",
+      "name": "test_manglik_oracle_cancellation_exalt",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.oracles.phase_2d_r4_1.test_independent_oracle.test_manglik_oracle_cancellation_aspect": {
+      "file": "",
+      "name": "test_manglik_oracle_cancellation_aspect",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.oracles.phase_2e_ashtakavarga.test_ashtakavarga_oracle.test_ashtakavarga_oracle_subramanian": {
+      "file": "",
+      "name": "test_ashtakavarga_oracle_subramanian",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 11.691
+    },
+    "apps.api.tests.oracles.phase_2e_ashtakavarga.test_ashtakavarga_oracle.test_ashtakavarga_oracle_boundary_crossing": {
+      "file": "",
+      "name": "test_ashtakavarga_oracle_boundary_crossing",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.oracles.phase_2e_ashtakavarga.test_independence_ashtakavarga.test_oracle_independence_ashtakavarga": {
+      "file": "",
+      "name": "test_oracle_independence_ashtakavarga",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.045
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_independence.test_r4_static_import_isolation": {
+      "file": "",
+      "name": "test_r4_static_import_isolation",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.082
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_independence.test_r4_runtime_zero_trust_isolation": {
+      "file": "",
+      "name": "test_r4_runtime_zero_trust_isolation",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.012
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_mutation.test_mutation_uccha_bala_boundary": {
+      "file": "",
+      "name": "test_mutation_uccha_bala_boundary",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 4.149
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_mutation.test_mutation_dig_bala_cardinal": {
+      "file": "",
+      "name": "test_mutation_dig_bala_cardinal",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 2.669
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_mutation.test_mutation_ashtakavarga_bav": {
+      "file": "",
+      "name": "test_mutation_ashtakavarga_bav",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.055
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_001]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_001]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.033
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_002]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_002]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.038
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_003]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_003]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.022
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_004]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_004]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.032
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_005]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_005]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.027
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_006]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_006]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.025
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_007]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_007]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.056
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_008]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_008]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.037
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_009]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_009]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.036
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_010]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_010]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.024
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_011]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_011]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.031
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_012]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_012]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.028
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_013]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_013]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.028
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_014]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_014]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.026
+    },
+    "apps.api.tests.oracles.phase_2e_r4.test_r4_oracle.test_three_way_validation_for_fixture[SHADBALA_FIXTURE_015]": {
+      "file": "",
+      "name": "test_three_way_validation_for_fixture[SHADBALA_FIXTURE_015]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.035
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_mutation.test_execute_and_verify_all_mutations": {
+      "file": "",
+      "name": "test_execute_and_verify_all_mutations",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.068
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_corruption_sensitivity.test_corrupted_expected_shadbala_causes_failure": {
+      "file": "",
+      "name": "test_corrupted_expected_shadbala_causes_failure",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.017
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_corruption_sensitivity.test_corrupted_sav_total_causes_failure": {
+      "file": "",
+      "name": "test_corrupted_sav_total_causes_failure",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_independence.test_r4_1_static_import_isolation": {
+      "file": "",
+      "name": "test_r4_1_static_import_isolation",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.159
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_independence.test_r4_1_runtime_zero_trust_isolation": {
+      "file": "",
+      "name": "test_r4_1_runtime_zero_trust_isolation",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.012
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_001]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_001]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.349
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_002]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_002]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.115
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_003]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_003]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.36
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_004]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_004]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 2.006
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_005]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_005]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.412
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_006]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_006]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.005
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_007]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_007]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.92
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_008]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_008]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.969
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_009]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_009]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.315
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_010]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_010]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.986
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_011]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_011]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.953
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_012]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_012]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.941
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_013]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_013]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.923
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_014]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_014]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 1.016
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_015]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_015]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.942
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_016]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_016]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.031
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_017]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_017]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.026
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_018]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_018]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.023
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_019]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_019]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.028
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_oracle.test_r4_1_three_way_validation[REF_020]": {
+      "file": "",
+      "name": "test_r4_1_three_way_validation[REF_020]",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.026
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_r4_1_production_unavailable.test_production_unavailable_mode": {
+      "file": "",
+      "name": "test_production_unavailable_mode",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.oracles.phase_2e_r4_1.test_reference_generation_never_uses_production.test_reference_generation_never_uses_production": {
+      "file": "",
+      "name": "test_reference_generation_never_uses_production",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.054
+    },
+    "apps.api.tests.oracles.phase_2e_shadbala.test_independence_shadbala.test_oracle_independence_shadbala": {
+      "file": "",
+      "name": "test_oracle_independence_shadbala",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.08
+    },
+    "apps.api.tests.oracles.phase_2e_shadbala.test_shadbala_oracle.test_shadbala_oracle_subramanian": {
+      "file": "",
+      "name": "test_shadbala_oracle_subramanian",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.9
+    },
+    "apps.api.tests.oracles.phase_2e_shadbala.test_shadbala_oracle.test_shadbala_oracle_exaltation_boundary": {
+      "file": "",
+      "name": "test_shadbala_oracle_exaltation_boundary",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.oracles.phase_2e_shadbala.test_shadbala_oracle.test_shadbala_oracle_dig_bala_boundary": {
+      "file": "",
+      "name": "test_shadbala_oracle_dig_bala_boundary",
+      "status": "PASSED",
+      "group": "Batch 1 (Oracles)",
+      "duration_seconds": 0.004
+    },
+    "apps.api.tests.test_astronomy_provider.test_provider_initialization_and_kernel_identity": {
+      "file": "",
+      "name": "test_provider_initialization_and_kernel_identity",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.822
+    },
+    "apps.api.tests.test_astronomy_provider.test_fail_closed_behavior_on_missing_kernel": {
+      "file": "",
+      "name": "test_fail_closed_behavior_on_missing_kernel",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_astronomy_provider.test_canonical_subramanian_t_s_case": {
+      "file": "",
+      "name": "test_canonical_subramanian_t_s_case",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.9
+    },
+    "apps.api.tests.test_astronomy_provider.test_repeated_calculation_equality": {
+      "file": "",
+      "name": "test_repeated_calculation_equality",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.114
+    },
+    "apps.api.tests.test_astronomy_provider.test_time_sensitivity": {
+      "file": "",
+      "name": "test_time_sensitivity",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.151
+    },
+    "apps.api.tests.test_astronomy_provider.test_observer_coordinate_sensitivity": {
+      "file": "",
+      "name": "test_observer_coordinate_sensitivity",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.133
+    },
+    "apps.api.tests.test_astronomy_provider.test_personalization_user_a_kochi_vs_user_b_london": {
+      "file": "",
+      "name": "test_personalization_user_a_kochi_vs_user_b_london",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.089
+    },
+    "apps.api.tests.test_astronomy_provider.test_retrograde_state_velocity_derivation": {
+      "file": "",
+      "name": "test_retrograde_state_velocity_derivation",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.903
+    },
+    "apps.api.tests.test_astronomy_provider.test_boundary_dates_and_out_of_range_fail_closed": {
+      "file": "",
+      "name": "test_boundary_dates_and_out_of_range_fail_closed",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.96
+    },
+    "apps.api.tests.test_planetary_schema_integrity.test_planetary_placement_coordinate_fidelity": {
+      "file": "",
+      "name": "test_planetary_placement_coordinate_fidelity",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.006
+    },
+    "apps.api.tests.test_planetary_schema_integrity.test_retrograde_negative_velocity_preserved": {
+      "file": "",
+      "name": "test_retrograde_negative_velocity_preserved",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_planetary_schema_integrity.test_rashi_sanskrit_names_derived_correctly": {
+      "file": "",
+      "name": "test_rashi_sanskrit_names_derived_correctly",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.006
+    },
+    "apps.api.tests.test_planetary_schema_integrity.test_nakshatra_ruling_planets_derived_correctly": {
+      "file": "",
+      "name": "test_nakshatra_ruling_planets_derived_correctly",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_planetary_schema_integrity.test_whole_sign_houses_derive_exact_lords_and_sanskrit_names": {
+      "file": "",
+      "name": "test_whole_sign_houses_derive_exact_lords_and_sanskrit_names",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_planetary_schema_integrity.test_chart_construction_preserves_ayanamsha_and_metadata": {
+      "file": "",
+      "name": "test_chart_construction_preserves_ayanamsha_and_metadata",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.977
+    },
+    "apps.api.tests.test_vedic_foundation.test_time_normalization_and_julian_date": {
+      "file": "",
+      "name": "test_time_normalization_and_julian_date",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_vedic_foundation.test_invalid_timezone_fail_closed": {
+      "file": "",
+      "name": "test_invalid_timezone_fail_closed",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.808
+    },
+    "apps.api.tests.test_vedic_foundation.test_invalid_coordinates_fail_closed": {
+      "file": "",
+      "name": "test_invalid_coordinates_fail_closed",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.004
+    },
+    "apps.api.tests.test_vedic_foundation.test_boundary_dates_pass_and_out_of_boundary_fail_closed": {
+      "file": "",
+      "name": "test_boundary_dates_pass_and_out_of_boundary_fail_closed",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.test_vedic_foundation.test_rashi_classification_full_precision": {
+      "file": "",
+      "name": "test_rashi_classification_full_precision",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.012
+    },
+    "apps.api.tests.test_vedic_foundation.test_nakshatra_pada_classification": {
+      "file": "",
+      "name": "test_nakshatra_pada_classification",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.004
+    },
+    "apps.api.tests.test_vedic_foundation.test_canonical_subramanian_t_s_chart": {
+      "file": "",
+      "name": "test_canonical_subramanian_t_s_chart",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.903
+    },
+    "apps.api.tests.test_vedic_foundation.test_differential_personalization_user_a_vs_user_b": {
+      "file": "",
+      "name": "test_differential_personalization_user_a_vs_user_b",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.8
+    },
+    "apps.api.tests.test_pdf_report_engine.test_pdf_report_engine_fails_closed_on_missing_required_data": {
+      "file": "",
+      "name": "test_pdf_report_engine_fails_closed_on_missing_required_data",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.004
+    },
+    "apps.api.tests.test_pdf_report_engine.test_pdf_report_engine_bytes_and_extracted_text_content": {
+      "file": "",
+      "name": "test_pdf_report_engine_bytes_and_extracted_text_content",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.429
+    },
+    "apps.api.tests.test_pdf_report_engine.test_comparative_profiles_produce_different_pdf_extracted_text": {
+      "file": "",
+      "name": "test_comparative_profiles_produce_different_pdf_extracted_text",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.846
+    },
+    "apps.api.tests.test_pdf_report_engine.test_pdf_report_engine_renders_all_30_sections_from_report_generator": {
+      "file": "",
+      "name": "test_pdf_report_engine_renders_all_30_sections_from_report_generator",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.586
+    },
+    "apps.api.tests.test_golden_reference_report.test_subramanian_golden_chart_anchors": {
+      "file": "",
+      "name": "test_subramanian_golden_chart_anchors",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.887
+    },
+    "apps.api.tests.test_golden_reference_report.test_subramanian_dasha_calculation_exactness": {
+      "file": "",
+      "name": "test_subramanian_dasha_calculation_exactness",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 0.95
+    },
+    "apps.api.tests.test_golden_reference_report.test_subramanian_master_evidence_pipeline": {
+      "file": "",
+      "name": "test_subramanian_master_evidence_pipeline",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.367
+    },
+    "apps.api.tests.test_golden_reference_report.test_subramanian_report_generation_and_pdf_bytes": {
+      "file": "",
+      "name": "test_subramanian_report_generation_and_pdf_bytes",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 1.605
+    },
+    "apps.api.tests.test_gold_standard_export.test_gold_standard_json_export_endpoint": {
+      "file": "",
+      "name": "test_gold_standard_json_export_endpoint",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 2.204
+    },
+    "apps.api.tests.test_gold_standard_export.test_celestial_dossier_pdf_export_endpoint_and_text_extraction": {
+      "file": "",
+      "name": "test_celestial_dossier_pdf_export_endpoint_and_text_extraction",
+      "status": "PASSED",
+      "group": "Batch 2 (Astronomy & PDF)",
+      "duration_seconds": 4.615
+    },
+    "apps.api.tests.test_auth_security.test_user_registration_creates_account_and_returns_token": {
+      "file": "",
+      "name": "test_user_registration_creates_account_and_returns_token",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.865
+    },
+    "apps.api.tests.test_auth_security.test_user_registration_duplicate_email_conflict": {
+      "file": "",
+      "name": "test_user_registration_duplicate_email_conflict",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.642
+    },
+    "apps.api.tests.test_auth_security.test_user_login_valid_credentials_returns_token": {
+      "file": "",
+      "name": "test_user_login_valid_credentials_returns_token",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.176
+    },
+    "apps.api.tests.test_auth_security.test_user_login_invalid_password_unauthorized": {
+      "file": "",
+      "name": "test_user_login_invalid_password_unauthorized",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.323
+    },
+    "apps.api.tests.test_auth_security.test_unauthenticated_request_to_protected_route_fails_401": {
+      "file": "",
+      "name": "test_unauthenticated_request_to_protected_route_fails_401",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.157
+    },
+    "apps.api.tests.test_auth_security.test_invalid_token_fails_401": {
+      "file": "",
+      "name": "test_invalid_token_fails_401",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.04
+    },
+    "apps.api.tests.test_auth_security.test_authenticated_user_profile_me_endpoint": {
+      "file": "",
+      "name": "test_authenticated_user_profile_me_endpoint",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.62
+    },
+    "apps.api.tests.test_auth_security.test_user_a_cannot_access_user_b_resources": {
+      "file": "",
+      "name": "test_user_a_cannot_access_user_b_resources",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.452
+    },
+    "apps.api.tests.test_authorization_matrix.test_public_scope_endpoints_accessible": {
+      "file": "",
+      "name": "test_public_scope_endpoints_accessible",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.419
+    },
+    "apps.api.tests.test_authorization_matrix.test_authenticated_user_scope_unauthenticated_fails_401": {
+      "file": "",
+      "name": "test_authenticated_user_scope_unauthenticated_fails_401",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.101
+    },
+    "apps.api.tests.test_authorization_matrix.test_authenticated_user_scope_authenticated_succeeds": {
+      "file": "",
+      "name": "test_authenticated_user_scope_authenticated_succeeds",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.667
+    },
+    "apps.api.tests.test_authorization_matrix.test_owner_only_scope_idor_protection": {
+      "file": "",
+      "name": "test_owner_only_scope_idor_protection",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.452
+    },
+    "apps.api.tests.test_authorization_matrix.test_admin_only_scope_authorization": {
+      "file": "",
+      "name": "test_admin_only_scope_authorization",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.075
+    },
+    "apps.api.tests.test_persistence_idor.test_health_reports_real_persistent_database_status": {
+      "file": "",
+      "name": "test_health_reports_real_persistent_database_status",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.665
+    },
+    "apps.api.tests.test_persistence_idor.test_user_a_can_create_and_read_own_profile": {
+      "file": "",
+      "name": "test_user_a_can_create_and_read_own_profile",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.679
+    },
+    "apps.api.tests.test_persistence_idor.test_idor_user_b_cannot_read_user_a_profile": {
+      "file": "",
+      "name": "test_idor_user_b_cannot_read_user_a_profile",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.377
+    },
+    "apps.api.tests.test_persistence_idor.test_idor_user_b_cannot_update_user_a_profile": {
+      "file": "",
+      "name": "test_idor_user_b_cannot_update_user_a_profile",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.292
+    },
+    "apps.api.tests.test_persistence_idor.test_idor_user_b_cannot_delete_user_a_profile": {
+      "file": "",
+      "name": "test_idor_user_b_cannot_delete_user_a_profile",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.243
+    },
+    "apps.api.tests.test_persistence_idor.test_idor_user_b_cannot_access_user_a_report": {
+      "file": "",
+      "name": "test_idor_user_b_cannot_access_user_a_report",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 5.486
+    },
+    "apps.api.tests.test_persistence_idor.test_profiles_list_returns_only_owned_records": {
+      "file": "",
+      "name": "test_profiles_list_returns_only_owned_records",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 1.847
+    },
+    "apps.api.tests.test_persistence_lifecycle.test_complete_persistence_lifecycle": {
+      "file": "",
+      "name": "test_complete_persistence_lifecycle",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 5.213
+    },
+    "apps.api.tests.test_admin_security.test_admin_stats_unauthorized_missing_header": {
+      "file": "",
+      "name": "test_admin_stats_unauthorized_missing_header",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.033
+    },
+    "apps.api.tests.test_admin_security.test_admin_stats_unauthorized_invalid_key": {
+      "file": "",
+      "name": "test_admin_stats_unauthorized_invalid_key",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.033
+    },
+    "apps.api.tests.test_admin_security.test_admin_stats_authorized_valid_x_admin_key": {
+      "file": "",
+      "name": "test_admin_stats_authorized_valid_x_admin_key",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.038
+    },
+    "apps.api.tests.test_admin_security.test_admin_stats_authorized_valid_bearer_token": {
+      "file": "",
+      "name": "test_admin_stats_authorized_valid_bearer_token",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.033
+    },
+    "apps.api.tests.test_admin_security.test_user_compatibility_endpoint_requires_auth": {
+      "file": "",
+      "name": "test_user_compatibility_endpoint_requires_auth",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 0.616
+    },
+    "apps.api.tests.test_admin_security.test_user_rectification_endpoint_requires_auth": {
+      "file": "",
+      "name": "test_user_rectification_endpoint_requires_auth",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 5.992
+    },
+    "apps.api.tests.test_admin_security.test_user_pdf_export_endpoint_requires_auth": {
+      "file": "",
+      "name": "test_user_pdf_export_endpoint_requires_auth",
+      "status": "PASSED",
+      "group": "Batch 3 (Security & Persistence)",
+      "duration_seconds": 2.23
+    },
+    "apps.api.tests.test_dasha_engine.test_nakshatra_lord_mapping_and_boundaries": {
+      "file": "",
+      "name": "test_nakshatra_lord_mapping_and_boundaries",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_dasha_engine.test_birth_balance_calculation": {
+      "file": "",
+      "name": "test_birth_balance_calculation",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_dasha_engine.test_canonical_subramanian_t_s_dasha_suite": {
+      "file": "",
+      "name": "test_canonical_subramanian_t_s_dasha_suite",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 2.01
+    },
+    "apps.api.tests.test_dasha_engine.test_5_level_nested_hierarchy_invariants": {
+      "file": "",
+      "name": "test_5_level_nested_hierarchy_invariants",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.939
+    },
+    "apps.api.tests.test_dasha_engine.test_arbitrary_date_query_get_dasha_at": {
+      "file": "",
+      "name": "test_arbitrary_date_query_get_dasha_at",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.912
+    },
+    "apps.api.tests.test_dasha_engine.test_10_independent_birth_charts_personalization": {
+      "file": "",
+      "name": "test_10_independent_birth_charts_personalization",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 9.399
+    },
+    "apps.api.tests.test_dasha_engine.test_fail_closed_on_invalid_moon_state": {
+      "file": "",
+      "name": "test_fail_closed_on_invalid_moon_state",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.868
+    },
+    "apps.api.tests.test_yoga_engine.test_aspect_engine_rules": {
+      "file": "",
+      "name": "test_aspect_engine_rules",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_yoga_engine.test_canonical_subramanian_t_s_yogas": {
+      "file": "",
+      "name": "test_canonical_subramanian_t_s_yogas",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 1.077
+    },
+    "apps.api.tests.test_yoga_engine.test_20_independent_birth_charts_yoga_suite": {
+      "file": "",
+      "name": "test_20_independent_birth_charts_yoga_suite",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 19.169
+    },
+    "apps.api.tests.test_yoga_engine.test_partial_chart_indeterminate_status": {
+      "file": "",
+      "name": "test_partial_chart_indeterminate_status",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.88
+    },
+    "apps.api.tests.test_dosha_engine.test_canonical_subramanian_t_s_doshas": {
+      "file": "",
+      "name": "test_canonical_subramanian_t_s_doshas",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.993
+    },
+    "apps.api.tests.test_dosha_engine.test_20_independent_birth_charts_dosha_suite": {
+      "file": "",
+      "name": "test_20_independent_birth_charts_dosha_suite",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 19.911
+    },
+    "apps.api.tests.test_varga_engine.test_varga_engine_calculates_all_16_vargas": {
+      "file": "",
+      "name": "test_varga_engine_calculates_all_16_vargas",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.962
+    },
+    "apps.api.tests.test_varga_engine.test_canonical_subramanian_t_s_varga_reference_values": {
+      "file": "",
+      "name": "test_canonical_subramanian_t_s_varga_reference_values",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.997
+    },
+    "apps.api.tests.test_varga_engine.test_d2_hora_traditional_rules": {
+      "file": "",
+      "name": "test_d2_hora_traditional_rules",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.004
+    },
+    "apps.api.tests.test_varga_engine.test_d3_drekkana_traditional_rules": {
+      "file": "",
+      "name": "test_d3_drekkana_traditional_rules",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.test_varga_engine.test_d30_trimsamsa_unequal_partitions": {
+      "file": "",
+      "name": "test_d30_trimsamsa_unequal_partitions",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.004
+    },
+    "apps.api.tests.test_varga_engine.test_varga_boundary_precision": {
+      "file": "",
+      "name": "test_varga_boundary_precision",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.006
+    },
+    "apps.api.tests.test_varga_engine.test_10_independent_birth_charts": {
+      "file": "",
+      "name": "test_10_independent_birth_charts",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 9.723
+    },
+    "apps.api.tests.test_varga_engine.test_unsupported_varga_division_fail_closed": {
+      "file": "",
+      "name": "test_unsupported_varga_division_fail_closed",
+      "status": "PASSED",
+      "group": "Batch 4 (Engines)",
+      "duration_seconds": 0.873
+    },
+    "apps.api.tests.test_ai_service.test_ai_provider_unavailable_fails_closed": {
+      "file": "",
+      "name": "test_ai_provider_unavailable_fails_closed",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.015
+    },
+    "apps.api.tests.test_ai_service.test_generation_timeout_handled": {
+      "file": "",
+      "name": "test_generation_timeout_handled",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_ai_service.test_empty_generation_handled": {
+      "file": "",
+      "name": "test_empty_generation_handled",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_ai_service.test_validator_unavailable_returns_unavailable": {
+      "file": "",
+      "name": "test_validator_unavailable_returns_unavailable",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.011
+    },
+    "apps.api.tests.test_ai_service.test_openai_gemini_ollama_provider_health": {
+      "file": "",
+      "name": "test_openai_gemini_ollama_provider_health",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_ai_validation_pipeline.test_structured_validation_pass": {
+      "file": "",
+      "name": "test_structured_validation_pass",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_ai_validation_pipeline.test_confidence_clamped_to_valid_range": {
+      "file": "",
+      "name": "test_confidence_clamped_to_valid_range",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_ai_validation_pipeline.test_malformed_arrays_sanitized": {
+      "file": "",
+      "name": "test_malformed_arrays_sanitized",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_ai_validation_pipeline.test_adversarial_prompt_injections": {
+      "file": "",
+      "name": "test_adversarial_prompt_injections",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.016
+    },
+    "apps.api.tests.test_ai_validation_pipeline.test_hallucinated_claims_detected_and_repaired": {
+      "file": "",
+      "name": "test_hallucinated_claims_detected_and_repaired",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.013
+    },
+    "apps.api.tests.test_compatibility_engine.test_different_inputs_produce_different_scores": {
+      "file": "",
+      "name": "test_different_inputs_produce_different_scores",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_compatibility_engine.test_same_nakshatra_matching": {
+      "file": "",
+      "name": "test_same_nakshatra_matching",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_compatibility_engine.test_nadi_dosha_cancellation_different_rashis": {
+      "file": "",
+      "name": "test_nadi_dosha_cancellation_different_rashis",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_compatibility_engine.test_bhakoot_edge_cases_and_cancellation": {
+      "file": "",
+      "name": "test_bhakoot_edge_cases_and_cancellation",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_compatibility_engine.test_invalid_nakshatra_input": {
+      "file": "",
+      "name": "test_invalid_nakshatra_input",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_compatibility_engine.test_independent_oracle_reference_dataset": {
+      "file": "",
+      "name": "test_independent_oracle_reference_dataset",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_date_validation_strict.test_invalid_february_31_raises_value_error": {
+      "file": "",
+      "name": "test_invalid_february_31_raises_value_error",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.039
+    },
+    "apps.api.tests.test_date_validation_strict.test_non_leap_year_february_29_raises_value_error": {
+      "file": "",
+      "name": "test_non_leap_year_february_29_raises_value_error",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.013
+    },
+    "apps.api.tests.test_date_validation_strict.test_leap_year_february_29_is_valid": {
+      "file": "",
+      "name": "test_leap_year_february_29_is_valid",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.014
+    },
+    "apps.api.tests.test_date_validation_strict.test_ephemeris_horizon_boundary_validation": {
+      "file": "",
+      "name": "test_ephemeris_horizon_boundary_validation",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.012
+    },
+    "apps.api.tests.test_date_validation_strict.test_api_endpoint_invalid_date_http_400": {
+      "file": "",
+      "name": "test_api_endpoint_invalid_date_http_400",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 1.045
+    },
+    "apps.api.tests.test_geocoding_timezone.test_geocoding_search_india_towns": {
+      "file": "",
+      "name": "test_geocoding_search_india_towns",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_geocoding_timezone.test_geocoding_search_global_cities": {
+      "file": "",
+      "name": "test_geocoding_search_global_cities",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.006
+    },
+    "apps.api.tests.test_geocoding_timezone.test_custom_location_coordinate_validation": {
+      "file": "",
+      "name": "test_custom_location_coordinate_validation",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.012
+    },
+    "apps.api.tests.test_geocoding_timezone.test_location_search_api_router_endpoint": {
+      "file": "",
+      "name": "test_location_search_api_router_endpoint",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.031
+    },
+    "apps.api.tests.test_geocoding_timezone.test_location_validate_api_router_endpoint": {
+      "file": "",
+      "name": "test_location_validate_api_router_endpoint",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.031
+    },
+    "apps.api.tests.test_health_readiness.test_health_check_returns_subsystem_breakdown": {
+      "file": "",
+      "name": "test_health_check_returns_subsystem_breakdown",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.995
+    },
+    "apps.api.tests.test_health_readiness.test_readiness_check_returns_ready": {
+      "file": "",
+      "name": "test_readiness_check_returns_ready",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.656
+    },
+    "apps.api.tests.test_jwt_security_hardening.test_jwt_tampered_signature_rejected": {
+      "file": "",
+      "name": "test_jwt_tampered_signature_rejected",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.62
+    },
+    "apps.api.tests.test_jwt_security_hardening.test_jwt_altered_algorithm_none_rejected": {
+      "file": "",
+      "name": "test_jwt_altered_algorithm_none_rejected",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.039
+    },
+    "apps.api.tests.test_jwt_security_hardening.test_jwt_expired_token_rejected": {
+      "file": "",
+      "name": "test_jwt_expired_token_rejected",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.042
+    },
+    "apps.api.tests.test_jwt_security_hardening.test_jwt_token_revocation_logout": {
+      "file": "",
+      "name": "test_jwt_token_revocation_logout",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.669
+    },
+    "apps.api.tests.test_personalization.test_personalization_differential": {
+      "file": "",
+      "name": "test_personalization_differential",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 3.62
+    },
+    "apps.api.tests.test_prediction_evidence.test_14_prediction_domains_complete_evidence": {
+      "file": "",
+      "name": "test_14_prediction_domains_complete_evidence",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 1.315
+    },
+    "apps.api.tests.test_quota_governance.test_chart_quota_enforcement": {
+      "file": "",
+      "name": "test_chart_quota_enforcement",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.552
+    },
+    "apps.api.tests.test_quota_governance.test_ai_message_quota_enforcement": {
+      "file": "",
+      "name": "test_ai_message_quota_enforcement",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 1.329
+    },
+    "apps.api.tests.test_quota_governance.test_user_quota_isolation": {
+      "file": "",
+      "name": "test_user_quota_isolation",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.616
+    },
+    "apps.api.tests.test_rate_limiter.test_rate_limiter_threshold_and_retry_after": {
+      "file": "",
+      "name": "test_rate_limiter_threshold_and_retry_after",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_rate_limiter.test_rate_limiter_resets_after_window": {
+      "file": "",
+      "name": "test_rate_limiter_resets_after_window",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.255
+    },
+    "apps.api.tests.test_red_team_audit.test_v01_authentication_bypass_fails_401": {
+      "file": "",
+      "name": "test_v01_authentication_bypass_fails_401",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.094
+    },
+    "apps.api.tests.test_red_team_audit.test_v02_v03_idor_and_header_spoofing_prevented": {
+      "file": "",
+      "name": "test_v02_v03_idor_and_header_spoofing_prevented",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 1.364
+    },
+    "apps.api.tests.test_red_team_audit.test_v04_admin_privilege_escalation_prevented": {
+      "file": "",
+      "name": "test_v04_admin_privilege_escalation_prevented",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.999
+    },
+    "apps.api.tests.test_red_team_audit.test_v05_v06_prompt_injection_and_evidence_boundary": {
+      "file": "",
+      "name": "test_v05_v06_prompt_injection_and_evidence_boundary",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.029
+    },
+    "apps.api.tests.test_red_team_audit.test_v08_v09_v12_invalid_inputs_fail_closed": {
+      "file": "",
+      "name": "test_v08_v09_v12_invalid_inputs_fail_closed",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.891
+    },
+    "apps.api.tests.test_red_team_audit.test_v10_v11_timezone_handling": {
+      "file": "",
+      "name": "test_v10_v11_timezone_handling",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 2.442
+    },
+    "apps.api.tests.test_red_team_audit.test_v16_pdf_output_validity": {
+      "file": "",
+      "name": "test_v16_pdf_output_validity",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.282
+    },
+    "apps.api.tests.test_red_team_audit.test_v20_ai_provider_outage_fails_closed": {
+      "file": "",
+      "name": "test_v20_ai_provider_outage_fails_closed",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.019
+    },
+    "apps.api.tests.test_red_team_audit.test_v21_missing_ephemeris_kernel_fails_closed": {
+      "file": "",
+      "name": "test_v21_missing_ephemeris_kernel_fails_closed",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.011
+    },
+    "apps.api.tests.test_red_team_audit.test_v24_deterministic_hash_consistency": {
+      "file": "",
+      "name": "test_v24_deterministic_hash_consistency",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 12.763
+    },
+    "apps.api.tests.test_reference_chart.test_subramanian_ts_reference_chart": {
+      "file": "",
+      "name": "test_subramanian_ts_reference_chart",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 1.443
+    },
+    "apps.api.tests.test_sav_reconciliation.test_ref001_sav_live_equals_independent_oracle": {
+      "file": "",
+      "name": "test_ref001_sav_live_equals_independent_oracle",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.123
+    },
+    "apps.api.tests.test_sav_reconciliation.test_ref001_sav_total_is_337": {
+      "file": "",
+      "name": "test_ref001_sav_total_is_337",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.13
+    },
+    "apps.api.tests.test_sav_reconciliation.test_old_280_vector_is_not_produced": {
+      "file": "",
+      "name": "test_old_280_vector_is_not_produced",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.132
+    },
+    "apps.api.tests.test_sav_reconciliation.test_live_sav_equals_sum_of_live_bav_cells": {
+      "file": "",
+      "name": "test_live_sav_equals_sum_of_live_bav_cells",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.135
+    },
+    "apps.api.tests.test_sav_reconciliation.test_independent_sav_equals_independent_bav_sum": {
+      "file": "",
+      "name": "test_independent_sav_equals_independent_bav_sum",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.119
+    },
+    "apps.api.tests.test_sav_reconciliation.test_production_value_never_comes_from_frozen_expected": {
+      "file": "",
+      "name": "test_production_value_never_comes_from_frozen_expected",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.1
+    },
+    "apps.api.tests.test_sav_reconciliation.test_historical_reports_are_not_used": {
+      "file": "",
+      "name": "test_historical_reports_are_not_used",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.11
+    },
+    "apps.api.tests.test_secret_management.test_production_mode_refuses_default_admin_key": {
+      "file": "",
+      "name": "test_production_mode_refuses_default_admin_key",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_secret_management.test_production_mode_refuses_default_jwt_key": {
+      "file": "",
+      "name": "test_production_mode_refuses_default_jwt_key",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.test_secret_management.test_production_mode_refuses_sqlite_database_url": {
+      "file": "",
+      "name": "test_production_mode_refuses_sqlite_database_url",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_secret_management.test_production_mode_refuses_localhost_ollama_url": {
+      "file": "",
+      "name": "test_production_mode_refuses_localhost_ollama_url",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_secret_management.test_development_mode_generates_ephemeral_keys": {
+      "file": "",
+      "name": "test_development_mode_generates_ephemeral_keys",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_security_ownership.test_health_and_version": {
+      "file": "",
+      "name": "test_health_and_version",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.675
+    },
+    "apps.api.tests.test_structured_error_handling.test_request_correlation_id_middleware_attaches_header": {
+      "file": "",
+      "name": "test_request_correlation_id_middleware_attaches_header",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.663
+    },
+    "apps.api.tests.test_structured_error_handling.test_custom_request_correlation_id_preserved": {
+      "file": "",
+      "name": "test_custom_request_correlation_id_preserved",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.944
+    },
+    "apps.api.tests.test_structured_error_handling.test_validation_error_http_400": {
+      "file": "",
+      "name": "test_validation_error_http_400",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.754
+    },
+    "apps.api.tests.test_structured_error_handling.test_out_of_range_coordinate_validation_error": {
+      "file": "",
+      "name": "test_out_of_range_coordinate_validation_error",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.62
+    },
+    "apps.api.tests.test_structured_error_handling.test_admin_authentication_unauthorized_401": {
+      "file": "",
+      "name": "test_admin_authentication_unauthorized_401",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.034
+    },
+    "apps.api.tests.test_structured_error_handling.test_admin_authorization_forbidden_403": {
+      "file": "",
+      "name": "test_admin_authorization_forbidden_403",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.033
+    },
+    "apps.api.tests.test_structured_error_handling.test_resource_not_found_404": {
+      "file": "",
+      "name": "test_resource_not_found_404",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.635
+    },
+    "apps.api.tests.test_structured_error_handling.test_unsupported_ai_domain_validation_400": {
+      "file": "",
+      "name": "test_unsupported_ai_domain_validation_400",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.038
+    },
+    "apps.api.tests.test_svg_xss_security.test_svg_chart_engine_escapes_xss_payloads": {
+      "file": "",
+      "name": "test_svg_chart_engine_escapes_xss_payloads",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_timezone_historical.test_india_modern_and_historical_timezones": {
+      "file": "",
+      "name": "test_india_modern_and_historical_timezones",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.006
+    },
+    "apps.api.tests.test_timezone_historical.test_london_dst_spring_forward_transition": {
+      "file": "",
+      "name": "test_london_dst_spring_forward_transition",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_timezone_historical.test_new_york_dst_transitions": {
+      "file": "",
+      "name": "test_new_york_dst_transitions",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.test_timezone_historical.test_historical_espenak_meeus_delta_t": {
+      "file": "",
+      "name": "test_historical_espenak_meeus_delta_t",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.005
+    },
+    "apps.api.tests.test_timezone_historical.test_rectification_preserves_original_timezone": {
+      "file": "",
+      "name": "test_rectification_preserves_original_timezone",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 5.331
+    },
+    "apps.api.tests.test_treatise_builder.test_master_treatise_builder_dynamic_30_sections": {
+      "file": "",
+      "name": "test_master_treatise_builder_dynamic_30_sections",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 1.334
+    },
+    "apps.api.tests.test_api_abuse_protection.test_latitude_out_of_bounds_rejected": {
+      "file": "",
+      "name": "test_latitude_out_of_bounds_rejected",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.618
+    },
+    "apps.api.tests.test_api_abuse_protection.test_longitude_out_of_bounds_rejected": {
+      "file": "",
+      "name": "test_longitude_out_of_bounds_rejected",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.636
+    },
+    "apps.api.tests.test_api_abuse_protection.test_year_outside_ephemeris_range_rejected": {
+      "file": "",
+      "name": "test_year_outside_ephemeris_range_rejected",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.625
+    },
+    "apps.api.tests.test_api_contract.test_openapi_schema_endpoint": {
+      "file": "",
+      "name": "test_openapi_schema_endpoint",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.446
+    },
+    "apps.api.tests.test_api_contract.test_birth_profile_request_and_response_contract": {
+      "file": "",
+      "name": "test_birth_profile_request_and_response_contract",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 4.033
+    },
+    "apps.api.tests.test_api_contract.test_structured_error_response_shape": {
+      "file": "",
+      "name": "test_structured_error_response_shape",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.684
+    },
+    "apps.api.tests.test_audit_logging.test_audit_event_recording_redacts_secrets": {
+      "file": "",
+      "name": "test_audit_event_recording_redacts_secrets",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.043
+    },
+    "apps.api.tests.test_auth_constant_time.test_password_verification_constant_time_comparison": {
+      "file": "",
+      "name": "test_password_verification_constant_time_comparison",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 1.604
+    },
+    "apps.api.tests.test_database_migrations.test_alembic_upgrade_and_downgrade": {
+      "file": "",
+      "name": "test_alembic_upgrade_and_downgrade",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 2.099
+    },
+    "apps.api.tests.test_fixture_adapter.test_reference_fixture_adapter_valid_fixtures[REF_001]": {
+      "file": "",
+      "name": "test_reference_fixture_adapter_valid_fixtures[REF_001]",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_fixture_adapter.test_reference_fixture_adapter_valid_fixtures[REF_002]": {
+      "file": "",
+      "name": "test_reference_fixture_adapter_valid_fixtures[REF_002]",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_fixture_adapter.test_reference_fixture_adapter_valid_fixtures[REF_015]": {
+      "file": "",
+      "name": "test_reference_fixture_adapter_valid_fixtures[REF_015]",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.014
+    },
+    "apps.api.tests.test_fixture_adapter.test_reference_fixture_adapter_valid_fixtures[REF_016]": {
+      "file": "",
+      "name": "test_reference_fixture_adapter_valid_fixtures[REF_016]",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.test_fixture_adapter.test_reference_fixture_adapter_valid_fixtures[REF_020]": {
+      "file": "",
+      "name": "test_reference_fixture_adapter_valid_fixtures[REF_020]",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.006
+    },
+    "apps.api.tests.test_fixture_adapter.test_reference_fixture_adapter_malformed_rejection": {
+      "file": "",
+      "name": "test_reference_fixture_adapter_malformed_rejection",
+      "status": "PASSED",
+      "group": "Batch 5 (AI, Validation & Red Team)",
+      "duration_seconds": 0.009
+    },
+    "scripts.test_r7_r3_frozen_reference_integrity.test_frozen_reference_integrity": {
+      "file": "",
+      "name": "test_frozen_reference_integrity",
+      "status": "PASSED",
+      "group": "Batch 7 (Scripts Integrity)",
+      "duration_seconds": 0.043
+    },
+    "apps.api.tests.ephemeris_benchmark.test_ephemeris_accuracy.test_ephemeris_benchmark_execution": {
+      "file": "",
+      "name": "test_ephemeris_benchmark_execution",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 4.79
+    },
+    "apps.api.tests.test_engines.test_dasha_calculation": {
+      "file": "",
+      "name": "test_dasha_calculation",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.943
+    },
+    "apps.api.tests.test_engines.test_yoga_detection": {
+      "file": "",
+      "name": "test_yoga_detection",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.952
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_budha_aditya_positive": {
+      "file": "",
+      "name": "test_budha_aditya_positive",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.013
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_budha_aditya_negative_orb": {
+      "file": "",
+      "name": "test_budha_aditya_negative_orb",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_budha_aditya_negative_different_signs": {
+      "file": "",
+      "name": "test_budha_aditya_negative_different_signs",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_budha_aditya_boundary_orb": {
+      "file": "",
+      "name": "test_budha_aditya_boundary_orb",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_budha_aditya_missing_planet": {
+      "file": "",
+      "name": "test_budha_aditya_missing_planet",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_gaja_kesari_positive": {
+      "file": "",
+      "name": "test_gaja_kesari_positive",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.011
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_gaja_kesari_negative": {
+      "file": "",
+      "name": "test_gaja_kesari_negative",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.011
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_gaja_kesari_cancellation_debilitated": {
+      "file": "",
+      "name": "test_gaja_kesari_cancellation_debilitated",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_ruchaka_positive": {
+      "file": "",
+      "name": "test_ruchaka_positive",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_ruchaka_negative_not_kendra": {
+      "file": "",
+      "name": "test_ruchaka_negative_not_kendra",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_ruchaka_negative_not_own_exalt": {
+      "file": "",
+      "name": "test_ruchaka_negative_not_own_exalt",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.01
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_manglik_positive": {
+      "file": "",
+      "name": "test_manglik_positive",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_manglik_positive_uncancelled": {
+      "file": "",
+      "name": "test_manglik_positive_uncancelled",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.011
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_manglik_true_positive": {
+      "file": "",
+      "name": "test_manglik_true_positive",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.009
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_manglik_negative": {
+      "file": "",
+      "name": "test_manglik_negative",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_kemadruma_positive": {
+      "file": "",
+      "name": "test_kemadruma_positive",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.007
+    },
+    "apps.api.tests.test_yoga_independent_oracle.test_kemadruma_cancellation": {
+      "file": "",
+      "name": "test_kemadruma_cancellation",
+      "status": "PASSED",
+      "group": "Batch 8 (Ephemeris & Oracle Benchmark)",
+      "duration_seconds": 0.008
+    },
+    "apps.api.tests.test_release_gate_g12_jaimini.test_jaimini_chara_karakas_and_arudhas": {
+      "file": "",
+      "name": "test_jaimini_chara_karakas_and_arudhas",
+      "status": "PASSED",
+      "group": "Batch 9A (Jaimini)",
+      "duration_seconds": 1.946
+    },
+    "apps.api.tests.test_release_gate_g14_panchanga.test_panchanga_elements_and_solar_day": {
+      "file": "",
+      "name": "test_panchanga_elements_and_solar_day",
+      "status": "PASSED",
+      "group": "Batch 9B (Panchanga)",
+      "duration_seconds": 2.055
+    },
+    "apps.api.tests.test_release_gate_g15_muhurta.test_muhurta_activity_suitability_and_precedence": {
+      "file": "",
+      "name": "test_muhurta_activity_suitability_and_precedence",
+      "status": "PASSED",
+      "group": "Batch 9C (Muhurta)",
+      "duration_seconds": 2.077
+    },
+    "apps.api.tests.test_release_certification_runner.test_missing_test_path_fails_gate": {
+      "file": "",
+      "name": "test_missing_test_path_fails_gate",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 1.431
+    },
+    "apps.api.tests.test_release_certification_runner.test_zero_collected_tests_fails_gate": {
+      "file": "",
+      "name": "test_zero_collected_tests_fails_gate",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 3.465
+    },
+    "apps.api.tests.test_release_certification_runner.test_failing_assertion_fails_gate": {
+      "file": "",
+      "name": "test_failing_assertion_fails_gate",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 3.266
+    },
+    "apps.api.tests.test_release_certification_runner.test_collection_syntax_error_fails_gate": {
+      "file": "",
+      "name": "test_collection_syntax_error_fails_gate",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 3.303
+    },
+    "apps.api.tests.test_release_certification_runner.test_fixture_setup_error_fails_gate": {
+      "file": "",
+      "name": "test_fixture_setup_error_fails_gate",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 2.025
+    },
+    "apps.api.tests.test_release_certification_runner.test_unapproved_skip_fails_gate": {
+      "file": "",
+      "name": "test_unapproved_skip_fails_gate",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 1.995
+    },
+    "apps.api.tests.test_release_certification_runner.test_custom_gate_run_does_not_issue_production_ready": {
+      "file": "",
+      "name": "test_custom_gate_run_does_not_issue_production_ready",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 2.046
+    },
+    "apps.api.tests.test_release_certification_runner.test_mixed_pass_and_skip_in_same_gate_fails": {
+      "file": "",
+      "name": "test_mixed_pass_and_skip_in_same_gate_fails",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 1.986
+    },
+    "apps.api.tests.test_release_certification_runner.test_teardown_error_fails_gate": {
+      "file": "",
+      "name": "test_teardown_error_fails_gate",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 2.044
+    },
+    "apps.api.tests.test_release_certification_runner.test_output_dir_isolation_does_not_overwrite_real_artifacts": {
+      "file": "",
+      "name": "test_output_dir_isolation_does_not_overwrite_real_artifacts",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 2.019
+    },
+    "apps.api.tests.test_release_certification_runner.test_missing_canonical_gate_id_prevents_production_ready_verdict": {
+      "file": "",
+      "name": "test_missing_canonical_gate_id_prevents_production_ready_verdict",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 2.842
+    },
+    "apps.api.tests.test_release_certification_runner.test_duplicate_canonical_gate_id_fails_closed": {
+      "file": "",
+      "name": "test_duplicate_canonical_gate_id_fails_closed",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 1.087
+    },
+    "apps.api.tests.test_release_certification_runner.test_empty_custom_gates_fails_closed": {
+      "file": "",
+      "name": "test_empty_custom_gates_fails_closed",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 1.094
+    },
+    "apps.api.tests.test_release_certification_runner.test_malformed_gate_tuple_fails_closed": {
+      "file": "",
+      "name": "test_malformed_gate_tuple_fails_closed",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 1.107
+    },
+    "apps.api.tests.test_release_certification_runner.test_dirty_working_tree_short_circuits_and_fails_closed": {
+      "file": "",
+      "name": "test_dirty_working_tree_short_circuits_and_fails_closed",
+      "status": "PASSED",
+      "group": "Batch 10 (Runner Self Tests)",
+      "duration_seconds": 0.465
+    },
+    "apps/api/tests/test_full_user_journey.py::test_full_end_to_end_user_journey": {
+      "file": "apps/api/tests/test_full_user_journey.py",
+      "name": "test_full_end_to_end_user_journey",
+      "status": "PASSED",
+      "group": "Batch 6 (Full User Journey)",
+      "duration_seconds": 269.79
+    },
+    "apps/api/tests/test_release_gate_g13_transits.py::test_geocentric_transits_and_aspect_contacts": {
+      "file": "apps/api/tests/test_release_gate_g13_transits.py",
+      "name": "test_geocentric_transits_and_aspect_contacts",
+      "status": "PASSED",
+      "group": "Batch 9D (Transits Gate)",
+      "duration_seconds": 222.33
+    },
+    "apps/api/tests/test_release_gate_g16_predictive_timing.py::test_predictive_timing_window_synthesis": {
+      "file": "apps/api/tests/test_release_gate_g16_predictive_timing.py",
+      "name": "test_predictive_timing_window_synthesis",
+      "status": "PASSED",
+      "group": "Batch 9E (Predictive Timing Gate)",
+      "duration_seconds": 237.4
+    }
+  }
+}

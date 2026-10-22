@@ -50,3 +50,5 @@ scratch/
 # Live Mutation & Temporary Run Outputs
 reports/**/live_runs/
 reports/**/temp/
+reports/*.xml
+reports/pytest_*.xml
