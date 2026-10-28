@@ -31,6 +31,7 @@ import pytest
 import os
 import json
 import hashlib
+import uuid
 from unittest.mock import patch, MagicMock
 from fastapi.testclient import TestClient
 
@@ -55,7 +56,9 @@ def setup_env():
     yield
     settings.ai_provider = orig_provider
 
-def get_auth_headers(email: str = "redteam_user@astrovision.test") -> dict:
+def get_auth_headers(email: str = None) -> dict:
+    if email is None:
+        email = f"redteam_{uuid.uuid4()}@astrovision.test"
     login_res = client.post("/api/v1/auth/login", json={"email": email, "password": "Password123!"})
     if login_res.status_code == 200:
         return {"Authorization": f"Bearer {login_res.json()['access_token']}"}
@@ -75,8 +78,8 @@ def test_v01_authentication_bypass_fails_401():
 # Vector 2 & 3: IDOR & Header Spoofing
 def test_v02_v03_idor_and_header_spoofing_prevented():
     """Spoofed headers and unowned resource accesses must fail with 401 or 404."""
-    headers_a = get_auth_headers("red_user_a@astrovision.test")
-    headers_b = get_auth_headers("red_user_b@astrovision.test")
+    headers_a = get_auth_headers(f"red_user_a_{uuid.uuid4()}@astrovision.test")
+    headers_b = get_auth_headers(f"red_user_b_{uuid.uuid4()}@astrovision.test")
 
     # Create profile as User A
     prof_a = client.post("/api/v1/profiles", json={
@@ -95,7 +98,7 @@ def test_v02_v03_idor_and_header_spoofing_prevented():
 # Vector 4: Admin Privilege Escalation
 def test_v04_admin_privilege_escalation_prevented():
     """Standard user Bearer token cannot access /api/v1/admin/stats without ADMIN_API_KEY."""
-    user_headers = get_auth_headers("std_user@astrovision.test")
+    user_headers = get_auth_headers(f"std_user_{uuid.uuid4()}@astrovision.test")
     res = client.get("/api/v1/admin/stats", headers=user_headers)
     assert res.status_code == 403
 
@@ -127,7 +130,7 @@ def test_v05_v06_prompt_injection_and_evidence_boundary():
 # Vector 8, 9, 12: Invalid Input Bounds
 def test_v08_v09_v12_invalid_inputs_fail_closed():
     """Invalid date, coordinates, or malformed JSON payloads must return 400 or 422."""
-    headers = get_auth_headers("bounds_user@astrovision.test")
+    headers = get_auth_headers(f"bounds_user_{uuid.uuid4()}@astrovision.test")
 
     # Invalid Year > 2150
     inv_year = client.post("/api/v1/birth-profile", json={
@@ -148,7 +151,7 @@ def test_v08_v09_v12_invalid_inputs_fail_closed():
 # Vector 10 & 11: Invalid & Historical Timezones
 def test_v10_v11_timezone_handling():
     """Invalid timezone string returns 400; valid IANA timezone (Palakkad/Kolkata) resolves correctly."""
-    headers = get_auth_headers("tz_user@astrovision.test")
+    headers = get_auth_headers(f"tz_user_{uuid.uuid4()}@astrovision.test")
 
     # Invalid IANA timezone
     inv_tz = client.post("/api/v1/birth-profile", json={
@@ -194,14 +197,22 @@ def test_v21_missing_ephemeris_kernel_fails_closed():
 # Vector 24: Deterministic Hash Consistency
 def test_v24_deterministic_hash_consistency():
     """Identical calculation inputs must produce identical SHA-256 calculation hashes."""
-    headers = get_auth_headers("hash_user@astrovision.test")
+    headers = get_auth_headers(f"hash_user_{uuid.uuid4()}@astrovision.test")
     payload = {
         "name": "Deterministic Hash Test", "year": 1995, "month": 1, "day": 1,
         "hour": 12, "minute": 0, "second": 0, "timezone_str": "Asia/Kolkata",
         "latitude": 28.6139, "longitude": 77.2090, "place_name": "Delhi", "country": "India"
     }
-    res1 = client.post("/api/v1/birth-profile", json=payload, headers=headers).json()
-    res2 = client.post("/api/v1/birth-profile", json=payload, headers=headers).json()
+    r1 = client.post("/api/v1/birth-profile", json=payload, headers=headers)
+    assert r1.status_code == 200
+    res1 = r1.json()
+
+    r2 = client.post("/api/v1/birth-profile", json=payload, headers=headers)
+    assert r2.status_code == 200
+    res2 = r2.json()
+
+    assert "master_evidence" in res1
+    assert "master_evidence" in res2
 
     hash1 = res1["master_evidence"]["master_evidence_hash"]
     hash2 = res2["master_evidence"]["master_evidence_hash"]

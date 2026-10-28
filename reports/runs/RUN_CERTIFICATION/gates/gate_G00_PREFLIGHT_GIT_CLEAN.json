@@ -1,0 +1,23 @@
+{
+  "gate_id": "G00_PREFLIGHT_GIT_CLEAN",
+  "gate_title": "Git Working Tree Clean Preflight Check",
+  "command": "git status --porcelain",
+  "commit_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_CERTIFICATION",
+  "exit_code": 1,
+  "start_timestamp_utc": "2026-10-28T03:22:54.788604+00:00",
+  "end_timestamp_utc": "2026-10-28T03:22:54.788665+00:00",
+  "duration_seconds": 0.0,
+  "tests_collected": 0,
+  "tests_passed": 0,
+  "tests_failed": 1,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "preflight_git_clean_failed",
+  "execution_artifact_sha256": "aa3ff7ab0f635aa1ebeb4ee76e04f65f7e1f7fef39c550880a9525345d13fc69",
+  "artifact_hash": "aa3ff7ab0f635aa1ebeb4ee76e04f65f7e1f7fef39c550880a9525345d13fc69",
+  "status": "FAIL",
+  "tests_run": 0,
+  "details": "Production certification requires clean working tree and valid commit SHA. (clean=False, sha=75ffe1b6be04777ede45db3f1907dece22ae3fb3)"
+}

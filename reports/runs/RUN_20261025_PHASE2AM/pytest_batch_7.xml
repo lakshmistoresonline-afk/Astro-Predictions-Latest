@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.371" timestamp="2026-10-26T23:13:34.375095" hostname="DESKTOP-Q9LS7LJ"><testcase classname="scripts.test_r7_r3_frozen_reference_integrity" name="test_frozen_reference_integrity" time="0.104" /></testsuite></testsuites>

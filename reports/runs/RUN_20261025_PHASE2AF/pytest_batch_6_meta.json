@@ -1,0 +1,12 @@
+{
+  "batch_id": "BATCH_6",
+  "batch_name": "Batch 6 (Full User Journey)",
+  "targets": [
+    "apps/api/tests/test_full_user_journey.py"
+  ],
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-26T04:14:11.516094+00:00",
+  "end_timestamp_utc": "2026-10-26T04:18:07.289133+00:00",
+  "duration_seconds": 235.773039,
+  "xml_report_path": "reports\\runs\\RUN_20261025_PHASE2AF\\pytest_batch_6.xml"
+}

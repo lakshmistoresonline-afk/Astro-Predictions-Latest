@@ -1,0 +1,21 @@
+{
+  "run_id": "RUN_20261026_RELEASE_75FFE1B",
+  "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+  "working_tree_clean": false,
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "total_inventory_unique_nodes": 317,
+  "expected_batch_count": 10,
+  "expected_batches": [
+    "Batch 1 (Oracles)",
+    "Batch 2 (Core Astronomy & PDF)",
+    "Batch 3 (Security & Persistence)",
+    "Batch 4 (Engines)",
+    "Batch 5 (AI, Validation & Red Team)",
+    "Batch 6 (Full User Journey)",
+    "Batch 7 (Scripts Integrity)",
+    "Batch 8 (Ephemeris & Oracle Benchmark)",
+    "Batch 9 (Release Gates Jaimini, Transits, Panchanga, Muhurta, Predictive Timing)",
+    "Batch 10 (Runner Self Tests)"
+  ],
+  "start_timestamp_utc": "2026-10-28T02:58:03.223797+00:00"
+}

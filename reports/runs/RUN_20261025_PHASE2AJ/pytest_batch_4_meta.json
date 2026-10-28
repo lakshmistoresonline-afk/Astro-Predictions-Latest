@@ -1,0 +1,31 @@
+{
+  "run_id": "RUN_20261025_PHASE2AJ",
+  "batch_idx": 4,
+  "batch_id": "BATCH_4",
+  "batch_name": "Batch 4 (Engines)",
+  "targets": [
+    "apps/api/tests/test_dasha_engine.py",
+    "apps/api/tests/test_yoga_engine.py",
+    "apps/api/tests/test_dosha_engine.py",
+    "apps/api/tests/test_varga_engine.py"
+  ],
+  "cmd": [
+    "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "--junitxml=D:\\Astro-Predictions-Latest\\reports\\runs\\RUN_20261025_PHASE2AJ\\pytest_batch_4.xml",
+    "-q",
+    "apps/api/tests/test_dasha_engine.py",
+    "apps/api/tests/test_yoga_engine.py",
+    "apps/api/tests/test_dosha_engine.py",
+    "apps/api/tests/test_varga_engine.py"
+  ],
+  "exit_code": 0,
+  "source_sha": "9f8e2af4f4a7d9d43ae756e22f2be940c3f5297d",
+  "inventory_sha256": "21a81af4af37d80dd3d350dfefc0b76fb6ae0e446c00f7ecfde7b2b471319f20",
+  "working_tree_clean": false,
+  "start_timestamp_utc": "2026-10-26T11:26:50.053793+00:00",
+  "end_timestamp_utc": "2026-10-26T11:27:44.489672+00:00",
+  "duration_seconds": 54.435879,
+  "xml_report_path": "reports\\runs\\RUN_20261025_PHASE2AJ\\pytest_batch_4.xml"
+}

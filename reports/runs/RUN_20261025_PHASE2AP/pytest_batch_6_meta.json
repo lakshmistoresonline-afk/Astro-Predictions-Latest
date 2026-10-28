@@ -1,0 +1,25 @@
+{
+  "run_id": "RUN_20261025_PHASE2AP",
+  "batch_idx": 6,
+  "batch_id": "BATCH_6",
+  "batch_name": "Batch 6 (Full User Journey)",
+  "targets": [
+    "apps/api/tests/test_full_user_journey.py"
+  ],
+  "cmd": [
+    "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "--junitxml=D:\\Astro-Predictions-Latest\\reports\\runs\\RUN_20261025_PHASE2AP\\pytest_batch_6.xml",
+    "-q",
+    "apps/api/tests/test_full_user_journey.py"
+  ],
+  "exit_code": 0,
+  "source_sha": "9f8e2af4f4a7d9d43ae756e22f2be940c3f5297d",
+  "inventory_sha256": "1cec4c715e5f925833bb499e45b64d64a941760b8448042cd7de98581d6e7721",
+  "working_tree_clean": false,
+  "start_timestamp_utc": "2026-10-27T04:02:58.742523+00:00",
+  "end_timestamp_utc": "2026-10-27T04:07:19.400391+00:00",
+  "duration_seconds": 260.657868,
+  "xml_report_path": "reports\\runs\\RUN_20261025_PHASE2AP\\pytest_batch_6.xml"
+}

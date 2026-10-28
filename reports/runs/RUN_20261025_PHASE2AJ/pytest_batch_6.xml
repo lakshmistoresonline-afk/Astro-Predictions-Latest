@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="165.322" timestamp="2026-10-26T16:59:33.654291" hostname="DESKTOP-Q9LS7LJ"><testcase classname="apps.api.tests.test_full_user_journey" name="test_complete_user_journey_and_isolation" time="159.305" /></testsuite></testsuites>

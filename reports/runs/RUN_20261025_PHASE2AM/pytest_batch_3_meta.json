@@ -1,0 +1,33 @@
+{
+  "run_id": "RUN_20261025_PHASE2AM",
+  "batch_idx": 3,
+  "batch_id": "BATCH_3",
+  "batch_name": "Batch 3 (Security & Persistence)",
+  "targets": [
+    "apps/api/tests/test_auth_security.py",
+    "apps/api/tests/test_authorization_matrix.py",
+    "apps/api/tests/test_persistence_idor.py",
+    "apps/api/tests/test_persistence_lifecycle.py",
+    "apps/api/tests/test_admin_security.py"
+  ],
+  "cmd": [
+    "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "--junitxml=D:\\Astro-Predictions-Latest\\reports\\runs\\RUN_20261025_PHASE2AM\\pytest_batch_3.xml",
+    "-q",
+    "apps/api/tests/test_auth_security.py",
+    "apps/api/tests/test_authorization_matrix.py",
+    "apps/api/tests/test_persistence_idor.py",
+    "apps/api/tests/test_persistence_lifecycle.py",
+    "apps/api/tests/test_admin_security.py"
+  ],
+  "exit_code": 0,
+  "source_sha": "9f8e2af4f4a7d9d43ae756e22f2be940c3f5297d",
+  "inventory_sha256": "a684242a947d2d1677abd5bb6c1942064abef96ec2da11f435115c713689b414",
+  "working_tree_clean": false,
+  "start_timestamp_utc": "2026-10-26T17:29:14.432071+00:00",
+  "end_timestamp_utc": "2026-10-26T17:30:08.975188+00:00",
+  "duration_seconds": 54.543117,
+  "xml_report_path": "reports\\runs\\RUN_20261025_PHASE2AM\\pytest_batch_3.xml"
+}

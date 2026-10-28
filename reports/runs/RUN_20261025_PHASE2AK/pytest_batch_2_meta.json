@@ -1,0 +1,35 @@
+{
+  "run_id": "RUN_20261025_PHASE2AK",
+  "batch_idx": 2,
+  "batch_id": "BATCH_2",
+  "batch_name": "Batch 2 (Core Astronomy & PDF)",
+  "targets": [
+    "apps/api/tests/test_astronomy_provider.py",
+    "apps/api/tests/test_planetary_schema_integrity.py",
+    "apps/api/tests/test_vedic_foundation.py",
+    "apps/api/tests/test_pdf_report_engine.py",
+    "apps/api/tests/test_golden_reference_report.py",
+    "apps/api/tests/test_gold_standard_export.py"
+  ],
+  "cmd": [
+    "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "--junitxml=D:\\Astro-Predictions-Latest\\reports\\runs\\RUN_20261025_PHASE2AK\\pytest_batch_2.xml",
+    "-q",
+    "apps/api/tests/test_astronomy_provider.py",
+    "apps/api/tests/test_planetary_schema_integrity.py",
+    "apps/api/tests/test_vedic_foundation.py",
+    "apps/api/tests/test_pdf_report_engine.py",
+    "apps/api/tests/test_golden_reference_report.py",
+    "apps/api/tests/test_gold_standard_export.py"
+  ],
+  "exit_code": 0,
+  "source_sha": "9f8e2af4f4a7d9d43ae756e22f2be940c3f5297d",
+  "inventory_sha256": "926d0cfb9d981f06c888954f12acc97e7a96c7a3b13e1d1d551369f5239782be",
+  "working_tree_clean": false,
+  "start_timestamp_utc": "2026-10-26T11:48:30.856161+00:00",
+  "end_timestamp_utc": "2026-10-26T11:49:06.165289+00:00",
+  "duration_seconds": 35.309128,
+  "xml_report_path": "reports\\runs\\RUN_20261025_PHASE2AK\\pytest_batch_2.xml"
+}

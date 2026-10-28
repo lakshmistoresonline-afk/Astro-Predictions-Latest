@@ -1,0 +1,15 @@
+{
+  "batch_id": "BATCH_4",
+  "batch_name": "Batch 4 (Engines)",
+  "targets": [
+    "apps/api/tests/test_dasha_engine.py",
+    "apps/api/tests/test_yoga_engine.py",
+    "apps/api/tests/test_dosha_engine.py",
+    "apps/api/tests/test_varga_engine.py"
+  ],
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-26T04:11:30.607005+00:00",
+  "end_timestamp_utc": "2026-10-26T04:12:41.292557+00:00",
+  "duration_seconds": 70.685552,
+  "xml_report_path": "reports\\runs\\RUN_20261025_PHASE2AF\\pytest_batch_4.xml"
+}
