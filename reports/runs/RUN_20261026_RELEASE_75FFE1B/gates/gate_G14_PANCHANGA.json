@@ -1,0 +1,23 @@
+{
+  "gate_id": "G14_PANCHANGA",
+  "gate_title": "Panchanga Elements & Local Solar Day Timing",
+  "command": "apps/api/tests/test_release_gate_g14_panchanga.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_75FFE1B",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:54:57.478884+00:00",
+  "end_timestamp_utc": "2026-10-28T03:54:59.304032+00:00",
+  "duration_seconds": 1.825148,
+  "tests_collected": 1,
+  "tests_passed": 1,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "2eaee4ae992d7e9730a86377dc8dccbfbeedf593e5a41425320f956c1b7288e4",
+  "execution_artifact_sha256": "8cd91ffcb6a120bc0bb373da9f5d189354fb9a2a9d06253add3b40c89990ab41",
+  "artifact_hash": "8cd91ffcb6a120bc0bb373da9f5d189354fb9a2a9d06253add3b40c89990ab41",
+  "status": "PASS",
+  "tests_run": 1,
+  "details": "Pytest executed successfully (1 tests passed)"
+}

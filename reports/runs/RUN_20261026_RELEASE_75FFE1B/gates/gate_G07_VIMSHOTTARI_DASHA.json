@@ -1,0 +1,23 @@
+{
+  "gate_id": "G07_VIMSHOTTARI_DASHA",
+  "gate_title": "5-Level Vimshottari Dasha Hierarchy & Timeline",
+  "command": "apps/api/tests/test_dasha_engine.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_75FFE1B",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:52:09.639581+00:00",
+  "end_timestamp_utc": "2026-10-28T03:52:22.686306+00:00",
+  "duration_seconds": 13.046725,
+  "tests_collected": 7,
+  "tests_passed": 7,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "7b0f4619ce3666753b2433a4213003d276d8f103b64dc386931aaa100685d0fd",
+  "execution_artifact_sha256": "dae4895eaef68f087ad62e50391ee655b3d9a00492245cb7b551b827ae503ee3",
+  "artifact_hash": "dae4895eaef68f087ad62e50391ee655b3d9a00492245cb7b551b827ae503ee3",
+  "status": "PASS",
+  "tests_run": 7,
+  "details": "Pytest executed successfully (7 tests passed)"
+}

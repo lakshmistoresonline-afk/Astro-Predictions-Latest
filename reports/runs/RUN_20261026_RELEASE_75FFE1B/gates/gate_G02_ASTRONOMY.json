@@ -1,0 +1,23 @@
+{
+  "gate_id": "G02_ASTRONOMY",
+  "gate_title": "Sub-Arcsecond Astronomy Accuracy",
+  "command": "apps/api/tests/test_astronomy_provider.py, apps/api/tests/test_planetary_schema_integrity.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_75FFE1B",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:51:20.596308+00:00",
+  "end_timestamp_utc": "2026-10-28T03:51:35.617787+00:00",
+  "duration_seconds": 15.021479,
+  "tests_collected": 15,
+  "tests_passed": 15,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "afe5cf1b827e4a9cd42caeb46513eb8209fb90b8c9d0ef4f36c4e5578d683090",
+  "execution_artifact_sha256": "16d320328107f5de8040320b271151db9d4cc2b83cbb361ae708a1f1ad3fa6a8",
+  "artifact_hash": "16d320328107f5de8040320b271151db9d4cc2b83cbb361ae708a1f1ad3fa6a8",
+  "status": "PASS",
+  "tests_run": 15,
+  "details": "Pytest executed successfully (15 tests passed)"
+}

@@ -1,0 +1,23 @@
+{
+  "gate_id": "G23_IDOR_CONTROLS",
+  "gate_title": "Server-Enforced User Ownership & IDOR Security",
+  "command": "apps/api/tests/test_persistence_idor.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T04:40:40.531124+00:00",
+  "end_timestamp_utc": "2026-10-28T04:40:54.458938+00:00",
+  "duration_seconds": 13.927814,
+  "tests_collected": 7,
+  "tests_passed": 7,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "44862239ab1722c41b290ecbaa899354e4475412436457d4175c6b8fca108f23",
+  "execution_artifact_sha256": "8e156db45b85a7a01a6f8dfde23d02bcf708a2a27bd9e309d2b2224da128f8d0",
+  "artifact_hash": "8e156db45b85a7a01a6f8dfde23d02bcf708a2a27bd9e309d2b2224da128f8d0",
+  "status": "PASS",
+  "tests_run": 7,
+  "details": "Pytest executed successfully (7 tests passed)"
+}

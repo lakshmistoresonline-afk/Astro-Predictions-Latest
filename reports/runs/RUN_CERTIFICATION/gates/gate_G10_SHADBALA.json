@@ -1,0 +1,23 @@
+{
+  "gate_id": "G10_SHADBALA",
+  "gate_title": "Shadbala 6-Bala Strengths & Subcomponents",
+  "command": "apps/api/tests/oracles/phase_2e_shadbala/test_shadbala_oracle.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_CERTIFICATION",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:47:31.387008+00:00",
+  "end_timestamp_utc": "2026-10-28T03:47:33.192780+00:00",
+  "duration_seconds": 1.805772,
+  "tests_collected": 3,
+  "tests_passed": 3,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "503bff05ae6aded81e4f3ecbefd3ec066a79ffcd62dbb1bb65362acc3630b087",
+  "execution_artifact_sha256": "c0f022b09fbf0a08362714aaaaaa4102fa71731dfed16e54acdb96dbb7df6c16",
+  "artifact_hash": "c0f022b09fbf0a08362714aaaaaa4102fa71731dfed16e54acdb96dbb7df6c16",
+  "status": "PASS",
+  "tests_run": 3,
+  "details": "Pytest executed successfully (3 tests passed)"
+}

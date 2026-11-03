@@ -1,0 +1,23 @@
+{
+  "gate_id": "G11_ASHTAKAVARGA",
+  "gate_title": "Ashtakavarga BAV & Dynamic SAV Bindu Matrix",
+  "command": "apps/api/tests/oracles/phase_2e_ashtakavarga/test_ashtakavarga_oracle.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T04:37:40.867679+00:00",
+  "end_timestamp_utc": "2026-10-28T04:37:42.958505+00:00",
+  "duration_seconds": 2.090826,
+  "tests_collected": 2,
+  "tests_passed": 2,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "2db7c9cca204598cdf2a7cdbcf841c89df335e43e8df4e770a995eaf7f5c56b4",
+  "execution_artifact_sha256": "301ce971c2978473d4d9ff3c716e1a541717b84f4409960888c43ac154b58e3f",
+  "artifact_hash": "301ce971c2978473d4d9ff3c716e1a541717b84f4409960888c43ac154b58e3f",
+  "status": "PASS",
+  "tests_run": 2,
+  "details": "Pytest executed successfully (2 tests passed)"
+}

@@ -1,0 +1,23 @@
+{
+  "gate_id": "G17_RECTIFICATION",
+  "gate_title": "Event-Date Driven Birth Time Rectification",
+  "command": "apps/api/tests/test_timezone_historical.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_CERTIFICATION",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:49:38.107530+00:00",
+  "end_timestamp_utc": "2026-10-28T03:49:44.061155+00:00",
+  "duration_seconds": 5.953625,
+  "tests_collected": 5,
+  "tests_passed": 5,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "4e8f24605d3dd646378ec4550332bdc0414df71ae8e34f8e767c09b6962615e3",
+  "execution_artifact_sha256": "5ad8128ea1a2958c4e4b7bd04541cdf490ee8abc4bff1c0479f41bce098d992e",
+  "artifact_hash": "5ad8128ea1a2958c4e4b7bd04541cdf490ee8abc4bff1c0479f41bce098d992e",
+  "status": "PASS",
+  "tests_run": 5,
+  "details": "Pytest executed successfully (5 tests passed)"
+}

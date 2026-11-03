@@ -1,0 +1,23 @@
+{
+  "gate_id": "G01_DE440S_HASH",
+  "gate_title": "NASA JPL DE440s Kernel SHA-256 Checksum",
+  "command": "apps/api/engines/astronomy/de440s.bsp",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T04:35:11.324370+00:00",
+  "end_timestamp_utc": "2026-10-28T04:35:12.149211+00:00",
+  "duration_seconds": 0.824841,
+  "tests_collected": 1,
+  "tests_passed": 1,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+  "execution_artifact_sha256": "c6e442c46300d1a73a4eb84feda91a9e473121ee1b9ed9ad08911b45000fbc05",
+  "artifact_hash": "c6e442c46300d1a73a4eb84feda91a9e473121ee1b9ed9ad08911b45000fbc05",
+  "status": "PASS",
+  "tests_run": 1,
+  "details": "DE440s kernel verified (32,726,016 bytes, SHA-256: c1c7feeab882263f...)"
+}

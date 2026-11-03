@@ -1,0 +1,23 @@
+{
+  "gate_id": "G03_TIMEZONE_DST",
+  "gate_title": "Historical IANA Timezones & DST Transitions",
+  "command": "apps/api/tests/test_timezone_historical.py, apps/api/tests/test_date_validation_strict.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_CERTIFICATION",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:46:02.948173+00:00",
+  "end_timestamp_utc": "2026-10-28T03:46:18.037076+00:00",
+  "duration_seconds": 15.088903,
+  "tests_collected": 10,
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "e24a67234e11870bb4b33f49514127f30437d33782a2eba305526e4dbf2b0add",
+  "execution_artifact_sha256": "ea56de668fc24481a1f806d24f96a1f56f2b052d7f9d578783d9da6e2b80eb41",
+  "artifact_hash": "ea56de668fc24481a1f806d24f96a1f56f2b052d7f9d578783d9da6e2b80eb41",
+  "status": "PASS",
+  "tests_run": 10,
+  "details": "Pytest executed successfully (10 tests passed)"
+}

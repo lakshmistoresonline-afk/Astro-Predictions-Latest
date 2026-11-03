@@ -1,0 +1,23 @@
+{
+  "gate_id": "G06_VARGAS_D1_D60",
+  "gate_title": "16 Parashari Divisional Charts D1 through D60",
+  "command": "apps/api/tests/test_varga_engine.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_CERTIFICATION",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:46:25.826737+00:00",
+  "end_timestamp_utc": "2026-10-28T03:46:38.143669+00:00",
+  "duration_seconds": 12.316932,
+  "tests_collected": 8,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "cfb3136ba92f85a84874abd89403748b1a61e3aec58ef4e3b0e95c7841eeeec8",
+  "execution_artifact_sha256": "3c4609466e1b33d334e49bc29d80d67dd1152f9c766e9890858ec413797fdabb",
+  "artifact_hash": "3c4609466e1b33d334e49bc29d80d67dd1152f9c766e9890858ec413797fdabb",
+  "status": "PASS",
+  "tests_run": 8,
+  "details": "Pytest executed successfully (8 tests passed)"
+}

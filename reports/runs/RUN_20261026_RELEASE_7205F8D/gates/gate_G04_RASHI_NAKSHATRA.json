@@ -1,0 +1,23 @@
+{
+  "gate_id": "G04_RASHI_NAKSHATRA",
+  "gate_title": "Rashi, Nakshatra & Pada Boundary Handling",
+  "command": "apps/api/tests/test_vedic_foundation.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T04:35:56.301160+00:00",
+  "end_timestamp_utc": "2026-10-28T04:36:14.711781+00:00",
+  "duration_seconds": 18.410621,
+  "tests_collected": 8,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "315b68d9d925ba5c7b8872b4621eed4a65948fe9d3448d9151f36d9af6f16942",
+  "execution_artifact_sha256": "4010be2baa7b85ee186d92d48b3eb44b0e63fc90f3fb5c032a4c1814af910a03",
+  "artifact_hash": "4010be2baa7b85ee186d92d48b3eb44b0e63fc90f3fb5c032a4c1814af910a03",
+  "status": "PASS",
+  "tests_run": 8,
+  "details": "Pytest executed successfully (8 tests passed)"
+}

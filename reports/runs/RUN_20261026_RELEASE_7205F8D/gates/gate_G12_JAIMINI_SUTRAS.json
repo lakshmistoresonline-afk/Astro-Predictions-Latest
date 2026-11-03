@@ -1,0 +1,23 @@
+{
+  "gate_id": "G12_JAIMINI_SUTRAS",
+  "gate_title": "Jaimini Chara Karakas, Arudha Lagna & Karakamsha",
+  "command": "apps/api/tests/test_release_gate_g12_jaimini.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T04:37:43.035699+00:00",
+  "end_timestamp_utc": "2026-10-28T04:37:45.050452+00:00",
+  "duration_seconds": 2.014753,
+  "tests_collected": 1,
+  "tests_passed": 1,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "e7f25ff1143ebb8c6b275094fe640a150fecda48898d04bc0141133fe03f4336",
+  "execution_artifact_sha256": "6b250c493e6250062c24904e76b3e0ba495713ffbad88bb18fe766bdf5bd23dc",
+  "artifact_hash": "6b250c493e6250062c24904e76b3e0ba495713ffbad88bb18fe766bdf5bd23dc",
+  "status": "PASS",
+  "tests_run": 1,
+  "details": "Pytest executed successfully (1 tests passed)"
+}

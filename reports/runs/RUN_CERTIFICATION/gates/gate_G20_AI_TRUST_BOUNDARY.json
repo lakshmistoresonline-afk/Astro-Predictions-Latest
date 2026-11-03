@@ -1,0 +1,23 @@
+{
+  "gate_id": "G20_AI_TRUST_BOUNDARY",
+  "gate_title": "Server-Owned Evidence AI Boundary Defense",
+  "command": "apps/api/tests/test_ai_service.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_CERTIFICATION",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:49:47.528097+00:00",
+  "end_timestamp_utc": "2026-10-28T03:49:48.437752+00:00",
+  "duration_seconds": 0.909655,
+  "tests_collected": 5,
+  "tests_passed": 5,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "c6df39fc72c4b1993e521037e7a6f3a0ddfc1fc1b92a753de01a1563273a188a",
+  "execution_artifact_sha256": "242688efd15e10fd4d5d34c295bea93a929a11d43da8c388f6ef2f1ca725f877",
+  "artifact_hash": "242688efd15e10fd4d5d34c295bea93a929a11d43da8c388f6ef2f1ca725f877",
+  "status": "PASS",
+  "tests_run": 5,
+  "details": "Pytest executed successfully (5 tests passed)"
+}

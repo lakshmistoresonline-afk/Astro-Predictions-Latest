@@ -1,0 +1,23 @@
+{
+  "gate_id": "G18_COMPATIBILITY",
+  "gate_title": "Vedic Ashtakoota 36-Point Compatibility",
+  "command": "apps/api/tests/test_compatibility_engine.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_75FFE1B",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T03:55:15.530381+00:00",
+  "end_timestamp_utc": "2026-10-28T03:55:16.525622+00:00",
+  "duration_seconds": 0.995241,
+  "tests_collected": 6,
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "5e63fcf314efec888f333d709b6a842293f0dc5155801b7047fb7c5af7c86f81",
+  "execution_artifact_sha256": "09302df01313652c051e7e589be97f9882aa9f3a38203ba9215555ce5652eb63",
+  "artifact_hash": "09302df01313652c051e7e589be97f9882aa9f3a38203ba9215555ce5652eb63",
+  "status": "PASS",
+  "tests_run": 6,
+  "details": "Pytest executed successfully (6 tests passed)"
+}

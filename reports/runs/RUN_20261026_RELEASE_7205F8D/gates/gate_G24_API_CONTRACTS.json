@@ -1,0 +1,23 @@
+{
+  "gate_id": "G24_API_CONTRACTS",
+  "gate_title": "Versioned /api/v1 OpenAPI & Error Shapes",
+  "command": "apps/api/tests/test_api_contract.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T04:40:54.511403+00:00",
+  "end_timestamp_utc": "2026-10-28T04:41:00.704528+00:00",
+  "duration_seconds": 6.193125,
+  "tests_collected": 3,
+  "tests_passed": 3,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "430a4d0b100b6a28fb1e13179eed177ee1ee38752be90da699f4392b2fa5bb1a",
+  "execution_artifact_sha256": "75e57ac0b2e11d091e7081047f15ccd6d82c51eda762feabb25d1d9fc08cc849",
+  "artifact_hash": "75e57ac0b2e11d091e7081047f15ccd6d82c51eda762feabb25d1d9fc08cc849",
+  "status": "PASS",
+  "tests_run": 3,
+  "details": "Pytest executed successfully (3 tests passed)"
+}

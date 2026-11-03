@@ -1,0 +1,23 @@
+{
+  "gate_id": "G08_CLASSICAL_YOGAS",
+  "gate_title": "Parashari Yogas & Independent Oracle Verification",
+  "command": "apps/api/tests/test_yoga_engine.py",
+  "commit_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
+  "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "exit_code": 0,
+  "start_timestamp_utc": "2026-10-28T04:36:52.679991+00:00",
+  "end_timestamp_utc": "2026-10-28T04:37:16.265494+00:00",
+  "duration_seconds": 23.585503,
+  "tests_collected": 4,
+  "tests_passed": 4,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "errors": 0,
+  "source_artifact_sha256": "98767754d854321e82ca49202ff81a048706b78c58424e2cac5a56612fef6fd8",
+  "execution_artifact_sha256": "6682442e1933e031088c047d91a15a2f01c85cf155692db2e33b0e11416d9ef2",
+  "artifact_hash": "6682442e1933e031088c047d91a15a2f01c85cf155692db2e33b0e11416d9ef2",
+  "status": "PASS",
+  "tests_run": 4,
+  "details": "Pytest executed successfully (4 tests passed)"
+}

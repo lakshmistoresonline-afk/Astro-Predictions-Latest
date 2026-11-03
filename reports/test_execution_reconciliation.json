@@ -1,12 +1,12 @@
 {
   "repository": "Astrovision",
-  "run_id": "RUN_20261026_RELEASE_75FFE1B",
-  "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+  "run_id": "RUN_20261026_RELEASE_7205F8D",
+  "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
   "working_tree_clean": false,
   "inventory_sha256": "4b97a66663c7a2882d07a835677332d489055f5b7ab4547e6a2f0a00fb3bdf9d",
-  "start_timestamp_utc": "2026-10-28T02:58:03.247563+00:00",
-  "end_timestamp_utc": "2026-10-28T03:22:05.722773+00:00",
-  "total_wall_clock_duration_seconds": 1442.47521,
+  "start_timestamp_utc": "2026-10-28T03:25:29.142654+00:00",
+  "end_timestamp_utc": "2026-10-28T03:45:32.002783+00:00",
+  "total_wall_clock_duration_seconds": 1202.860129,
   "metrics": {
     "total_discovered_unique_inventory_ids": 317,
     "duplicate_execution_ids_count": 0,
@@ -33,9 +33,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T02:58:03.247563+00:00",
-      "end_timestamp_utc": "2026-10-28T02:58:40.019540+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_1.xml"
+      "start_timestamp_utc": "2026-10-28T03:25:29.142654+00:00",
+      "end_timestamp_utc": "2026-10-28T03:26:03.367888+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_1.xml"
     },
     {
       "batch_idx": 2,
@@ -44,9 +44,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T02:58:40.037228+00:00",
-      "end_timestamp_utc": "2026-10-28T02:59:39.202341+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_2.xml"
+      "start_timestamp_utc": "2026-10-28T03:26:03.374401+00:00",
+      "end_timestamp_utc": "2026-10-28T03:26:54.455451+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_2.xml"
     },
     {
       "batch_idx": 3,
@@ -55,9 +55,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T02:59:39.209244+00:00",
-      "end_timestamp_utc": "2026-10-28T03:00:42.267811+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_3.xml"
+      "start_timestamp_utc": "2026-10-28T03:26:54.480920+00:00",
+      "end_timestamp_utc": "2026-10-28T03:27:55.190353+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_3.xml"
     },
     {
       "batch_idx": 4,
@@ -66,9 +66,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T03:01:07.044377+00:00",
-      "end_timestamp_utc": "2026-10-28T03:02:31.537142+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_4.xml"
+      "start_timestamp_utc": "2026-10-28T03:28:08.821727+00:00",
+      "end_timestamp_utc": "2026-10-28T03:29:21.356660+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_4.xml"
     },
     {
       "batch_idx": 5,
@@ -77,9 +77,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T03:02:45.828477+00:00",
-      "end_timestamp_utc": "2026-10-28T03:09:43.467620+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_5.xml"
+      "start_timestamp_utc": "2026-10-28T03:29:37.942889+00:00",
+      "end_timestamp_utc": "2026-10-28T03:35:02.027501+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_5.xml"
     },
     {
       "batch_idx": 6,
@@ -88,9 +88,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T03:10:04.047042+00:00",
-      "end_timestamp_utc": "2026-10-28T03:14:59.207509+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_6.xml"
+      "start_timestamp_utc": "2026-10-28T03:35:18.691794+00:00",
+      "end_timestamp_utc": "2026-10-28T03:39:54.547021+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_6.xml"
     },
     {
       "batch_idx": 7,
@@ -99,9 +99,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T03:15:16.681137+00:00",
-      "end_timestamp_utc": "2026-10-28T03:15:24.138082+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_7.xml"
+      "start_timestamp_utc": "2026-10-28T03:40:08.857738+00:00",
+      "end_timestamp_utc": "2026-10-28T03:40:15.226957+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_7.xml"
     },
     {
       "batch_idx": 8,
@@ -110,9 +110,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T03:15:24.156999+00:00",
-      "end_timestamp_utc": "2026-10-28T03:15:40.288370+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_8.xml"
+      "start_timestamp_utc": "2026-10-28T03:40:15.235706+00:00",
+      "end_timestamp_utc": "2026-10-28T03:40:31.845499+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_8.xml"
     },
     {
       "batch_idx": 9,
@@ -121,9 +121,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T03:15:40.298359+00:00",
-      "end_timestamp_utc": "2026-10-28T03:20:18.123302+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_9.xml"
+      "start_timestamp_utc": "2026-10-28T03:40:31.854318+00:00",
+      "end_timestamp_utc": "2026-10-28T03:44:17.452781+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_9.xml"
     },
     {
       "batch_idx": 10,
@@ -132,9 +132,9 @@
       "exit_code": 0,
       "collection_error": 0,
       "interrupted": 0,
-      "start_timestamp_utc": "2026-10-28T03:20:18.141796+00:00",
-      "end_timestamp_utc": "2026-10-28T03:22:05.722773+00:00",
-      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_75FFE1B\\pytest_batch_10.xml"
+      "start_timestamp_utc": "2026-10-28T03:44:17.458834+00:00",
+      "end_timestamp_utc": "2026-10-28T03:45:32.002783+00:00",
+      "xml_path": "reports\\runs\\RUN_20261026_RELEASE_7205F8D\\pytest_batch_10.xml"
     }
   ],
   "reconciled_nodes": {
@@ -144,9 +144,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 5.369,
+      "execution_duration_seconds": 4.436,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4/test_independence.py::test_oracle_independence": {
@@ -155,9 +155,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.023,
+      "execution_duration_seconds": 0.027,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_budha_aditya_oracle_indeterminate": {
@@ -166,9 +166,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.019,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_budha_aditya_oracle_negative_orb": {
@@ -177,9 +177,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.011,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_budha_aditya_oracle_positive": {
@@ -188,9 +188,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.092,
+      "execution_duration_seconds": 0.054,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_gaja_kesari_oracle_debilitation": {
@@ -199,7 +199,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.008,
       "occurrences": 1
@@ -210,9 +210,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.009,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_manglik_oracle_cancellation_aspect": {
@@ -221,9 +221,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.023,
+      "execution_duration_seconds": 0.02,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_manglik_oracle_cancellation_exalt": {
@@ -232,9 +232,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.007,
+      "execution_duration_seconds": 0.011,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_manglik_oracle_positive": {
@@ -243,9 +243,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.01,
+      "execution_duration_seconds": 0.011,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_ruchaka_oracle_negative_house": {
@@ -254,9 +254,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.012,
+      "execution_duration_seconds": 0.011,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2d_r4_1/test_independent_oracle.py::test_ruchaka_oracle_positive": {
@@ -265,9 +265,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.011,
+      "execution_duration_seconds": 0.01,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_ashtakavarga/test_ashtakavarga_oracle.py::test_ashtakavarga_oracle_boundary_crossing": {
@@ -276,7 +276,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.007,
       "occurrences": 1
@@ -287,9 +287,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.354,
+      "execution_duration_seconds": 2.54,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_ashtakavarga/test_independence_ashtakavarga.py::test_oracle_independence_ashtakavarga": {
@@ -298,9 +298,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.116,
+      "execution_duration_seconds": 0.035,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_independence.py::test_r4_runtime_zero_trust_isolation": {
@@ -309,7 +309,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.005,
       "occurrences": 1
@@ -320,9 +320,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.416,
+      "execution_duration_seconds": 0.091,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_mutation.py::test_mutation_ashtakavarga_bav": {
@@ -331,9 +331,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.013,
+      "execution_duration_seconds": 1.031,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_mutation.py::test_mutation_dig_bala_cardinal": {
@@ -342,9 +342,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.05,
+      "execution_duration_seconds": 1.022,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_mutation.py::test_mutation_uccha_bala_boundary": {
@@ -353,9 +353,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.037,
+      "execution_duration_seconds": 1.066,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_001]": {
@@ -364,9 +364,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.091,
+      "execution_duration_seconds": 0.026,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_002]": {
@@ -375,9 +375,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.1,
+      "execution_duration_seconds": 0.021,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_003]": {
@@ -386,9 +386,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.075,
+      "execution_duration_seconds": 0.024,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_004]": {
@@ -397,9 +397,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.063,
+      "execution_duration_seconds": 0.032,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_005]": {
@@ -408,9 +408,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.075,
+      "execution_duration_seconds": 0.023,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_006]": {
@@ -419,9 +419,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.065,
+      "execution_duration_seconds": 0.024,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_007]": {
@@ -430,9 +430,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.073,
+      "execution_duration_seconds": 0.033,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_008]": {
@@ -441,9 +441,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.065,
+      "execution_duration_seconds": 0.028,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_009]": {
@@ -452,9 +452,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.062,
+      "execution_duration_seconds": 0.026,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_010]": {
@@ -463,9 +463,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.071,
+      "execution_duration_seconds": 0.023,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_011]": {
@@ -474,9 +474,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.065,
+      "execution_duration_seconds": 0.026,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_012]": {
@@ -485,9 +485,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.028,
+      "execution_duration_seconds": 0.036,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_013]": {
@@ -496,9 +496,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.069,
+      "execution_duration_seconds": 0.026,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_014]": {
@@ -507,9 +507,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.071,
+      "execution_duration_seconds": 0.023,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4/test_r4_oracle.py::test_three_way_validation_for_fixture[SHADBALA_FIXTURE_015]": {
@@ -518,9 +518,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.078,
+      "execution_duration_seconds": 0.036,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_mutation.py::test_execute_and_verify_all_mutations": {
@@ -529,9 +529,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.081,
+      "execution_duration_seconds": 1.092,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_corruption_sensitivity.py::test_corrupted_expected_shadbala_causes_failure": {
@@ -540,9 +540,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.01,
+      "execution_duration_seconds": 0.006,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_corruption_sensitivity.py::test_corrupted_sav_total_causes_failure": {
@@ -551,9 +551,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.009,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_independence.py::test_r4_1_runtime_zero_trust_isolation": {
@@ -562,7 +562,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.009,
       "occurrences": 1
@@ -573,9 +573,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.446,
+      "execution_duration_seconds": 0.14,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_001]": {
@@ -584,9 +584,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.094,
+      "execution_duration_seconds": 1.287,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_002]": {
@@ -595,9 +595,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.112,
+      "execution_duration_seconds": 1.044,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_003]": {
@@ -606,9 +606,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.089,
+      "execution_duration_seconds": 1.054,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_004]": {
@@ -617,9 +617,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.096,
+      "execution_duration_seconds": 1.042,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_005]": {
@@ -628,9 +628,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.173,
+      "execution_duration_seconds": 1.086,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_006]": {
@@ -639,9 +639,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.133,
+      "execution_duration_seconds": 1.049,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_007]": {
@@ -650,9 +650,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.15,
+      "execution_duration_seconds": 1.035,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_008]": {
@@ -661,9 +661,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.099,
+      "execution_duration_seconds": 1.041,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_009]": {
@@ -672,9 +672,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.155,
+      "execution_duration_seconds": 1.074,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_010]": {
@@ -683,9 +683,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.142,
+      "execution_duration_seconds": 1.043,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_011]": {
@@ -694,9 +694,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.148,
+      "execution_duration_seconds": 1.072,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_012]": {
@@ -705,9 +705,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.157,
+      "execution_duration_seconds": 1.038,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_013]": {
@@ -716,9 +716,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.205,
+      "execution_duration_seconds": 1.061,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_014]": {
@@ -727,9 +727,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.136,
+      "execution_duration_seconds": 1.04,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_015]": {
@@ -738,9 +738,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.219,
+      "execution_duration_seconds": 1.099,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_016]": {
@@ -749,9 +749,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.076,
+      "execution_duration_seconds": 0.036,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_017]": {
@@ -760,9 +760,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.073,
+      "execution_duration_seconds": 0.023,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_018]": {
@@ -771,9 +771,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.075,
+      "execution_duration_seconds": 0.026,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_019]": {
@@ -782,9 +782,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.087,
+      "execution_duration_seconds": 0.027,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_oracle.py::test_r4_1_three_way_validation[REF_020]": {
@@ -793,9 +793,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.076,
+      "execution_duration_seconds": 0.024,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_r4_1_production_unavailable.py::test_production_unavailable_mode": {
@@ -804,9 +804,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.006,
+      "execution_duration_seconds": 0.01,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_r4_1/test_reference_generation_never_uses_production.py::test_reference_generation_never_uses_production": {
@@ -815,9 +815,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.071,
+      "execution_duration_seconds": 0.054,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_shadbala/test_independence_shadbala.py::test_oracle_independence_shadbala": {
@@ -826,9 +826,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.159,
+      "execution_duration_seconds": 0.063,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_shadbala/test_shadbala_oracle.py::test_shadbala_oracle_dig_bala_boundary": {
@@ -837,9 +837,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.011,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_shadbala/test_shadbala_oracle.py::test_shadbala_oracle_exaltation_boundary": {
@@ -848,9 +848,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/oracles/phase_2e_shadbala/test_shadbala_oracle.py::test_shadbala_oracle_subramanian": {
@@ -859,9 +859,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 1 (Oracles)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.05,
+      "execution_duration_seconds": 1.423,
       "occurrences": 1
     },
     "apps/api/tests/test_admin_security.py::test_admin_stats_authorized_valid_bearer_token": {
@@ -870,9 +870,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.034,
+      "execution_duration_seconds": 0.027,
       "occurrences": 1
     },
     "apps/api/tests/test_admin_security.py::test_admin_stats_authorized_valid_x_admin_key": {
@@ -881,9 +881,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.05,
+      "execution_duration_seconds": 0.036,
       "occurrences": 1
     },
     "apps/api/tests/test_admin_security.py::test_admin_stats_unauthorized_invalid_key": {
@@ -892,9 +892,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.038,
+      "execution_duration_seconds": 0.03,
       "occurrences": 1
     },
     "apps/api/tests/test_admin_security.py::test_admin_stats_unauthorized_missing_header": {
@@ -903,9 +903,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.043,
+      "execution_duration_seconds": 0.028,
       "occurrences": 1
     },
     "apps/api/tests/test_admin_security.py::test_user_compatibility_endpoint_requires_auth": {
@@ -914,9 +914,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.732,
+      "execution_duration_seconds": 0.584,
       "occurrences": 1
     },
     "apps/api/tests/test_admin_security.py::test_user_pdf_export_endpoint_requires_auth": {
@@ -925,9 +925,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.525,
+      "execution_duration_seconds": 2.086,
       "occurrences": 1
     },
     "apps/api/tests/test_admin_security.py::test_user_rectification_endpoint_requires_auth": {
@@ -936,9 +936,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 6.968,
+      "execution_duration_seconds": 5.697,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_service.py::test_ai_provider_unavailable_fails_closed": {
@@ -947,9 +947,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.014,
+      "execution_duration_seconds": 0.012,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_service.py::test_empty_generation_handled": {
@@ -958,9 +958,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_service.py::test_generation_timeout_handled": {
@@ -969,7 +969,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.01,
       "occurrences": 1
@@ -980,9 +980,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_service.py::test_validator_unavailable_returns_unavailable": {
@@ -991,9 +991,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.012,
+      "execution_duration_seconds": 0.01,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_validation_pipeline.py::test_adversarial_prompt_injections": {
@@ -1002,9 +1002,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.025,
+      "execution_duration_seconds": 0.016,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_validation_pipeline.py::test_confidence_clamped_to_valid_range": {
@@ -1013,9 +1013,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.01,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_validation_pipeline.py::test_hallucinated_claims_detected_and_repaired": {
@@ -1024,9 +1024,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.013,
+      "execution_duration_seconds": 0.012,
       "occurrences": 1
     },
     "apps/api/tests/test_ai_validation_pipeline.py::test_malformed_arrays_sanitized": {
@@ -1035,7 +1035,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.009,
       "occurrences": 1
@@ -1046,9 +1046,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.043,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "apps/api/tests/test_api_abuse_protection.py::test_latitude_out_of_bounds_rejected": {
@@ -1057,9 +1057,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.697,
+      "execution_duration_seconds": 0.586,
       "occurrences": 1
     },
     "apps/api/tests/test_api_abuse_protection.py::test_longitude_out_of_bounds_rejected": {
@@ -1068,9 +1068,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.724,
+      "execution_duration_seconds": 0.607,
       "occurrences": 1
     },
     "apps/api/tests/test_api_abuse_protection.py::test_year_outside_ephemeris_range_rejected": {
@@ -1079,9 +1079,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.731,
+      "execution_duration_seconds": 0.581,
       "occurrences": 1
     },
     "apps/api/tests/test_api_contract.py::test_birth_profile_request_and_response_contract": {
@@ -1090,9 +1090,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 4.332,
+      "execution_duration_seconds": 3.341,
       "occurrences": 1
     },
     "apps/api/tests/test_api_contract.py::test_openapi_schema_endpoint": {
@@ -1101,9 +1101,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.514,
+      "execution_duration_seconds": 0.411,
       "occurrences": 1
     },
     "apps/api/tests/test_api_contract.py::test_structured_error_response_shape": {
@@ -1112,9 +1112,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.246,
+      "execution_duration_seconds": 0.649,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_boundary_dates_and_out_of_range_fail_closed": {
@@ -1123,9 +1123,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.044,
+      "execution_duration_seconds": 1.027,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_canonical_subramanian_t_s_case": {
@@ -1134,9 +1134,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.525,
+      "execution_duration_seconds": 1.249,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_fail_closed_behavior_on_missing_kernel": {
@@ -1145,9 +1145,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.013,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_observer_coordinate_sensitivity": {
@@ -1156,9 +1156,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.516,
+      "execution_duration_seconds": 1.289,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_personalization_user_a_kochi_vs_user_b_london": {
@@ -1167,9 +1167,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.312,
+      "execution_duration_seconds": 1.296,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_provider_initialization_and_kernel_identity": {
@@ -1178,9 +1178,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 5.771,
+      "execution_duration_seconds": 1.863,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_repeated_calculation_equality": {
@@ -1189,9 +1189,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.926,
+      "execution_duration_seconds": 1.307,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_retrograde_state_velocity_derivation": {
@@ -1200,9 +1200,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.111,
+      "execution_duration_seconds": 1.032,
       "occurrences": 1
     },
     "apps/api/tests/test_astronomy_provider.py::test_time_sensitivity": {
@@ -1211,9 +1211,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.899,
+      "execution_duration_seconds": 1.3,
       "occurrences": 1
     },
     "apps/api/tests/test_audit_logging.py::test_audit_event_recording_redacts_secrets": {
@@ -1222,9 +1222,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.11,
+      "execution_duration_seconds": 0.039,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_constant_time.py::test_password_verification_constant_time_comparison": {
@@ -1233,9 +1233,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.435,
+      "execution_duration_seconds": 1.491,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_authenticated_user_profile_me_endpoint": {
@@ -1244,9 +1244,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.718,
+      "execution_duration_seconds": 0.777,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_invalid_token_fails_401": {
@@ -1255,9 +1255,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.039,
+      "execution_duration_seconds": 0.242,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_unauthenticated_request_to_protected_route_fails_401": {
@@ -1266,9 +1266,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.178,
+      "execution_duration_seconds": 0.525,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_user_a_cannot_access_user_b_resources": {
@@ -1277,9 +1277,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 3.299,
+      "execution_duration_seconds": 1.374,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_user_login_invalid_password_unauthorized": {
@@ -1288,9 +1288,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.307,
+      "execution_duration_seconds": 1.645,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_user_login_valid_credentials_returns_token": {
@@ -1299,9 +1299,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.306,
+      "execution_duration_seconds": 1.344,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_user_registration_creates_account_and_returns_token": {
@@ -1310,9 +1310,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.854,
+      "execution_duration_seconds": 1.464,
       "occurrences": 1
     },
     "apps/api/tests/test_auth_security.py::test_user_registration_duplicate_email_conflict": {
@@ -1321,9 +1321,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.745,
+      "execution_duration_seconds": 0.972,
       "occurrences": 1
     },
     "apps/api/tests/test_authorization_matrix.py::test_admin_only_scope_authorization": {
@@ -1332,9 +1332,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.092,
+      "execution_duration_seconds": 0.066,
       "occurrences": 1
     },
     "apps/api/tests/test_authorization_matrix.py::test_authenticated_user_scope_authenticated_succeeds": {
@@ -1343,9 +1343,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.805,
+      "execution_duration_seconds": 0.635,
       "occurrences": 1
     },
     "apps/api/tests/test_authorization_matrix.py::test_authenticated_user_scope_unauthenticated_fails_401": {
@@ -1354,9 +1354,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.151,
+      "execution_duration_seconds": 0.115,
       "occurrences": 1
     },
     "apps/api/tests/test_authorization_matrix.py::test_owner_only_scope_idor_protection": {
@@ -1365,9 +1365,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.695,
+      "execution_duration_seconds": 5.031,
       "occurrences": 1
     },
     "apps/api/tests/test_authorization_matrix.py::test_public_scope_endpoints_accessible": {
@@ -1376,9 +1376,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.526,
+      "execution_duration_seconds": 1.742,
       "occurrences": 1
     },
     "apps/api/tests/test_compatibility_engine.py::test_bhakoot_edge_cases_and_cancellation": {
@@ -1387,9 +1387,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_compatibility_engine.py::test_different_inputs_produce_different_scores": {
@@ -1398,9 +1398,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.007,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_compatibility_engine.py::test_independent_oracle_reference_dataset": {
@@ -1409,9 +1409,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.033,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "apps/api/tests/test_compatibility_engine.py::test_invalid_nakshatra_input": {
@@ -1420,9 +1420,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_compatibility_engine.py::test_nadi_dosha_cancellation_different_rashis": {
@@ -1431,9 +1431,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.006,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_compatibility_engine.py::test_same_nakshatra_matching": {
@@ -1442,9 +1442,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.007,
+      "execution_duration_seconds": 0.006,
       "occurrences": 1
     },
     "apps/api/tests/test_dasha_engine.py::test_10_independent_birth_charts_personalization": {
@@ -1453,9 +1453,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.525,
+      "execution_duration_seconds": 8.693,
       "occurrences": 1
     },
     "apps/api/tests/test_dasha_engine.py::test_5_level_nested_hierarchy_invariants": {
@@ -1464,9 +1464,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.072,
+      "execution_duration_seconds": 0.936,
       "occurrences": 1
     },
     "apps/api/tests/test_dasha_engine.py::test_arbitrary_date_query_get_dasha_at": {
@@ -1475,9 +1475,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.042,
+      "execution_duration_seconds": 0.846,
       "occurrences": 1
     },
     "apps/api/tests/test_dasha_engine.py::test_birth_balance_calculation": {
@@ -1486,9 +1486,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.005,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_dasha_engine.py::test_canonical_subramanian_t_s_dasha_suite": {
@@ -1497,9 +1497,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.566,
+      "execution_duration_seconds": 2.073,
       "occurrences": 1
     },
     "apps/api/tests/test_dasha_engine.py::test_fail_closed_on_invalid_moon_state": {
@@ -1508,9 +1508,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.023,
+      "execution_duration_seconds": 0.863,
       "occurrences": 1
     },
     "apps/api/tests/test_dasha_engine.py::test_nakshatra_lord_mapping_and_boundaries": {
@@ -1519,9 +1519,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.007,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/test_database_migrations.py::test_alembic_upgrade_and_downgrade": {
@@ -1530,9 +1530,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 3.743,
+      "execution_duration_seconds": 1.648,
       "occurrences": 1
     },
     "apps/api/tests/test_date_validation_strict.py::test_api_endpoint_invalid_date_http_400": {
@@ -1541,9 +1541,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.267,
+      "execution_duration_seconds": 0.949,
       "occurrences": 1
     },
     "apps/api/tests/test_date_validation_strict.py::test_ephemeris_horizon_boundary_validation": {
@@ -1552,9 +1552,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.05,
+      "execution_duration_seconds": 0.012,
       "occurrences": 1
     },
     "apps/api/tests/test_date_validation_strict.py::test_invalid_february_31_raises_value_error": {
@@ -1563,9 +1563,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.087,
+      "execution_duration_seconds": 0.043,
       "occurrences": 1
     },
     "apps/api/tests/test_date_validation_strict.py::test_leap_year_february_29_is_valid": {
@@ -1574,9 +1574,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.013,
+      "execution_duration_seconds": 0.011,
       "occurrences": 1
     },
     "apps/api/tests/test_date_validation_strict.py::test_non_leap_year_february_29_raises_value_error": {
@@ -1585,9 +1585,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.014,
+      "execution_duration_seconds": 0.012,
       "occurrences": 1
     },
     "apps/api/tests/test_dosha_engine.py::test_20_independent_birth_charts_dosha_suite": {
@@ -1596,9 +1596,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 20.902,
+      "execution_duration_seconds": 19.909,
       "occurrences": 1
     },
     "apps/api/tests/test_dosha_engine.py::test_canonical_subramanian_t_s_doshas": {
@@ -1607,9 +1607,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.05,
+      "execution_duration_seconds": 0.865,
       "occurrences": 1
     },
     "apps/api/tests/test_engines.py::test_dasha_calculation": {
@@ -1618,9 +1618,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.015,
+      "execution_duration_seconds": 0.873,
       "occurrences": 1
     },
     "apps/api/tests/test_engines.py::test_yoga_detection": {
@@ -1629,9 +1629,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.034,
+      "execution_duration_seconds": 0.864,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_10_dirty_tree_with_production_ready_claim": {
@@ -1640,9 +1640,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.098,
+      "execution_duration_seconds": 8.305,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_11_dirty_tree_flag_false_in_cert": {
@@ -1651,9 +1651,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.924,
+      "execution_duration_seconds": 13.074,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_12_conflicting_run_ids": {
@@ -1662,9 +1662,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.805,
+      "execution_duration_seconds": 8.282,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_13_invalid_timestamps_end_before_start": {
@@ -1673,9 +1673,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.613,
+      "execution_duration_seconds": 8.198,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_14_missing_or_duplicate_canonical_gate_ids": {
@@ -1684,9 +1684,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 14.22,
+      "execution_duration_seconds": 8.231,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_15_missing_build_or_audit_file": {
@@ -1695,9 +1695,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 8.972,
+      "execution_duration_seconds": 6.725,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_16_malformed_inventory": {
@@ -1706,9 +1706,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 9.152,
+      "execution_duration_seconds": 7.089,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_17_inventory_sha256_mismatch": {
@@ -1717,9 +1717,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.008,
+      "execution_duration_seconds": 8.559,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_18_tampered_summary_count_contradicts_per_node": {
@@ -1728,9 +1728,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.71,
+      "execution_duration_seconds": 8.518,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_19_production_inventory_refuses_dirty_tree": {
@@ -1739,9 +1739,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 3.893,
+      "execution_duration_seconds": 3.053,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_1_skipped_test_in_xml": {
@@ -1750,9 +1750,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.719,
+      "execution_duration_seconds": 8.144,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_20_path_traversal_xml_rejected": {
@@ -1761,9 +1761,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.085,
+      "execution_duration_seconds": 8.349,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_21_one_batch_manifest_rejected": {
@@ -1772,9 +1772,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.073,
+      "execution_duration_seconds": 8.368,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_22_duplicate_node_across_separate_batch_xmls_rejected": {
@@ -1783,9 +1783,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.99,
+      "execution_duration_seconds": 8.24,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_23_suite_attribute_mismatch_rejected": {
@@ -1794,9 +1794,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.714,
+      "execution_duration_seconds": 8.284,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_24_gate_nonzero_exit_code_rejected": {
@@ -1805,9 +1805,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.632,
+      "execution_duration_seconds": 10.577,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_25_gate_zero_tests_run_rejected": {
@@ -1816,9 +1816,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.15,
+      "execution_duration_seconds": 8.374,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_26_gate_missing_command_rejected": {
@@ -1827,9 +1827,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.26,
+      "execution_duration_seconds": 8.366,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_27_gate_sha_mismatch_rejected": {
@@ -1838,9 +1838,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 13.548,
+      "execution_duration_seconds": 8.374,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_28_naive_timestamp_rejected": {
@@ -1849,9 +1849,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.116,
+      "execution_duration_seconds": 8.206,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_29_missing_gate_proof_file_rejected": {
@@ -1860,9 +1860,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.493,
+      "execution_duration_seconds": 8.227,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_2_duplicate_test_execution_in_xml": {
@@ -1871,9 +1871,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.191,
+      "execution_duration_seconds": 8.525,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_30_gate_proof_nonzero_exit_code_rejected": {
@@ -1882,9 +1882,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.496,
+      "execution_duration_seconds": 8.934,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_3_missing_xml_file": {
@@ -1893,9 +1893,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.915,
+      "execution_duration_seconds": 8.362,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_4_malformed_xml_file": {
@@ -1904,9 +1904,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 11.172,
+      "execution_duration_seconds": 8.631,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_5_sha_mismatch_cert_vs_rec": {
@@ -1915,9 +1915,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.632,
+      "execution_duration_seconds": 8.23,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_6_nonzero_pytest_exit_code_in_ledger": {
@@ -1926,9 +1926,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.576,
+      "execution_duration_seconds": 8.17,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_7_unexecuted_test_hidden_by_summary": {
@@ -1937,9 +1937,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.624,
+      "execution_duration_seconds": 8.249,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_8_failed_test_in_xml": {
@@ -1948,9 +1948,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.85,
+      "execution_duration_seconds": 8.28,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_adv_9_unknown_result_status": {
@@ -1959,9 +1959,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.947,
+      "execution_duration_seconds": 8.625,
       "occurrences": 1
     },
     "apps/api/tests/test_evidence_validator.py::test_positive_evidence_validation": {
@@ -1970,9 +1970,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.851,
+      "execution_duration_seconds": 8.603,
       "occurrences": 1
     },
     "apps/api/tests/test_fixture_adapter.py::test_reference_fixture_adapter_malformed_rejection": {
@@ -1981,9 +1981,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.022,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_fixture_adapter.py::test_reference_fixture_adapter_valid_fixtures[REF_001]": {
@@ -1992,9 +1992,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.009,
+      "execution_duration_seconds": 0.006,
       "occurrences": 1
     },
     "apps/api/tests/test_fixture_adapter.py::test_reference_fixture_adapter_valid_fixtures[REF_002]": {
@@ -2003,9 +2003,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.007,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/test_fixture_adapter.py::test_reference_fixture_adapter_valid_fixtures[REF_015]": {
@@ -2014,9 +2014,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.022,
+      "execution_duration_seconds": 0.024,
       "occurrences": 1
     },
     "apps/api/tests/test_fixture_adapter.py::test_reference_fixture_adapter_valid_fixtures[REF_016]": {
@@ -2025,9 +2025,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.01,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_fixture_adapter.py::test_reference_fixture_adapter_valid_fixtures[REF_020]": {
@@ -2036,9 +2036,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.006,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "apps/api/tests/test_full_user_journey.py::test_complete_user_journey_and_isolation": {
@@ -2047,9 +2047,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 6 (Full User Journey)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 277.56,
+      "execution_duration_seconds": 260.361,
       "occurrences": 1
     },
     "apps/api/tests/test_geocoding_timezone.py::test_custom_location_coordinate_validation": {
@@ -2058,9 +2058,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.028,
+      "execution_duration_seconds": 0.014,
       "occurrences": 1
     },
     "apps/api/tests/test_geocoding_timezone.py::test_geocoding_search_global_cities": {
@@ -2069,9 +2069,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_geocoding_timezone.py::test_geocoding_search_india_towns": {
@@ -2080,7 +2080,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.006,
       "occurrences": 1
@@ -2091,9 +2091,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.034,
+      "execution_duration_seconds": 0.032,
       "occurrences": 1
     },
     "apps/api/tests/test_geocoding_timezone.py::test_location_validate_api_router_endpoint": {
@@ -2102,9 +2102,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.04,
+      "execution_duration_seconds": 0.029,
       "occurrences": 1
     },
     "apps/api/tests/test_gold_standard_export.py::test_celestial_dossier_pdf_export_endpoint_and_text_extraction": {
@@ -2113,9 +2113,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 4.952,
+      "execution_duration_seconds": 4.908,
       "occurrences": 1
     },
     "apps/api/tests/test_gold_standard_export.py::test_gold_standard_json_export_endpoint": {
@@ -2124,9 +2124,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 4.014,
+      "execution_duration_seconds": 2.533,
       "occurrences": 1
     },
     "apps/api/tests/test_golden_reference_report.py::test_subramanian_dasha_calculation_exactness": {
@@ -2135,9 +2135,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.075,
+      "execution_duration_seconds": 1.011,
       "occurrences": 1
     },
     "apps/api/tests/test_golden_reference_report.py::test_subramanian_golden_chart_anchors": {
@@ -2146,9 +2146,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.045,
+      "execution_duration_seconds": 1.035,
       "occurrences": 1
     },
     "apps/api/tests/test_golden_reference_report.py::test_subramanian_master_evidence_pipeline": {
@@ -2157,9 +2157,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.891,
+      "execution_duration_seconds": 1.548,
       "occurrences": 1
     },
     "apps/api/tests/test_golden_reference_report.py::test_subramanian_report_generation_and_pdf_bytes": {
@@ -2168,9 +2168,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 3.107,
+      "execution_duration_seconds": 2.459,
       "occurrences": 1
     },
     "apps/api/tests/test_health_readiness.py::test_health_check_returns_subsystem_breakdown": {
@@ -2179,9 +2179,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.772,
+      "execution_duration_seconds": 0.607,
       "occurrences": 1
     },
     "apps/api/tests/test_health_readiness.py::test_readiness_check_returns_ready": {
@@ -2190,9 +2190,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.713,
+      "execution_duration_seconds": 0.615,
       "occurrences": 1
     },
     "apps/api/tests/test_jwt_security_hardening.py::test_jwt_altered_algorithm_none_rejected": {
@@ -2201,9 +2201,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.262,
+      "execution_duration_seconds": 0.205,
       "occurrences": 1
     },
     "apps/api/tests/test_jwt_security_hardening.py::test_jwt_expired_token_rejected": {
@@ -2212,9 +2212,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.041,
+      "execution_duration_seconds": 0.031,
       "occurrences": 1
     },
     "apps/api/tests/test_jwt_security_hardening.py::test_jwt_tampered_signature_rejected": {
@@ -2223,9 +2223,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.716,
+      "execution_duration_seconds": 0.576,
       "occurrences": 1
     },
     "apps/api/tests/test_jwt_security_hardening.py::test_jwt_token_revocation_logout": {
@@ -2234,9 +2234,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.829,
+      "execution_duration_seconds": 0.626,
       "occurrences": 1
     },
     "apps/api/tests/test_pdf_report_engine.py::test_comparative_profiles_produce_different_pdf_extracted_text": {
@@ -2245,9 +2245,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.99,
+      "execution_duration_seconds": 0.967,
       "occurrences": 1
     },
     "apps/api/tests/test_pdf_report_engine.py::test_pdf_report_engine_bytes_and_extracted_text_content": {
@@ -2256,9 +2256,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.516,
+      "execution_duration_seconds": 0.503,
       "occurrences": 1
     },
     "apps/api/tests/test_pdf_report_engine.py::test_pdf_report_engine_fails_closed_on_missing_required_data": {
@@ -2267,9 +2267,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.006,
       "occurrences": 1
     },
     "apps/api/tests/test_pdf_report_engine.py::test_pdf_report_engine_renders_all_30_sections_from_report_generator": {
@@ -2278,9 +2278,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.777,
+      "execution_duration_seconds": 1.717,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_idor.py::test_health_reports_real_persistent_database_status": {
@@ -2289,9 +2289,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.89,
+      "execution_duration_seconds": 0.643,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_idor.py::test_idor_user_b_cannot_access_user_a_report": {
@@ -2300,9 +2300,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 6.156,
+      "execution_duration_seconds": 5.131,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_idor.py::test_idor_user_b_cannot_delete_user_a_profile": {
@@ -2311,9 +2311,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.032,
+      "execution_duration_seconds": 1.2,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_idor.py::test_idor_user_b_cannot_read_user_a_profile": {
@@ -2322,9 +2322,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.423,
+      "execution_duration_seconds": 1.209,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_idor.py::test_idor_user_b_cannot_update_user_a_profile": {
@@ -2333,9 +2333,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.773,
+      "execution_duration_seconds": 1.199,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_idor.py::test_profiles_list_returns_only_owned_records": {
@@ -2344,9 +2344,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.342,
+      "execution_duration_seconds": 1.885,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_idor.py::test_user_a_can_create_and_read_own_profile": {
@@ -2355,9 +2355,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.807,
+      "execution_duration_seconds": 0.69,
       "occurrences": 1
     },
     "apps/api/tests/test_persistence_lifecycle.py::test_complete_persistence_lifecycle": {
@@ -2366,9 +2366,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 3 (Security & Persistence)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 6.949,
+      "execution_duration_seconds": 5.291,
       "occurrences": 1
     },
     "apps/api/tests/test_personalization.py::test_personalization_differential": {
@@ -2377,9 +2377,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 4.351,
+      "execution_duration_seconds": 5.755,
       "occurrences": 1
     },
     "apps/api/tests/test_planetary_schema_integrity.py::test_chart_construction_preserves_ayanamsha_and_metadata": {
@@ -2388,9 +2388,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.05,
+      "execution_duration_seconds": 1.07,
       "occurrences": 1
     },
     "apps/api/tests/test_planetary_schema_integrity.py::test_nakshatra_ruling_planets_derived_correctly": {
@@ -2399,9 +2399,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_planetary_schema_integrity.py::test_planetary_placement_coordinate_fidelity": {
@@ -2410,9 +2410,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.005,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "apps/api/tests/test_planetary_schema_integrity.py::test_rashi_sanskrit_names_derived_correctly": {
@@ -2421,9 +2421,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.005,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/test_planetary_schema_integrity.py::test_retrograde_negative_velocity_preserved": {
@@ -2432,9 +2432,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.005,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_planetary_schema_integrity.py::test_whole_sign_houses_derive_exact_lords_and_sanskrit_names": {
@@ -2443,9 +2443,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "apps/api/tests/test_prediction_evidence.py::test_14_prediction_domains_complete_evidence": {
@@ -2454,9 +2454,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.527,
+      "execution_duration_seconds": 1.266,
       "occurrences": 1
     },
     "apps/api/tests/test_quota_governance.py::test_ai_message_quota_enforcement": {
@@ -2465,9 +2465,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.822,
+      "execution_duration_seconds": 1.401,
       "occurrences": 1
     },
     "apps/api/tests/test_quota_governance.py::test_chart_quota_enforcement": {
@@ -2476,9 +2476,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.824,
+      "execution_duration_seconds": 0.669,
       "occurrences": 1
     },
     "apps/api/tests/test_quota_governance.py::test_user_quota_isolation": {
@@ -2487,9 +2487,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.775,
+      "execution_duration_seconds": 0.549,
       "occurrences": 1
     },
     "apps/api/tests/test_rate_limiter.py::test_rate_limiter_resets_after_window": {
@@ -2498,9 +2498,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.258,
+      "execution_duration_seconds": 0.254,
       "occurrences": 1
     },
     "apps/api/tests/test_rate_limiter.py::test_rate_limiter_threshold_and_retry_after": {
@@ -2509,7 +2509,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.005,
       "occurrences": 1
@@ -2520,9 +2520,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.107,
+      "execution_duration_seconds": 0.077,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v02_v03_idor_and_header_spoofing_prevented": {
@@ -2531,9 +2531,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.764,
+      "execution_duration_seconds": 1.405,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v04_admin_privilege_escalation_prevented": {
@@ -2542,9 +2542,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.773,
+      "execution_duration_seconds": 0.63,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v05_v06_prompt_injection_and_evidence_boundary": {
@@ -2553,9 +2553,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.028,
+      "execution_duration_seconds": 0.02,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v08_v09_v12_invalid_inputs_fail_closed": {
@@ -2564,9 +2564,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.835,
+      "execution_duration_seconds": 0.699,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v10_v11_timezone_handling": {
@@ -2575,9 +2575,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.404,
+      "execution_duration_seconds": 1.165,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v16_pdf_output_validity": {
@@ -2586,9 +2586,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.245,
+      "execution_duration_seconds": 0.217,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v20_ai_provider_outage_fails_closed": {
@@ -2597,9 +2597,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.022,
+      "execution_duration_seconds": 0.015,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v21_missing_ephemeris_kernel_fails_closed": {
@@ -2608,9 +2608,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.012,
+      "execution_duration_seconds": 0.013,
       "occurrences": 1
     },
     "apps/api/tests/test_red_team_audit.py::test_v24_deterministic_hash_consistency": {
@@ -2619,9 +2619,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 7.556,
+      "execution_duration_seconds": 6.263,
       "occurrences": 1
     },
     "apps/api/tests/test_reference_chart.py::test_subramanian_ts_reference_chart": {
@@ -2630,9 +2630,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.524,
+      "execution_duration_seconds": 1.248,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_collection_syntax_error_fails_gate": {
@@ -2641,9 +2641,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 3.172,
+      "execution_duration_seconds": 2.649,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_custom_gate_run_does_not_issue_production_ready": {
@@ -2652,9 +2652,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.098,
+      "execution_duration_seconds": 1.665,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_dirty_working_tree_short_circuits_and_fails_closed": {
@@ -2663,9 +2663,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.745,
+      "execution_duration_seconds": 0.436,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_duplicate_canonical_gate_id_fails_closed": {
@@ -2674,9 +2674,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.97,
+      "execution_duration_seconds": 0.728,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_empty_custom_gates_fails_closed": {
@@ -2685,9 +2685,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.168,
+      "execution_duration_seconds": 0.833,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_failing_assertion_fails_gate": {
@@ -2696,9 +2696,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 3.343,
+      "execution_duration_seconds": 2.534,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_fixture_setup_error_fails_gate": {
@@ -2707,9 +2707,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.189,
+      "execution_duration_seconds": 1.744,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_malformed_gate_tuple_fails_closed": {
@@ -2718,9 +2718,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.877,
+      "execution_duration_seconds": 0.822,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_missing_canonical_gate_id_prevents_production_ready_verdict": {
@@ -2729,9 +2729,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.894,
+      "execution_duration_seconds": 2.246,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_missing_test_path_fails_gate": {
@@ -2740,9 +2740,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.472,
+      "execution_duration_seconds": 1.152,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_mixed_pass_and_skip_in_same_gate_fails": {
@@ -2751,9 +2751,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.108,
+      "execution_duration_seconds": 1.675,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_output_dir_isolation_does_not_overwrite_real_artifacts": {
@@ -2762,9 +2762,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.09,
+      "execution_duration_seconds": 1.732,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_teardown_error_fails_gate": {
@@ -2773,9 +2773,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.217,
+      "execution_duration_seconds": 1.708,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_unapproved_skip_fails_gate": {
@@ -2784,9 +2784,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.058,
+      "execution_duration_seconds": 1.635,
       "occurrences": 1
     },
     "apps/api/tests/test_release_certification_runner.py::test_zero_collected_tests_fails_gate": {
@@ -2795,9 +2795,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 10 (Runner Self Tests)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 4.237,
+      "execution_duration_seconds": 3.011,
       "occurrences": 1
     },
     "apps/api/tests/test_release_gate_g12_jaimini.py::test_jaimini_chara_karakas_and_arudhas": {
@@ -2806,9 +2806,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 9 (Release Gates Jaimini, Transits, Panchanga, Muhurta, Predictive Timing)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.354,
+      "execution_duration_seconds": 2.027,
       "occurrences": 1
     },
     "apps/api/tests/test_release_gate_g13_transits.py::test_planetary_transits_and_aspect_contacts": {
@@ -2817,9 +2817,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 9 (Release Gates Jaimini, Transits, Panchanga, Muhurta, Predictive Timing)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 131.757,
+      "execution_duration_seconds": 105.517,
       "occurrences": 1
     },
     "apps/api/tests/test_release_gate_g14_panchanga.py::test_panchanga_elements_and_solar_day": {
@@ -2828,9 +2828,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 9 (Release Gates Jaimini, Transits, Panchanga, Muhurta, Predictive Timing)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.177,
+      "execution_duration_seconds": 0.985,
       "occurrences": 1
     },
     "apps/api/tests/test_release_gate_g15_muhurta.py::test_muhurta_activity_suitability_and_precedence": {
@@ -2839,9 +2839,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 9 (Release Gates Jaimini, Transits, Panchanga, Muhurta, Predictive Timing)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.195,
+      "execution_duration_seconds": 1.0,
       "occurrences": 1
     },
     "apps/api/tests/test_release_gate_g16_predictive_timing.py::test_predictive_timing_suite_and_windows": {
@@ -2850,9 +2850,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 9 (Release Gates Jaimini, Transits, Panchanga, Muhurta, Predictive Timing)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 132.276,
+      "execution_duration_seconds": 108.659,
       "occurrences": 1
     },
     "apps/api/tests/test_sav_reconciliation.py::test_historical_reports_are_not_used": {
@@ -2861,9 +2861,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.108,
+      "execution_duration_seconds": 0.095,
       "occurrences": 1
     },
     "apps/api/tests/test_sav_reconciliation.py::test_independent_sav_equals_independent_bav_sum": {
@@ -2872,9 +2872,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.114,
+      "execution_duration_seconds": 0.097,
       "occurrences": 1
     },
     "apps/api/tests/test_sav_reconciliation.py::test_live_sav_equals_sum_of_live_bav_cells": {
@@ -2883,9 +2883,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.131,
+      "execution_duration_seconds": 0.115,
       "occurrences": 1
     },
     "apps/api/tests/test_sav_reconciliation.py::test_old_280_vector_is_not_produced": {
@@ -2894,9 +2894,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.124,
+      "execution_duration_seconds": 0.098,
       "occurrences": 1
     },
     "apps/api/tests/test_sav_reconciliation.py::test_production_value_never_comes_from_frozen_expected": {
@@ -2905,9 +2905,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.123,
+      "execution_duration_seconds": 0.093,
       "occurrences": 1
     },
     "apps/api/tests/test_sav_reconciliation.py::test_ref001_sav_live_equals_independent_oracle": {
@@ -2916,9 +2916,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.146,
+      "execution_duration_seconds": 0.115,
       "occurrences": 1
     },
     "apps/api/tests/test_sav_reconciliation.py::test_ref001_sav_total_is_337": {
@@ -2927,9 +2927,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.12,
+      "execution_duration_seconds": 0.097,
       "occurrences": 1
     },
     "apps/api/tests/test_secret_management.py::test_development_mode_generates_ephemeral_keys": {
@@ -2938,9 +2938,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.005,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_secret_management.py::test_production_mode_refuses_default_admin_key": {
@@ -2949,9 +2949,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_secret_management.py::test_production_mode_refuses_default_jwt_key": {
@@ -2960,9 +2960,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.007,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_secret_management.py::test_production_mode_refuses_localhost_ollama_url": {
@@ -2971,7 +2971,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.006,
       "occurrences": 1
@@ -2982,9 +2982,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.006,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_security_ownership.py::test_health_and_version": {
@@ -2993,9 +2993,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 4.402,
+      "execution_duration_seconds": 0.616,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_admin_authentication_unauthorized_401": {
@@ -3004,9 +3004,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.046,
+      "execution_duration_seconds": 0.028,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_admin_authorization_forbidden_403": {
@@ -3015,9 +3015,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.041,
+      "execution_duration_seconds": 0.029,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_custom_request_correlation_id_preserved": {
@@ -3026,9 +3026,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.775,
+      "execution_duration_seconds": 0.613,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_out_of_range_coordinate_validation_error": {
@@ -3037,9 +3037,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.724,
+      "execution_duration_seconds": 0.596,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_request_correlation_id_middleware_attaches_header": {
@@ -3048,9 +3048,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.787,
+      "execution_duration_seconds": 0.632,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_resource_not_found_404": {
@@ -3059,9 +3059,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.778,
+      "execution_duration_seconds": 0.588,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_unsupported_ai_domain_validation_400": {
@@ -3070,9 +3070,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.054,
+      "execution_duration_seconds": 0.033,
       "occurrences": 1
     },
     "apps/api/tests/test_structured_error_handling.py::test_validation_error_http_400": {
@@ -3081,9 +3081,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.814,
+      "execution_duration_seconds": 0.614,
       "occurrences": 1
     },
     "apps/api/tests/test_svg_xss_security.py::test_svg_chart_engine_escapes_xss_payloads": {
@@ -3092,9 +3092,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_timestamp_integrity.py::test_duration_consistency": {
@@ -3103,9 +3103,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_timestamp_integrity.py::test_evidence_validator_timestamp_check": {
@@ -3114,9 +3114,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_timestamp_integrity.py::test_unverified_timestamp_policy": {
@@ -3125,9 +3125,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_timestamp_integrity.py::test_utc_timestamp_format": {
@@ -3136,9 +3136,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.021,
       "occurrences": 1
     },
     "apps/api/tests/test_timezone_historical.py::test_historical_espenak_meeus_delta_t": {
@@ -3147,7 +3147,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.004,
       "occurrences": 1
@@ -3158,7 +3158,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.005,
       "occurrences": 1
@@ -3169,7 +3169,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.008,
       "occurrences": 1
@@ -3180,9 +3180,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.016,
+      "execution_duration_seconds": 0.013,
       "occurrences": 1
     },
     "apps/api/tests/test_timezone_historical.py::test_rectification_preserves_original_timezone": {
@@ -3191,9 +3191,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 6.327,
+      "execution_duration_seconds": 5.068,
       "occurrences": 1
     },
     "apps/api/tests/test_treatise_builder.py::test_master_treatise_builder_dynamic_30_sections": {
@@ -3202,9 +3202,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 5 (AI, Validation & Red Team)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.541,
+      "execution_duration_seconds": 1.274,
       "occurrences": 1
     },
     "apps/api/tests/test_varga_engine.py::test_10_independent_birth_charts": {
@@ -3213,9 +3213,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 10.483,
+      "execution_duration_seconds": 8.689,
       "occurrences": 1
     },
     "apps/api/tests/test_varga_engine.py::test_canonical_subramanian_t_s_varga_reference_values": {
@@ -3224,9 +3224,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.035,
+      "execution_duration_seconds": 0.976,
       "occurrences": 1
     },
     "apps/api/tests/test_varga_engine.py::test_d2_hora_traditional_rules": {
@@ -3235,7 +3235,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.004,
       "occurrences": 1
@@ -3246,7 +3246,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.004,
       "occurrences": 1
@@ -3257,7 +3257,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.005,
       "occurrences": 1
@@ -3268,9 +3268,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.022,
+      "execution_duration_seconds": 0.898,
       "occurrences": 1
     },
     "apps/api/tests/test_varga_engine.py::test_varga_boundary_precision": {
@@ -3279,9 +3279,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_varga_engine.py::test_varga_engine_calculates_all_16_vargas": {
@@ -3290,9 +3290,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.049,
+      "execution_duration_seconds": 0.871,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_boundary_dates_pass_and_out_of_boundary_fail_closed": {
@@ -3301,9 +3301,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.01,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_canonical_subramanian_t_s_chart": {
@@ -3312,9 +3312,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.06,
+      "execution_duration_seconds": 1.017,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_differential_personalization_user_a_vs_user_b": {
@@ -3323,9 +3323,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 2.079,
+      "execution_duration_seconds": 2.06,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_invalid_coordinates_fail_closed": {
@@ -3334,9 +3334,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.005,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_invalid_timezone_fail_closed": {
@@ -3345,9 +3345,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.516,
+      "execution_duration_seconds": 0.521,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_nakshatra_pada_classification": {
@@ -3356,9 +3356,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.005,
+      "execution_duration_seconds": 0.006,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_rashi_classification_full_precision": {
@@ -3367,9 +3367,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_vedic_foundation.py::test_time_normalization_and_julian_date": {
@@ -3378,9 +3378,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 2 (Core Astronomy & PDF)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.004,
+      "execution_duration_seconds": 0.005,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_engine.py::test_20_independent_birth_charts_yoga_suite": {
@@ -3389,9 +3389,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 21.326,
+      "execution_duration_seconds": 17.795,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_engine.py::test_aspect_engine_rules": {
@@ -3400,9 +3400,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.004,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_engine.py::test_canonical_subramanian_t_s_yogas": {
@@ -3411,9 +3411,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.071,
+      "execution_duration_seconds": 0.942,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_engine.py::test_partial_chart_indeterminate_status": {
@@ -3422,9 +3422,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 4 (Engines)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 1.039,
+      "execution_duration_seconds": 0.855,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_budha_aditya_boundary_orb": {
@@ -3433,9 +3433,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.011,
+      "execution_duration_seconds": 0.01,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_budha_aditya_missing_planet": {
@@ -3444,9 +3444,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.011,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_budha_aditya_negative_different_signs": {
@@ -3455,9 +3455,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.018,
+      "execution_duration_seconds": 0.01,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_budha_aditya_negative_orb": {
@@ -3466,9 +3466,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.011,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_budha_aditya_positive": {
@@ -3477,9 +3477,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.009,
+      "execution_duration_seconds": 0.012,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_gaja_kesari_cancellation_debilitated": {
@@ -3488,9 +3488,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.009,
+      "execution_duration_seconds": 0.013,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_gaja_kesari_negative": {
@@ -3499,9 +3499,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.007,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_gaja_kesari_positive": {
@@ -3510,9 +3510,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.013,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_kemadruma_cancellation": {
@@ -3521,7 +3521,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.007,
       "occurrences": 1
@@ -3532,9 +3532,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.017,
+      "execution_duration_seconds": 0.01,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_manglik_negative": {
@@ -3543,9 +3543,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.01,
+      "execution_duration_seconds": 0.006,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_manglik_positive": {
@@ -3554,9 +3554,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.011,
+      "execution_duration_seconds": 0.006,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_manglik_positive_uncancelled": {
@@ -3565,9 +3565,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_manglik_true_positive": {
@@ -3576,7 +3576,7 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
       "execution_duration_seconds": 0.006,
       "occurrences": 1
@@ -3587,9 +3587,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.007,
+      "execution_duration_seconds": 0.008,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_ruchaka_negative_not_own_exalt": {
@@ -3598,9 +3598,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.008,
+      "execution_duration_seconds": 0.017,
       "occurrences": 1
     },
     "apps/api/tests/test_yoga_independent_oracle.py::test_ruchaka_positive": {
@@ -3609,9 +3609,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 8 (Ephemeris & Oracle Benchmark)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.022,
+      "execution_duration_seconds": 0.009,
       "occurrences": 1
     },
     "scripts/test_r7_r3_frozen_reference_integrity.py::test_frozen_reference_integrity": {
@@ -3620,9 +3620,9 @@
       "inventory_membership": true,
       "executed": true,
       "execution_batch_or_run_id": "Batch 7 (Scripts Integrity)",
-      "source_sha": "75ffe1b6be04777ede45db3f1907dece22ae3fb3",
+      "source_sha": "e4298196b6b1be453cd4293152cb849fcb120051",
       "final_result": "PASSED",
-      "execution_duration_seconds": 0.138,
+      "execution_duration_seconds": 0.108,
       "occurrences": 1
     }
   }
