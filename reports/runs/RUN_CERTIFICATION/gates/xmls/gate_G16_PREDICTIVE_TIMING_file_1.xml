@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="5.813" timestamp="2026-11-03T07:36:00.731195" hostname="DESKTOP-Q9LS7LJ"><testcase classname="apps.api.tests.test_prediction_evidence" name="test_14_prediction_domains_complete_evidence" time="2.781" /></testsuite></testsuites>

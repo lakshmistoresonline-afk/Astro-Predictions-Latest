@@ -92,6 +92,20 @@ async def astrovision_exception_handler(request: Request, exc: AstrovisionExcept
         }
     )
 
+@app.exception_handler(VedicEngineError)
+async def vedic_engine_exception_handler(request: Request, exc: VedicEngineError):
+    req_id = getattr(request.state, "request_id", "req_unknown")
+    logger.warning(f"[{req_id}] Vedic engine domain error ({exc.__class__.__name__}): {str(exc)}")
+    return JSONResponse(
+        status_code=400,
+        content={
+            "detail": str(exc),
+            "error_code": "INVALID_BIRTH_DATA",
+            "request_id": req_id,
+            "timestamp_iso": datetime.now(timezone.utc).isoformat()
+        }
+    )
+
 @app.exception_handler(HTTPException)
 async def custom_http_exception_handler(request: Request, exc: HTTPException):
     req_id = getattr(request.state, "request_id", "req_unknown")
@@ -270,7 +284,7 @@ def calculate_birth_profile(
         raise
     except Exception as e:
         logger.exception("Error in calculate_birth_profile")
-        raise CalculationEngineError("Calculation failed due to internal engine error.")
+        raise CalculationEngineError(f"Calculation failed due to internal engine error: {str(e)}")
 
 @app.post("/api/v1/transits")
 def get_transit_snapshot(req: TransitRequest):

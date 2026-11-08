@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="3.847" timestamp="2026-11-03T07:33:07.227128" hostname="DESKTOP-Q9LS7LJ"><testcase classname="apps.api.tests.test_release_gate_g12_jaimini" name="test_jaimini_chara_karakas_and_arudhas" time="2.175" /></testsuite></testsuites>

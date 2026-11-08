@@ -11,7 +11,7 @@ import html
 import io
 import re
 import logging
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 logger = logging.getLogger("astrovision.pdf")
 
@@ -135,6 +135,35 @@ def _build_pure_pdf_document(title: str, text_lines: List[str]) -> bytes:
 
     out.write(f"trailer\n<< /Size {len(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref_offset}\n%%EOF\n".encode("utf-8"))
     return out.getvalue()
+
+
+def _render_section_table(tbl: List[dict], table_hdr_style, table_text_style, cream_bg_color, grid_color) -> Optional[Table]:
+    if not tbl or not isinstance(tbl, list) or len(tbl) == 0:
+        return None
+
+    keys = list(tbl[0].keys())
+    hdr_cells = [Paragraph(f"<b>{html.escape(str(k).replace('_', ' ').title())}</b>", table_hdr_style) for k in keys]
+    table_data = [hdr_cells]
+
+    for row in tbl:
+        row_cells = []
+        for k in keys:
+            val_str = str(row.get(k, "—"))
+            row_cells.append(Paragraph(html.escape(val_str), table_text_style))
+        table_data.append(row_cells)
+
+    num_cols = len(keys)
+    col_w = max(40, int(480 / num_cols))
+    col_widths = [col_w] * num_cols
+
+    t = Table(table_data, colWidths=col_widths)
+    t.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), cream_bg_color),
+        ('GRID', (0, 0), (-1, -1), 0.5, grid_color),
+        ('PADDING', (0, 0), (-1, -1), 4),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+    ]))
+    return t
 
 
 class PDFReportEngine:
@@ -316,7 +345,14 @@ class PDFReportEngine:
                     s_body = str(sec.get("content", ""))
                     story.append(Paragraph(html.escape(s_title), sec_heading))
                     story.append(Paragraph(html.escape(s_body), body_style))
-                    story.append(Spacer(1, 10))
+                    story.append(Spacer(1, 8))
+
+                    sec_tbl = sec.get("table")
+                    if sec_tbl and isinstance(sec_tbl, list) and len(sec_tbl) > 0:
+                        rendered_tbl = _render_section_table(sec_tbl, table_hdr, table_text, cream_bg, colors.HexColor("#D6B36A"))
+                        if rendered_tbl:
+                            story.append(rendered_tbl)
+                            story.append(Spacer(1, 12))
 
                 # --- APPENDICES A-D ---
                 story.append(PageBreak())

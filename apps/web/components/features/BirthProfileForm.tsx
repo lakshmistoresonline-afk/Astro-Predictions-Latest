@@ -287,7 +287,9 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     onSubmit(e)
   }
 
-  const datePickerValue = (year && month && day) ? `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}` : ''
+  const datePickerValue = (year >= 1000 && year <= 9999 && month >= 1 && month <= 12 && day >= 1 && day <= 31)
+    ? `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+    : ''
 
   return (
     <div className="w-full max-w-[1500px] mx-auto space-y-6">
