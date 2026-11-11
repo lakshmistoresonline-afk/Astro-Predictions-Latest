@@ -161,24 +161,41 @@ export default function Home() {
 
   const masterEv = chartData?.master_evidence
 
-  const sidebarLinks: { id: NavigationTab; label: string; icon: string }[] = [
-    { id: 'home', label: t.ui.dashboard, icon: '⚡' },
-    { id: 'chart-form', label: t.ui.birth_profile, icon: '📝' },
-    { id: 'reports', label: t.ui.kundli, icon: '🌌' },
-    { id: 'planets', label: t.ui.planets, icon: '🪐' },
-    { id: 'vargas', label: t.ui.vargas, icon: '❖' },
-    { id: 'dashas', label: t.ui.dashas, icon: '⌛' },
-    { id: 'yogas', label: t.ui.yogas, icon: '⚖' },
-    { id: 'strength', label: t.ui.strength, icon: '📊' },
-    { id: 'jaimini', label: t.ui.jaimini, icon: '📜' },
-    { id: 'panchanga', label: t.ui.panchanga, icon: '☀️' },
-    { id: 'compatibility', label: t.ui.compatibility, icon: '💖' },
-    { id: 'rectification', label: t.ui.rectification, icon: '🔍' },
-    { id: 'digest', label: t.ui.digest, icon: '📫' },
-    { id: 'scrubber', label: 'Transit Scrubber', icon: '📅' },
-    { id: 'predictions', label: t.ui.predictions, icon: '🎯' },
-    { id: 'ai', label: t.ui.ai, icon: '🤖' },
+  const navSections: { category: string; items: { id: NavigationTab; label: string; icon: string }[] }[] = [
+    {
+      category: 'CORE ASTROLOGY',
+      items: [
+        { id: 'home', label: t.ui.dashboard, icon: '⚡' },
+        { id: 'chart-form', label: t.ui.birth_profile, icon: '📝' },
+        { id: 'reports', label: t.ui.kundli, icon: '🌌' },
+        { id: 'planets', label: t.ui.planets, icon: '🪐' },
+        { id: 'vargas', label: t.ui.vargas, icon: '❖' },
+        { id: 'dashas', label: t.ui.dashas, icon: '⌛' },
+        { id: 'yogas', label: t.ui.yogas, icon: '⚖' },
+        { id: 'strength', label: t.ui.strength, icon: '📊' },
+        { id: 'jaimini', label: t.ui.jaimini, icon: '📜' },
+        { id: 'panchanga', label: t.ui.panchanga, icon: '☀️' },
+      ]
+    },
+    {
+      category: 'PREDICTIONS & AI',
+      items: [
+        { id: 'predictions', label: t.ui.predictions, icon: '🎯' },
+        { id: 'ai', label: t.ui.ai, icon: '🤖' },
+        { id: 'digest', label: t.ui.digest, icon: '📫' },
+        { id: 'scrubber', label: 'Transit Scrubber', icon: '📅' },
+      ]
+    },
+    {
+      category: 'TOOLS',
+      items: [
+        { id: 'compatibility', label: t.ui.compatibility, icon: '💖' },
+        { id: 'rectification', label: t.ui.rectification, icon: '🔍' },
+      ]
+    }
   ]
+
+  const sidebarLinks = navSections.flatMap(s => s.items)
 
   const loadingStepMessage =
     loadingStep === 1 ? 'Querying NASA JPL DE440s Ephemeris Kernel...' :
@@ -206,25 +223,32 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Nav Links */}
-          <nav className="space-y-1">
-            {sidebarLinks.map(link => {
-              const isActive = activeTab === link.id
-              return (
-                <button
-                  key={link.id}
-                  onClick={() => setActiveTab(link.id)}
-                  className={`w-full text-left px-3.5 py-2.5 rounded-xl transition duration-150 font-mono text-xs flex items-center gap-3 cursor-pointer ${
-                    isActive
-                      ? 'bg-[#F5B942]/15 text-[#F5B942] border border-[#F5B942]/40 shadow-lg shadow-[#F5B942]/5 font-bold'
-                      : 'text-[#94A3B8] hover:text-[#E8EDF7] hover:bg-white/5'
-                  }`}
-                >
-                  <span className="text-sm">{link.icon}</span>
-                  <span>{link.label}</span>
-                </button>
-              )
-            })}
+          {/* Categorized Nav Links */}
+          <nav className="space-y-6 overflow-y-auto max-h-[calc(100vh-200px)] pr-1">
+            {navSections.map((sec, idx) => (
+              <div key={idx} className="space-y-1">
+                <span className="px-3 text-[10px] font-mono font-extrabold uppercase tracking-widest text-[#F5B942]/60 block mb-1.5">
+                  {sec.category}
+                </span>
+                {sec.items.map(link => {
+                  const isActive = activeTab === link.id
+                  return (
+                    <button
+                      key={link.id}
+                      onClick={() => setActiveTab(link.id)}
+                      className={`w-full text-left px-3.5 py-2 rounded-xl transition duration-150 font-mono text-xs flex items-center gap-3 cursor-pointer ${
+                        isActive
+                          ? 'bg-[#F5B942]/15 text-[#F5B942] border border-[#F5B942]/40 shadow-lg shadow-[#F5B942]/5 font-bold'
+                          : 'text-[#94A3B8] hover:text-[#E8EDF7] hover:bg-white/5'
+                      }`}
+                    >
+                      <span className="text-sm">{link.icon}</span>
+                      <span>{link.label}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            ))}
           </nav>
         </div>
 
