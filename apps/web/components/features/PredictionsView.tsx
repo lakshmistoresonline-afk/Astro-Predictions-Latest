@@ -431,6 +431,8 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
             const meta = DOMAIN_ANALYSIS_DATABASE[code] || DOMAIN_ANALYSIS_DATABASE.CAREER
             const isAvail = d.evidence_status === 'AVAILABLE' || d.evidence_status === 'PASS'
 
+            const favScore = d.domain_favorability_score || 75.0
+
             return (
               <div
                 key={code}
@@ -441,13 +443,29 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
                     <h4 className="text-base font-bold text-amber-300 font-serif-heading">
                       {d.rule_definition.domain_title}
                     </h4>
-                    <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold border shrink-0 ${
-                      isAvail
-                        ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                        : 'bg-rose-500/20 text-rose-300 border-rose-500/40'
-                    }`}>
-                      {d.evidence_status}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                        {favScore}% Favorability
+                      </span>
+                      <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold border shrink-0 ${
+                        isAvail
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                          : 'bg-rose-500/20 text-rose-300 border-rose-500/40'
+                      }`}>
+                        {d.evidence_status}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Favorability Progress Bar */}
+                  <div className="space-y-1">
+                    <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-700">
+                      <div
+                        className="bg-gradient-to-r from-amber-500 to-emerald-400 h-full rounded-full transition-all duration-500"
+                        style={{ width: `${favScore}%` }}
+                      ></div>
+                    </div>
+                  </div>
                   </div>
 
                   <p className="text-xs text-slate-300 font-sans leading-relaxed">

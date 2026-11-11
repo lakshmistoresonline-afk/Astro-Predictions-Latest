@@ -161,6 +161,7 @@ class DomainPredictionEvidence(BaseModel):
     observed_evidence: ObservedChartEvidence
     evidence_status: str = Field(description="AVAILABLE or UNAVAILABLE")
     evidence_strength_class: Optional[str] = Field(default=None, description="HIGH, MODERATE, or None")
+    domain_favorability_score: float = Field(default=75.0, description="Quantitative favorability score [0.0, 100.0]")
     traditional_metadata: Dict[str, str]
 
 class ComprehensivePredictionPackage(BaseModel):
@@ -316,11 +317,41 @@ class PredictionEngine:
                 timing_windows=dom_windows
             )
 
+            # Quantitative Favorability Score Calculation (0.0 to 100.0)
+            score = 50.0
+            if shad_dom and shad_dom.domain_strength_class:
+                if shad_dom.domain_strength_class == "HIGH":
+                    score += 15.0
+                elif shad_dom.domain_strength_class == "MODERATE":
+                    score += 10.0
+                elif shad_dom.domain_strength_class == "LOW":
+                    score -= 10.0
+
+            if sav_house_evs:
+                valid_bindus = [e.sav_bindus for e in sav_house_evs if e.sav_bindus is not None]
+                if valid_bindus:
+                    avg_sav = sum(valid_bindus) / len(valid_bindus)
+                    if avg_sav >= 30:
+                        score += 15.0
+                    elif avg_sav >= 28:
+                        score += 10.0
+                    elif avg_sav < 25:
+                        score -= 10.0
+
+            if domain_yogas:
+                score += min(15.0, len(domain_yogas) * 5.0)
+
+            if domain_doshas:
+                score -= min(15.0, len(domain_doshas) * 5.0)
+
+            final_fav_score = round(max(15.0, min(98.0, score)), 1)
+
             domain_results[dom] = DomainPredictionEvidence(
                 rule_definition=rule_def,
                 observed_evidence=obs_evidence,
                 evidence_status=ev_status,
                 evidence_strength_class=str_cls,
+                domain_favorability_score=final_fav_score,
                 traditional_metadata=trad_meta
             )
 
