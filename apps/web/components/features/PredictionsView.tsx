@@ -499,43 +499,59 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
 
       {/* Deep-Dive Prediction Detail Modal */}
       {selectedModalDomain && activeModalData && (
-        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-xl z-50 flex items-center justify-center p-4 md:p-8 select-none">
-          <div className="bg-slate-900 border border-amber-500/40 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 space-y-6 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="fixed inset-0 bg-[#050814]/85 backdrop-blur-2xl z-50 flex items-center justify-center p-4 md:p-10 select-none">
+          <div className="bg-[#0D1527] border border-amber-500/40 rounded-3xl max-w-6xl w-full max-h-[92vh] overflow-y-auto p-6 md:p-10 space-y-6 shadow-2xl font-sans">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-5">
               <div>
-                <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-widest">
-                  {activeModalData.varga} Prediction Report
+                <span className="px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold uppercase tracking-widest">
+                  {activeModalData.varga} Executive Prediction Report
                 </span>
-                <h3 className="text-2xl font-black text-amber-300 tracking-wide font-serif-heading mt-1">
+                <h3 className="text-2xl md:text-3xl font-black text-amber-300 tracking-wide font-serif-heading mt-2">
                   {activeModalData.title}
                 </h3>
               </div>
               <button
                 onClick={() => setSelectedModalDomain(null)}
-                className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold flex items-center justify-center transition"
+                className="w-10 h-10 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-base font-bold flex items-center justify-center transition cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
+            {/* Metadata Bar */}
+            <div className="p-4 rounded-2xl bg-[#050814] border border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
+              <div>
+                <span className="text-slate-400 block text-[10px] uppercase">Primary Karakas</span>
+                <strong className="text-amber-300 text-sm">{activeModalData.karakas}</strong>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[10px] uppercase">Associated Houses</span>
+                <strong className="text-cyan-300 text-sm">{activeModalData.houses}</strong>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[10px] uppercase">Primary Division</span>
+                <strong className="text-emerald-300 text-sm">{activeModalData.varga}</strong>
+              </div>
+            </div>
+
             {/* Narrative Synthesis */}
-            <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 space-y-2 font-sans">
-              <h4 className="text-xs font-mono font-bold uppercase text-amber-400 tracking-wider">Traditional Parashari Synthesis</h4>
-              <p className="text-sm text-slate-200 leading-relaxed font-sans">
+            <div className="p-6 rounded-2xl bg-[#050814] border border-amber-500/30 space-y-2 font-sans">
+              <h4 className="text-xs font-mono font-bold uppercase text-amber-400 tracking-wider">Traditional Parashari Executive Synthesis</h4>
+              <p className="text-sm md:text-base text-slate-100 leading-relaxed font-sans">
                 {activeModalData.synthesis}
               </p>
             </div>
 
             {/* 3 Detail Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans text-xs md:text-sm">
               {/* Indications */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2">
-                <h5 className="font-bold text-amber-300 uppercase tracking-wider text-[11px] flex items-center gap-1">
+              <div className="p-5 rounded-2xl bg-[#050814] border border-slate-800 space-y-3">
+                <h5 className="font-extrabold text-amber-300 uppercase tracking-wider text-xs flex items-center gap-1.5">
                   <span>🎯</span> Key Indications
                 </h5>
-                <ul className="space-y-1.5 text-slate-300 text-[11px]">
+                <ul className="space-y-2 text-slate-200 text-xs md:text-sm">
                   {activeModalData.indications.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-1.5">
+                    <li key={idx} className="flex items-start gap-2">
                       <span className="text-amber-400">•</span> {item}
                     </li>
                   ))}
@@ -543,13 +559,13 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
               </div>
 
               {/* Factors */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2">
-                <h5 className="font-bold text-cyan-300 uppercase tracking-wider text-[11px] flex items-center gap-1">
+              <div className="p-5 rounded-2xl bg-[#050814] border border-slate-800 space-y-3">
+                <h5 className="font-extrabold text-cyan-300 uppercase tracking-wider text-xs flex items-center gap-1.5">
                   <span>⚡</span> Supporting Factors
                 </h5>
-                <ul className="space-y-1.5 text-slate-300 text-[11px]">
+                <ul className="space-y-2 text-slate-200 text-xs md:text-sm">
                   {activeModalData.factors.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-1.5">
+                    <li key={idx} className="flex items-start gap-2">
                       <span className="text-cyan-400">•</span> {item}
                     </li>
                   ))}
@@ -557,13 +573,13 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
               </div>
 
               {/* Challenges */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2">
-                <h5 className="font-bold text-rose-300 uppercase tracking-wider text-[11px] flex items-center gap-1">
-                  <span>⚠️</span> Risk Cautions
+              <div className="p-5 rounded-2xl bg-[#050814] border border-slate-800 space-y-3">
+                <h5 className="font-extrabold text-rose-300 uppercase tracking-wider text-xs flex items-center gap-1.5">
+                  <span>⚠️</span> Risk Cautions & Remedies
                 </h5>
-                <ul className="space-y-1.5 text-slate-300 text-[11px]">
+                <ul className="space-y-2 text-slate-200 text-xs md:text-sm">
                   {activeModalData.challenges.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-1.5">
+                    <li key={idx} className="flex items-start gap-2">
                       <span className="text-rose-400">•</span> {item}
                     </li>
                   ))}
@@ -571,13 +587,17 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
               </div>
             </div>
 
-            <div className="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => {
-                    const text = `${activeModalData.title}\n\n${activeModalData.synthesis}\n\nKey Indications:\n- ${activeModalData.indications.join('\n- ')}\n\nSupporting Factors:\n- ${activeModalData.factors.join('\n- ')}`
-                    const blob = new Blob([text], { type: 'text/plain' })
-                    const url = URL.createObjectURL(blob)
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={() => setSelectedModalDomain(null)}
+                className="px-6 py-3 rounded-2xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-bold text-xs uppercase tracking-wider transition cursor-pointer"
+              >
+                Close Report
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
                     const a = document.createElement('a')
                     a.href = url
                     a.download = `${selectedModalDomain}_Domain_Prediction_Report.txt`
