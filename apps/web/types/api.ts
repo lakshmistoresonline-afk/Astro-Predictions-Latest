@@ -360,6 +360,7 @@ export interface DomainPredictionEvidence {
   rule_definition: DomainRuleDefinition
   evidence_status: string
   evidence_strength_class: string | null
+  domain_favorability_score?: number
   traditional_metadata: Record<string, string>
 }
 
