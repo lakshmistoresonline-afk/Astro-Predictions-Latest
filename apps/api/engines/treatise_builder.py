@@ -309,8 +309,9 @@ class MasterTreatiseBuilder:
             },
             {
                 "number": 26,
-                "title": "26. Traditional Remedial Framework",
-                "content": "Optional traditional practices, mantras, service, and gemstone dignities."
+                "title": "26. Traditional Remedial Framework & Pariharas",
+                "content": f"Traditional Vedic Pariharas, mantras, stotras, daily routines, and gemstone dignities tailored to active planetary placements and doshas for {b_inp.name}.",
+                "table": cls._build_pariharas_framework(evidence, predictions)
             },
             {
                 "number": 27,
@@ -394,3 +395,79 @@ class MasterTreatiseBuilder:
                 "appendix_d": "Important Limitations & Non-Medical Disclaimer"
             }
         }
+
+    @classmethod
+    def _build_pariharas_framework(cls, evidence: CanonicalAstrologyEvidence, predictions: Any) -> List[Dict[str, str]]:
+        pariharas = []
+        chart = evidence.canonical_chart
+        placements = chart.placements
+
+        if evidence.active_dasha_hierarchy:
+            md_lord = evidence.active_dasha_hierarchy.mahadasha.lord_planet
+            parihara_map = {
+                "Sun": ("Sun Mahadasha Activation", "Surya Namaskar & Morning Arghya", "Aditya Hrudayam Stotram", "Donate wheat on Sundays"),
+                "Moon": ("Moon Mahadasha Activation", "Shiva Sahasranama & Monday Vrata", "Om Namah Shivaya (108x)", "Donate milk/rice on Mondays"),
+                "Mars": ("Mars Mahadasha Activation", "Hanuman Chalisa & Tuesday Fasting", "Angaraka Stotram", "Donate red lentils (masoor dal)"),
+                "Mercury": ("Mercury Mahadasha Activation", "Vishnu Sahasranama & Green Offerings", "Om Budhaya Namaha (108x)", "Donate green vegetables / support education"),
+                "Jupiter": ("Jupiter Mahadasha Activation", "Guru Stotram & Thursday Vrata", "Om Gram Greem Groum Sah Gurave Namaha", "Donate chana dal / yellow cloth"),
+                "Venus": ("Venus Mahadasha Activation", "Sri Suktam & Laxmi Puja on Fridays", "Om Shukraya Namaha (108x)", "Donate white sweets / support women welfare"),
+                "Saturn": ("Saturn Mahadasha Activation", "Shani Chalisa & Saturday Til Lamp", "Om Sham Shanayscharaya Namaha", "Donate black sesame / oil to elderly labor"),
+                "Rahu": ("Rahu Mahadasha Activation", "Durga Saptashati & Rahu Shanti", "Om Raahave Namaha (108x)", "Donate black gram / blankets to needy"),
+                "Ketu": ("Ketu Mahadasha Activation", "Ganesha Atharvashirsha & Temple Puja", "Om Ketave Namaha (108x)", "Donate mustard / support spiritual sadhana")
+            }
+            if md_lord in parihara_map:
+                fact, rem, mtr, lifestyle = parihara_map[md_lord]
+                pariharas.append({
+                    "afflicted_factor": fact,
+                    "parihara_remedy": rem,
+                    "mantra_and_stotra": mtr,
+                    "lifestyle_and_daan": lifestyle
+                })
+
+        rahu = placements.get("Rahu")
+        ketu = placements.get("Ketu")
+        if rahu:
+            pariharas.append({
+                "afflicted_factor": f"Rahu in House {rahu.rashi.sign_index} ({rahu.rashi.sign})",
+                "parihara_remedy": "Durga Saptashati & Rahu Stotram",
+                "mantra_and_stotra": "Om Raahave Namaha (108x)",
+                "lifestyle_and_daan": "Document money/contract flows, avoid opaque speculation, donate black gram"
+            })
+        if ketu:
+            pariharas.append({
+                "afflicted_factor": f"Ketu in House {ketu.rashi.sign_index} ({ketu.rashi.sign})",
+                "parihara_remedy": "Ganesha Atharvashirsha & Tuesday Ganesha Temple Puja",
+                "mantra_and_stotra": "Om Gam Ganapataye Namaha (108x)",
+                "lifestyle_and_daan": "Practice daily meditation, avoid analytical overthinking, support spiritual causes"
+            })
+
+        sat = placements.get("Saturn")
+        if sat:
+            pariharas.append({
+                "afflicted_factor": f"Saturn in House {sat.rashi.sign_index} ({sat.rashi.sign})",
+                "parihara_remedy": "Hanuman Chalisa on Saturdays & Til Oil Lamp",
+                "mantra_and_stotra": "Om Sham Shanayscharaya Namaha (108x)",
+                "lifestyle_and_daan": "Maintain strict work routine, respect labor, donate mustard oil/black cloth"
+            })
+
+        mars = placements.get("Mars")
+        if mars:
+            m_house = mars.rashi.sign_index
+            if m_house in [1, 4, 7, 8, 12]:
+                pariharas.append({
+                    "afflicted_factor": f"Mars in House {m_house} (Manglik Condition)",
+                    "parihara_remedy": "Angaraka Stotram & Subramanya / Hanuman Puja",
+                    "mantra_and_stotra": "Om Kram Kreem Kroum Sah Bhaumaya Namaha",
+                    "lifestyle_and_daan": "Practice patience in partnerships, support blood donation or physical service"
+                })
+
+        if evidence.dosha_suite and evidence.dosha_suite.detected_doshas:
+            for d in evidence.dosha_suite.detected_doshas:
+                pariharas.append({
+                    "afflicted_factor": f"Dosha Condition: {d.name}",
+                    "parihara_remedy": f"Traditional {d.name} Parihara & Shanti Puja",
+                    "mantra_and_stotra": "Mahamrityunjaya Mantra (108x)",
+                    "lifestyle_and_daan": "Perform Annadaana (food donation) on Ekadashi or Amavasya"
+                })
+
+        return pariharas
