@@ -206,3 +206,17 @@ export async function fetchYoginiDasha(birthInput: BirthProfileRequest): Promise
   }
   return res.json()
 }
+
+export async function fetchGemstoneMatrix(birthInput: BirthProfileRequest): Promise<any> {
+  initAuthTokenFromSession()
+  const res = await fetch(`${API_BASE}/api/v1/gemstones`, {
+    method: 'POST',
+    headers: getAuthHeaders(),
+    body: JSON.stringify(birthInput)
+  })
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}))
+    throw new Error(errorData.detail || `Gemstone matrix calculation failed (HTTP ${res.status}).`)
+  }
+  return res.json()
+}

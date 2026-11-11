@@ -31,6 +31,7 @@ from apps.api.engines.timing.models import TimingSuiteResult
 from apps.api.engines.tajika_engine import TajikaEngine
 from apps.api.engines.prashna_engine import PrashnaEngine
 from apps.api.engines.dasha.yogini import YoginiDashaEngine
+from apps.api.engines.gemstone_engine import GemstoneEngine
 from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
 from apps.api.services.ai_service import AIService
 from apps.api.services.quota_service import QuotaGovernanceService
@@ -580,3 +581,24 @@ def calculate_yogini_dasha(req: BirthProfileRequest):
     except Exception as e:
         logger.exception("Error in calculate_yogini_dasha")
         raise CalculationEngineError("Yogini Dasha calculation failed.")
+
+@app.post("/api/v1/gemstones")
+def calculate_gemstone_matrix(req: BirthProfileRequest):
+    try:
+        b_inp = BirthInput(
+            name=req.name, year=req.year, month=req.month, day=req.day,
+            hour=req.hour, minute=req.minute, second=req.second or 0,
+            timezone_str=req.timezone_str, latitude=req.latitude, longitude=req.longitude
+        )
+        chart = build_canonical_vedic_chart(b_inp)
+        asc_idx = chart.ascendant.sign_index
+        asc_sign = chart.ascendant.sign
+        res = GemstoneEngine.calculate_gemstone_matrix(asc_idx, asc_sign)
+        return res.model_dump()
+    except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
+    except Exception as e:
+        logger.exception("Error in calculate_gemstone_matrix")
+        raise CalculationEngineError("Gemstone matrix calculation failed.")

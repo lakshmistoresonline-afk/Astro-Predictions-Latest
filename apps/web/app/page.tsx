@@ -26,6 +26,7 @@ import { TransitScrubberView } from '../components/features/TransitScrubberView'
 import { TajikaVarshaphalView } from '../components/features/TajikaVarshaphalView'
 import { PrashnaView } from '../components/features/PrashnaView'
 import { YoginiDashaView } from '../components/features/YoginiDashaView'
+import { GemstonePariharaView } from '../components/features/GemstonePariharaView'
 import { TRANSLATIONS, SupportedLanguage } from '../types/i18n'
 
 type NavigationTab =
@@ -38,6 +39,7 @@ type NavigationTab =
   | 'dashas'
   | 'yogini'
   | 'yogas'
+  | 'gemstones'
   | 'strength'
   | 'jaimini'
   | 'panchanga'
@@ -180,6 +182,7 @@ export default function Home() {
         { id: 'yogini', label: 'Yogini Dasha', icon: '⏳' },
         { id: 'varshaphal', label: 'Tajika Varshaphal', icon: '☀️' },
         { id: 'yogas', label: t.ui.yogas, icon: '⚖' },
+        { id: 'gemstones', label: 'Gemstones & Pariharas', icon: '💎' },
         { id: 'strength', label: t.ui.strength, icon: '📊' },
         { id: 'jaimini', label: t.ui.jaimini, icon: '📜' },
         { id: 'panchanga', label: t.ui.panchanga, icon: '☀️' },
@@ -555,6 +558,12 @@ export default function Home() {
           {activeTab === 'yogas' && (
             <WidgetErrorBoundary title="Yogas & Doshas Error">
               <YogasDoshasView yogaSuite={masterEv?.yoga_suite} doshaSuite={masterEv?.dosha_suite} />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'gemstones' && (
+            <WidgetErrorBoundary title="Gemstones & Pariharas Error">
+              <GemstonePariharaView birthInput={chartData?.birth_input} />
             </WidgetErrorBoundary>
           )}
 
