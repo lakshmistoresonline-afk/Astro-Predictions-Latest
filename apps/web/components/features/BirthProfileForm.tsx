@@ -107,7 +107,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const handleStateSelect = (sName: string) => {
     setSelectedStateName(sName)
     const foundS = activeCountry.states.find(s => s.state_name === sName)
-    if (foundS && foundS.districts[0]) {
+    if (foundS && foundS.districts.length > 0) {
       const firstDistrict = foundS.districts[0]
       setSelectedDistrictName(firstDistrict.district)
       setPlaceName(`${firstDistrict.district}, ${foundS.state_name}`)
@@ -130,23 +130,20 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     }
   }
 
-  // Real Gregorian Date Validation helper
+  // Real Calendar Days in Month Helper (handles leap years)
   const getMaxDaysInMonth = (y: number, m: number): number => {
-    if (m === 2) {
-      const isLeap = (y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0)
-      return isLeap ? 29 : 28
-    }
-    if ([4, 6, 9, 11].includes(m)) return 30
-    return 31
+    if (!m || m < 1 || m > 12) return 31
+    return new Date(y || 2026, m, 0).getDate()
   }
 
+  // Strict Calendar Date Validation
   const validateCurrentDate = (): string | null => {
-    if (!yearStr || !monthStr || !dayStr) return null
     const y = parseInt(yearStr, 10)
     const m = parseInt(monthStr, 10)
     const d = parseInt(dayStr, 10)
 
-    if (isNaN(y) || isNaN(m) || isNaN(d)) return "Invalid numeric date entry."
+    if (isNaN(y) || isNaN(m) || isNaN(d)) return null
+
     if (y < 1850 || y > 2150) return `Birth year (${y}) is outside supported ephemeris horizon [1850, 2150].`
     if (m < 1 || m > 12) return `Birth month (${m}) is outside valid range [1, 12].`
 
@@ -292,20 +289,26 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     : ''
 
   return (
-    <div className="w-full max-w-[1500px] mx-auto space-y-6">
-      {/* Step Indicators Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 bg-[#111B30]/90 border border-white/10 p-4 rounded-2xl backdrop-blur-xl font-mono text-xs">
-        <div className="flex items-center gap-3">
-          <span className="w-6 h-6 rounded-full bg-[#F5B942] text-[#070D1B] font-bold flex items-center justify-center text-xs">1</span>
-          <span className="font-bold text-[#E8EDF7]">Birth Details</span>
+    <div className="w-full max-w-[1500px] mx-auto space-y-8 font-sans">
+      {/* Modern Step Indicators Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-4 bg-[#0D1527]/90 border border-white/10 p-5 rounded-3xl backdrop-blur-2xl text-sm shadow-xl">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="w-7 h-7 rounded-full bg-[#F5B942] text-[#050814] font-black flex items-center justify-center text-xs shadow-md shadow-[#F5B942]/20">1</span>
+            <span className="font-bold text-[#F8FAFC]">Birth Details</span>
+          </div>
           <span className="text-[#94A3B8]">→</span>
-          <span className="w-6 h-6 rounded-full bg-white/10 text-[#94A3B8] font-bold flex items-center justify-center text-xs">2</span>
-          <span className="text-[#94A3B8]">Location</span>
+          <div className="flex items-center gap-2">
+            <span className="w-7 h-7 rounded-full bg-white/10 text-[#94A3B8] font-bold flex items-center justify-center text-xs">2</span>
+            <span className="text-[#94A3B8] font-medium">Location & Timezone</span>
+          </div>
           <span className="text-[#94A3B8]">→</span>
-          <span className="w-6 h-6 rounded-full bg-white/10 text-[#94A3B8] font-bold flex items-center justify-center text-xs">3</span>
-          <span className="text-[#94A3B8]">Preview & Calculate</span>
+          <div className="flex items-center gap-2">
+            <span className="w-7 h-7 rounded-full bg-white/10 text-[#94A3B8] font-bold flex items-center justify-center text-xs">3</span>
+            <span className="text-[#94A3B8] font-medium">Preview & Calculate</span>
+          </div>
         </div>
-        <span className="text-[#34D399] font-bold flex items-center gap-1.5">
+        <span className="text-[#34D399] font-bold text-xs flex items-center gap-2 bg-[#34D399]/10 border border-[#34D399]/30 px-3 py-1 rounded-full">
           <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse"></span>
           NASA DE440s Active
         </span>
@@ -314,23 +317,23 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
       {/* Spacious 2-Column Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* LEFT COLUMN: Birth Particulars Input Form (7 Cols) */}
-        <div className="lg:col-span-7 bg-[#111B30]/90 backdrop-blur-2xl p-6 md:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+        <div className="lg:col-span-7 bg-[#0D1527]/90 backdrop-blur-2xl p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6">
           <div className="border-b border-white/10 pb-5">
-            <span className="px-3 py-1 rounded-full bg-[#F5B942]/10 border border-[#F5B942]/30 text-[#F5B942] text-xs font-mono font-bold uppercase tracking-widest">
+            <span className="px-3.5 py-1.5 rounded-full bg-[#F5B942]/10 border border-[#F5B942]/30 text-[#F5B942] text-xs font-mono font-bold uppercase tracking-widest">
               Natal Parameter Input
             </span>
-            <h2 className="text-2xl md:text-3xl font-black text-[#E8EDF7] tracking-wide mt-2 font-serif-heading">
+            <h2 className="text-2xl md:text-3xl font-black text-[#F8FAFC] tracking-wide mt-2 font-serif-heading">
               Enter Birth Particulars
             </h2>
-            <p className="text-xs text-[#94A3B8] font-sans mt-1 leading-relaxed">
+            <p className="text-sm text-[#94A3B8] font-sans mt-1 leading-relaxed">
               Provide accurate birth details to calculate your canonical astrological profile.
             </p>
           </div>
 
-          <form onSubmit={handleFormSubmit} className="space-y-6">
+          <form onSubmit={handleFormSubmit} className="space-y-6 font-sans">
             {/* Full Name */}
             <div>
-              <label className="block text-xs font-mono font-semibold uppercase tracking-wider text-[#94A3B8] mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#94A3B8] mb-2">
                 Full Name <span className="text-[#F5B942]">*</span>
               </label>
               <input
@@ -338,38 +341,38 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Enter full birth name..."
-                className="w-full bg-[#070D1B] border border-white/15 rounded-2xl px-4 py-3.5 text-[#E8EDF7] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-sans"
+                className="w-full bg-[#050814] border border-white/15 rounded-2xl px-4 py-3.5 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-sans"
                 required
               />
             </div>
 
             {/* Inline Gregorian Date Error Banner */}
             {dateError && (
-              <div className="p-3.5 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-200 text-xs font-mono flex items-center gap-2">
-                <span className="text-sm">⚠️</span>
+              <div className="p-4 rounded-2xl bg-rose-950/80 border border-rose-500/50 text-rose-200 text-xs font-sans flex items-center gap-2">
+                <span className="text-base">⚠️</span>
                 <span>{dateError}</span>
               </div>
             )}
 
-            {/* Date & Time Grid Section (Indian Order: DD / MM / YYYY) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-              {/* 3-Box Labeled Numerical Date Grid in DD / MM / YYYY Indian Order */}
+            {/* Date & Time Grid Section */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Date Input Box */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#94A3B8]">
                     Date of Birth (DD / MM / YYYY) <span className="text-[#F5B942]">*</span>
                   </label>
                   <input
                     type="date"
                     value={datePickerValue}
                     onChange={e => handleCalendarPickerChange(e.target.value)}
-                    className="opacity-60 hover:opacity-100 cursor-pointer w-5 h-5 bg-transparent"
+                    className="opacity-70 hover:opacity-100 cursor-pointer w-5 h-5 bg-transparent"
                     title="Select Date from Calendar Picker"
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] block mb-1">Day (DD)</span>
+                    <span className="text-[11px] text-[#94A3B8] block mb-1">Day (DD)</span>
                     <input
                       type="text"
                       inputMode="numeric"
@@ -377,14 +380,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleDayInput(e.target.value)}
                       onBlur={handleDayBlur}
                       placeholder="DD"
-                      className={`w-full bg-[#070D1B] border rounded-xl px-3 py-3 text-[#E8EDF7] outline-none text-xs tabular-nums font-bold text-center ${
+                      className={`w-full bg-[#050814] border rounded-2xl px-3 py-3 text-[#F8FAFC] outline-none text-sm tabular-nums font-bold text-center ${
                         dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
                       }`}
                       required
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] block mb-1">Month (MM)</span>
+                    <span className="text-[11px] text-[#94A3B8] block mb-1">Month (MM)</span>
                     <input
                       type="text"
                       inputMode="numeric"
@@ -392,14 +395,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleMonthInput(e.target.value)}
                       onBlur={handleMonthBlur}
                       placeholder="MM"
-                      className={`w-full bg-[#070D1B] border rounded-xl px-3 py-3 text-[#E8EDF7] outline-none text-xs tabular-nums font-bold text-center ${
+                      className={`w-full bg-[#050814] border rounded-2xl px-3 py-3 text-[#F8FAFC] outline-none text-sm tabular-nums font-bold text-center ${
                         dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
                       }`}
                       required
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] block mb-1">Year (YYYY)</span>
+                    <span className="text-[11px] text-[#94A3B8] block mb-1">Year (YYYY)</span>
                     <input
                       type="text"
                       inputMode="numeric"
@@ -407,7 +410,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleYearInput(e.target.value)}
                       onBlur={handleYearBlur}
                       placeholder="YYYY"
-                      className={`w-full bg-[#070D1B] border rounded-xl px-3 py-3 text-[#E8EDF7] outline-none text-xs tabular-nums font-bold text-center ${
+                      className={`w-full bg-[#050814] border rounded-2xl px-3 py-3 text-[#F8FAFC] outline-none text-sm tabular-nums font-bold text-center ${
                         dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
                       }`}
                       required
@@ -416,14 +419,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 </div>
               </div>
 
-              {/* 2-Box Labeled Numerical Time Grid */}
+              {/* Time Input Box */}
               <div className="space-y-2">
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#94A3B8]">
                   Time of Birth (24-Hour IST) <span className="text-[#F5B942]">*</span>
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] block mb-1">Hour (HH 0-23)</span>
+                    <span className="text-[11px] text-[#94A3B8] block mb-1">Hour (HH 0-23)</span>
                     <input
                       type="text"
                       inputMode="numeric"
@@ -431,12 +434,12 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleHourInput(e.target.value)}
                       onBlur={handleHourBlur}
                       placeholder="HH"
-                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      className="w-full bg-[#050814] border border-white/15 rounded-2xl px-3 py-3 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-sm tabular-nums font-bold text-center"
                       required
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] block mb-1">Minute (MM 0-59)</span>
+                    <span className="text-[11px] text-[#94A3B8] block mb-1">Minute (MM 0-59)</span>
                     <input
                       type="text"
                       inputMode="numeric"
@@ -444,7 +447,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                       onChange={e => handleMinuteInput(e.target.value)}
                       onBlur={handleMinuteBlur}
                       placeholder="MM"
-                      className="w-full bg-[#070D1B] border border-white/15 rounded-xl px-3 py-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs tabular-nums font-bold text-center"
+                      className="w-full bg-[#050814] border border-white/15 rounded-2xl px-3 py-3 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-sm tabular-nums font-bold text-center"
                       required
                     />
                   </div>
@@ -453,22 +456,22 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
             </div>
 
             {/* 3-Tier Cascading Dropdown Location System */}
-            <div className="space-y-4 font-mono">
-              <span className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
+            <div className="space-y-4">
+              <span className="block text-xs font-bold uppercase tracking-wider text-[#94A3B8]">
                 Hierarchical Location Selection <span className="text-[#F5B942]">*</span>
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* Tier 1: Country Dropdown */}
                 <div>
-                  <label className="block text-[11px] text-[#94A3B8] mb-1">1. Select Country</label>
+                  <label className="block text-xs text-[#94A3B8] mb-1 font-medium">1. Select Country</label>
                   <select
                     value={selectedCountryName}
                     onChange={e => handleCountrySelect(e.target.value)}
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl p-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs font-semibold cursor-pointer"
+                    className="w-full bg-[#050814] border border-white/15 rounded-2xl p-3.5 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-xs font-bold cursor-pointer"
                   >
                     {CASCADING_LOCATIONS.map(c => (
-                      <option key={c.country_name} value={c.country_name} className="bg-[#070D1B] text-[#E8EDF7]">
+                      <option key={c.country_name} value={c.country_name} className="bg-[#050814] text-[#F8FAFC]">
                         {c.country_name}
                       </option>
                     ))}
@@ -477,14 +480,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
 
                 {/* Tier 2: State / Region Dropdown */}
                 <div>
-                  <label className="block text-[11px] text-[#94A3B8] mb-1">2. Select State / Region</label>
+                  <label className="block text-xs text-[#94A3B8] mb-1 font-medium">2. Select State / Region</label>
                   <select
                     value={selectedStateName}
                     onChange={e => handleStateSelect(e.target.value)}
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl p-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs font-semibold cursor-pointer"
+                    className="w-full bg-[#050814] border border-white/15 rounded-2xl p-3.5 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-xs font-bold cursor-pointer"
                   >
                     {activeCountry.states.map(s => (
-                      <option key={s.state_name} value={s.state_name} className="bg-[#070D1B] text-[#E8EDF7]">
+                      <option key={s.state_name} value={s.state_name} className="bg-[#050814] text-[#F8FAFC]">
                         {s.state_name}
                       </option>
                     ))}
@@ -493,14 +496,14 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
 
                 {/* Tier 3: District / City Dropdown */}
                 <div>
-                  <label className="block text-[11px] text-[#94A3B8] mb-1">3. Select District / City</label>
+                  <label className="block text-xs text-[#94A3B8] mb-1 font-medium">3. Select District / City</label>
                   <select
                     value={selectedDistrictName}
                     onChange={e => handleDistrictSelect(e.target.value)}
-                    className="w-full bg-[#070D1B] border border-white/15 rounded-xl p-3 text-[#E8EDF7] focus:border-[#F5B942] outline-none text-xs font-semibold cursor-pointer"
+                    className="w-full bg-[#050814] border border-white/15 rounded-2xl p-3.5 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-xs font-bold cursor-pointer"
                   >
                     {activeDistricts.map(d => (
-                      <option key={d.district} value={d.district} className="bg-[#070D1B] text-[#E8EDF7]">
+                      <option key={d.district} value={d.district} className="bg-[#050814] text-[#F8FAFC]">
                         {d.district}
                       </option>
                     ))}
@@ -508,180 +511,168 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                 </div>
               </div>
 
-              {/* Selected Location Confirmation Summary Card */}
-              <div className="p-4 rounded-2xl bg-[#070D1B]/80 border border-white/10 flex items-center justify-between text-xs font-mono text-[#E8EDF7]">
-                <div className="flex items-center gap-3">
-                  <span className="text-base text-[#F5B942]">📍</span>
-                  <div>
-                    <p className="font-bold text-sm text-[#E8EDF7]">{placeName}, {country}</p>
-                    <p className="text-[11px] text-[#94A3B8] tabular-nums">
-                      {latitude.toFixed(4)}° N, {longitude.toFixed(4)}° E • {timezoneStr}
-                    </p>
-                  </div>
+              {/* Resolved Location Badge */}
+              <div className="p-4 rounded-2xl bg-[#050814] border border-[#F5B942]/30 flex flex-wrap items-center justify-between gap-3">
+                <div className="space-y-0.5">
+                  <p className="text-xs font-bold text-[#F5B942] flex items-center gap-1.5">
+                    <span>📍</span> {placeName}, {country}
+                  </p>
+                  <p className="text-[11px] text-[#94A3B8] tabular-nums">
+                    {latitude}° N, {longitude}° E • {timezoneStr}
+                  </p>
                 </div>
-                <span className="px-2.5 py-1 rounded-full bg-[#34D399]/10 text-[#34D399] border border-[#34D399]/30 text-[10px] font-bold">
-                  CONFIRMED
+                <span className="text-[10px] bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/40 px-2.5 py-1 rounded-full font-bold">
+                  ● Coordinates Loaded
                 </span>
               </div>
             </div>
 
-            {/* Advanced Options Toggle */}
-            <div className="pt-2">
+            {/* Advanced Calculation Options Toggle */}
+            <div className="pt-2 border-t border-white/10 space-y-4">
               <button
                 type="button"
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="text-xs font-mono text-[#F5B942] font-bold hover:underline flex items-center gap-1.5"
+                className="text-xs text-[#F5B942] font-bold hover:underline flex items-center gap-2 cursor-pointer"
               >
-                <span>{showAdvanced ? '▲' : '▼'}</span> Advanced coordinates & timezone
+                <span>{showAdvanced ? '▼' : '►'}</span> Advanced Coordinates & Timezone Controls
               </button>
-            </div>
 
-            {showAdvanced && (
-              <div className="p-5 bg-[#070D1B] rounded-2xl border border-white/10 space-y-4 font-mono text-xs">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[#94A3B8] mb-1">Place Name</label>
-                    <input type="text" value={placeName} onChange={e => setPlaceName(e.target.value)} className="w-full bg-[#111B30] border border-white/10 rounded-xl p-2.5 text-[#E8EDF7]" />
-                  </div>
-                  <div>
-                    <label className="block text-[#94A3B8] mb-1">Country</label>
-                    <input type="text" value={country} onChange={e => setCountry(e.target.value)} className="w-full bg-[#111B30] border border-white/10 rounded-xl p-2.5 text-[#E8EDF7]" />
+              {showAdvanced && (
+                <div className="p-5 rounded-2xl bg-[#050814] border border-white/10 space-y-4 text-xs font-sans">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-[11px] text-[#94A3B8] mb-1">Custom Latitude (°N)</label>
+                      <input
+                        type="number"
+                        step="0.0001"
+                        value={latitude}
+                        onChange={e => setLatitude(parseFloat(e.target.value) || 0)}
+                        className="w-full bg-[#0D1527] border border-white/15 rounded-xl p-2.5 text-[#F8FAFC] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] text-[#94A3B8] mb-1">Custom Longitude (°E)</label>
+                      <input
+                        type="number"
+                        step="0.0001"
+                        value={longitude}
+                        onChange={e => setLongitude(parseFloat(e.target.value) || 0)}
+                        className="w-full bg-[#0D1527] border border-white/15 rounded-xl p-2.5 text-[#F8FAFC] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] text-[#94A3B8] mb-1">IANA Timezone String</label>
+                      <input
+                        type="text"
+                        value={timezoneStr}
+                        onChange={e => setTimezoneStr(e.target.value)}
+                        className="w-full bg-[#0D1527] border border-white/15 rounded-xl p-2.5 text-[#F8FAFC] outline-none"
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-[#94A3B8] mb-1">Latitude (°N)</label>
-                    <input type="number" step="any" value={latitude} onChange={e => setLatitude(Number(e.target.value))} className="w-full bg-[#111B30] border border-white/10 rounded-xl p-2.5 text-[#E8EDF7] tabular-nums" />
-                  </div>
-                  <div>
-                    <label className="block text-[#94A3B8] mb-1">Longitude (°E)</label>
-                    <input type="number" step="any" value={longitude} onChange={e => setLongitude(Number(e.target.value))} className="w-full bg-[#111B30] border border-white/10 rounded-xl p-2.5 text-[#E8EDF7] tabular-nums" />
-                  </div>
-                  <div>
-                    <label className="block text-[#94A3B8] mb-1">IANA Timezone</label>
-                    <input type="text" value={timezoneStr} onChange={e => setTimezoneStr(e.target.value)} className="w-full bg-[#111B30] border border-white/10 rounded-xl p-2.5 text-[#E8EDF7]" />
-                  </div>
-                </div>
+              )}
+
+              <div className="flex items-center gap-2 text-xs text-[#94A3B8]">
+                <input
+                  type="checkbox"
+                  id="saveProfile"
+                  checked={saveProfile}
+                  onChange={e => setSaveProfile(e.target.checked)}
+                  className="rounded border-white/20 bg-[#050814] text-[#F5B942] focus:ring-[#F5B942]"
+                />
+                <label htmlFor="saveProfile" className="cursor-pointer">Save this natal profile for future calculations</label>
               </div>
-            )}
-
-            {/* Save Profile Checkbox */}
-            <div className="flex items-center gap-3 pt-2">
-              <input
-                type="checkbox"
-                id="saveProfile"
-                checked={saveProfile}
-                onChange={e => setSaveProfile(e.target.checked)}
-                className="w-4 h-4 rounded border-white/20 text-[#F5B942] focus:ring-[#F5B942]"
-              />
-              <label htmlFor="saveProfile" className="text-xs font-mono text-[#94A3B8] cursor-pointer select-none">
-                Save this profile for later <span className="text-[10px] text-[#94A3B8]/70 block">(Store securely in your account for quick access)</span>
-              </label>
             </div>
 
-            {/* Submit & Reset Actions */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
+            {/* Action Buttons */}
+            <div className="pt-4 flex items-center gap-4">
               <button
                 type="submit"
-                disabled={!!dateError || !name.trim()}
-                className={`w-full sm:flex-1 py-4 rounded-2xl text-xs font-mono uppercase tracking-wider transition duration-200 flex items-center justify-center gap-2 ${
-                  dateError || !name.trim()
-                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
-                    : 'bg-gradient-to-r from-[#F5B942] via-amber-400 to-[#E5A832] hover:from-amber-300 hover:to-[#F5B942] text-[#070D1B] font-black shadow-xl shadow-[#F5B942]/20 cursor-pointer'
-                }`}
+                disabled={Boolean(dateError)}
+                className="flex-1 py-4 px-8 rounded-2xl bg-gradient-to-r from-[#F5B942] via-[#E5A832] to-[#B8860B] hover:from-[#E5A832] hover:to-[#F5B942] text-[#050814] font-black text-sm uppercase tracking-wider shadow-xl shadow-[#F5B942]/20 transition duration-150 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
-                <span>✦</span> Calculate Canonical Chart →
+                <span>✦</span> Calculate Canonical Chart
               </button>
               <button
                 type="button"
                 onClick={handleReset}
-                className="text-xs font-mono text-[#94A3B8] hover:text-[#E8EDF7] py-2 px-4 underline cursor-pointer"
+                className="py-4 px-6 rounded-2xl bg-[#050814] hover:bg-[#152035] border border-white/15 text-[#94A3B8] hover:text-[#F8FAFC] font-bold text-xs uppercase tracking-wider transition cursor-pointer"
               >
-                Clear form
+                Reset
               </button>
             </div>
           </form>
         </div>
 
-        {/* RIGHT COLUMN: Live Chart Preview Card (5 Cols) */}
-        <div className="lg:col-span-5 bg-[#111B30]/90 backdrop-blur-2xl p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl space-y-6 sticky top-24">
+        {/* RIGHT COLUMN: Interactive Chart Preview Box (5 Cols) */}
+        <div className="lg:col-span-5 bg-[#0D1527]/90 backdrop-blur-2xl p-8 rounded-3xl border border-white/10 shadow-2xl space-y-6">
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <h3 className="text-lg font-extrabold text-[#F5B942] font-serif-heading flex items-center gap-2">
+            <h3 className="text-xl font-bold text-[#F5B942] font-serif-heading flex items-center gap-2">
               <span>🌌</span> Chart Preview
             </h3>
-            <span className="px-2.5 py-1 rounded-full bg-[#F5B942]/10 border border-[#F5B942]/30 text-[#F5B942] text-[10px] font-mono font-bold">
-              ● Ready when details are complete
+            <span className="text-[10px] bg-[#F5B942]/10 border border-[#F5B942]/30 text-[#F5B942] px-3 py-1 rounded-full font-bold uppercase tracking-wider">
+              Whole-Sign Bhava
             </span>
           </div>
 
-          {/* Style Selector */}
-          <div className="flex bg-[#070D1B] p-1 rounded-xl border border-white/10 font-mono text-xs">
+          {/* Style Selector Buttons */}
+          <div className="flex bg-[#050814] p-1.5 rounded-2xl border border-white/10 text-xs">
             <button
-              type="button"
               onClick={() => setChartStyle('north')}
-              className={`flex-1 py-1.5 rounded-lg font-semibold transition ${
-                chartStyle === 'north' ? 'bg-[#F5B942]/20 text-[#F5B942] border border-[#F5B942]/40' : 'text-[#94A3B8] hover:text-white'
+              className={`flex-1 py-2 rounded-xl font-bold transition cursor-pointer ${
+                chartStyle === 'north' ? 'bg-[#F5B942]/20 text-[#F5B942] border border-[#F5B942]/40 shadow-md' : 'text-[#94A3B8] hover:text-[#F8FAFC]'
               }`}
             >
               North Indian (Rāśi)
             </button>
             <button
-              type="button"
               onClick={() => setChartStyle('south')}
-              className={`flex-1 py-1.5 rounded-lg font-semibold transition ${
-                chartStyle === 'south' ? 'bg-[#F5B942]/20 text-[#F5B942] border border-[#F5B942]/40' : 'text-[#94A3B8] hover:text-white'
+              className={`flex-1 py-2 rounded-xl font-bold transition cursor-pointer ${
+                chartStyle === 'south' ? 'bg-[#F5B942]/20 text-[#F5B942] border border-[#F5B942]/40 shadow-md' : 'text-[#94A3B8] hover:text-[#F8FAFC]'
               }`}
             >
               South Indian
             </button>
           </div>
 
-          {/* Interactive Astrolabe SVG Diagram */}
-          <div className="p-6 rounded-2xl bg-[#070D1B] border border-[#F5B942]/20 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden shadow-inner">
-            <div className="w-full max-w-[280px] aspect-square relative flex items-center justify-center">
-              {/* Outer Rashi Diamond Grid */}
-              <svg viewBox="0 0 300 300" className="w-full h-full text-[#F5B942]">
-                <rect x="10" y="10" width="280" height="280" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.8" />
-                <line x1="10" y1="10" x2="290" y2="290" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
-                <line x1="290" y1="10" x2="10" y2="290" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
-                <polygon points="150,10 290,150 150,290 10,150" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.8" />
-
-                {/* House Labels */}
-                <text x="150" y="70" textAnchor="middle" fill="#E8EDF7" fontSize="12" fontWeight="bold">1</text>
-                <text x="80" y="40" textAnchor="middle" fill="#94A3B8" fontSize="10">2</text>
-                <text x="40" y="80" textAnchor="middle" fill="#94A3B8" fontSize="10">3</text>
-                <text x="70" y="150" textAnchor="middle" fill="#94A3B8" fontSize="10">4</text>
-                <text x="40" y="220" textAnchor="middle" fill="#94A3B8" fontSize="10">5</text>
-                <text x="80" y="260" textAnchor="middle" fill="#94A3B8" fontSize="10">6</text>
-                <text x="150" y="230" textAnchor="middle" fill="#94A3B8" fontSize="10">7</text>
-                <text x="220" y="260" textAnchor="middle" fill="#94A3B8" fontSize="10">8</text>
-                <text x="260" y="220" textAnchor="middle" fill="#94A3B8" fontSize="10">9</text>
-                <text x="230" y="150" textAnchor="middle" fill="#94A3B8" fontSize="10">10</text>
-                <text x="260" y="80" textAnchor="middle" fill="#94A3B8" fontSize="10">11</text>
-                <text x="220" y="40" textAnchor="middle" fill="#94A3B8" fontSize="10">12</text>
-
-                {/* Center Symbol */}
-                <text x="150" y="155" textAnchor="middle" fill="#F5B942" fontSize="22" fontWeight="bold">As</text>
-              </svg>
+          {/* SVG Astrolabe Preview Container */}
+          <div className="p-6 bg-[#050814] rounded-3xl border border-[#F5B942]/20 flex items-center justify-center shadow-inner min-h-[320px]">
+            <div className="w-full max-w-[280px] aspect-square border border-[#F5B942]/40 rounded-2xl p-4 flex flex-col justify-between relative bg-gradient-to-b from-[#0D1527] to-[#050814] shadow-xl">
+              <div className="flex justify-between text-[11px] font-bold text-[#F5B942]/80">
+                <span>12</span>
+                <span>1</span>
+                <span>2</span>
+              </div>
+              <div className="flex justify-between items-center text-xs font-bold text-[#F5B942]">
+                <span>11</span>
+                <div className="text-center font-serif-heading">
+                  <span className="text-2xl text-[#F5B942] font-black block">As</span>
+                  <span className="text-[10px] text-[#38BDF8]">{placeName.split(',')[0] || 'Lagna'}</span>
+                </div>
+                <span>3</span>
+              </div>
+              <div className="flex justify-between text-[11px] font-bold text-[#F5B942]/80">
+                <span>10</span>
+                <span>7</span>
+                <span>4</span>
+              </div>
             </div>
-            <p className="text-[11px] font-mono text-[#94A3B8] text-center mt-3">
-              This is a preview. The actual calculated chart will generate upon submission.
-            </p>
           </div>
 
-          {/* Engine Parameters Summary List */}
-          <div className="space-y-2.5 font-mono text-xs">
-            <div className="p-3 rounded-xl bg-[#070D1B]/80 border border-white/5 flex items-center justify-between text-[#E8EDF7]">
-              <span className="text-[#94A3B8]">Timezone</span>
-              <span className="font-bold text-[#F5B942]">{timezoneStr}</span>
+          {/* Summary Particulars Card */}
+          <div className="p-4 rounded-2xl bg-[#050814] border border-white/10 space-y-2 text-xs">
+            <div className="flex justify-between text-[#94A3B8]">
+              <span>Timezone:</span>
+              <strong className="text-[#F8FAFC]">{timezoneStr}</strong>
             </div>
-            <div className="p-3 rounded-xl bg-[#070D1B]/80 border border-white/5 flex items-center justify-between text-[#E8EDF7]">
-              <span className="text-[#94A3B8]">Coordinates</span>
-              <span className="font-bold tabular-nums">{latitude.toFixed(2)}° N, {longitude.toFixed(2)}° E</span>
+            <div className="flex justify-between text-[#94A3B8]">
+              <span>Coordinates:</span>
+              <strong className="text-[#F8FAFC]">{latitude}° N, {longitude}° E</strong>
             </div>
-            <div className="p-3 rounded-xl bg-[#070D1B]/80 border border-white/5 flex items-center justify-between text-[#E8EDF7]">
-              <span className="text-[#94A3B8]">Calculation Engine</span>
-              <span className="font-bold text-[#34D399]">JPL DE440s (High Precision)</span>
+            <div className="flex justify-between text-[#94A3B8]">
+              <span>Calculation Engine:</span>
+              <strong className="text-[#34D399]">JPL DE440s (High Precision)</strong>
             </div>
           </div>
         </div>

@@ -239,7 +239,7 @@ export default function Home() {
           <nav className="space-y-6 overflow-y-auto max-h-[calc(100vh-200px)] pr-1">
             {navSections.map((sec, idx) => (
               <div key={idx} className="space-y-1">
-                <span className="px-3 text-[10px] font-mono font-extrabold uppercase tracking-widest text-[#F5B942]/60 block mb-1.5">
+                <span className="px-3 text-[11px] font-sans font-extrabold uppercase tracking-widest text-[#F5B942] block mb-2">
                   {sec.category}
                 </span>
                 {sec.items.map(link => {
@@ -248,13 +248,13 @@ export default function Home() {
                     <button
                       key={link.id}
                       onClick={() => setActiveTab(link.id)}
-                      className={`w-full text-left px-3.5 py-2 rounded-xl transition duration-150 font-mono text-xs flex items-center gap-3 cursor-pointer ${
+                      className={`w-full text-left px-3.5 py-2.5 rounded-2xl transition duration-150 font-sans text-sm font-medium flex items-center gap-3 cursor-pointer ${
                         isActive
-                          ? 'bg-[#F5B942]/15 text-[#F5B942] border border-[#F5B942]/40 shadow-lg shadow-[#F5B942]/5 font-bold'
-                          : 'text-[#94A3B8] hover:text-[#E8EDF7] hover:bg-white/5'
+                          ? 'bg-[#F5B942]/15 text-[#F5B942] border border-[#F5B942]/40 shadow-lg shadow-[#F5B942]/10 font-bold'
+                          : 'text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/5'
                       }`}
                     >
-                      <span className="text-sm">{link.icon}</span>
+                      <span className="text-base">{link.icon}</span>
                       <span>{link.label}</span>
                     </button>
                   )
