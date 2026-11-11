@@ -28,6 +28,10 @@ from apps.api.engines.jaimini.engine import JaiminiEngine
 from apps.api.engines.jaimini.models import JaiminiSuiteResult
 from apps.api.engines.timing.engine import TimingEngine
 from apps.api.engines.timing.models import TimingSuiteResult
+from apps.api.engines.tajika_engine import TajikaEngine
+from apps.api.engines.prashna_engine import PrashnaEngine
+from apps.api.engines.dasha.yogini import YoginiDashaEngine
+from apps.api.engines.vedic.chart_builder import build_canonical_vedic_chart
 from apps.api.services.ai_service import AIService
 from apps.api.services.quota_service import QuotaGovernanceService
 from apps.api.routers.admin_export import router as admin_export_router
@@ -503,3 +507,76 @@ def interpret_evidence_ai(req: AIInterpretationApiRequest):
     except Exception as e:
         logger.exception("Error in interpret_evidence_ai")
         raise CalculationEngineError("AI interpretation synthesis failed.")
+
+class VarshaphalRequestModel(BaseModel):
+    birth_input: BirthProfileRequest
+    target_year: int = Field(default=2026, description="Target year for Varshaphal calculation")
+
+class PrashnaRequestModel(BaseModel):
+    query_domain: str = Field(default="CAREER", description="CAREER, FINANCE, MARRIAGE, PROPERTY, HEALTH, TRAVEL, LITIGATION")
+    latitude: float = Field(default=13.0827)
+    longitude: float = Field(default=80.2707)
+    query_datetime_utc_iso: Optional[str] = None
+
+@app.post("/api/v1/tajika/varshaphal")
+def calculate_varshaphal(req: VarshaphalRequestModel):
+    try:
+        bi = req.birth_input
+        b_inp = BirthInput(
+            name=bi.name, year=bi.year, month=bi.month, day=bi.day,
+            hour=bi.hour, minute=bi.minute, second=bi.second or 0,
+            timezone_str=bi.timezone_str, latitude=bi.latitude, longitude=bi.longitude
+        )
+        res = TajikaEngine.calculate_varshaphal(b_inp, target_year=req.target_year)
+        return res.model_dump()
+    except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
+    except Exception as e:
+        logger.exception("Error in calculate_varshaphal")
+        raise CalculationEngineError("Tajika Varshaphal calculation failed.")
+
+@app.post("/api/v1/prashna/evaluate")
+def evaluate_prashna_query(req: PrashnaRequestModel):
+    try:
+        q_dt = datetime.now(timezone.utc)
+        if req.query_datetime_utc_iso:
+            q_dt = datetime.fromisoformat(req.query_datetime_utc_iso)
+            if q_dt.tzinfo is None:
+                q_dt = q_dt.replace(tzinfo=timezone.utc)
+
+        res = PrashnaEngine.evaluate_query(
+            query_domain=req.query_domain,
+            query_dt_utc=q_dt,
+            latitude=req.latitude,
+            longitude=req.longitude
+        )
+        return res.model_dump()
+    except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
+    except Exception as e:
+        logger.exception("Error in evaluate_prashna_query")
+        raise CalculationEngineError("Prashna evaluation failed.")
+
+@app.post("/api/v1/dashas/yogini")
+def calculate_yogini_dasha(req: BirthProfileRequest):
+    try:
+        b_inp = BirthInput(
+            name=req.name, year=req.year, month=req.month, day=req.day,
+            hour=req.hour, minute=req.minute, second=req.second or 0,
+            timezone_str=req.timezone_str, latitude=req.latitude, longitude=req.longitude
+        )
+        chart = build_canonical_vedic_chart(b_inp)
+        now_utc = datetime.now(timezone.utc)
+        res = YoginiDashaEngine.calculate_yogini_dasha(chart, query_dt_utc=now_utc)
+        return res.model_dump()
+    except (ValueError, TypeError, VedicEngineError, CalculationError) as e:
+        raise AstrovisionValidationError(str(e))
+    except AstrovisionException:
+        raise
+    except Exception as e:
+        logger.exception("Error in calculate_yogini_dasha")
+        raise CalculationEngineError("Yogini Dasha calculation failed.")

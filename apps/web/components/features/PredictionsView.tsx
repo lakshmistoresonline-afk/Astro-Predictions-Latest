@@ -466,7 +466,6 @@ export const PredictionsView: React.FC<PredictionsViewProps> = ({ predictions })
                       ></div>
                     </div>
                   </div>
-                  </div>
 
                   <p className="text-xs text-slate-300 font-sans leading-relaxed">
                     {meta.synthesis}
