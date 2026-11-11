@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CASCADING_LOCATIONS, CountryItem, StateItem, DistrictCityItem } from '../../types/locationData'
+import { CASCADING_LOCATIONS, DistrictCityItem } from '../../types/locationData'
 
 interface BirthProfileFormProps {
   name: string
@@ -51,209 +51,55 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
 
-  // Local string state to allow full backspace & custom typing
-  const [yearStr, setYearStr] = useState<string>(year ? String(year) : '1995')
-  const [monthStr, setMonthStr] = useState<string>(month ? String(month) : '1')
-  const [dayStr, setDayStr] = useState<string>(day ? String(day) : '1')
-  const [hourStr, setHourStr] = useState<string>(hour !== undefined ? String(hour) : '12')
-  const [minuteStr, setMinuteStr] = useState<string>(minute !== undefined ? String(minute) : '0')
+  // Combined Date String (YYYY-MM-DD)
+  const dateIsoString = (year >= 1850 && year <= 2150 && month >= 1 && month <= 12 && day >= 1 && day <= 31)
+    ? `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+    : '1995-01-01'
 
-  // 3-Tier Cascading Location State
-  const [selectedCountryName, setSelectedCountryName] = useState('India')
-  const [selectedStateName, setSelectedStateName] = useState('Kerala')
-  const [selectedDistrictName, setSelectedDistrictName] = useState('Palakkad')
+  // Combined Time String (HH:MM)
+  const timeIsoString = `${String(hour !== undefined ? hour : 12).padStart(2, '0')}:${String(minute !== undefined ? minute : 0).padStart(2, '0')}`
 
-  // Initialize and synchronize location state on component mount
-  useEffect(() => {
-    const foundC = CASCADING_LOCATIONS.find(c => c.country_name === selectedCountryName) || CASCADING_LOCATIONS[0]
-    const foundS = foundC.states.find(s => s.state_name === selectedStateName) || foundC.states[0]
-    const foundD = foundS.districts.find(d => d.district === selectedDistrictName) || foundS.districts[0]
+  // Quick preset locations
+  const PRESET_LOCATIONS = [
+    { label: 'Palakkad, Kerala', place: 'Palakkad, Kerala', country: 'India', lat: 10.7867, lon: 76.6547, tz: 'Asia/Kolkata' },
+    { label: 'Chennai, Tamil Nadu', place: 'Chennai, Tamil Nadu', country: 'India', lat: 13.0827, lon: 80.2707, tz: 'Asia/Kolkata' },
+    { label: 'Bengaluru, Karnataka', place: 'Bengaluru, Karnataka', country: 'India', lat: 12.9716, lon: 77.5946, tz: 'Asia/Kolkata' },
+    { label: 'Mumbai, Maharashtra', place: 'Mumbai, Maharashtra', country: 'India', lat: 19.0760, lon: 72.8777, tz: 'Asia/Kolkata' },
+    { label: 'Delhi, NCR', place: 'Delhi, NCR', country: 'India', lat: 28.6139, lon: 77.2090, tz: 'Asia/Kolkata' },
+    { label: 'New York, USA', place: 'New York, NY', country: 'United States', lat: 40.7128, lon: -74.0060, tz: 'America/New_York' },
+    { label: 'London, UK', place: 'London', country: 'United Kingdom', lat: 51.5074, lon: -0.1278, tz: 'Europe/London' },
+  ]
 
-    if (foundD) {
-      setPlaceName(`${foundD.district}, ${foundS.state_name}`)
-      setCountry(foundC.country_name)
-      setLatitude(foundD.latitude)
-      setLongitude(foundD.longitude)
-      setTimezoneStr(foundD.timezone_str)
-    }
-  }, [])
-
-  // Derive active Country object
-  const activeCountry = CASCADING_LOCATIONS.find(c => c.country_name === selectedCountryName) || CASCADING_LOCATIONS[0]
-  // Derive active State object
-  const activeState = activeCountry.states.find(s => s.state_name === selectedStateName) || activeCountry.states[0]
-  // Active Districts list
-  const activeDistricts = activeState ? activeState.districts : []
-
-  // Sync cascading selections to parent form state
-  const handleCountrySelect = (cName: string) => {
-    setSelectedCountryName(cName)
-    const foundC = CASCADING_LOCATIONS.find(c => c.country_name === cName) || CASCADING_LOCATIONS[0]
-    const firstState = foundC.states[0]
-    if (firstState) {
-      setSelectedStateName(firstState.state_name)
-      const firstDistrict = firstState.districts[0]
-      if (firstDistrict) {
-        setSelectedDistrictName(firstDistrict.district)
-        setPlaceName(`${firstDistrict.district}, ${firstState.state_name}`)
-        setCountry(foundC.country_name)
-        setLatitude(firstDistrict.latitude)
-        setLongitude(firstDistrict.longitude)
-        setTimezoneStr(firstDistrict.timezone_str)
-      }
-    }
-  }
-
-  const handleStateSelect = (sName: string) => {
-    setSelectedStateName(sName)
-    const foundS = activeCountry.states.find(s => s.state_name === sName)
-    if (foundS && foundS.districts.length > 0) {
-      const firstDistrict = foundS.districts[0]
-      setSelectedDistrictName(firstDistrict.district)
-      setPlaceName(`${firstDistrict.district}, ${foundS.state_name}`)
-      setCountry(activeCountry.country_name)
-      setLatitude(firstDistrict.latitude)
-      setLongitude(firstDistrict.longitude)
-      setTimezoneStr(firstDistrict.timezone_str)
-    }
-  }
-
-  const handleDistrictSelect = (dName: string) => {
-    setSelectedDistrictName(dName)
-    const foundD = activeDistricts.find(d => d.district === dName)
-    if (foundD) {
-      setPlaceName(`${foundD.district}, ${activeState.state_name}`)
-      setCountry(activeCountry.country_name)
-      setLatitude(foundD.latitude)
-      setLongitude(foundD.longitude)
-      setTimezoneStr(foundD.timezone_str)
-    }
-  }
-
-  // Real Calendar Days in Month Helper (handles leap years)
-  const getMaxDaysInMonth = (y: number, m: number): number => {
-    if (!m || m < 1 || m > 12) return 31
-    return new Date(y || 2026, m, 0).getDate()
-  }
-
-  // Strict Calendar Date Validation
-  const validateCurrentDate = (): string | null => {
-    const y = parseInt(yearStr, 10)
-    const m = parseInt(monthStr, 10)
-    const d = parseInt(dayStr, 10)
-
-    if (isNaN(y) || isNaN(m) || isNaN(d)) return null
-
-    if (y < 1850 || y > 2150) return `Birth year (${y}) is outside supported ephemeris horizon [1850, 2150].`
-    if (m < 1 || m > 12) return `Birth month (${m}) is outside valid range [1, 12].`
-
-    const maxDays = getMaxDaysInMonth(y, m)
-    if (d < 1 || d > maxDays) {
-      return `Invalid birth date: day ${d} does not exist in month ${m} for year ${y} (max days in month: ${maxDays}).`
-    }
-    return null
-  }
-
-  const dateError = validateCurrentDate()
-
-  // Smooth Date Input Handlers
-  const handleYearInput = (val: string) => {
-    setYearStr(val)
-    if (val === '') return
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setYear(num)
-  }
-
-  const handleYearBlur = () => {
-    if (yearStr === '') return
-    const num = parseInt(yearStr, 10)
-    if (!isNaN(num)) {
-      const clamped = Math.min(2150, Math.max(1850, num))
-      setYear(clamped)
-      setYearStr(String(clamped))
-    }
-  }
-
-  const handleMonthInput = (val: string) => {
-    setMonthStr(val)
-    if (val === '') return
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setMonth(num)
-  }
-
-  const handleMonthBlur = () => {
-    if (monthStr === '') return
-    const num = parseInt(monthStr, 10)
-    if (!isNaN(num)) {
-      const clamped = Math.min(12, Math.max(1, num))
-      setMonth(clamped)
-      setMonthStr(String(clamped))
-    }
-  }
-
-  const handleDayInput = (val: string) => {
-    setDayStr(val)
-    if (val === '') return
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setDay(num)
-  }
-
-  const handleDayBlur = () => {
-    if (dayStr === '') return
-    const num = parseInt(dayStr, 10)
-    if (!isNaN(num)) {
-      const clamped = Math.min(31, Math.max(1, num))
-      setDay(clamped)
-      setDayStr(String(clamped))
-    }
-  }
-
-  // Smooth Time Input Handlers
-  const handleHourInput = (val: string) => {
-    setHourStr(val)
-    if (val === '') return
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setHour(num)
-  }
-
-  const handleHourBlur = () => {
-    if (hourStr === '') return
-    const num = parseInt(hourStr, 10)
-    if (!isNaN(num)) {
-      const clamped = Math.min(23, Math.max(0, num))
-      setHour(clamped)
-      setHourStr(String(clamped))
-    }
-  }
-
-  const handleMinuteInput = (val: string) => {
-    setMinuteStr(val)
-    if (val === '') return
-    const num = parseInt(val, 10)
-    if (!isNaN(num)) setMinute(num)
-  }
-
-  const handleMinuteBlur = () => {
-    if (minuteStr === '') return
-    const num = parseInt(minuteStr, 10)
-    if (!isNaN(num)) {
-      const clamped = Math.min(59, Math.max(0, num))
-      setMinute(clamped)
-      setMinuteStr(String(clamped))
-    }
-  }
-
-  const handleCalendarPickerChange = (val: string) => {
+  const handleDateChange = (val: string) => {
     if (!val) return
     const parts = val.split('-')
     if (parts.length === 3) {
       const y = parseInt(parts[0], 10)
       const m = parseInt(parts[1], 10)
       const d = parseInt(parts[2], 10)
-      if (!isNaN(y) && y >= 1850 && y <= 2150) { setYear(y); setYearStr(String(y)); }
-      if (!isNaN(m) && m >= 1 && m <= 12) { setMonth(m); setMonthStr(String(m)); }
-      if (!isNaN(d) && d >= 1 && d <= 31) { setDay(d); setDayStr(String(d)); }
+      if (!isNaN(y) && y >= 1850 && y <= 2150) setYear(y)
+      if (!isNaN(m) && m >= 1 && m <= 12) setMonth(m)
+      if (!isNaN(d) && d >= 1 && d <= 31) setDay(d)
     }
+  }
+
+  const handleTimeChange = (val: string) => {
+    if (!val) return
+    const parts = val.split(':')
+    if (parts.length >= 2) {
+      const h = parseInt(parts[0], 10)
+      const min = parseInt(parts[1], 10)
+      if (!isNaN(h) && h >= 0 && h <= 23) setHour(h)
+      if (!isNaN(min) && min >= 0 && min <= 59) setMinute(min)
+    }
+  }
+
+  const handleSelectPresetLocation = (loc: typeof PRESET_LOCATIONS[0]) => {
+    setPlaceName(loc.place)
+    setCountry(loc.country)
+    setLatitude(loc.lat)
+    setLongitude(loc.lon)
+    setTimezoneStr(loc.tz)
   }
 
   const handleReset = () => {
@@ -263,34 +109,12 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
     setDay(1)
     setHour(12)
     setMinute(0)
-    setYearStr('1995')
-    setMonthStr('1')
-    setDayStr('1')
-    setHourStr('12')
-    setMinuteStr('0')
-    handleCountrySelect('India')
+    handleSelectPresetLocation(PRESET_LOCATIONS[0])
   }
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (dateError) {
-      alert(dateError)
-      return
-    }
-    if (!yearStr || !monthStr || !dayStr || hourStr === '' || minuteStr === '') {
-      alert('Please fill out complete Date and Time parameters.')
-      return
-    }
-    onSubmit(e)
-  }
-
-  const datePickerValue = (year >= 1000 && year <= 9999 && month >= 1 && month <= 12 && day >= 1 && day <= 31)
-    ? `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-    : ''
 
   return (
-    <div className="w-full max-w-[1500px] mx-auto space-y-8 font-sans">
-      {/* Modern Step Indicators Bar */}
+    <div className="w-full max-w-[1400px] mx-auto space-y-8 font-sans">
+      {/* Sleek Step Navigation */}
       <div className="flex flex-wrap items-center justify-between gap-4 bg-[#0D1527]/90 border border-white/10 p-5 rounded-3xl backdrop-blur-2xl text-sm shadow-xl">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
@@ -314,9 +138,9 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
         </span>
       </div>
 
-      {/* Spacious 2-Column Grid */}
+      {/* Modern 2-Column Studio Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* LEFT COLUMN: Birth Particulars Input Form (7 Cols) */}
+        {/* LEFT COLUMN: Ultra-Clean 3-Field Birth Form (7 Cols) */}
         <div className="lg:col-span-7 bg-[#0D1527]/90 backdrop-blur-2xl p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6">
           <div className="border-b border-white/10 pb-5">
             <span className="px-3.5 py-1.5 rounded-full bg-[#F5B942]/10 border border-[#F5B942]/30 text-[#F5B942] text-xs font-bold uppercase tracking-widest">
@@ -330,188 +154,87 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
             </p>
           </div>
 
-          <form onSubmit={handleFormSubmit} className="space-y-6 font-sans">
-            {/* Full Name */}
+          <form onSubmit={onSubmit} className="space-y-6 font-sans">
+            {/* FIELD 1: Full Name */}
             <div className="space-y-2">
               <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
                 Full Name <span className="text-amber-400">*</span>
               </label>
-              <input
-                type="text"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                placeholder="Enter full birth name (e.g., Subramanian T S)..."
-                className="w-full bg-[#050814] border border-white/15 rounded-2xl px-5 py-4 text-[#F8FAFC] placeholder-slate-500 focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold"
-                required
-              />
+              <div className="relative">
+                <span className="absolute left-4 top-4 text-base text-[#94A3B8]">👤</span>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder="Enter full birth name (e.g., Subramanian T S)..."
+                  className="w-full bg-[#050814] border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] placeholder-slate-500 focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold"
+                  required
+                />
+              </div>
             </div>
 
-            {/* Inline Gregorian Date Error Banner */}
-            {dateError && (
-              <div className="p-4 rounded-2xl bg-rose-950/80 border border-rose-500/50 text-rose-200 text-xs font-sans flex items-center gap-2">
-                <span className="text-base">⚠️</span>
-                <span>{dateError}</span>
-              </div>
-            )}
-
-            {/* Date & Time Grid Section */}
+            {/* FIELD 2: Date & Time of Birth (Clean Single Inputs) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Date Input Box */}
+              {/* Date Input */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
-                    Date of Birth <span className="text-amber-400">*</span>
-                  </label>
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
+                  Date of Birth <span className="text-amber-400">*</span>
+                </label>
+                <div className="relative">
+                  <span className="absolute left-4 top-4 text-base text-[#94A3B8]">📅</span>
                   <input
                     type="date"
-                    value={datePickerValue}
-                    onChange={e => handleCalendarPickerChange(e.target.value)}
-                    className="opacity-80 hover:opacity-100 cursor-pointer w-5 h-5 bg-transparent"
-                    title="Select Date from Calendar Picker"
+                    value={dateIsoString}
+                    onChange={e => handleDateChange(e.target.value)}
+                    className="w-full bg-[#050814] border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
+                    required
                   />
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <div className="space-y-1">
-                    <span className="text-xs font-medium text-[#94A3B8] block">Day (DD)</span>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      value={dayStr}
-                      onChange={e => handleDayInput(e.target.value)}
-                      onBlur={handleDayBlur}
-                      placeholder="DD"
-                      className={`w-full bg-[#050814] border rounded-2xl px-3 py-3.5 text-[#F8FAFC] outline-none text-base font-bold text-center ${
-                        dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
-                      }`}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-xs font-medium text-[#94A3B8] block">Month (MM)</span>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      value={monthStr}
-                      onChange={e => handleMonthInput(e.target.value)}
-                      onBlur={handleMonthBlur}
-                      placeholder="MM"
-                      className={`w-full bg-[#050814] border rounded-2xl px-3 py-3.5 text-[#F8FAFC] outline-none text-base font-bold text-center ${
-                        dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
-                      }`}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-xs font-medium text-[#94A3B8] block">Year (YYYY)</span>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      value={yearStr}
-                      onChange={e => handleYearInput(e.target.value)}
-                      onBlur={handleYearBlur}
-                      placeholder="YYYY"
-                      className={`w-full bg-[#050814] border rounded-2xl px-3 py-3.5 text-[#F8FAFC] outline-none text-base font-bold text-center ${
-                        dateError ? 'border-rose-500/80 focus:border-rose-400' : 'border-white/15 focus:border-[#F5B942]'
-                      }`}
-                      required
-                    />
-                  </div>
                 </div>
               </div>
 
-              {/* Time Input Box */}
+              {/* Time Input */}
               <div className="space-y-2">
                 <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
                   Time of Birth (24-Hour) <span className="text-amber-400">*</span>
                 </label>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="space-y-1">
-                    <span className="text-xs font-medium text-[#94A3B8] block">Hour (HH 0-23)</span>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      value={hourStr}
-                      onChange={e => handleHourInput(e.target.value)}
-                      onBlur={handleHourBlur}
-                      placeholder="HH"
-                      className="w-full bg-[#050814] border border-white/15 rounded-2xl px-3 py-3.5 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-base font-bold text-center"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-xs font-medium text-[#94A3B8] block">Minute (MM 0-59)</span>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      value={minuteStr}
-                      onChange={e => handleMinuteInput(e.target.value)}
-                      onBlur={handleMinuteBlur}
-                      placeholder="MM"
-                      className="w-full bg-[#050814] border border-white/15 rounded-2xl px-3 py-3.5 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-base font-bold text-center"
-                      required
-                    />
-                  </div>
+                <div className="relative">
+                  <span className="absolute left-4 top-4 text-base text-[#94A3B8]">⏰</span>
+                  <input
+                    type="time"
+                    value={timeIsoString}
+                    onChange={e => handleTimeChange(e.target.value)}
+                    className="w-full bg-[#050814] border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
+                    required
+                  />
                 </div>
               </div>
             </div>
 
-            {/* 3-Tier Cascading Dropdown Location System */}
-            <div className="space-y-4">
-              <span className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
-                Hierarchical Location Selection <span className="text-amber-400">*</span>
-              </span>
+            {/* FIELD 3: Birth Location & Quick Presets */}
+            <div className="space-y-3">
+              <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
+                Birth Location & Timezone <span className="text-amber-400">*</span>
+              </label>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {/* Tier 1: Country Dropdown */}
-                <div>
-                  <label className="block text-xs text-[#94A3B8] mb-1.5 font-medium">1. Select Country</label>
-                  <select
-                    value={selectedCountryName}
-                    onChange={e => handleCountrySelect(e.target.value)}
-                    className="w-full bg-[#050814] border border-white/15 rounded-2xl p-4 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-sm font-bold cursor-pointer"
+              {/* Location Quick Preset Pills */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                {PRESET_LOCATIONS.map(loc => (
+                  <button
+                    key={loc.label}
+                    type="button"
+                    onClick={() => handleSelectPresetLocation(loc)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-medium border transition cursor-pointer ${
+                      placeName.includes(loc.place.split(',')[0])
+                        ? 'bg-[#F5B942]/20 text-[#F5B942] border-[#F5B942]/50 font-bold'
+                        : 'bg-[#050814] text-[#94A3B8] border-white/10 hover:text-[#F8FAFC]'
+                    }`}
                   >
-                    {CASCADING_LOCATIONS.map(c => (
-                      <option key={c.country_name} value={c.country_name} className="bg-[#050814] text-[#F8FAFC]">
-                        {c.country_name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Tier 2: State / Region Dropdown */}
-                <div>
-                  <label className="block text-xs text-[#94A3B8] mb-1.5 font-medium">2. Select State / Region</label>
-                  <select
-                    value={selectedStateName}
-                    onChange={e => handleStateSelect(e.target.value)}
-                    className="w-full bg-[#050814] border border-white/15 rounded-2xl p-4 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-sm font-bold cursor-pointer"
-                  >
-                    {activeCountry.states.map(s => (
-                      <option key={s.state_name} value={s.state_name} className="bg-[#050814] text-[#F8FAFC]">
-                        {s.state_name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Tier 3: District / City Dropdown */}
-                <div>
-                  <label className="block text-xs text-[#94A3B8] mb-1.5 font-medium">3. Select District / City</label>
-                  <select
-                    value={selectedDistrictName}
-                    onChange={e => handleDistrictSelect(e.target.value)}
-                    className="w-full bg-[#050814] border border-white/15 rounded-2xl p-4 text-[#F8FAFC] focus:border-[#F5B942] outline-none text-sm font-bold cursor-pointer"
-                  >
-                    {activeDistricts.map(d => (
-                      <option key={d.district} value={d.district} className="bg-[#050814] text-[#F8FAFC]">
-                        {d.district}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                    📍 {loc.label}
+                  </button>
+                ))}
               </div>
 
-              {/* Resolved Location Badge */}
+              {/* Active Location Display Card */}
               <div className="p-4.5 rounded-2xl bg-[#050814] border border-[#F5B942]/30 flex flex-wrap items-center justify-between gap-3 shadow-inner">
                 <div className="space-y-0.5">
                   <p className="text-sm font-bold text-[#F5B942] flex items-center gap-2">
@@ -522,19 +245,19 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                   </p>
                 </div>
                 <span className="text-xs bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/40 px-3 py-1 rounded-full font-bold">
-                  ● Coordinates Loaded
+                  ● Coordinates Verified
                 </span>
               </div>
             </div>
 
-            {/* Advanced Calculation Options Toggle */}
+            {/* Advanced Controls Toggle */}
             <div className="pt-2 border-t border-white/10 space-y-4">
               <button
                 type="button"
                 onClick={() => setShowAdvanced(!showAdvanced)}
                 className="text-xs text-[#F5B942] font-bold hover:underline flex items-center gap-2 cursor-pointer"
               >
-                <span>{showAdvanced ? '▼' : '►'}</span> Advanced Coordinates & Timezone Controls
+                <span>{showAdvanced ? '▼' : '►'}</span> Advanced Coordinates & Manual Date Overrides
               </button>
 
               {showAdvanced && (
@@ -589,8 +312,7 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
             <div className="pt-4 flex items-center gap-4">
               <button
                 type="submit"
-                disabled={Boolean(dateError)}
-                className="flex-1 py-4 px-8 rounded-2xl bg-gradient-to-r from-[#F5B942] via-[#E5A832] to-[#B8860B] hover:from-[#E5A832] hover:to-[#F5B942] text-[#050814] font-black text-sm uppercase tracking-wider shadow-xl shadow-[#F5B942]/20 transition duration-150 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="flex-1 py-4 px-8 rounded-2xl bg-gradient-to-r from-[#F5B942] via-[#E5A832] to-[#B8860B] hover:from-[#E5A832] hover:to-[#F5B942] text-[#050814] font-black text-sm uppercase tracking-wider shadow-xl shadow-[#F5B942]/20 transition duration-150 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>✦</span> CALCULATE CANONICAL CHART
               </button>
