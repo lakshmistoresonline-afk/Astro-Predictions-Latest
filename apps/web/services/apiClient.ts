@@ -164,3 +164,45 @@ export async function interpretEvidenceAi(
 
   return res.json()
 }
+
+export async function fetchVarshaphal(birthInput: BirthProfileRequest, targetYear: number = 2026): Promise<any> {
+  initAuthTokenFromSession()
+  const res = await fetch(`${API_BASE}/api/v1/tajika/varshaphal`, {
+    method: 'POST',
+    headers: getAuthHeaders(),
+    body: JSON.stringify({ birth_input: birthInput, target_year: targetYear })
+  })
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}))
+    throw new Error(errorData.detail || `Varshaphal calculation failed (HTTP ${res.status}).`)
+  }
+  return res.json()
+}
+
+export async function evaluatePrashna(queryDomain: string, latitude: number, longitude: number): Promise<any> {
+  initAuthTokenFromSession()
+  const res = await fetch(`${API_BASE}/api/v1/prashna/evaluate`, {
+    method: 'POST',
+    headers: getAuthHeaders(),
+    body: JSON.stringify({ query_domain: queryDomain, latitude, longitude })
+  })
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}))
+    throw new Error(errorData.detail || `Prashna evaluation failed (HTTP ${res.status}).`)
+  }
+  return res.json()
+}
+
+export async function fetchYoginiDasha(birthInput: BirthProfileRequest): Promise<any> {
+  initAuthTokenFromSession()
+  const res = await fetch(`${API_BASE}/api/v1/dashas/yogini`, {
+    method: 'POST',
+    headers: getAuthHeaders(),
+    body: JSON.stringify(birthInput)
+  })
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}))
+    throw new Error(errorData.detail || `Yogini Dasha calculation failed (HTTP ${res.status}).`)
+  }
+  return res.json()
+}

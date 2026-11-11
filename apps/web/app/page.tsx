@@ -23,6 +23,9 @@ import { CompatibilityView } from '../components/features/CompatibilityView'
 import { RectificationView } from '../components/features/RectificationView'
 import { DigestView } from '../components/features/DigestView'
 import { TransitScrubberView } from '../components/features/TransitScrubberView'
+import { TajikaVarshaphalView } from '../components/features/TajikaVarshaphalView'
+import { PrashnaView } from '../components/features/PrashnaView'
+import { YoginiDashaView } from '../components/features/YoginiDashaView'
 import { TRANSLATIONS, SupportedLanguage } from '../types/i18n'
 
 type NavigationTab =
@@ -33,10 +36,13 @@ type NavigationTab =
   | 'planets'
   | 'vargas'
   | 'dashas'
+  | 'yogini'
   | 'yogas'
   | 'strength'
   | 'jaimini'
   | 'panchanga'
+  | 'varshaphal'
+  | 'prashna'
   | 'compatibility'
   | 'rectification'
   | 'digest'
@@ -171,6 +177,8 @@ export default function Home() {
         { id: 'planets', label: t.ui.planets, icon: '🪐' },
         { id: 'vargas', label: t.ui.vargas, icon: '❖' },
         { id: 'dashas', label: t.ui.dashas, icon: '⌛' },
+        { id: 'yogini', label: 'Yogini Dasha', icon: '⏳' },
+        { id: 'varshaphal', label: 'Tajika Varshaphal', icon: '☀️' },
         { id: 'yogas', label: t.ui.yogas, icon: '⚖' },
         { id: 'strength', label: t.ui.strength, icon: '📊' },
         { id: 'jaimini', label: t.ui.jaimini, icon: '📜' },
@@ -181,6 +189,7 @@ export default function Home() {
       category: 'PREDICTIONS & AI',
       items: [
         { id: 'predictions', label: t.ui.predictions, icon: '🎯' },
+        { id: 'prashna', label: 'Prashna Horary', icon: '🔮' },
         { id: 'ai', label: t.ui.ai, icon: '🤖' },
         { id: 'digest', label: t.ui.digest, icon: '📫' },
         { id: 'scrubber', label: 'Transit Scrubber', icon: '📅' },
@@ -522,6 +531,24 @@ export default function Home() {
           {activeTab === 'dashas' && (
             <WidgetErrorBoundary title="Dashas Timeline Error">
               <DashasTimeline dashaSuite={masterEv?.natal_dasha_suite} />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'yogini' && (
+            <WidgetErrorBoundary title="Yogini Dasha Error">
+              <YoginiDashaView birthInput={chartData?.birth_input} />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'varshaphal' && (
+            <WidgetErrorBoundary title="Varshaphal Error">
+              <TajikaVarshaphalView birthInput={chartData?.birth_input} />
+            </WidgetErrorBoundary>
+          )}
+
+          {activeTab === 'prashna' && (
+            <WidgetErrorBoundary title="Prashna Horary Error">
+              <PrashnaView />
             </WidgetErrorBoundary>
           )}
 
