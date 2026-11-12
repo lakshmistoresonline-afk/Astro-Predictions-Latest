@@ -173,40 +173,50 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
               </div>
             </div>
 
-            {/* FIELD 2: Date & Time of Birth (Clean Single Inputs) */}
+            {/* FIELD 2: Date & Time of Birth (Interactive Calendar & Time Pickers) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Date Input */}
+              {/* Date Input with Calendar Picker */}
               <div className="space-y-2">
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
-                  Date of Birth <span className="text-amber-400">*</span>
-                </label>
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
+                    Date of Birth (Calendar) <span className="text-amber-400">*</span>
+                  </label>
+                  <span className="text-[11px] text-[#34D399] font-bold">📅 Calendar Picker Active</span>
+                </div>
                 <div className="relative">
-                  <span className="absolute left-4 top-4 text-base text-[#94A3B8]">📅</span>
+                  <span className="absolute left-4 top-4 text-base text-[#94A3B8] pointer-events-none">📅</span>
                   <input
                     type="date"
                     value={dateIsoString}
                     onChange={e => handleDateChange(e.target.value)}
-                    className="w-full bg-[#050814] border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
+                    min="1850-01-01"
+                    max="2150-12-31"
+                    className="w-full bg-[#050814] border border-white/15 hover:border-[#F5B942]/60 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
                     required
                   />
                 </div>
+                <p className="text-[11px] text-[#94A3B8]">Click anywhere on the field or icon to select your Date of Birth via calendar.</p>
               </div>
 
               {/* Time Input */}
               <div className="space-y-2">
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
-                  Time of Birth (24-Hour) <span className="text-amber-400">*</span>
-                </label>
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-extrabold uppercase tracking-wider text-[#F5B942]">
+                    Time of Birth (24-Hour) <span className="text-amber-400">*</span>
+                  </label>
+                  <span className="text-[11px] text-[#38BDF8] font-bold">⏰ Exact Local Time</span>
+                </div>
                 <div className="relative">
-                  <span className="absolute left-4 top-4 text-base text-[#94A3B8]">⏰</span>
+                  <span className="absolute left-4 top-4 text-base text-[#94A3B8] pointer-events-none">⏰</span>
                   <input
                     type="time"
                     value={timeIsoString}
                     onChange={e => handleTimeChange(e.target.value)}
-                    className="w-full bg-[#050814] border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
+                    className="w-full bg-[#050814] border border-white/15 hover:border-[#F5B942]/60 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
                     required
                   />
                 </div>
+                <p className="text-[11px] text-[#94A3B8]">Enter exact birth time in 24-hour format (e.g. 16:30 for 4:30 PM).</p>
               </div>
             </div>
 
