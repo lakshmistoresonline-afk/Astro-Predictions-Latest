@@ -12,11 +12,12 @@ from typing import List, Dict, Any, Optional
 
 from apps.api.config import settings
 from apps.api.db.models import UserModel
-from apps.api.db.auth import get_current_user
+from apps.api.db.auth import get_current_user, get_optional_current_user
 from apps.api.engines.vedic.models import BirthInput
 from apps.api.engines.compatibility_engine import CompatibilityEngine
 from apps.api.engines.rectification_engine import RectificationEngine
 from apps.api.engines.pdf_report_engine import PDFReportEngine
+from apps.api.engines.docx_report_engine import DOCXReportEngine
 from apps.api.engines.report_engine import ReportGeneratorEngine
 
 logger = logging.getLogger("astrovision.security")
@@ -139,9 +140,9 @@ class ExportPDFRequest(BaseModel):
 @router.post("/export/pdf")
 def export_pdf(
     req: ExportPDFRequest,
-    current_user: UserModel = Depends(get_current_user)
+    current_user: Optional[UserModel] = Depends(get_optional_current_user)
 ):
-    """Authenticated Route: Renders and exports 12-chapter PDF report treatise."""
+    """Renders and exports 12-chapter PDF report treatise."""
     try:
         report = ReportGeneratorEngine.generate_comprehensive_report(
             name=req.name,
@@ -165,10 +166,39 @@ def export_pdf(
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"PDF Report generation failed: {str(e)}")
 
+@router.post("/export/docx")
+def export_docx(
+    req: ExportPDFRequest,
+    current_user: Optional[UserModel] = Depends(get_optional_current_user)
+):
+    """Renders and exports Word DOCX report treatise."""
+    try:
+        report = ReportGeneratorEngine.generate_comprehensive_report(
+            name=req.name,
+            year=req.year,
+            month=req.month,
+            day=req.day,
+            hour=req.hour,
+            minute=req.minute,
+            latitude=req.latitude,
+            longitude=req.longitude,
+            place_name=req.place_name,
+            country=req.country,
+            timezone_str=req.timezone_str
+        )
+        docx_bytes = DOCXReportEngine.generate_docx_report(report)
+        return Response(
+            content=docx_bytes,
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            headers={"Content-Disposition": f'attachment; filename="{req.name.replace(" ", "_")}_Celestial_Dossier.docx"'}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"DOCX Report generation failed: {str(e)}")
+
 @router.post("/export/gold-standard-json")
 def export_gold_standard_json(
     req: ExportPDFRequest,
-    current_user: UserModel = Depends(get_current_user)
+    current_user: Optional[UserModel] = Depends(get_optional_current_user)
 ):
     """
     Authenticated Route: Computes and exports complete Gold Standard JSON payload

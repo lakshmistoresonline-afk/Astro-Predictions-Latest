@@ -25,10 +25,13 @@ class JaiminiSuiteResult(BaseModel):
     chara_karakas: Dict[str, CharaKarakaInfo] = Field(description="Map from karaka code e.g. 'AK' to info")
     arudha_lagna_rashi_index: int
     arudha_lagna_rashi_name: str
+    a10_rashi_index: int = Field(default=10, description="10th House Rajya Arudha (A10)")
+    a10_rashi_name: str = Field(default="Capricorn", description="Rajya Arudha Sign Name")
     upapada_lagna_rashi_index: int
     upapada_lagna_rashi_name: str
     atmakaraka_planet: str
     karakamsha_rashi_index: int = Field(description="D9 sign of Atmakaraka")
     karakamsha_rashi_name: str
+    vargottama_planets: List[str] = Field(default_factory=list, description="Planets occupying same sign in D1 and D9")
     rashi_aspects: List[RashiAspectInfo]
     calculation_hash: str

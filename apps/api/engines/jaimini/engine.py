@@ -149,7 +149,23 @@ class JaiminiEngine:
         if ul_idx in [h12_rashi_idx, ((h12_rashi_idx + 5) % 12) + 1]:
             ul_idx = ((ul_idx + 9) % 12) + 1
 
-        # 4. Karakamsha (D9 sign of Atmakaraka) (Fail closed if AK is missing from D9!)
+        # 3.5. Rajya Arudha (A10 - Arudha of 10th House)
+        h10_rashi_idx = ((lagna_rashi_idx + 8) % 12) + 1
+        h10_lord = RASHI_LORDS[h10_rashi_idx]
+
+        if h10_lord not in canonical_chart.placements:
+            raise ValueError(f"10th house lord '{h10_lord}' is missing from canonical chart placements.")
+
+        h10_lord_rashi_idx = canonical_chart.placements[h10_lord].rashi.sign_index
+        dist_h10 = ((h10_lord_rashi_idx - h10_rashi_idx) % 12)
+        if dist_h10 == 0:
+            dist_h10 = 12
+
+        a10_idx = ((h10_lord_rashi_idx + dist_h10 - 2) % 12) + 1
+        if a10_idx in [h10_rashi_idx, ((h10_rashi_idx + 5) % 12) + 1]:
+            a10_idx = ((a10_idx + 9) % 12) + 1
+
+        # 4. Karakamsha & Vargottama Planets
         vargas = VargaEngine.calculate_all_16_vargas(canonical_chart)
         d9_chart = vargas.d9
 
@@ -158,6 +174,15 @@ class JaiminiEngine:
 
         karakamsha_idx = d9_chart.placements[ak_planet].varga_sign_index
         karakamsha_name = d9_chart.placements[ak_planet].varga_sign
+
+        # Calculate Vargottama planets (occupying same rashi in D1 and D9)
+        vargottama_planets = []
+        for p_name, placement in canonical_chart.placements.items():
+            if p_name in d9_chart.placements:
+                d1_sign = placement.rashi.sign
+                d9_sign = d9_chart.placements[p_name].varga_sign
+                if d1_sign == d9_sign:
+                    vargottama_planets.append(f"{p_name} ({d1_sign})")
 
         # 5. Jaimini / Rashi Aspects
         rashi_aspects: List[RashiAspectInfo] = []
@@ -198,10 +223,13 @@ class JaiminiEngine:
             chara_karakas=chara_karakas,
             arudha_lagna_rashi_index=al_idx,
             arudha_lagna_rashi_name=RASHI_NAMES[al_idx - 1],
+            a10_rashi_index=a10_idx,
+            a10_rashi_name=RASHI_NAMES[a10_idx - 1],
             upapada_lagna_rashi_index=ul_idx,
             upapada_lagna_rashi_name=RASHI_NAMES[ul_idx - 1],
             karakamsha_rashi_index=karakamsha_idx,
             karakamsha_rashi_name=karakamsha_name,
+            vargottama_planets=vargottama_planets,
             rashi_aspects=rashi_aspects,
             calculation_hash=j_hash
         )

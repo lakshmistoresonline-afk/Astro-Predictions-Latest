@@ -76,6 +76,29 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
       .catch(() => alert('JSON export failed. Please ensure server is active.'))
   }
 
+  const handleExportDocx = () => {
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const savedToken = sessionStorage.getItem('astro_jwt_token')
+
+    fetch(`${API_BASE}/api/v1/export/docx`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(savedToken ? { 'Authorization': `Bearer ${savedToken}` } : {})
+      },
+      body: JSON.stringify(birthInput)
+    })
+      .then(res => res.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${birthInput.name.replace(/\s+/g, '_')}_Celestial_Dossier.docx`
+        a.click()
+      })
+      .catch(() => alert('DOCX export failed. Please ensure server is active.'))
+  }
+
   // Real active profile from backend calculation payload
   const recentProfiles = birthInput?.name ? [
     {
@@ -126,6 +149,12 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
               className="px-4 py-3 rounded-xl bg-[#111B30] hover:bg-[#1E293B] border border-[#F5B942]/30 text-[#E8EDF7] font-semibold text-xs transition duration-150 flex items-center gap-2 cursor-pointer"
             >
               <span>📄</span> Export PDF Treatise
+            </button>
+            <button
+              onClick={handleExportDocx}
+              className="px-4 py-3 rounded-xl bg-[#111B30] hover:bg-[#1E293B] border border-cyan-500/30 text-[#E8EDF7] font-semibold text-xs transition duration-150 flex items-center gap-2 cursor-pointer"
+            >
+              <span>📝</span> Export Word DOCX
             </button>
             <button
               onClick={handleExportJson}
