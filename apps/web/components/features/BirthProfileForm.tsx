@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { CASCADING_LOCATIONS, DistrictCityItem } from '../../types/locationData'
 
 interface BirthProfileFormProps {
@@ -50,6 +50,37 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [chartStyle, setChartStyle] = useState<'north' | 'south'>('north')
   const [saveProfile, setSaveProfile] = useState(true)
+
+  const dateInputRef = useRef<HTMLInputElement>(null)
+  const timeInputRef = useRef<HTMLInputElement>(null)
+
+  const handleOpenDatePicker = () => {
+    try {
+      if (dateInputRef.current) {
+        if ('showPicker' in dateInputRef.current) {
+          (dateInputRef.current as any).showPicker()
+        } else {
+          dateInputRef.current.focus()
+        }
+      }
+    } catch (e) {
+      dateInputRef.current?.focus()
+    }
+  }
+
+  const handleOpenTimePicker = () => {
+    try {
+      if (timeInputRef.current) {
+        if ('showPicker' in timeInputRef.current) {
+          (timeInputRef.current as any).showPicker()
+        } else {
+          timeInputRef.current.focus()
+        }
+      }
+    } catch (e) {
+      timeInputRef.current?.focus()
+    }
+  }
 
   // Combined Date String (YYYY-MM-DD)
   const dateIsoString = (year >= 1850 && year <= 2150 && month >= 1 && month <= 12 && day >= 1 && day <= 31)
@@ -183,15 +214,20 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                   </label>
                   <span className="text-[11px] text-[#34D399] font-bold">📅 Calendar Picker Active</span>
                 </div>
-                <div className="relative">
-                  <span className="absolute left-4 top-4 text-base text-[#94A3B8] pointer-events-none">📅</span>
+                <div
+                  onClick={handleOpenDatePicker}
+                  className="relative cursor-pointer group"
+                >
+                  <span className="absolute left-4 top-4 text-base text-[#F5B942] group-hover:scale-110 transition pointer-events-none">📅</span>
                   <input
+                    ref={dateInputRef}
                     type="date"
                     value={dateIsoString}
                     onChange={e => handleDateChange(e.target.value)}
+                    onClick={handleOpenDatePicker}
                     min="1850-01-01"
                     max="2150-12-31"
-                    className="w-full bg-[#050814] border border-white/15 hover:border-[#F5B942]/60 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
+                    className="w-full bg-[#050814] border border-white/15 hover:border-[#F5B942] rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
                     required
                   />
                 </div>
@@ -206,13 +242,18 @@ export const BirthProfileForm: React.FC<BirthProfileFormProps> = ({
                   </label>
                   <span className="text-[11px] text-[#38BDF8] font-bold">⏰ Exact Local Time</span>
                 </div>
-                <div className="relative">
-                  <span className="absolute left-4 top-4 text-base text-[#94A3B8] pointer-events-none">⏰</span>
+                <div
+                  onClick={handleOpenTimePicker}
+                  className="relative cursor-pointer group"
+                >
+                  <span className="absolute left-4 top-4 text-base text-[#38BDF8] group-hover:scale-110 transition pointer-events-none">⏰</span>
                   <input
+                    ref={timeInputRef}
                     type="time"
                     value={timeIsoString}
                     onChange={e => handleTimeChange(e.target.value)}
-                    className="w-full bg-[#050814] border border-white/15 hover:border-[#F5B942]/60 rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#F5B942] focus:ring-2 focus:ring-[#F5B942]/20 outline-none transition text-base font-semibold cursor-pointer"
+                    onClick={handleOpenTimePicker}
+                    className="w-full bg-[#050814] border border-white/15 hover:border-[#38BDF8] rounded-2xl pl-12 pr-4 py-4 text-[#F8FAFC] focus:border-[#38BDF8] focus:ring-2 focus:ring-[#38BDF8]/20 outline-none transition text-base font-semibold cursor-pointer"
                     required
                   />
                 </div>
